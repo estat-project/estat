@@ -203,7 +203,8 @@
     function calculateC3() {
           a3 = parseInt(d3.select("#a3").node().value); 
           c = 0;
-          for (i = a3; i < nvalue; i++) c += poissonP[i]; 
+          for (i = 1; i < a3; i++) c += poissonP[i]; 
+          c = 1 - c;
           document.getElementById("c3").value = f4(c);
     }
 
