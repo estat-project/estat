@@ -19,7 +19,7 @@
   <div width="600" height="600" style="position:absolute; left:10px; top:0px">
     <br>
     <div class="title">
-      <b>&nbsp; <span data-msgid="Scatterplot">Scatter Plot</span></b>
+      <b>&nbsp; <span data-msgid="Scatterplot"></span> - <span data-msgid="CorrelationAnalysis"></span></b>
       <button class="menu" onclick="menuLoc()" >
         <b><span data-msgid="Menu">Menu</span></b>
       </button>
@@ -49,12 +49,11 @@
           <td><input type="text" size=15 id="xtitle"></td>
  	</tr>
     </table>   
-    <br>
+
     <table class="stat">
       <tbody>
 	<tr>
-          <td></td>
-	  <td><span data-msgid="NumberData"></span></td>         
+ 	  <td>&nbsp;&nbsp;<span data-msgid="NumberData"></span></td>         
 	  <td><span class="fontmath">n<sub>x</sub></span></td>
 	  <td><input type="text" class="textarea" size=6 id="nn41"></td>
 	  <td> </td>
@@ -62,8 +61,7 @@
 	  <td><input type="text" class="textarea" size=6 id="nn42"></td>        
 	</tr>
 	<tr>
-          <td></td>
-          <td><span id="msgMean">Mean</span></td>
+          <td>&nbsp;&nbsp;<span id="msgMean">Mean</span></td>
 	  <td><span class="fontmath">X&#772;</span></td>
 	  <td><input type="text" class="textarea" size=6 id="xbar41"></td>
 	  <td> </td>
@@ -71,36 +69,57 @@
 	  <td><input type="text" class="textarea" size=6 id="xbar42"></td>
 	</tr>
 	<tr>
-          <td></td>
-          <td><span data-msgid="Sample Variance">Sample Variance</span>(n-1)</td>
+          <td>&nbsp;&nbsp;<span data-msgid="Sample Variance">Sample Variance</span>(n-1)</td>
 	  <td><span class="fontmath">S<sub>x</sub><sup>2</sup></span></td>
 	  <td><input type="text" class="textarea" size=6 id="var41"></td>
 	  <td> </td>
 	  <td><span class="fontmath">S<sub>y</sub><sup>2</sup></span></td>
 	  <td><input type="text" class="textarea" size=6 id="var42"></td>
 	  <td> </td>
-          <td><span id="msgCovariance"></span></td>
+          <td><span data-msgid="Sample"></span> <span id="msgCovariance"></span></td>
 	  <td><span class="fontmath">S<sub>xy</sub></span></td>
 	  <td><input type="text" class="textarea" size=6 id="var43"></td>
 	</tr>
 	<tr>
-          <td></td>
-          <td><span data-msgid="Sample"></span><span data-msgid="Std Deviation"></span></td>
+          <td>&nbsp;&nbsp;<span data-msgid="Sample"></span><span data-msgid="Std Deviation"></span></td>
 	  <td><span class="fontmath">S<sub>x</sub></span></td>
 	  <td><input type="text" class="textarea" size=6 id="std41"></td>
 	  <td> </td>
 	  <td><span class="fontmath">S<sub>y</sub></span></td>
 	  <td><input type="text" class="textarea" size=6 id="std42"></td>
 	  <td> </td>
-          <td><span id="msgCorr"></span></td>
+          <td><span data-msgid="Sample"></span> <span id="msgCorr"></span></td>
 	  <td><span class="fontmath">r</span></td>
 	  <td><input type="text" class="textarea" size=6 id="std43"></td>
 	</tr>
       </tbody>
     </table>
+    <p>
+    <form name="myForm0"> 
+      <b>[<span data-msgid="Hypothesis">Hypothesis</span>]</b> 
+      <span class="fontmath">&nbsp;&nbsp;
+        H<sub>o</sub> : &rho; = 0 &nbsp;
+      </span>
+      &nbsp;&nbsp;
+      <span class="fontmath">
+	    <input type="radio" name = "type0" value="1" checked>
+	    H<sub>1</sub> : &rho; &ne;  0 &nbsp;&nbsp;
+	    <input type="radio" name = "type0" value="2" >
+	    H<sub>1</sub> : &rho; > 0 &nbsp;&nbsp;      
+	    <input type="radio" name = "type0" value="3" >
+            H<sub>1</sub> : &rho; < 0    
+      </span>
+    </form>   
+    <br>
     <button type="button" id="redrawCorr" >
         <span data-msgid="Execute">Execute</span>
     </button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <b><span id="msgTestStat"></span></b>&nbsp;&nbsp; t<sub>0</sub> = √(n-2) r / √(1-r<sup>2</sup>) =
+    <input type="text" class="textarea" size=6 id="testStat"> 
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span id="msgPvalue"></span> = 
+    <input type="text" class="textarea" size=6 id="pvalue"> 
     <p>
     <svg id="chart" width="600" height="600"> </svg> 
     <br>
@@ -139,6 +158,7 @@
       var rowmax    = 200;
       var xdata     = new Array(rowmax);
       var ydata     = new Array(rowmax);
+      var teststat, pvalue, df, info, pvalue;
       document.getElementById("nn41").disabled    = true;    
       document.getElementById("nn42").disabled    = true;    
       document.getElementById("xbar41").disabled  = true;    
@@ -149,9 +169,13 @@
       document.getElementById("std41").disabled   = true;       
       document.getElementById("std42").disabled   = true;       
       document.getElementById("std43").disabled   = true;    
-      document.getElementById("msgMean").innerHTML  = svgStr[34][langNum];    
+      document.getElementById("testStat").disabled= true;    
+      document.getElementById("pvalue").disabled  = true;    
+      document.getElementById("msgMean").innerHTML       = svgStr[34][langNum];    
       document.getElementById("msgCovariance").innerHTML = svgStr[121][langNum]; 
-      document.getElementById("msgCorr").innerHTML = svgStr[60][langNum]; 
+      document.getElementById("msgCorr").innerHTML       = svgStr[60][langNum]; 
+      document.getElementById("msgTestStat").innerHTML   = svgStrU[23][langNum]; 
+      document.getElementById("msgPvalue").innerHTML     = svgStrU[27][langNum]; 
 
       svg.selectAll("*").remove();
       // input data control ===================================================
@@ -171,6 +195,12 @@
         document.getElementById("data1").value = '';
         document.getElementById("data2").value = '';    
       }
+      // H1 type
+      var h1 = document.myForm0.type0;
+      var h1Type = h1.value; 
+      h1[0].onclick = function() { h1Type = h1.value; clearText(); }    // 양측검정
+      h1[1].onclick = function() { h1Type = h1.value; clearText(); }    // 우측검정
+      h1[2].onclick = function() { h1Type = h1.value; clearText(); }    // 좌측검정
 
       d3.select("#redrawCorr").on("click", function(){  
           svg.selectAll("*").remove();  // 전화면 제거
@@ -194,8 +224,23 @@
           mTitle = d3.select("#mtitle").node().value;
           yTitle = d3.select("#ytitle").node().value;
           xTitle = d3.select("#xtitle").node().value;
-          // 통계량
+          // 통계량, p-value
           basicScatterStat(tobs, xdata, ydata, stat);
+          teststat = Math.sqrt(tobs-2) * stat[9] / Math.sqrt(1-stat[9]*stat[9]);
+          df = tobs - 2;
+          if (h1Type == 1) {
+            if (teststat < 0) pvalue = 2 * t_cdf(teststat, df, info);
+            else  pvalue = 2 * (1 - t_cdf(teststat, df, info));
+          }
+          else if (h1Type == 2) {
+            pvalue = 1 - t_cdf(teststat, df, info);
+            drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue, mu);
+          }
+          else {
+            pvalue = t_cdf(teststat, df, info);
+            drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue, mu);
+          }
+
           document.getElementById("nn41").value   = tobs;    
           document.getElementById("nn42").value   = tobs;    
           document.getElementById("xbar41").value = f2(stat[1]);
@@ -205,7 +250,9 @@
           document.getElementById("var43").value  = f2(stat[19]);    
           document.getElementById("std41").value  = f2(stat[2]); 
           document.getElementById("std42").value  = f2(stat[12]);    
-          document.getElementById("std43").value  = f2(stat[9]);    
+          document.getElementById("std43").value  = f3(stat[9]);    
+          document.getElementById("testStat").value = f3(teststat);    
+          document.getElementById("pvalue").value   = f4(pvalue);    
           showScatterPlot(tobs, xdata, ydata, stat[5], stat[6], stat[15], stat[16], graphWidth, graphHeight, checkTitle);
       })
 

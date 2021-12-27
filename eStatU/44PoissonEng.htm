@@ -132,8 +132,8 @@
         bar.selectAll("*").remove();
         document.getElementById("freqPoisson").checked = false;
         checkFreq = false;
-	  removeBinomialFreq2();
-
+	removeBinomialFreq2();
+        clearInputValue1();
         lambda = parseFloat(d3.select("#lambda").node().value);   
         if (lambda < 0.1) lambda = 0.1;
         if (lambda > 10)  lambda = 10.0;

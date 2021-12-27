@@ -152,12 +152,11 @@
         else if (geoP > 0.1) nvalue = 31;
         else if (geoP > 0.02) nvalue = 51;
         else nvalue = 101;
-
         document.getElementById("a1").max = nvalue-1;
         document.getElementById("b1").max = nvalue;
         document.getElementById("b2").max = nvalue;
         document.getElementById("a3").max = nvalue;
-
+        clearInputValue1();
         drawGeometricBarGraph(nvalue, geoP, valueLabel, geometricP);
         geometricTable(nvalue, geoP, geometricP);
       })

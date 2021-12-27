@@ -122,7 +122,6 @@
       document.getElementById("c1").disabled = true;
       document.getElementById("c2").disabled = true;
       document.getElementById("c3").disabled = true;
-
       NN = parseFloat(d3.select("#NN").node().value);    // lot 크기 
       DD = parseFloat(d3.select("#DD").node().value);    // defect 크기 
       nn = parseFloat(d3.select("#nn").node().value);    // sample size
@@ -136,7 +135,6 @@
       drawHyperGeoBarGraph(valueLabel, hyperGeoP, xmin, xmax, ymin, ymax);
       hyperGeoTable(NN, DD, nn, hyperGeoP);
 
-
       // 초기하분포 실행버튼 클릭 =================================================================================
       d3.select("#executeHyperG").on("click",function() {
         NN = parseFloat(d3.select("#NN").node().value);    // lot 크기 
@@ -148,7 +146,7 @@
         document.getElementById("b1").max = nn;
         document.getElementById("b2").max = nn;
         document.getElementById("a3").max = nn;
-
+        clearInputValue1();
         drawHyperGeoBarGraph(valueLabel, hyperGeoP, xmin, xmax, ymin, ymax);
         hyperGeoTable(NN, DD, nn, hyperGeoP);
         if (checkFreq) showBinomialFreq2(nvalue, hyperGeoP, xmin, xmax, ymin, ymax);

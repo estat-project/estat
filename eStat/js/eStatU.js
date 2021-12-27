@@ -1054,10 +1054,7 @@ function showValueBinomial3(newValue, valueLabel, binomialP2) {
         document.getElementById("b1").max = newValue;
         document.getElementById("b2").max = newValue;
         document.getElementById("a3").max = newValue;
-        document.getElementById("a1").value = "";
-        document.getElementById("b1").value = "";
-        document.getElementById("b2").value = "";
-        document.getElementById("a3").value = "";
+        clearInputValue1();
 
         var nn2 = parseFloat(d3.select("#nn2").node().value);    // 크기 n
         var pp2 = parseFloat(d3.select("#pp2").node().value);    // 성공확률 p
@@ -1073,6 +1070,7 @@ function showValueBinomial4(newValue, valueLabel, binomialP2) {
         removeBinomialFreq2();
         removeBinomialNormal();
         document.getElementById("pp2").value = newValue / 100;
+        clearInputValue1();
         var nn2 = parseFloat(d3.select("#nn2").node().value);    // 크기 n
         var pp2 = parseFloat(d3.select("#pp2").node().value);    // 성공확률 p
         drawBinomialBarGraph(nn2, pp2, binomialP2, xmin, xmax, ymin, ymax, valueLabel);
@@ -1182,6 +1180,7 @@ function showValueLambda(newValue, valueLabel, poissonP) {
         bar.selectAll("*").remove();
         document.getElementById("freqPoisson").checked = false;
         removeBinomialFreq2();
+        clearInputValue1();
         var lambda = parseFloat(d3.select("#lambda").node().value);    // 성공 rate
         drawPoissonBarGraph(nvalue, lambda, valueLabel, poissonP, xmin, xmax, ymin, ymax);
 }
@@ -1306,8 +1305,18 @@ function showValueGeoP(newValue, valueLabel, geometricP) {
         document.getElementById("b1").max = nvalue;
         document.getElementById("b2").max = nvalue;
         document.getElementById("a3").max = nvalue;
-
+        clearInputValue1();
         drawGeometricBarGraph(nvalue, geoP, valueLabel, geometricP);
+}
+function clearInputValue1() {
+        document.getElementById("a1").value = "";
+        document.getElementById("a1").value = "";
+        document.getElementById("b1").value = "";
+        document.getElementById("c1").value = "";
+        document.getElementById("b2").value = "";
+        document.getElementById("c2").value = "";
+        document.getElementById("a3").value = "";
+        document.getElementById("c3").value = "";
 }
 // Geometric 분포 막대그래프 함수 --------------------------------------------------
 function drawGeometricBarGraph(nvalue, geoP, valueLabel, geometricP) {
@@ -1420,6 +1429,7 @@ function showValueHyperGeo(newValue, valueLabel, hyperGeoP) {
         document.getElementById("b1").max = newValue;
         document.getElementById("b2").max = newValue;
         document.getElementById("a3").max = newValue;
+        clearInputValue1();
         drawHyperGeoBarGraph(valueLabel, hyperGeoP, xmin, xmax, ymin, ymax);
 }
 // 초기하분포 막대그래프 함수 --------------------------------------------------
@@ -6079,7 +6089,7 @@ function drawTitle(mTitle, yTitle, xTitle) {
 // eStatU 공유를 위한 함수  eStatH, Distribution
 var indexLoc = localStorage['myKey'];
 function menuLoc() {
-    console.log(indexLoc)
+//    console.log(indexLoc)
     // Create anchor element.
     var a = document.createElement('a'); 
     // Set the href property.
