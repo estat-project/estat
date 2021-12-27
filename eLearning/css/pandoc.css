@@ -296,8 +296,8 @@ figcaption {
   margin: 0 0 .8em;
 }
 table {
-  margin-bottom: 1em;
-  margin-left:  2em;
+  margin-bottom: 0.5em;
+  margin-left:  1em;
   border-bottom: 1px solid #ddd;
   border-right: 1px solid #ddd;
   border-spacing: 0;
@@ -415,7 +415,7 @@ table td {
 
 .figText {
   text-align: left;
-  margin-left: 6em;
+  margin-left: 3em;
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   font-size: 0.9em;
 }
@@ -430,7 +430,7 @@ table td {
 }
 .textL20M20 { /* 예제 1) */
   margin-left: 1.4em;  
-  text-indent: -1.4em;
+  text-indent: -1.2em;
 }
 .textL40 { /* 예제 수식 시작 */
   margin-left: 2.8em;
@@ -478,7 +478,7 @@ table td {
   background-color: #f2f2f2;
   text-align: left;
   margin-left: 2em;
-  padding: 1em;
+  padding: 0.5em;
 }
 .mainTablePink {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -491,3 +491,7 @@ table td {
   margin-left: 2em;
   padding: 1em;
 }
+.figure30 {width:30%;}
+.figure50 {width:50%;}
+.figure70 {width:70%;}
+.figure90 {width:90%;}

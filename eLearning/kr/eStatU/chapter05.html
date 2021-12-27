@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>5장</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../../css/dashboard.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <style type="text/css">code{white-space: pre;}</style>
+       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
+       <script src="../../js/prism.js"></script>
+       <link rel="stylesheet" href="../../css/prism.css">
+       <script src="../../js/jquery.min.js"></script>    
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script>
+	 $(document).ready(function() {
+  	     toc = $("#sidebar > ul > li > ul");
+  	     sections = toc.children();   // <li>
+  	     for(var i=0; i<sections.length; i++) {
+  		 if ($(sections[i]).children().length == 1) { continue; }
+  		 var first = sections[i].firstElementChild;  // <a>
+  		 var last = sections[i].lastElementChild;
+  		 var li = $("<li>");
+  		 var details = $("<details>");
+  		 var summary = $("<summary>");
+  		 $(summary).append(first)
+  		 $(details).append(summary);
+  		 $(details).append(last);
+  		 $(li).append(details);	
+  		 $(sections[i]).replaceWith(li);
+  	     }
+	 });
+	 </script>
+       <link rel="stylesheet" href="../../css/pandoc.css">
+       <script src="../../js/eBook.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <ul class="nav navbar-nav">
+    <li><a href="../../../eStat/index.html"  target="_blank">eStat</a></li>
+    <li><a href="../../../eStatU/index.html" target="_blank">eStatU</a></li>
+    <li><a href="../../Distribution/index.html" target="_blank">확률분포</a></li>
+  </ul>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
+      <ul>
+	<li><a href=""></a>
+	  <ul>
+            <li><a href="index.html">차  례</a></li>
+            <li><a href="chapter01.html">1장 통계 데이터과학</a></li>
+            <li><a href="chapter02.html">2장 질적 데이터 시각화</a></li>
+            <li><a href="chapter03.html">3장 양적 데이터 시각화</a></li>
+            <li><a href="chapter04.html">4장 표/측도 데이터 정리</a></li>
+            <li><a href="chapter05.html">5장 확률, 확률분포함수</a></li>
+            <li><a href="chapter06.html">6장 표집분포와 추정</a></li>
+            <li><a href="chapter07.html">7장 한 모집단 모수 검정</a></li>
+            <li><a href="chapter08.html">8장 두 모집단 모수 검정</a></li>
+            <li><a href="chapter09.html">9장 여러 모평균의 검정</a></li>
+            <li><a href="chapter10.html">10장 비모수적 가설검정</a></li>
+            <li><a href="chapter11.html">11장 범주형 데이터 검정</a></li>
+            <li><a href="chapter12.html">12장 상관 및 회귀분석</a></li>
+	  </ul>
+	</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+  <!--***********************************************************************-->
+  <h1>5장  확률 및 확률분포함수</h1> 
+  <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(164)"> &#10094;&#10094; &nbsp;&nbsp;<b>4장</b></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(166)"><b>6장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
+  <p>
+  <table>
+    <tr>
+      <td style="width:300px">
+        <h1>&nbsp; 🎲 🎴 ♥ ♦ ♣ ♠ </h1>
+        <h4>
+        <a href="#0501"><u>5.1  확률의 정의</u></a> <p>
+        <a href="#0502"><u>5.2  확률의 계산</u></a> <p>
+        <a href="#0503"><u>5.3  이산형 확률변량</u></a> <p>
+        <a href="#0504"><u>5.4  연속형 확률변량</u></a> <p>
+        <a href="chapter05.pdf" target="_blank"><u>[5장 pdf]</u></a>
+        </h4>
+      </td>
+      <td style="width:350px">
+        <h1></h1>
+        <p>확률은 한 사건이 일어날 가능성을 0에서 1사이의 값으로 수치화 한 것이다. 여러 가지 상황에 
+           대한 확률을 계산하여 의사 결정이나 미래 예측에 많이 이용한다. 
+        <p>확률의 계산은 순열 조합이 이용되고 덧셈법칙과 곱셈법칙이 이용된다.
+        <p>이산형 확률변수에는 이항분포, 포아송분포, 기하분포, 초기하분포 등이 있다.
+        <p>연속형 확률변수에는 정규분포, 지수분포 등이 있다.
+      </td>
+    </tr>
+  </table>
+<!--
+  <h6>
+      <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
+  </h6>
+-->
+  <p>
+  <h3 id="0501">5.1  확률의 정의</h3>
+  <p>
+  <div class="mainTable">
+      <p>
+      우리 주변에는 동전을 던진다든지 제품을 검사한다든지 유사한 일이 반복되는 경우가 많다. 
+      이러한 일들의 가능한 결과는 '겉면' 또는 '뒷면'이든지 '우량품' 또는 '불량품'이 
+      되는 것은 알지만 무슨 결과나 될지는 모른다. 이와 같이 비슷한 일이 반복되고 모든 가능한 
+      결과들은 알지만 한 결과가 우연에 의하여 결정되는 실험을 <b>통계적 실험</b>이라고 한다.
+      <p>
+      한 통계적 실험에서 모든 가능한 사건의 집합을 <b>표본공간</b>(sample space)이라 하고 이 표본공간의 한 부분집합을
+      <b>사건</b>(event)이란 한다. 표본공간의 원소수가 유한개 또는 셀수 있을 때 <b>이산형 표본공간</b>이라 하고, 
+      원소수가 무한개일 때 <b>연속형 표본공간</b>이라 한다.
+      <p>
+      <b>확률</b>(probability)이란 '한 사건이 일어날 가능성을 0 과 1 사이의 실수로 표시' 하는 것인데, 한 사건이 
+      발생할 가능성이 높으면 확률은 1 에 가까운 수로 표시하고, 반대로 발생할 가능성이 적으면 확률을 0 에 가까운 수로 표시한다.
+      어느 사건이 반드시 발생하면 확률은 1 로 정하고, 전혀 발생하지 않으면 확률은 0 으로 정한다. 구체적으로 '어느 사건의 확률을
+      0과 1사이의 어떤 값으로 정하느냐' 하는 방법에는 여러 가지가 있는데, 여기서는 확률의 고전적 정의와 상대도수를 이용한 정의 두 가지를 소개한다. 
+      <p>
+      <b>확률의 고전적 정의</b>는 표본공간의 모든 원소가 일어날 가능성이 같다고 하고 사건 A가 발생할 확률(P(A)로 표시)은 
+      이산형 표본공간의 경우에 다음과 같이 정의한다. 
+      $$
+           P(A) = \frac{사건 \;A 에 \;속하는\; 원소의 \;개수}{표본공간의 \;전체\; 원소의 \;개수}
+      $$
+      <p>
+      연속형 표본공간의 경우에 확률 P(A)는 다음과 같이 정의한다.
+      $$
+           P(A) = \frac{사건 \;A 에 \;속하는\; 원소들의 \;측도}{표본공간의 \;전체\; 원소들의 \;측도}
+      $$
+      여기서 측도란 길이, 면적, 부피 등을 뜻한다.       
+      <p>
+      확률의 고전적 정의는 많은 현실문제 확률계산에 큰 문제점이 없다. 그러나 고전적 정의에서 표본공간의 모든 원소가 발생할 가능성이 같다는 가정은 성립이 안되는 경우가 있을 수 있다. 예를 들면, 공장에서 한 제품을 생산할 때 '우량품'과 '풀량품'으로 표시한다면 표본공간은 {우량품, 불퍙품}이다. 하지만 우량품이 나올 가능성과 불량품이 나올 가능성은 같지 않아 표본공간의 각 원소가 발생할 가능성이 같다는 가정은 맞지 않는다. 이러한 문제를 해결하기 위한 것이 확률의 상대도수적 정의이다.
+      <p>
+      <b>확률의 상대도수적 정의</b>는 사건 A가 발생할 확률(P(A)로 표시)을 같은 조건하에서 통계적 실험을 수없이 많이 반복시행하였을 때 사건 A가 발생하는 비율 즉, 상대도수이다.  
+      <p>
+  </div>
+  <p>
+  <div class="mainTableGrey">
+      <table>
+        <tr>
+          <td colspan="2">
+            <p><h5>🎲 예 5.1</h5>
+           『eStatU』 메뉴에서 '통계적 확률'을 선택하면 [그림 5.1]과 같은 시뮬레이션 창이 나타난다. 
+            여기에서 동전을 던지는 횟수 n을 입력하고 [실행] 버튼을 누르면 동전의 겉이 나오는 확률이 
+            동전을 많이 던졌을 때 1/2에 수렴하는 것을 관찰할 수 있다. 이를 <b>대수의 법칙</b>(law of large number)이라한다. 
+          </td>
+        </tr>
+        <tr>
+          <td style="width:100px">
+            <h5>풀이</h5>
+            <input class="qrBtn" type="image" src="../../QR/eStatU630_LawOfLarge.svg" onclick="window.open(addrStr[154])">
+          </td>
+          <td>
+            <p>
+            <img src="../FigureU/Fig0501.png">
+            <div class="textLeft">[그림 5.1] 『eStatU』대수의 법칙 시뮬레이션</div>
+          </td>
+        </tr>
+      </table>
+  </div>
+  <p>
+  <!------------------------------------------------------------------------------------------>
+  <h3 id="0502">5.2  확률의 계산</h3>
+  <p>
+  <div class="mainTable">
+      <h4>순열과 조합</h4>
+      <p>
+      n개의 사물 중 r개를 선택해 순서를 고려해 나열하는 방법의 수를 <b>순열</b>(permutation)이라 하고 다음과 같이 계산한다. 
+      $$ 
+        _{n} P_{r} =  n (n-1) (n-2)  \cdots (n-r+1) = \frac {n!} {(n-r)!}
+      $$
+      그러므로 n개를 모두 나열하는 방법의 수는 다음과 같다.
+      $$ 
+        _{n} P_{n} = n(n-1)(n-2) \cdots 2 \cdot 1 = n!
+      $$
+      참고: 0! = 1
+      <p>
+      n개의 사물 중 r개를 순서를 고려치 않고 추출하는 방법의 수를 <b>조합</b>(combination)이라 하고 다음과 같이 계산한다.
+      $$ 
+        _{n} C_{r} = \frac { _{n} P_{r} } {r!} = \frac {n!} {r!(n-r)!}
+      $$
+      <p>
+  </div>
+  <p>
+  <div class="mainTableGrey">
+      <table>
+        <tr>
+          <td colspan="2">
+            <p><h5>🎲 예 5.2</h5>
+           『eStatU』 메뉴에서 '순열 조합'을 선택하면 [그림 5.2]와 같은 창이 나타난다. 여기에서 n과 r을 입력하면 여러 종류의 
+            순열과 조합이 계산된다. n이 10보다 작고 r이 2인 경우에 [실행] 버튼을 누르면 모든 경우의 수에 대한 그림을 보여준다.
+          </td>
+        </tr>
+        <tr>
+          <td style="width:100px">
+            <h5>풀이</h5>
+            <input class="qrBtn" type="image" src="../../QR/eStatU_40Permutation.svg" onclick="window.open(addrStr[147])">
+          </td>
+          <td>
+            <p>
+            <img src="../FigureU/Fig0502.png">
+            <div class="textLeft">[그림 5.2] 순열과 조합의 계산</div>
+            <p>
+            <img src="../FigureU/Fig0503.png">
+            <div class="textLeft">[그림 5.3] 10명중 2명을 뽑는 순열과 조합 경우의 수</div>
+          </td>
+        </tr>
+      </table>
+  </div>
+  <p>
+  <div class="mainTable">
+      <h4>확률의 덧셈법칙</h4>
+      <p>
+      <p>표본공간 \(S\)의 두 사건 \(A\)와 \(B\)에 대하여  \(A\)또는 \(B\)가 일어나는 사건을
+         \(A \cup B\)로 나타내고, \(A\)와 \(B\)가 동시에 일어나는 사건을 \(A \cap B\)와 같이 나타낸다. 
+      <p>
+      <img src="../FigureH/HFig0201.png">
+      <div class="textLeft">[그림 5.4] 사건 \(A \cup B\)와 사건 \(A \cap B\)</div>
+      <p>
+         특히 사건 \(A\)와 \(B\)가 동시에 일어나지 않을 때, 즉 \(A \cap B\)= &oslash;
+         일 때, 이 두 사건을 서로 <b>배반사건</b>이라고 한다.
+      <p>
+      <img src="../FigureH/HFig0202.png">
+      <div class="textLeft">[그림 5.5] 서로 배반인 사건 \(A\)와 사건 \(B\)</div>
+      <p>
+         어떤 사건 \(A\)에 대하여 사건 \(A\)가 일어나지 않는 사건을 \(A\)의 <b>여사건</b>이라고 하고, 
+         이 사건을 \(A^C\)로 나타낸다. \(A\)와 \(A^C\)는 동시에 일어날 수 없으므로 
+         \(A \cap A^C\)= &oslash;이고 사건 \(A\)와 \(A^C\)는 서로 배반사건이다.
+      <p>
+      <img src="../FigureH/HFig0203.png">
+      <div class="textLeft">[그림 5.6] 사건 \(A\)의 여사건 \(A^C\)</div>
+      <p>
+      <b>확률의 덧셈법칙</b>은 다음과 같다.. 
+      $$
+        P(A ∪ B) = P(A) + P(B) - P(A ∩ B)                      
+      $$
+      만일  A ∩ B = ∅ 일 때. 즉 A와 B가 서로 배반사건이면 확률은 다음과 같다. 
+      $$
+        P(A ∪ B) = P(A) + P(B)                               
+      $$
+      <p>
+  </div>
+  <p>
+  <div class="mainTableGrey">
+      <table>
+        <tr>
+          <td colspan="2">
+            <p><h5>🎲 예 5.3</h5>
+           『eStatU』메뉴에서 '확률의 덧셈정리'를 선택하면 [그림 5.7]과 같은 창이 나타난다. 여기에서 P(A) = 0.6, p(B) = 0.4, 
+            P(A ∩ B) = 0.2를 입력한 후 [실행]버튼을 클릭하면 확률의 덧셈정리에 대한 그래프를 관찰 할 수 있다. P(A), P(B), 
+            P(A ∩ B)를 변화시키면서 덧셈 정리를 살펴볼 수 있다.
+          </td>
+        </tr>
+        <tr>
+          <td style="width:100px">
+            <h5>풀이</h5>
+            <input class="qrBtn" type="image" src="../../QR/eStatU_40AdditionRule.svg" onclick="window.open(addrStr[161])">
+          </td>
+          <td>
+            <p>
+            <img src="../FigureU/Fig0507.png">
+            <div class="textLeft">[그림 5.7] 확률의 덧셈정리</div>
+          </td>
+        </tr>
+      </table>
+  </div>
+  <p>
+  <div class="mainTable">
+      <h4>조건부 확률과 확률의 곱셈법칙</h4>
+      <p>
+      한 고등학교 학생 40명의 안경착용 여부를 조사하니 다음 표와 같다. 
+      <p>
+      <table style="width:700px"> 
+        <tr> 
+          <th></th>
+          <th>안경착용(\(B\))</th>
+          <th>안경착용 안함(\(N\))</th>
+          <th>합계</th>
+        </tr>
+        <tr> 
+          <th>남학생(\(A\))</th>
+          <td class="tdCenter">\(n(A \cap B) = 8\)</td>
+          <td class="tdCenter">\(n(A \cap N) = 16\)</td>
+          <th>\(n(A) = 24\)</th>
+        </tr>
+        <tr> 
+          <th>여학생(\(F\))</th>
+          <td class="tdCenter">\(n(F \cap B) = 4\)</td>
+          <td class="tdCenter">\(n(F \cap N) = 12\)</td>
+          <th>\(n(F) = 16\)</th>
+        </tr>
+        <tr> 
+          <th>합계</th>
+          <th>\(n(B) = 12\)</th>
+          <th>\(n(N) = 28\)</th>
+          <th>\(n(S) = 40\)</th>
+        </tr>
+      </table>
+      <p>
+      남학생 중에서 한 명을 임의로 뽑았을 때 이 학생이 안경을 착용했을 확률은 기호로 
+         \(P(B|A)\)로 표시하며 남학생인 사건 \(M\)을 표본공간으로 볼 수 있으므로 
+      <p>
+      <div class="textLeft">
+         \( P(B|A) = \frac{n(A \cap B)}{n(A)}  = \frac{8}{24} \) 
+      </div>
+      <p>
+         이다. \(P(B|A)\)을 남학생 사건 \(A\)가 일어났을 때 안경착용 사건 \(B\)의 
+         <b>조건부확률</b>이라 한다. 
+      <p>
+      일반적으로 사건 \(A\)가 일어났을 때 사건 \(B\)의 조건부확률은 다음과 같다.
+      <p>
+      <div class="textLeft">
+         \( P(B|A) = \frac{n(A \cap B)}{n(A)} \) 
+      </div>
+      <p>
+      위의 표에서 두 사건이 동시에 일어날 확률을 정리하면 다음과 같다. 이를 <b>결합확률분포</b>
+      (joint probability distribution)라 부른다.
+      <p>
+      <table style="width:700px"> 
+        <tr> 
+          <th></th>
+          <th>안경착용(\(B\))</th>
+          <th>안경착용 안함(\(N\))</th>
+          <th>합계</th>
+        </tr>
+        <tr> 
+          <th>남학생(\(A\))</th>
+          <td class="tdCenter">\(P(A \cap B) = \frac{8}{40}\)</td>
+          <td class="tdCenter">\(P(A \cap N) = \frac{16}{40}\)</td>
+          <th>\(P(A) = \frac{24}{40}\)</th>
+        </tr>
+        <tr> 
+          <th>여학생(\(F\))</th>
+          <td class="tdCenter">\(P(F \cap B) = \frac{4}{40}\)</td>
+          <td class="tdCenter">\(P(F \cap N) = \frac{12}{40}\)</td>
+          <th>\(P(F) = \frac{16}{40}\)</th>
+        </tr>
+        <tr> 
+          <th>합계</th>
+          <th>\(P(B) = \frac{12}{40}\)</th>
+          <th>\(P(N) = \frac{28}{40}\)</th>
+          <th>\(P(S) = 1\)</th>
+        </tr>
+      </table>
+      <p>
+         여기서 \(P(A \cap B) = \frac{8}{40}\)은 남학생 확률 \(P(A) = \frac{24}{40}\)에 
+         조건부 확률 \( P(B|A) = \frac{8}{24} \)을 곱하여 구할 수 있다.
+      <p>
+      <div class="textLeft">
+         \( P(A \cap B) = P(A) × P(B|A) = \frac{24}{40} × \frac{8}{24} = \frac{8}{40}\) 
+      </div>
+      <p>
+         이를 <b>확률의 곱셉정리</b>라 한다. 이 사실은 조건부 확률의 정의 
+         \( P(B|A) = \frac{P(A \cap B)}{P(A)} \)에서 양변에 \(P(A)\)를 곱하면 
+      <p>
+      <div class="textLeft">
+         \( P(A \cap B ) = P(A) × P(B|A)  \) 
+      </div>
+      <p>
+         가 성립함을 알 수 있다.
+      <p>
+         \(P(A \cap B) = \frac{8}{40}\)은 안경착용 확률 \(P(B) = \frac{12}{40}\)에 
+         조건부 확률 \( P(A|B) = \frac{8}{12} \)을 곱하여 구할 수도 있다.
+      <p>
+      <div class="textLeft">
+         \( P(A \cap B) = P(B) × P(A|B) = \frac{12}{40} × \frac{8}{12} = \frac{8}{40}\) 
+      </div>
+      <p>
+         일반적으로 다음과 같은 확률의 곱셈정리가 성립한다.
+      <div class="textLeft">
+         \( P(A \cap B) = P(A) × P(B|A) \quad  \) (단 \(P(A) \ne 0) \) 
+      </div>
+      <div class="textLeft">
+         \( P(A \cap B) = P(B) × P(A|B) \quad  \) (단 \(P(B) \ne 0)  \)
+      </div>
+      <p>
+      두 사건 \(A\)와 \(B\)에 대하여 사건 \(A\)가 일어나는 것이 사건 \(B\)가 
+      일어날 확률에 영향을 주지 않은 때, 즉 
+      <p>
+      <div class="textLeft">
+         \( P(B|A) = P(B)\) 
+      </div>
+      <p>
+         일 때, 두 사건 \(A\)와 \(B\)는 <b>서로 독립</b>이라고 한다. 한편 두 사건 \(A\)와 \(B\)가
+         독립이 아닐 때,  두 사건 \(A\)와 \(B\)는 <b>서로 종속</b>이라고 한다.
+      <p>
+         두 사건 \(A\)와 \(B\)가 서로 독립이면 확률의 곱셈정리에 의하여 
+      <p>
+      <div class="textLeft">
+         \( P(A \cap B) = P(A) × P(B|A) = P(A) × P(B) \) 
+      </div>
+      <p>
+         가 성립한다. 
+      <p>
+  </div>
+  <p>
+  <div class="mainTableGrey">
+      <table>
+        <tr>
+          <td colspan="2">
+            <p><h5>🎲 예 5.4</h5>
+           『eStatU』 메뉴에서 '조건부확률'을 선택하면 [그림 5.8]과 같은 창이 나타난다. 여기에서 결합확률 
+            \(P(A_1 \cap B_1\) 를 조정하면 조건부확률을 관찰할 수 있고 그 밑에 [그림 5.9]와같은 
+            선그래프와 각각의 행에 대한 조건부확률의 막대그래프를 관찰할 수 있다. 
+          </td>
+        </tr>
+        <tr>
+          <td style="width:100px">
+            <h5>풀이</h5>
+            <input class="qrBtn" type="image" src="../../QR/eStatU_40MultiplicationRule.svg" onclick="window.open(addrStr[164])">
+          </td>
+          <td>
+            <p>
+            <img src="../FigureU/Fig0508.png">
+            <div class="textLeft">[그림 5.8] 조건부확률</div>
+            <p>
+            <img src="../FigureU/Fig0509.png">
+            <div class="textLeft">[그림 5.9] 결합확률에 대한 그래프와 조건부확률</div>
+          </td>
+        </tr>
+      </table>
+  </div>
+  <p>
+
+  <!--------------------------------------------------------------------------------> 
+  <h3 id="0503">5.3  이산형 확률변량</h3>
+  <p>
+  <div class="mainTable">
+      <p>동전을 던졌을 때 표본공간의 여러 가지 사건에 대해 확률을 구할 수 있지만 그 중에서도 우리가 관심이 
+         있는 것은 '앞면이 나오는 횟수'에 대한 사건들과 그 확률이다. \(X\)를 동전의 앞면이 나온 횟수라고 하면 
+         \(X\)의 값으로 가능한 수는 0, 1, 2가된다. 
+         즉 \(X\)는 표본공간 \(S\)의 각 원소에 다음과 같이 하나의 수를 대응한 것이다. 
+      <p>
+          <table style="width:400px"> 
+            <tr> <th class="thGrey">표본공간</th>       <th class="thGrey">\(X\) = 동전의 앞면이 나온 횟수</th>  </tr>
+            <tr> <td class="tdCenter">{TT}</td>         <td class="tdCenter">0</td>    </tr>
+            <tr> <td class="tdCenter">{TH}<br>{HT}</td> <td class="tdCenter">1</td>    </tr>
+            <tr> <td class="tdCenter">{HH</td>          <td class="tdCenter">2</td>    </tr>
+          </table>
+      <p>
+         이와 같이 어떤 통계적 실험에서 표본공간의 각 원소에 단 하나의 실수를 대응시킨 관계를 <b>확률변수</b>
+         라고 한다. 확률변수는 대개 알파벳 대문자 \(X, Y, Z \) 등으로 표시하고, 확률변수의 값은 
+         소문자 \(x, y, z \)등으로 표시한다. 확률변수가 가질 수 있는 값이 유한개이거나 자연수와 
+         같이 셀 수 있을 때 그 확률변수를 <b>이산확률변수</b>라 하고, 임의의
+         실수 값을 가질 때, 그 확률변수를 <b>연속확률변수</b>라고 한다. 예를 들어 동전을 두 개 
+         던져 나타나는 겉면의 수 \(X\)는 이산확률변수이고, 피자를 주문해서 집에 도착할 때까지 걸리는
+         시간을 \(Y\)라 하면 \(Y\)는 임의의 양의 실수 값을 가질 수 있으므로 연속확률변수가 된다.
+      <p>
+         확률변수 \(X\)를 동전을 두 번 던졌을 때 나오는 앞면이 나온 횟수라고 할 때 각 값이 나오는 확률은 다음 표와 같이 정리할 수 있다.
+      <p>
+          <table style="width:600px"> 
+            <tr>
+              <th class="thGrey">표본공간</th> 
+              <th class="thGrey">\(X\) = 동전의 앞면이 나온 횟수</th>
+              <th class="thGrey">\(P(X=x)\)</th>
+            </tr>
+            <tr>
+              <td class="tdCenter">{TT}</td>
+              <td class="tdCenter">\(x = 0\)</td>
+              <td class="tdCenter">\(\frac{1}{4}\)</td>
+            </tr>
+            <tr>
+              <td class="tdCenter">{TH}<br>{HT}</td>
+              <td class="tdCenter">\(x = 1\)</td> 
+              <td class="tdCenter">\(\frac{2}{4}\)</td>
+            </tr>
+            <tr>
+              <td class="tdCenter">{HH}</td>
+              <td class="tdCenter">\(x = 2\)</td>
+              <td class="tdCenter">\(\frac{1}{4}\)</td>
+            </tr>
+          </table>
+
+      <p>이 표와 같이 이산확률변수 \(X\)가 어느 한 값 \(x\)를 가질 확률 \(P(X=x)\)을 모두 
+         정리한 것을 <b>확률분포</b>라고 한다. 위의 확률분포는 [그림 5.10]과 같이 그래프로 나타낼 수 있다.
+      <p>
+         <img src="../FigureH/HFig0301.png">
+         <div class="textLeft">[그림 5.10] 이산확률변수의 확률분포</div>
+      <p>
+         일반적으로 이산확률변수 \(X\)가 가질 수 있는 값이 \(x_1 , x_2 , \cdots , x_n\)이고 
+         각각의 값을 가질 확률이 \(p_1 , p_2 , \cdots , p_n\)일 때 이를 <b>확률분포함수</b>라 부르고 \(f(x)\)로 표시한다.
+      <p>
+          <table style="width:700px"> 
+            <tr>
+              <th class="thGrey" style="width:150px">\(X\)</th>
+              <td class="tdCenter">\(x_1\)</td>
+              <td class="tdCenter">\(x_2\)</td>
+              <td class="tdCenter">\(\cdots\)</td>
+              <td class="tdCenter">\(x_n\)</td>
+              <th>합계</th>
+            </tr>
+            <tr>
+              <th class="thGrey">\(P(X=x_i )\)</th>
+              <td class="tdCenter">\(p_1\)</td>
+              <td class="tdCenter">\(p_2\)</td>
+              <td class="tdCenter">\(\cdots\)</td>
+              <td class="tdCenter">\(p_n\)</td>
+              <th>1</th>
+            </tr>
+          </table>
+      <p>
+         이 확률변수의 평균 또는 기댓값 \(E(X) = \mu \), 분산 \(V(X) = \sigma^2 \), 표준편차
+         \(\sigma(X)\)는  다음과 같이 구한다. 
+      <p>
+      <div class="textLeft">
+         \(E(X) = \mu = \sum_{i=1}^{n} x_i p_i\) <p>
+         \(V(X) = \sigma^2 = \sum_{i=1}^{n} (x_i - \mu)^2 p_i\) <p>
+         \(\sigma(X) = \sqrt{V(X)} \)
+      </div>
+      <p>
+         확률변수 \(X\)에 대한 확률분포함수의 평균 \(E(X)\)는 모든 가능한 값 \(x_1 , x_2 , ... , x_n \)에
+         대하여 확률 \(p_1 , p_2 , ... , p_n \)을 가중값으로 한 무게중심으로 이해 할 수 있다. 
+         그리고 분산 \(V(X)\)는 이 평균으로부터의 제곱거리에 대한 평균, 표준편차 \(\sigma(X)\)는 
+         가능한 값들의 평균으로부터의 거리를 의미한다.
+      <p>
+         일반적으로 확률변수 \(X\)의 평균, 분산, 표준편차가 각각
+         \(E(X) = \mu\), \(V(X) = \sigma^2\), \(\sigma(X) = \sigma\)일 때 \(Y = aX + b\)의 
+         평균, 분산, 표준편차는 다음과 같다.  
+      <p>
+      <div class="textLeft">
+         \(E(Y) = a E(X) + b = a \mu + b\)<p>
+         \(V(Y) = a^2 V(X) = a^2 \sigma^2\)  <p>
+         \(\sigma(Y) = \sqrt{a^2 \sigma(X)} = |a| \sigma \)
+      </div>
+      <p>
+         이와 같은 \(Y = aX + b\)의 평균, 분산, 표준편차는 \(X\)가 이산확률변수이거나 
+         연속확률변수이거나 상관없이 성립한다.
+      <p>
+  </div>
+  <p>
+  <div class="mainTableGrey">
+      <table>
+        <tr>
+          <td colspan="2">
+            <p><h5>🎲 예 5.5</h5>
+           『eStatU』 메뉴에서 '이산확률변량의 분포'를 선택하면 [그림 5.11]과 같은 자료입력 창이 나타난다. 여기에 자료를 그림과 같이 입력하고 [실행]버튼을 누르면 [그림 5.11]과 같은 확률분포 그래프가 나타난다. 
+            확률분포의 평균과 분산 및 표준편차도 계산하여 준다.
+          </td>
+        </tr>
+        <tr>
+          <td style="width:100px">
+            <h5>풀이</h5>
+            <input class="qrBtn" type="image" src="../../QR/eStatU_40MultiplicationRule.svg" onclick="window.open(addrStr[164])">
+          </td>
+          <td>
+            <p>
+            <img src="../FigureU/Fig0511.png">
+            <div class="textLeft">[그림 5.11] 이산확률변량의 분포 자료입력</div>
+            <p>
+            <img class="figure90" src="../FigureU/Fig0512.png">
+            <div class="textLeft">[그림 5.12] 『eStatU』를 이용한 이산확률분포 그래프</div>
+          </td>
+        </tr>
+      </table>
+  </div>
+  <p>
+        이산확률분포 중에서 현실에서 많이 이용되는 것이 이항분포이고, 그밖에 포아송분포, 기하분포, 초기하분포 등이 있다.
+  <p>
+  <!------------------------------------------------>
+  <div class="mainTable">
+      <h4>이항분포</h4>
+      <p>
+      '성공'인 사건의 확률이 \(p\)인 베르누이 실험을 \(n\)번 독립적으로 반복 시행하였을 때
+       확률변수 \(X\)를 '성공의 회수(X)'라 하면 \(X\)가 \(x\)일 확률분포는 다음과 같은 이항분포
+      \(B(n,p)\)이다. 
+      $$
+         f(x) = {}_n C_x p^x (1-p)^{n-x} \quad (단, \;\; x=0,1,2, ... , n)
+      $$
+      이항분포의 평균은 E(X) = \(np\)이고, 분산은 V(X) = \(np(1-p)\)이다.  
+      <p>
+  </div>
+  <p>
+  <div class="mainTableGrey">
+      <table>
+        <tr>
+          <td colspan="2">
+            <p><h5>🎲 예 5.6</h5>
+            과학관 등에 가면 공을 위에서 떨어뜨려 한 곳에 부딪치면 1/2 확률로 좌측(0점) 또는 우측(1점)으로 떨어지게 하는 기구가 있다. 떨어진 공은 다시 1/2 확률로 좌측 우측으로 떨어진다. 100개의 공을 떨어뜨렸을 때 전체 점수의 합계를 조사해본다. 
+            <p>
+           『eStatU』 메뉴에서 '이항분포실험'을 선택하면 [그림 5.13]과 같은 창이 나타난다. 여기에 몇 번 공이 부딪히게 하는 지 n과 우측으로 갈 확률 p를 입력하고 [실행]버튼을 누르면 공이 떨어지며 점수 합계가 이항분포가 되는 실험을 할 수 있다. 
+          </td>
+        </tr>
+        <tr>
+          <td style="width:100px">
+            <h5>풀이</h5>
+            <input class="qrBtn" type="image" src="../../QR/eStatU410_BinomialSim.svg" onclick="window.open(addrStr[81])">
+          </td>
+          <td>
+            <p>
+            <img src="../FigureU/Fig0513.png">
+            <div class="textLeft">[그림 5.13]『eStatU』의 이항분표 실험 시뮬레이션</div>
+          </td>
+        </tr>
+      </table>
+  </div>
+  <p>
+
+  <div class="mainTableGrey">
+      <table>
+        <tr>
+          <td colspan="2">
+            <p><h5>🎲 예 5.7</h5>
+            프로야구팀 '호랑이'가 올해 시즌에 '곰'팀과 앞으로 더 치러야 할 게임 수는 네 게임이다. 호랑이팀이 매 게임 승리할 확률이 60%이다. 확률변수 X = '호랑이가 승리하는 게임수' 는 이항분포이다. 『eStatU』을 이용하여 이 확률분포를 구해 보자. 
+            <p>
+           『eStatU』의 주메뉴에서 '이항분포'를 선택하고  n = 4, p = 0.6을 입력하고 [실행] 버튼을 누르면 [그림 5.14]와 같은 이항분포 그래프가 나타난다. 
+          </td>
+        </tr>
+        <tr>
+          <td style="width:100px">
+            <h5>풀이</h5>
+            <input class="qrBtn" type="image" src="../../QR/eStatU420_Binomial.svg" onclick="window.open(addrStr[82])">
+          </td>
+          <td>
+            <p>
+            <img src="../FigureU/Fig0514.png">
+            <div class="textLeft">[그림 5.14] n  = 4, p = 0.6 이항분포 그래프</div>
+            <p>
+            그래프 밑에는 n과 p의 슬라이드바와 확률계산 박스가 있어 원하는 값을 넣고 [Enter] 키를 누르면 값이 계산된다.
+            <p>
+            <img src="../FigureU/Fig0515.png">
+            <div class="textLeft">[그림 5.15] n과 p의 슬라이드바와 확률계산  </div>
+            <p>
+            그래프 오른쪽에는 이항분포에 대한 확률밀도함수 표가 나타난다. 이 표에는 P(X = x) 이외에도 누적확률 P(X ≤  x)와 
+            P(X ≥ x)를 같이 보여주어 여러 가지 확률계산을 쉽게 할 수 있다. 새로운 n과 p를 선택하고 [실행] 버튼을 누르면 
+            이 값에 대한 이항분포표가 밑에 추가된다. 
+            <p> 
+            <img src="../FigureU/Fig0516.png">
+            <div class="textLeft">[그림 5.16] 이항분포표</div>
+         </td>
+        </tr>
+      </table>
+  </div>
+  <p>
+  <!------------------------------------------------>
+  <div class="mainTable">
+      <h4>포아송분포</h4>
+      <p>
+      단위시간 또는 단위면적당 발생하는 한 사건('전화가 걸려옴', '교통사고가 발생', '기계가 고장')의 수를 나타내는 확률변량을 
+      <b>포아송 확률변량</b>(Poisson random variable)이라고 하며, 그 분포를 <b>포아송분포</b>(Poisson distribution) 라고 한다. 
+      $$
+        f(x) = \frac { e^{-\lambda} \lambda^x } { x! } , \qquad x = 0, 1, 2, ...
+      $$
+      <div class="textLeft">여기서 \(\lambda\)는 사건의 평균 발생횟수이다.</div>
+      <p>포아송분포의 평균은 E(X) =  \(\lambda\), 분산은 V(X) = \(\lambda\)  이다.
+      <p>
+  </div>
+  <p>
+  <div class="mainTableGrey">
+      <table>
+        <tr>
+          <td colspan="2">
+            <p><h5>🎲 예 5.8</h5>
+            우리나라 남부지역에 한 해 동안 태풍이 지나가는 수는 평균 \(\lambda\)=2.5 회인 포아송분포를 한다고 하자. 『eStatU』를 이용하여 포아송분포를 구해 보자.
+          </td>
+        </tr>
+        <tr>
+          <td style="width:100px">
+            <h5>풀이</h5>
+            <input class="qrBtn" type="image" src="../../QR/eStatU440_Poisson.svg" onclick="window.open(addrStr[83])">
+          </td>
+          <td>
+            <p>
+            『eStatU』의 주메뉴에서 '포아송분포'를 선택하고 \(\lambda\) = 2.5를 입력한 후 [실행] 버튼을 누르면  [그림 5.17]과 같은 포아송분포가 나타나고 그 오른쪽에 포아송분포표가 나타난다. 이 표에는 P(X = x) 이외에도 누적확률 P(X ≤  x)와 P(X ≥ x)를 같이 보여주어 여러 가지 확률계산을 쉽게 할 수 있다.  
+            <p>
+            <img src="../FigureU/Fig0517.png">
+            <div class="textLeft">[그림 5.17] \(\lambda\) = 2.5인 포아송분포 </div>
+            <p>
+            <img src="../FigureU/Fig0518.png">
+            <div class="textLeft">[그림 5.18] 포아송분포표 </div>
+            <p>
+            그래프 밑에는 \(\lambda\) 슬라이드바와 확률계산 박스가 있어 원하는 값을 넣고 [Enter] 키를 누르면 값이 계산된다.  
+            <p>
+            <img src="../FigureU/Fig0519.png">
+            <div class="textLeft">[그림 5.19] \(\lambda\)  슬라이드바와 확률계산 박스</div>
+         </td>
+        </tr>
+      </table>
+  </div>
+  <p>
+
+  <!------------------------------------------------>
+  <div class="mainTable">
+      <h4>기하분포</h4>
+      <p>
+      베르누이 시행에서 '성공'의 확률이 \(p\) 이고 '성공'이 나타날 때까지의 베르누이 시행회수를 확률변량 X라 할 때 이 분포를 
+      <b>기하분포</b>(Geometric Distribution)라 한다. .
+      $$
+        f(x) = (1-p)^{x-1} p, \qquad x=1,2, ...
+      $$
+      <p>
+      기하분포의 평균은 E(X) =  \(  \frac {1}{p}\), 분산은 V(X) = \( \frac {1-p}{p^2 } \) 이다.
+      <p>
+  </div>
+  <p>
+  <div class="mainTableGrey">
+      <table>
+        <tr>
+          <td colspan="2">
+            <p><h5>🎲 예 5.9</h5>
+            한 공장에서 생산된 제품에서 불량률은 약 5%라고 한다. 불량품의 원인을 조사하기 위해 불량품을 찾을 때까지 계속 제품을 검사할 때 검사회수는 기하분포를 따른다. 『eStatU』를 이용하여 기하분포를 구해 보자.
+          </td>
+        </tr>
+        <tr>
+          <td style="width:100px">
+            <h5>풀이</h5>
+            <input class="qrBtn" type="image" src="../../QR/eStatU420_Binomial.svg" onclick="window.open(addrStr[84])">
+          </td>
+          <td>
+            <p>
+            『eStatU』의 주메뉴에서 '기하분포'를 선택하고 p = 0.05를 입력한 후 [실행] 버튼을 누르면  [그림 5.20]과 같은 기하분포가 나타나고 그 오른쪽에 기하분포표가 나타난다. 이 표에는 P(X = x) 이외에도 누적확률 P(X ≤  x)와 P(X ≥ x)를 같이 보여주어 여러 가지 확률계산을 쉽게 할 수 있다.  
+            <p>
+            <img src="../FigureU/Fig0520.png">
+            <div class="textLeft">『eStatU』의 p = 0.05인 기하분포 </div>
+            <p>
+            <img src="../FigureU/Fig0521.png">
+            <div class="textLeft">[그림 5.21] 기하분포표 </div>
+            <p>
+            그래프 밑에는 p 슬라이드바와 확률계산 박스가 있어 원하는 값을 넣고 [Enter] 키를 누르면 값이 계산된다.  
+            <p>
+            <img src="../FigureU/Fig0522.png">
+            <div class="textLeft">[그림 5.19] p 슬라이드바와 확률계산 박스</div>
+         </td>
+        </tr>
+      </table>
+  </div>
+  <p>
+ 
+
+  <!------------------------------------------------>
+  <div class="mainTable">
+      <h4>초기하분포</h4>
+      <p>
+      집단의 크기가 유한개인 N개이고 집단(속성이 '성공'인 것이 D개, 아닌 것이 N-D개)에서 n개를 추출할 때 
+      '성공의 회수(X)' 를 <b>초기하 확률변량</b>(hypergeometric random variable)이라 하고, 
+      그 분포를 <b>초기하분포</b>(hypergeometric distribution)라 한다. 
+      $$
+        \frac { {}_{D} C_x \times {}_{N-D} C_{n-x}  } { {}_{N} C_{n} } 
+      $$
+      \(p = \frac{D}{N}\)라 하면 초기하분포의 평균은 E(X) = \(np\), 분산은 V(X) =\( np(1-p) \frac{N-n}{N-1}\) 이다.
+      <p>
+  </div>
+  <p>
+  <div class="mainTableGrey">
+      <table>
+        <tr>
+          <td colspan="2">
+            <p><h5>🎲 예 5.10</h5>
+            20개의 담배제품(우량품 15개, 불량품 5개)이 들어 있는 상자에서 3개를 추출하였을 때 이중 불량품의 개수는 초기하분포를 따른다. 『eStatU』를 이용하여 초기하분포를 구해 보자.
+          </td>
+        </tr>
+        <tr>
+          <td style="width:100px">
+            <h5>풀이</h5>
+            <input class="qrBtn" type="image" src="../../QR/eStatU420_Binomial.svg" onclick="window.open(addrStr[85])">
+          </td>
+          <td>
+            <p>
+           『eStatU』의 주메뉴에서 '초기하분포'을 선택하고 N = 20, D = 5, n = 3을 선택하고 '실행' 버튼을 클릭하면 
+            [그림 5.23]과 같은 초기하분포가 나타나고 그 오른쪽에 초기하분포표가 나타난다. 이 표에는 P(X = x) 이외에도 
+            누적확률 P(X ≤  x)와 P(X ≥ x)를 같이 보여주어 여러 가지 확률계산을 쉽게 할 수 있다.  
+            <p>
+            <img src="../FigureU/Fig0523.png">
+            <div class="textLeft">[그림 5.23] N = 20, D = 5, n = 3 인 초기하분포   </div>
+            <p>
+            <img src="../FigureU/Fig0524.png">
+            <div class="textLeft">[그림 5.24] 초기하분포표 </div>
+            <p>
+            그래프 밑에는 n 슬라이드바와 확률계산 박스가 있어 원하는 값을 넣고 [Enter] 키를 누르면 값이 계산된다.  
+            <p>
+            <img src="../FigureU/Fig0525.png">
+            <div class="textLeft">[그림 5.25] n 슬라이드바와 확률계산 박스</div>
+         </td>
+        </tr>
+      </table>
+  </div>
+  <p>
+
+  <!--------------------------------------------------------------------------------> 
+  <h3 id="0504">5.4  연속형 확률변량</h3>
+  <p>
+  <div class="mainTable">
+    <h4>정규분포</h4>
+      <p>
+         한 피자가게에 피자를 주문하여 집까지 배달되는 시간을 임의로 많이 조사하여 히스토그램을 그린 결과가 다음과 같다.
+      <p>
+            <img class="imgFig600600" src="../FigureH/HFig0322.png">
+      <p>우리 주변의 연속확률변수의 자료 중에서는 위의 히스토그램과 같이 종을 엎어 놓은 모양으로
+         평균 근처에 자료가 많이 몰려있고, 평균에서 멀어질수록 자료 수가 적으며, 평균을 중심으로 
+         대칭형인 형태가 많이 관찰된다. 이러한 형태의 모든 자료들에 대한 확률을 쉽게 구하기 위해
+         많은 수학자들이 이 분포 형태를 묘사할 수 있는 함수를 찾았다. 이 수학적 함수를 이용하면
+         굳이 도수분포표나 히스토그램을 그리지 않고 원하는 확률을 근사적으로 구할 수 있다. 
+      <p>
+         드 므와브르(Abraham de Moivre(1667-1754))에 의해 이와 같은 함수를 처음 발견되었고, 
+         그 후 독일의 수학자 가우스(Carl Friedrich Gauss(1777-1855))에 의해 물리학과 천문학 등에
+         폭 넓게 응용되었다. 이 함수를 <b>정규분포함수</b> 또는 <b>가우스분포함수</b>라고
+         부르는데 함수식과 그래프는 다음과 같다.
+      <p>
+      <table style="width:700px">
+        <tr>
+          <td>
+            $$
+              f(x) = \frac{1}{\sqrt{ 2\pi} \sigma } exp \left[ - \frac{(x-\mu)^2} {2 \sigma^2} \right] 
+            $$
+            \(\qquad - ∞ < x < ∞ \)
+          </td>
+          <td>
+            <img class="imgFig600600" src="../FigureH/HFig0323.png">
+            <div class="textLeft">정규분포 확률밀도함수</div>
+          </td>
+        </tr>
+      </table>
+      <p>
+         이 함수에서 \(\mu\)는 상수, \(\sigma\)는 양의 상수, \(e\)는 \(2.71828\cdots\)인 
+         무리수이다. 이 확률밀도의 평균과 표준편차는 각각 \(\mu\)와 \(\sigma\)이다. 
+         확률변수 \(X\)가 평균 \(\mu\), 표준편차 \(\sigma\), 즉 분산이 \(\sigma^2\)인 
+         정규분포를 따를 때 기호로  \(N(\mu, \sigma^2 )\)로 표시하기도 한다. 
+      <p>
+  </div>
+  <p>
+  <div class="mainTableGrey">
+      <table>
+        <tr>
+          <td colspan="2">
+            <p><h5>🎲 예 5.11</h5>
+           『eStatU』를 이용하여 여러 가지 정규분포 함수의 모양을 비교해 보자. 
+          </td>
+        </tr>
+        <tr>
+          <td style="width:100px">
+            <h5>풀이</h5>
+            <input class="qrBtn" type="image" src="../../QR/eStatU_50NormalComparison.svg" onclick="window.open(addrStr[167])">
+          </td>
+          <td>
+            <p>
+            『eStatU』의 주메뉴에서 '정규분포 비교'를 선택하면 [그림 5.26]과 같은 화면이 나타난다. 세 정규분포
+            \(N(-2, 0.5^2 )\), \(N(0, 1)\, \(N(2, 3^2 )\를 비교하기 위해 그림과 같이 평균 및 표준편차를 입력하고 
+            [실행] 버튼을 누르면 세 정규분포의 그림이 나타난다. 평균을 중심으로 모두 대칭이고, 분산이 커지면 정규분포는 평평해지고, 
+            분산이 작아지면 뾰족해 지는 것을 관찰할 수 있다. 이는 전체 넓이가 1이 되어야하기 때문이다. 슬라이드바를 이용하여 평균과 
+            표준편차를 변화시키며 정균분포의 모양을 관찰할 수 있다.
+            <p>
+            <img class="figure90" src="../FigureH/HFig0324.png">
+            <div class="textLeft">[그림 3.24] 『eStatU』의 정규분포 비교 </div>
+            <p>
+            <img class="figure90" src="../FigureH/HFig0325.png">
+            <div class="textLeft">[그림 3.25] 세 정규분포 \(N(-3, 1)\), \(N(0, 1)\, \(N(3, 1 )\) 비교</div>
+            <p>
+            <img class="figure90" src="../FigureH/HFig0326.png">
+            <div class="textLeft">[그림 3.26] 세 정규분포 \(N(0, 0.5^2 )\), \(N(0, 1)\, \(N(0, 3^2 )\) 비교</div>
+         </td>
+        </tr>
+      </table>
+  </div>
+  <p>
+
+  <!------------------------------------------------------------------------------------------------->
+  <div class="mainTableYellow">
+      <p>
+         <b>정규분포의 특징</b>을 요약하면 다음과 같다.
+      <p>
+      <div class="textL20M20">
+         1) 직선 \(x = \mu\)에 대하여 대칭인 종모양의 곡선이고 점근선은 \(x\)축이다.  
+            따라서 평균의 왼쪽과 오른쪽의 확률은 각각 0.5이다.
+      </div>
+      <p>
+      <div class="textL20M20">
+         2) \(x = \mu\)일 때, 최댓값은 \(\frac{1}{\sqrt{2 \pi} \sigma}\)이다.
+      </div>
+      <p>
+      <div class="textL20M20">
+         3) \(\sigma\)의 값이 일정할 때, \(\mu\)의 값이 변하면 대칭축의 위치만 바뀌고 곡선의 모양은 같다. 
+      </div>
+      <p>
+      <div class="textL20M20">
+         4) \(\mu\)의 값이 일정할 때, \(\sigma\)의 값이 커지면 곡선은 낮아지고 넓게 퍼지고,  
+            \(\sigma\)의 값이 작어지면 곡선은 높아지고 뾰족해진다. 
+      </div>
+      <p>
+      <div class="textL20M20">
+        5) \(y = f(x)\) 그래프와 \(x\)축 사이의 넓이는 1이다.
+      </div>
+  </div>
+  <!------------------------------------------------------------------------------------------------->
+  <p>
+  <h4>정규분포에서의 확률계산</h4>
+  <p>
+  <div class="mainTableGrey">
+      <table>
+        <tr>
+          <td colspan="2">
+            <p><h5>🎲 예 5.12</h5>
+           『eStatU』를 이용하여 정규분포의 확률계산을 하여 보자. 
+          </td>
+        </tr>
+        <tr>
+          <td style="width:100px">
+            <h5>풀이</h5>
+            <input class="qrBtn" type="image" src="../../QR/eStatU520_Normal.svg" onclick="window.open(addrStr[88])">
+          </td>
+          <td>
+            <p>
+           『eStatU』의 주메뉴에서 '정규분포'를 선택하면 [그림 5.29]와 같은 화면이 나타난다. 여기에서 어떠한 정규분포 확률변수의 구간
+            \([a, b]\)에 대한 \(P(a ≤ X ≤ b) \) 확률계산과, 주어진 확률 \(p\)에 대한 백분위수(즉, \( P( X ≤ x ) = p \)가
+            되는 백분위수 \(x\)를 쉽게 계산할 수 있다. 구간의 확률은 \(\mu - 4\sigma\)에서 \(\mu + 4\sigma\)까지 계산할 수 있다. X가 보다 적든지 보다 큰 경우에 확률은 0.0000이 된다. [그림 5.30]은 표준정규분포의 백분위수표이다. 
+            <p>
+            <img src="../FigureH/HFig0328.png">
+            <div class="textLeft">[그림 5.29] 『eStatU』에서 정규분포 확률계산 </div>
+            <p>
+            <img src="../FigureU/Fig0530.png">
+            <div class="textLeft">[그림 5.30] 『eStatU』의 표준정규분포 백분위수표 </div>
+         </td>
+        </tr>
+      </table>
+  </div>
+  <p>
+  <div class="mainTable">
+    <h4>지수분포</h4>
+      <p>
+      단위 시간당 발생하는 평균 사건수를 라 했을 때 확률변량 X를 발생하는 사건들 사이의 시간이라고 하면 X는 다음과 같은 <b>지수분포</b>
+      (Exponential Distribution) 모형을 적용할 수 있다. \(\lambda\)는 지수분포의 모수이고 지수분포함수 식은 다음과 같다. 
+      $$
+        f(x) = \lambda exp( - \lambda x ) , \qquad x > 0 
+      $$
+      지수분포의 평균은 E(X) =  \(\frac {1}{\lambda}\), 분산은 V(X) = \(\frac {1}{\lambda ^2}\) 이다.
+  </div>
+  <p>
+  <div class="mainTableGrey">
+      <table>
+        <tr>
+          <td colspan="2">
+            <p><h5>🎲 예 5.13</h5>
+            한 제품의 평균 수명은 10시간이며 지수분포를 따른다. 『eStatU』를 이용하여 이 지수분포의 확률을 구해 보자. 
+          </td>
+        </tr>
+        <tr>
+          <td style="width:100px">
+            <h5>풀이</h5>
+            <input class="qrBtn" type="image" src="../../QR/eStatU500_Exponential.svg" onclick="window.open(addrStr[86])">
+          </td>
+          <td>
+            <p>
+            『eStatU』의 주메뉴에서 '지수분포'를 선택하면 [그림 5.31]과 같은 화면이 나타난다. 여기에서 \(lambda\)=10을 입력하고
+            [실행] 버튼을 누르면 지수분포 확률변수의 구간
+            \([a, b]\)에 대한 \(P(a ≤ X ≤ b) \) 확률계산과, 주어진 확률 \(p\)에 대한 백분위수(즉, \( P( X ≤ x ) = p \)가
+            되는 백분위수 \(x\)를 쉽게 계산할 수 있다. 그래프 밑의 '백분위수표' 버튼을 누르면 지수분포의 백분위수표가 나타난다. 
+            <p>
+            <img src="../FigureU/Fig0531.png">
+            <div class="textLeft">[그림 5.31] 『eStatU』의 지수분포 확률 계산 </div>
+         </td>
+        </tr>
+      </table>
+  </div>
+  <p>
+
+
+
+  <!------------------------------------------------------------------------------------------------->
+  <p>
+  <div class="mainTablePink">
+    <h4> 연습문제 </h4>
+    <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
+
+  <h6 class="textL30M30">5.1 두 사건 A와 B가 서로 배반일 때, 사건 A∪B의 확률 P(A∪B)와 같은 것은?</h6> 
+  <form name="Q1">
+    <label><input type="radio" name="item" value="1"> P(A)－P(B)</label><br>
+    <label><input type="radio" name="item" value="2"> P(A)P(B)</label><br>
+    <label><input type="radio" name="item" value="3"> P(A)＋P(B)</label><br>
+    <label><input type="radio" name="item" value="4"> P(A)/P(B)</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(5,1,Q1)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ1">
+  </form>
+
+  <h6 class="textL30M30">5.2 사건 A가 일어날 확률을 P(A)로 나타낸다. 두 사건 A, B에 관하여 다음 중 틀린 것은?</h6>
+  <form name="Q2">
+    <label><input type="radio" name="item" value="1"> 0 &le; P(A) &le; 1</label><br>
+    <label><input type="radio" name="item" value="2"> -1 &le; P(B) &le; 0 </label><br>
+    <label><input type="radio" name="item" value="3"> P(A∪B)=P(A)+P(B)-P(A∩B)</label><br>
+    <label><input type="radio" name="item" value="4"> P(A∩B)=P(A)․P(B) </label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(5,2,Q2)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ2">
+  </form>
+
+  <h6 class="textL30M30">5.3  P(A)=0.4, P(B)=0.2, P(A｜B)=0.6일 때 P(A∩B)의 값은?</h6>
+  <form name="Q3">
+    <label><input type="radio" name="item" value="1"> 0.08</label><br>
+    <label><input type="radio" name="item" value="2"> 0.12</label><br>
+    <label><input type="radio" name="item" value="3"> 0.24</label><br>
+    <label><input type="radio" name="item" value="4"> 0.48</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(5,3,Q3)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ3">
+  </form>
+
+  <h6 class="textL30M30">5.4  만일 A⊂B이면 조건부 확률 P(A｜B)는 P(A)보다 어떠한가? </h6>
+  <form name="Q4">
+    <label><input type="radio" name="item" value="1"> 같거나 크다.</label><br>
+    <label><input type="radio" name="item" value="2"> 작다</label><br>
+    <label><input type="radio" name="item" value="3"> 같거나 작다</label><br>
+    <label><input type="radio" name="item" value="4"> 비교할 수 없다. </label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(5,4,Q4)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ4">
+  </form>
+
+  <h6 class="textL30M30">5.5  주사위를 2개(또는 한 개의 주사위를 2회) 던질 때에 2의 눈과 5의 눈이 동시에 나타날 확률은?</h6>
+  <form name="Q5">
+    <label><input type="radio" name="item" value="1"> 1/3</label><br>
+    <label><input type="radio" name="item" value="2"> 1/6</label><br>
+    <label><input type="radio" name="item" value="3"> 1/12</label><br>
+    <label><input type="radio" name="item" value="4"> 1/18</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(5,5,Q5)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ5">
+  </form>
+
+  <h6 class="textL30M30">5.6  한 개의 주사위를 3번 던져서 첫번째가 5, 두번째가 3, 세번째가 짝수의 눈이 나올 확률은 얼마인가?</h6>
+  <form name="Q6">
+    <label><input type="radio" name="item" value="1"> 1/30</label><br>
+    <label><input type="radio" name="item" value="2"> 1/72</label><br>
+    <label><input type="radio" name="item" value="3"> 1/108</label><br>
+    <label><input type="radio" name="item" value="4"> 1/276</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(5,6,Q6)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ6">
+  </form>
+
+  <h6 class="textL30M30">5.7   우량품인 전구 5개와 불량품인 전구 2개가 들어 있는 통에서 3개를 하나씩 임의로 추출(한번 추출한 것은 다시 넣지 않는 비복원 추출)했을 때 이 중에서 1개의 전구가 불량품일 확률을 구하면? </h6>
+  <form name="Q7">
+    <label><input type="radio" name="item" value="1"> 1/7</label><br>
+    <label><input type="radio" name="item" value="2"> 2/7</label><br>
+    <label><input type="radio" name="item" value="3"> 3/7.</label><br>
+    <label><input type="radio" name="item" value="4"> 4/7</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(5,7,Q7)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ7">
+  </form>
+
+  <h6 class="textL30M30">5.8  P(A)=0.4, P(B)=0.2, P(A｜B)=0.6일 때, 의 값은?  </h6>
+  <form name="Q8">
+    <label><input type="radio" name="item" value="1"> 0.20</label><br>
+    <label><input type="radio" name="item" value="2"> 0.60</label><br>
+    <label><input type="radio" name="item" value="3"> 0.12</label><br>
+    <label><input type="radio" name="item" value="4"> 0.24</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(5,8,Q8)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ8">
+  </form>
+
+  <h6 class="textL30M30">5.9  P(A)=0.4, P(B)=0.2, P(A｜B)=0.6일 때, P(B｜A)의 값은? </h6>
+  <form name="Q9">
+    <label><input type="radio" name="item" value="1"> 0.08</label><br>
+    <label><input type="radio" name="item" value="2"> 0.24</label><br>
+    <label><input type="radio" name="item" value="3"> 0.30</label><br>
+    <label><input type="radio" name="item" value="4"> 0.40</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(5,9,Q9)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ9">
+  </form>
+
+  <h6 class="textL30M30">5.10   두 개의 주사위를 던져 나오는 결과를 (\(x_1 , x_2 \))로 표시한다.
+     \(B = \{ (x_{1} ,x_{2} ) |  x_{1} > x_{2} \} \)라고 하면, P(B)의 값은? 
+  </h6>
+  <form name="Q10">
+    <label><input type="radio" name="item" value="1"> 1/3</label><br>
+    <label><input type="radio" name="item" value="2"> 1/12</label><br>
+    <label><input type="radio" name="item" value="3"> 5/12</label><br>
+    <label><input type="radio" name="item" value="4"> 1/36</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(5,10,Q10)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ10">
+  </form>
+
+  <h6 class="textL30M30">5.11 두 개의 주사위를 던져서 나오는 결과를 (\(x_1 , x_2 \) )로 표시한다.
+    \(A = \{ (x_{1} ,x_{2} ) | x_{1} + x_{2} =10 \} \),   \(B = \{ (x  _{1} ,x  _{2} ) |  x  _{1} > x  _{2} \} \)
+    라고 하면, P(B｜A)의 값은?
+  </h6> 
+  <form name="Q11">
+    <label><input type="radio" name="item" value="1"> 1/3</label><br>
+    <label><input type="radio" name="item" value="2"> 1/12</label><br>
+    <label><input type="radio" name="item" value="3"> 5/12</label><br>
+    <label><input type="radio" name="item" value="4"> 1/2</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(5,11,Q11)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ11">
+  </form>
+
+    <h6 class="textL30M30">5.12 한 확률변량의 수치들에 각각 5배를 하였을 때 그 표준편차는? </h6>
+    <form name="Q12">
+      <label><input type="radio" name="item" value="1"> 5배가 된다.</label><br>
+      <label><input type="radio" name="item" value="2"> 1/5배가 된다.</label><br>
+      <label><input type="radio" name="item" value="3"> 10배가 된다. </label><br>
+      <label><input type="radio" name="item" value="4"> 1/10배가 된다. </label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(5,12,Q12)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ12">
+    </form>
+
+    <h6 class="textL30M30">5.13 어떤 학급에서 시험을 본 결과 평균이 24점, 표준편차가 3점이었다. 
+      성적이 나빠 학급의 모든 학생에게 성적을 2배하여 10점을 더하여 주었다. 이때, 이 학급의 평균과 표준편차를 구하면? </h6>
+    <form name="Q13">
+      <label><input type="radio" name="item" value="1"> 24, 3</label><br>
+      <label><input type="radio" name="item" value="2"> 48, 3</label><br>
+      <label><input type="radio" name="item" value="3"> 48, 6</label><br>
+      <label><input type="radio" name="item" value="4"> 58, 6</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(5,13,Q13)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ13">
+    </form>
+
+    <h6 class="textL30M30">5.14 X의 평균이 20일 때, Y=2X+3의 관계가 있는 Y의 평균을 구하면? </h6>
+    <form name="Q14">
+      <label><input type="radio" name="item" value="1"> 20</label><br>
+      <label><input type="radio" name="item" value="2"> 40</label><br>
+      <label><input type="radio" name="item" value="3"> 23</label><br>
+      <label><input type="radio" name="item" value="4"> 43</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(5,14,Q14)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ14">
+    </form>
+
+    <h6 class="textL30M30">5.15 X의 분산이 2일 때, Y=2X＋1의 관계가 있는 Y의 분산은 얼마인가?</h6>
+    <form name="Q15">
+      <label><input type="radio" name="item" value="1"> 2</label><br>
+      <label><input type="radio" name="item" value="2"> 3</label><br>
+      <label><input type="radio" name="item" value="3"> 8</label><br>
+      <label><input type="radio" name="item" value="4"> 18</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(5,15,Q15)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ15">
+    </form>
+
+    <h6 class="textL30M30">5.16 다음 중 틀린 것은?  </h6>
+    <form name="Q16">
+      <label><input type="radio" name="item" value="1"> \(\small E(aX＋b) = aE(X)＋b\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(\small E(X＋Y) = E(X)＋E(Y)\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(V(aX＋b) =  a^2 V(X)\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(V(aX＋b) =  a^2 V(X)+b\)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(5,16,Q16)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ16">
+    </form>
+
+    <h6 class="textL30M30">5.17 기대값 E(X)=5, \(\small E(X^2)\)=25일 때, 분산 V(X)는 얼마인가? </h6>
+    <form name="Q17">
+      <label><input type="radio" name="item" value="1"> -5</label><br>
+      <label><input type="radio" name="item" value="2"> 0</label><br>
+      <label><input type="radio" name="item" value="3"> 5</label><br>
+      <label><input type="radio" name="item" value="4"> 25</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(5,17,Q17)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ17">
+    </form>
+
+    <h6 class="textL30M30">5.18 다음에서 확률분포함수로 적당한 것은? </h6>
+    <form name="Q18">
+      <label><input type="radio" name="item" value="1"> \(f(x) = \frac {x} {5} , \qquad(x = -1, 0, 1, 2, 3) \)</label><br>
+      <label><input type="radio" name="item" value="2"> \(f(x) = \frac {(5-x)} {14} , \qquad(x = 0, 1, 2, 3) \)</label><br>
+      <label><input type="radio" name="item" value="3"> \(f(x) = x^2 - 1 ,\qquad(x = 0, 1, 2, 3) \)</label><br>
+      <label><input type="radio" name="item" value="4"> \(f(x) = x^3 - x^2 + 5 ,\qquad(x = 0, 1, 2, 3) \)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(5,18,Q18)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ18">
+    </form>
+
+    <h6 class="textL30M30">5.19 다음에서 확률분포함수의 성질이 아닌 것은? </h6>
+    <form name="Q19">
+      <label><input type="radio" name="item" value="1"> \( f(x) \ge 0\)</label><br>
+      <label><input type="radio" name="item" value="2"> \( \int_{-&infin;}^{&infin;} f(x) dx = 1 \)</label><br>
+      <label><input type="radio" name="item" value="3"> \( P(a < X < b) = \int_a^b f(x)dx \)</label><br>
+      <label><input type="radio" name="item" value="4"> \( \int_{-&infin;}^{&infin;} xf(x) dx = 1 \)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(5,19,Q19)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ19">
+    </form>
+
+    <h6 class="textL30M30">5.20 변량 X가 0, 1, 2, 3의 값을 취하고, 확률함수 \( f(x) = \frac{x}{6}\)일 때, X의 평균값은? </h6>
+    <form name="Q20">
+      <label><input type="radio" name="item" value="1"> 5/3</label><br>
+      <label><input type="radio" name="item" value="2"> 6/3</label><br>
+      <label><input type="radio" name="item" value="3"> 7/3</label><br>
+      <label><input type="radio" name="item" value="4"> 8/3</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(5,20,Q20)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ20">
+    </form>
+
+    <h6 class="textL30M30">5.21 연속확률변량 X의 모든 값에서 정의된 확률밀도함수 f(x)에 대해서 다음 중 틀린 것은? </h6> 
+    <form name="Q21">
+      <label><input type="radio" name="item" value="1"> \( f(x) \ge 0\)</label><br>
+      <label><input type="radio" name="item" value="2"> \( \int_{-&infin;}^{&infin;} f(x) dx = 1 \)</label><br>
+      <label><input type="radio" name="item" value="3"> \( P(a < X < b) = \int_a^b f(x)dx \)</label><br>
+      <label><input type="radio" name="item" value="4"> \( \int_{0}^{&infin;} f(x) dx = \frac{1}{2} \)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(5,21,Q21)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ21">
+    </form>
+
+    <h6 class="textL30M30">5.22 확률변량 X의 확률분포가 다음과 같을 때 평균 E(X)와 표준편차 σ(X)의 값은? </h6>
+      <table style="width:350px"> 
+        <tr>
+          <td class="tdCenter" style="width:70px">\(x\)</td>
+          <td class="tdCenter" style="width:70px">0</td>
+          <td class="tdCenter" style="width:70px">1</td>
+          <td class="tdCenter" style="width:70px">2</td>
+          <td class="tdCenter" style="width:70px">합계</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">\(\small P(X=x)\)</td>
+          <td class="tdCenter">\(\frac{3}{10}\)</td>
+          <td class="tdCenter">\(\frac{6}{10}\)</td>
+          <td class="tdCenter">\(\frac{1}{10}\)</td>
+          <td class="tdCenter">1</td>
+        </tr>
+      </table>
+    <form name="Q22">
+      <label><input type="radio" name="item" value="1"> \(\small E(X)=0.8, σ(X)=0.6\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(\small E(X)=0.6, σ(X)=0.8\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(\small E(X)=0.7, σ(X)=0.1\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(\small E(X)=0.1, σ(X)=0.7\)</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(5,22,Q22)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ22">
+    </form>
+
+    <h6 class="textL30M30">5.23 1개의 주사위를 던져 나오는 눈은 1부터 6까지이다. 나오는 눈을 확률변량 X라고 할 때, X의 기대값 E(X)를 구하면 얼마인가? </h6>
+    <form name="Q23">
+      <label><input type="radio" name="item" value="1"> 2</label><br>
+      <label><input type="radio" name="item" value="2"> 2.5</label><br>
+      <label><input type="radio" name="item" value="3"> 3</label><br>
+      <label><input type="radio" name="item" value="4"> 3.5</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(5,23,Q23)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ23">
+    </form>
+
+    <h6 class="textL30M30">5.24 주사위를 한 개 던져 나온 수의 제곱의 점수를 얻을 때 점수의 기대값은?</h6>
+    <form name="Q24">
+      <label><input type="radio" name="item" value="1"> 23/6</label><br>
+      <label><input type="radio" name="item" value="2"> 41/6</label><br>
+      <label><input type="radio" name="item" value="3"> 53/6</label><br>
+      <label><input type="radio" name="item" value="4"> 91/6</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(5,24,Q24)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ24">
+    </form>
+
+    <h6 class="textL30M30">5.25 확률변량 X가 세 값 0, 1, 2에서 각각 1/2, 1/3, 1/6 을 취한다고 가정하면 구간 1 ≤ x < 2에서의 누적분포함수 F(x)의 값은 얼마인가? 
+    </h6>
+    <form name="Q25">
+      <label><input type="radio" name="item" value="1"> 0</label><br>
+      <label><input type="radio" name="item" value="2"> 5/6</label><br>
+      <label><input type="radio" name="item" value="3"> 1/3</label><br>
+      <label><input type="radio" name="item" value="4"> 2/3</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(5,25,Q25)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ25">
+    </form>
+
+    <h6 class="textL30M30">5.26 이항분포 \( B(100, \frac{1}{5} ) \)에서 변량 X의 평균과 분산은?  </h6>
+    <form name="Q26">
+      <label><input type="radio" name="item" value="1"> 20, 4</label><br>
+      <label><input type="radio" name="item" value="2"> 100, 16</label><br>
+      <label><input type="radio" name="item" value="3"> 100, 4</label><br>
+      <label><input type="radio" name="item" value="4"> 20, 16</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(5,26,Q26)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ26">
+    </form>
+
+    <h6 class="textL30M30">5.27 이항분포 \( P(X) = {}_4 C _x (0.2)^x (1-0.2) ^{4-x} \)를 따르는 확률변량 X의 분산은? </h6>
+    <form name="Q27">
+      <label><input type="radio" name="item" value="1"> 0.16</label><br>
+      <label><input type="radio" name="item" value="2"> 0.80</label><br>
+      <label><input type="radio" name="item" value="3"> 0.32</label><br>
+      <label><input type="radio" name="item" value="4"> 0.64</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(5,7,Q27)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ27">
+    </form>
+
+    <h6 class="textL30M30">5.28 선다형 문제가 10문제 있다. 한 문제가 4가지 답 중 단 하나가 옳은 답이라고 한다. 짐작으로 10문제를 답할 때 4개가 정답일 확률은 얼마인가?</h6>
+    <form name="Q28">
+      <label><input type="radio" name="item" value="1"> 0.0162</label><br>
+      <label><input type="radio" name="item" value="2"> 0.0487</label><br>
+      <label><input type="radio" name="item" value="3"> 0.1460</label><br>
+      <label><input type="radio" name="item" value="4"> 0.2050</label><br>
+      <p>
+      <input type="button" value="제출" onClick="radio(5,28,Q28)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ28">
+    </form>
+
+  <h6 class="textL30M30">5.29 정규분포의 성질에 의하면 &mu; &plusmn; 3&sigma; 사이의 값을 취할 확률은? </h6>
+  <form name="Q29">
+    <label><input type="radio" name="item" value="1"> 대략 99.73%</label><br>
+    <label><input type="radio" name="item" value="2"> 대략 97.73%</label><br>
+    <label><input type="radio" name="item" value="3"> 대략 95.73%</label><br>
+    <label><input type="radio" name="item" value="4"> 대략 68.73%</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(5,29,Q29)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ29">
+  </form>
+
+  <h6 class="textL30M30">5.30 취직 시험이 있었다. 점수가 450과 500사이인 사람은 그 직업에 적당하다고 한다. 만일 평균점수가 400이고, 표준편차가 50인 정규분포를 이룬다면 그 직업에 적당하다고 생각되는 점수는 몇 %에 해당하는가?  </h6>
+  <form name="Q30">
+    <label><input type="radio" name="item" value="1"> 80%</label><br>
+    <label><input type="radio" name="item" value="2"> 약 50%</label><br>
+    <label><input type="radio" name="item" value="3"> 약 30%</label><br>
+    <label><input type="radio" name="item" value="4"> 약 14%</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(5,30,Q30)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ30">
+  </form>
+
+  <h6 class="textL30M30">5.31 아래의 표준정규분포표 \(P( -&infin; < Z < z ) \)를 참고로 해서 
+     \(P(-0.41 \le Z \le 2.21)\)를 구하면?  (Z는 표준정규확률변량이다.) 
+  </h6> 
+      <table style="width:300px"> 
+        <tr>
+          <td class="tdCenter" style="width:100px">\(\small z\)</td>
+          <td class="tdCenter" style="width:100px">\( P (-&infin; < Z < z ) \)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">0.40</td>
+          <td class="tdCenter">0.6554</td>
+        <tr>
+          <td class="tdCenter">0.41</td>
+          <td class="tdCenter">0.6591</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">2.20</td>
+          <td class="tdCenter">0.9861</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">2.21</td>
+          <td class="tdCenter">0.9864</td>
+        </tr>
+      </table>
+  <form name="Q31">
+    <label><input type="radio" name="item" value="1"> 0.6415</label><br>
+    <label><input type="radio" name="item" value="2"> 0.6455</label><br>
+    <label><input type="radio" name="item" value="3"> 0.6452</label><br>
+    <label><input type="radio" name="item" value="4"> 0.6418</label><br>
+    <p>
+    <input type="button" value="제출" onClick="radio(5,31,Q31)"> &nbsp;&nbsp;&nbsp;
+    <input type="text" size=15 id="ansQ31">
+  </form>
+
+
+  </div>
+  <script>
+    for (var i=1; i < ans[5][0]+1; i++) document.getElementById(ansID[i]).disabled = true;
+  </script>
+
+  <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(164)"> &#10094;&#10094; &nbsp;&nbsp;<b>4장</b></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(166)"><b>6장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
+
+</div>
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
+        
+        /* ajust the height when click the toc
+           the code is from https://github.com/twbs/bootstrap/issues/1768
+        */
+        var shiftWindow = function() { scrollBy(0, -50) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+        
+        /*add Bootstrap styles to tables*/
+        var tables = document.getElementsByTagName("table");
+        for(var i = 0; i < tables.length; ++i){
+            tables[i].className += "table table-bordered table-hover";
+        }
+    </script>
+
+</body>
+</html>
+

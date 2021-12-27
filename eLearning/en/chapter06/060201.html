@@ -281,7 +281,7 @@
       <table style="width:650px">
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/eStatU610_PopSample.svg" onclick="window.open(addrStr[92])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU610_PopSample.svg" onclick="window.open(addrStr[92])">
           </td>
           <td>
             <img class="imgFig600600" src="../Figure/Fig060201.png">
@@ -452,7 +452,7 @@
       <table style="width:650px">
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/eStatU620_CLT.svg" onclick="window.open(addrStr[93])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU620_CLT.svg" onclick="window.open(addrStr[93])">
           </td>
           <td>
             <img class="imgFig600600" src="../Figure/Fig060204.png">
@@ -467,7 +467,7 @@
       <table style="width:650px">
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/eStatU620_CLT.svg" onclick="window.open(addrStr[93])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU620_CLT.svg" onclick="window.open(addrStr[93])">
           </td>
           <td>
             <img class="imgFig600600" src="../Figure/Fig060205.png">
@@ -478,6 +478,50 @@
       <p>
     </div>
     <p>
+    <p>
+
+  <div class="mainTablePink">
+    <h4>Multiple Choice Exercise</h4>
+    <p style="color:blue">*** Choose one answer and click [Submit] button
+
+    <h6 class="textL30M30">6.1  When the population size is infinite and variance is \(\sigma^2\), what is the 
+      variance of all possible sample means, \(\sigma^2_{\overline x}\)? (n is the sample size) </h6>
+    <form name="Q1">
+      <label><input type="radio" name="item" value="1"> \(\sigma^2_{\overline x}=\sigma^2\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(\sigma^2_{\overline x}=n\sigma^2\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(\sigma^2_{\overline x}=\frac{\sigma^2}{n}\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(\sigma^2_{\overline x}=\frac{n\sigma^2}{n-1}\)</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(6,1,Q1)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ1">
+    </form>
+
+    <h6 class="textL30M30">6.2  What is the quantitative measure of the characteristic of a population?</h6>
+    <form name="Q2">
+      <label><input type="radio" name="item" value="1"> parameter</label><br>
+      <label><input type="radio" name="item" value="2"> variation</label><br>
+      <label><input type="radio" name="item" value="3"> representative</label><br>
+      <label><input type="radio" name="item" value="4"> statistic</label><br>
+     <p>
+      <input type="button" value="Submit" onClick="radio(6,2,Q2)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ2">
+    </form>
+
+    <h6 class="textL30M30">6.3  What is the quantitative measure of the characteristic of a sample?</h6>
+    <form name="Q3">
+      <label><input type="radio" name="item" value="1"> probability</label><br>
+      <label><input type="radio" name="item" value="2"> statistic</label><br>
+      <label><input type="radio" name="item" value="3"> parameter</label><br>
+      <label><input type="radio" name="item" value="4"> variable</label><br>
+      <p>
+      <input type="button" value="Submit" onClick="radio(6,3,Q3)"> &nbsp;&nbsp;&nbsp;
+      <input type="text" size=15 id="ansQ3">
+    </form>
+  </div>
+  <script>
+    for (var i=1; i < 3+1; i++) document.getElementById(ansID[i]).disabled = true;
+  </script>
+  <p>
 
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <button type="button" style="width:160px" onclick="moveSection(63)">&#10094; &nbsp;&nbsp;<b>Previous</b></button>

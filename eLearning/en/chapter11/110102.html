@@ -345,7 +345,7 @@
       <table style="width:650px">
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/EX110102.svg" onclick="window.open(addrStr[34])">
+            <input class="qrBtn" type="image" src="../../QR/EX110102.svg" onclick="window.open(addrStr[34])">
           </td>
           <td>
             <img class="imgFig600400" src="../Figure/Fig110103.png">
@@ -362,7 +362,7 @@
       button, the frequency table as shown in &lt;Figure 11.1.6&gt; will appear in the Log Area. The designation 
       of interval size can be determined by a researcher.
       <p>
-        <img class="imgFig600400" src="../Figure/Fig110105.svg">
+        <img class="imgFig600400" src="../Figure/Fig110105.png">
         <div class="figText">&lt;Figure 11.1.5&gt; Adjusted histogram of age</div>
       <p>
         <img class="imgFig600400" src="../Figure/Fig110106.png">
@@ -380,11 +380,11 @@
           <th class="thGrey">Observed frequency</th>
          </tr>
          <tr> <td class="tdCenter">1</td> <td class="tdCenter">\(    X < 20   \)</td> <td class="tdCenter">2</td> </tr>
-         <tr> <td class="tdCenter">2</td> <td class="tdCenter">\(20 \le X < 30\)</td> <td class="tdCenter">6</td> </tr>
-         <tr> <td class="tdCenter">3</td> <td class="tdCenter">\(30 \le X < 40\)</td> <td class="tdCenter">8</td> </tr>
-         <tr> <td class="tdCenter">4</td> <td class="tdCenter">\(40 \le X < 50\)</td> <td class="tdCenter">11</td> </tr>
-         <tr> <td class="tdCenter">5</td> <td class="tdCenter">\(50 \le X < 60\)</td> <td class="tdCenter">2</td> </tr>
-         <tr> <td class="tdCenter">6</td> <td class="tdCenter">\(    X \ge 60   \)</td> <td class="tdCenter">1</td> </tr>
+         <tr> <td class="tdCenter">2</td> <td class="tdCenter">\(20 \le X < 30\)</td> <td class="tdCenter">7</td> </tr>
+         <tr> <td class="tdCenter">3</td> <td class="tdCenter">\(30 \le X < 40\)</td> <td class="tdCenter">7</td> </tr>
+         <tr> <td class="tdCenter">4</td> <td class="tdCenter">\(40 \le X < 50\)</td> <td class="tdCenter">9</td> </tr>
+         <tr> <td class="tdCenter">5</td> <td class="tdCenter">\(50 \le X < 60\)</td> <td class="tdCenter">3</td> </tr>
+         <tr> <td class="tdCenter">6</td> <td class="tdCenter">\(    X \ge 60   \)</td> <td class="tdCenter">2</td> </tr>
         </table>
       <p>
         The frequency table of sample data as Table 11.1.2 can be used to test the goodness of fit whether the 
@@ -404,22 +404,22 @@
       <p>
         Hence, the above hypothesis can be written in detail as follows: 
       <p>
-        <div class="textLeft"> \(\small H_0\) Sample data follows \(N(38.000, 11.519^2 )\)</div> 
-        <div class="textLeft"> \(\small H_1\) Sample data does not follow \(N(38.000, 11.519^2 )\)</div>
+        <div class="textLeft"> \(\small H_0\) Sample data follows \(N(38.567, 12.982^2 )\)</div> 
+        <div class="textLeft"> \(\small H_1\) Sample data does not follow \(N(38.567, 12.982^2 )\)</div>
       <p>
         In order to find the expected frequency of each interval when \(\small H_0\) is true, the expected probability of each 
-        interval is calculated first using the normal distribution \(\small N(38.000, 11.519^2 )\)  as follows. The normal distribution module 
+        interval is calculated first using the normal distribution \(\small N(38.567, 12.982^2 )\)  as follows. The normal distribution module 
         of 『eStatU』 makes it easy to calculate this probability of an interval. At the normal distribution module 
-        of 『eStatU』, enter the mean of 38.000 and the standard deviation of 11.519. Click the second radio button 
+        of 『eStatU』, enter the mean of 38.567 and the standard deviation of 12.982. Click the second radio button 
         of P(X < x) type and enter 20, then press the [Execute] button to calculate the probability as shown in 
         &lt;Figure 11.1.8&gt;.
       <p>
-        <div class="textLeft"> \(P(X \lt 20) = P(Z \lt  \frac {20-38.000} {11.519} ) = P(Z \lt -1.563)=0.059\)</div> 
+        <div class="textLeft"> \(P(X \lt 20) = P(Z \lt  \frac {20-38.567} {12.982} ) = P(Z \lt -1.430)=0.075\)</div> 
       <p>
       <table style="width:650px">
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/eStatU520_Normal.svg" onclick="window.open(addrStr[88])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU520_Normal.svg" onclick="window.open(addrStr[88])">
           </td>
           <td>
             <img class="imgFig600400" src="../Figure/Fig110108.png">
@@ -430,11 +430,11 @@
       <p>
         Similarly you can calculate the following probabilities. 
       <p>
-        <div class="textLeft"> \(P(20 \le X \lt 30) = P(\frac{20-38.000}{11.519} \le Z \lt \frac {30-38.000}{11.519} ) = P(-1.563 \le Z \lt -0.695) = 0.185\)</div> 
-        <div class="textLeft"> \(P(30 \le X \lt 40) = P(\frac{30-38.000}{11.519} \le Z \lt \frac {40-38.000}{11.519} ) = P(-0.695 \le Z \lt  0.174) = 0.325\)</div> 
-        <div class="textLeft"> \(P(40 \le X \lt 50) = P(\frac{40-38.000}{11.519} \le Z \lt \frac {50-38.000}{11.519} ) = P( 0.174 \le Z \lt  1.042) = 0.282\)</div> 
-        <div class="textLeft"> \(P(50 \le X \lt 60) = P(\frac{50-38.000}{11.519} \le Z \lt \frac {60-38.000}{11.519} ) = P( 1.042 \le Z \lt  1.910) = 0.121\)</div> 
-        <div class="textLeft"> \(P(       X \ge 60) = P(                             Z \ge \frac {60-38.000}{11.519} ) = P(           Z \ge  1.910) = 0.028\)</div> 
+        <div class="textLeft"> \(P(20 \le X \lt 30) = P(\frac{20-38.567}{12.982} \le Z \lt \frac {30-38.567}{12.982} ) = P(-1.430 \le Z \lt -0.660) = 0.178\)</div> 
+        <div class="textLeft"> \(P(30 \le X \lt 40) = P(\frac{30-38.567}{12.982} \le Z \lt \frac {40-38.567}{12.982} ) = P(-0.660 \le Z \lt  0.110) = 0.289\)</div> 
+        <div class="textLeft"> \(P(40 \le X \lt 50) = P(\frac{40-38.567}{12.982} \le Z \lt \frac {50-38.567}{12.982} ) = P( 0.110 \le Z \lt  0.881) = 0.267\)</div> 
+        <div class="textLeft"> \(P(50 \le X \lt 60) = P(\frac{50-38.567}{12.982} \le Z \lt \frac {60-38.567}{12.982} ) = P( 0.881 \le Z \lt  1.651) = 0.140\)</div> 
+        <div class="textLeft"> \(P(       X \ge 60) = P(                             Z \ge \frac {60-38.567}{12.982} ) = P(           Z \ge  1.651) = 0.049\)</div> 
       <p>
         Expected frequency can be calculated by multiplying the sample size of 30 to the expected probability of 
         each interval obtained above. The observed frequencies, expected probabilities, and expected frequencies 
@@ -443,19 +443,19 @@
         <div class="textLeft">Table 11.1.3 Observed and expected frequencies of each interval of  distribution</div> 
       <p>
         <table style="width:600px"> 
-        <tr> 
-          <th class="thGrey">Interval id</th>
-          <th class="thGrey">Interval</th>
-          <th class="thGrey">Observed frequency</th>
-          <th class="thGrey">Expected probability</th>
-          <th class="thGrey">Expected frequency</th>
+          <tr> 
+            <th class="thGrey">Interval id</th>
+            <th class="thGrey">Interval</th>
+            <th class="thGrey">Observed frequency</th>
+            <th class="thGrey">Expected probability</th>
+            <th class="thGrey">Expected frequency</th>
           </tr>
-          <tr> <td class="tdCenter">1</td> <td class="tdCenter">\(    X < 20   \)</td> <td class="tdCenter">2</td> <td class="tdCenter">0.059</td> <td class="tdCenter">1.77</td> </tr>
-          <tr> <td class="tdCenter">2</td> <td class="tdCenter">\(20 \le X < 30\)</td> <td class="tdCenter">6</td> <td class="tdCenter">0.185</td> <td class="tdCenter">5.55</td> </tr>
-          <tr> <td class="tdCenter">3</td> <td class="tdCenter">\(30 \le X < 40\)</td> <td class="tdCenter">8</td> <td class="tdCenter">0.325</td> <td class="tdCenter">9.75</td> </tr>
-          <tr> <td class="tdCenter">4</td> <td class="tdCenter">\(40 \le X < 50\)</td> <td class="tdCenter">11</td> <td class="tdCenter">0.282</td> <td class="tdCenter">8.46</td> </tr>
-          <tr> <td class="tdCenter">5</td> <td class="tdCenter">\(50 \le X < 60\)</td> <td class="tdCenter">2</td> <td class="tdCenter">0.121</td> <td class="tdCenter">3.63</td> </tr>
-          <tr> <td class="tdCenter">6</td> <td class="tdCenter">\(    X \ge 60   \)</td> <td class="tdCenter">1</td> <td class="tdCenter">0.028</td> <td class="tdCenter">0.84</td> </tr>
+          <tr> <td class="tdCenter">1</td> <td class="tdCenter">\(    X < 20   \)</td> <td class="tdCenter">2</td> <td class="tdCenter">0.075</td> <td class="tdCenter">2.25</td> </tr>
+          <tr> <td class="tdCenter">2</td> <td class="tdCenter">\(20 \le X < 30\)</td> <td class="tdCenter">7</td> <td class="tdCenter">0.178</td> <td class="tdCenter">5.34</td> </tr>
+          <tr> <td class="tdCenter">3</td> <td class="tdCenter">\(30 \le X < 40\)</td> <td class="tdCenter">7</td> <td class="tdCenter">0.289</td> <td class="tdCenter">8.67</td> </tr>
+          <tr> <td class="tdCenter">4</td> <td class="tdCenter">\(40 \le X < 50\)</td> <td class="tdCenter">9</td> <td class="tdCenter">0.267</td> <td class="tdCenter">8.01</td> </tr>
+          <tr> <td class="tdCenter">5</td> <td class="tdCenter">\(50 \le X < 60\)</td> <td class="tdCenter">3</td> <td class="tdCenter">0.140</td> <td class="tdCenter">4.20</td> </tr>
+          <tr> <td class="tdCenter">6</td> <td class="tdCenter">\(    X \ge 60 \)</td> <td class="tdCenter">2</td> <td class="tdCenter">0.049</td> <td class="tdCenter">1.47</td> </tr>
         </table>
       <p>
         Since the expected frequencies of the 1st and 6th interval are less than 5, the intervals should be 
@@ -475,16 +475,16 @@
           <th class="thGrey">Expected probability</th>
           <th class="thGrey">Expected frequency</th>
        </tr>
-       <tr> <td class="tdCenter">1</td> <td class="tdCenter">\(    X < 30   \)</td> <td class="tdCenter">8</td> <td class="tdCenter">0.244</td> <td class="tdCenter">7.32</td> </tr>
-       <tr> <td class="tdCenter">2</td> <td class="tdCenter">\(30 \le X < 40\)</td> <td class="tdCenter">8</td> <td class="tdCenter">0.325</td> <td class="tdCenter">9.75</td> </tr>
-       <tr> <td class="tdCenter">3</td> <td class="tdCenter">\(40 \le X < 50\)</td> <td class="tdCenter">11</td> <td class="tdCenter">0.282</td> <td class="tdCenter">8.46</td> </tr>
-       <tr> <td class="tdCenter">4</td> <td class="tdCenter">\(    X \ge 50   \)</td> <td class="tdCenter">3</td> <td class="tdCenter">0.149</td> <td class="tdCenter">4.47</td> </tr>
-       <tr> <td class="tdCenter"> </td> <td class="tdCenter">Total</td>             <td class="tdCenter">30</td> <td class="tdCenter">1.000</td> <td class="tdCenter">30.00</td> </tr>
+       <tr> <td class="tdCenter">1</td> <td class="tdCenter">\(    X < 30   \)</td> <td class="tdCenter">9</td> <td class="tdCenter">0.253</td> <td class="tdCenter">7.59</td> </tr>
+       <tr> <td class="tdCenter">2</td> <td class="tdCenter">\(30 \le X < 40\)</td> <td class="tdCenter">7</td> <td class="tdCenter">0.289</td> <td class="tdCenter">8.67</td> </tr>
+       <tr> <td class="tdCenter">3</td> <td class="tdCenter">\(40 \le X < 50\)</td> <td class="tdCenter">9</td> <td class="tdCenter">0.267</td> <td class="tdCenter">8.01</td> </tr>
+       <tr> <td class="tdCenter">4</td> <td class="tdCenter">\(    X \ge 50 \)</td> <td class="tdCenter">5</td> <td class="tdCenter">0.189</td> <td class="tdCenter">5.67</td> </tr>
+       <tr> <td class="tdCenter"> </td> <td class="tdCenter">Total</td>             <td class="tdCenter">30</td> <td class="tdCenter">0.998</td> <td class="tdCenter">29.94</td> </tr>
       </table>
       <p>
         The test statistic for the goodness of fit test is as follows: 
       <p>
-        <div class="textLeft">\(\chi_{obs}^{2} = \frac{(8-7.32)^{2}}{7.32} + \frac{(8-9.75)^{2}}{9.75} + \frac{(11-8.46)^{2}}{8.46} + \frac{(3-4.47)^{2}}{4.47} = 1.623\) </div> 
+         <div class="textLeft">\(\chi_{obs}^{2} = \frac{(9-7.59)^{2}}{7.59} + \frac{(7-8.67)^{2}}{8.67} + \frac{(9-8.01)^{2}}{8.01} + \frac{(5-5.67)^{2}}{5.67} = 0.785\) </div> 
       <p>
         Since the number of intervals is 4, \(k\)  becomes 4, and \(m\)=2, because two population parameters \(\mu\) and \(\sigma^2\) are estimated 
         from the sample data. Therefore, the critical value is as follows:
@@ -492,7 +492,7 @@
         <div class="textLeft">\(\chi_{k-m-1; &alpha;}^{2} = \chi_{4-2-1; 0.05}^{2} = \chi_{1; 0.05}^{2} = 3.841\)</div> 
       <p>
         The observed test statistic is less than the critical value, we can not reject the null hypothesis that the 
-        sample data follows \(\small N(38.000, 11.519^2 )\) .
+        sample data follows \(\small N(38.567, 12.982^2 )\) .
       <p>
         Test result can be verified using 'Goodness of Fit Test' in 『eStatU』. In the Input box that appears by 
         selecting the 'Goodness of Fit Test' module, enter the data for 'observation frequency' and 'expected 
@@ -503,7 +503,7 @@
       <table style="width:650px">
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/eStatU910_TestFit.svg" onclick="window.open(addrStr[110])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU910_TestFit.svg" onclick="window.open(addrStr[110])">
           </td>
           <td>
             <img class="imgFig600400" src="../Figure/Fig110109.png">
@@ -523,7 +523,7 @@
       <table style="width:650px">
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/eStatU910_TestFit.svg" onclick="window.open(addrStr[110])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU910_TestFit.svg" onclick="window.open(addrStr[110])">
           </td>
           <td>
             <b>Practice 11.1.2</b> <b>(Otter length)</b><br>

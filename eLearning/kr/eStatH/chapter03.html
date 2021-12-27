@@ -69,11 +69,11 @@
       <ul>
 	<li><a href=""></a>
 	  <ul>
-            <li><a href="../indexH.html">목차</a></li>
-            <li><a href="../eStatH/chapter01.html">1장 경우의 수</a></li>
-            <li><a href="../eStatH/chapter02.html">2장 확률</a></li>
-            <li><a href="../eStatH/chapter03.html">3장 확률변수와 확률분포</a></li>
-            <li><a href="../eStatH/chapter04.html">4장 통계적 추정</a></li>
+            <li><a href="index.html">목차</a></li>
+            <li><a href="chapter01.html">1장 경우의 수</a></li>
+            <li><a href="chapter02.html">2장 확률</a></li>
+            <li><a href="chapter03.html">3장 확률변수와 확률분포</a></li>
+            <li><a href="chapter04.html">4장 통계적 추정</a></li>
 	  </ul>
 	</li>
       </ul>
@@ -279,7 +279,7 @@
          \(P(X=1) = \frac{2}{4}\)로 표시할 수 있고, 두 번 나오는 사건의 확률 P({HH}) = \(\frac{1}{4}\)는 
          \(P(X=2) = \frac{1}{4}\)로 표시할 수 있다. 이것을 표로서 정리하면 다음과 같다.
       <p>
-          <table> 
+          <table style="width:500px"> 
             <tr>
               <th class="thGrey">표본공간</th> 
               <th class="thGrey">\(X\) = 동전의 앞면이 나온 횟수</th>
@@ -303,7 +303,7 @@
           </table>
 
       <p>이 표와 같이 이산확률변수 \(X\)가 어느 한 값 \(x\)를 가질 확률 \(P(X=x)\)을 모두 
-         정리한 것을 <b>확률분포</b>라고 한다. 위의 확률분포는 <그림 3.1>과 같이 그래프로 나타낼 수 있다.
+         정리한 것을 <b>확률분포</b>라고 한다. 위의 확률분포는 &lt;그림 3.1&gt;과 같이 그래프로 나타낼 수 있다.
       <p>
          <img class="imgFig600600" src="../FigureH/HFig0301.png">
          <div class="textLeft">&lt;그림 3.1&gt; 이산확률변수의 확률분포</div>
@@ -336,7 +336,7 @@
       <div class="textLeft"> \(P(X=x_i ) = p_i \)
       </div>
       <p>
-         를 이산확률변수 \(X\)의 <b>확률밀도함수</b>라고 한다. 
+         를 이산확률변수 \(X\)의 <b>확률밀도함수</b> 또는 <b>확률분포함수</b>라고 한다. 
       <p>
          이산확률변수 중에서 현실에서 많이 이용되는 것이 이항분포로서 3.4절에서 자세히 살펴본다.
       <p>
@@ -381,7 +381,7 @@
       <p>
          따라서 \(X\)의 확률분포를 표로 나타내면 다음과 같다.
       <p>
-          <table> 
+          <table style="width:500px"> 
             <tr>
               <th class="thGrey" style="width:150px">\(X\)</th>
               <td class="tdCenter">0</td>
@@ -398,14 +398,14 @@
             </tr>
           </table>
       <p>
-         『eStatH』 메뉴에서 ‘이산확률변수의 분포’를 선택하면 <그림 3.2>과 자료입력 창이 나타난다. 
-         여기에 자료를 그림과 같이 입력하고 [실행]버튼을 누르면 <그림 3.3>과 같은 확률분포 그래프가
+         『eStatH』 메뉴에서 ‘이산확률변수의 분포’를 선택하면 &lt;그림 3.2&gt;과 자료입력 창이 나타난다. 
+         여기에 자료를 그림과 같이 입력하고 [실행]버튼을 누르면 &lt;그림 3.3&gt;과 같은 확률분포 그래프가
          나타난다. 
       <p>
       <table>
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_40DiscreteDistribution.svg" onclick="window.open(addrStr[163])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU_40DiscreteDistribution.svg" onclick="window.open(addrStr[163])">
           </td>
           <td>
             <p>
@@ -429,7 +429,7 @@
         <tr>
           <td>
             <h4>⏱ 문제 3.2</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_40DiscreteDistribution.svg" onclick="window.open(addrStr[163])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU_40DiscreteDistribution.svg" onclick="window.open(addrStr[163])">
           </td>
           <td>
             <p>
@@ -461,8 +461,8 @@
           <h4>💎 탐구</h4>
         </td>
         <td>
-          <b>1) 모든 가능한 의 값을 대푯값으로는 어떠한 값이 좋을까? <br>
-             2) 모든 가능한 의 값의 산포도로는 어떠한 측정값이 좋을까?
+          <b>1) 확률변수 \(X\)의 모든 가능한 값을 대푯값으로는 어떠한 값이 좋을까? <br>
+             2) 확률변수 \(X\)의 모든 가능한 값의 산포도로는 어떠한 값이 좋을까?
           </b>
         </td>
       </tr>
@@ -473,7 +473,7 @@
       <p>동전을 두 번 던지는 시행에서 확률변수  \(X\) = ‘동전의 앞면이 나오는 횟수’의 가능한 값  
          0, 1, 2에 대한 확률분포는 다음과 같다. 
       <p>
-          <table> 
+          <table style="width:600px"> 
             <tr>
               <th class="thGrey" style="width:150px">\(X\)</th>
               <td class="tdCenter">0</td>
@@ -492,7 +492,7 @@
       <p>
          이 확률분포는 숫자 0, 1, 1, 2에 대한 다음의 도수분포와 유사하다.
       <p>
-          <table> 
+          <table style="width:600px"> 
             <tr>
               <th class="thGrey">숫자</th> 
               <th class="thGrey">도수</th>
@@ -533,7 +533,7 @@
          일반적으로 이산확률변수 \(X\)가 가질 수 있는 값이 \(x_1 , x_2 , \cdots , x_n\)이고 
          각각의 값을 가질 확률이 \(p_1 , p_2 , \cdots , p_n\)인 확률분포가 다음 표와 같다고 하자. 
       <p>
-          <table> 
+          <table style="width:700px"> 
             <tr>
               <th class="thGrey" style="width:150px">\(X\)</th>
               <td class="tdCenter">\(x_1\)</td>
@@ -573,7 +573,7 @@
       <p><h5>🎲 예제 3.3</h5>
         [예제 3.2]의 확률분포에 대한 평균, 분산, 표준편차를 구하고 『eStatH』를 이용하여 값을 확인하여 보자. 
       <p>
-          <table> 
+          <table style="width:500px"> 
             <tr>
               <th class="thGrey" style="width:150px">\(X\)</th>
               <td class="tdCenter">0</td>
@@ -600,7 +600,7 @@
          \(\sigma(X) = \sqrt{V(X)} = \sqrt{0.36} = 0.6\)
       </div>
       <p>
-         이 평균, 분산, 표준편차는 <그림 3.2>의 『eStatH』결과와 일치한다.
+         이 평균, 분산, 표준편차는 &lt;그림 3.2&gt;의 『eStatH』 결과와 일치한다.
   </div>
   <!------------------------------------------------------------------------------------------------->
   <p>
@@ -670,7 +670,7 @@
          확률변수 \(X\)가 가질 수 잇는 값은 1, 2, 3, 4, 5, 6이고 각각의 값에 대한 확률분포를 
          표로 나타내면 다음과 같다.
       <p>
-          <table> 
+          <table style="width:600px"> 
             <tr>
               <th class="thGrey" style="width:150px">\(X\)</th>
               <td class="tdCenter">1</td>
@@ -711,11 +711,11 @@
       <table>
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_40DiscreteDistribution.svg" onclick="window.open(addrStr[163])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU_40DiscreteDistribution.svg" onclick="window.open(addrStr[163])">
           </td>
           <td>
-            왼쪽의 QR이나 『eStatH』 메뉴에서 ‘이산확률변수의 분포’를 선택하고 <그림 3.4>와 같이 
-            자료를 입력하면 <그림 3.5>와 같은 그래프와 평균, 분산, 표준편차가 나타난다. 값이 약간 다른 것은 소숫점이하 자리수에 대한 계산 오차이다.
+            왼쪽의 QR이나 『eStatH』 메뉴에서 ‘이산확률변수의 분포’를 선택하고 &lt;그림 3.4&gt;와 같이 
+            자료를 입력하면 &lt;그림 3.5&gt;와 같은 그래프와 평균, 분산, 표준편차가 나타난다. 값이 약간 다른 것은 소숫점이하 자리수에 대한 계산 오차이다.
             <p>
             <img class="imgFig600600" src="../FigureH/HFig0304.png">
             <div class="figText">&lt;그림 3.4&gt; 이산확률변수의 분포 자료입력</div>
@@ -734,7 +734,7 @@
         <tr>
           <td style="width:100px">
             <h5>⏱ 문제 3.4</h5>
-            <input class="qrBtn" type="image" src="../QR/eStatH_40DiscreteDistribution.svg" onclick="window.open(addrStr[163])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU_40DiscreteDistribution.svg" onclick="window.open(addrStr[163])">
           </td>
           <td>
             <p>
@@ -788,7 +788,7 @@
             확률변수 \(X\)의 분포는 다음과 같고  \(E(X)\) = 1, \(V(X)\) = 0.5, 
             \(\sigma(X)\) = 0.707이다.
       <p>
-          <table> 
+          <table style="width:600px"> 
             <tr>
               <th class="thGrey" style="width:150px">\(X\)</th>
               <td class="tdCenter">0</td>
@@ -807,7 +807,7 @@
       <p>
          1) 확률변수 \(Y = 100X\)의 확률분포는 다음과 같다. 
       <p>
-          <table> 
+          <table style="width:600px"> 
             <tr>
               <th class="thGrey" style="width:150px">\(Y = 100X\)</th>
               <td class="tdCenter">0</td>
@@ -838,7 +838,7 @@
       <p>
          2) 확률변수 \(Z = 50 + 100X\)의 확률분포는 다음과 같다. 
       <p>
-          <table> 
+          <table style="width:600px"> 
             <tr>
               <th class="thGrey" style="width:150px">\(Z = 50 + 100X\)</th>
               <td class="tdCenter">50</td>
@@ -870,7 +870,7 @@
          일반적으로 이산확률변수 \(X\)의 분포가 다음과 같고 평균, 분산, 표준편차가 각각
          \(E(X) = \mu\), \(V(X) = \sigma^2\), \(\sigma(X) = \sigma\)라 하자. 
       <p>
-          <table> 
+          <table style="width:700px"> 
             <tr>
               <th class="thGrey" style="width:150px">\(X\)</th>
               <td class="tdCenter">\(x_1\)</td>
@@ -891,7 +891,7 @@
       <p>
          \(Y = aX + b\)의 확률분포는 다음과 같다. 
       <p>
-          <table> 
+          <table style="width:700px"> 
             <tr>
               <th class="thGrey" style="width:150px">\(Y = aX + b\)</th>
               <td class="tdCenter">\(y_1 = ax_1 + b\)</td>
@@ -957,15 +957,15 @@
   <div class="mainTableYellow">
     <table>
       <tr>
-        <td style="width:110px">
+        <td style="width:130px">
           <h4>⭐ 생각열기</h4>
         </td>
-        <td style="width:450px">
+        <td>
           <p>
           <b>한 피자가게에 피자를 주문하여 집까지 배달되는 시간을 임의로 30회 조사한 결과가 다음과 같다.   </b>
           <p>
           <div class="textLeft">(데이터 3.1) 피자를 주문하여 집까지 배달되는 시간 (단위 분)</div>
-          <table> 
+          <table style="width:600px"> 
             <tr>
               <td class="tdCenter">
                 15 27 37  9 16 26 17 22 30 23 13 19 22 14 16 
@@ -997,19 +997,19 @@
   <p>
 
   <div class="mainTable">
-      <p>『eStatH』의 ‘히스토그램 – 도수분포표’를 이용하여 피자배달시간에 대한 히스토그램을 구간을 0에서 시작해서 구간 간격을 10분으로 해서 그리면 다음과 같다. 피자가 10분에서 20분 사이에 배달될 확률은 0.47임을 알 수 있다. 
+      <p> 『eStatH』의 ‘히스토그램 – 도수분포표’를 이용하여 피자배달시간에 대한 히스토그램을 구간을 0에서 시작해서 구간 간격을 10분으로 해서 그리면 다음과 같다. 피자가 10분에서 20분 사이에 배달될 확률은 0.47임을 알 수 있다. 
       <p>
-      <table style="width:650px">
+      <table style="width:750px">
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_08Histogram.svg" onclick="window.open(addrStr[144])">     
+            <input class="qrBtn" type="image" src="../../QR/eStatU_08Histogram.svg" onclick="window.open(addrStr[144])">     
           </td>
           <td>
             <img class="imgFig600600" src="../FigureH/HFig0306.png">
             <div class="textLeft">&lt;그림 3.6&gt; 피자배달에 걸리는 시간의 히스토그램 – 구간간격 10분</div>
             <p>
             <div class="textLeft">[표 3.1] 피자배달에 걸리는 시간의 도수분포표 – 구간간격 10분</div>
-            <table> 
+            <table style="width:500px"> 
               <tr>
                <th class="thGrey" style="width:200px">계급구간</th>
                <th class="thGrey">도수</th>
@@ -1027,17 +1027,17 @@
       <p>
          히스토그램의 구간을 5에서 시작해서 구간 간격을 5분으로 다시 그리면 다음과 같다. 피자가 15분에서 20분 사이에 배달될 확률은 0.30임을 알 수 있다. 
       <p>
-      <table style="width:650px">
+      <table style="width:750px">
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_08Histogram.svg" onclick="window.open(addrStr[144])">     
+            <input class="qrBtn" type="image" src="../../QR/eStatU_08Histogram.svg" onclick="window.open(addrStr[144])">     
           </td>
           <td>
             <img class="imgFig600600" src="../FigureH/HFig0307.png">
             <div class="textLeft">&lt;그림 3.7&gt; 피자배달에 걸리는 시간의 히스토그램 – 구간간격 5분</div>
             <p>
             <div class="textLeft">[표 3.2] 피자배달에 걸리는 시간의 도수분포표 – 구간간격 5분</div>
-            <table> 
+            <table style="width:500px"> 
               <tr>
                <th class="thGrey" style="width:200px">계급구간</th>
                <th class="thGrey">도수</th>
@@ -1056,7 +1056,7 @@
         </tr>
       </table>
       <p>
-         좀 더 세밀한 구간의 확률을 구하기 위해서는 <그림 3.8>과 같은 더 세분화된 히스토그램과 
+         좀 더 세밀한 구간의 확률을 구하기 위해서는 &lt;그림 3.8&gt;과 같은 더 세분화된 히스토그램과 
          도수분포표를 필요로 한다. 하지만 이러한 히스토그램을 위해서는 더 많은 자료를 수집하여야 하고
          매번 다시 히스토그램을 그려 원하는 확률을 계산하는 것은 여간 번거로운 일이 아니다.
       <p>
@@ -1066,7 +1066,7 @@
          우리 주변에서는 위의 히스토그램과 같이 종 모양으로 평균 주변에 자료가 많고 평균을 
          중심으로 대칭인 형태의 연속확률변수 자료를 많이 관찰할 수 있다. 이러한 형태의 모든 
          자료들에 대한 확률을 쉽게 구하기 위해 많은 수학자들이 이 분포 형태를 묘사할 수 있는 
-         함수를 찾았다. <그림 3.9>와 같은 모양의 함수인데 이를 <b>정규분포함수</b>라 한다. 
+         함수를 찾았다. &lt;그림 3.9&gt;와 같은 모양의 함수인데 이를 <b>정규분포함수</b>라 한다. 
          3.5절에서 자세히 설명한다. 
       <p>
          <img class="imgFig600600" src="../FigureH/HFig0309.png">
@@ -1095,7 +1095,7 @@
            <p>
       <div class="textL20M20">
         3) 연속확률변수 \(X\)가 정의구역내의 구간 \([a,b]\)에 있을 확률 \(P(a \le x \le b)\)는 
-           \(f(x)\)의 \([a,b]\)사이의 넓이인 정적분으로 구할 수 있다. (<그림 3.10>)
+           \(f(x)\)의 \([a,b]\)사이의 넓이인 정적분으로 구할 수 있다. (&lt;그림 3.10&gt;)
       </div>
       <p>
             <div class="textLeft">
@@ -1128,7 +1128,7 @@
          (20-15) × (1/20) = 0.25 이다. 
       <p>
          <img class="imgFig600600" src="../FigureH/HFig0311.png">
-         <div class="textLeft">&lt;그림 3.11&gt; <그림 3.11> 균등분포(10,30)에서 \(P(15 \le X \le 20)\) 확률</div>
+         <div class="textLeft">&lt;그림 3.11&gt; &lt;그림 3.11&gt; 균등분포(10,30)에서 \(P(15 \le X \le 20)\) 확률</div>
     </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
@@ -1205,7 +1205,7 @@
          세 개의 제품을 검사하였을 때 표본공간과 불량품의 수 \(X\)의 가능한 값은 0, 1, 2, 3이고 
          그 확률은 다음과 같다. 
       <p>
-          <table> 
+          <table style="width:600px"> 
             <tr>
               <th class="thGrey">표본공간</th>
               <th class="thGrey">\(X\) = 불량품의 수</th>
@@ -1249,10 +1249,10 @@
          떨어진 공은 다시 1/2 확률로 좌측 우측으로 떨어진다. 100개의 공을 떨어뜨렸을 때 
          점수에 대한 분포를 조사해본다. 
       <p>
-      <table>
+      <table style="width:700px">
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_41Binomial.svg" onclick="window.open(addrStr[148])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU410_BinomialSim.svg" onclick="window.open(addrStr[148])">
           </td>
           <td>
             <p>
@@ -1304,12 +1304,12 @@
       $$
          (q+p)^n = {}_n C_0 q^n + {}_n C_1 pq^{n-1}+ {}_n C_2 p^2 q^{n-2} + \cdots +{}_n C_x p^x q^{n-x}+ \cdots +{}_n C_n p^n
       $$
-         다음은 여러 가지 , 값에 대한 이항분포의 그래프이다.
+         다음은 여러 가지 n, p값에 대한 이항분포의 그래프이다.
       <p>
-      <table>
+      <table style="width:750px">
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_42Binomial.svg" onclick="window.open(addrStr[149])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU420_Binomial.svg" onclick="window.open(addrStr[149])">
           </td>
           <td>
             <p>
@@ -1342,13 +1342,13 @@
          1) 확률변수 X = ‘호랑이가 승리하는 게임수’ 의 확률분포를 구하라. 단 비기는 게임은 없다고 가정하자. 
       </div>
       <div class="textL20M20">
-         2)『eStatH』을 이용하여 이 확률분포를 구하라.
+         2) 『eStatH』을 이용하여 이 확률분포를 구하라.
       </div>
       <p><b>풀이</b>
       <table style="width:650px">
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_42Binomial.svg" onclick="window.open(addrStr[149])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU420_Binomial.svg" onclick="window.open(addrStr[149])">
           </td>
           <td>
             <p>이 문제는 매 게임이 ‘승’과 ‘패’의 베르누이 시행이다. 이 베르누이 시행을 네 번
@@ -1400,7 +1400,7 @@
         <p>
            따라서 확률변수 \(X\) = ‘호랑이가 승리하는 게임 수’ 의 확률분포는 다음과 같다.  
         <p>
-            <table> 
+            <table style="width:750px"> 
               <tr>
                 <th>\(X\)</th>
                 <td class="tdCenter">0</td>
@@ -1422,7 +1422,7 @@
             </table>
       <p>
         『eStatH』의 주메뉴에서 이항분포를 선택하고  \(n\)= 4,  \(p\)= 0.6을 입력하고 
-         [실행] 버튼을 누르면 <그림 3.14>과 같은 이항분포 그래프가 나타난다. 
+         [실행] 버튼을 누르면 &lt;그림 3.14&gt;과 같은 이항분포 그래프가 나타난다. 
       <p>
          <img class="imgFig600600" src="../FigureH/HFig0314.png">
          <div class="textLeft">&lt;그림 3.14&gt;  \(n\)= 4,  \(p\)= 0.6인 이항분포 그래프</div>
@@ -1438,7 +1438,7 @@
          확률계산을 쉽게 할 수 있다. 새로운 \(n\)과  \(p\)를 선택하고 [실행] 버튼을 누르면
          이 값에 대한 이항분포표가 밑에 추가된다.  
       <p>
-            <table> 
+            <table style="width:600px"> 
               <tr>
                 <td class="tdCenter">\(n = 4\)</td>
                 <td class="tdCenter">\(p = 0.600\)</td>
@@ -1461,7 +1461,7 @@
         <tr>
           <td>
             <h4>⏱ 문제 3.7</h4> <p>
-            <input class="qrBtn" type="image" src="../QR/eStatH_42Binomial.svg" onclick="window.open(addrStr[149])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU420_Binomial.svg" onclick="window.open(addrStr[149])">
           </td>
           <td>
             <p>
@@ -1556,7 +1556,7 @@
   <!------------------------------------------------------------------------------------------------->
   <div class="mainTableGrey">
       <p><h5>🎲 예제 3.7</h5>
-         어느 보험회사의 영업사원이 고객을 만나 그 사람을 보험에 가입하게 할 확률은 과거의 경험으로 보아 20％이다. 오늘 아침 영업사원이 10명의 고객을 만날 예정이다. 다음 확률을 직접 계산한 후『eStatH』를 이용하여 확인하라
+         어느 보험회사의 영업사원이 고객을 만나 그 사람을 보험에 가입하게 할 확률은 과거의 경험으로 보아 20％이다. 오늘 아침 영업사원이 10명의 고객을 만날 예정이다. 다음 확률을 직접 계산한 후 『eStatH』를 이용하여 확인하라
       <p>
          1) 세 사람이 보험에 가입할 확률은? <br>
          2) 두 사람 이상(≥)이 보험에 가입할 확률은? <br>
@@ -1588,12 +1588,12 @@
       <table style="width:650px">
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_42Binomial.svg" onclick="window.open(addrStr[149])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU420_Binomial.svg" onclick="window.open(addrStr[149])">
           </td>
           <td>
             <p>
            『eStatH』의 ‘이항분포’에서 \(n\) = 10, \(p\) = 0.2를 선택하고 [실행] 버튼을 클릭하면
-            <그림 3.16>과 같은 그래프가 나타난다. ‘확률표시’를 선택하면 이항분포 확률이 각 막대에 표시되는데 문 1)의 값을 확인할 수 있다. 
+            &lt;그림 3.16&gt;과 같은 그래프가 나타난다. ‘확률표시’를 선택하면 이항분포 확률이 각 막대에 표시되는데 문 1)의 값을 확인할 수 있다. 
            <p>
            <img class="imgFig600600" src="../FigureH/HFig0316.png">
            <div class="textLeft">&lt;그림 3.16&gt;  \(n\)= 10,  \(p\)= 0.2인 이항분포</div>
@@ -1603,7 +1603,7 @@
       <p>
         오른쪽의 다음과 같은 이항분포표에서 2)의 P(X ≥ 2) = 0.6242임을 확인할 수 있다.
       <p>
-            <table> 
+            <table style="width:600px"> 
               <tr>
                 <td class="tdCenter">\(n = 10\)</td>
                 <td class="tdCenter">\(p = 0.200\)</td>
@@ -1631,11 +1631,11 @@
         <tr>
           <td style="width:100px">
             <h5>⏱ 문제 3.8</h5>
-            <input class="qrBtn" type="image" src="../QR/eStatH_42Binomial.svg" onclick="window.open(addrStr[149])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU420_Binomial.svg" onclick="window.open(addrStr[149])">
           </td>
           <td>
             <p>
-               한 대통령 선거에서 특정 후보의 지지율이 40%로 조사되었다. 선거전략의 수립을 위해 오늘 아침 20명의 유권자를 만나 특정후보를 지지하는지 알아볼 예정이다. 다음 확률을 직접 계산한 후『eStatH』를 이용하여 확인하라. 단 기권은 없다고 가정하자.
+               한 대통령 선거에서 특정 후보의 지지율이 40%로 조사되었다. 선거전략의 수립을 위해 오늘 아침 20명의 유권자를 만나 특정후보를 지지하는지 알아볼 예정이다. 다음 확률을 직접 계산한 후 『eStatH』를 이용하여 확인하라. 단 기권은 없다고 가정하자.
             <p>
                1) 20명중 8명이 특정후보를 지지할 확률은? <br>
                2) 5명 이상(≥) 12명 이하(≤)가 지지할 확률은? <br>
@@ -1706,7 +1706,7 @@
       <p>
       <table>
         <tr>
-          <td style="width:300px">
+          <td style="width:400px">
             <p>
             <div class="textLeft">
                \(n = 10\)<p>
@@ -1744,7 +1744,7 @@
       <p>
       <table>
         <tr>
-          <td style="width:300px">
+          <td style="width:400px">
             <p>
             <div class="textLeft">
                \(n = 50\)<p>
@@ -1763,7 +1763,7 @@
       <p>
       <table>
         <tr>
-          <td style="width:300px">
+          <td style="width:400px">
             <p>
             <div class="textLeft">
                \(n = 100\)<p>
@@ -1801,7 +1801,7 @@
   <!------------------------------------------------------------------------------------------------->
   <div class="mainTable">
       <p>
-         <그림 3.21>은 『eStatH』를 이용하여  \(n\) = 1000까지 \(\epsilon\) = 0.05로 하여 
+         &lt;그림 3.21&gt;은 『eStatH』를 이용하여  \(n\) = 1000까지 \(\epsilon\) = 0.05로 하여 
          확률 \( P ( \left | \frac{X}{n} - \frac{1}{6} \right | < \epsilon )\)이 1에 
          점차로 가까워지는 것을 보여주는 그래프이다. 슬라이드바를 이용하여 \(p\)와 
          \(\epsilon\)을 바꾸어 가며 실험할 수 있다.
@@ -1809,7 +1809,7 @@
       <table>
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_43LawOfLarge.svg" onclick="window.open(addrStr[166])">
+            <input class="qrBtn" type="image" src="../../QR/eStatH_43LawOfLarge.svg" onclick="window.open(addrStr[166])">
           </td>
           <td>
             <img class="imgFig600600" src="../FigureH/HFig0321.png">
@@ -1864,7 +1864,7 @@
          폭 넓게 응용되었다. 이 함수를 <b>정규분포 확률밀도함수</b> 또는 <b>가우스분포함수</b>라고
          부르는데 함수식과 그래프는 다음과 같다.
       <p>
-      <table>
+      <table style="width:700px">
         <tr>
           <td>
             $$
@@ -1884,7 +1884,7 @@
          확률변수 \(X\)가 평균 \(\mu\), 표준편차 \(\sigma\), 즉 분산이 \(\sigma^2\)인 
          정규분포를 따를 때 기호로  \(N(\mu, \sigma^2 )\)로 표시하기도 한다. 
       <p>
-         <그림 3.24>는 평균가 분산이 서로 다른 세 정규분포 \(N(-2, 0.5^2 )\), \(N(0, 1)\),
+         &lt;그림 3.24&gt;는 평균과 분산이 서로 다른 세 정규분포 \(N(-2, 0.5^2 )\), \(N(0, 1)\),
          \(N(2, 2^2 )\)를 같이 그려본 것이다. 평균을 중심으로 모두 대칭이고, 분산이 커지면 
          정규분포는 평평해지고, 분산이 작아지면 뾰족해 지는 것을 관찰할 수 있다. 이는 전체 
          넓이가 1이 되어야하기 때문이다.
@@ -1892,7 +1892,7 @@
       <table>
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_50NormalComparison.svg" onclick="window.open(addrStr[167])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU_50NormalComparison.svg" onclick="window.open(addrStr[167])">
           </td>
           <td>
             <img class="imgFig600600" src="../FigureH/HFig0324.png">
@@ -1901,14 +1901,14 @@
         </tr>
       </table>
       <p>
-         <그림 3.25>는 평균이 서로 다르고 분산이 모두 1인 세 정규분포 
+         &lt;그림 3.25&gt;는 평균이 서로 다르고 분산이 모두 1인 세 정규분포 
          \(N(-3, 1)\), \(N(0, 1)\), \(N(3, 1)\)를 같이 그려본 것이다. 평균이 다르면 
         같은 모양의 그래프가 수평으로 이동된다.
       <p>
       <table>
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_50NormalComparison.svg" onclick="window.open(addrStr[167])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU_50NormalComparison.svg" onclick="window.open(addrStr[167])">
           </td>
           <td>
             <img class="imgFig600600" src="../FigureH/HFig0325.png">
@@ -1917,7 +1917,7 @@
         </tr>
       </table>
       <p>
-        <그림 3.26>은 평균이 모두 0이고 분산이 서로 다른 세 정규분포 
+        &lt;그림 3.26&gt;은 평균이 모두 0이고 분산이 서로 다른 세 정규분포 
         \(N(0, 0.5^2 )\), \(N(0, 1)\), \(N(0, 3^2 )\)를 같이 그려본 것이다. 
         평균 0을 중심으로 모두 대칭이고, 분산이 커지면 정규분포는 평평해지고, 
         분산이 작아지면 뾰족해 지는 것을 관찰할 수 있다. 
@@ -1925,7 +1925,7 @@
       <table>
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_50NormalComparison.svg" onclick="window.open(addrStr[167])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU_50NormalComparison.svg" onclick="window.open(addrStr[167])">
           </td>
           <td>
             <img class="imgFig600600" src="../FigureH/HFig0326.png">
@@ -1957,7 +1957,7 @@
       <p>
       <div class="textL20M20">
          4) \(\mu\)의 값이 일정할 때, \(\sigma\)의 값이 커지면 곡선은 낮아지고 넓게 퍼지고,  
-            \(\sigma\)의 값이 작어지면 곡선은 높아지고 뾰족해진다. 
+            \(\sigma\)의 값이 작아지면 곡선은 높아지고 뾰족해진다. 
       </div>
       <p>
       <div class="textL20M20">
@@ -1973,7 +1973,7 @@
   <div class="mainTable">
       <p>정규분포는 현실에 제일 많이 이용되는 분포인데 확률변수 \(X\)의 구간 \([a, b]\)의
          확률계산을 많이 필요로 하게 된다. 앞에서 설명하였듯이 \(X\)가 \(N(\mu, \sigma^2 )\)을
-         따를 때 구간 \([a, b]\)의 확률 \(P(a \le X \le b)\)는 <그림 3.27>의 색으로 칠하여진
+         따를 때 구간 \([a, b]\)의 확률 \(P(a \le X \le b)\)는 &lt;그림 3.27&gt;의 색으로 칠하여진
          부분과 같이 x축과 \(a\)와 \(b\)사이로 둘러싸이는 곡선 \(f(x)\)의 면적이다.
       <p>
             <img class="imgFig600600" src="../FigureH/HFig0327.png">
@@ -1992,7 +1992,7 @@
          확률변수 \(X\)가 \(N(\mu, \sigma^2 )\)일 때  \(Z = \frac{X - \mu}{\sigma}\)변환을 하면,
          \(Z\)는 평균이 0이고, 표준편차가 1인 정규분포 \(N(0,1)\)을 따르게 된다. 이 사실은
          \(N(0,1)\)인 분포의 모든 확률을 구할 수 있다면, 임의의 정규분포도 확률을 구할 수
-         있음을 뜻한다. 그래서 \(N(0,1)\)을 특히 <b>표준정규분포</b> 또는  \(Z\)분포라 한다.
+         있음을 뜻한다. 그래서 \(N(0,1)\)을 특히 <b>표준정규분포</b> 또는  <b>\(Z\)분포</b>라 한다.
          그리고 임의의 확률변수 \(X\)를 \(Z\)로 바꾸어 주는 변환 \(Z = \frac{X - \mu}{\sigma}\)를
          <b>표준화 변환</b>이라고 부른다. 
 
@@ -2018,14 +2018,14 @@
             <div class="textLeft">[표 3.3] 『eStatH』의 표준정규분포표 </div>
             <img class="imgFig600600" src="../FigureH/HTable0304.png">
       <p>
-         『eStatH』에서는 <그림 3.28>과 같이 어떠한 정규분포 확률변수의 구간 \([a, b]\)에 대한
+         『eStatH』에서는 &lt;그림 3.28&gt;과 같이 어떠한 정규분포 확률변수의 구간 \([a, b]\)에 대한
          \(P(a \le X \le b)\) 확률계산과, 주어진 확률 \(p\)에 대한 백분위수
          (즉, \(P(X \le x) = p\))가 되는 백분위수 \(x\)를 쉽게 계산할 수 있다. 
       <p>
       <table>
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_52Normal.svg" onclick="window.open(addrStr[151])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
           </td>
           <td>
             <img class="imgFig600600" src="../FigureH/HFig0328.png">
@@ -2035,8 +2035,8 @@
       </table>
       <p>
         『eStatH』에서 구간의 확률은 \(\mu - 4 \sigma\)에서 \(\mu + 4 \sigma\)까지 계산할 수 있다.
-         \(X\)가 \(\mu - 4\sigma\)보다 작든지 \(\mu + 4\sigma\)보다 큰 경우에 확률은 0.0000이 된다.
-         [표 3.4]는  『eStatH』표준정규분포의 백분위수표이다. 
+         \(X\)가 \(\mu - 4\sigma\)보다 작든지 \(\mu + 4\sigma\)보다 큰 경우에 확률은 0.0000보다 작아 0.0000으로 표시된다.
+         [표 3.4]는  『eStatH』 표준정규분포의 백분위수표이다. 
       <p>
             <div class="textLeft">[표 3.4] 『eStatH』의 표준정규분포 백분위표 </div>
             <img class="imgFig600600" src="../FigureH/HTable0305.png">
@@ -2065,10 +2065,10 @@
       <table>
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_52Normal.svg" onclick="window.open(addrStr[151])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
           </td>
           <td>
-            <p>『eStatH』를 이용하면 문 1)은 그래프 화면 밑의 선택사항에서 두 번째 왼쪽 확률을 선택하고
+            <p> 『eStatH』를 이용하면 문 1)은 그래프 화면 밑의 선택사항에서 두 번째 왼쪽 확률을 선택하고
                  1.96을 입력한 후 [실행] 버튼을 클릭한다.
             <p>같은 방법으로 문 2)는 그래프 화면 밑의 첫 번째를 선택하고 구간 -1.96, 1.96을 입력하여 계산하고, 
             <p>문 3)은 그래프 화면 밑의 세 번째 우측 확률을 선택한 후 1.96을 입력하여 계산한다.
@@ -2102,7 +2102,7 @@
       <table>
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_52Normal.svg" onclick="window.open(addrStr[151])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
           </td>
           <td>
             <p>『eStatH』를 이용하면 문 1)은  그래프 화면 밑의 선택사항 다섯 번째에서 
@@ -2125,10 +2125,10 @@
         <tr>
           <td style="width:100px">
             <h5>⏱ 문제 3.10</h5>
-            <input class="qrBtn" type="image" src="../QR/eStatH_52Normal.svg" onclick="window.open(addrStr[151])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
           </td>
           <td>
-            <p>Z 가 표준정규확률변수일 때 표준정규분포표를 이용하여 다음의 확률을 구하라. 
+            <p>Z가 표준정규확률변수일 때 표준정규분포표를 이용하여 다음의 확률을 구하라. 
                그리고 『eStatH』를 이용하여 확률을 구하라.
             <p>
               1) \(P(-1 ≤ Z ≤ 1)\) <br>
@@ -2146,7 +2146,7 @@
         <tr>
           <td style="width:100px">
             <h5>⏱ 문제 3.11</h5>
-            <input class="qrBtn" type="image" src="../QR/eStatH_52Normal.svg" onclick="window.open(addrStr[151])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
           </td>
           <td>
             <p>Z 가 표준정규확률변량일 때 다음 식을 만족하는 x 를 구하라. 그리고 『eStatH』를 이용하여 확률을 구하라.
@@ -2162,8 +2162,8 @@
   <!------------------------------------------------------------------------------------------------->
   <div class="mainTable">
       <p>자주 이용되는 표준정규분포의 구간 확률 몇 가지는 기억을 하는 것이 좋다. 
-         <그림 3.29>는 표준정규분포의 왼쪽에서부터 누적확률이 95%, 97.5%, 99.5% 되는 
-         백분위수를 보여 주고 있고, <그림 3.30>은 양쪽 끝 부분을 똑 같이 제외하였을 때 
+         &lt;그림 3.29&gt;는 표준정규분포의 왼쪽에서부터 누적확률이 95%, 97.5%, 99.5% 되는 
+         백분위수를 보여 주고 있고, &lt;그림 3.30&gt;은 양쪽 끝 부분을 똑 같이 제외하였을 때 
          가운데 구간의 확률이 95%, 99%되는 값을 보여 주고 있다.
       <p>
             <img class="imgFig600600" src="../FigureH/HFig0329.png">
@@ -2214,21 +2214,21 @@
       <table>
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_52Normal.svg" onclick="window.open(addrStr[151])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
           </td>
           <td>
-            <p>『eStatH』를 이용하여 일반적인 정규분포 확률을 구하려면 <그림 3.31>의 화면에서 
+            <p>『eStatH』를 이용하여 일반적인 정규분포 확률을 구하려면 &lt;그림 3.31&gt;의 화면에서 
                먼저 평균을 70, 표준편차를 10으로 입력한다. 
             <p>문 1)은 그래프 화면 밑의 선택사항 두 번째에 구간값 94.3을 입력한 후 
                [실행] 버튼을 클릭한다.
             <p>유사한 방법으로 문 2)는 선택사항 세 번째에 57.7을 입력하여 계산하고 
             <p>문 3)은 선택사항 첫 번째에 구간을 [57.7, 94.3]으로 입력한 후 [실행] 버튼을 클릭한다.  
+            <p>
+            <img class="imgFig600600" src="../FigureH/HFig0331.png">
+            <div class="textLeft">&lt;그림 3.31&gt; 일반적인 정규분포에서 확률 계산</div>
           </td>
         </tr>
       </table>
-      <p>
-            <img class="imgFig600600" src="../FigureH/HFig0331.png">
-            <div class="textLeft">&lt;그림 3.31&gt; 일반적인 정규분포에서 확률 계산</div>
   </div>
   <!------------------------------------------------------------------------------------------------->
   <p>
@@ -2257,21 +2257,21 @@
       <table>
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_52Normal.svg" onclick="window.open(addrStr[151])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
           </td>
           <td>
-            <p>『eStatH』를 이용하여 일반적인 정규분포 확률을 구하려면 <그림 3.32>의 화면에서 
+            <p>『eStatH』를 이용하여 일반적인 정규분포 확률을 구하려면 &lt;그림 3.32&gt;의 화면에서 
                먼저 평균을 70, 표준편차를 10으로 입력한다. 
             <p>문 1)은 그래프 화면 밑의 선택사항 다섯 번째의 오른쪽 박스에 0.95를 입력하고 
                [실행] 버튼을 누르면 95% 백분위수 86.4485가 나타난다. 
             <p>문 2)는 그래프 화면 밑의 선택사항 네 번째의 오른쪽 박스에 0.95를 입력하고 
                [실행] 버튼을 누르면 양쪽형 95% 백분위수 [50.4004, 89.5996]이 나타난다. 
+            <p>
+            <img class="imgFig600600" src="../FigureH/HFig0331.png">
+            <div class="textLeft">&lt;그림 3.32&gt; 일반적인 정규분포에서 백분위수 계산</div>
           </td>
         </tr>
       </table>
-      <p>
-            <img class="imgFig600600" src="../FigureH/HFig0331.png">
-            <div class="textLeft">&lt;그림 3.32&gt; 일반적인 정규분포에서 백분위수 계산</div>
   </div>
   <!------------------------------------------------------------------------------------------------->
   <p>
@@ -2281,7 +2281,7 @@
         <tr>
           <td style="width:100px">
             <h5>⏱ 문제 3.12</h5>
-            <input class="qrBtn" type="image" src="../QR/eStatH_52Normal.svg" onclick="window.open(addrStr[151])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
           </td>
           <td>
             <p> 참외의 무게가 평균이 250g이고 표준편차가 12g인 정규분포를 따른다고 한다. 『eStatH』를 이용하여 계산을 확인하라. 
@@ -2304,12 +2304,12 @@
       <p>이항분포에서  \(n\)이 큰 경우에 확률계산은 부록의 표나 『eStatH』를 
          이용하여도 구할 수 없다. 이러한 경우에는 이항분포 는 평균이 \(np\), 
          분산이 \(np(1-p)\)인 정규분포를 이용하여 근사적으로 구할 수 있다. 
-         <그림 3.33>은  = 50,  = 0.5인 이항분포를 정규분포로 근사하여본 그래프이다.
+         &lt;그림 3.3&gt;은 n = 50, p = 0.5인 이항분포를 정규분포로 근사하여본 그래프이다.
       <p>
       <table>
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../QR/eStatH_42Binomial.svg" onclick="window.open(addrStr[149])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU420_Binomial.svg" onclick="window.open(addrStr[149])">
           </td>
           <td>
             <img class="imgFig600600" src="../FigureH/HFig0333.png">
@@ -2576,7 +2576,7 @@
     <input type="text" size=25 id="ansQ17">
   </form>
 
-  <h6 class="textL30M30">3.18 양적 변량의 마지막 숫자를 잎으로 하고 그 앞부분을 줄기로 하여 자료를 표시하는 그래프는?   </h6>
+  <h6 class="textL30M30">3.18 취직 시험이 있었다. 점수가 450과 500사이인 사람은 그 직업에 적당하다고 한다. 만일 평균점수가 400이고, 표준편차가 50인 정규분포를 이룬다면 그 직업에 적당하다고 생각되는 점수는 몇 %에 해당하는가?  </h6>
   <form name="Q18">
     <label><input type="radio" name="item" value="1"> 약 80%</label><br>
     <label><input type="radio" name="item" value="2"> 약 50%</label><br>
