@@ -10510,7 +10510,7 @@ function multipleComparisonTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, 
         cell[g].style.backgroundColor = "#eee";
     }
     if (ngroup > 1) {
-        cell[0].innerHTML = svgStr[101][langNum] + "<br> * 5%, ** %"; // "평균차 검정"
+        cell[0].innerHTML = svgStr[101][langNum] + "<br> * 5%, ** 1%"; // "평균차 검정"
     } else cell[0].innerHTML = svgStr[21][langNum] + " (" + gvarName + ")";
     for (g = 1; g < ngroup + 1; g++) {
         str = "";
