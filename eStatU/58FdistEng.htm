@@ -240,13 +240,13 @@
           a = parseFloat(d3.select("#a").node().value); 
           if ( a < 0 ) a = 0;   
           b = parseFloat(d3.select("#b").node().value);
-          if ( b > gxmax ) b = gxmax;
-          if ( a > b ) c = 0;
+          if (a > b) c = 0;
           else c = f_cdf(b, df1, df2,  info) - f_cdf(a, df1, df2,  info);
           d3.select("#a").node().value = f3(a)
           d3.select("#b").node().value = f3(b)
           d3.select("#c").node().value = f4(c);
           document.getElementById("range21F").value = (100*a/gxmax).toString();
+          if ( b > gxmax ) b = gxmax;
           document.getElementById("range22F").value = (100*b/gxmax).toString();
           drawFGraph(df1, df2,  a, b, c);
       }
@@ -258,13 +258,11 @@
           a = 0;  
           c = parseFloat(d3.select("#c2").node().value); 
           b = f_inv(c, df1, df2, info);
-//          b = parseFloat(d3.select("#b2").node().value);
-          if ( b > gxmax ) b = gxmax;
-          if ( a > b ) c = 0;
-          else c = f_cdf(b, df1, df2,  info);
+          c = f_cdf(b, df1, df2,  info);
           d3.select("#b2").node().value = f3(b)
           d3.select("#c2").node().value = f4(c);
           document.getElementById("range21F").value = (100*a/gxmax).toString();
+          if ( b > gxmax ) b = gxmax;
           document.getElementById("range22F").value = (100*b/gxmax).toString();
           drawFGraph(df1, df2,  a, b, c);
       }
@@ -275,14 +273,11 @@
           df2 = parseFloat(d3.select("#df2").node().value);  
           c = parseFloat(d3.select("#c3").node().value); 
           a = f_inv(1-c, df1, df2, info);
-//          a = parseFloat(d3.select("#a3").node().value); 
-          if ( a < 0 ) a = 0;   
-          b = gxmax;
-          if ( a > b ) c = 0;
-          else c = 1 - f_cdf(a, df1, df2,  info);
+          c = 1 - f_cdf(a, df1, df2,  info);
           d3.select("#a3").node().value = f3(a)
           d3.select("#c3").node().value = f4(c);
           document.getElementById("range21F").value = (100*a/gxmax).toString();
+          b = gxmax;
           document.getElementById("range22F").value = (100*b/gxmax).toString();
           drawFGraph(df1, df2,  a, b, c);
       }
@@ -356,14 +351,14 @@
         h  = document.getElementById("h").value;
         if (isNaN(a) || isNaN(b) || isNaN(b2) || isNaN(a3)) {
           alert("Enter number!");
-          showValueF01(df1);
-          showValueF02(df2);
+          showValueF1(df1);
+          showValueF2(df2);
           return;
         }
         if (isNaN(e) || isNaN(h)) {
           alert("Enter number between 0 and 1!");
-          showValueF01(df1);
-          showValueF02(df2);
+          showValueF1(df1);
+          showValueF2(df2);
           return;
         }
 
@@ -373,13 +368,13 @@
           a = parseFloat(d3.select("#a").node().value); 
           if ( a < 0 ) a = 0.0001;   
           b = parseFloat(d3.select("#b").node().value);
-          if ( b > gxmax ) b = gxmax;
           if ( a > b ) c = 0;
           else c = f_cdf(b, df1, df2,  info) - f_cdf(a, df1, df2,  info);
           d3.select("#a").node().value = f3(a)
           d3.select("#b").node().value = f3(b)
           d3.select("#c").node().value = f4(c);
           document.getElementById("range21F").value = (100*a/gxmax).toString();
+          if ( b > gxmax ) b = gxmax;
           document.getElementById("range22F").value = (100*b/gxmax).toString();
           drawFGraph(df1, df2,  a, b, c);
         } 
@@ -388,12 +383,11 @@
           bar.selectAll("line.lineb").remove();
           a = 0.0001;   
           b = parseFloat(d3.select("#b2").node().value);
-          if ( b > gxmax ) b = gxmax;
-          if ( a > b ) c = 0;
-          else c = f_cdf(b, df1, df2,  info);
+          c = f_cdf(b, df1, df2,  info);
           d3.select("#b2").node().value = f3(b)
           d3.select("#c2").node().value = f4(c);
           document.getElementById("range21F").value = (100*a/gxmax).toString();
+          if ( b > gxmax ) b = gxmax;
           document.getElementById("range22F").value = (100*b/gxmax).toString();
           drawFGraph(df1, df2,  a, b, c);
         } 
@@ -402,12 +396,11 @@
           bar.selectAll("line.lineb").remove();
           a = parseFloat(d3.select("#a3").node().value); 
           if ( a < 0 ) a = 0.0001;   
-          b = gxmax;
-          if ( a > b ) c = 0;
-          else c = 1 - f_cdf(a, df1, df2,  info);
+          c = 1 - f_cdf(a, df1, df2,  info);
           d3.select("#a3").node().value = f3(a)
           d3.select("#c3").node().value = f4(c);
           document.getElementById("range21F").value = (100*a/gxmax).toString();
+          b = gxmax;
           document.getElementById("range22F").value = (100*b/gxmax).toString();
           drawFGraph(df1, df2,  a, b, c);
         } 
@@ -496,7 +489,7 @@
        if (df2 > 100) {df2 = 100; document.getElementById("df2").value = df2;}
        document.getElementById("range2F").value = df2;
        if (checkF1) showValueF0(df1);
-       else if (checkF2) showValueF0(df2);
+       if (checkF2) showValueF0(df2);
        checkExecute   = false;
     }
     function changeRangeFdf1(newValue){

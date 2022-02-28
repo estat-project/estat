@@ -228,13 +228,13 @@
           a = parseFloat(d3.select("#a").node().value); 
           if ( a < 0 ) a = 0.0001;   
           b = parseFloat(d3.select("#b").node().value);
-          if ( b > gxmax ) b = gxmax;
           if ( a > b ) c = 0;
           else c = exponential_cdf(b, lambda, info) - exponential_cdf(a, lambda, info);
           d3.select("#a").node().value = f3(a)
           d3.select("#b").node().value = f3(b)
           d3.select("#c").node().value = f4(c);
           document.getElementById("range21E").value = (300*a/gxmax - 5).toString();
+          if ( b > gxmax ) b = gxmax;
           document.getElementById("range22E").value = (300*b/gxmax - 5).toString();
           drawExponentialGraph(lambda, a, b, c);
       }
@@ -245,15 +245,12 @@
           if (lambda < 0.1) { lambda = 0.1; d3.select("#explambda").node().value = f1(lambda);}
           else if (lambda > 10)  { lambda = 10; d3.select("#explambda").node().value = f1(lambda);}
           a = 0;   
-//          b = parseFloat(d3.select("#b2").node().value); 
           c = parseFloat(d3.select("#c2").node().value); 
           b = exponential_inv(c, lambda, info);
-          if ( b > gxmax ) b = gxmax;
-//          if ( a > b ) c = 0;
-//          else c = exponential_cdf(b, lambda, info);
           d3.select("#b2").node().value = f3(b)
           d3.select("#c2").node().value = f4(c);
           document.getElementById("range21E").value = (300*a/gxmax - 5).toString();
+          if ( b > gxmax ) b = gxmax;
           document.getElementById("range22E").value = (300*b/gxmax - 5).toString();
           drawExponentialGraph(lambda, a, b, c);
       }
@@ -265,14 +262,13 @@
           else if (lambda > 10)  { lambda = 10; d3.select("#explambda").node().value = f1(lambda);}
           c = parseFloat(d3.select("#c3").node().value); 
           a = exponential_inv(1-c, lambda, info);
-//          a = parseFloat(d3.select("#a3").node().value); 
           if ( a < 0 ) a = 0.0001;   
-          b = gxmax;
           if ( a > b ) c = 0;
           else c = 1 - exponential_cdf(a, lambda, info);
           d3.select("#a3").node().value = f3(a)
           d3.select("#c3").node().value = f4(c);
           document.getElementById("range21E").value = (300*a/gxmax - 5).toString();
+          b = gxmax;
           document.getElementById("range22E").value = (300*b/gxmax - 5).toString();
           drawExponentialGraph(lambda, a, b, c);
       }
@@ -372,7 +368,6 @@
             a = parseFloat(d3.select("#a").node().value); 
             b = parseFloat(d3.select("#b").node().value);
             if ( a < 0 ) a = 0.0001;   
-            if ( b > gxmax ) b = gxmax;
             if ( a > b ) c = 0;
             else c = exponential_cdf(b, lambda, info) - exponential_cdf(a, lambda, info);
           }
@@ -380,6 +375,7 @@
           d3.select("#b").node().value = f3(b)
           d3.select("#c").node().value = f4(c);
           document.getElementById("range21E").value = (300*a/gxmax - 5).toString();
+          if ( b > gxmax ) b = gxmax;
           document.getElementById("range22E").value = (300*b/gxmax - 5).toString();
           drawExponentialGraph(lambda, a, b, c);
         } 
@@ -388,12 +384,12 @@
           bar.selectAll("line.lineb").remove();
           a = 0;   
           b = parseFloat(d3.select("#b2").node().value);
-          if ( b > gxmax ) b = gxmax;
           if ( a > b ) c = 0;
           else c = exponential_cdf(b, lambda, info);
           d3.select("#b2").node().value = f3(b)
           d3.select("#c2").node().value = f4(c);
           document.getElementById("range21E").value = (300*a/gxmax - 5).toString();
+          if ( b > gxmax ) b = gxmax;
           document.getElementById("range22E").value = (300*b/gxmax - 5).toString();
           drawExponentialGraph(lambda, a, b, c);
         } 
@@ -402,12 +398,12 @@
           bar.selectAll("line.lineb").remove();
           a = parseFloat(d3.select("#a3").node().value); 
           if ( a < 0 ) a = 0.0001;   
-          b = gxmax; 
           if ( a > b ) c = 0;
           else c = 1 - exponential_cdf(a, lambda, info);
           d3.select("#a3").node().value = f3(a)
           d3.select("#c3").node().value = f4(c);
           document.getElementById("range21E").value = (300*a/gxmax - 5).toString();
+          b = gxmax; 
           document.getElementById("range22E").value = (300*b/gxmax - 5).toString();
           drawExponentialGraph(lambda, a, b, c);
         } 
