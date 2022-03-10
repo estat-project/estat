@@ -4214,12 +4214,17 @@ function dataClassifyANOVA2() {
     statF[12] = SSC / statF[7];
     statF[13] = SSRC / statF[8];
     statF[14] = SSE / statF[9];
-    statF[15] = statF[11] / statF[14];
-    statF[16] = statF[12] / statF[14];
-    statF[17] = statF[13] / statF[14];
-    statF[18] = 1 - f_cdf(statF[15], statF[6], statF[9], info);
-    statF[19] = 1 - f_cdf(statF[16], statF[7], statF[9], info);
-    statF[20] = 1 - f_cdf(statF[17], statF[8], statF[9], info);
+    if (statF[14] == 0) {
+      for (j=15; j<=20; j++) statF[j] = null;
+    }
+    else {
+      statF[15] = statF[11] / statF[14];
+      statF[16] = statF[12] / statF[14];
+      statF[17] = statF[13] / statF[14];
+      statF[18] = 1 - f_cdf(statF[15], statF[6], statF[9], info);
+      statF[19] = 1 - f_cdf(statF[16], statF[7], statF[9], info);
+      statF[20] = 1 - f_cdf(statF[17], statF[8], statF[9], info);
+    }
 }
 // 이원분산분석 데이터 분류 -- 열 점그래프 그리기 위한 것
 function dataClassifyANOVA3() {
@@ -10348,8 +10353,10 @@ function Anova2Table(gvarName, dvarName, nobs, avg, std, statF) {
     cell[1].innerHTML = f3(statF[1]).toString();
     cell[2].innerHTML = f0(statF[6]).toString();
     cell[3].innerHTML = f3(statF[11]).toString();
-    cell[4].innerHTML = f3(statF[15]).toString();
-    if (statF[18] < 0.0001) str = " < 0.0001";
+    if (statF[15] == null) cell[4].innerHTML = "null"; 
+    else  cell[4].innerHTML = f3(statF[15]).toString();
+    if (statF[18] == null) str = "null";
+    else if (statF[18] < 0.0001) str = " < 0.0001";
     else str = f4(statF[18]).toString();
     cell[5].innerHTML = str;
 
@@ -10366,11 +10373,14 @@ function Anova2Table(gvarName, dvarName, nobs, avg, std, statF) {
     cell[1].innerHTML = f3(statF[2]).toString();
     cell[2].innerHTML = f0(statF[7]).toString();
     cell[3].innerHTML = f3(statF[12]).toString();
-    cell[4].innerHTML = f3(statF[16]).toString();
-    if (statF[19] < 0.0001) str = " < 0.0001";
-    else str = f4(statF[19]).toString();
-    cell[5].innerHTML = str;
-
+    if (!checkRBD) {
+      if (statF[16] == null) cell[4].innerHTML = "null";
+      else cell[4].innerHTML = f3(statF[16]).toString();
+      if (statF[19] == null) str = "null";
+      else if (statF[19] < 0.0001) str = " < 0.0001";
+      else str = f4(statF[19]).toString();
+      cell[5].innerHTML = str;
+    }
 
     if (!checkRBD) {
         row = table.insertRow(++num);
@@ -10387,7 +10397,8 @@ function Anova2Table(gvarName, dvarName, nobs, avg, std, statF) {
         cell[2].innerHTML = f0(statF[8]).toString();
         cell[3].innerHTML = f3(statF[13]).toString();
         cell[4].innerHTML = f3(statF[17]).toString();
-        if (statF[18] < 0.0001) str = " < 0.0001";
+        if (statF[20] == null) str = "null";
+        else if (statF[20] < 0.0001) str = " < 0.0001";
         else str = f4(statF[20]).toString();
         cell[5].innerHTML = str;
     }
