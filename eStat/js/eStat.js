@@ -3772,8 +3772,13 @@ function dataClassifyS() {
     }
     // size 변수
     if (wvarNumber < 1) { // size 변수가 없으면
-        for (j = 0; j < yobs; j++) {
-            wdata[j] = 4;
+        wdata[0] = 4;
+        for (j = 1; j < yobs; j++) {
+          wdata[j] = 4;
+          for (k = 0; k < j; k++) {
+            if (xdata[j] == xdata[k] && ydata[j] == ydata[k]) wdata[j] = wdata[j] + 2;
+          }
+          if(wdata[j] > 10) wdata[j] = 10;
         }
     } else { // size 변량이 있는 경우
         // w data
