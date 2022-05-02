@@ -27,7 +27,33 @@
     </h1> 
   </div>
   
-  <div width="360" height="360" style="position:absolute; left:10px; top:90px">
+  <div style="position:absolute; left:10px; top:80px">
+    <table>
+      <tr>
+        <td>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>eBook</b><br>
+          <input type="image" src="eLearning.svg" onclick="myFunction()">
+          <script>
+            function myFunction() { 
+              if (langNum < 1) window.open("../eLearning/kr/eStatU/index.html");
+              else window.open("../eLearning/en/index.html"); 
+            }
+          </script>
+        </td>
+        <td>
+          <a style="color:blue; font-weight:bold; font-size:2em;" href="../eLearning/en/index.html" target="_blank"><h3>『eStat』 Statistics and Data Science</h3></a>
+        </td>
+        <td> &nbsp;&nbsp;&nbsp;</td>
+        <td>
+          <a style="color:blue; font-weight:bold; font-size:2em;" href="../eLearning/kr/eStatU/index.html" target="_blank"><b>『eStat』 통계 데이터과학</b</a>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Contact:&nbsp; Dr. Jung Jin Lee, &nbsp;&nbsp;  jjlee@ssu.ac.kr</b></td>
+      </tr>
+    </table>
+  </div>
+  <div width="360" height="360" style="position:absolute; left:10px; top:190px">
   <ul>
     <li><a href="01BarChart.htm">&#8545; &nbsp;&nbsp;&nbsp; <span data-msgid="Bar Graph"></span> - <span data-msgid="Pie Chart"></span> - <span data-msgid="Band Graph"></span></a></li>
     <li><a href="02LineGraph.htm">&#8545; &nbsp;&nbsp; <span data-msgid="Line Graph">Line Graph</span></a></li>
@@ -58,11 +84,11 @@
   </ul>
   </div>
 
-  <div style="position:absolute; left:425px; top:140px">
+  <div style="position:absolute; left:425px; top:240px">
     <svg id="ScatterPlot2" width="330" height="330"> </svg> <br>
   </div>
 
-  <div style="position:absolute; left:400px; top:500px">
+  <div style="position:absolute; left:400px; top:600px">
   <ul>
     <li><a href="11RandomNumber.htm">&#8549; &nbsp; <span data-msgid="RandomNumber">Random Number</span></a></li>
     <li><a href="61SampleEng.htm">&#8549; &nbsp; <span data-msgid="Population vs Sample">Population vs Sample</span></a></li>
@@ -81,32 +107,7 @@
   </ul>
   </div>
 
-  <div style="position:absolute; left:790px; top:130px">
-    <table>
-      <tr>
-        <td>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>eBook</b><br>
-          <input type="image" src="eLearning.svg" onclick="myFunction()">
-          <script>
-            function myFunction() { 
-              if (langNum < 1) window.open("../eLearning/kr/eStatU/index.html");
-              else window.open("../eLearning/en/index.html"); 
-            }
-          </script>
-        </td>
-        <td>
-          <p>
-          <a style="color:blue; font-weight:bold" href="../eLearning/kr/eStatU/index.html" target="_blank"><b>『eStat』 통계 데이터과학</b</a>
-          <a style="color:blue; font-weight:bold" href="../eLearning/en/index.html" target="_blank"><h3>『eStat』 Statistics and Data Science</h3></a>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2"> &nbsp;<b>Contact:&nbsp; Jung Jin Lee, &nbsp;&nbsp;  jjlee@ssu.ac.kr</b></td>
-      </tr>
-    </table>
-  </div>
-
-  <div style="position:absolute; left:790px; top:330px">
+  <div style="position:absolute; left:790px; top:190px">
   <ul>
     <li><a href="80TestingMu12.htm">&#8551; &nbsp; <span data-msgid="Testing Hypothesis mu12">Testing Hypothesis &mu;<sub>1</sub>, &mu;<sub>2</sub> </span> </a></li>
     <li><a href="82TestingSigma12.htm">&#8551; &nbsp; <span data-msgid="Testing Hypothesis sigma12">Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>,&sigma;<sub>2</sub><sup>2</sup></span> </a></li>
@@ -126,6 +127,13 @@
     <li><a href="92TestingIndependence.htm">&#8554; &nbsp; <span data-msgid="Testing Independence">Testing Independence</span></a></li>
     <li><a href="31CorrelationEng.htm">&#8555; &nbsp; <span data-msgid="Correlation Coefficient">Correlation Coefficient</span></a></li>
     <li><a href="32RegressionEng.htm">&#8555; &nbsp; <span data-msgid="Regression Experiment">Regression Experiment</span></a></li>
+    <li><a href="33TimeseriesSmoothing.htm">&#8553;&#8546; &nbsp; <span data-msgid="TimeSeries"></span> : <span data-msgid="Smoothing"></span>. <span data-msgid="Filtering"></span></a></li>
+    <li><a href="34TimeseriesTransformation.htm">&#8553;&#8546; &nbsp; <span data-msgid="TimeSeries"></span> : <span data-msgid="Transformation"></span></a></li>
+    <li><a href="35TimeseriesRegression.htm">&#8553;&#8546; &nbsp; <span data-msgid="TimeSeries"></span> : <span data-msgid="RegressionModel"></span></a></li>
+    <li><a href="36TimeseriesHeuristic.htm">&#8553;&#8546; &nbsp; <span data-msgid="TimeSeries"></span> : <span data-msgid="EWMA"></span></a></li>
+    <li><a href="37TimeseriesSeasonal.htm">&#8553;&#8546; &nbsp; <span data-msgid="TimeSeries"></span> : <span data-msgid="SeasonalModel"></span></a></li>
+    <li><a href="38TimeseriesHoltWinter.htm">&#8553;&#8546; &nbsp; <span data-msgid="TimeSeries"></span> : <span data-msgid="HoltWinter"></span></a></li>
+    <li><a href="39TimeseriesAutoRegressive.htm">&#8553;&#8546; &nbsp; <span data-msgid="TimeSeries"></span> : <span data-msgid="AR"></span></a></li>
   </ul>
   </div>
 
