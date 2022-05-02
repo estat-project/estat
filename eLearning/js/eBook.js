@@ -434,6 +434,13 @@
     addrStr[131] = "../../../eStatU/40Pascal.htm";
     addrStr[132] = "../../../eStatU/43LawOfLarge.htm";
     addrStr[133] = "../../../eStatU/50NormalComparison.htm";
+    addrStr[134] = "../../../eStatU/33TimeseriesSmoothing.htm";
+    addrStr[135] = "../../../eStatU/34TimeseriesTransformation.htm";
+    addrStr[136] = "../../../eStatU/35TimeseriesRegression.htm";
+    addrStr[137] = "../../../eStatU/36TimeseriesHeuristic.htm";
+    addrStr[138] = "../../../eStatU/37TimeseriesSeasonal.htm";
+    addrStr[139] = "../../../eStatU/38TimeseriesHoltWinter.htm";
+    addrStr[140] = "../../../eStatU/39TimeseriesAutoRegressive.htm";
 
 
     // eStatM
@@ -599,16 +606,21 @@
     addrStrB[120] = temp+"/chapter12/index.html";
     addrStrB[121] = temp+"/chapter12/1201.html";
     addrStrB[122] = temp+"/chapter12/1202.html"; //+120201
-    addrStrB[123] = temp+"/chapter12/120202.html";
-    addrStrB[124] = temp+"/chapter12/120203.html";
-    addrStrB[125] = temp+"/chapter12/120204.html";
-    addrStrB[126] = temp+"/chapter12/120205.html";
-    addrStrB[127] = temp+"/chapter12/120206.html";
-    addrStrB[128] = temp+"/chapter12/1203.html"; //+120301
-    addrStrB[129] = temp+"/chapter12/120302.html";
-    addrStrB[130] = temp+"/chapter12/120303.html";
-    addrStrB[131] = temp+"/chapter12/120304.html";
-    addrStrB[132] = temp+"/chapter12/1204.html";
+    addrStrB[123] = temp+"/chapter12/1203.html"; //+120301
+    addrStrB[124] = temp+"/chapter12/1204.html";
+    addrStrB[125] = "";
+    addrStrB[126] = "";
+    addrStrB[127] = "";
+    addrStrB[128] = "";
+    addrStrB[129] = "";
+    addrStrB[130] = temp+"/chapter13/index.html";
+    addrStrB[131] = temp+"/chapter13/1301.html";
+    addrStrB[132] = temp+"/chapter13/1302.html"; 
+    addrStrB[133] = temp+"/chapter13/1303.html"; 
+    addrStrB[134] = temp+"/chapter13/1304.html";
+    addrStrB[135] = temp+"/chapter13/1305.html";
+    addrStrB[136] = temp+"/chapter13/1306.html";
+    addrStrB[137] = temp+"/chapter13/1307.html";
 
     // eBookM
     addrStrB[140] = "index.html";
