@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 13</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../../css/dashboard.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <style type="text/css">code{white-space: pre;}</style>
+       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
+       <script src="../../js/prism.js"></script>
+       <link rel="stylesheet" href="../../css/prism.css">
+       <script src="../../js/jquery.min.js"></script>    
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script>
+	 $(document).ready(function() {
+  	     toc = $("#sidebar > ul > li > ul");
+  	     sections = toc.children();   // <li>
+  	     for(var i=0; i<sections.length; i++) {
+  		 if ($(sections[i]).children().length == 1) { continue; }
+  		 var first = sections[i].firstElementChild;  // <a>
+  		 var last = sections[i].lastElementChild;
+  		 var li = $("<li>");
+  		 var details = $("<details>");
+  		 var summary = $("<summary>");
+  		 $(summary).append(first)
+  		 $(details).append(summary);
+  		 $(details).append(last);
+  		 $(li).append(details);	
+  		 $(sections[i]).replaceWith(li);
+  	     }
+	 });
+	 </script>
+       <link rel="stylesheet" href="../../css/pandoc.css">
+       <script src="../../js/eBook.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <ul class="nav navbar-nav">
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Chapter<span class="caret"></span></a>
+      <ul class="dropdown-menu"> 
+        <li><a href="../index.html">HOME</a></li>
+        <li><a href="../chapter01/index.html">Chapter 1</a></li>
+        <li><a href="../chapter02/index.html">Chapter 2</a></li>
+        <li><a href="../chapter03/index.html">Chapter 3</a></li>
+        <li><a href="../chapter04/index.html">Chapter 4</a></li>
+        <li><a href="../chapter05/index.html">Chapter 5</a></li>
+        <li><a href="../chapter06/index.html">Chapter 6</a></li>
+        <li><a href="../chapter07/index.html">Chapter 7</a></li>
+        <li><a href="../chapter08/index.html">Chapter 8</a></li>
+        <li><a href="../chapter09/index.html">Chapter 9</a></li>
+        <li><a href="../chapter10/index.html">Chapter 10</a></li>
+        <li><a href="../chapter11/index.html">Chapter 11</a></li>
+        <li><a href="../chapter12/index.html">Chapter 12</a></li>
+        <li><a href="../chapter13/index.html">Chapter 13</a></li>
+      </ul>
+    </li>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Section<span class="caret"></span></a>
+	  <ul class="dropdown-menu"> 
+                <li><a href="../chapter12/1201.html">12.1 Correlation Analysis</a></li>
+                <li><a href="../chapter12/1202.html">12.2 Simple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1203.html">12.3 Multiple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1204.html">12.4 Exercise</a></li>
+	  </ul>
+    </li>
+    <li><a class="navbar-brand" href="http://estat.me" target="_blank">eStat</a></li>
+    <li><a class="navbar-brand" href="http://www.estat.me/estat/eStatU/index.html" target="_blank">eStatU</a></li>
+    <li><a class="navbar-brand" href="/estat/eLearning/Distribution/index.html" target="_blank">Distribution</a></li>
+  </ul>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
+      <ul>
+	<li><a href=""></a>
+	  <ul>
+            <li><a href="../index.html">HOME</a></li>
+	    <li><a href="../chapter01/index.html">Chapter 1</a>
+	      <ul>
+                <li><a href="../chapter01/0101.html">1.1 Statistics and Data Science</a></li>
+                <li><a href="../chapter01/0102.html">1.2 Population and Sample</a></li>
+                <li><a href="../chapter01/0103.html">1.3 Variables and Data</a></li>
+                <li><a href="../chapter01/0104.html">1.4 Softwares for Statistical Analysis</a></li>
+                <li><a href="../chapter01/0105.html">1.5 Exercies</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter02/index.html">Chapter 2</a>
+	      <ul>
+                <li><a href="../chapter02/0201.html">2.1 Visualization of Qualitative Data</a></li>
+                <li><a href="../chapter02/0202.html">2.2 Visualization of Summary Data</a></li>
+                <li><a href="../chapter02/0202.html">&nbsp;&nbsp;2.2.1 Summary Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/0202.html">&nbsp;&nbsp;2.2.2 Summary Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0203.html">2.3 Visualization of Raw Data</a></li>
+                <li><a href="../chapter02/0203.html">&nbsp;&nbsp;2.3.1 Raw Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/0203.html">&nbsp;&nbsp;2.3.2 Raw Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0204.html">2.4 Word Cloud</a></li>
+                <li><a href="../chapter02/0205.html">2.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter03/index.html">Chapter 3</a>
+	      <ul>
+                <li><a href="../chapter03/0301.html">3.1 Visualization of Quantitative Data</a></li> 
+                <li><a href="../chapter03/0302.html">3.2 Visualization of Single Quantitative Variable</a></li>
+                <li><a href="../chapter03/0302.html">&nbsp;&nbsp;3.2.1 Visualization of Quantitative Data without Group</a></li>
+                <li><a href="../chapter03/0302.html">&nbsp;&nbsp;3.2.2 Visualization of Quantitative Data with Group</a></li>
+                <li><a href="../chapter03/0303.html">3.3 Visualization of Two Quantitative Variables</a></li>
+                <li><a href="../chapter03/0304.html">3.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter04/index.html">Chapter 4</a>
+	      <ul>
+                <li><a href="../chapter04/0401.html">4.1 Frequency Table for Single Variable</a></li>
+                <li><a href="../chapter04/0401.html">&nbsp;&nbsp;4.1.1 Frequency Table for Categorical Variable</a></li>
+                <li><a href="../chapter04/0401.html">&nbsp;&nbsp;4.1.2 Frequency Table for Quantitative Variable</a></li>
+                <li><a href="../chapter04/0402.html">4.2 Contingency Table for Two Variables</a></li>
+                <li><a href="../chapter04/0402.html">&nbsp;&nbsp;4.2.1 Contingency Table for Two Categorical Variables</a></li>
+                <li><a href="../chapter04/0402.html">&nbsp;&nbsp;4.2.2 Contingency Table for Two Quantitative Variables</a></li>
+                <li><a href="../chapter04/040301.html">4.3 Summary Measures for Quantitative Variable</a></li>
+                <li><a href="../chapter04/040301.html">&nbsp;&nbsp;4.3.1 Measures of Central Tendency</a></li>
+                <li><a href="../chapter04/040302.html">&nbsp;&nbsp;4.3.2 Measures of Dispersion</a></li>
+                <li><a href="../chapter04/0404.html">4.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter05/index.html">Chapter 5</a>
+	      <ul>
+                <li><a href="../chapter05/0501.html">5.1 Definition of Probability</a></li>
+                <li><a href="../chapter05/0502.html">5.2 Calculation of Probability</a></li>
+                <li><a href="../chapter05/0503.html">5.3 Discrete Random Variable</a></li>
+		<li><a href="../chapter05/050301.html">&nbsp;&nbsp;5.3.1 Binomial Distribution</a></li>
+		<li><a href="../chapter05/050302.html">&nbsp;&nbsp;5.3.2 Poissson Distribution</a></li>
+		<li><a href="../chapter05/050303.html">&nbsp;&nbsp;5.3.3 Geometric Distribution</a></li>
+		<li><a href="../chapter05/050304.html">&nbsp;&nbsp;5.3.4 Hypergeometric Distribution</a></li>
+                <li><a href="../chapter05/0504.html">5.4 Continuous Random Variable</a></li>
+		<li><a href="../chapter05/050401.html">&nbsp;&nbsp;5.4.1 Normal Distribution</a></li>
+		<li><a href="../chapter05/050402.html">&nbsp;&nbsp;5.4.2 Exponential Distribution</a></li>
+                <li><a href="../chapter05/0505.html">5.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter06/index.html">Chapter 6</a>
+	      <ul>
+                <li><a href="../chapter06/0601.html">6.1 Simple Random Sampling</a></li>
+                <li><a href="../chapter06/060201.html">6.2 Sampling Distribution of Sample Means and Estimation of the Population Mean</a></li>
+                <li><a href="../chapter06/060201.html">&nbsp;&nbsp;6.2.1 Sampling Distribution of Sample Means</a></li>
+                <li><a href="../chapter06/060202.html">&nbsp;&nbsp;6.2.2 Estimation of the Population Mean</a></li>
+                <li><a href="../chapter06/060301.html">6.3 Sampling Distribution of Sample Variances and Estimation of the Population Variance</a></li>
+                <li><a href="../chapter06/060301.html">&nbsp;&nbsp;6.3.1 Sampling Distribution of Sample Variances</a></li>
+                <li><a href="../chapter06/060302.html">&nbsp;&nbsp;6.3.2 Estimation of the Population Variance</a></li>
+                <li><a href="../chapter06/060401.html">6.4 Sampling Distribution of Sample Proportions and Estimation of the Population Proportion</a></li>
+                <li><a href="../chapter06/060401.html">&nbsp;&nbsp;6.4.1 Sampling Distribution of Sample Proportions</a></li>
+                <li><a href="../chapter06/060402.html">&nbsp;&nbsp;6.4.2 Estimation of the Population Proportion</a></li>
+                <li><a href="../chapter06/0605.html">6.5 Determination of the Sample Size  </a></li>
+                <li><a href="../chapter06/0605.html">&nbsp;&nbsp;6.5.1 Determination of the Sample Size to Estimate the Population Mean </a></li>
+                <li><a href="../chapter06/0605.html">&nbsp;&nbsp;6.5.2 Determination of the Sample Size to Estimate the Population Proportion</a></li> 
+                <li><a href="../chapter06/0606.html">6.6 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter07/index.html">Chapter 7</a>
+	      <ul>
+                <li><a href="../chapter07/0701.html">7.1 Testing Hypothesis for a Population Mean</a></li>
+                <li><a href="../chapter07/0702.html">7.2 Testing Hypothesis for a Population Variance</a></li>
+                <li><a href="../chapter07/0703.html">7.3 Testing Hypothesis for a Population Proportion</a></li>
+                <li><a href="../chapter07/0704.html">7.4 Testing Hypothesis with α and β simultaneously</a></li>
+                <li><a href="../chapter07/0704.html">&nbsp;&nbsp;7.4.1 Type 2 Error and Power of a Test</a></li>
+                <li><a href="../chapter07/0704.html">&nbsp;&nbsp;7.4.2 Testing Hypothesis with α and β</a></li>
+                <li><a href="../chapter07/0705.html">7.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter08/index.html">Chapter 8</a>
+	      <ul>
+                <li><a href="../chapter08/080101.html">8.1 Testing Hypothesis for Two Population Means</a></li>
+                <li><a href="../chapter08/080101.html">&nbsp;&nbsp;8.1.1 Two Independent Samples</a></li>
+                <li><a href="../chapter08/080102.html">&nbsp;&nbsp;8.1.2 Paired Sample</a></li>
+                <li><a href="../chapter08/0802.html">8.2 Testing Hypothesis for Two Population Variances</a></li>
+                <li><a href="../chapter08/0803.html">8.3 Testing Hypothesis for Two Population Proportions</a></li>
+                <li><a href="../chapter08/0804.html">8.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter09/index.html">Chapter 9</a>
+	      <ul>
+                <li><a href="../chapter09/0901.html">9.1 Analysis of Variance for Experiments of Single Factor</a></li>
+                <li><a href="../chapter09/090101.html">&nbsp;&nbsp;9.1.1 Multiple Comparison</a></li>
+                <li><a href="../chapter09/090101.html">&nbsp;&nbsp;9.1.2 Residual Analysis</a></li>
+                <li><a href="../chapter09/0902.html">9.2 Design of Experiments for Sampling</a></li>
+                <li><a href="../chapter09/0902.html">&nbsp;&nbsp;9.2.1 Completely Randomized Design</a></li>
+                <li><a href="../chapter09/0902.html">&nbsp;&nbsp;9.2.2 Randomized Block Design</a></li>
+                <li><a href="../chapter09/0903.html">9.3 Analysis of Variance for Experiments of Two Factors</a></li>
+                <li><a href="../chapter09/0904.html">9.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter10/index.html">Chapter 10</a>
+	      <ul>
+                <li><a href="../chapter10/1001.html">10.1 Nonparametric Test for the Location Parameter of Single Population  </a></li>
+                <li><a href="../chapter10/1001.html">&nbsp;&nbsp;10.1.1 Sign Test</a></li>
+                <li><a href="../chapter10/100102.html">&nbsp;&nbsp;10.1.2 Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1002.html">10.2 Nonparametric Test for Location Parameters of Two Populations</a></li>
+                <li><a href="../chapter10/1002.html">&nbsp;&nbsp;10.2.1 Independent Samples: Wilcoxon Rank Sum Test</a></li>
+                <li><a href="../chapter10/100202.html">&nbsp;&nbsp;10.2.2 Paired Samples: Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1003.html">10.3 Nonparametric Test for Location Parameters of Several Populations</a></li>
+                <li><a href="../chapter10/1003.html">&nbsp;&nbsp;10.3.1 Completely Randomized Design: Kruskal-Wallis Test</a></li>
+                <li><a href="../chapter10/100302.html">&nbsp;&nbsp;10.3.2 Randomized Block Design: Friedman Test</a></li>
+                <li><a href="../chapter10/1004.html">10.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter11/index.html">Chapter 11</a>
+	      <ul>
+                <li><a href="../chapter11/1101.html">11.1 Goodness of Fit Test</a></li>
+                <li><a href="../chapter11/1101.html">&nbsp;&nbsp;11.1.1 Goodness of Fit Test for Categorical Distribution</a></li>
+                <li><a href="../chapter11/110102.html">&nbsp;&nbsp;11.1.2 Goodness of Fit Test for Continuous Distribution</a></li>
+                <li><a href="../chapter11/1102.html">11.2 Testing Hypothesis for Contingency Table</a></li>
+                <li><a href="../chapter11/1102.html">&nbsp;&nbsp;11.2.1 Independence Test</a></li>
+                <li><a href="../chapter11/110202.html">&nbsp;&nbsp;11.2.2 Homogeneity Test</a></li>
+                <li><a href="../chapter11/1103.html">11.3 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter12/index.html">Chapter 12</a>
+	      <ul>
+                <li><a href="../chapter12/1201.html">12.1 Correlation Analysis</a></li>
+                <li><a href="../chapter12/1202.html">12.2 Simple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1203.html">12.3 Multiple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1204.html">12.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter13/index.html">Chapter 13</a>
+	      <ul>
+                <li><a href="../chapter13/1301.html">13.1 What is Time Series Analysis?</a></li>
+                <li><a href="../chapter13/1302.html">13.2 Smoothing of Time Series</a></li>
+                <li><a href="../chapter13/1303.html">13.3 Transformation of Time Series</a></li>
+                <li><a href="../chapter13/1304.html">13.4 Regression Model and Forecasting</a></li>
+                <li><a href="../chapter13/1305.html">13.5 Exponential Smoothing Model and Forecasting</a></li>
+                <li><a href="../chapter13/1306.html">13.6 Seasonal Model and Forecasting</a></li>
+                <li><a href="../chapter13/1307.html">13.7 Exercise</a></li>
+	      </ul>
+	    </li>
+
+	  </ul>
+	</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+  <!--***********************************************************************-->
+  <h2>Chapter 13. Time Series Analysis</h2> 
+  <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(131)">&#10094; &nbsp;&nbsp;<b>Previous</b></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(133)"><b>Next</b>&nbsp;&nbsp; &#10095;</button>
+  <p>
+  <h3>13.2 Smoothing of Time Series </h3>
+  <p>
+<!---
+  <h6>
+      <a href="1202.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/wn0Dl3dLgko" target="_blank"><u>[video]</u></a>
+  </h6>
+--->
+  <p>
+
+    <div class="mainTable">
+      Original time series data can be used to make a time series model by observing trends, but in many cases, 
+      time series can be observed after smoothing to unerstand better. In a time series such as stock price, it is often difficult to find a trend because of temporary or short-term fluctuations due to accidental coincidences or cyclical factors. In this case, smoothing techniques are used as a method to effectively grasp the overall long-term trend by removing temporary or short-term fluctuations. The centered moving average method and the exponential smoothing method are widely used. 
+    </div>
+    <p>
+    <h4>13.2.1 Centered Moving Average</h4>
+    <p>
+    <div class="mainTable">
+      The time series in [Table 13.2.1] is the world crude oil price based on the closing price every year from 1987 to 2022. Looking at &lt;Figure 13.2.1&gt;, it can be seen that the short-term fluctuations in the time series are large. However, causes such as oil shocks are short-term and not continuous, so if we are interested in the long-term trend of gasoline consumption, it would be more effective to look at the fluctuations caused by short-term causes.
+      <p>
+      <div class="textLeft">Table 13.2.1  Price of Crude Oil (End of Year Price, US$) and 5-point Centered Moving Average</div>
+      <p>
+      <table style="width:400px"> 
+        <tr> 
+          <th class="thGrey" style="width:100px">Year</th>
+          <th class="thGrey" style="width:150px">Price of Oil</th>
+          <th class="thGrey" style="width:150px">5-point Centered Moving Average</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             1987<br>
+             1988<br>
+             1989<br>
+             1990<br>
+             1991<br>
+             1992<br>
+             1993<br>
+             1994<br>
+             1995<br>
+             1996<br>
+             1997<br>
+             1998<br>
+             1999<br>
+             2000<br>
+             2001<br>
+             2002<br>
+             2003<br>
+             2004<br>
+             2005<br>
+             2006<br>
+             2007<br>
+             2008<br>
+             2009<br>
+             2010<br>
+             2011<br>
+             2012<br>
+             2013<br>
+             2014<br>
+             2015<br>
+             2016<br>
+             2017<br>
+             2018<br>
+             2019<br>
+             2020<br>
+             2021<br>
+             2022<br>
+           </td> 
+           <td class="tdCenter">
+             16.74 <br>
+             17.12 <br>
+             21.84 <br>
+             28.48 <br>
+             19.15 <br>
+             19.49 <br>
+             14.19 <br>
+             17.77 <br>
+             19.54 <br>
+             25.90 <br>
+             17.65 <br>
+             12.14 <br>
+             25.76 <br>
+             26.72 <br>
+             19.96 <br>
+             31.21 <br>
+             32.51 <br>
+             43.36 <br>
+             61.06 <br>
+             60.85 <br>
+             95.95 <br>
+             44.60 <br>
+             79.39 <br>
+             91.38 <br>
+             98.83 <br>
+             91.83 <br>
+             98.17 <br>
+             53.45 <br>
+             37.13 <br>
+             53.75 <br>
+             60.46 <br>
+             45.15 <br>
+             61.14 <br>
+             48.52 <br>
+             75.21 <br>
+             106.95<br>
+          </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             20.666<br>
+             21.216<br>
+             20.630<br>
+             19.816<br>
+             18.028<br>
+             19.378<br>
+             19.010<br>
+             18.600<br>
+             20.198<br>
+             21.634<br>
+             20.446<br>
+             23.158<br>
+             27.232<br>
+             30.752<br>
+             37.620<br>
+             45.798<br>
+             58.746<br>
+             61.164<br>
+             68.370<br>
+             74.434<br>
+             82.030<br>
+             81.206<br>
+             91.920<br>
+             86.732<br>
+             75.882<br>
+             66.866<br>
+             60.592<br>
+             49.988<br>
+             51.526<br>
+             53.804<br>
+             58.096<br>
+             67.394<br>
+             <br>
+             <br>
+          </td> 
+         </tr>
+      </table>
+      <p>
+
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/eStatU330_TimeseriesSmoothing.svg" onclick="window.open(addrStr[134])">
+          </td>
+          <td>
+            <img class="imgFig600400" src="../Figure/Fig130201.png">
+            <div class="figText">&lt;Figure 13.2.1&gt; Price of Crude Oil and 5-point Moving Average</div>
+          </td>
+        </tr>
+      </table>
+      <p>
+        The N-point <b>centered moving average</b> of a time series refers to the average of N data
+        from a single point in time. For example, in crude oil price data, the value of the 
+        five-point moving average for a specific year is the average of the data for two years 
+        before the specific year, that year, and the data for the next two years. Expressed as 
+        an expression, if \(M_t\) is a moving average in time \(t\), the 5-point centered moving
+        average is as follows:
+      $$
+        M_t = \frac{Y_{t-2} \,+\, Y_{t-1} \,+\, Y_{t} \,+\, Y_{t+1} \,+\,  Y_{t+2} } {5 }   
+      $$
+        For example, the 5-point centered moving average for 1989 is as follows.
+      <p>
+        \(\qquad M_{1989} \,=\, \frac {Y_{1987} + Y_{1988} +Y_{1989} + Y_{1990} + Y_{1991} } {5 } \)
+      <br>
+        \( \qquad \qquad \quad =\, \frac {16.74 + 17.12 + 21.84 + 28.48 + 19.15} {5} \,=\, 20.6660 \)
+      <p>
+        [Table 13.2.2] shows the values ​​of all 5-points centered moving averages obtained in this way and &lt;Figure 13.2.1&gt; is the graph of 5-points moving average. Note that the moving averages for the first two years and the last two years cannot be obtained here. It can be seen that the graph of the moving average is better for grasping the long-term trend than the graph of the original data because short-term fluctuations are removed. 
+      <p>
+        The choice of a value N for the N-point moving average is important. A large value of N 
+        will provide a smoother moving average, but it has the disadvantage of losing more points 
+        at both ends and insensitive to detecting important trend changes. On the other hand, 
+        if you choose small N, you will lose less data at both ends, but you may not be able 
+        to get the smoothing effect because you will not sufficiently eliminate short-term fluctuations. 
+        In general, try a few values N​​ to reflect important changes that should not be missed, 
+        while achieving a smoothing effect and balancing the points not to lose too much at both ends.
+      <p>
+        If the value of N is an even number, there is a difficulty in obtaining a central moving average 
+        with the same number of data on both sides of the base year. For example, the center of the 
+        four-point moving average from 1987 to 1990 is between 1988 and 1989. If you denote this as 
+        \(M_{1988.5}\), it can be calculated as follows:
+      <p>
+        \( \qquad M_{1988.5} \,=\, \frac {Y_{1987} + Y_{1988} +Y_{1989} + Y_{1990} } {4 } \)
+      <br>
+        \( \qquad \qquad \quad \,=\, \frac {16.74 + 17.12 + 21.84 + 28.48 } {4} \,=\, 21.045 \)
+      <p>
+        The 4-point moving average obtained in this way is called a non-central 4-points moving average. 
+        In the case of this even number N, the non-central moving average does not match the observation 
+        year of the original data, which is inconvenient. In the case of this even number N, it is 
+        calculated as the average of the noncentral moving average values of two adjacent non-central
+        moving averages. In other words, the central four-point moving average in 1989 is the average 
+        of  \(M_{1988.5}\) and  \(M_{1989.5}\)  as follows:
+      <p>
+        \( \qquad M_{1989} \,=\, \frac {M_{1988.5} \,+\, M_{1989.5} } {2 } \)
+      <br>
+        \( \qquad \qquad \quad =\, \frac {21.0450 \,+\, 21.6475 } {2} \,=\, 21.3463 \)
+      <p>
+        If the time series is quarterly or monthly, a 4-point central moving average or a 12-point central moving average is an average of one year, so it is often used to observe data without seasonality.
+    </div>
+  <p>
+  <h4>13.2.2 Exponential Smoothing</h4>
+  <p>
+    <div class="mainTable">
+      <p>
+        3-point moving average can be considered the weighted average of three data with each weight  as follows:
+      $$
+        M_t \,=\, \frac{Y_{t-1} \,+\, Y_{t} \,+\, Y_{t+1} } {3 } \,=\, \frac{1}{3}Y_{t-1} \,+\, \frac{1}{3}Y_{t} \,+\, \frac{1}{3}Y_{t+1}
+      $$
+        When the weights are \(w_1 , w_2 , ... , w_n\), the weighted moving average \(M_t\) of the 
+        time series is defined as follows:
+      $$
+        M_t \,=\, \sum_{i=1}^{n} w_i Y_{i}
+      $$
+        where \(n\)  is the number of data, \(w_i \ge 0\) and \(\sum_{i=1}^{n} w_i = 1 \).
+      <p>
+        Various weighted averages with different weights can be used depending on the purpose. 
+        Among them, a smoothing method that gives more weight to data closer to the present and 
+        smaller weights as it is farther from the present is called <b>exponential smoothing</b>. 
+        The exponential smoothing method is determined by an <b>exponential smoothing constant</b> \(\alpha\)
+        that has a value between 0 and 1. The exponentially smoothed data \(E_t\) is calculated as follows:
+      <p>
+        \( \qquad E_{1} \,=\, \alpha \,Y_{1} \,+\, (1- \alpha)\, E_{0} \)      <br>
+        \( \qquad E_{2} \,=\, \alpha \,Y_{2} \,+\, (1- \alpha)\, E_{1} \)      <br>
+        \( \qquad E_{3} \,=\, \alpha \,Y_{3} \,+\, (1- \alpha)\, E_{2} \)      <br>
+        \( \qquad \cdots \)      <br>
+        \( \qquad E_{t} \,=\, \alpha \,Y_{t} \,+\, (1- \alpha)\, E_{t} \)      <br>
+      <p>
+        Here, an initial value \(E_{0}\) is required, and \(Y_1\) is usually used a lot, and the average 
+        value of the data can also be used. The exponentially smoothed value \(E_t\) at the point in time 
+        \(t\) gives weight \(\alpha\) to the current data, and the \(1-\alpha\)  weight to the previous 
+        smoothed data is given. The exponentially smoothed value \(E_t\) can be represented with 
+        the original data \(Y_t\) as follows:
+      $$
+        E_t \,=\, \alpha Y_t + (1-\alpha) Y_{t-1} + \alpha(1-\alpha)^2 Y_{t-2} + \cdots + \alpha(1-\alpha)^{t-2} Y_2 + (1-\alpha)^{t-1} Y_1    
+      $$
+        Therefore, the exponential smoothing method uses all data from the present and the past, but gives the current data the highest weight, and gives a lower weight as the distance from the present time increases.
+      <p>
+        Exponential smoothing of the crude oil price in [Table 13.2.1] with the initial value 
+        \(E _{1986} = Y _{1987}   \) and exponential smoothing constant \(\alpha\) = 0.3 is as follows.
+      <p>
+        \( \qquad E_{1986} \,=\, E_{1987} = 16.74 \)      <br>
+        \( \qquad E_{1987} \,=\, 0.3  \,Y_{1987} \,+\, (1- 0.3)\, E_{1986} \,=\, (0.3)(16.74)+(0.7)(16.74)=16.74  \)      <br>
+        \( \qquad E_{1988} \,=\, 0.3  \,Y_{1988} \,+\, (1- 0.3)\, E_{1987} \,=\, (0.3)(17.12)+(0.7)(16.74)=16.854  \)      <br>
+      <p>
+        All data exponentially smoothed with \(\alpha\) = 0.3 are given in [Table 13.4]. It can be seen that,
+        in the exponential smoothing method, there is no loss of data at both ends, unlike the moving average method. 
+        The crude oil price time series and exponentially smoothed data are shown in &lt;Figure 13.2.2&gt;. 
+        It can be seen that the smoothed data are not significantly different from the original data. 
+        If the value of\(\alpha\)  is small, more weight is given to the past data than to the present, 
+        making it less sensitive to sudden changes in the present data. Conversely, the closer the value of 
+        \(\alpha\) is to 1, that is, the more weight is given to the current data, the more the smoothed data
+        resembles the original data, and the smoothing effect disappears.
+      <p>
+      <div class="textLeft">[Table 13.2.2] Price of Crude Oil and Exponential Smoothing with &alpha; =0.3 </div>
+      <p>
+      <table style="width:400px"> 
+        <tr> 
+          <th class="thGrey" style="width:100px">Year</th>
+          <th class="thGrey" style="width:150px">Price of Oil</th>
+          <th class="thGrey" style="width:150px">Exponential Smoothing<br>&alpha;=0.3</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             1987<br>
+             1988<br>
+             1989<br>
+             1990<br>
+             1991<br>
+             1992<br>
+             1993<br>
+             1994<br>
+             1995<br>
+             1996<br>
+             1997<br>
+             1998<br>
+             1999<br>
+             2000<br>
+             2001<br>
+             2002<br>
+             2003<br>
+             2004<br>
+             2005<br>
+             2006<br>
+             2007<br>
+             2008<br>
+             2009<br>
+             2010<br>
+             2011<br>
+             2012<br>
+             2013<br>
+             2014<br>
+             2015<br>
+             2016<br>
+             2017<br>
+             2018<br>
+             2019<br>
+             2020<br>
+             2021<br>
+             2022<br>
+           </td> 
+           <td class="tdCenter">
+             16.74 <br>
+             17.12 <br>
+             21.84 <br>
+             28.48 <br>
+             19.15 <br>
+             19.49 <br>
+             14.19 <br>
+             17.77 <br>
+             19.54 <br>
+             25.90 <br>
+             17.65 <br>
+             12.14 <br>
+             25.76 <br>
+             26.72 <br>
+             19.96 <br>
+             31.21 <br>
+             32.51 <br>
+             43.36 <br>
+             61.06 <br>
+             60.85 <br>
+             95.95 <br>
+             44.60 <br>
+             79.39 <br>
+             91.38 <br>
+             98.83 <br>
+             91.83 <br>
+             98.17 <br>
+             53.45 <br>
+             37.13 <br>
+             53.75 <br>
+             60.46 <br>
+             45.15 <br>
+             61.14 <br>
+             48.52 <br>
+             75.21 <br>
+             106.95<br>
+          </td> 
+           <td class="tdCenter">
+             16.740<br>
+             16.854<br>
+             18.350<br>
+             21.389<br>
+             20.717<br>
+             20.349<br>
+             18.501<br>
+             18.282<br>
+             18.659<br>
+             20.832<br>
+             19.877<br>
+             17.556<br>
+             20.017<br>
+             22.028<br>
+             21.408<br>
+             24.348<br>
+             26.797<br>
+             31.766<br>
+             40.554<br>
+             46.643<br>
+             61.435<br>
+             56.385<br>
+             63.286<br>
+             71.714<br>
+             79.849<br>
+             83.443<br>
+             87.861<br>
+             77.538<br>
+             65.416<br>
+             61.916<br>
+             61.479<br>
+             56.580<br>
+             57.948<br>
+             55.120<br>
+             61.146<br>
+             74.888<br>
+          </td> 
+         </tr>
+      </table>
+      <p>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/eStatU330_TimeseriesSmoothing.svg" onclick="window.open(addrStr[134])">
+          </td>
+          <td>
+            <img class="imgFig600400" src="../Figure/Fig130202.png">
+            <div class="figText">&lt;Figure 13.2.2&gt; Price of Crude Oil and Exponential Smoothing with =0.3 </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  <p>
+  <h4>13.2.3 Filtering by Moving Median</h4>
+  <p>
+    <div class="mainTable">
+        The N-point <b>centered moving median</b> of a time series refers to the median of N data from a single point 
+        in time \(t\). For example, in crude oil price data, the value of a five-point moving median for a specific 
+        year is the median of data for two years before a certain year, that year, and data for two years thereafter. 
+        If data are denoted by \(Y_{t-2} ,Y_{t-1} , Y_{t}  , Y_{t+1} ,   Y_{t+2}   \), and the data are sorted from
+        smallest to largest, and expressed as \(Y_{(t-2)} ,Y_{(t-1)} , Y_{(t)} , Y_{(t+1)} , Y_{(t+2)} \), 
+        the median value is \(Moving Median_t \,=\, Y_{(t)}\).
+      <p>
+        For example, the 1989 5-point central moving median for crude oil prices in [Table 13.3] is as follows:
+      <p>
+        \(\qquad MovingMedian_{1989} \,=\, median \{ Y_{1987} , Y_{1988} ,Y_{1989} , Y_{1990} , Y_{1991} \} \)
+        \(\qquad \qquad \qquad \qquad \qquad \;\;=\, median \{16.74, 17.12 , 21.84 , 28.48,19.15 \}  \,=\, 19.15 \)
+      <p>
+        [Table 13.5] and &lt;Figure 13.2.3&gt; show all the five-point moving median values obtained in this way and their graphs. Note that the moving median for the first two years and the last two years are not available here. Because the centered moving medians remove extreme values, it is called a filtering and the time series is much smoother than the original data.
+      <p>
+      <div class="textLeft"> [Table 13.2.3] Price of Crude Oil and 5-point Centered Moving Median</div>
+      <p>
+      <table style="width:400px"> 
+        <tr> 
+          <th class="thGrey" style="width:100px">Year</th>
+          <th class="thGrey" style="width:150px">Price of Oil</th>
+          <th class="thGrey" style="width:150px">5-point Centered Moving Median</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             1987<br>
+             1988<br>
+             1989<br>
+             1990<br>
+             1991<br>
+             1992<br>
+             1993<br>
+             1994<br>
+             1995<br>
+             1996<br>
+             1997<br>
+             1998<br>
+             1999<br>
+             2000<br>
+             2001<br>
+             2002<br>
+             2003<br>
+             2004<br>
+             2005<br>
+             2006<br>
+             2007<br>
+             2008<br>
+             2009<br>
+             2010<br>
+             2011<br>
+             2012<br>
+             2013<br>
+             2014<br>
+             2015<br>
+             2016<br>
+             2017<br>
+             2018<br>
+             2019<br>
+             2020<br>
+             2021<br>
+             2022<br>
+           </td> 
+           <td class="tdCenter">
+             16.74 <br>
+             17.12 <br>
+             21.84 <br>
+             28.48 <br>
+             19.15 <br>
+             19.49 <br>
+             14.19 <br>
+             17.77 <br>
+             19.54 <br>
+             25.90 <br>
+             17.65 <br>
+             12.14 <br>
+             25.76 <br>
+             26.72 <br>
+             19.96 <br>
+             31.21 <br>
+             32.51 <br>
+             43.36 <br>
+             61.06 <br>
+             60.85 <br>
+             95.95 <br>
+             44.60 <br>
+             79.39 <br>
+             91.38 <br>
+             98.83 <br>
+             91.83 <br>
+             98.17 <br>
+             53.45 <br>
+             37.13 <br>
+             53.75 <br>
+             60.46 <br>
+             45.15 <br>
+             61.14 <br>
+             48.52 <br>
+             75.21 <br>
+             106.95<br>
+          </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             19.15<br>
+             19.49<br>
+             19.49<br>
+             19.15<br>
+             19.15<br>
+             19.49<br>
+             17.77<br>
+             17.77<br>
+             19.54<br>
+             25.76<br>
+             19.96<br>
+             25.76<br>
+             26.72<br>
+             31.21<br>
+             32.51<br>
+             43.36<br>
+             60.85<br>
+             60.85<br>
+             61.06<br>
+             79.39<br>
+             91.38<br>
+             91.38<br>
+             91.83<br>
+             91.83<br>
+             91.83<br>
+             53.75<br>
+             53.75<br>
+             53.45<br>
+             53.75<br>
+             53.75<br>
+             60.46<br>
+             61.14<br>
+             <br>
+             <br>
+          </td> 
+         </tr>
+      </table>
+      <p>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/eStatU330_TimeseriesSmoothing.svg" onclick="window.open(addrStr[134])">
+          </td>
+          <td>
+            <img class="imgFig600400" src="../Figure/Fig130203.png">
+            <div class="figText">&lt;Figure 13.2.3&gt;  Price of Crude Oil and 5-point Centered Moving Median</div>
+          </td>
+        </tr>
+      </table>
+      <p>
+        If the value of N is an even number, there is a difficulty in obtaining the central moving median having 
+        the same number of data on both sides of the base year. For example, the center of the four-point moving 
+        median from 1987 to 1990 is between 1988 and 1989. If you denote this as \(Median_{1988.5}\), it can be 
+        calculated as follows:
+      <p>
+        \(\qquad MovingMedian_{1988.5} \,=\, median \{Y_{1987} , Y_{1988} , Y_{1989} , Y_{1990} \} \)
+        \(\qquad \qquad \qquad \qquad \qquad \;=\,  median \{16.74 , 17.12 , 21.84 , 28.48 \}  \,=\, \frac {17.12 +21.84} {2} = 19.48 \)
+      <p>
+        The 4-point moving median obtained in this way is called the non-central 4-point moving median. 
+        As such, the non-central moving average in the case of this even number N does not match the 
+        observation year of the original data, which is inconvenient. In the case of this even number, 
+        it is calculated as the average of the values of the two non-central moving averages that are 
+        adjacent to each other. In other words, the central four-point moving median in 1989 is the mean of
+        \(MovingMedian_{1988.5}\)  and \(MovingMedian_{1989.5}\).
+    </div>
+    <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(131)">&#10094; &nbsp;&nbsp;<b>Previous</b></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(133)"><b>Next</b>&nbsp;&nbsp; &#10095;</button>
+  <p>
+
+</div>
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
+        
+        /* ajust the height when click the toc
+           the code is from https://github.com/twbs/bootstrap/issues/1768
+        */
+        var shiftWindow = function() { scrollBy(0, -50) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+        
+        /*add Bootstrap styles to tables*/
+        var tables = document.getElementsByTagName("table");
+        for(var i = 0; i < tables.length; ++i){
+            tables[i].className += "table table-bordered table-hover";
+        }
+    </script>
+
+</body>
+</html>
+

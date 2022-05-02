@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 13</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../../css/dashboard.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <style type="text/css">code{white-space: pre;}</style>
+       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
+       <script src="../../js/prism.js"></script>
+       <link rel="stylesheet" href="../../css/prism.css">
+       <script src="../../js/jquery.min.js"></script>    
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script>
+	 $(document).ready(function() {
+  	     toc = $("#sidebar > ul > li > ul");
+  	     sections = toc.children();   // <li>
+  	     for(var i=0; i<sections.length; i++) {
+  		 if ($(sections[i]).children().length == 1) { continue; }
+  		 var first = sections[i].firstElementChild;  // <a>
+  		 var last = sections[i].lastElementChild;
+  		 var li = $("<li>");
+  		 var details = $("<details>");
+  		 var summary = $("<summary>");
+  		 $(summary).append(first)
+  		 $(details).append(summary);
+  		 $(details).append(last);
+  		 $(li).append(details);	
+  		 $(sections[i]).replaceWith(li);
+  	     }
+	 });
+	 </script>
+       <link rel="stylesheet" href="../../css/pandoc.css">
+       <script src="../../js/eBook.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <ul class="nav navbar-nav">
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Chapter<span class="caret"></span></a>
+      <ul class="dropdown-menu"> 
+        <li><a href="../index.html">HOME</a></li>
+        <li><a href="../chapter01/index.html">Chapter 1</a></li>
+        <li><a href="../chapter02/index.html">Chapter 2</a></li>
+        <li><a href="../chapter03/index.html">Chapter 3</a></li>
+        <li><a href="../chapter04/index.html">Chapter 4</a></li>
+        <li><a href="../chapter05/index.html">Chapter 5</a></li>
+        <li><a href="../chapter06/index.html">Chapter 6</a></li>
+        <li><a href="../chapter07/index.html">Chapter 7</a></li>
+        <li><a href="../chapter08/index.html">Chapter 8</a></li>
+        <li><a href="../chapter09/index.html">Chapter 9</a></li>
+        <li><a href="../chapter10/index.html">Chapter 10</a></li>
+        <li><a href="../chapter11/index.html">Chapter 11</a></li>
+        <li><a href="../chapter12/index.html">Chapter 12</a></li>
+        <li><a href="../chapter13/index.html">Chapter 13</a></li>
+      </ul>
+    </li>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Section<span class="caret"></span></a>
+	  <ul class="dropdown-menu"> 
+                <li><a href="../chapter13/1301.html">13.1 What is Time Series Analysis?</a></li>
+                <li><a href="../chapter13/1302.html">13.2 Smoothing of Time Series</a></li>
+                <li><a href="../chapter13/1303.html">13.3 Transformation of Time Series</a></li>
+                <li><a href="../chapter13/1304.html">13.4 Regression Model and Forecasting</a></li>
+                <li><a href="../chapter13/1305.html">13.5 Exponential Smoothing Model and Forecasting</a></li>
+                <li><a href="../chapter13/1306.html">13.6 13.6 Seasonal Model and Forecasting</a></li>
+                <li><a href="../chapter13/1307.html">13.7 Exercise</a></li>
+	  </ul>
+    </li>
+    <li><a class="navbar-brand" href="http://estat.me" target="_blank">eStat</a></li>
+    <li><a class="navbar-brand" href="http://www.estat.me/estat/eStatU/index.html" target="_blank">eStatU</a></li>
+    <li><a class="navbar-brand" href="/estat/eLearning/Distribution/index.html" target="_blank">Distribution</a></li>
+  </ul>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
+      <ul>
+	<li><a href=""></a>
+	  <ul>
+            <li><a href="../index.html">HOME</a></li>
+	    <li><a href="../chapter01/index.html">Chapter 1</a>
+	      <ul>
+                <li><a href="../chapter01/0101.html">1.1 Statistics and Data Science</a></li>
+                <li><a href="../chapter01/0102.html">1.2 Population and Sample</a></li>
+                <li><a href="../chapter01/0103.html">1.3 Variables and Data</a></li>
+                <li><a href="../chapter01/0104.html">1.4 Softwares for Statistical Analysis</a></li>
+                <li><a href="../chapter01/0105.html">1.5 Exercies</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter02/index.html">Chapter 2</a>
+	      <ul>
+                <li><a href="../chapter02/0201.html">2.1 Visualization of Qualitative Data</a></li>
+                <li><a href="../chapter02/0202.html">2.2 Visualization of Summary Data</a></li>
+                <li><a href="../chapter02/0202.html">&nbsp;&nbsp;2.2.1 Summary Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/0202.html">&nbsp;&nbsp;2.2.2 Summary Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0203.html">2.3 Visualization of Raw Data</a></li>
+                <li><a href="../chapter02/0203.html">&nbsp;&nbsp;2.3.1 Raw Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/0203.html">&nbsp;&nbsp;2.3.2 Raw Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0204.html">2.4 Word Cloud</a></li>
+                <li><a href="../chapter02/0205.html">2.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter03/index.html">Chapter 3</a>
+	      <ul>
+                <li><a href="../chapter03/0301.html">3.1 Visualization of Quantitative Data</a></li> 
+                <li><a href="../chapter03/0302.html">3.2 Visualization of Single Quantitative Variable</a></li>
+                <li><a href="../chapter03/0302.html">&nbsp;&nbsp;3.2.1 Visualization of Quantitative Data without Group</a></li>
+                <li><a href="../chapter03/0302.html">&nbsp;&nbsp;3.2.2 Visualization of Quantitative Data with Group</a></li>
+                <li><a href="../chapter03/0303.html">3.3 Visualization of Two Quantitative Variables</a></li>
+                <li><a href="../chapter03/0304.html">3.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter04/index.html">Chapter 4</a>
+	      <ul>
+                <li><a href="../chapter04/0401.html">4.1 Frequency Table for Single Variable</a></li>
+                <li><a href="../chapter04/0401.html">&nbsp;&nbsp;4.1.1 Frequency Table for Categorical Variable</a></li>
+                <li><a href="../chapter04/0401.html">&nbsp;&nbsp;4.1.2 Frequency Table for Quantitative Variable</a></li>
+                <li><a href="../chapter04/0402.html">4.2 Contingency Table for Two Variables</a></li>
+                <li><a href="../chapter04/0402.html">&nbsp;&nbsp;4.2.1 Contingency Table for Two Categorical Variables</a></li>
+                <li><a href="../chapter04/0402.html">&nbsp;&nbsp;4.2.2 Contingency Table for Two Quantitative Variables</a></li>
+                <li><a href="../chapter04/040301.html">4.3 Summary Measures for Quantitative Variable</a></li>
+                <li><a href="../chapter04/040301.html">&nbsp;&nbsp;4.3.1 Measures of Central Tendency</a></li>
+                <li><a href="../chapter04/040302.html">&nbsp;&nbsp;4.3.2 Measures of Dispersion</a></li>
+                <li><a href="../chapter04/0404.html">4.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter05/index.html">Chapter 5</a>
+	      <ul>
+                <li><a href="../chapter05/0501.html">5.1 Definition of Probability</a></li>
+                <li><a href="../chapter05/0502.html">5.2 Calculation of Probability</a></li>
+                <li><a href="../chapter05/0503.html">5.3 Discrete Random Variable</a></li>
+		<li><a href="../chapter05/050301.html">&nbsp;&nbsp;5.3.1 Binomial Distribution</a></li>
+		<li><a href="../chapter05/050302.html">&nbsp;&nbsp;5.3.2 Poissson Distribution</a></li>
+		<li><a href="../chapter05/050303.html">&nbsp;&nbsp;5.3.3 Geometric Distribution</a></li>
+		<li><a href="../chapter05/050304.html">&nbsp;&nbsp;5.3.4 Hypergeometric Distribution</a></li>
+                <li><a href="../chapter05/0504.html">5.4 Continuous Random Variable</a></li>
+		<li><a href="../chapter05/050401.html">&nbsp;&nbsp;5.4.1 Normal Distribution</a></li>
+		<li><a href="../chapter05/050402.html">&nbsp;&nbsp;5.4.2 Exponential Distribution</a></li>
+                <li><a href="../chapter05/0505.html">5.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter06/index.html">Chapter 6</a>
+	      <ul>
+                <li><a href="../chapter06/0601.html">6.1 Simple Random Sampling</a></li>
+                <li><a href="../chapter06/060201.html">6.2 Sampling Distribution of Sample Means and Estimation of the Population Mean</a></li>
+                <li><a href="../chapter06/060201.html">&nbsp;&nbsp;6.2.1 Sampling Distribution of Sample Means</a></li>
+                <li><a href="../chapter06/060202.html">&nbsp;&nbsp;6.2.2 Estimation of the Population Mean</a></li>
+                <li><a href="../chapter06/060301.html">6.3 Sampling Distribution of Sample Variances and Estimation of the Population Variance</a></li>
+                <li><a href="../chapter06/060301.html">&nbsp;&nbsp;6.3.1 Sampling Distribution of Sample Variances</a></li>
+                <li><a href="../chapter06/060302.html">&nbsp;&nbsp;6.3.2 Estimation of the Population Variance</a></li>
+                <li><a href="../chapter06/060401.html">6.4 Sampling Distribution of Sample Proportions and Estimation of the Population Proportion</a></li>
+                <li><a href="../chapter06/060401.html">&nbsp;&nbsp;6.4.1 Sampling Distribution of Sample Proportions</a></li>
+                <li><a href="../chapter06/060402.html">&nbsp;&nbsp;6.4.2 Estimation of the Population Proportion</a></li>
+                <li><a href="../chapter06/0605.html">6.5 Determination of the Sample Size  </a></li>
+                <li><a href="../chapter06/0605.html">&nbsp;&nbsp;6.5.1 Determination of the Sample Size to Estimate the Population Mean </a></li>
+                <li><a href="../chapter06/0605.html">&nbsp;&nbsp;6.5.2 Determination of the Sample Size to Estimate the Population Proportion</a></li> 
+                <li><a href="../chapter06/0606.html">6.6 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter07/index.html">Chapter 7</a>
+	      <ul>
+                <li><a href="../chapter07/0701.html">7.1 Testing Hypothesis for a Population Mean</a></li>
+                <li><a href="../chapter07/0702.html">7.2 Testing Hypothesis for a Population Variance</a></li>
+                <li><a href="../chapter07/0703.html">7.3 Testing Hypothesis for a Population Proportion</a></li>
+                <li><a href="../chapter07/0704.html">7.4 Testing Hypothesis with α and β simultaneously</a></li>
+                <li><a href="../chapter07/0704.html">&nbsp;&nbsp;7.4.1 Type 2 Error and Power of a Test</a></li>
+                <li><a href="../chapter07/0704.html">&nbsp;&nbsp;7.4.2 Testing Hypothesis with α and β</a></li>
+                <li><a href="../chapter07/0705.html">7.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter08/index.html">Chapter 8</a>
+	      <ul>
+                <li><a href="../chapter08/080101.html">8.1 Testing Hypothesis for Two Population Means</a></li>
+                <li><a href="../chapter08/080101.html">&nbsp;&nbsp;8.1.1 Two Independent Samples</a></li>
+                <li><a href="../chapter08/080102.html">&nbsp;&nbsp;8.1.2 Paired Sample</a></li>
+                <li><a href="../chapter08/0802.html">8.2 Testing Hypothesis for Two Population Variances</a></li>
+                <li><a href="../chapter08/0803.html">8.3 Testing Hypothesis for Two Population Proportions</a></li>
+                <li><a href="../chapter08/0804.html">8.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter09/index.html">Chapter 9</a>
+	      <ul>
+                <li><a href="../chapter09/0901.html">9.1 Analysis of Variance for Experiments of Single Factor</a></li>
+                <li><a href="../chapter09/090101.html">&nbsp;&nbsp;9.1.1 Multiple Comparison</a></li>
+                <li><a href="../chapter09/090101.html">&nbsp;&nbsp;9.1.2 Residual Analysis</a></li>
+                <li><a href="../chapter09/0902.html">9.2 Design of Experiments for Sampling</a></li>
+                <li><a href="../chapter09/0902.html">&nbsp;&nbsp;9.2.1 Completely Randomized Design</a></li>
+                <li><a href="../chapter09/0902.html">&nbsp;&nbsp;9.2.2 Randomized Block Design</a></li>
+                <li><a href="../chapter09/0903.html">9.3 Analysis of Variance for Experiments of Two Factors</a></li>
+                <li><a href="../chapter09/0904.html">9.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter10/index.html">Chapter 10</a>
+	      <ul>
+                <li><a href="../chapter10/1001.html">10.1 Nonparametric Test for the Location Parameter of Single Population  </a></li>
+                <li><a href="../chapter10/1001.html">&nbsp;&nbsp;10.1.1 Sign Test</a></li>
+                <li><a href="../chapter10/100102.html">&nbsp;&nbsp;10.1.2 Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1002.html">10.2 Nonparametric Test for Location Parameters of Two Populations</a></li>
+                <li><a href="../chapter10/1002.html">&nbsp;&nbsp;10.2.1 Independent Samples: Wilcoxon Rank Sum Test</a></li>
+                <li><a href="../chapter10/100202.html">&nbsp;&nbsp;10.2.2 Paired Samples: Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1003.html">10.3 Nonparametric Test for Location Parameters of Several Populations</a></li>
+                <li><a href="../chapter10/1003.html">&nbsp;&nbsp;10.3.1 Completely Randomized Design: Kruskal-Wallis Test</a></li>
+                <li><a href="../chapter10/100302.html">&nbsp;&nbsp;10.3.2 Randomized Block Design: Friedman Test</a></li>
+                <li><a href="../chapter10/1004.html">10.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter11/index.html">Chapter 11</a>
+	      <ul>
+                <li><a href="../chapter11/1101.html">11.1 Goodness of Fit Test</a></li>
+                <li><a href="../chapter11/1101.html">&nbsp;&nbsp;11.1.1 Goodness of Fit Test for Categorical Distribution</a></li>
+                <li><a href="../chapter11/110102.html">&nbsp;&nbsp;11.1.2 Goodness of Fit Test for Continuous Distribution</a></li>
+                <li><a href="../chapter11/1102.html">11.2 Testing Hypothesis for Contingency Table</a></li>
+                <li><a href="../chapter11/1102.html">&nbsp;&nbsp;11.2.1 Independence Test</a></li>
+                <li><a href="../chapter11/110202.html">&nbsp;&nbsp;11.2.2 Homogeneity Test</a></li>
+                <li><a href="../chapter11/1103.html">11.3 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter12/index.html">Chapter 12</a>
+	      <ul>
+                <li><a href="../chapter12/1201.html">12.1 Correlation Analysis</a></li>
+                <li><a href="../chapter12/1202.html">12.2 Simple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1203.html">12.3 Multiple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1204.html">12.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter13/index.html">Chapter 13</a>
+	      <ul>
+                <li><a href="../chapter13/1301.html">13.1 What is Time Series Analysis?</a></li>
+                <li><a href="../chapter13/1302.html">13.2 Smoothing of Time Series</a></li>
+                <li><a href="../chapter13/1303.html">13.3 Transformation of Time Series</a></li>
+                <li><a href="../chapter13/1304.html">13.4 Regression Model and Forecasting</a></li>
+                <li><a href="../chapter13/1305.html">13.5 Exponential Smoothing Model and Forecasting</a></li>
+                <li><a href="../chapter13/1306.html">13.6 Seasonal Model and Forecasting</a></li>
+                <li><a href="../chapter13/1307.html">13.7 Exercise</a></li>
+	      </ul>
+	    </li>
+
+	  </ul>
+	</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+  <!--***********************************************************************-->
+  <h2>Chapter 13. Time Series Analysis</h2> 
+  <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(134)">&#10094; &nbsp;&nbsp;<b>Previous</b></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(136)"><b>Next</b>&nbsp;&nbsp; &#10095;</button>
+  <p>
+  <h3>13.5 Exponential Smoothing Model and Forecasting</h3>
+  <p>
+<!---
+  <h6>
+      <a href="1202.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/wn0Dl3dLgko" target="_blank"><u>[video]</u></a>
+  </h6>
+--->
+  <p>
+
+    <div class="mainTable">
+      When the time series moves in a trend, the future can be predicted well with the regression model. However, it may not be appropriate to predict a time series that is dynamically moving hourly, daily, etc. In this case, a moving average model or an exponential smoothing model can be used. The time series model is explained into two cases where the trend is stationary and linear.
+    </div>
+    <p>
+    <h4>13.5.1 Stationary Time Series</h4>
+    <p>
+    <div class="mainTable">
+      A time series is called <b>stationary</b> if the statistical properties such as mean, variance and covariance
+      are consistent over time. When a time series is the observed values of random variables 
+      \(Y_1 , Y_2 , ... , Y_T\), a stationary time series is the following model that changes around 
+      a constant value \(\mu \).
+      $$
+        Y_i \;=\; \mu \;+\; \epsilon_i , \quad i=1,2,..., T    
+      $$
+      Here \(\mu\) is unknown parameter and \(\epsilon_i\) is an error term which is independent with mean 0 and variance \(\sigma^2\).
+    </div>
+    <p>
+
+  <h6>A. Single Moving Average Model</h6>
+  <p>
+
+    <div class="mainTable">
+        In a stationary time series model, the estimated value of \(\mu\), \(\hat \mu\), is the mean of the data. .
+      $$
+        {\hat \mu} \;=\; \frac{1}{T} \sum_{ i=1}^T Y_i      
+      $$
+        Using this model, the prediction after \(\tau\) time points ahead at the current time \(T\) denoted
+        as \({\hat Y}_{T+\tau}\), is as follows:
+      $$
+        {\hat Y}_{T+\tau} \;=\; \hat \mu, \quad \tau=1,2,...  
+      $$
+        It is called a <b>simple average model</b>. 
+      <p>
+        The simple average model uses all observations until the current time. However, the unknown 
+        parameter \(\mu\) may shift slightly over time, so it would be reasonable to give more weight
+        to recent data than to past data for prediction. If a weight \(\frac{1}{N}\) is given to only 
+        the most recent \(N\) observations at the present time \(T\) and the weight of the remaining 
+        observations is set to 0, the estimated value of \(\mu\) is as follows.
+      $$
+        {\hat \mu} \;=\; \frac{1}{N} \sum_{ i=T-N+1}^T Y_i  \;=\; \frac{1}{N} ( Y_{T-N+1} + Y_{T-N+2} + \cdots + Y_T )    
+ 
+      $$
+        This is called a <b>single moving average model</b> at the time point \(T\) and is denoted by \(M_T\). 
+        The single moving average means the average of the observations adjacent to the time point \(T\). Notice 
+        that \(Y_1, Y_2 , ... , Y_T\) are independent of each other by assumption, but \(M_1, M_2 , ... , M_T\)
+        are not independent of each other, but are correlated.
+      <p>
+        The value of the single moving average varies depending on the size of \(N\). When the value of \(N\)
+        is large, it becomes insensitive to the fluctuations of the original time series, so it changes 
+        gradually, and when the value of \(N\) is small, it becomes sensitive to fluctuations. Therefore, 
+        when the fluctuation of the original time series is small, it is common to set the small value of \(N\),
+        and when the fluctuation is large, it is common to set the value of large \(N\).
+      <p>
+        Using the single moving average model at the time point \(T\), the predicted value and the mean 
+        and variance of the predicted value at the time point \(T+\tau\) are as follows.
+      <p>
+        \(\qquad {\hat Y}_{T+\tau} \;=\; M_T , \quad \tau=1,2, ...  \) <br>
+        \(\qquad E( {\hat Y}_{T+\tau} ) \;=\; E(M_T ) \;=\; \mu   \)  <br>	
+        \(\qquad Var({\hat Y}_{T+\tau} )\;=\; Var(M_t ) \;=\; \frac{ \sigma ^2} {N }  \)   <br> 
+      <p>
+        When the single moving average model is used, the 95% confidence interval estimation of the 
+        predicted value is approximately as follows.
+      <p>
+        \(\qquad {\hat{Y}}  _{T+ \tau } \;±\; 1.96 \sqrt {Var( {\hat{Y}}  _{T+ \tau } )}  \) <br>
+        \(\qquad M_{T} \;±\; 1.96 \sqrt{ \frac{MSE} {N} } \)  <br>	
+      <p>
+        The monthly sales for the last two years of a furniture company are as shown in [Table 13.4.2], 
+        and the residual between the raw data and the predicted value of one point in time was calculated 
+        by obtaining a six-point moving average. &lt;Figure 13.5.1&gt; shows the time series for this. 
+        This time series fluctuates up and down based on approximately 95, and such a time series is 
+        called a stationary time series.
+      <p>
+        When \(N\) = 6, the moving average for the first 5 time points cannot be obtained. 
+        The moving average at time 6 is as follows:
+      $$
+        M_6 \;=\; \frac{95+100+87+123+90+96} {6} \;=\; 98.50    
+      $$
+        Therefore, one time prediction at time 6 becomes \({\hat Y}_{6+1} = 98.50 \) and the residual
+        at time 7 is as follows:
+      $$
+        e_{7} \;=\; Y_{7} \;-\; {\hat{Y}}_{6+1} \;=\; 75-98.50 \;=\; -23.50
+      $$
+        In the same way, the moving average of the remaining time points, the predicted values ​​after one time point, and the residuals are as shown in [Table 13.5.1], so the mean square error is as follows: 
+      $$
+        { MSE} \;=\; \frac { \sum_{ i=7}^{ 24} ( Y_i \;-\; {\hat Y}_i )^{2}  }  {18} \;=\;331.22    
+      $$
+        Sales for the next three months are the last moving average \(M_{24}\), and the 95% confidence 
+        interval for the forecast is as follows:
+      <p>
+        \(\qquad {\hat Y}_{24+1} \;=\; {\hat Y}_{24+2} \;=\; {\hat Y}_{24+3} \;=\; M_{24} \;=\; 104.67    \)<br>
+        \(\qquad  M_T \;±\; 1.96 \sqrt \frac{MSE}{N }              \)<br>
+        \(\qquad   104.67 \;±\; 1.96 \sqrt \frac{331.22}{6}            \)<br>
+        \(\qquad   [90.10, 119.23]  \)<br>
+      <p>
+      <div class="textLeft">[Table 13.5.1] Montly Sales of a Furniture Company and 6-point Moving Average, One Time Forecast and Residuals</div>
+      <p>
+      <table style="width:660px"> 
+        <tr> 
+          <th class="thGrey" style="width:60px"><br>time<br>\(t\)</th>
+          <th class="thGrey" style="width:150px">Sales<br>(unit million $)<br>\(Y_t\)</th>
+          <th class="thGrey" style="width:150px">6-pt Moving<br> Average<br>\(M_t\)</th>
+          <th class="thGrey" style="width:150px">One Time <br>Forecast<br>\({\hat Y}_t\)</th>
+          <th class="thGrey" style="width:150px"><br>Residual<br>\(e_t = Y_t - {\hat Y}_t\)</th>
+        </tr>
+        <tr> 
+          <td class="tdCenter">
+             1<br>
+             2<br>
+             3<br>
+             4<br>
+             5<br>
+             6<br>
+             7<br>
+             8<br>
+             9<br>
+             10<br>
+             11<br>
+             12<br>
+             13<br>
+             14<br>
+             15<br>
+             16<br>
+             17<br>
+             18<br>
+             19<br>
+             20<br>
+             21<br>
+             22<br>
+             23<br>
+             24<br>
+          </td> 
+          <td class="tdCenter">
+              95<br>
+             100<br>
+              87<br>
+             123<br>
+              90<br>
+              96<br>
+              75<br>
+              78<br>
+             106<br>
+             104<br>
+              89<br>
+              83<br>
+             118<br>
+              86<br>
+              86<br>
+             112<br>
+              85<br>
+             101<br>
+             135<br>
+             120<br>
+              76<br>
+             115<br>
+              90<br>
+              92<br>
+           </td> 
+           <td class="tdCenter">
+                   <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             98.50<br>
+             95.17<br>
+             91.50<br>
+             94.67<br>
+             91.50<br>
+             91.33<br>
+             89.17<br>
+             96.34<br>
+             97.67<br>
+             94.34<br>
+             95.67<br>
+             95.00<br>
+             98.00<br>
+             100.84<br>
+             106.50<br>
+             104.84<br>
+             105.34<br>
+             106.17<br>
+             104.67<br>
+           </td> 
+           <td class="tdCenter">
+                   <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             98.50<br>
+             95.17<br>
+             91.50<br>
+             94.67<br>
+             91.50<br>
+             91.33<br>
+             89.17<br>
+             96.34<br>
+             97.67<br>
+             94.34<br>
+             95.67<br>
+             95.00<br>
+             98.00<br>
+             100.84<br>
+             106.50<br>
+             104.84<br>
+             105.34<br>
+             106.17<br>
+           </td> 
+           <td class="tdCenter">
+                   <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             -23.50<br>
+             -17.17<br>
+              14.50<br>
+               9.33<br>
+              -2.50<br>
+              -8.33<br>
+              28.83<br>
+             -10.33<br>
+             -11.67<br>
+              17.67<br>
+             -10.67<br>
+               6.00<br>
+              37.00<br>
+              19.17<br>
+             -30.50<br>
+              10.17<br>
+             -15.33<br>
+             -14.17<br>
+           </td> 
+         <tr>
+      </table>
+      <p>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/eStatU360_TimeseriesHeuristic.svg" onclick="window.open(addrStr[137])">
+          </td>
+          <td>
+            <img class="imgFig600400" src="../Figure/Fig130501.png">
+            <div class="figText">&lt;Figure 13.5.1&gt; Montly Sales of a Furniture Company and 6-point Moving Average and One Time Forecast</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+      <h6>※ Moving average at initial period</h6>
+        Since the \(N\)-point single moving average cannot be obtained before the time point \(N\),
+        the prediction model cannot be applied. When there are many time series, this may not be 
+        a big problem, but when the number of data is small, it can affect the prediction. In order to
+        solve this problem, the moving average at initial period can be obtained as follows until 
+        the time point \(N-1\).
+      <p>
+        \(\qquad   t=1   \qquad \quad M_1 = Y_1  \)<br>
+        \(\qquad   t=2   \qquad \quad M_2 = \frac{Y_1 + Y_2 } {2}     \)<br>
+        \(\qquad   \cdots  \)<br>
+        \(\qquad   t=N-1  \quad M_{N-1} = \frac{Y_1 + Y_2 + \cdots + Y_{N-1} } {N - 1}      \)<br>
+      <p>
+ 
+  <h6>B. Single Exponential Smoothing Model</h6>
+  <p>
+
+    <div class="mainTable">
+        In the single moving average model, the same weight \(\frac{1}{N}\) is given to only the latest 
+        \(N\)  observations, and the previous observations are completely ignored by setting the weight to 0. 
+        The <b>single exponential smoothing method</b> compensates for the shortcomings of the moving average 
+        model by assigning weights to all observations when predicting future values from past observations, 
+        but giving more weight to recent data. This single exponential smoothing model uses the value of the 
+        exponential smoothing method as the predicted value.
+      <p>
+        The single exponential smoothing model calculates the weighted average of the exponential 
+        smoothing estimator \({\hat \mu}_t \) at the immediately preceding time point and the observation 
+        value \(Y_t\) at the time point \(t\). Assuming that the exponential smoothing estimated value 
+        at the time point \(t\) is \(S_t \;=\; {\hat \mu}_t \) and \(\alpha\) is a real number 
+        between 0 and 1, the single exponential smoothing value \(S_t\) is defined as follows:
+      <p>
+        \(\qquad   S_1 \;=\; \alpha \;Y_1 \;+\; (1-\alpha) S_0  \)<br>
+        \(\qquad   S_2 \;=\; \alpha \;Y_2 \;+\; (1-\alpha) S_1  \)<br>
+        \(\qquad   \cdots  \)<br>
+        \(\qquad   S_t \;=\; \alpha \;Y_t \;+\; (1-\alpha) S_{t-1}  \)<br>
+      <p>
+        Here, \(\alpha\) is called the <b>smoothing constant</b>, and the single exponential smoothing value 
+        is the weighted average value given the weight \(\alpha\) of the most recent observation and
+        (1-\(\alpha\)) of the exponential smoothing value \(S_{t-1}\) at the time \(t-1\). 
+        You can better understand the meaning of exponential smoothing if you write down the recursive 
+        equation as follows:
+      <p>
+        \(\qquad   S_t \;=\; \alpha \;Y_t \;+\; (1-\alpha) S_{t-1}   \)<br>
+        \(\qquad   \;=\; \alpha \; Y_t + (1- \alpha )\;( \alpha Y_{t-1} + (1- \alpha ) S_{t-2} )      \)<br>
+        \(\qquad   \;=\; \alpha Y_t + \alpha (1- \alpha ) Y_t-1 + (1- \alpha )^2 S_t-2     \)<br>
+        \(\qquad   \;=\; \alpha Y_t + \alpha (1- \alpha ) Y_t-1 + \alpha(1- \alpha )^2 Y_t-2 \;+\cdots\; + \alpha (1- \alpha )^(t-1) Y_1 +(1- \alpha )^t S_0        \)
+      <p>
+        In other words, for the single exponential smoothing value \(S_t\), the most recent observation
+        \(Y_t\) is given a weight \(\alpha\), and the next most recent observation is given \(\alpha(1-\alpha)\), 
+        the next is \(\alpha(1-\alpha)^2\) and so on, a gradually smaller weight. Therefore, 
+        if the size of \(\alpha\) is small, the current observation value is given a small weight, 
+        and the exponential smoothing value is insensitive to the fluctuations of the time series. 
+        if the size of \(\alpha\) is large, the current observation value is given a large weight, 
+        and the exponential smoothing value is sensitive to the fluctuations of the time series. 
+        In general, a value between 0.1 and 0.3 is often used as the value of \(\alpha\).
+      <p>
+        In order to obtain a single exponential smoothing value, an initial smoothing value 
+        \(S_0\) is required, and the first observation value or the sample average of several 
+        initial data or the overall sample average can be used. The exponential smoothing method 
+        has the advantage of being less affected by extreme point or intervention than the ARIMA model 
+        and easy to use, although the selection of the smoothing constant is arbitrary and 
+        it is difficult to obtain a prediction interval.
+      <p>
+        The predicted value, average and variance of the predicted value at the time point  using the single exponential smoothing model are as follows:
+      <p>
+        \(\qquad   {\hat Y}_{T+\tau} \;=\;S_T     \)<br>
+        \(\qquad   E( {\hat Y}_{T+\tau} )\;=\;E(S_T )\;=\; \mu         \)<br>
+        \(\qquad   Var( {\hat{Y}}_{T+ \tau } )\;=\; Var(S_{T} )\;=\; \frac{\alpha } {2- \alpha }  \sigma^{2}  \)<br>
+      <p>
+        Therefore, when the single exponential smoothing model is used, the 95% interval estimation in the predicted value is approximately as follows.
+      <p>
+        \(\qquad   {\hat Y}_{T+\tau} \;±\;  1.96 \sqrt { Var ({\hat Y}_{T+\tau})}          \)<br>
+        \(\qquad   S_{T} \;±\;1.96\; \sqrt { \frac{\alpha } {2- \alpha } MSE}        \)<br>
+      <p>
+        To the data of [Table 13.5.1], predict sales for the next three months by a single exponential 
+        smoothing model with smoothing constant \(\alpha\) = 0.1. Lets use the first observed value 
+        for the initial value of exponential smoothing, that is \(S_0 = Y_1 = 95\). The exponential smoothing value for the first three time series are as follows:
+      <p>
+        \(\qquad   S_{1} \;=\;0.1\; \times \;Y  _{1} \;+\;(1-0.1\;)\; \times \;S  _{0} \;=\;\;0.1\; \times \;95\;+\;0.9\; \times \;95\;=\;95     \)<br>
+        \(\qquad   S_{2} \;=\;0.1\; \times\;Y_2 \;+\; (1-0.1\;)\;\times\; S_1 \;=\; \;0.1\;\times\;100\;+\;0.9 \;\times \;95 \;=\; 95.50             \)<br>
+        \(\qquad   S_{3} \;=\;0.1\; \times \;Y  _{3} \;+\;(1-0.1\;)\; \times \;S  _{2} \;=\;\;0.1\; \times \;87\;+\;0.9\; \times \;95.5\;=\;94.65  \)<br>
+        \(\qquad   \cdots   \)<br>
+      <p>
+        At each time point, the prediction after one point in time is as follows:
+      <p>
+        \(\qquad   {\hat Y}_{0+1} \;=\; S_0 \;=\;95.00      \)<br>
+        \(\qquad   {\hat Y}_{1+1} \;=\; S_1 \;=\;95.00      \)<br>
+        \(\qquad   {\hat Y}_{2+1} \;=\; S_2 \;=\;95.50      \)<br>
+      <p>
+        Hence the residuals using the above estimated values are as follows:
+      <p>
+        \(\qquad   e_1 \;=\; Y_1\;-\;{\hat Y}_{0+1} \;=\; 95.00 - 95.00 \;=\; 0       \)<br>
+        \(\qquad   e_2 \;=\; Y_2\;-\;{\hat Y}_{1+1} \;=\; 100.00 - 95.00 \;=\; 5.00           \)<br>
+        \(\qquad   e_3 \;=\; Y_3\;-\;{\hat Y}_{2+1} \;=\; 87.00-95.50\;=\;-8.50  \)<br>
+      <p>
+        In the same way, the single exponential smoothing of the remaining time points, the predicted values after one time point, and the residuals are as shown in [Table 13.4.2]. Therefore, the mean square error is as follows:
+      <p>
+        \(\qquad   {MSE} \;= \; \frac{1}{24} \sum_{i=1}^{24} \; ( Y_i \;-{\hat Y}_i )^{2}    \;=\;269.72             \)<br>
+      <p>
+        In terms of mean square error, the MSE of the 6-point single moving average model is 331.22, so it can be said that the exponential smoothing model has better fit.
+      <p>
+        Sales for the next three months are the last moving average , and the 95% confidence interval for the forecast is as follows:
+      <p>
+        \(\qquad   {\hat Y}_{24+1} \;=\; {\hat Y}_{24+2} \;=\; {\hat Y}_{24+3} \;=\; S_{24} \;=\; 98.66       \)<br>
+        \(\qquad   S_{T} \;±\; 1.96\; \sqrt { \frac{\alpha } {2- \alpha} } MSE          \)<br>
+        \(\qquad   98.66 \;±\; 1.96 \; \sqrt { \frac{0.1} {2-0.1} 269.72  }        \)<br>
+        \(\qquad   [65.27, 132.05]      \)<br>
+      <p> 
+        [Table 13.5.2] summarizes the above equations, and &lt;Figure 13.5.2&gt; shows the prediction after 
+        one time point and the prediction for the next 3 months using the single exponential smoothing model with 
+        \(\alpha\) = 0.1.
+      <p>
+      <div class="textLeft">[Table 13.5.2] Exponential Smoothing with  &alpha; = 0.1, One Time Forecast and Residual</div>
+      <p>
+      <table style="width:660px"> 
+        <tr> 
+          <th class="thGrey" style="width:60px"><br>time<br>\(t\)</th>
+          <th class="thGrey" style="width:150px">Sales<br>(unit million $)<br>\(Y_t\)</th>
+          <th class="thGrey" style="width:150px">Exponential <br>Smoothing<br>\(S_t\)</th>
+          <th class="thGrey" style="width:150px">One Time <br>Forecast<br>\({\hat Y}_t\)</th>
+          <th class="thGrey" style="width:150px"><br>Residual<br>\(e_t = Y_t - {\hat Y}_t\)</th>
+        </tr>
+        <tr> 
+          <td class="tdCenter">
+             1<br>
+             2<br>
+             3<br>
+             4<br>
+             5<br>
+             6<br>
+             7<br>
+             8<br>
+             9<br>
+             10<br>
+             11<br>
+             12<br>
+             13<br>
+             14<br>
+             15<br>
+             16<br>
+             17<br>
+             18<br>
+             19<br>
+             20<br>
+             21<br>
+             22<br>
+             23<br>
+             24<br>
+          </td> 
+          <td class="tdCenter">
+              95<br>
+             100<br>
+              87<br>
+             123<br>
+              90<br>
+              96<br>
+              75<br>
+              78<br>
+             106<br>
+             104<br>
+              89<br>
+              83<br>
+             118<br>
+              86<br>
+              86<br>
+             112<br>
+              85<br>
+             101<br>
+             135<br>
+             120<br>
+              76<br>
+             115<br>
+              90<br>
+              92<br>
+           </td> 
+           <td class="tdCenter">
+              95.00<br>
+              95.50<br>
+              94.65<br>
+              97.48<br>
+              96.74<br>
+              96.66<br>
+              94.50<br>
+              92.85<br>
+              94.16<br>
+              95.15<br>
+              94.53<br>
+              93.38<br>
+              95.84<br>
+              94.86<br>
+              93.97<br>
+              95.77<br>
+              94.70<br>
+              95.33<br>
+              99.29<br>
+             101.36<br>
+              98.83<br>
+             100.45<br>
+              99.40<br>
+              98.66<br>
+          </td> 
+           <td class="tdCenter">
+              95.00<br>
+              95.00<br>
+              95.50<br>
+              94.65<br>
+              97.48<br>
+              96.74<br>
+              96.66<br>
+              94.50<br>
+              92.85<br>
+              94.16<br>
+              95.15<br>
+              94.53<br>
+              93.38<br>
+              95.84<br>
+              94.86<br>
+              93.97<br>
+              95.77<br>
+              94.70<br>
+              95.33<br>
+              99.29<br>
+             101.36<br>
+              98.83<br>
+             100.45<br>
+              99.40<br>
+           </td> 
+           <td class="tdCenter">
+               0.00<br>
+               5.00<br>
+              -8.50<br>
+              28.35<br>
+              -7.48<br>
+              -0.74<br>
+             -21.66<br>
+             -16.50<br>
+              13.15<br>
+               9.84<br>
+              -6.15<br>
+             -11.53<br>
+              24.62<br>
+              -9.84<br>
+              -8.86<br>
+              18.03<br>
+             -10.77<br>
+               6.30<br>
+              39.67<br>
+              20.71<br>
+             -25.36<br>
+              16.17<br>
+             -10.45<br>
+              -7.40<br>
+           </td> 
+         </tr>
+      </table>
+      <p>
+
+
+      <p>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/eStatU360_TimeseriesHeuristic.svg" onclick="window.open(addrStr[137])">
+          </td>
+          <td>
+            <img class="imgFig600400" src="../Figure/Fig130502.png">
+            <div class="figText">&lt;Figure 13.5.2&gt; Exponential Smoothing with &alpha = 0.1 and One Time Forecast </div>
+          </td>
+        </tr>
+      </table>
+      <p>
+    <h6>※ Initial value of exponential smoothing</h6>
+      Since the initial exponential smoothing value \(S_0\)at the time point \(t=1\) cannot be obtained, 
+      the following three methods are commonly used.
+    <p>
+      1) The first observation, i.e. \(S_0 \;=\; Y_1\)    <br>
+      2) Partial average using the initial \(n\) observation values, that is   <br>
+         \(\qquad S_0 \;=\; \frac{1}{n} ({Y_1 + Y_2 + \cdots + Y_n })   \) <br>
+      3) The mean up to the entire time point \(T\), i.e.,  <br>
+         \(\qquad S_0 \;=\; \frac{1}{T} ({Y_1 + Y_2 + \cdots + Y_T })       \)
+    <p>   
+    <h6>※ Initial smoothing constant</h6>
+      The same smoothing constant \(\alpha\) can be applied to all time series, but the following 
+      method is also used to reduce the effect of the initial value \(S_0\).
+    <p>
+      \(\qquad  \alpha_t \;=\; \frac{1}{t}    , \quad until \; \alpha_t \; reaches\; \alpha \)
+    <p>
+
+    </div>
+    <p>
+    <h4>13.5.2 Linear Trend Time Series</h4>
+    <p>
+    <h6>A. Double Moving Average Model</h6>
+    <p>
+    <div class="mainTable">
+        In the previous section, we examined that the single moving average model can be applied 
+        to a stationary time series. What would happen if the single moving average model was applied 
+        to a time series with a linear trend? That is, for a time series with a linear trend 
+        \(Y_t \;=\; \beta_0  \;+\; \beta_1 \cdot t \;+\; \epsilon _t \), the \(N\)-point single moving average
+        at time \(T\) is as follows:
+      $$
+         M_T \;= \; \frac{1}{N} ( Y_{T-N+1} \;+\; Y_{T-N+2} \;+\; \cdots \;+\; Y_T )    
+      $$
+        The expected value can be shown as follows:
+      $$
+         E(M_T) \;=\; \beta_0 + \beta_1 T - \frac{N-1} {2} \beta_1    
+      $$
+         That is, in the case of a linear trend model, it can be seen that the single moving average \(M_t\)
+         is biased by \(\frac{N-1}{2} \beta_1 \). For example, if the consumer price index with a linear trend 
+         in [Table 13.5.3] is predicted after one point in time using the 5-point single moving average, 
+         it is as shown in &lt;Figure 13.5.3&gt;. It can be seen that the predicted value using \(M_t\)
+         is under estimated value of the time series .
+      <p>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/eStatU360_TimeseriesHeuristic.svg" onclick="window.open(addrStr[137])">
+          </td>
+          <td>
+            <img class="imgFig600400" src="../Figure/Fig130503.png">
+            <div class="figText">&lt;Figure 13.5.3&gt; 5-pt Moving Average of Consumer Price Index with Linear Trend</div>
+          </td>
+        </tr>
+      </table>
+      <p>
+         In the case of a linear trend, one way to eliminate the bias of the single moving average model 
+         is the <b>double moving average</b>, which obtains the moving average again for the single moving average. 
+         The \(N\)-point double moving average \(M_T^{(2)}\) at the time \(T\) and its expected value are 
+         as follows:
+      $$
+        \begin{align}
+          M_T^{(2)}    &\;=\; \frac{1}{N} (M_T \;+\; M_{T-1} \;+\; \cdots \;+\; M_{T-N+1})    \\ 
+          E(M_T^{(2)}) &\;=\; \beta_0 \;+\; \beta_1 T \;-\; (N-1) \beta_1    
+        \end{align}
+      $$
+         Since \(E(M_T )\) and \(E(M_T ^{(2)} )\)  have the same number of parameters, \(\beta_0 ,\;\beta_1 \)
+         can be estimated by solving the system of two equations as follows: 
+      $$
+        \begin{align}
+          {\hat{\beta }}_{1} &\;=\; \frac{2}{N-1} \; (M_{T} \;-\; M_{T}^{(2)} )   \\
+          {\hat{\beta }}_{0} &\;=\; 2M_{T} \;-\; M_{T}^{(2)} \;-\; {\hat{\beta }}_{1} \;T\;
+        \end{align}
+      $$
+         Therefore, the predicted value at the time point \(T+\tau\) using the double moving average 
+         at time \(T\) as follows:
+      $$
+         {\hat Y}_{T+\tau} \;=\; 2 M_T \;-\; {M_T ^{(2)}} \;+\; \tau \;\; (\frac {2}{N-1} ) \;\; (M_T\;-\; M_T^{(2)})    
+      $$
+         Such a double moving average model can be said to be a kind of heuristic method. That is, although logical, it is not based on any optimization such as least squares method. However, it can be approximated by the least-squares method, which we will omit in this book.
+      <p>
+         [Table 13.5.3] is a calculation table for predicting the consumer price index using the 5-point 
+         double moving average model. Note that the third column is a 5-point single moving average \(M_T\), 
+         but the single moving average cannot be calculated from time points 1 to 4. The fourth column 
+         is the calculation of the 5-point double moving average \(M_t^{(2)}\), but the double moving average 
+         cannot be calculated until 5 single moving averages have been calculated, that is, from time points 
+         1 to 8. Using \(M_t\) and \(M_t^{(2)}\) to obtain the prediction after time 1 from time 9, 
+         \({\hat Y}_{9+1}\) is as follows:
+      $$
+        \begin{align}
+          {\hat Y}_{9+1} &\;=\; 2M_9 \;- M_9^{(2)} \;+ 1 \;\; (\frac{2}{5-1}) \;\;(M_9\;-\;M_9 ^{(2)})    \\
+                         &\;=\; 2 \times 104.50\;-104.028\;+1\;\; ( \frac{2}{5-1} ) \;\;(104.50\;-104.028)\;=\;105.2080  
+        \end{align}
+      $$
+         The predicted values calculated in the same way are shown in the fifth column.
+      <p>
+      <div class="textLeft">[Table 13.5.3] Double Moving Average of Consumer Price Index and One Time Forecast</div>
+      <p>
+      <table style="width:660px"> 
+        <tr> 
+          <th class="thGrey" style="width:60px"><br>time<br>\(t\)</th>
+          <th class="thGrey" style="width:150px"><br>CPI<br>\(Y_t\)</th>
+          <th class="thGrey" style="width:150px">5-pt Single<br>Moving Average<br>\( M_t\)</th>
+          <th class="thGrey" style="width:150px">5-pt Double<br>Moving Average<br>\( M_t ^(2)\)</th>
+          <th class="thGrey" style="width:150px"><br>One Time Forecast\({\hat Y}_{(t-1)+1}\)</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             1<br>
+             2<br>
+             3<br>
+             4<br>
+             5<br>
+             6<br>
+             7<br>
+             8<br>
+             9<br>
+             10<br>
+             11<br>
+             12<br>
+             13<br>
+             14<br>
+             15<br>
+             16<br>
+             17<br>
+             18<br>
+             19<br>
+             20<br>
+             21<br>
+             22<br>
+             23<br>
+             24<br>
+          </td> 
+           <td class="tdCenter">
+             102.3<br>
+             102.8<br>
+             103.7<br>
+             104.1<br>
+             104.0<br>
+             104.3<br>
+             104.5<br>
+             104.9<br>
+             104.8<br>
+             104.8<br>
+             104.2<br>
+             104.4<br>
+             105.0<br>
+             105.5<br>
+             106.1<br>
+             106.7<br>
+             107.1<br>
+             107.0<br>
+             106.7<br>
+             107.4<br>
+             108.0<br>
+             107.7<br>
+             107.8<br>
+             108.3<br>
+          </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             <br>
+             <br>
+             103.38<br>
+             103.78<br>
+             104.12<br>
+             104.36<br>
+             104.50<br>
+             104.66<br>
+             104.64<br>
+             104.62<br>
+             104.64<br>
+             104.78<br>
+             105.04<br>
+             105.54<br>
+             106.08<br>
+             106.48<br>
+             106.72<br>
+             106.98<br>
+             107.24<br>
+             107.36<br>
+             107.52<br>
+             107.84<br>
+          </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             104.028<br>
+             104.284<br>
+             104.456<br>
+             104.556<br>
+             104.612<br>
+             104.668<br>
+             104.744<br>
+             104.924<br>
+             105.216<br>
+             105.584<br>
+             105.972<br>
+             106.36<br>
+             106.70<br>
+             106.956<br>
+             107.164<br>
+             107.388<br>
+           <td class="tdCenter">
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             105.2080<br>
+             105.2240<br>
+             104.9160<br>
+             104.7160<br>
+             104.6820<br>
+             104.9480<br>
+             105.4840<br>
+             106.4640<br>
+             107.3760<br>
+             107.8240<br>
+             107.8420<br>
+             107.9100<br>
+             108.0500<br>
+             107.9660<br>
+             108.0540<br>
+          </td> 
+         </tr>
+       </table>
+      <p>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/eStatU360_TimeseriesHeuristic.svg" onclick="window.open(addrStr[137])">
+          </td>
+          <td>
+            <img class="imgFig600400" src="../Figure/Fig130504.png">
+            <div class="figText">&lt;Figure 13.5.4&gt; Forecast using Double Moving Average of Consumer Price Index </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p>
+
+    <h6>B. Holt Double Exponential Smoothing Model</h6>
+
+    <div class="mainTable">
+        Holt proposed a model for a linear time series \(Y_t \;=\; \beta_0  \;+\; \beta_1 \cdot t \;+\; \epsilon_t \)
+        which uses a smoothing constant for the level and a smoothing constant for the trend. This is 
+        called <b>Holt's linear trend exponential smoothing model</b> or two-parameters double exponential 
+        smoothing model. Let \({\hat b}_0 \) and \({\hat b}_1 \) be the initial values of the intercept 
+        and slope, and \(\alpha\) be the smoothing constant of the level and \(\gamma\) is the smoothing 
+        constant of the trend. The predicted values \({\hat Y}_t\), level \({\hat \beta}_0 (t)\) and 
+        trend  \({\hat \beta}_1 (t)\) are as follows:  
+      $$
+        \begin{align}
+          & \text{Predicted value:} \quad {\hat Y}_t \;=\; {\hat \beta}_0 (t-1) + {\hat \beta}_1 (t-1)     \\
+          & \text{Level:} \qquad\qquad	\; {\hat \beta}_{0}(t) \;=\; \alpha Y_t   + (1-\alpha) {\hat Y}_t       \\
+          & \text{Trend:} \qquad\qquad   {\hat \beta}_{1}(t) \;=\; {\gamma} \{ {\hat \beta}_0 (t) - {\hat \beta}_0 (t-1) \} + (1-\gamma) {\hat \beta}_1 (t-1)    
+        \end{align}
+      $$
+        That is, the level is the weighted average of the current observed value \(Y_t\) and the predicted value
+        \({\hat Y}_t\), and the trend is the weighted average of the level difference
+        \({\hat \beta}_0 (t) - {\hat \beta}_0 (t-1) \) between the time points \(t\) and \((t-1)\) and 
+        the trend \({\hat \beta}_1 (t-1) \) at the time point \((t-1)\). For this model, initial values 
+        of level \({\hat \beta}_0 (0) \) and slope  \({\hat \beta}_1 (0) \) are required and the intercept 
+        and slope of the simple regression analysis of all observed values are widely used as initial estimates.
+        Similar to the single exponential smoothing model, a value between 0.1 and 0.3 is often used 
+        to determine the smoothing constants \(\alpha\) and \(\gamma\). 
+      <p>
+        The predicted values for the time point \(T+\tau\) at time \(T\) using the trend exponential
+        smoothing model are as follows:
+      $$
+        {\hat Y}_{T+\tau} \;=\; {\hat Y}_T + \tau {\hat \beta}_1 (T)    
+      $$
+        Such a trend exponential smoothing model is also a kind of heuristic method. That is, although logical, it is not based on any optimization such as least squares method.
+      <p>
+        The result of simple linear regression model to all data in [Table 13.5.4] is as follows:
+      $$
+        {\hat{Y}}_{t} =102.574 \;+\; 0.2344 \;\;t
+      $$
+        [Table 13.5.4] is a calculation table for predicting the consumer price index with the Holt 
+        double exponential smoothing model using this initial values. The third column is the predicted 
+        value of the level \({\hat \beta}_0 (t) \), the fourth column is the trend \({\hat \beta}_ (t) \), 
+        and the fifth column is the prediction \({\hat Y}_t = {\hat \beta}_0 (t-1) + {\hat \beta}_1 (t-1)    \)
+        obtained one time after each time point. Therefore, the forecast of the consumer price index for
+        the next three months is as follows:
+     $$
+        \begin{align}
+          & t=25 \qquad {\hat{Y}} _{24+1} \;=\; {\hat{Y}} _{24} \;+\; 1\; \times  {\hat{\beta}} _{1} (24)\;=\;108.19 +0.237\;=\;108.42       \\
+          & t=26 \qquad	{\hat{Y}} _{24+2} \;=\; {\hat{Y}} _{24} \;+\; 2\; \times  {\hat{\beta}} _{1} (24)\;=\;108.19 + 2 \times0.237\;=\;108.66         \\
+          & t=27 \qquad {\hat{Y}} _{24+3} \;=\; {\hat{Y}} _{24} \;+\; 3\; \times  {\hat{\beta}} _{1} (24)\;=\;108.19 + 3 \times0.237\;=\;108.90      
+        \end{align}
+      $$
+      <p>
+      <div class="textLeft">[Table 13.5.4]  Forecasting using Holt Double Exponential Smoothing Model of Consumer Price Index</div>
+      <p>
+      <table style="width:660px"> 
+        <tr> 
+          <th class="thGrey" style="width:60px">time<br>\(t\)</th>
+          <th class="thGrey" style="width:150px">CPI<br>\(Y_t\)</th>
+          <th class="thGrey" style="width:150px">Constant<br>\( {\hat \beta}_0 (t)\)</th>
+          <th class="thGrey" style="width:150px">Trend<br>\( {\hat \beta}_1 (t)\)</th>
+          <th class="thGrey" style="width:150px">One Time Forecast\({\hat Y}_{(t-1)+1}\)</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             0<br>
+             1<br>
+             2<br>
+             3<br>
+             4<br>
+             5<br>
+             6<br>
+             7<br>
+             8<br>
+             9<br>
+             10<br>
+             11<br>
+             12<br>
+             13<br>
+             14<br>
+             15<br>
+             16<br>
+             17<br>
+             18<br>
+             19<br>
+             20<br>
+             21<br>
+             22<br>
+             23<br>
+             24<br>
+          </td> 
+           <td class="tdCenter">
+             <br>
+             102.3<br>
+             102.8<br>
+             103.7<br>
+             104.1<br>
+             104.0<br>
+             104.3<br>
+             104.5<br>
+             104.9<br>
+             104.8<br>
+             104.8<br>
+             104.2<br>
+             104.4<br>
+             105.0<br>
+             105.5<br>
+             106.1<br>
+             106.7<br>
+             107.1<br>
+             107.0<br>
+             106.7<br>
+             107.4<br>
+             108.0<br>
+             107.7<br>
+             107.8<br>
+             108.3<br>
+          </td> 
+           <td class="tdCenter">
+             102.57<br>
+             102.76<br>
+             102.97<br>
+             103.25<br>
+             103.54<br>
+             103.80<br>
+             104.07<br>
+             104.33<br>
+             104.61<br>
+             104.85<br>
+             105.07<br>
+             105.20<br>
+             105.33<br>
+             105.50<br>
+             105.70<br>
+             105.93<br>
+             106.20<br>
+             106.49<br>
+             106.75<br>
+             106.96<br>
+             107.21<br>
+             107.50<br>
+             107.73<br>
+             107.95<br>
+             108.20<br>
+          </td> 
+           <td class="tdCenter">
+             0.234<br>
+             0.229<br>
+             0.227<br>
+             0.232<br>
+             0.239<br>
+             0.241<br>
+             0.243<br>
+             0.245<br>
+             0.249<br>
+             0.248<br>
+             0.245<br>
+             0.234<br>
+             0.224<br>
+             0.218<br>
+             0.216<br>
+             0.218<br>
+             0.223<br>
+             0.230<br>
+             0.233<br>
+             0.230<br>
+             0.232<br>
+             0.238<br>
+             0.237<br>
+             0.236<br>
+             0.237<br>
+           <td class="tdCenter">
+             <br>
+             102.81<br>
+             102.99<br>
+             103.20<br>
+             103.48<br>
+             103.78<br>
+             104.04<br>
+             104.31<br>
+             104.58<br>
+             104.86<br>
+             105.10<br>
+             105.31<br>
+             105.44<br>
+             105.56<br>
+             105.72<br>
+             105.91<br>
+             106.15<br>
+             106.43<br>
+             106.72<br>
+             106.98<br>
+             107.19<br>
+             107.44<br>
+             107.73<br>
+             107.97<br>
+             108.19<br>
+          </td> 
+         </tr>
+      </table>
+      <p>
+         &lt;Figure 13.5.5&gt; shows the predicted values using the Holt’s double exponential smoothing model.
+      <p>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/eStatU360_TimeseriesHeuristic.svg" onclick="window.open(addrStr[137])">
+          </td>
+          <td>
+            <img class="imgFig600400" src="../Figure/Fig130505.png">
+            <div class="figText">&lt;Figure 13.5.5&gt;  Forecasting using Holt Double Exponential Smoothing Model of CPI</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+  <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(134)">&#10094; &nbsp;&nbsp;<b>Previous</b></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(136)"><b>Next</b>&nbsp;&nbsp; &#10095;</button>
+  <p>
+
+</div>
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
+        
+        /* ajust the height when click the toc
+           the code is from https://github.com/twbs/bootstrap/issues/1768
+        */
+        var shiftWindow = function() { scrollBy(0, -50) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+        
+        /*add Bootstrap styles to tables*/
+        var tables = document.getElementsByTagName("table");
+        for(var i = 0; i < tables.length; ++i){
+            tables[i].className += "table table-bordered table-hover";
+        }
+    </script>
+
+</body>
+</html>
+

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 13</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../../css/dashboard.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <style type="text/css">code{white-space: pre;}</style>
+       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
+       <script src="../../js/prism.js"></script>
+       <link rel="stylesheet" href="../../css/prism.css">
+       <script src="../../js/jquery.min.js"></script>    
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script>
+	 $(document).ready(function() {
+  	     toc = $("#sidebar > ul > li > ul");
+  	     sections = toc.children();   // <li>
+  	     for(var i=0; i<sections.length; i++) {
+  		 if ($(sections[i]).children().length == 1) { continue; }
+  		 var first = sections[i].firstElementChild;  // <a>
+  		 var last = sections[i].lastElementChild;
+  		 var li = $("<li>");
+  		 var details = $("<details>");
+  		 var summary = $("<summary>");
+  		 $(summary).append(first)
+  		 $(details).append(summary);
+  		 $(details).append(last);
+  		 $(li).append(details);	
+  		 $(sections[i]).replaceWith(li);
+  	     }
+	 });
+	 </script>
+       <link rel="stylesheet" href="../../css/pandoc.css">
+       <script src="../../js/eBook.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <ul class="nav navbar-nav">
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Chapter<span class="caret"></span></a>
+      <ul class="dropdown-menu"> 
+        <li><a href="../index.html">HOME</a></li>
+        <li><a href="../chapter01/index.html">Chapter 1</a></li>
+        <li><a href="../chapter02/index.html">Chapter 2</a></li>
+        <li><a href="../chapter03/index.html">Chapter 3</a></li>
+        <li><a href="../chapter04/index.html">Chapter 4</a></li>
+        <li><a href="../chapter05/index.html">Chapter 5</a></li>
+        <li><a href="../chapter06/index.html">Chapter 6</a></li>
+        <li><a href="../chapter07/index.html">Chapter 7</a></li>
+        <li><a href="../chapter08/index.html">Chapter 8</a></li>
+        <li><a href="../chapter09/index.html">Chapter 9</a></li>
+        <li><a href="../chapter10/index.html">Chapter 10</a></li>
+        <li><a href="../chapter11/index.html">Chapter 11</a></li>
+        <li><a href="../chapter12/index.html">Chapter 12</a></li>
+        <li><a href="../chapter13/index.html">Chapter 13</a></li>
+      </ul>
+    </li>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Section<span class="caret"></span></a>
+	  <ul class="dropdown-menu"> 
+                <li><a href="../chapter13/1301.html">13.1 What is Time Series Analysis?</a></li>
+                <li><a href="../chapter13/1302.html">13.2 Smoothing of Time Series</a></li>
+                <li><a href="../chapter13/1303.html">13.3 Transformation of Time Series</a></li>
+                <li><a href="../chapter13/1304.html">13.4 Regression Model and Forecasting</a></li>
+                <li><a href="../chapter13/1305.html">13.5 Exponential Smoothing Model and Forecasting</a></li>
+                <li><a href="../chapter13/1306.html">13.6 13.6 Seasonal Model and Forecasting</a></li>
+                <li><a href="../chapter13/1307.html">13.7 Exercise</a></li>
+	  </ul>
+    </li>
+    <li><a class="navbar-brand" href="http://estat.me" target="_blank">eStat</a></li>
+    <li><a class="navbar-brand" href="http://www.estat.me/estat/eStatU/index.html" target="_blank">eStatU</a></li>
+    <li><a class="navbar-brand" href="/estat/eLearning/Distribution/index.html" target="_blank">Distribution</a></li>
+  </ul>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
+      <ul>
+	<li><a href=""></a>
+	  <ul>
+            <li><a href="../index.html">HOME</a></li>
+	    <li><a href="../chapter01/index.html">Chapter 1</a>
+	      <ul>
+                <li><a href="../chapter01/0101.html">1.1 Statistics and Data Science</a></li>
+                <li><a href="../chapter01/0102.html">1.2 Population and Sample</a></li>
+                <li><a href="../chapter01/0103.html">1.3 Variables and Data</a></li>
+                <li><a href="../chapter01/0104.html">1.4 Softwares for Statistical Analysis</a></li>
+                <li><a href="../chapter01/0105.html">1.5 Exercies</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter02/index.html">Chapter 2</a>
+	      <ul>
+                <li><a href="../chapter02/0201.html">2.1 Visualization of Qualitative Data</a></li>
+                <li><a href="../chapter02/0202.html">2.2 Visualization of Summary Data</a></li>
+                <li><a href="../chapter02/0202.html">&nbsp;&nbsp;2.2.1 Summary Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/0202.html">&nbsp;&nbsp;2.2.2 Summary Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0203.html">2.3 Visualization of Raw Data</a></li>
+                <li><a href="../chapter02/0203.html">&nbsp;&nbsp;2.3.1 Raw Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/0203.html">&nbsp;&nbsp;2.3.2 Raw Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0204.html">2.4 Word Cloud</a></li>
+                <li><a href="../chapter02/0205.html">2.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter03/index.html">Chapter 3</a>
+	      <ul>
+                <li><a href="../chapter03/0301.html">3.1 Visualization of Quantitative Data</a></li> 
+                <li><a href="../chapter03/0302.html">3.2 Visualization of Single Quantitative Variable</a></li>
+                <li><a href="../chapter03/0302.html">&nbsp;&nbsp;3.2.1 Visualization of Quantitative Data without Group</a></li>
+                <li><a href="../chapter03/0302.html">&nbsp;&nbsp;3.2.2 Visualization of Quantitative Data with Group</a></li>
+                <li><a href="../chapter03/0303.html">3.3 Visualization of Two Quantitative Variables</a></li>
+                <li><a href="../chapter03/0304.html">3.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter04/index.html">Chapter 4</a>
+	      <ul>
+                <li><a href="../chapter04/0401.html">4.1 Frequency Table for Single Variable</a></li>
+                <li><a href="../chapter04/0401.html">&nbsp;&nbsp;4.1.1 Frequency Table for Categorical Variable</a></li>
+                <li><a href="../chapter04/0401.html">&nbsp;&nbsp;4.1.2 Frequency Table for Quantitative Variable</a></li>
+                <li><a href="../chapter04/0402.html">4.2 Contingency Table for Two Variables</a></li>
+                <li><a href="../chapter04/0402.html">&nbsp;&nbsp;4.2.1 Contingency Table for Two Categorical Variables</a></li>
+                <li><a href="../chapter04/0402.html">&nbsp;&nbsp;4.2.2 Contingency Table for Two Quantitative Variables</a></li>
+                <li><a href="../chapter04/040301.html">4.3 Summary Measures for Quantitative Variable</a></li>
+                <li><a href="../chapter04/040301.html">&nbsp;&nbsp;4.3.1 Measures of Central Tendency</a></li>
+                <li><a href="../chapter04/040302.html">&nbsp;&nbsp;4.3.2 Measures of Dispersion</a></li>
+                <li><a href="../chapter04/0404.html">4.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter05/index.html">Chapter 5</a>
+	      <ul>
+                <li><a href="../chapter05/0501.html">5.1 Definition of Probability</a></li>
+                <li><a href="../chapter05/0502.html">5.2 Calculation of Probability</a></li>
+                <li><a href="../chapter05/0503.html">5.3 Discrete Random Variable</a></li>
+		<li><a href="../chapter05/050301.html">&nbsp;&nbsp;5.3.1 Binomial Distribution</a></li>
+		<li><a href="../chapter05/050302.html">&nbsp;&nbsp;5.3.2 Poissson Distribution</a></li>
+		<li><a href="../chapter05/050303.html">&nbsp;&nbsp;5.3.3 Geometric Distribution</a></li>
+		<li><a href="../chapter05/050304.html">&nbsp;&nbsp;5.3.4 Hypergeometric Distribution</a></li>
+                <li><a href="../chapter05/0504.html">5.4 Continuous Random Variable</a></li>
+		<li><a href="../chapter05/050401.html">&nbsp;&nbsp;5.4.1 Normal Distribution</a></li>
+		<li><a href="../chapter05/050402.html">&nbsp;&nbsp;5.4.2 Exponential Distribution</a></li>
+                <li><a href="../chapter05/0505.html">5.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter06/index.html">Chapter 6</a>
+	      <ul>
+                <li><a href="../chapter06/0601.html">6.1 Simple Random Sampling</a></li>
+                <li><a href="../chapter06/060201.html">6.2 Sampling Distribution of Sample Means and Estimation of the Population Mean</a></li>
+                <li><a href="../chapter06/060201.html">&nbsp;&nbsp;6.2.1 Sampling Distribution of Sample Means</a></li>
+                <li><a href="../chapter06/060202.html">&nbsp;&nbsp;6.2.2 Estimation of the Population Mean</a></li>
+                <li><a href="../chapter06/060301.html">6.3 Sampling Distribution of Sample Variances and Estimation of the Population Variance</a></li>
+                <li><a href="../chapter06/060301.html">&nbsp;&nbsp;6.3.1 Sampling Distribution of Sample Variances</a></li>
+                <li><a href="../chapter06/060302.html">&nbsp;&nbsp;6.3.2 Estimation of the Population Variance</a></li>
+                <li><a href="../chapter06/060401.html">6.4 Sampling Distribution of Sample Proportions and Estimation of the Population Proportion</a></li>
+                <li><a href="../chapter06/060401.html">&nbsp;&nbsp;6.4.1 Sampling Distribution of Sample Proportions</a></li>
+                <li><a href="../chapter06/060402.html">&nbsp;&nbsp;6.4.2 Estimation of the Population Proportion</a></li>
+                <li><a href="../chapter06/0605.html">6.5 Determination of the Sample Size  </a></li>
+                <li><a href="../chapter06/0605.html">&nbsp;&nbsp;6.5.1 Determination of the Sample Size to Estimate the Population Mean </a></li>
+                <li><a href="../chapter06/0605.html">&nbsp;&nbsp;6.5.2 Determination of the Sample Size to Estimate the Population Proportion</a></li> 
+                <li><a href="../chapter06/0606.html">6.6 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter07/index.html">Chapter 7</a>
+	      <ul>
+                <li><a href="../chapter07/0701.html">7.1 Testing Hypothesis for a Population Mean</a></li>
+                <li><a href="../chapter07/0702.html">7.2 Testing Hypothesis for a Population Variance</a></li>
+                <li><a href="../chapter07/0703.html">7.3 Testing Hypothesis for a Population Proportion</a></li>
+                <li><a href="../chapter07/0704.html">7.4 Testing Hypothesis with α and β simultaneously</a></li>
+                <li><a href="../chapter07/0704.html">&nbsp;&nbsp;7.4.1 Type 2 Error and Power of a Test</a></li>
+                <li><a href="../chapter07/0704.html">&nbsp;&nbsp;7.4.2 Testing Hypothesis with α and β</a></li>
+                <li><a href="../chapter07/0705.html">7.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter08/index.html">Chapter 8</a>
+	      <ul>
+                <li><a href="../chapter08/080101.html">8.1 Testing Hypothesis for Two Population Means</a></li>
+                <li><a href="../chapter08/080101.html">&nbsp;&nbsp;8.1.1 Two Independent Samples</a></li>
+                <li><a href="../chapter08/080102.html">&nbsp;&nbsp;8.1.2 Paired Sample</a></li>
+                <li><a href="../chapter08/0802.html">8.2 Testing Hypothesis for Two Population Variances</a></li>
+                <li><a href="../chapter08/0803.html">8.3 Testing Hypothesis for Two Population Proportions</a></li>
+                <li><a href="../chapter08/0804.html">8.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter09/index.html">Chapter 9</a>
+	      <ul>
+                <li><a href="../chapter09/0901.html">9.1 Analysis of Variance for Experiments of Single Factor</a></li>
+                <li><a href="../chapter09/090101.html">&nbsp;&nbsp;9.1.1 Multiple Comparison</a></li>
+                <li><a href="../chapter09/090101.html">&nbsp;&nbsp;9.1.2 Residual Analysis</a></li>
+                <li><a href="../chapter09/0902.html">9.2 Design of Experiments for Sampling</a></li>
+                <li><a href="../chapter09/0902.html">&nbsp;&nbsp;9.2.1 Completely Randomized Design</a></li>
+                <li><a href="../chapter09/0902.html">&nbsp;&nbsp;9.2.2 Randomized Block Design</a></li>
+                <li><a href="../chapter09/0903.html">9.3 Analysis of Variance for Experiments of Two Factors</a></li>
+                <li><a href="../chapter09/0904.html">9.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter10/index.html">Chapter 10</a>
+	      <ul>
+                <li><a href="../chapter10/1001.html">10.1 Nonparametric Test for the Location Parameter of Single Population  </a></li>
+                <li><a href="../chapter10/1001.html">&nbsp;&nbsp;10.1.1 Sign Test</a></li>
+                <li><a href="../chapter10/100102.html">&nbsp;&nbsp;10.1.2 Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1002.html">10.2 Nonparametric Test for Location Parameters of Two Populations</a></li>
+                <li><a href="../chapter10/1002.html">&nbsp;&nbsp;10.2.1 Independent Samples: Wilcoxon Rank Sum Test</a></li>
+                <li><a href="../chapter10/100202.html">&nbsp;&nbsp;10.2.2 Paired Samples: Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1003.html">10.3 Nonparametric Test for Location Parameters of Several Populations</a></li>
+                <li><a href="../chapter10/1003.html">&nbsp;&nbsp;10.3.1 Completely Randomized Design: Kruskal-Wallis Test</a></li>
+                <li><a href="../chapter10/100302.html">&nbsp;&nbsp;10.3.2 Randomized Block Design: Friedman Test</a></li>
+                <li><a href="../chapter10/1004.html">10.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter11/index.html">Chapter 11</a>
+	      <ul>
+                <li><a href="../chapter11/1101.html">11.1 Goodness of Fit Test</a></li>
+                <li><a href="../chapter11/1101.html">&nbsp;&nbsp;11.1.1 Goodness of Fit Test for Categorical Distribution</a></li>
+                <li><a href="../chapter11/110102.html">&nbsp;&nbsp;11.1.2 Goodness of Fit Test for Continuous Distribution</a></li>
+                <li><a href="../chapter11/1102.html">11.2 Testing Hypothesis for Contingency Table</a></li>
+                <li><a href="../chapter11/1102.html">&nbsp;&nbsp;11.2.1 Independence Test</a></li>
+                <li><a href="../chapter11/110202.html">&nbsp;&nbsp;11.2.2 Homogeneity Test</a></li>
+                <li><a href="../chapter11/1103.html">11.3 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter12/index.html">Chapter 12</a>
+	      <ul>
+                <li><a href="../chapter12/1201.html">12.1 Correlation Analysis</a></li>
+                <li><a href="../chapter12/1202.html">12.2 Simple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1203.html">12.3 Multiple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1204.html">12.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter13/index.html">Chapter 13</a>
+	      <ul>
+                <li><a href="../chapter13/1301.html">13.1 What is Time Series Analysis?</a></li>
+                <li><a href="../chapter13/1302.html">13.2 Smoothing of Time Series</a></li>
+                <li><a href="../chapter13/1303.html">13.3 Transformation of Time Series</a></li>
+                <li><a href="../chapter13/1304.html">13.4 Regression Model and Forecasting</a></li>
+                <li><a href="../chapter13/1305.html">13.5 Exponential Smoothing Model and Forecasting</a></li>
+                <li><a href="../chapter13/1306.html">13.6 Seasonal Model and Forecasting</a></li>
+                <li><a href="../chapter13/1307.html">13.7 Exercise</a></li>
+	      </ul>
+	    </li>
+
+	  </ul>
+	</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+  <!--***********************************************************************-->
+  <h2>Chapter 13. Time Series Analysis</h2> 
+  <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(133)">&#10094; &nbsp;&nbsp;<b>Previous</b></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(135)"><b>Next</b>&nbsp;&nbsp; &#10095;</button>
+  <p>
+  <h3>13.4 Regression Model and Forecasting</h3>
+  <p>
+<!---
+  <h6>
+      <a href="1202.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/wn0Dl3dLgko" target="_blank"><u>[video]</u></a>
+  </h6>
+--->
+  <p>
+
+    <div class="mainTable">
+       If there is a trend factor that shows a continuous increase or decrease in the time series,
+       the regression model learned in Chapter 12 can be applied. For example, if the time series 
+       shows a linear trend, the linear regression model is applied with the time series as 
+       the observation values of the random variable \(Y_1 , Y_2 , ... , Y_n\) and time 
+       as 1, 2, ... , \(n\) as follows.
+     $$
+        Y_t \,=\, \beta_0 \,+\, \beta_1 t \,+\, \epsilon_t
+     $$
+       Here \(\epsilon_t \) is ther error term with mean 0 and variance \(\sigma^2\).
+       A characteristic of the linear model is that it increases by a slope \(\beta_1\) 
+       of a certain magnitude over time.
+     <p>
+       When the estimated regression coefficients are \(\beta_0 , \beta_1\), the validity test 
+       of the linear regression model is the same as the method described in Chapter 12. 
+       The standard error of estimate and coefficient of determination are often used. 
+       In a linear trend model, \(\sigma\)  represents the degree to which observations
+       can be scattered around the estimated regression line at each time point. As an estimate 
+       of this \(\sigma\), the following standard error is used.
+     $$
+       s \,=\, \sqrt { \frac{1} {n-2} \sum_{t=1}^n ( Y_t -  {\hat Y}_t )^2 }  
+     $$
+       A smaller standard error value  indicates that the observed values are close to 
+       the estimated regression line, which means that the regression line model is well fitted.
+     <p>
+       The coefficient of determination is the ratio of the regression sum of squares, RSS, which is explained out of the total sum of squares, TSS.
+     $$
+         R^2 \,=\, \frac{RSS}{TSS}
+     $$
+       The value of the coefficient of determination is always between 0 and 1, and the closer the value is to 1, the more dense the samples are around the regression line, which means that the estimated regression equation explains the observations well. 
+     <p>
+       As explained in Chapter 12, since it is difficult to determine the absolute criteria for adequacy of the standard error or the coefficient of determination, a hypothesis test is used to determine whether the trend parameter  is zero or not.
+     <p>
+        \( \qquad \text{Hypothesis: }  \qquad \,\, H_0 : \beta_1 = 0, H_1: \beta_1 \ne 0\) <br>
+        \( \qquad \text{Test statistic:} \qquad t_{obs} = \frac {{\hat \beta}_1 } { SE ({{\hat \beta}_1 }) } \) , 
+             Here, \( SE( \hat{ \beta_1} ) \,=\, \frac{ s} { \sqrt { \sum_{i=1}^ n (i - \overline t  )^2 } }     \) <br>
+        \( \qquad \text{Rejection region:} \quad If \,\; |t_{obs}| \,>\, t_{n-2,\alpha/2}, \,\,reject\,\, H_0     \) with significance level \(\alpha\) <br>
+     <p>
+       If the null hypothesis \(H_0\) is not rejected, the model cannot be considered valid.
+     <p>
+       The assumption for error \(\epsilon_t\) is tested using the residual, which is the difference between the observed time series value and the predicted value which is called residual analysis. Residual analysis usually examines whether assumptions about error terms such as independence and equal variance between errors are satisfied by drawing a scatter plot of the residuals over time or a scatter plot of the residuals and predicted values. In the scatterplots, if the residuals do not show a specific trend around 0 and appear randomly, it means that each assumption is valid. To examine the normality assumption of the error term, draw a normal probability plot of the residuals, and if the points on the figure show the shape of a straight line, it is judged that the assumption of the normal distribution is appropriate.
+     <p>
+       If the linear regression model is suitable, the predicted value 
+       \({\hat Y}_{t_0} \,=\, {\hat \beta}_0  \,+\, {\hat \beta}_1 \cdot t_0 \) at the time point \(t_0\) 
+       can be interpreted as a point estimate for the mean of the random variable \(Y_{t_0}\) at the time point, 
+       and the confidence interval for the mean of \({\hat Y}_{t_0}\) at this time \(t_0\) is as follows:
+     $$
+        {\hat Y}_{t_0}  \,±\, t_{n-2,\alpha/2} \cdot  SE ({\hat Y}_{t_0}  ) \;\;  where \;\, SE ( {\hat Y}_{t_0} )  \,=\, s \cdot \sqrt {  \frac{1}{n} + \frac {(t_0 - \overline t )^2} { \sum_{i=1}^n (i - \overline t )^2 } }   
+     $$
+     <p>
+       If the trend is in the form of a quadratic, cubic or higher polynomial, the following multiple linear regression model can be assumed.
+     <p>
+       \( \qquad \text{Quadratic}  \qquad   Y_t = \beta_0  + \beta_1 \cdot t + \beta_2 \cdot t^2  + \epsilon _t \) <br>
+       \( \qquad \text{Cubic}  \qquad \qquad   Y_t = \beta_0  + \beta_1 \cdot t + \beta_2 \cdot t^2 + \beta_3 \cdot  t^3 + \epsilon _t  \)  
+     <p>		
+       The prediction method is similar to the above simple linear regression model.
+     <p>
+       If the trend is not a polynomial model as above, the following model can also be considered.
+     <p>
+       \( \qquad \text{Square root} \qquad   Y_t = \beta_0  + \beta_1 \cdot \sqrt{t} + \epsilon _t \) <br>
+       \( \qquad \text{Log}  \qquad \qquad \quad \; Y_t = \beta_0  + \beta_1 \cdot log(t) + \epsilon _t  \)  
+     <p>		
+       These models are the same as the linear regression model if \(\sqrt{t}\) or \(lot(t)\) 
+       are replaced with a variable X in the simple linear regression and the prediction method is similar.
+     <p>
+       In addition, the function types to which the linear regression model can be applied by transformation are as follows.
+     <p>
+       \( \qquad \text{Power} \qquad \qquad  Y _{t} = \beta_{0} \cdot t ^{\beta _{1}} +  \epsilon  _{t}  \) <br>
+       \( \qquad \text{Exponential}  \quad  \;\; Y_t = \beta_0  \cdot e^ {( \beta_1  t)}  + \epsilon _t  \)  
+     <p>		
+       In the case of these two models, the parameters should be estimated using the nonlinear regression model, 
+       but if the error term is ignored, the linear model can be estimated approximately as follows:
+     <p>
+       \( \qquad \text{Power} \qquad \qquad  log(Y_{t}) = log(\beta_{0}) +{\beta _{1}} \cdot log(t)  \) <br>
+       \( \qquad \text{Exponential}  \quad  \;\; log(Y_t) = log(\beta_0) + \beta_1 \cdot t  \)  
+     <p>		
+       Korea's GDP from 1986 to 2021 is shown in [Table 13.4.1]. &lt;Figure 13.4.1&gt; shows the application of 
+       three regression models to this data. Among these models, the quadratic model has the largest value of  
+       \(r^2\) = 0.9591, so it can be said that the time series is the most suitable model. However, additional validation of the model is required.
+
+      <p>
+      <div class="textLeft">[Table 13.4.1] GDP of Korea</div>
+      <table style="width:300px"> 
+        <tr> 
+          <th class="thGrey" style="width:150px">Year</th>
+          <th class="thGrey" style="width:150px">GDP (billion $)</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             1991<br>
+             1992<br>
+             1993<br>
+             1994<br>
+             1995<br>
+             1996<br>
+             1997<br>
+             1998<br>
+             1999<br>
+             2000<br>
+             2001<br>
+             2002<br>
+             2003<br>
+             2004<br>
+             2005<br>
+             2006<br>
+             2007<br>
+             2008<br>
+             2009<br>
+             2010<br>
+             2011<br>
+             2012<br>
+             2013<br>
+             2014<br>
+             2015<br>
+             2016<br>
+             2017<br>
+             2018<br>
+             2019<br>
+             2020<br>
+           </td> 
+           <td class="tdRight">
+              330.65<br>
+              355.53<br>
+              392.67<br>
+              463.62<br>
+              566.58<br>
+              610.17<br>
+              569.76<br>
+              383.33<br>
+              497.51<br>
+              576.18<br>
+              547.66<br>
+              627.25<br>
+              702.72<br>
+              793.18<br>
+              934.9<br>
+             1053.22<br>
+             1172.61<br>
+             1047.34<br>
+             943.67<br>
+             1143.98<br>
+             1253.16<br>
+             1278.43<br>
+             1370.8<br>
+             1484.32<br>
+             1465.77<br>
+             1499.36<br>
+             1623.07<br>
+             1725.37<br>
+             1651.42<br>
+             1638.26<br>
+          </td> 
+        </tr>
+      </table>
+
+      <p>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/eStatU350_TimeseriesRegression.svg" onclick="window.open(addrStr[136])">
+          </td>
+          <td>
+            <img class="imgFig600400" src="../Figure/Fig130401.png">
+            <div class="figText">&lt;Figure 13.4.1&gt; GDP of Korea and Three Regression Model</div>
+          </td>
+        </tr>
+      </table>
+      <p>
+
+
+
+
+    </div>
+    <p>
+
+  <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(133)">&#10094; &nbsp;&nbsp;<b>Previous</b></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(135)"><b>Next</b>&nbsp;&nbsp; &#10095;</button>
+  <p>
+
+</div>
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
+        
+        /* ajust the height when click the toc
+           the code is from https://github.com/twbs/bootstrap/issues/1768
+        */
+        var shiftWindow = function() { scrollBy(0, -50) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+        
+        /*add Bootstrap styles to tables*/
+        var tables = document.getElementsByTagName("table");
+        for(var i = 0; i < tables.length; ++i){
+            tables[i].className += "table table-bordered table-hover";
+        }
+    </script>
+
+</body>
+</html>
+

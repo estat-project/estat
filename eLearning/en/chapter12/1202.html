@@ -73,6 +73,7 @@
         <li><a href="../chapter10/index.html">Chapter 10</a></li>
         <li><a href="../chapter11/index.html">Chapter 11</a></li>
         <li><a href="../chapter12/index.html">Chapter 12</a></li>
+        <li><a href="../chapter13/index.html">Chapter 13</a></li>
       </ul>
     </li>
     <li class="dropdown">
@@ -242,6 +243,18 @@
                 <li><a href="../chapter12/1204.html">12.4 Exercise</a></li>
 	      </ul>
 	    </li>
+	    <li><a href="../chapter13/index.html">Chapter 13</a>
+	      <ul>
+                <li><a href="../chapter13/1301.html">13.1 What is Time Series Analysis?</a></li>
+                <li><a href="../chapter13/1302.html">13.2 Smoothing of Time Series</a></li>
+                <li><a href="../chapter13/1303.html">13.3 Transformation of Time Series</a></li>
+                <li><a href="../chapter13/1304.html">13.4 Regression Model and Forecasting</a></li>
+                <li><a href="../chapter13/1305.html">13.5 Exponential Smoothing Model and Forecasting</a></li>
+                <li><a href="../chapter13/1306.html">13.6 Seasonal Model and Forecasting</a></li>
+                <li><a href="../chapter13/1307.html">13.7 Exercise</a></li>
+	      </ul>
+	    </li>
+
 	  </ul>
 	</li>
       </ul>
@@ -257,7 +270,7 @@
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <button type="button" style="width:160px" onclick="moveSection(121)">&#10094; &nbsp;&nbsp;<b>Previous</b></button>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(128)"><b>Next</b>&nbsp;&nbsp; &#10095;</button>
+      <button type="button" style="width:160px" onclick="moveSection(123)"><b>Next</b>&nbsp;&nbsp; &#10095;</button>
   <p>
   <h3>12.2 Simple Linear Regression Analysis </h3>
   <p>
@@ -404,12 +417,11 @@
     <div class="mainTableYellow">
       <b>Least Squares Estimator of \(\alpha\) and \(\beta\)</b>
       <p>
-      $$
-        \begin{align}
-          \quad b &= \frac {\sum_{i=1}^{n} (X_i - \overline X ) (Y_i - \overline Y )} { \sum_{i=1}^{n} (X_i - \overline X )^2 } \\
-          \quad a &= \overline Y - b \overline X
-        \end{align}
-      $$            
+      \( \small
+          \quad  b = \frac {\sum_{i=1}^{n} (X_i - \overline X ) (Y_i - \overline Y )} { \sum_{i=1}^{n} (X_i - \overline X )^2 } \)
+      <p>
+      \(   \small \quad  a =    \overline Y - b \overline X \)
+         
     </div>
     <p>
 
@@ -436,7 +448,7 @@
       The intercept and slope using this are as follows:
       <p>
         \( 
-          \quad b = \frac {\sum_{i=1}^{n} (X_i - \overline X ) (Y_i - \overline Y )} { \sum_{i=1}^{n} (X_i - \overline X )^2 } \\
+          \quad b = \small \frac {\sum_{i=1}^{n} (X_i - \overline X ) (Y_i - \overline Y )} { \sum_{i=1}^{n} (X_i - \overline X )^2 } \\
                   = \frac {151.2}{60.4} = 2.503
         \)
         \(
@@ -519,19 +531,19 @@
     <div class="mainTable">
       Description of the above three sums of squares is as follows:
       <p>
-      <b>Total Sum of Squares</b>   : \( SST = \sum_{i=1}^{n} ( Y_i - {\overline Y} )^2\) <br>
+      <b>Total Sum of Squares</b>   : \( \small SST = \sum_{i=1}^{n} ( Y_i - {\overline Y} )^2\) <br>
       The total sum of squares indicating the total variation in observed values of \(Y\) is called the 
       total sum of squares (\(SST\)). This \(SST\) has the degree of freedom, \(n-1\), and if \(SST\) 
       is divided by the the degree of freedom, it becomes the sample variance of \(Y_i\). 
       <p>
-      <b>Error Sum of Squares</b>    : \( SSE = \sum_{i=1}^{n} ( Y_i - {\hat Y}_i )^2\)<br>
+      <b>Error Sum of Squares</b>    : \( \small SSE = \sum_{i=1}^{n} ( Y_i - {\hat Y}_i )^2\)<br>
       The error sum of squares (\(SSE\)) of the residuals represents the unexplained variation of the 
       total variation of the \(Y\). Since the calculation of this sum of squares requires the estimation of 
       two parameters \(\alpha\) and \(\beta\), \(SSE\) has the degree of freedom \(n-2\). 
       This is the reason why, in the calculation of the sample variance of residuals \(s^2\), it was divided 
       by \(n-2\).
       <p>
-      <b>Regression Sum of Squares</b> : \({SSR} = \sum_{i=1}^{n} ( {\hat Y}_i - {\overline Y} )^2 \)<br>	
+      <b>Regression Sum of Squares</b> : \( \small SSR = \sum_{i=1}^{n} ( {\hat Y}_i - {\overline Y} )^2 \)<br>	
       The regression sum of squares (\(SSR\)) indicates the variation explained by the regression line 
       among the total variation of \(Y\). This sum of squares has the degree of freedom of 1.
       <p>
@@ -820,7 +832,7 @@
     <div class="mainTableYellow">
       <b>Inference for the parameter \(\; \alpha\)</b>
       <p>
-         Point estimate: \(\quad a = \overline Y - b  \overline X , \quad a \sim N( \alpha, ( \frac{1}{n} + \frac {{\overline X }^2} { \sum_{i=1}^{n} (X_i - \overline X )^2 } ) \cdot \sigma^2  )  \)  <p>
+         Point estimate: \(\quad \small a = \overline Y - b  \overline X , \quad a \sim N( \alpha, ( \frac{1}{n} + \frac {{\overline X }^2} { \sum_{i=1}^{n} (X_i - \overline X )^2 } ) \cdot \sigma^2  )  \)  <p>
          Standard error of estimate \(a\):   \(\quad SE(a) = s \cdot \sqrt {\frac{1}{n} + \frac {{\overline X }^2} { \sum_{i=1}^{n} (X_i - \overline X )^2 } ) } \) <p>
          Confidence interval of \(\; \alpha\): \(\quad a \pm t_{n-2; &alpha;/2} \cdot SE(a)\) <p> 
          Testing hypothesis:  <br>
@@ -1206,7 +1218,7 @@
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <button type="button" style="width:160px" onclick="moveSection(121)">&#10094; &nbsp;&nbsp;<b>Previous</b></button>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(128)"><b>Next</b>&nbsp;&nbsp; &#10095;</button>
+      <button type="button" style="width:160px" onclick="moveSection(123)"><b>Next</b>&nbsp;&nbsp; &#10095;</button>
   <p>
 
 </div>

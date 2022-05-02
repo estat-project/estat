@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 13</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../../css/dashboard.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <style type="text/css">code{white-space: pre;}</style>
+       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
+       <script src="../../js/prism.js"></script>
+       <link rel="stylesheet" href="../../css/prism.css">
+       <script src="../../js/jquery.min.js"></script>    
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script>
+	 $(document).ready(function() {
+  	     toc = $("#sidebar > ul > li > ul");
+  	     sections = toc.children();   // <li>
+  	     for(var i=0; i<sections.length; i++) {
+  		 if ($(sections[i]).children().length == 1) { continue; }
+  		 var first = sections[i].firstElementChild;  // <a>
+  		 var last = sections[i].lastElementChild;
+  		 var li = $("<li>");
+  		 var details = $("<details>");
+  		 var summary = $("<summary>");
+  		 $(summary).append(first)
+  		 $(details).append(summary);
+  		 $(details).append(last);
+  		 $(li).append(details);	
+  		 $(sections[i]).replaceWith(li);
+  	     }
+	 });
+	 </script>
+       <link rel="stylesheet" href="../../css/pandoc.css">
+       <script src="../../js/eBook.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <ul class="nav navbar-nav">
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Chapter<span class="caret"></span></a>
+      <ul class="dropdown-menu"> 
+        <li><a href="../index.html">HOME</a></li>
+        <li><a href="../chapter01/index.html">Chapter 1</a></li>
+        <li><a href="../chapter02/index.html">Chapter 2</a></li>
+        <li><a href="../chapter03/index.html">Chapter 3</a></li>
+        <li><a href="../chapter04/index.html">Chapter 4</a></li>
+        <li><a href="../chapter05/index.html">Chapter 5</a></li>
+        <li><a href="../chapter06/index.html">Chapter 6</a></li>
+        <li><a href="../chapter07/index.html">Chapter 7</a></li>
+        <li><a href="../chapter08/index.html">Chapter 8</a></li>
+        <li><a href="../chapter09/index.html">Chapter 9</a></li>
+        <li><a href="../chapter10/index.html">Chapter 10</a></li>
+        <li><a href="../chapter11/index.html">Chapter 11</a></li>
+        <li><a href="../chapter12/index.html">Chapter 12</a></li>
+        <li><a href="../chapter13/index.html">Chapter 13</a></li>
+      </ul>
+    </li>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Section<span class="caret"></span></a>
+	  <ul class="dropdown-menu"> 
+                <li><a href="../chapter13/1301.html">13.1 What is Time Series Analysis?</a></li>
+                <li><a href="../chapter13/1302.html">13.2 Smoothing of Time Series</a></li>
+                <li><a href="../chapter13/1303.html">13.3 Transformation of Time Series</a></li>
+                <li><a href="../chapter13/1304.html">13.4 Regression Model and Forecasting</a></li>
+                <li><a href="../chapter13/1305.html">13.5 Exponential Smoothing Model and Forecasting</a></li>
+                <li><a href="../chapter13/1306.html">13.6 13.6 Seasonal Model and Forecasting</a></li>
+                <li><a href="../chapter13/1307.html">13.7 Exercise</a></li>
+	  </ul>
+    </li>
+    <li><a class="navbar-brand" href="http://estat.me" target="_blank">eStat</a></li>
+    <li><a class="navbar-brand" href="http://www.estat.me/estat/eStatU/index.html" target="_blank">eStatU</a></li>
+    <li><a class="navbar-brand" href="/estat/eLearning/Distribution/index.html" target="_blank">Distribution</a></li>
+  </ul>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
+      <ul>
+	<li><a href=""></a>
+	  <ul>
+            <li><a href="../index.html">HOME</a></li>
+	    <li><a href="../chapter01/index.html">Chapter 1</a>
+	      <ul>
+                <li><a href="../chapter01/0101.html">1.1 Statistics and Data Science</a></li>
+                <li><a href="../chapter01/0102.html">1.2 Population and Sample</a></li>
+                <li><a href="../chapter01/0103.html">1.3 Variables and Data</a></li>
+                <li><a href="../chapter01/0104.html">1.4 Softwares for Statistical Analysis</a></li>
+                <li><a href="../chapter01/0105.html">1.5 Exercies</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter02/index.html">Chapter 2</a>
+	      <ul>
+                <li><a href="../chapter02/0201.html">2.1 Visualization of Qualitative Data</a></li>
+                <li><a href="../chapter02/0202.html">2.2 Visualization of Summary Data</a></li>
+                <li><a href="../chapter02/0202.html">&nbsp;&nbsp;2.2.1 Summary Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/0202.html">&nbsp;&nbsp;2.2.2 Summary Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0203.html">2.3 Visualization of Raw Data</a></li>
+                <li><a href="../chapter02/0203.html">&nbsp;&nbsp;2.3.1 Raw Data of Categorical Variable</a></li>
+                <li><a href="../chapter02/0203.html">&nbsp;&nbsp;2.3.2 Raw Data of Categorical Variable with Group</a></li>
+                <li><a href="../chapter02/0204.html">2.4 Word Cloud</a></li>
+                <li><a href="../chapter02/0205.html">2.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter03/index.html">Chapter 3</a>
+	      <ul>
+                <li><a href="../chapter03/0301.html">3.1 Visualization of Quantitative Data</a></li> 
+                <li><a href="../chapter03/0302.html">3.2 Visualization of Single Quantitative Variable</a></li>
+                <li><a href="../chapter03/0302.html">&nbsp;&nbsp;3.2.1 Visualization of Quantitative Data without Group</a></li>
+                <li><a href="../chapter03/0302.html">&nbsp;&nbsp;3.2.2 Visualization of Quantitative Data with Group</a></li>
+                <li><a href="../chapter03/0303.html">3.3 Visualization of Two Quantitative Variables</a></li>
+                <li><a href="../chapter03/0304.html">3.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter04/index.html">Chapter 4</a>
+	      <ul>
+                <li><a href="../chapter04/0401.html">4.1 Frequency Table for Single Variable</a></li>
+                <li><a href="../chapter04/0401.html">&nbsp;&nbsp;4.1.1 Frequency Table for Categorical Variable</a></li>
+                <li><a href="../chapter04/0401.html">&nbsp;&nbsp;4.1.2 Frequency Table for Quantitative Variable</a></li>
+                <li><a href="../chapter04/0402.html">4.2 Contingency Table for Two Variables</a></li>
+                <li><a href="../chapter04/0402.html">&nbsp;&nbsp;4.2.1 Contingency Table for Two Categorical Variables</a></li>
+                <li><a href="../chapter04/0402.html">&nbsp;&nbsp;4.2.2 Contingency Table for Two Quantitative Variables</a></li>
+                <li><a href="../chapter04/040301.html">4.3 Summary Measures for Quantitative Variable</a></li>
+                <li><a href="../chapter04/040301.html">&nbsp;&nbsp;4.3.1 Measures of Central Tendency</a></li>
+                <li><a href="../chapter04/040302.html">&nbsp;&nbsp;4.3.2 Measures of Dispersion</a></li>
+                <li><a href="../chapter04/0404.html">4.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter05/index.html">Chapter 5</a>
+	      <ul>
+                <li><a href="../chapter05/0501.html">5.1 Definition of Probability</a></li>
+                <li><a href="../chapter05/0502.html">5.2 Calculation of Probability</a></li>
+                <li><a href="../chapter05/0503.html">5.3 Discrete Random Variable</a></li>
+		<li><a href="../chapter05/050301.html">&nbsp;&nbsp;5.3.1 Binomial Distribution</a></li>
+		<li><a href="../chapter05/050302.html">&nbsp;&nbsp;5.3.2 Poissson Distribution</a></li>
+		<li><a href="../chapter05/050303.html">&nbsp;&nbsp;5.3.3 Geometric Distribution</a></li>
+		<li><a href="../chapter05/050304.html">&nbsp;&nbsp;5.3.4 Hypergeometric Distribution</a></li>
+                <li><a href="../chapter05/0504.html">5.4 Continuous Random Variable</a></li>
+		<li><a href="../chapter05/050401.html">&nbsp;&nbsp;5.4.1 Normal Distribution</a></li>
+		<li><a href="../chapter05/050402.html">&nbsp;&nbsp;5.4.2 Exponential Distribution</a></li>
+                <li><a href="../chapter05/0505.html">5.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter06/index.html">Chapter 6</a>
+	      <ul>
+                <li><a href="../chapter06/0601.html">6.1 Simple Random Sampling</a></li>
+                <li><a href="../chapter06/060201.html">6.2 Sampling Distribution of Sample Means and Estimation of the Population Mean</a></li>
+                <li><a href="../chapter06/060201.html">&nbsp;&nbsp;6.2.1 Sampling Distribution of Sample Means</a></li>
+                <li><a href="../chapter06/060202.html">&nbsp;&nbsp;6.2.2 Estimation of the Population Mean</a></li>
+                <li><a href="../chapter06/060301.html">6.3 Sampling Distribution of Sample Variances and Estimation of the Population Variance</a></li>
+                <li><a href="../chapter06/060301.html">&nbsp;&nbsp;6.3.1 Sampling Distribution of Sample Variances</a></li>
+                <li><a href="../chapter06/060302.html">&nbsp;&nbsp;6.3.2 Estimation of the Population Variance</a></li>
+                <li><a href="../chapter06/060401.html">6.4 Sampling Distribution of Sample Proportions and Estimation of the Population Proportion</a></li>
+                <li><a href="../chapter06/060401.html">&nbsp;&nbsp;6.4.1 Sampling Distribution of Sample Proportions</a></li>
+                <li><a href="../chapter06/060402.html">&nbsp;&nbsp;6.4.2 Estimation of the Population Proportion</a></li>
+                <li><a href="../chapter06/0605.html">6.5 Determination of the Sample Size  </a></li>
+                <li><a href="../chapter06/0605.html">&nbsp;&nbsp;6.5.1 Determination of the Sample Size to Estimate the Population Mean </a></li>
+                <li><a href="../chapter06/0605.html">&nbsp;&nbsp;6.5.2 Determination of the Sample Size to Estimate the Population Proportion</a></li> 
+                <li><a href="../chapter06/0606.html">6.6 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter07/index.html">Chapter 7</a>
+	      <ul>
+                <li><a href="../chapter07/0701.html">7.1 Testing Hypothesis for a Population Mean</a></li>
+                <li><a href="../chapter07/0702.html">7.2 Testing Hypothesis for a Population Variance</a></li>
+                <li><a href="../chapter07/0703.html">7.3 Testing Hypothesis for a Population Proportion</a></li>
+                <li><a href="../chapter07/0704.html">7.4 Testing Hypothesis with α and β simultaneously</a></li>
+                <li><a href="../chapter07/0704.html">&nbsp;&nbsp;7.4.1 Type 2 Error and Power of a Test</a></li>
+                <li><a href="../chapter07/0704.html">&nbsp;&nbsp;7.4.2 Testing Hypothesis with α and β</a></li>
+                <li><a href="../chapter07/0705.html">7.5 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter08/index.html">Chapter 8</a>
+	      <ul>
+                <li><a href="../chapter08/080101.html">8.1 Testing Hypothesis for Two Population Means</a></li>
+                <li><a href="../chapter08/080101.html">&nbsp;&nbsp;8.1.1 Two Independent Samples</a></li>
+                <li><a href="../chapter08/080102.html">&nbsp;&nbsp;8.1.2 Paired Sample</a></li>
+                <li><a href="../chapter08/0802.html">8.2 Testing Hypothesis for Two Population Variances</a></li>
+                <li><a href="../chapter08/0803.html">8.3 Testing Hypothesis for Two Population Proportions</a></li>
+                <li><a href="../chapter08/0804.html">8.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter09/index.html">Chapter 9</a>
+	      <ul>
+                <li><a href="../chapter09/0901.html">9.1 Analysis of Variance for Experiments of Single Factor</a></li>
+                <li><a href="../chapter09/090101.html">&nbsp;&nbsp;9.1.1 Multiple Comparison</a></li>
+                <li><a href="../chapter09/090101.html">&nbsp;&nbsp;9.1.2 Residual Analysis</a></li>
+                <li><a href="../chapter09/0902.html">9.2 Design of Experiments for Sampling</a></li>
+                <li><a href="../chapter09/0902.html">&nbsp;&nbsp;9.2.1 Completely Randomized Design</a></li>
+                <li><a href="../chapter09/0902.html">&nbsp;&nbsp;9.2.2 Randomized Block Design</a></li>
+                <li><a href="../chapter09/0903.html">9.3 Analysis of Variance for Experiments of Two Factors</a></li>
+                <li><a href="../chapter09/0904.html">9.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter10/index.html">Chapter 10</a>
+	      <ul>
+                <li><a href="../chapter10/1001.html">10.1 Nonparametric Test for the Location Parameter of Single Population  </a></li>
+                <li><a href="../chapter10/1001.html">&nbsp;&nbsp;10.1.1 Sign Test</a></li>
+                <li><a href="../chapter10/100102.html">&nbsp;&nbsp;10.1.2 Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1002.html">10.2 Nonparametric Test for Location Parameters of Two Populations</a></li>
+                <li><a href="../chapter10/1002.html">&nbsp;&nbsp;10.2.1 Independent Samples: Wilcoxon Rank Sum Test</a></li>
+                <li><a href="../chapter10/100202.html">&nbsp;&nbsp;10.2.2 Paired Samples: Wilcoxon Signed Rank Sum Test</a></li>
+                <li><a href="../chapter10/1003.html">10.3 Nonparametric Test for Location Parameters of Several Populations</a></li>
+                <li><a href="../chapter10/1003.html">&nbsp;&nbsp;10.3.1 Completely Randomized Design: Kruskal-Wallis Test</a></li>
+                <li><a href="../chapter10/100302.html">&nbsp;&nbsp;10.3.2 Randomized Block Design: Friedman Test</a></li>
+                <li><a href="../chapter10/1004.html">10.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter11/index.html">Chapter 11</a>
+	      <ul>
+                <li><a href="../chapter11/1101.html">11.1 Goodness of Fit Test</a></li>
+                <li><a href="../chapter11/1101.html">&nbsp;&nbsp;11.1.1 Goodness of Fit Test for Categorical Distribution</a></li>
+                <li><a href="../chapter11/110102.html">&nbsp;&nbsp;11.1.2 Goodness of Fit Test for Continuous Distribution</a></li>
+                <li><a href="../chapter11/1102.html">11.2 Testing Hypothesis for Contingency Table</a></li>
+                <li><a href="../chapter11/1102.html">&nbsp;&nbsp;11.2.1 Independence Test</a></li>
+                <li><a href="../chapter11/110202.html">&nbsp;&nbsp;11.2.2 Homogeneity Test</a></li>
+                <li><a href="../chapter11/1103.html">11.3 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter12/index.html">Chapter 12</a>
+	      <ul>
+                <li><a href="../chapter12/1201.html">12.1 Correlation Analysis</a></li>
+                <li><a href="../chapter12/1202.html">12.2 Simple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1203.html">12.3 Multiple Linear Regression Analysis</a></li>
+                <li><a href="../chapter12/1204.html">12.4 Exercise</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="../chapter13/index.html">Chapter 13</a>
+	      <ul>
+                <li><a href="../chapter13/1301.html">13.1 What is Time Series Analysis?</a></li>
+                <li><a href="../chapter13/1302.html">13.2 Smoothing of Time Series</a></li>
+                <li><a href="../chapter13/1303.html">13.3 Transformation of Time Series</a></li>
+                <li><a href="../chapter13/1304.html">13.4 Regression Model and Forecasting</a></li>
+                <li><a href="../chapter13/1305.html">13.5 Exponential Smoothing Model and Forecasting</a></li>
+                <li><a href="../chapter13/1306.html">13.6 Seasonal Model and Forecasting</a></li>
+                <li><a href="../chapter13/1307.html">13.7 Exercise</a></li>
+	      </ul>
+	    </li>
+
+	  </ul>
+	</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+  <!--***********************************************************************-->
+  <h2>Chapter 13. Time Series Analysis</h2> 
+  <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(135)">&#10094; &nbsp;&nbsp;<b>Previous</b></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(137)"><b>Next</b>&nbsp;&nbsp; &#10095;</button>
+  <p>
+  <h3>13.6 Seasonal Model and Forecasting</h3>
+  <p>
+<!---
+  <h6>
+      <a href="1202.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/wn0Dl3dLgko" target="_blank"><u>[video]</u></a>
+  </h6>
+--->
+  <p>
+
+    <div class="mainTable">
+      As a seasonal time series model, a multiplicative model using a central moving average and a Holt-Winters model are introduced.
+    </div>
+    <p>
+    <h4>13.6.1 Seasonal Multiplicative Model</h4>
+    <p>
+    <div class="mainTable">
+        Assume that a time series \(Y_t\) with a seasonal period \(L\) can be expressed as the product of 
+        a trend (\(T\)), a seasonal (\(S\)), and an irregular component (\(I\)) as follows:
+      $$
+        Y_t \;=\; T_t  \cdot S_t \cdot I_t     
+      $$
+        The <b>ratio to moving average method</b> removes the trend and irregular components to obtain the seasonal component as follows
+      <p>
+        (Step 1) For the time series, find the \(L\)-point centered moving average. This moving average 
+        represents the trend component \(T_t\) after removing seasonal component and irregular component 
+        from the time series.
+      <p>
+        (Step 2) Divide the time series \(Y_t\) by the trend component \(T_t\) obtained in Step 1. This value 
+        implies the seasonal component and the irregular component \({S_t \cdot I_t}\), and is called the 
+        seasonal ratio. 
+      <p>
+      $$
+        \frac{Y_t} {T_t  } \;=\; S_t \cdot I_t    
+      $$
+        (Step 3) Calculate the trimmed average for each seasonal ratio obtained in Step 2. This is 
+        the seasonal index, but the normalization should be performed so that the sum of the seasonal 
+        indices is \(L\).
+      <p>
+        After obtaining the seasonal index as shown, dividing the original time series data by the seasonal
+        index. The results is called a <b>deseasonal time series</b>.
+      <p>
+         \( \qquad \text{Deseasonal time series:} \qquad  D_t \;=\; \frac{Y_t} {S_t } = T \cdot I      \)
+      <p> 
+        This deseasonal time series \(D_t\) implies \(T \cdot I\). An appropriate time series model 
+        is applied to this deseasonal data and predict the future vaules. Then multiply the corresponding 
+        seasonal index to obtain the final predicted value of the desired season.
+      <p>
+        [Table 13.6.1] shows a company's quarterly sales. Since the seasonal period is 4, the 4-point centered moving average is as shown in column 4 of the table. By dividing the original time series by a 4-point centered moving average, the seasonal ratio in column 5 can be calculated. 
+      $$
+        \frac{Y_t} {T_t } \;=\; S_t \cdot I_t    
+      $$
+      <p>
+      <div class="textLeft">[Table 13.6.1] Quarterly Sales of a Company</div>
+      <p>
+     <table style="width:700px"> 
+        <tr> 
+          <th class="thGrey" style="width:50px"></th>
+          <th class="thGrey" style="width:150px">①<br>Year  Quarter</th>
+          <th class="thGrey" style="width:100px">②<br>Sales<br></th>
+          <th class="thGrey" style="width:100px">③<br>4-point MA</th>
+          <th class="thGrey" style="width:100px">④<br>Centered 4-point MA</th>
+          <th class="thGrey" style="width:100px">⑤<br>Seasonal Ratio</th>
+          <th class="thGrey" style="width:100px">⑥<br>Deseasonal Data \(D_t\)</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             1<br>
+             2<br>
+             3<br>
+             4<br>
+             5<br>
+             6<br>
+             7<br>
+             8<br>
+             9<br>
+             10<br>
+             11<br>
+             12<br>
+             130<br>
+             14<br>
+             15<br>
+             16<br>
+           </td> 
+           <td class="tdCenter">
+             2018 Quarter 1<br>
+             2018-Quarter 2<br>
+             2018-Quarter 3<br>
+             2018-Quarter 4<br>
+             2019 Quarter 1<br>
+             2019-Quarter 2<br>
+             2019-Quarter 3<br>
+             2019-Quarter 4<br>
+             2020 Quarter 1<br>
+             2020 Quarter 2<br>
+             2020 Quarter 3<br>
+             2020 Quarter 4<br>
+             2021 Quarter 1<br>
+             2021 Quarter 2<br>
+             2021 Quarter 3<br>
+             2021 Quarter 4<br>
+           </td> 
+           <td class="tdCenter">
+             75<br>
+             60<br>
+             54<br>
+             59<br>
+             86<br>
+             65<br>
+             63<br>
+             80<br>
+             90<br>
+             72<br>
+             66<br>
+             85<br>
+             100<br>
+             78<br>
+             72<br>
+             93<br>
+           </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             62.000<br>
+             64.750<br>
+             66.000<br>
+             68.250<br>
+             73.500<br>
+             74.500<br>
+             76.250<br>
+             77.000<br>
+             78.250<br>
+             80.750<br>
+             82.250<br>
+             83.750<br>
+             85.750<br>
+             <br>
+           </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             63.375<br>
+             65.375<br>
+             67.125<br>
+             70.875<br>
+             74.000<br>
+             75.375<br>
+             76.625<br>
+             77.625<br>
+             79.500<br>
+             81.500<br>
+             83.000<br>
+             84.750<br>
+             <br>
+             <br>
+           </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             0.852<br>
+             0.902<br>
+             1.281<br>
+             0.917<br>
+             0.851<br>
+             1.061<br>
+             1.175<br>
+             0.928<br>
+             0.830<br>
+             1.043<br>
+             1.205<br>
+             0.920<br>
+             <br>
+             <br>
+           </td> 
+           <td class="tdCenter">
+             61.292<br>
+             64.915<br>
+             63.759<br>
+             58.700<br>
+             70.281<br>
+             70.324<br>
+             74.385<br>
+             79.593<br>
+             73.550<br>
+             77.898<br>
+             77.928<br>
+             84.567<br>
+             81.722<br>
+             84.389<br>
+             85.012<br>
+             92.527<br>
+           </td> 
+        </tr>
+      </table>
+      <p>
+        [Table 13.6.2] shows the seasonal ratio by year and quarter. If the maximum and minimum values are removed for each quarter and the average is obtained (trimmed  average), it is the seasonal index in column 6. Since the sum of these values is 4.0197, the seasonal index in column is normalized as in column 7. 
+      $$
+        {\hat S}_1 \;=\; 1.1991,\quad {\hat S}_2 \;=\; 0.9159,\quad {\hat S}_3 \;=\; 0.8472,\quad {\hat S}_4 \;=\; 1.0378
+      $$
+      <p>
+      <div class="textLeft">[Table 13.6.2] Seasonal Index</div>
+      <p>
+       <table style="width:720px"> 
+        <tr> 
+          <th class="thGrey" style="width:120px">①<br> &nbsp; &nbsp;&nbsp;&nbsp; Year<p>Quarter</th>
+          <th class="thGrey" style="width:100px">②<br>2018</th>
+          <th class="thGrey" style="width:100px">③<br>2019</th>
+          <th class="thGrey" style="width:100px">④<br>2020</th>
+          <th class="thGrey" style="width:100px">⑤<br>2021</th>
+          <th class="thGrey" style="width:100px">⑥<br>Trimmed Mean</th>
+          <th class="thGrey" style="width:100px">⑦<br>Seasonal Index<br>\(s_t\)</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             1st Quarter<br>
+             2nd Quarter<br>
+             3rd Quarter<br>
+             4th Quarter<br>
+          </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             0.852<br>
+             0.902<br>
+          </td> 
+           <td class="tdCenter">
+             1.281<br>
+             0.917<br>
+             0.851<br>
+             1.061<br>
+          </td> 
+           <td class="tdCenter">
+             1.175<br>
+             0.928<br>
+             0.830<br>
+             1.043<br>
+          </td> 
+           <td class="tdCenter">
+             1.205<br>
+             0.920<br>
+             <br>
+             <br>
+          </td> 
+           <td class="tdCenter">
+             1.2050<br>
+             0.9204<br>
+             0.8514<br>
+             1.0429<br>
+          </td> 
+           <td class="tdCenter">
+             1.1991<br>
+             0.9159<br>
+             0.8472<br>
+             1.0378<br>
+          </td> 
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>sum 4.0197</td>
+          <td></td>
+        </tr>
+      </table>
+      <p>
+         Column 6 of [Table 13.6.1] shows the non-seasonal data \(D_t\) obtained by dividing the original 
+         data by the seasonal index of each quarter. The linear regression line for this non-seasonal data is as follows (&lt;Figure 13.6.1&gt;).,
+      $$
+         D_{t} \;=\;  61.2000 \;+\; 1.6088 \cdot t  
+      $$
+         Therefore, the forecast for the next one year is as follows.
+      $$
+        \begin{align}
+          & \text{Time 17 :} \quad{\hat Y}_{17} \;=\; (61.2000 \;+\; 1.6088 \times 17) \times 1.1991 \;=\; 108.354 \\    
+          & \text{Time 18 :} \quad{\hat Y}_{18} \;=\; (61.2000 \;+\; 1.6088 \times 18) \times 0.9159 \;=\; 83.332  \\
+          & \text{Time 19 :} \quad{\hat Y}_{19} \;=\; (61.2000 \;+\; 1.6088 \times 19) \times 0.8472 \;=\; 77.721  \\
+          & \text{Time 20 :} \quad{\hat Y}_{20} \;=\; (61.2000 \;+\; 1.6088 \times 20) \times 1.0378 \;=\; 93.853  \\
+        \end{align}
+      $$
+        &lt;Figure 13.6.2&gt; is a graph of seasonal forecasts.
+      <p>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/eStatU370_TimeseriesSeasonal.svg" onclick="window.open(addrStr[138])">
+          </td>
+          <td>
+            <img class="imgFig600400" src="../Figure/Fig130601.png">
+            <div class="figText">&lt;Figure 13.6.1&gt; Forcasting Model of Deseasonal Sales of a Company</div>
+          </td>
+        </tr>
+      </table>
+      <p>
+
+      <p>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/eStatU370_TimeseriesSeasonal.svg" onclick="window.open(addrStr[138])">
+          </td>
+          <td>
+            <img class="imgFig600400" src="../Figure/Fig130602.png">
+            <div class="figText">&lt;Figure 13.6.2&gt;  Forcasting of Quarterly Sales of a Company</div>
+          </td>
+        </tr>
+      </table>
+     </div>
+
+  <p>
+  <h4>13.6.2 Holt-Winters Model</h4>
+  <p>
+
+    <div class="mainTable">
+      Assume that a time series with a seasonal period \(L\) is observed over \(m\) cycles  as follows:
+      <p>
+       <table style="width:720px"> 
+        <tr> 
+          <th class="thGrey" style="width:120px"></th>
+          <th class="thGrey" style="width:100px">Season 1</th>
+          <th class="thGrey" style="width:100px">Season 2</th>
+          <th class="thGrey" style="width:100px">\(\cdots\)</th>
+          <th class="thGrey" style="width:100px">Season \(L\)</th>
+         <tr> 
+           <td class="tdCenter">
+             Cycle 1<br>
+             Cycle 2<br>
+             \(\cdots\)<br>
+             Cycle \(m\)<br>
+           </td> 
+           <td class="tdCenter">
+             \(Y_{1}\)<br>
+             \(Y_{L+1}\)<br>
+             \(\cdots\)<br>
+             \(Y_{(m-1)L+1}\)<br>
+           </td> 
+           <td class="tdCenter">
+             \(Y_{2}\)<br>
+             \(Y_{L+2}\)<br>
+             \(\cdots\)<br>
+             \(Y_{(m-1)L+2}\)<br>
+          </td> 
+           <td class="tdCenter">
+             \(\cdots\)<br>
+             \(\cdots\)<br>
+             \(\cdots\)<br>
+             \(\cdots\)<br>
+          </td> 
+           <td class="tdCenter">
+             \(Y_{L}\)<br>
+             \(Y_{2L}\)<br>
+             \(\cdots\)<br>
+             \(Y_{mL}\)<br>
+          </td> 
+        </tr>
+      </table>
+      <p>
+         The <b>Holt-Winters model</b> is an extension of Holt's linear double exponential smoothing method 
+         studied in the previous section to a seasonal model. It consists of a level component \(l_t\), 
+         a trend component \(b_t\), and a seasonal component \(s_t\). There are additive model and
+         multiplicative model, but only the multiplication model is introduced here.
+      $$
+        \begin{align}
+          {\hat{Y}}_{t+h} &\;=\; (l_{t} \;+\; h \cdot b_{t} ) \cdot s_{t+h-m(k+1)} \\
+          l_{t} &\;=\; \alpha \frac{y_t}{s_{t-m} } + (1-\alpha)(l_{t-1} + b_{t-1} )   \\
+          b_{t} &\;=\; \beta (l_{t} - l_{t-1} )+(1- \beta ) b_{t-1}   \\
+          s_{t} &\;=\; \gamma \;\; \frac{y_{t}}{l_{t-1} + b_{t-1}} \;+\; (1- \gamma ) s_{t-m} 
+        \end{align}
+      $$
+        Here \(k\) is integer part of \((h-1)/m\). \(l_t\) is a time series level, which means the 
+        exponential smoothing of the current level (\( \frac{y_t}{s_{t-m} }  \) ) with seasonality 
+        removed and the value predicted one time ago \((l_{t-1} + b_{t-1} )  \). \(b_t\) is the slope 
+        which is the exponential smoothing of the slope of the current time point \( (l_t - l_{t-1} )\)
+        and the previous time point (\(b_{t-1}\)). \(s_t\)  is a seasonal index which is the exponential smoothing
+        of the current seasonal component (\(\frac {y_t}{l_{t-1} + b_{t-1} } \)) and the seasonal
+        component of the previous season \(s_{t-m}\).
+      <p>
+        [Table 13.6.3] calculates exponential smoothing values of level, slope, and seasonal indices 
+        using the Holt-Winters model with &alpha; = 0.3, &beta; = 0.3, &gamma; = 0.3 to the 
+        quarterly sales of a company. The last column is one time prediction at time \(t-1\), 
+        \({\hat Y}_{(t-1)+1}\). The initial values \(l_0\) and \(b_0\) are the intercept and 
+        slope of the linear regression model for all data, and the initial values of the seasonal index 
+        are calculated by the model \(Y \;=\; T \times S \times I  \).
+      <p>
+      <div class="textLeft">[Table 13.6.3] Holt-Winters Forecasting Model of Quarterly Sales </div>
+      <p>
+     <table style="width:700px"> 
+        <tr> 
+          <th class="thGrey" style="width:50px">time</th>
+          <th class="thGrey" style="width:150px">Year  Quarter</th>
+          <th class="thGrey" style="width:100px">Sales<br>\(Y_t\)</th>
+          <th class="thGrey" style="width:100px">Level<br>\(l_t\)</th>
+          <th class="thGrey" style="width:100px">Slope<br>\(b_t\)</th>
+          <th class="thGrey" style="width:100px">Seasonal<br>\(s_t\)</th>
+          <th class="thGrey" style="width:100px">One Time Forecast<br>\(\hat Y _{(t-1)+1}\)</th>
+        </tr>
+        <tr> 
+           <td class="tdCenter">
+             -3<br>
+             -2<br>
+             -1<br>
+             0<br>
+             1<br>
+             2<br>
+             3<br>
+             4<br>
+             5<br>
+             6<br>
+             7<br>
+             8<br>
+             9<br>
+             10<br>
+             11<br>
+             12<br>
+             13<br>
+             14<br>
+             15<br>
+             16
+           </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             <br>
+             <br>
+             2018 Quarter 1<br>
+             2018-Quarter 2<br>
+             2018-Quarter 3<br>
+             2018-Quarter 4<br>
+             2019 Quarter 1<br>
+             2019-Quarter 2<br>
+             2019-Quarter 3<br>
+             2019-Quarter 4<br>
+             2020 Quarter 1<br>
+             2020 Quarter 2<br>
+             2020 Quarter 3<br>
+             2020 Quarter 4<br>
+             2021 Quarter 1<br>
+             2021 Quarter 2<br>
+             2021 Quarter 3<br>
+             2021 Quarter 4
+           </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             <br>
+                61.2<br>
+             62.7312<br>
+             64.6753<br>
+             65.5795<br>
+             63.9809<br>
+             66.7081<br>
+             68.7061<br>
+             71.6766<br>
+             75.7320<br>
+             76.5997<br>
+             78.2283<br>
+             79.2477<br>
+             81.6382<br>
+             83.21580<br>
+             84.7427<br>
+             86.0501<br>
+             88.4618
+           </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             <br>
+               1.61<br>
+             1.5863<br>
+             1.6937<br>
+             1.4568<br>
+             0.5402<br>
+             1.1963<br>
+             1.4368<br>
+             1.8969<br>
+             2.5445<br>
+             2.0414<br>
+             1.9176<br>
+             1.6481<br>
+             1.8708<br>
+             1.7829<br>
+             1.7061<br>
+             1.5865<br>
+             1.8341
+           </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             <br>
+             1.61<br>
+             1.5863<br>
+             1.6937<br>
+             1.4568<br>
+             0.5402<br>
+             1.1963<br>
+             1.4368<br>
+             1.8969<br>
+             2.5445<br>
+             2.0414<br>
+             1.9176<br>
+             1.6481<br>
+             1.8708<br>
+             1.7829<br>
+             1.7061<br>
+             1.5865<br>
+             1.8341
+           </td> 
+           <td class="tdCenter">
+             1.1991<br>
+             0.9159<br>
+             0.8472<br>
+             1.0378<br>
+             1.1976<br>
+             0.9210<br>
+             0.8371<br>
+             0.9905<br>
+             1.2382<br>
+             0.9319<br>
+             0.8555<br>
+             1.0195<br>
+             1.2117<br>
+             0.9270<br>
+             0.8459<br>
+             1.0289<br>
+             1.2074<br>
+             0.9242<br>
+             0.8420<br>
+             1.0386
+           </td> 
+           <td class="tdCenter">
+             <br>
+             <br>
+             <br>
+             <br>
+             75.315<br>
+             58.908<br>
+             56.230<br>
+             69.570<br>
+             77.270<br>
+             62.539<br>
+             58.720<br>
+             72.874<br>
+             96.920<br>
+             73.282<br>
+             68.561<br>
+             82.477<br>
+             01.184<br>
+             78.791<br>
+             73.124<br>
+             90.169
+           </td> 
+        </tr>
+      </table>
+      <p>
+        &lt;Figure 13.6.3&gt; is the Holt-Winters forecast for the next one year and is calculated as follows:
+      $$
+        \begin{align}
+          & \text{Time 17 :} \quad {\hat Y}_{16+1} \;=\;\; (l_{16} + 1 \times\;b_{16} ) \cdot s_{13} \;=\;(88.4618 + 1.8341)\times1.2074 \;=\;109.024   \\    
+          & \text{Time 18 :} \quad {\hat Y}_{16+2} \;=\;\; (l_{16} + 2 \times\;b_{16} ) \cdot s_{14} \;=\;(88.4618+2 \times 1.8341) \times 0.9242\;=\;85.144  \\
+          & \text{Time 19 :} \quad {\hat Y}_{16+3} \;=\;\; (l_{16} + 3 \times\;b_{16} ) \cdot s_{15} \;=\;(88.4618+3 \times 1.8341) \times 0.9420\;=\;79.115    \\
+          & \text{Time 20 :} \quad {\hat Y}_{16+4} \;=\;\; (l_{16} + 4 \times\;b_{16} ) \cdot s_{16} \;=\;(88.4618+4 \times 1.8341) \times 1.0386\;=\;99.495   \\
+        \end{align}
+      $$
+      <p>
+      <table style="width:650px">
+        <tr>
+          <td>
+            <input class="qrBtn" type="image" src="../../QR/eStatU380_TimeseriesHoltWinter.svg" onclick="window.open(addrStr[139])">
+          </td>
+          <td>
+            <img class="imgFig600400" src="../Figure/Fig130603.png">
+            <div class="figText">&lt;Figure 13.6.3&gt; Holt-Winters Forecasting of Quarterly Sales </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+  <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(135)">&#10094; &nbsp;&nbsp;<b>Previous</b></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" style="width:160px" onclick="moveSection(137)"><b>Next</b>&nbsp;&nbsp; &#10095;</button>
+  <p>
+
+</div>
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
+        
+        /* ajust the height when click the toc
+           the code is from https://github.com/twbs/bootstrap/issues/1768
+        */
+        var shiftWindow = function() { scrollBy(0, -50) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+        
+        /*add Bootstrap styles to tables*/
+        var tables = document.getElementsByTagName("table");
+        for(var i = 0; i < tables.length; ++i){
+            tables[i].className += "table table-bordered table-hover";
+        }
+    </script>
+
+</body>
+</html>
+
