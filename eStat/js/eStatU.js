@@ -6099,3 +6099,240 @@ function menuLoc() {
     document.body.appendChild(a);
     document.getElementById("menu").click()
 }
+// Time Series Analysis 함수
+// Two variable Basic Statistics
+function model1Stat(nobs, tdata, xdata, ydata, stat) {
+        var tempx, tempy;
+        var xsum = 0;
+        var ysum = 0;
+        for (i=0; i<nobs; i++) {
+          xsum += xdata[i];
+          ysum += ydata[i];
+        }
+        var xavg = xsum / nobs;
+        var yavg = ysum / nobs;
+        var sxx = 0;
+        var sxy = 0;
+        var syy = 0;
+        for (i=0; i<nobs; i++) {
+          tempx = xdata[i] - xavg;
+          tempy = ydata[i] - yavg;
+          sxx += tempx*tempx;
+          syy += tempy*tempy;
+          sxy += tempx*tempy; 
+        }
+        var xvar = sxx / (nobs-1);
+        var xstd = Math.sqrt(xvar);
+        var yvar = syy / (nobs-1);
+        var ystd = Math.sqrt(yvar);
+        var beta    = sxy / sxx;
+        var alpha   = yavg - beta*xavg;
+        var cov     = sxy / (nobs-1);
+        var corr    = sxy / Math.sqrt(sxx * syy);
+        var rsquare = corr * corr;
+        // save statistic
+        stat[0]  = nobs;
+        stat[1]  = xavg;    stat[11] = yavg;
+        stat[2]  = xstd;    stat[12] = ystd;
+        stat[3]  = xmin;    stat[13] = ymin;
+        stat[4]  = xmax;    stat[14] = ymax;
+        stat[5]  = gxmin;   stat[15] = gymin
+        stat[6]  = gxmax;   stat[16] = gymax;
+        stat[7]  = alpha;   stat[17] = xvar;
+        stat[8]  = beta;    stat[18] = yvar;
+        stat[9]  = corr;    stat[19] = cov;
+        stat[10] = rsquare; stat[20] = syy;   
+}
+// 산점도 그리기 함수 -------------------------------------------------------------
+function showTimeSeriesPlot(model, nobs, nforecast, xdata, ydata, checkTitle) {
+     var xgrid    = new Array(nobs);
+     var ygrid    = new Array(nobs);
+     var tempx    = new Array(nobs);
+     var tempy    = new Array(nobs);
+     var i, tx, ty;
+     var radius = 3;
+     var strLabel = "reglabel"+model;
+     // 주제목
+         svg.append("text")
+            .attr("x", margin.left + graphWidth/2)
+            .attr("y", margin.top / 2 + 10)
+            .style("font-size", "1.8em")
+            .style("font-family", "sans-seirf")
+            .style("stroke", "black")
+            .style("text-anchor", "middle")
+            .text(mTitle)
+     // X축 제목
+         svg.append("text")
+            .style("font-size", fontsize)
+            .style("font-family", "sans-seirf")
+            .style("stroke", "black")
+            .style("text-anchor", "middle")
+            .attr("x", margin.left + graphWidth / 2)
+            .attr("y", margin.top + graphHeight + margin.bottom / 2 + 15)
+            .text(xTitle)
+     // Y축 제목
+         tx = margin.left / 2 - 30;
+         ty = margin.top + 15;
+         svg.append("text")
+            .style("font-size", fontsize)
+            .style("font-family", "sans-seirf")
+            .style("stroke", "black")
+            .style("text-anchor", "end")
+            .attr("x", tx)
+            .attr("y", ty)
+            .text(yTitle)
+            .attr("transform", "rotate(-90 30 100)")
+     // x축 그리기
+        var xScale = d3.scaleLinear().domain([gxmin,gxmax]).range([0,graphWidth])
+        xgrid = xScale.ticks();
+     // x축 그리드
+        for (i = 1; i < xgrid.length; i++) {
+          tx = margin.left + xScale(xgrid[i]);
+          svg.append("line")
+           .attr("x1", tx)
+           .attr("x2", tx)
+           .attr("y1", margin.top)
+           .attr("y2", margin.top + graphHeight)
+           .style("stroke", "lightgrey")
+        }
+        ty = margin.top + graphHeight;
+        svg.append("g")
+             .attr("transform","translate("+margin.left+","+ty+")")
+	     .attr("class", "main axis date")
+             .call(d3.axisBottom(xScale)) 
+
+        svg.append("g")
+             .attr("transform","translate("+margin.left+","+margin.top+")")
+	     .attr("class", "main axis date")
+             .call(d3.axisTop(xScale)) 
+
+    // y축 그리기
+        var yScale = d3.scaleLinear().domain([gymin,gymax]).range([graphHeight, 0])
+        ygrid = yScale.ticks();
+    // Y축 그리드
+        for (i = 1; i < ygrid.length; i++) {
+          ty = margin.top + yScale(ygrid[i]);
+          svg.append("line")
+           .attr("x1", margin.left)
+           .attr("x2", margin.left + graphWidth)
+           .attr("y1", ty)
+           .attr("y2", ty)
+           .style("stroke", "lightgrey")
+        }
+        ty = margin.top;
+        svg.append("g")
+             .attr("transform","translate("+margin.left+","+ty+")")
+	     .attr("class", "main axis date")
+             .call(d3.axisLeft(yScale)) 
+
+        var tx = margin.left + graphWidth;
+        svg.append("g")
+             .attr("transform","translate("+tx+","+ty+")")
+	     .attr("class", "main axis date")
+             .call(d3.axisRight(yScale)) 
+
+    // 산점도 점 그리기
+    for (i=0; i<nobs; i++) {
+          svg.append("circle")
+             .attr("cx", margin.left+graphWidth*(xdata[i]-gxmin)/gxrange)
+             .attr("cy", margin.top+graphHeight-graphHeight*(ydata[i]-gymin)/gyrange)         
+             .attr("r", radius)
+             .attr("class","circle")
+             .style("fill","grey")
+    }
+    x1  = margin.left + graphWidth*(xdata[0]-gxmin)/gxrange;
+    y1  = margin.top  + graphHeight - graphHeight*(ydata[0]-gymin)/gyrange;
+    for (i=1; i<nobs; i++) {
+      x2  = margin.left + graphWidth*(xdata[i]-gxmin)/gxrange;
+      y2  = margin.top  + graphHeight - graphHeight*(ydata[i]-gymin)/gyrange;
+      svg.append("line")
+         .attr("x1",x1)
+         .attr("y1",y1)
+         .attr("x2",x2)
+         .attr("y2",y2)
+         .style("stroke",myColor[0]) 
+      x1 = x2;
+      y1 = y2;
+    }
+
+    // forecast 점 그리기
+    if( checkForecast ) {
+      for (i=nobs; i<nobs+nforecast; i++) {
+          x2  = margin.left + graphWidth*(xdata[i]-gxmin)/gxrange;
+          y2  = margin.top  + graphHeight - graphHeight*(ydata[i]-gymin)/gyrange;
+          svg.append("circle").attr("class",strLabel)
+             .attr("cx", margin.left+graphWidth*(xdata[i]-gxmin)/gxrange)
+             .attr("cy", margin.top+graphHeight-graphHeight*(ydata[i]-gymin)/gyrange)         
+             .attr("r", 3)
+             .style("fill",myColor[model])
+      }
+      x1  = margin.left + graphWidth*(xdata[nobs]-gxmin)/gxrange;
+      y1  = margin.top  + graphHeight - graphHeight*(ydata[nobs]-gymin)/gyrange;
+      for (i=nobs+1; i<nobs+nforecast; i++) {
+          x2  = margin.left + graphWidth*(xdata[i]-gxmin)/gxrange;
+          y2  = margin.top  + graphHeight - graphHeight*(ydata[i]-gymin)/gyrange;
+          svg.append("line").attr("class",strLabel)
+             .attr("x1",x1)
+             .attr("y1",y1)
+             .attr("x2",x2)
+             .attr("y2",y2)
+             .style("stroke",myColor[model]) 
+             x1 = x2;
+             y1 = y2;
+      }
+    }
+}
+// Draw time series model on the plot
+function showModel(strModel, strLabel, nobs, nforecast, ibegin, xdata, yhat) {
+    var ty = margin.top + model*20;;
+    for (i=ibegin; i<nobs+nforecast; i++) {
+          svg.append("circle").attr("class",strLabel)
+             .attr("cx", margin.left+graphWidth*(xdata[i]-gxmin)/gxrange)
+             .attr("cy", margin.top+graphHeight-graphHeight*(yhat[i]-gymin)/gyrange)         
+             .attr("r", 3)
+             .style("fill",myColor[model])
+    }
+
+    var x1  = margin.left + graphWidth*(xdata[ibegin]-gxmin)/gxrange;
+    var y1  = margin.top  + graphHeight - graphHeight*(yhat[ibegin]-gymin)/gyrange;
+    for (i=ibegin+1; i<nobs+nforecast; i++) {
+      var x2  = margin.left + graphWidth*(xdata[i]-gxmin)/gxrange;
+      var y2  = margin.top  + graphHeight - graphHeight*(yhat[i]-gymin)/gyrange;
+      svg.append("line").attr("class",strLabel)
+                .attr("x1",x1)
+                .attr("y1",y1)
+                .attr("x2",x2)
+                .attr("y2",y2)
+                .style("stroke",myColor[model]) 
+      x1 = x2;
+      y1 = y2;
+    }
+    if(checkTitle) {   
+        svg.append("text").attr("class",strLabel)
+                .attr("x", margin.left + 20)
+                .attr("y", ty)
+                .text(strModel)
+                .style("stroke",myColor[model]) 
+     }
+}
+// time series plot 좌표 계산
+function initialCordinate(tobs, tdata, ydata) {
+     xmin = tdata[0];
+     xmax = tdata[tobs-1];
+     xgap = xmax - xmin;
+     xgap = (xmax - xmin) / 20;
+     gxmin   = xmin - xgap;
+     gxmax   = xmax + xgap;
+     gxrange = gxmax - gxmin;
+     // Yt 통계량
+     ymin = ydata[0];
+     ymax = ydata[0];
+     for (i=1; i<tobs; i++) {
+        if (ymin > ydata[i]) ymin = ydata[i];
+        if (ymax < ydata[i]) ymax = ydata[i];
+     } 
+     ygap    = (ymax - ymin) / 10;
+     gymin   = ymin - ygap;
+     gymax   = ymax + ygap;
+     gyrange = gymax - gymin;
+}
