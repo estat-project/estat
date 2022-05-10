@@ -307,7 +307,7 @@
      $$
        s \,=\, \sqrt { \frac{1} {n-2} \sum_{t=1}^n ( Y_t -  {\hat Y}_t )^2 }  
      $$
-       A smaller standard error value  indicates that the observed values are close to 
+       A smaller standard error \(s\) value  indicates that the observed values are close to 
        the estimated regression line, which means that the regression line model is well fitted.
      <p>
        The coefficient of determination is the ratio of the regression sum of squares, RSS, which is explained out of the total sum of squares, TSS.
@@ -316,7 +316,9 @@
      $$
        The value of the coefficient of determination is always between 0 and 1, and the closer the value is to 1, the more dense the samples are around the regression line, which means that the estimated regression equation explains the observations well. 
      <p>
-       As explained in Chapter 12, since it is difficult to determine the absolute criteria for adequacy of the standard error or the coefficient of determination, a hypothesis test is used to determine whether the trend parameter  is zero or not.
+       As explained in Chapter 12, since it is difficult to determine the absolute criteria for adequacy of 
+       the standard error or the coefficient of determination, a hypothesis test is used to determine whether 
+       the trend parameter \(\beta_1\) is zero or not.
      <p>
         \( \qquad \text{Hypothesis: }  \qquad \,\, H_0 : \beta_1 = 0, H_1: \beta_1 \ne 0\) <br>
         \( \qquad \text{Test statistic:} \qquad t_{obs} = \frac {{\hat \beta}_1 } { SE ({{\hat \beta}_1 }) } \) , 
@@ -347,8 +349,8 @@
        \( \qquad \text{Square root} \qquad   Y_t = \beta_0  + \beta_1 \cdot \sqrt{t} + \epsilon _t \) <br>
        \( \qquad \text{Log}  \qquad \qquad \quad \; Y_t = \beta_0  + \beta_1 \cdot log(t) + \epsilon _t  \)  
      <p>		
-       These models are the same as the linear regression model if \(\sqrt{t}\) or \(lot(t)\) 
-       are replaced with a variable X in the simple linear regression and the prediction method is similar.
+       These models are the same as the linear regression model if \(\sqrt{t}\) or \(log(t)\) 
+       are replaced with the independent variable X in the simple linear regression and the prediction method is similar.
      <p>
        In addition, the function types to which the linear regression model can be applied by transformation are as follows.
      <p>

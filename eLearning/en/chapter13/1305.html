@@ -327,8 +327,9 @@
         {\hat \mu} \;=\; \frac{1}{N} \sum_{ i=T-N+1}^T Y_i  \;=\; \frac{1}{N} ( Y_{T-N+1} + Y_{T-N+2} + \cdots + Y_T )    
  
       $$
-        This is called a <b>single moving average model</b> at the time point \(T\) and is denoted by \(M_T\). 
-        The single moving average means the average of the observations adjacent to the time point \(T\). Notice 
+        This is called a <b>single moving average</b> at the time point \(T\) and it is denoted by \(M_T\). 
+        The single moving average means the average of the \(N\) observations adjacent to the time point \(T\). 
+        Notice 
         that \(Y_1, Y_2 , ... , Y_T\) are independent of each other by assumption, but \(M_1, M_2 , ... , M_T\)
         are not independent of each other, but are correlated.
       <p>
@@ -351,7 +352,7 @@
         \(\qquad {\hat{Y}}  _{T+ \tau } \;±\; 1.96 \sqrt {Var( {\hat{Y}}  _{T+ \tau } )}  \) <br>
         \(\qquad M_{T} \;±\; 1.96 \sqrt{ \frac{MSE} {N} } \)  <br>	
       <p>
-        The monthly sales for the last two years of a furniture company are as shown in [Table 13.4.2], 
+        The monthly sales for the last two years of a furniture company are as shown in [Table 13.5.1], 
         and the residual between the raw data and the predicted value of one point in time was calculated 
         by obtaining a six-point moving average. &lt;Figure 13.5.1&gt; shows the time series for this. 
         This time series fluctuates up and down based on approximately 95, and such a time series is 
@@ -443,7 +444,7 @@
               92<br>
            </td> 
            <td class="tdCenter">
-                   <br>
+             <br>
              <br>
              <br>
              <br>
@@ -469,7 +470,7 @@
              104.67<br>
            </td> 
            <td class="tdCenter">
-                   <br>
+             <br>
              <br>
              <br>
              <br>
@@ -495,7 +496,7 @@
              106.17<br>
            </td> 
            <td class="tdCenter">
-                   <br>
+             <br>
              <br>
              <br>
              <br>
@@ -561,7 +562,7 @@
         exponential smoothing method as the predicted value.
       <p>
         The single exponential smoothing model calculates the weighted average of the exponential 
-        smoothing estimator \({\hat \mu}_t \) at the immediately preceding time point and the observation 
+        smoothing estimator \({\hat \mu}_{t-1} \) at the immediately preceding time point and the observation 
         value \(Y_t\) at the time point \(t\). Assuming that the exponential smoothing estimated value 
         at the time point \(t\) is \(S_t \;=\; {\hat \mu}_t \) and \(\alpha\) is a real number 
         between 0 and 1, the single exponential smoothing value \(S_t\) is defined as follows:
@@ -572,15 +573,15 @@
         \(\qquad   S_t \;=\; \alpha \;Y_t \;+\; (1-\alpha) S_{t-1}  \)<br>
       <p>
         Here, \(\alpha\) is called the <b>smoothing constant</b>, and the single exponential smoothing value 
-        is the weighted average value given the weight \(\alpha\) of the most recent observation and
-        (1-\(\alpha\)) of the exponential smoothing value \(S_{t-1}\) at the time \(t-1\). 
+        \(S_t\) is the weighted average value given the weight \(\alpha\) of the most recent observation 
+        \(Y_t\) and the weight (1-\(\alpha\)) of the exponential smoothing value \(S_{t-1}\) at the time \(t-1\). 
         You can better understand the meaning of exponential smoothing if you write down the recursive 
         equation as follows:
       <p>
         \(\qquad   S_t \;=\; \alpha \;Y_t \;+\; (1-\alpha) S_{t-1}   \)<br>
         \(\qquad   \;=\; \alpha \; Y_t + (1- \alpha )\;( \alpha Y_{t-1} + (1- \alpha ) S_{t-2} )      \)<br>
         \(\qquad   \;=\; \alpha Y_t + \alpha (1- \alpha ) Y_t-1 + (1- \alpha )^2 S_t-2     \)<br>
-        \(\qquad   \;=\; \alpha Y_t + \alpha (1- \alpha ) Y_t-1 + \alpha(1- \alpha )^2 Y_t-2 \;+\cdots\; + \alpha (1- \alpha )^(t-1) Y_1 +(1- \alpha )^t S_0        \)
+        \(\qquad   \;=\; \alpha Y_t + \alpha (1- \alpha ) Y_t-1 + \alpha(1- \alpha )^2 Y_t-2 \;+\cdots\; + \alpha (1- \alpha )^{(t-1)} Y_1 +(1- \alpha )^t S_0        \)
       <p>
         In other words, for the single exponential smoothing value \(S_t\), the most recent observation
         \(Y_t\) is given a weight \(\alpha\), and the next most recent observation is given \(\alpha(1-\alpha)\), 
@@ -598,7 +599,8 @@
         and easy to use, although the selection of the smoothing constant is arbitrary and 
         it is difficult to obtain a prediction interval.
       <p>
-        The predicted value, average and variance of the predicted value at the time point  using the single exponential smoothing model are as follows:
+        The predicted value, average and variance of the predicted value at the time point \(T+\tau\) using the 
+        single exponential smoothing model are as follows:
       <p>
         \(\qquad   {\hat Y}_{T+\tau} \;=\;S_T     \)<br>
         \(\qquad   E( {\hat Y}_{T+\tau} )\;=\;E(S_T )\;=\; \mu         \)<br>
@@ -630,13 +632,13 @@
         \(\qquad   e_2 \;=\; Y_2\;-\;{\hat Y}_{1+1} \;=\; 100.00 - 95.00 \;=\; 5.00           \)<br>
         \(\qquad   e_3 \;=\; Y_3\;-\;{\hat Y}_{2+1} \;=\; 87.00-95.50\;=\;-8.50  \)<br>
       <p>
-        In the same way, the single exponential smoothing of the remaining time points, the predicted values after one time point, and the residuals are as shown in [Table 13.4.2]. Therefore, the mean square error is as follows:
+        In the same way, the single exponential smoothing of the remaining time points, the predicted values after one time point, and the residuals are as shown in [Table 13.5.2]. Therefore, the mean square error is as follows:
       <p>
         \(\qquad   {MSE} \;= \; \frac{1}{24} \sum_{i=1}^{24} \; ( Y_i \;-{\hat Y}_i )^{2}    \;=\;269.72             \)<br>
       <p>
         In terms of mean square error, the MSE of the 6-point single moving average model is 331.22, so it can be said that the exponential smoothing model has better fit.
       <p>
-        Sales for the next three months are the last moving average , and the 95% confidence interval for the forecast is as follows:
+        Sales for the next three months are the last moving average \(S_24\), and the 95% confidence interval for the forecast is as follows:
       <p>
         \(\qquad   {\hat Y}_{24+1} \;=\; {\hat Y}_{24+2} \;=\; {\hat Y}_{24+3} \;=\; S_{24} \;=\; 98.66       \)<br>
         \(\qquad   S_{T} \;±\; 1.96\; \sqrt { \frac{\alpha } {2- \alpha} } MSE          \)<br>
@@ -791,9 +793,6 @@
          </tr>
       </table>
       <p>
-
-
-      <p>
       <table style="width:650px">
         <tr>
           <td>
@@ -807,11 +806,11 @@
       </table>
       <p>
     <h6>※ Initial value of exponential smoothing</h6>
-      Since the initial exponential smoothing value \(S_0\)at the time point \(t=1\) cannot be obtained, 
+      Since the initial exponential smoothing value \(S_0\) at the time point \(t=1\) cannot be obtained, 
       the following three methods are commonly used.
     <p>
-      1) The first observation, i.e. \(S_0 \;=\; Y_1\)    <br>
-      2) Partial average using the initial \(n\) observation values, that is   <br>
+      1) The first observation, i.e., \(S_0 \;=\; Y_1\)    <br>
+      2) Partial average using the initial \(n\) observation values, i.e.,   <br>
          \(\qquad S_0 \;=\; \frac{1}{n} ({Y_1 + Y_2 + \cdots + Y_n })   \) <br>
       3) The mean up to the entire time point \(T\), i.e.,  <br>
          \(\qquad S_0 \;=\; \frac{1}{T} ({Y_1 + Y_2 + \cdots + Y_T })       \)
@@ -890,7 +889,7 @@
          but the single moving average cannot be calculated from time points 1 to 4. The fourth column 
          is the calculation of the 5-point double moving average \(M_t^{(2)}\), but the double moving average 
          cannot be calculated until 5 single moving averages have been calculated, that is, from time points 
-         1 to 8. Using \(M_t\) and \(M_t^{(2)}\) to obtain the prediction after time 1 from time 9, 
+         1 to 8. Using \(M_9\) and \(M_9^{(2)}\) to obtain the prediction after time 1 from time 9, 
          \({\hat Y}_{9+1}\) is as follows:
       $$
         \begin{align}
