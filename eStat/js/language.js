@@ -1,7 +1,7 @@
 ﻿// language.js
 var langNum;
 var nLanguage = 20;
-var nString = 130;
+var nString = 150;
 var appStr = new Array(nString);
 var svgStr = new Array(nString);
 var svgStrU = new Array(nString);
@@ -448,17 +448,18 @@ $.message.ko = {
     "HoltWinter":        "홀트-윈터스 승법계절모형",
     "Trend":             "추세",
     "Seasonal":          "계절",
-    "Deseasonal":        "비계절 시계열",
+    "Deseasonal":        "비계절시계열",
     "Nseason":           "계절주기",
     "Irregular":         "비규칙",
-    "TrendModel":        "비계절의 추세모형",
+    "TrendModel":        "비계절 시계열의 추세모형",
     "RegressionModel":   "회귀모형",
     "ForecastingPeriod": "예측기간",
     "CreateTable":       "데이터 테이블",
     "SaveTable":         "테이블 저장",
     "MA":                "이동평균",
-    "CenterMA":          "중심 이동평균",
-    "MovingMedian":      "중심 이동중앙값",
+    "EWMA":              "지수평활모형",
+    "CenterMA":          "중심이동평균",
+    "MovingMedian":      "중심이동중앙값",
     "ES":                "지수평활",
     "Default":           "기본값",
     "Linear":            "선형",
@@ -477,6 +478,16 @@ $.message.ko = {
     "DeseasonIntercept": "비계절 절편",
     "DeseasonSlope":     "비계절 기울기",
     "SeasonalIndex":     "계절지수",
+    "Diff":              "차분",
+    "DiffTime":          "차분",
+    "AR":                "자기회귀모형",
+    "ResultTable":       "회귀결과표",
+    "ForecastTable":     "예측표",
+    "HoltLevel":         "수평",
+    "HoltTrend":         "추세",
+    "AutoCorrTable":     "자기상관표",
+    "DiffSeries":        "차분시계열",
+    "RawSeries":         "원 시계열",
 };
 // Korean
 appStr[1][0] = "../eStatH/index.html";
@@ -792,7 +803,26 @@ svgStrU[110][0] = "균등분포의 최대 정수 수";
 svgStrU[111][0] = "마우스로 한 점을 이동";
 svgStrU[112][0] = "복원추출";
 svgStrU[113][0] = "비복원추출"; 
-svgStrU[114][0] = "꺽은선"; 
+svgStrU[114][0] = "꺽은선";
+svgStrU[115][0] = "증감백분율";
+svgStrU[116][0] = "단순지수";
+svgStrU[117][0] = "시차";
+svgStrU[118][0] = "차분";
+svgStrU[119][0] = "자기상관함수";
+svgStrU[120][0] = "로그변환";
+svgStrU[121][0] = "제곱근변환";
+svgStrU[122][0] = "박스-콕스변환";
+svgStrU[123][0] = "기준시"; 
+svgStrU[124][0] = "중심이동평균";
+svgStrU[125][0] = "지수평활";
+svgStrU[126][0] = "중심이동중앙값";
+svgStrU[127][0] = "모형";
+svgStrU[128][0] = "이동평균";
+svgStrU[129][0] = "이중이동평균";
+svgStrU[130][0] = "Holt 이중지수평활";
+svgStrU[131][0] = "계절지수";
+svgStrU[132][0] = "Holt-Winters 승법계절모형";
+svgStrU[133][0] = "비계절시계열";
 
 // English
 $.message.en = {
@@ -1194,8 +1224,14 @@ $.message.en = {
     "Diff":              "Difference",
     "DiffTime":          "Diff Time",
     "AR":                "Autoregressive Model",
-    "ResultTable":       "Result Table",
+    "ResultTable":       "Regression Result",
     "ForecastTable":     "Forecast Table",
+    "HoltLevel":         "Level",
+    "HoltTrend":         "Trend",
+    "AutoCorrTable":     "Autocorrelation Table",
+    "DiffSeries":        "Difference Series",
+    "RawSeries":         "Raw Series",
+
 };
 // English
 appStr[1][1] = "../eStatH/index.html";
@@ -1351,7 +1387,7 @@ svgStr[80][1] = "Standardized Residual Q-Q Plot";
 svgStr[81][1] = "Standardized Residual";
 svgStr[82][1] = "Normal Quantile";
 svgStr[83][1] = "Residual Plot";
-svgStr[84][1] = "Predicted Value";
+svgStr[84][1] = "Prediction";
 svgStr[85][1] = "Two way ANOVA";
 svgStr[86][1] = "Confidence Interval Graph";
 svgStr[87][1] = "Residual";
@@ -1511,7 +1547,25 @@ svgStrU[111][1] = "Move a point using mouse";
 svgStrU[112][1] = "with replacement";
 svgStrU[113][1] = "without replacement"; 
 svgStrU[114][1] = "Line"; 
-
+svgStrU[115][1] = "Percent Change";
+svgStrU[116][1] = "Simple Index";
+svgStrU[117][1] = "Time Lag";
+svgStrU[118][1] = "Difference";
+svgStrU[119][1] = "Autocorrelation";
+svgStrU[120][1] = "Log";
+svgStrU[121][1] = "Square Root";
+svgStrU[122][1] = "Box-Cox";
+svgStrU[123][1] = "Base time"; 
+svgStrU[124][1] = "Centered Moving Average";
+svgStrU[125][1] = "Exponential Smoothing";
+svgStrU[126][1] = "Centered Moving Median";
+svgStrU[127][1] = "Model";
+svgStrU[128][1] = "Moving Average";
+svgStrU[129][1] = "Double Moving Average";
+svgStrU[130][1] = "Holt Double Exponential Smoothing";
+svgStrU[131][1] = "Seasonal Index";
+svgStrU[132][1] = "Holt-Winters Multiplicative Seasonal Model";
+svgStrU[133][1] = "Deseasonal Series";
 
 // Japanese
 $.message.ja = {
@@ -1887,6 +1941,7 @@ $.message.ja = {
     "CreateTable":       "データテーブル",
     "SaveTable":         "テーブル保存",
     "MA":                "移動平均",
+    "EWMA":              "指數平滑",
     "CenterMA":          "中心移動平均",
     "MovingMedian":      "中心移動中央値",
     "ES":                "指数平滑",
@@ -1902,12 +1957,21 @@ $.message.ja = {
     "SingleMA":          "単純移動平均",
     "SingleES":          "単純指数平滑",
     "DoubleMA":          "二重移動平均",
-    "DoubleES":          "二重移動平均",
+    "DoubleES":          "二重指数平滑",
     "HoltLinear":        "ホルト線形傾向",
     "DeseasonIntercept": "非季節切片",
     "DeseasonSlope":     "非季節の傾き",
     "SeasonalIndex":     "季節指数",
-
+    "Diff":              "差分",
+    "DiffTime":          "差分時間",
+    "AR":                "自己回帰モデル",
+    "ResultTable":       "回帰結果表",
+    "ForecastTable":     "予測表",
+    "HoltLevel":         "水平",
+    "HoltTrend":         "トレン",
+    "AutoCorrTable":     "自己相関表",
+    "DiffSeries":        "差分時系列",
+    "RawSeries":         "原始時系列",
 };
 // Japanese
 appStr[1][2] = "../eStatH/index.html";
@@ -2223,6 +2287,26 @@ svgStrU[111][2] = "一点をマウスで移動";
 svgStrU[112][2] = "復元抽出";
 svgStrU[113][2] = "非復元抽出"; 
 svgStrU[114][2] = "折れ線"; 
+svgStrU[115][2] = "増減率";
+svgStrU[116][2] = "単純指数";
+svgStrU[117][2] = "視差";
+svgStrU[118][2] = "差分";
+svgStrU[119][2] = "自己相関関数";
+svgStrU[120][2] = "ログ変換";
+svgStrU[121][2] = "平方根変換";
+svgStrU[122][2] = "ボックスからコックスへの変換";
+svgStrU[123][2] = "基準時";
+svgStrU[124][2] = "中心移動平均";
+svgStrU[125][2] = "指数平滑";
+svgStrU[126][2] = "中心移動中央値";
+svgStrU[127][2] = "モデル";
+svgStrU[128][2] = "移動平均";
+svgStrU[129][2] = "二重移動平均";
+svgStrU[130][2] = "Holt二重指数平滑";
+svgStrU[131][2] = "季節指数";
+svgStrU[132][2] = "Holt-Winters乗法季節モデル";
+svgStrU[133][2] = "非季節時系列";
+
 
 // Chinese
 $.message.zhTW = {
@@ -2550,8 +2634,8 @@ $.message.zhTW = {
     "Compute":           "新變體計算",
     "SelectIf":          "數據選擇",
     "InfoValueLabel":    "*** 選擇一個變量，輸入變量名稱或變量值名稱，然後單擊運行按鈕。",
-    "InfoSorting":       "*** 最多選擇 3 個要排序的變量，選擇一種排序方法，然後單擊“運行”按鈕。",
-    "InfoCategorize":    "*** 選擇要分類的變量後，輸入區間開始和區間寬度，“檢查類別列表”並單擊“運行”按鈕。",
+    "InfoSorting":       "*** 最多選擇 3 個要排序的變量，選擇一種排序方法，然後單擊運行按鈕。",
+    "InfoCategorize":    "*** 選擇要分類的變量後，輸入區間開始和區間寬度，檢查類別列表並單擊運行按鈕。",
     "InfoRecode":        "*** 選擇一個要重新分配的變量，輸入一個新的隨機值，然後單擊運行按鈕。",
     "InfoRecode2":       "* 您最多可以覆蓋九個值。",
     "InfoCompute":       "*** 使用下面的按鈕創建用於計算新方差的公式，然後單擊運行按鈕。",
@@ -2591,10 +2675,11 @@ $.message.zhTW = {
     "Irregular":        "不規律的",
     "TrendModel":       "非季節性趨勢模型",
     "RegressionModel":  "回歸模型",
-    "ForecastingPeriod":"預測期",
-    "CreateTable":      "數據表",
+    "ForecastingPeriod": "預測期",
+    "CreateTable":       "資料表",
     "SaveTable":        "保存表",
     "MA":               "移動平均線",
+    "EWMA":              "EWMA Model",
     "CenterMA":         "中心移動平均線",
     "MovingMedian":     "中心偏移中位數",
     "ES":               "指數平滑",
@@ -2610,11 +2695,21 @@ $.message.zhTW = {
     "SingleMA":         "簡單移動平均線",
     "SingleES":         "簡單指數平滑",
     "DoubleMA":         "雙移動平均線",
-    "DoubleES":         "雙移動平均線",
+    "DoubleES":         "雙移指數平滑",
     "HoltLinear":       "霍爾特線性趨勢",
     "DeseasonIntercept":"淡季",
     "DeseasonSlope":    "非季節性梯度",
     "SeasonalIndex":    "季節性指數",
+    "Diff":              "時間差",
+    "DiffTime":          "時差",
+    "AR":                "自回歸模型",
+    "ResultTable":       "回歸結果表",
+    "ForecastTable":     "預測表",
+    "HoltLevel":         "水平",
+    "HoltTrend":         "趨勢",
+    "AutoCorrTable":     "自相關表",
+    "DiffSeries":        "差分時間序列",
+    "RawSeries":         "原始時間序列",
 };
 // Chinese 
 appStr[1][3] = "../eStatH/index.html";
@@ -2930,6 +3025,25 @@ svgStrU[111][3] = "用鼠標移動點";
 svgStrU[112][3] = "修復抽樣";
 svgStrU[113][3] = "非復原抽樣"; 
 svgStrU[114][3] = "折線"; 
+svgStrU[115][3] = "% 增加或減少";
+svgStrU[116][3] = "簡單指數";
+svgStrU[117][3] = "視差";
+svgStrU[118][3] = "差異";
+svgStrU[119][3] = "自相關函數";
+svgStrU[120][3] = "對數變換";
+svgStrU[121][3] = "平方根變換";
+svgStrU[122][3] = "Box-Cox 變換";
+svgStrU[123][3] = "基準時間";
+svgStrU[124][3] = "中心移動平均線";
+svgStrU[125][3] = "指數平滑";
+svgStrU[126][3] = "中位數中心偏移";
+svgStrU[127][3] = "模型";
+svgStrU[128][3] = "移動平均線";
+svgStrU[129][3] = "雙移動平均線";
+svgStrU[130][3] = "Holt雙指數平滑";
+svgStrU[131][3] = "季節性指數";
+svgStrU[132][3] = "Holt-Winters 乘法季節性模型";
+svgStrU[133][3] = "非季節性時間序列";
 
 // French
 $.message.fr = {
@@ -3279,49 +3393,61 @@ $.message.fr = {
     "SelectValue":       "Valeur",
     "MissingValue":      "valeur manquante",
     "option":            "option",
-    "TimeSeries":        "Time Series",
-    "Smoothing":         "Smoothing",
-    "Filtering":         "Filtering",
+    "TimeSeries":        "Des séries chronologiques",                      
+    "Smoothing":         "Lissage",
+    "Filtering":         "Filtration",
     "Transformation":    "Transformation",
-    "Weight":            "Weight",
-    "WeightedIndex":     "Weighted Index",
-    "BaseTime":          "Base Time",
-    "LagTime":           "Lag Time",
-    "Lag":               "Time Lag",
-    "Forecasting":       "Forecasting",
-    "SeasonalModel":     "Seasonal Model",
-    "HoltWinter":        "Holt-Winters Multiplicative Seasonal Model",
-    "Trend":             "Trend",
-    "Seasonal":          "Seasonal",
-    "Deseasonal":        "Deseasonal Series",
-    "Nseason":           "Times in Season",
-    "Irregular":         "Irregular",
-    "TrendModel":        "Trend Model on Deseasonal",
-    "RegressionModel":   "Regression Model",
-    "ForecastingPeriod": "Forecasting Period",
-    "CreateTable":       "Data Table",
-    "SaveTable":         "Save Table",
-    "MA":                "Moving Average",
-    "CenterMA":          "Centered Moving Average",
-    "MovingMedian":      "Centered Moving Median",
-    "ES":                "Exponential Smoothing",
-    "Default":           "Default",
-    "Linear":            "Linear",
-    "Quadratic":         "Quadratic",
-    "Cubic":             "Cubic",
-    "SquareRoot":        "Square Root",
-    "Log":               "Logarithmic",
-    "Exponent":          "Exponential",
-    "Power":             "Power",
+    "Weight":            "Masse",
+    "PercentChange":     "Modifier le pourcentage",
+    "WeightedIndex":     "Index simplifié",
+    "BaseTime":          "Base de temps",
+    "LagTime":           "Temps de latence",
+    "Lag":               "Décalage horaire",
+    "Forecasting":       "Prévision",
+    "SeasonalModel":     "Modèle saisonnier",
+    "HoltWinter":        "Modèle saisonnier Holt-Winters",
+    "Trend":             "Tendance",
+    "Seasonal":          "Saisonnier",
+    "Deseasonal":        "Série désaisonnalisée",
+    "Nseason":           "Heures en saison",
+    "Irregular":         "Irrégulier",
+    "TrendModel":        "Modèle de tendance sur la désaisonnalisation",
+    "RegressionModel":   "Modèle de régression",
+    "ForecastingPeriod": "Période de prévision",
+    "CreateTable":       "Tableau de données",
+    "SaveTable":         "Enregistrer le tableau",
+    "MA":                "Moyenne mobile",
+    "EWMA":              "Modèle EWMA",
+    "CenterMA":          "Moyenne mobile centrée",
+    "MovingMedian":      " Médiane mobile centrée ",
+    "ES":                "Lissage exponentiel",
+    "Default":           "Défaut",
+    "Linear":            "Linéaire",
+    "Quadratic":         "Quadratique",
+    "Cubic":             "Cubique",
+    "SquareRoot":        "Racine carrée",
+    "Log":               "Logarithmique",
+    "Exponent":          "Exponentiel",
+    "Power":             "Pouvoir",
     "BoxCox":            "Box-Cox",
-    "SingleMA":          "Single Moving Average",
-    "SingleES":          "Single Exponential Smoothing",
-    "DoubleMA":          "Double Moving Average",
-    "DoubleES":          "Double Exponential Smoothing",
-    "HoltLinear":        "Holt's Linear Trend",
-    "DeseasonIntercept": "Deseasonal intercept",
-    "DeseasonSlope":     "Deseasonal slope",
-    "SeasonalIndex":     "Seasonal Index",
+    "SingleMA":          "Moyenne mobile unique",
+    "SingleES":          "Lissage exponentiel simple",
+    "DoubleMA":          "Double moyenne mobile",
+    "DoubleES":          "Lissage double exponentiel",
+    "HoltLinear":        "Lissage exponentiel Holt",
+    "DeseasonIntercept": "Interception désaisonnalisée",
+    "DeseasonSlope":     "Pente désaisonnalisée",
+    "SeasonalIndex":     "Index saisonnier",
+    "Diff":              "Différence",
+    "DiffTime":          "Temps Différent",
+    "AR":                "Modèle autorégressif",
+    "ResultTable":       "Résultat de la régression",
+    "ForecastTable":     "Tableau de prévisions",
+    "HoltLevel":         "Niveau",
+    "HoltTrend":         "Tendance",
+    "AutoCorrTable":     "Table d'autocorrélation",
+    "DiffSeries":        "Série Différence",
+    "RawSeries":         "Série brute",
 };
 // French
 appStr[1][4] = "../eStatH/index.html";
@@ -3637,6 +3763,27 @@ svgStrU[111][4] = "Déplacer un point avec la souris";
 svgStrU[112][4] = "Récupération";
 svgStrU[113][4] = "Extraction non restaurée"; 
 svgStrU[114][4] = "Courbe"; 
+svgStrU[115][4] = "Pourcentage de changement" ;
+svgStrU[116][4] = "Index simple" ;
+svgStrU[117][4] = "Décalage" ;
+svgStrU[118][4] = "Différence" ;
+svgStrU[119][4] = "Autocorrélation" ;
+svgStrU[120][4] = "Journal" ;
+svgStrU[121][4] = "Racine carrée" ;
+svgStrU[122][4] = "Box-Cox" ;
+svgStrU[123][4] = "Temps de base" ;
+svgStrU[124][4] = "Moyenne mobile centrée" ;
+svgStrU[125][4] = "Lissage exponentiel" ;
+svgStrU[126][4] = "Médiane mobile centrée" ;
+svgStrU[127][4] = "Modèle" ;
+svgStrU[128][4] = "Moyenne mobile" ;
+svgStrU[129][4] = "Moyenne mobile double" ;
+svgStrU[130][4] = "Lissage exponentiel double Holt" ;
+svgStrU[131][4] = "Index saisonnier" ;
+svgStrU[132][4] = "Modèle saisonnier multiplicatif de Holt-Winters" ;
+svgStrU[133][4] = "Séries désaisonnalisées" ;
+
+
 
 // German
 $.message.de = {
@@ -3982,50 +4129,62 @@ $.message.de = {
     "RelationOperator":  "Beziehung<br>Betreiber",
     "SelectValue":       "Wert",
     "MissingValue":      "fehlender Wert",
-    "option":            "option",
-    "TimeSeries":        "Time Series",
-    "Smoothing":         "Smoothing",
-    "Filtering":         "Filtering",
+    "option":            "Möglichkeit",                  
+    "TimeSeries":        "Zeitfolgen",
+    "Smoothing":         "Glättung",
+    "Filtering":         "Filtern",
     "Transformation":    "Transformation",
-    "Weight":            "Weight",
-    "WeightedIndex":     "Weighted Index",
-    "BaseTime":          "Base Time",
-    "LagTime":           "Lag Time",
-    "Lag":               "Time Lag",
-    "Forecasting":       "Forecasting",
-    "SeasonalModel":     "Seasonal Model",
-    "HoltWinter":        "Holt-Winters Multiplicative Seasonal Model",
+    "Weight":            "Gewicht",
+    "PercentChange":     "Prozent ändern",
+    "WeightedIndex":     "Einfacher Index",
+    "BaseTime":          "Basiszeit",
+    "LagTime":           "Verzögerungszeit",
+    "Lag":               "Zeitverzögerung",
+    "Forecasting":       "Prognose",
+    "SeasonalModel":     "Saisonmodell",
+    "HoltWinter":        "Holt-Winters Saisonmodell",
     "Trend":             "Trend",
-    "Seasonal":          "Seasonal",
-    "Deseasonal":        "Deseasonal Series",
-    "Nseason":           "Times in Season",
-    "Irregular":         "Irregular",
-    "TrendModel":        "Trend Model on Deseasonal",
-    "RegressionModel":   "Regression Model",
-    "ForecastingPeriod": "Forecasting Period",
-    "CreateTable":       "Data Table",
-    "SaveTable":         "Save Table",
-    "MA":                "Moving Average",
-    "CenterMA":          "Centered Moving Average",
-    "MovingMedian":      "Centered Moving Median",
-    "ES":                "Exponential Smoothing",
-    "Default":           "Default",
+    "Seasonal":          "Saisonal",
+    "Deseasonal":        "Saisonale Serie",
+    "Nseason":           "Zeiten in der Saison",
+    "Irregular":         "Irregulär",
+    "TrendModel":        "Trendmodell auf Deseasonal",
+    "RegressionModel":   "Regressionsmodell",
+    "ForecastingPeriod": "Prognosezeitraum",
+    "CreateTable":       "Datentabelle",
+    "SaveTable":         "Tabelle speichern",
+    "MA":                "Gleitender Durchschnitt",
+    "EWMA":              "EWMA-Modell",
+    "CenterMA":          "Zentrierter gleitender Durchschnitt",
+    "MovingMedian":      "Zentrierter gleitender Median",
+    "ES":                "Exponentielle Glättung",
+    "Default":           "Standard",
     "Linear":            "Linear",
-    "Quadratic":         "Quadratic",
-    "Cubic":             "Cubic",
-    "SquareRoot":        "Square Root",
-    "Log":               "Logarithmic",
-    "Exponent":          "Exponential",
-    "Power":             "Power",
+    "Quadratic":         "Quadratisch",
+    "Cubic":             "kubisch",
+    "SquareRoot":        "Quadratwurzel",
+    "Log":               "Logarithmisch",
+    "Exponent":          "Exponentiell",
+    "Power":             "Leistung",
     "BoxCox":            "Box-Cox",
-    "SingleMA":          "Single Moving Average",
-    "SingleES":          "Single Exponential Smoothing",
-    "DoubleMA":          "Double Moving Average",
-    "DoubleES":          "Double Exponential Smoothing",
-    "HoltLinear":        "Holt's Linear Trend",
-    "DeseasonIntercept": "Deseasonal intercept",
-    "DeseasonSlope":     "Deseasonal slope",
-    "SeasonalIndex":     "Seasonal Index",
+    "SingleMA":          "Einfacher gleitender Durchschnitt",
+    "SingleES":          "Einzelne exponentielle Glättung",
+    "DoubleMA":          "Doppelter gleitender Durchschnitt",
+    "DoubleES":          "Doppelte exponentielle Glättung",
+    "HoltLinear":        "Holt Exponentielle Glättung",
+    "DeseasonIntercept": "Saisonales Abfangen",
+    "DeseasonSlope":     "Nebensaison",
+    "SeasonalIndex":     "Saisonindex",
+    "Diff":              "Unterschied",
+    "DiffTime":          "Diff-Zeit",
+    "AR":                "Autoregressives Modell",
+    "ResultTable":       "Regressionsergebnis",
+    "ForecastTable":     "Prognosetabelle",
+    "HoltLevel":         "Stufe",
+    "HoltTrend":         "Trend",
+    "AutoCorrTable":     "Autokorrelationstabelle",
+    "DiffSeries":        "Unterschiedsserie",
+    "RawSeries":         "Raw-Serie",
 };
 // German 
 appStr[1][5] = "../eStatH/index.html";
@@ -4341,6 +4500,26 @@ svgStrU[111][5] = "Bewegen Sie einen Punkt mit der Maus";
 svgStrU[112][5] = "Wiederherstellungs-Extraktion";
 svgStrU[113][5] = "ohne Ersatz"; 
 svgStrU[114][5] = "Linen"; 
+svgStrU[115][5] = "Prozentänderung";
+svgStrU[116][5] = "Einfacher Index";
+svgStrU[117][5] = "Zeitverzögerung";
+svgStrU[118][5] = "Unterschied";
+svgStrU[119][5] = "Autokorrelation";
+svgStrU[120][5] = "Protokoll";
+svgStrU[121][5] = "Quadratwurzel";
+svgStrU[122][5] = "Box-Cox";
+svgStrU[123][5] = "Basiszeit";
+svgStrU[124][5] = "Zentrierter gleitender Durchschnitt";
+svgStrU[125][5] = "Exponentielle Glättung";
+svgStrU[126][5] = "Zentrierter beweglicher Median";
+svgStrU[127][5] = "Modell";
+svgStrU[128][5] = "Gleitender Durchschnitt";
+svgStrU[129][5] = "Doppelter gleitender Durchschnitt";
+svgStrU[130][5] = "Holt doppelte exponentielle Glättung";
+svgStrU[131][5] = "Saisonaler Index";
+svgStrU[132][5] = "Multiplikatives Saisonmodell von Holt-Winters";
+svgStrU[133][5] = "Seasonal Series";
+
 
 // Spanish
 $.message.es = {
@@ -4689,50 +4868,63 @@ $.message.es = {
     "RelationOperator":  "Relación <br> operador",
     "SelectValue":       "Valor",
     "MissingValue":      "valor que falta",
-    "option":            "option",
-    "TimeSeries":        "Time Series",
-    "Smoothing":         "Smoothing",
-    "Filtering":         "Filtering",
-    "Transformation":    "Transformation",
-    "Weight":            "Weight",
-    "WeightedIndex":     "Weighted Index",
-    "BaseTime":          "Base Time",
-    "LagTime":           "Lag Time",
-    "Lag":               "Time Lag",
-    "Forecasting":       "Forecasting",
-    "SeasonalModel":     "Seasonal Model",
-    "HoltWinter":        "Holt-Winters Multiplicative Seasonal Model",
-    "Trend":             "Trend",
-    "Seasonal":          "Seasonal",
-    "Deseasonal":        "Deseasonal Series",
-    "Nseason":           "Times in Season",
+    "option":            "opción",                                      
+    "TimeSeries":        "Series de tiempo",
+    "Smoothing":         "Suavizado",
+    "Filtering":         "Filtración",
+    "Transformation":    "Transformación",
+    "Weight":            "Peso",
+    "PercentChange":     "Cambiar porcentaje",
+    "WeightedIndex":     "Índice simple",
+    "BaseTime":          "Tiempo básico",
+    "LagTime":           "Tiempo de retraso",
+    "Lag":               "Lapso de tiempo",
+    "Forecasting":       "Pronóstico",
+    "SeasonalModel":     "Modelo de temporada",
+    "HoltWinter":        "Modelo estacional de Holt-Winters",
+    "Trend":             "Tendencia",
+    "Seasonal":          "Estacional",
+    "Deseasonal":        "Serie de temporada",
+    "Nseason":           "Tiempos en temporada",
     "Irregular":         "Irregular",
-    "TrendModel":        "Trend Model on Deseasonal",
-    "RegressionModel":   "Regression Model",
-    "ForecastingPeriod": "Forecasting Period",
-    "CreateTable":       "Data Table",
-    "SaveTable":         "Save Table",
-    "MA":                "Moving Average",
-    "CenterMA":          "Centered Moving Average",
-    "MovingMedian":      "Centered Moving Median",
-    "ES":                "Exponential Smoothing",
-    "Default":           "Default",
-    "Linear":            "Linear",
-    "Quadratic":         "Quadratic",
-    "Cubic":             "Cubic",
-    "SquareRoot":        "Square Root",
-    "Log":               "Logarithmic",
-    "Exponent":          "Exponential",
-    "Power":             "Power",
+    "TrendModel":        "Modelo de tendencia en desestacionalizado",
+    "RegressionModel":   "Modelo de regresión",
+    "ForecastingPeriod": "Período de previsión",
+    "CreateTable":       "Tabla de datos",
+    "SaveTable":         "Guardar tabla",
+    "MA":                "Media móvil",
+    "EWMA":              "Modelo EWMA",
+    "CenterMA":          "Promedio móvil centrado",
+    "MovingMedian":      "Mediana Móvil Centrada",
+    "ES":                "Suavizado exponencial",
+    "Default":           "Defecto",
+    "Linear":            "Lineal",
+    "Quadratic":         "Cuadrático",
+    "Cubic":             "Cúbico",
+    "SquareRoot":        "Raíz cuadrada",
+    "Log":               "Logarítmico",
+    "Exponent":          "Exponencial",
+    "Power":             "Energía",
     "BoxCox":            "Box-Cox",
-    "SingleMA":          "Single Moving Average",
-    "SingleES":          "Single Exponential Smoothing",
-    "DoubleMA":          "Double Moving Average",
-    "DoubleES":          "Double Exponential Smoothing",
-    "HoltLinear":        "Holt's Linear Trend",
-    "DeseasonIntercept": "Deseasonal intercept",
-    "DeseasonSlope":     "Deseasonal slope",
-    "SeasonalIndex":     "Seasonal Index",
+    "SingleMA":          "Promedio móvil único",
+    "SingleES":          "Suavizado exponencial único",
+    "DoubleMA":          "Promedio móvil doble",
+    "DoubleES":          "Suavizado exponencial doble",
+    "HoltLinear":        "Suavizado exponencial de Holt",
+    "DeseasonIntercept": "Intercepción estacional",
+    "DeseasonSlope":     "Pendiente estacional",
+    "SeasonalIndex":     "Índice estacional",
+    "Diff":              "Diferencia",
+    "DiffTime":          "Tiempo de diferencia",
+    "AR":                "Modelo autorregresivo",
+    "ResultTable":       "Resultado de regresión",
+    "ForecastTable":     "Tabla de pronóstico",
+    "HoltLevel":         "Nivel",
+    "HoltTrend":         "Tendencia",
+    "AutoCorrTable":     "Tabla de autocorrelación",
+    "DiffSeries":        "Serie de diferencias",
+    "RawSeries":         "Serie cruda",
+
 };
 // Spanish
 appStr[1][6] = "../eStatH/index.html";
@@ -5048,6 +5240,26 @@ svgStrU[111][6] = "Mueve un punto con el mouse";
 svgStrU[112][6] = "desmovilización";
 svgStrU[113][6] = "sin reemplazo"; 
 svgStrU[114][6] = "Líneas"; 
+svgStrU[115][6] = "Cambio porcentual";
+svgStrU[116][6] = "Índice simple";
+svgStrU[117][6] = "Lapso de tiempo";
+svgStrU[118][6] = "Diferencia";
+svgStrU[119][6] = "Autocorrelación";
+svgStrU[120][6] = "Registro";
+svgStrU[121][6] = "Raíz cuadrada";
+svgStrU[122][6] = "Box-Cox";
+svgStrU[123][6] = "Hora base";
+svgStrU[124][6] = "Promedio móvil centrado";
+svgStrU[125][6] = "Suavizado exponencial";
+svgStrU[126][6] = "Mediana móvil centrada";
+svgStrU[127][6] = "Modelo";
+svgStrU[128][6] = "Promedio móvil";
+svgStrU[129][6] = "Promedio móvil doble";
+svgStrU[130][6] = "Suavizado exponencial doble Holt";
+svgStrU[131][6] = "Índice estacional";
+svgStrU[132][6] = "Modelo estacional multiplicativo de Holt-Winters";
+svgStrU[133][6] = "Serie estacional";
+
 
 // Vietnamese
 $.message.vi = {
@@ -5392,50 +5604,64 @@ $.message.vi = {
     "RelationOperator":  "Mối quan hệ <br> Nhà điều hành",
     "SelectValue":       "Giá trị",
     "MissingValue":      "thiếu giá trị",
-    "option":            "option",
-    "TimeSeries":        "Time Series",
-    "Smoothing":         "Smoothing",
-    "Filtering":         "Filtering",
-    "Transformation":    "Transformation",
-    "Weight":            "Weight",
-    "WeightedIndex":     "Weighted Index",
-    "BaseTime":          "Base Time",
-    "LagTime":           "Lag Time",
-    "Lag":               "Time Lag",
-    "Forecasting":       "Forecasting",
-    "SeasonalModel":     "Seasonal Model",
-    "HoltWinter":        "Holt-Winters Multiplicative Seasonal Model",
-    "Trend":             "Trend",
-    "Seasonal":          "Seasonal",
+    "option":            "lựa chọn",                                  
+    "TimeSeries":        "Chuỗi thời gian",
+    "Smoothing":         "Làm mịn",
+    "Filtering":         "Lọc",
+    "Transformation":    "Chuyển đổi",
+    "Weight":            "Cân nặng",
+    "PercentChange":     "Phần trăm thay đổi",
+    "WeightedIndex":     "Chỉ mục đơn giản",
+    "BaseTime":          "Giờ gốc",
+    "LagTime":           "Thời gian trễ",
+    "Lag":               "Thời gian trễ",
+    "Forecasting":       "Dự báo",
+    "SeasonalModel":     "Mô hình theo mùa",
+    "HoltWinter":        "Mô hình theo mùa Holt-Winters",
+    "Trend":             "Xu hướng",
+    "Seasonal":          "Theo mùa",
     "Deseasonal":        "Deseasonal Series",
     "Nseason":           "Times in Season",
-    "Irregular":         "Irregular",
-    "TrendModel":        "Trend Model on Deseasonal",
-    "RegressionModel":   "Regression Model",
-    "ForecastingPeriod": "Forecasting Period",
-    "CreateTable":       "Data Table",
-    "SaveTable":         "Save Table",
-    "MA":                "Moving Average",
-    "CenterMA":          "Centered Moving Average",
-    "MovingMedian":      "Centered Moving Median",
-    "ES":                "Exponential Smoothing",
-    "Default":           "Default",
-    "Linear":            "Linear",
-    "Quadratic":         "Quadratic",
-    "Cubic":             "Cubic",
-    "SquareRoot":        "Square Root",
-    "Log":               "Logarithmic",
-    "Exponent":          "Exponential",
-    "Power":             "Power",
+    "Irregular":         "Không thường xuyên",
+    "TrendModel":        "Mô hình xu hướng trên Deseasonal",
+    "RegressionModel":   "Mô hình hồi quy",
+    "ForecastingPeriod": "Khoảng thời gian dự báo",
+    "CreateTable":       "Bảng dữ liệu",
+    "SaveTable":         "Lưu bảng",
+    "MA":                "Đường trung bình động",
+    "EWMA":              "Mô hình EWMA",
+    "CenterMA":          "Đường trung bình động ở giữa",
+    "MovingMedian":      "Trung vị Di chuyển Căn giữa",
+    "ES":                "Làm mịn theo cấp số nhân",
+    "Default":           "Mặc định",
+    "Linear":            "Tuyến tính",
+    "Quadratic":         "Bậc hai",
+    "Cubic":             "Khối",
+    "SquareRoot":        "Căn bậc hai",
+    "Log":               "Lôgarit",
+    "Exponent":          "Số mũ",
+    "Power":             "Quyền lực",
     "BoxCox":            "Box-Cox",
-    "SingleMA":          "Single Moving Average",
-    "SingleES":          "Single Exponential Smoothing",
-    "DoubleMA":          "Double Moving Average",
-    "DoubleES":          "Double Exponential Smoothing",
-    "HoltLinear":        "Holt's Linear Trend",
-    "DeseasonIntercept": "Deseasonal intercept",
-    "DeseasonSlope":     "Deseasonal slope",
-    "SeasonalIndex":     "Seasonal Index",
+    "SingleMA":          "Đường trung bình trượt đơn",
+    "SingleES":          "Làm trơn theo cấp số nhân đơn",
+    "DoubleMA":          "Đường trung bình động kép",
+    "DoubleES":          "Làm mịn theo cấp số nhân kép",
+    "HoltLinear":        "Holt Exponential Smoothing",
+    "DeseasonIntercept": "Đánh chặn trái chiều",
+    "DeseasonSlope":     "Độ dốc trái mùa",
+    "SeasonalIndex":     "Chỉ số theo mùa",
+    "Diff":              "Sự khác biệt",
+    "DiffTime":          "Thời gian chênh lệch",
+    "AR":                "Mô hình tự phục hồi",
+    "ResultTable":       "Kết quả hồi quy",
+    "ForecastTable":     "Bảng Dự báo",
+    "HoltLevel":         "Cấp độ",
+    "HoltTrend":         "Xu hướng",
+    "AutoCorrTable":     "Bảng tự tương quan",
+    "DiffSeries":        "Chuỗi sự khác biệt",
+    "RawSeries":         "Dòng thô",
+
+
 };
 // Vietnamese
 appStr[1][7] = "../eStatH/index.html";
@@ -5751,6 +5977,25 @@ svgStrU[111][7] = "Di chuyển một điểm bằng chuột";
 svgStrU[112][7] = "Khai thác phục hồi";
 svgStrU[113][7] = "không có vật thay thế"; 
 svgStrU[114][7] = "đường"; 
+svgStrU[115][7] = "Phần trăm thay đổi";
+svgStrU[116][7] = "Chỉ mục đơn giản";
+svgStrU[117][7] = "Trễ thời gian";
+svgStrU[118][7] = "Chênh lệch";
+svgStrU[119][7] = "Tự tương quan";
+svgStrU[120][7] = "Nhật ký";
+svgStrU[121][7] = "Căn bậc hai";
+svgStrU[122][7] = "Hộp-Cox";
+svgStrU[123][7] = "Giờ gốc";
+svgStrU[124][7] = "Đường trung bình động ở giữa";
+svgStrU[125][7] = "Làm trơn theo cấp số nhân";
+svgStrU[126][7] = "Trung vị Di chuyển Căn giữa";
+svgStrU[127][7] = "Kiểu máy";
+svgStrU[128][7] = "Trung bình động";
+svgStrU[129][7] = "Trung bình động kép";
+svgStrU[130][7] = "Holt Double Exponential Smoothing";
+svgStrU[131][7] = "Chỉ số theo mùa";
+svgStrU[132][7] = "Mô hình theo mùa đa số Holt-Winters";
+svgStrU[133][7] = "Dòng Deseasonal";
 
 // Indonesian
 $.message.id = {
@@ -6099,50 +6344,62 @@ $.message.id = {
     "RelationOperator":  "Hubungan<br>Operator",
     "SelectValue":       "Nilai",
     "MissingValue":      "nilai yang hilang",
-    "option":            "option",
-    "TimeSeries":        "Time Series",
-    "Smoothing":         "Smoothing",
-    "Filtering":         "Filtering",
-    "Transformation":    "Transformation",
-    "Weight":            "Weight",
-    "WeightedIndex":     "Weighted Index",
-    "BaseTime":          "Base Time",
-    "LagTime":           "Lag Time",
-    "Lag":               "Time Lag",
-    "Forecasting":       "Forecasting",
-    "SeasonalModel":     "Seasonal Model",
-    "HoltWinter":        "Holt-Winters Multiplicative Seasonal Model",
-    "Trend":             "Trend",
-    "Seasonal":          "Seasonal",
-    "Deseasonal":        "Deseasonal Series",
-    "Nseason":           "Times in Season",
-    "Irregular":         "Irregular",
-    "TrendModel":        "Trend Model on Deseasonal",
-    "RegressionModel":   "Regression Model",
-    "ForecastingPeriod": "Forecasting Period",
-    "CreateTable":       "Data Table",
-    "SaveTable":         "Save Table",
-    "MA":                "Moving Average",
-    "CenterMA":          "Centered Moving Average",
-    "MovingMedian":      "Centered Moving Median",
-    "ES":                "Exponential Smoothing",
-    "Default":           "Default",
-    "Linear":            "Linear",
-    "Quadratic":         "Quadratic",
-    "Cubic":             "Cubic",
-    "SquareRoot":        "Square Root",
-    "Log":               "Logarithmic",
-    "Exponent":          "Exponential",
-    "Power":             "Power",
+    "option":            "pilihan",                                   
+    "TimeSeries":        "Seri Waktu",
+    "Smoothing":         "Menghaluskan",
+    "Filtering":         "Penyaringan",
+    "Transformation":    "Transformasi",
+    "Weight":            "Bobot",
+    "PercentChange":     "Ubah Persen",
+    "WeightedIndex":     "Indeks Sederhana",
+    "BaseTime":          "Waktu Dasar",
+    "LagTime":           "Jeda waktu",
+    "Lag":               "Jeda waktu",
+    "Forecasting":       "Peramalan",
+    "SeasonalModel":     "Model Musiman",
+    "HoltWinter":        "Model Musiman Holt-Winters",
+    "Trend":             "Kecenderungan",
+    "Seasonal":          "Musiman",
+    "Deseasonal":        "Seri Demusiman",
+    "Nseason":           "Waktu dalam Musim",
+    "Irregular":         "Tidak teratur",
+    "TrendModel":        "Model Tren di Deseasonal",
+    "RegressionModel":   "Model Regresi",
+    "ForecastingPeriod": "Periode Peramalan",
+    "CreateTable":       "Tabel data",
+    "SaveTable":         "Simpan Tabel",
+    "MA":                "Rata-rata Bergerak",
+    "EWMA":              "Model EWMA",
+    "CenterMA":          "Rata-Rata Pergerakan Terpusat",
+    "MovingMedian":      "Median Bergerak Tengah",
+    "ES":                "Perataan Eksponensial",
+    "Default":           "Bawaan",
+    "Linear":            "Linier",
+    "Quadratic":         "Kuadrat",
+    "Cubic":             "Kubik",
+    "SquareRoot":        "Akar pangkat dua",
+    "Log":               "Logaritma",
+    "Exponent":          "Eksponensial",
+    "Power":             "Kekuatan",
     "BoxCox":            "Box-Cox",
-    "SingleMA":          "Single Moving Average",
-    "SingleES":          "Single Exponential Smoothing",
-    "DoubleMA":          "Double Moving Average",
-    "DoubleES":          "Double Exponential Smoothing",
-    "HoltLinear":        "Holt's Linear Trend",
-    "DeseasonIntercept": "Deseasonal intercept",
-    "DeseasonSlope":     "Deseasonal slope",
-    "SeasonalIndex":     "Seasonal Index",
+    "SingleMA":          "Rata-rata Pergerakan Tunggal",
+    "SingleES":          "Perataan Eksponensial Tunggal",
+    "DoubleMA":          "Rata-rata Pergerakan Ganda",
+    "DoubleES":          "Perataan Eksponensial Ganda",
+    "HoltLinear":        "Perataan Eksponensial Holt",
+    "DeseasonIntercept": "Intersepsi deseasonal",
+    "DeseasonSlope":     "Kemiringan demusim",
+    "SeasonalIndex":     "Indeks Musiman",
+    "Diff":              "Perbedaan",
+    "DiffTime":          "Waktu Berbeda",
+    "AR":                "Model Autoregresif",
+    "ResultTable":       "Hasil Regresi",
+    "ForecastTable":     "Tabel Prakiraan",
+    "HoltLevel":         "Tingkat",
+    "HoltTrend":         "Kecenderungan",
+    "AutoCorrTable":     "Tabel Autokorelasi",
+    "DiffSeries":        "Seri Perbedaan",
+    "RawSeries":         "Seri Mentah",
 };
 // Indonesian 
 appStr[1][8] = "../eStatH/index.html";
@@ -6458,6 +6715,26 @@ svgStrU[111][8] = "Pindahkan satu titik dengan mouse";
 svgStrU[112][8] = "Ekstraksi restorasi";
 svgStrU[113][8] = "tanpa penggantian"; 
 svgStrU[114][8] = "Garis"; 
+svgStrU[115][8] = "Persen Perubahan";
+svgStrU[116][8] = "Indeks Sederhana";
+svgStrU[117][8] = "Jeda Waktu";
+svgStrU[118][8] = "Perbedaan";
+svgStrU[119][8] = "Otokorelasi";
+svgStrU[120][8] = "Masuk";
+svgStrU[121][8] = "Akar Kuadrat";
+svgStrU[122][8] = "Kotak-Cox";
+svgStrU[123][8] = "Waktu dasar";
+svgStrU[124][8] = "Rata-Rata Pergerakan Terpusat";
+svgStrU[125][8] = "Penghalusan Eksponensial";
+svgStrU[126][8] = "Median Bergerak Tengah";
+svgStrU[127][8] = "Model";
+svgStrU[128][8] = "Rata-rata Bergerak";
+svgStrU[129][8] = "Rata-rata Pergerakan Ganda";
+svgStrU[130][8] = "Holt Penghalusan Eksponensial Ganda";
+svgStrU[131][8] = "Indeks Musiman";
+svgStrU[132][8] = "Model Musiman Perkalian Holt-Winters";
+svgStrU[133][8] = "Seri Deseasonal";
+
 
 // Mongolian
 $.message.mn = {
@@ -6804,50 +7081,63 @@ $.message.mn = {
     "RelationOperator":  "Харилцаа<br>оператор",
     "SelectValue":       "Үнэ цэнэ",
     "MissingValue":      "утга алга",
-    "option":            "option",
-    "TimeSeries":        "Time Series",
-    "Smoothing":         "Smoothing",
-    "Filtering":         "Filtering",
-    "Transformation":    "Transformation",
-    "Weight":            "Weight",
-    "WeightedIndex":     "Weighted Index",
-    "BaseTime":          "Base Time",
-    "LagTime":           "Lag Time",
-    "Lag":               "Time Lag",
-    "Forecasting":       "Forecasting",
-    "SeasonalModel":     "Seasonal Model",
-    "HoltWinter":        "Holt-Winters Multiplicative Seasonal Model",
-    "Trend":             "Trend",
-    "Seasonal":          "Seasonal",
-    "Deseasonal":        "Deseasonal Series",
-    "Nseason":           "Times in Season",
-    "Irregular":         "Irregular",
-    "TrendModel":        "Trend Model on Deseasonal",
-    "RegressionModel":   "Regression Model",
-    "ForecastingPeriod": "Forecasting Period",
-    "CreateTable":       "Data Table",
-    "SaveTable":         "Save Table",
-    "MA":                "Moving Average",
-    "CenterMA":          "Centered Moving Average",
-    "MovingMedian":      "Centered Moving Median",
-    "ES":                "Exponential Smoothing",
-    "Default":           "Default",
-    "Linear":            "Linear",
-    "Quadratic":         "Quadratic",
-    "Cubic":             "Cubic",
-    "SquareRoot":        "Square Root",
-    "Log":               "Logarithmic",
-    "Exponent":          "Exponential",
-    "Power":             "Power",
-    "BoxCox":            "Box-Cox",
-    "SingleMA":          "Single Moving Average",
-    "SingleES":          "Single Exponential Smoothing",
-    "DoubleMA":          "Double Moving Average",
-    "DoubleES":          "Double Exponential Smoothing",
-    "HoltLinear":        "Holt's Linear Trend",
-    "DeseasonIntercept": "Deseasonal intercept",
-    "DeseasonSlope":     "Deseasonal slope",
-    "SeasonalIndex":     "Seasonal Index",
+    "option":            "сонголт",                                             
+    "TimeSeries":        "Цагийн цуврал",
+    "Smoothing":         "гөлгөр болгох",
+    "Filtering":         "Шүүх",
+    "Transformation":    "Өөрчлөлт",
+    "Weight":            "Жин",
+    "PercentChange":     "Өөрчлөлтийн хувь",
+    "WeightedIndex":     "Энгийн индекс",
+    "BaseTime":          "Үндсэн цаг",
+    "LagTime":           "Хоцрох хугацаа",
+    "Lag":               "Цаг хугацааны хоцрогдол",
+    "Forecasting":       "Урьдчилан мэдээлэх",
+    "SeasonalModel":     "Улирлын загвар",
+    "HoltWinter":        "Холт-Өвлийн улирлын загвар",
+    "Trend":             "Тренд",
+    "Seasonal":          "Улирлын чанартай",
+    "Deseasonal":        "Улиралгүй цуврал",
+    "Nseason":           "Улиралын цаг",
+    "Irregular":         "Тогтмол бус",
+    "TrendModel":        "Тренд загвар улирлын бус",
+    "RegressionModel":   "Регрессийн загвар",
+    "ForecastingPeriod": "Урьдчилан таамаглах хугацаа",
+    "CreateTable":       "Өгөгдлийн хүснэгт",
+    "SaveTable":         "Хүснэгтийг хадгалах",
+    "MA":                "Хөдөлгөөнт дундаж",
+    "EWMA":              "EWMA загвар",
+    "CenterMA":          "Төвлөрсөн хөдөлгөөнт дундаж",
+    "MovingMedian":      "Төвлөсөн хөдөлгөөнт медиан",
+    "ES":                "Экспоненциал тэгшитгэх",
+    "Default":           "Өгөгдмөл",
+    "Linear":            "шугаман",
+    "Quadratic":         "Квадрат",
+    "Cubic":             "куб",
+    "SquareRoot":        "Квадрат язгуур",
+    "Log":               "Логарифм",
+    "Exponent":          "Экспоненциал",
+    "Power":             "Хүч",
+    "BoxCox":            "Бокс-Кокс",
+    "SingleMA":          "Нэг хөдөлгөөнт дундаж",
+    "SingleES":          "Нэг экспоненциал тэгшитгэх",
+    "DoubleMA":          "Давхар хөдөлгөөнтэй дундаж",
+    "DoubleES":          "Давхар экспоненциал тэгшитгэх",
+    "HoltLinear":        "Холт экспоненциал тэгшитгэх",
+    "DeseasonIntercept": "Улирлын бус тасалдал",
+    "DeseasonSlope":     "Улирлын бус налуу",
+    "SeasonalIndex":     "Улирлын индекс",
+    "Diff":              "Ялгаа",
+    "DiffTime":          "Өөр цаг",
+    "AR":                "Авторегрессив загвар",
+    "ResultTable":       "Регрессийн үр дүн",
+    "ForecastTable":     "Урьдчилан таамаглах хүснэгт",
+    "HoltLevel":         "Түвшин",
+    "HoltTrend":         "Тренд",
+    "AutoCorrTable":     "Автокорреляцийн хүснэгт",
+    "DiffSeries":        "Ялгаатай цуврал",
+    "RawSeries":         "Түүхий цуврал",
+
 };
 // Mongolian
 appStr[1][9] = "../eStatH/index.html";
@@ -7163,6 +7453,25 @@ svgStrU[111][9] = "Хулганы тусламжтайгаар цэгийг ши
 svgStrU[112][9] = "Сэргээлтийн олборлолт";
 svgStrU[113][9] = "орлуулахгүйгээр"; 
 svgStrU[114][9] = "Шугаман"; 
+svgStrU[115][9] = "Хувийн өөрчлөлт";
+svgStrU[116][9] = "Энгийн индекс";
+svgStrU[117][9] = "Цагийн хоцрогдол";
+svgStrU[118][9] = "Ялгаа";
+svgStrU[119][9] = "Автокорреляци";
+svgStrU[120][9] = "Бүртгэл";
+svgStrU[121][9] = "Дөрвөлжин үндэс";
+svgStrU[122][9] = "Бокс-Кокс";
+svgStrU[123][9] = "Үндсэн хугацаа";
+svgStrU[124][9] = "Төвлүүлсэн дундаж";
+svgStrU[125][9] = "Экспоненциал тэгшитгэх";
+svgStrU[126][9] = "Төвлүүлсэн хөдөлгөөнт медиан";
+svgStrU[127][9] = "Загвар";
+svgStrU[128][9] = "Хөдөлгөөнт дундаж";
+svgStrU[129][9] = "Давхар хөдөлж буй дундаж";
+svgStrU[130][9] = "Холт давхар экспоненциал тэгшитгэх";
+svgStrU[131][9] = "Улирлын индекс";
+svgStrU[132][9] = "Холт-Винтерсийн үржүүлэх улирлын загвар";
+svgStrU[133][9] = "Улиралгүй цуврал";
  
 
 // Chinese - Simplified
@@ -7492,12 +7801,12 @@ $.message.zh = {
     "Compute":           "新变体计算",
     "SelectIf":          "数据选择",
     "InfoValueLabel":    "*** 选择一个变量，输入变量名称或变量值名称，然后单击运行按钮。",
-    "InfoSorting":       "*** 最多选择 3 个要排序的变量，选择一种排序方法，然后单击“运行”按钮。",
-    "InfoCategorize":    "*** 选择要分类的变量后，输入区间开始和区间宽度，“检查类别列表”并单击“运行”按钮。",
+    "InfoSorting":       "*** 最多选择 3 个要排序的变量，选择一种排序方法，然后单击运行按钮。",
+    "InfoCategorize":    "*** 选择要分类的变量后，输入区间开始和区间宽度，检查类别列表并单击运行按钮。",
     "InfoRecode":        "*** 选择一个要重新分配的变量，输入一个新的随机值，然后单击运行按钮。",
     "InfoRecode2":       "* 您最多可以覆盖九个值。",
     "InfoCompute":       "*** 使用下面的按钮创建用于计算新方差的公式，然后单击运行按钮。",
-    "InfoSelectIf":      "*** 多选择三个变量进行数据选择，为每个变量输入条件表达式，然后单击运行按钮。。",
+    "InfoSelectIf":      "*** 多选择三个变量进行数据选择，为每个变量输入条件表达式，然后单击运行按钮。",
     "SortingVariable":   "对齐方式",
     "SortingMethod":     "排序方式",
     "NewVariable":       "新变量",
@@ -7534,9 +7843,10 @@ $.message.zh = {
     "TrendModel":       "非季节性趋势模型",
     "RegressionModel":  "回归模型",
     "ForecastingPeriod":"预测期",
-    "CreateTable":      "数据表",
+    "CreateTable":      "预测表",
     "SaveTable":        "保存表",
     "MA":               "移动平均线",
+    "EWMA":             "指數平滑 Model",
     "CenterMA":         "中心移动平均线",
     "MovingMedian":     "中心偏移中位数",
     "ES":               "指数平滑",
@@ -7552,8 +7862,21 @@ $.message.zh = {
     "SingleMA":         "简单移动平均线",
     "SingleES":         "简单指数平滑",
     "DoubleMA":         "双移动平均线",
-    "DoubleES":         "双移动平均线",
+    "DoubleES":         "双移指数平滑",
     "HoltLinear":       "霍尔特线性趋势",
+    "DeseasonIntercept": "反季节拦截",
+    "DeseasonSlope":     "淡季坡度",
+    "SeasonalIndex":     "季节性指数",
+    "Diff":              "差异",
+    "DiffTime":          "差异时间",
+    "AR":                "自回归模型",
+    "ResultTable":       "结果表",
+    "ForecastTable":     "预测表",
+    "HoltLevel":         "水平",
+    "HoltTrend":         "趋势",
+    "AutoCorrTable":     "自相关表",
+    "DiffSeries":        "差分时间序列",
+    "RawSeries":         "原始系列",
 
 };
 // Chinese Simplified
@@ -7845,7 +8168,25 @@ svgStrU[111][10] = "用鼠标移动点";
 svgStrU[112][10] = "恢复提取";
 svgStrU[113][10] = "不可回收提取";
 svgStrU[114][10] = "折线"; 
-
+svgStrU[115][10] = "% 增加或减少";
+svgStrU[116][10] = "简单指数";
+svgStrU[117][10] = "视差";
+svgStrU[118][10] = "差异";
+svgStrU[119][10] = "自相关函数";
+svgStrU[120][10] = "对数变换";
+svgStrU[121][10] = "平方根变换";
+svgStrU[122][10] = "Box-Cox 变换";
+svgStrU[123][10] = "基准时间";
+svgStrU[124][10] = "中心移动平均线";
+svgStrU[125][10] = "指数平滑";
+svgStrU[126][10] = "中位数中心偏移";
+svgStrU[127][10] = "模型";
+svgStrU[128][10] = "移动平均线";
+svgStrU[129][10] = "双移动平均线";
+svgStrU[130][10] = "霍尔特双指数平滑";
+svgStrU[131][10] = "季节性指数";
+svgStrU[132][10] = "Holt-Winters 乘法季节性模型";
+svgStrU[133][10] = "非季节性时间序列";
 
 // Portugese
 $.message.pt = {
@@ -8196,50 +8537,63 @@ $.message.pt = {
     "RelationOperator":  "Relação <br> Operador",
     "SelectValue":       "Valor",
     "MissingValue":      "valor faltando",
-    "option":            "option",
-    "TimeSeries":        "Time Series",
-    "Smoothing":         "Smoothing",
-    "Filtering":         "Filtering",
-    "Transformation":    "Transformation",
-    "Weight":            "Weight",
-    "WeightedIndex":     "Weighted Index",
-    "BaseTime":          "Base Time",
-    "LagTime":           "Lag Time",
-    "Lag":               "Time Lag",
-    "Forecasting":       "Forecasting",
-    "SeasonalModel":     "Seasonal Model",
-    "HoltWinter":        "Holt-Winters Multiplicative Seasonal Model",
-    "Trend":             "Trend",
-    "Seasonal":          "Seasonal",
-    "Deseasonal":        "Deseasonal Series",
-    "Nseason":           "Times in Season",
+    "option":            "opção",                                       
+    "TimeSeries":        "Série Temporal",
+    "Smoothing":         "Suavizando",
+    "Filtering":         "Filtragem",
+    "Transformation":    "Transformação",
+    "Weight":            "Peso",
+    "PercentChange":     "Alterar Porcentagem",
+    "WeightedIndex":     "Índice Simples",
+    "BaseTime":          "Hora Base",
+    "LagTime":           "Tempo de atraso",
+    "Lag":               "Atraso",
+    "Forecasting":       "Previsão",
+    "SeasonalModel":     "Modelo Sazonal",
+    "HoltWinter":        "Modelo Sazonal Holt-Winters",
+    "Trend":             "Tendência",
+    "Seasonal":          "Sazonal",
+    "Deseasonal":        "Série Desazonal",
+    "Nseason":           "Tempos na Temporada",
     "Irregular":         "Irregular",
-    "TrendModel":        "Trend Model on Deseasonal",
-    "RegressionModel":   "Regression Model",
-    "ForecastingPeriod": "Forecasting Period",
-    "CreateTable":       "Data Table",
-    "SaveTable":         "Save Table",
-    "MA":                "Moving Average",
-    "CenterMA":          "Centered Moving Average",
-    "MovingMedian":      "Centered Moving Median",
-    "ES":                "Exponential Smoothing",
-    "Default":           "Default",
+    "TrendModel":        "Modelo de Tendência em Sazonal",
+    "RegressionModel":   "Modelo de regressão",
+    "ForecastingPeriod": "Período de previsão",
+    "CreateTable":       "Tabela de dados",
+    "SaveTable":         "Salvar Tabela",
+    "MA":                "Média Móvel",
+    "EWMA":              "Modelo EWMA",
+    "CenterMA":          "Média Móvel Centrada",
+    "MovingMedian":      "Media Móvel Centrada",
+    "ES":                "Suavização Exponencial",
+    "Default":           "Predefinição",
     "Linear":            "Linear",
-    "Quadratic":         "Quadratic",
-    "Cubic":             "Cubic",
-    "SquareRoot":        "Square Root",
-    "Log":               "Logarithmic",
-    "Exponent":          "Exponential",
-    "Power":             "Power",
-    "BoxCox":            "Box-Cox",
-    "SingleMA":          "Single Moving Average",
-    "SingleES":          "Single Exponential Smoothing",
-    "DoubleMA":          "Double Moving Average",
-    "DoubleES":          "Double Exponential Smoothing",
-    "HoltLinear":        "Holt's Linear Trend",
-    "DeseasonIntercept": "Deseasonal intercept",
-    "DeseasonSlope":     "Deseasonal slope",
-    "SeasonalIndex":     "Seasonal Index",
+    "Quadratic":         "Quadrático",
+    "Cubic":             "Cúbico",
+    "SquareRoot":        "Raiz quadrada",
+    "Log":               "Logarítmico",
+    "Exponent":          "Exponencial",
+    "Power":             "Poder",
+    "BoxCox":            "Caixa-Cox",
+    "SingleMA":          "Média Móvel Única",
+    "SingleES":          "Alisamento Exponencial Simples",
+    "DoubleMA":          "Média Móvel Dupla",
+    "DoubleES":          "Suavização Exponencial Dupla",
+    "HoltLinear":        "Alisamento Exponencial Holt",
+    "DeseasonIntercept": "Interceptação dessazonalizada",
+    "DeseasonSlope":     "Inclinação dessazonalizada",
+    "SeasonalIndex":     "Índice Sazonal",
+    "Diff":              "Diferença",
+    "DiffTime":          "Tempo Diferencial",
+    "AR":                "Modelo Autoregressivo",
+    "ResultTable":       "Resultado da regressão",
+    "ForecastTable":     "Tabela de Previsão",
+    "HoltLevel":         "Nível",
+    "HoltTrend":         "Tendência",
+    "AutoCorrTable":     "Tabela de Autocorrelação",
+    "DiffSeries":        "Série Diferencial",
+    "RawSeries":         "Série Bruta",
+
 };
 // Portugese
 appStr[1][11] = "../eStatH/index.html";
@@ -8555,6 +8909,26 @@ svgStrU[111][11] = "Mover um ponto com o mouse";
 svgStrU[112][11] = "Extração de restauração";
 svgStrU[113][11] = "Sem substituição";
 svgStrU[114][11] = "Linha"; 
+svgStrU[115][11] = "Percentual de alteração";
+svgStrU[116][11] = "Índice simples";
+svgStrU[117][11] = "Atraso de tempo";
+svgStrU[118][11] = "Diferença";
+svgStrU[119][11] = "Autocorrelação";
+svgStrU[120][11] = "Log";
+svgStrU[121][11] = "Raiz quadrada";
+svgStrU[122][11] = "Box-Cox";
+svgStrU[123][11] = "Hora base";
+svgStrU[124][11] = "Média Móvel Centrada";
+svgStrU[125][11] = "Suavização exponencial";
+svgStrU[126][11] = "Media móvel centralizada";
+svgStrU[127][11] = "Modelo";
+svgStrU[128][11] = "Média móvel";
+svgStrU[129][11] = "Média Móvel Dupla";
+svgStrU[130][11] = "Holt suavização exponencial dupla";
+svgStrU[131][11] = "Índice sazonal";
+svgStrU[132][11] = "Modelo Sazonal Multiplicativo de Holt-Winters";
+svgStrU[133][11] = "Série Fora de Temporada";
+
 
 // Greek
 $.message.gr = {
@@ -8905,50 +9279,62 @@ $.message.gr = {
     "RelationOperator":  "Σχέση<br>Χειριστής",
     "SelectValue":       "Αξία",
     "MissingValue":      "λείπει τιμή",
-    "option":            "option",
-    "TimeSeries":        "Time Series",
-    "Smoothing":         "Smoothing",
-    "Filtering":         "Filtering",
-    "Transformation":    "Transformation",
-    "Weight":            "Weight",
-    "WeightedIndex":     "Weighted Index",
-    "BaseTime":          "Base Time",
-    "LagTime":           "Lag Time",
-    "Lag":               "Time Lag",
-    "Forecasting":       "Forecasting",
-    "SeasonalModel":     "Seasonal Model",
-    "HoltWinter":        "Holt-Winters Multiplicative Seasonal Model",
-    "Trend":             "Trend",
-    "Seasonal":          "Seasonal",
+    "option":            "επιλογή",                                        
+    "TimeSeries":        "Χρονική σειρά",
+    "Smoothing":         "Εξομάλυνση",
+    "Filtering":         "Φιλτράρισμα",
+    "Transformation":    "Μεταμόρφωση",
+    "Weight":            "Βάρος",
+    "PercentChange":     "Αλλαγή ποσοστού",
+    "WeightedIndex":     "Απλός Ευρετήριο",
+    "BaseTime":          "Ώρα βάσης",
+    "LagTime":           "Χρόνος καθυστέρησης",
+    "Lag":               "Χρονική υστέρηση",
+    "Forecasting":       "Πρόβλεψη",
+    "SeasonalModel":     "εποχιακό μοντέλο",
+    "HoltWinter":        "Holt-Winters Seasonal Model",
+    "Trend":             "Τάση",
+    "Seasonal":          "Εποχής",
     "Deseasonal":        "Deseasonal Series",
     "Nseason":           "Times in Season",
-    "Irregular":         "Irregular",
+    "Irregular":         "Ακανόνιστος",
     "TrendModel":        "Trend Model on Deseasonal",
-    "RegressionModel":   "Regression Model",
-    "ForecastingPeriod": "Forecasting Period",
-    "CreateTable":       "Data Table",
-    "SaveTable":         "Save Table",
-    "MA":                "Moving Average",
-    "CenterMA":          "Centered Moving Average",
-    "MovingMedian":      "Centered Moving Median",
-    "ES":                "Exponential Smoothing",
-    "Default":           "Default",
-    "Linear":            "Linear",
-    "Quadratic":         "Quadratic",
-    "Cubic":             "Cubic",
-    "SquareRoot":        "Square Root",
-    "Log":               "Logarithmic",
-    "Exponent":          "Exponential",
-    "Power":             "Power",
+    "RegressionModel":   "Μοντέλο παλινδρόμησης",
+    "ForecastingPeriod": "Περίοδος Πρόβλεψης",
+    "CreateTable":       "Πίνακας δεδομένων",
+    "SaveTable":         "Αποθήκευση πίνακα",
+    "MA":                "Κινούμενος μέσος όρος",
+    "EWMA":              "Μοντέλο EWMA",
+    "CenterMA":          "Κεντρικός κινούμενος μέσος όρος",
+    "MovingMedian":      "Κεντρική κινούμενη διάμεσος",
+    "ES":                "Εκθετική εξομάλυνση",
+    "Default":           "Προκαθορισμένο",
+    "Linear":            "Γραμμικός",
+    "Quadratic":         "Τετραγωνικός",
+    "Cubic":             "Κυβικός",
+    "SquareRoot":        "Τετραγωνική ρίζα",
+    "Log":               "Λογαριθμική",
+    "Exponent":          "Εκθετικός",
+    "Power":             "Εξουσία",
     "BoxCox":            "Box-Cox",
-    "SingleMA":          "Single Moving Average",
-    "SingleES":          "Single Exponential Smoothing",
-    "DoubleMA":          "Double Moving Average",
-    "DoubleES":          "Double Exponential Smoothing",
-    "HoltLinear":        "Holt's Linear Trend",
-    "DeseasonIntercept": "Deseasonal intercept",
-    "DeseasonSlope":     "Deseasonal slope",
-    "SeasonalIndex":     "Seasonal Index",
+    "SingleMA":          "Ενιαίος κινούμενος μέσος όρος",
+    "SingleES":          "Ενιαία εκθετική εξομάλυνση",
+    "DoubleMA":          "Διπλός κινούμενος μέσος όρος",
+    "DoubleES":          "Διπλή εκθετική εξομάλυνση",
+    "HoltLinear":        "Holt Exponential Smoothing",
+    "DeseasonIntercept": "Παρεποχιακή αναχαίτιση",
+    "DeseasonSlope":     "Περιοχική πλαγιά",
+    "SeasonalIndex":     "Εποχιακός Δείκτης",
+    "Diff":              "Διαφορά",
+    "DiffTime":          "Ώρα διαφοράς",
+    "AR":                "Αυτοπαλινδρομικό μοντέλο",
+    "ResultTable":       "Αποτέλεσμα παλινδρόμησης",
+    "ForecastTable":     "Πίνακας προβλέψεων",
+    "HoltLevel":         "Επίπεδο",
+    "HoltTrend":         "Τάση",
+    "AutoCorrTable":     "Πίνακας αυτοσυσχέτισης",
+    "DiffSeries":        "Σειρά Διαφορά",
+    "RawSeries":         "Πρωτότυπη χρονοσειρά",
 };
 // Greek
 appStr[1][12] = "../eStatH/index.html";
@@ -9263,6 +9649,25 @@ svgStrU[111][12] = "Μετακινήστε ένα σημείο με το πον�
 svgStrU[112][12] = "Εξόρυξη αποκατάστασης";
 svgStrU[113][12] = "χωρίς αντικατάσταση";
 svgStrU[114][12] = "Γραμμικό"; 
+svgStrU[115][12] = "Ποσοστό αλλαγής";
+svgStrU[116][12] = "Απλός Ευρετήριο";
+svgStrU[117][12] = "Χρονική καθυστέρηση";
+svgStrU[118][12] = "Διαφορά";
+svgStrU[119][12] = "Αυτοσυσχέτιση";
+svgStrU[120][12] = "Καταγραφή";
+svgStrU[121][12] = "Τετράγωνη ρίζα";
+svgStrU[122][12] = "Box-Cox";
+svgStrU[123][12] = "Βασικός χρόνος";
+svgStrU[124][12] = "Κεντρικός κινούμενος μέσος όρος";
+svgStrU[125][12] = "Εκθετική εξομάλυνση";
+svgStrU[126][12] = "Κεντρική κινούμενη διάμεσος";
+svgStrU[127][12] = "Μοντέλο";
+svgStrU[128][12] = "Κινούμενος μέσος όρος";
+svgStrU[129][12] = "Διπλός κινούμενος μέσος όρος";
+svgStrU[130][12] = "Holt Double Exponential Smoothing";
+svgStrU[131][12] = "Seasonal Index";
+svgStrU[132][12] = "Πολλαπλασιαστικό εποχικό μοντέλο Holt-Winters";
+svgStrU[133][12] = "Deseasonal Series";
 
 
 // Romanian
@@ -9615,50 +10020,63 @@ $.message.ro = {
     "RelationOperator":  "Relație<br>Operator",
     "SelectValue":       "Valoare",
     "MissingValue":      "valoare lipsă",
-    "option":            "option",
-    "TimeSeries":        "Time Series",
-    "Smoothing":         "Smoothing",
-    "Filtering":         "Filtering",
-    "Transformation":    "Transformation",
-    "Weight":            "Weight",
-    "WeightedIndex":     "Weighted Index",
-    "BaseTime":          "Base Time",
-    "LagTime":           "Lag Time",
-    "Lag":               "Time Lag",
-    "Forecasting":       "Forecasting",
-    "SeasonalModel":     "Seasonal Model",
-    "HoltWinter":        "Holt-Winters Multiplicative Seasonal Model",
-    "Trend":             "Trend",
-    "Seasonal":          "Seasonal",
-    "Deseasonal":        "Deseasonal Series",
-    "Nseason":           "Times in Season",
-    "Irregular":         "Irregular",
-    "TrendModel":        "Trend Model on Deseasonal",
-    "RegressionModel":   "Regression Model",
-    "ForecastingPeriod": "Forecasting Period",
-    "CreateTable":       "Data Table",
-    "SaveTable":         "Save Table",
-    "MA":                "Moving Average",
-    "CenterMA":          "Centered Moving Average",
-    "MovingMedian":      "Centered Moving Median",
-    "ES":                "Exponential Smoothing",
-    "Default":           "Default",
-    "Linear":            "Linear",
-    "Quadratic":         "Quadratic",
-    "Cubic":             "Cubic",
-    "SquareRoot":        "Square Root",
-    "Log":               "Logarithmic",
+    "option":            "opțiune",                          
+    "TimeSeries":        "Serial temporal",
+    "Smoothing":         "Netezire",
+    "Filtering":         "Filtrare",
+    "Transformation":    "Transformare",
+    "Weight":            "Greutate",
+    "PercentChange":     "Procentul de schimbare",
+    "WeightedIndex":     "Index simplu",
+    "BaseTime":          "Timp de bază",
+    "LagTime":           "Timp de întârziere",
+    "Lag":               "Decalaj",
+    "Forecasting":       "Prognoză",
+    "SeasonalModel":     "Model sezonier",
+    "HoltWinter":        "Model sezonier Holt-Winters",
+    "Trend":             "Tendinţă",
+    "Seasonal":          "Sezonier",
+    "Deseasonal":        "Serial de sezon",
+    "Nseason":           "Timpurile din sezon",
+    "Irregular":         "Neregulat",
+    "TrendModel":        "Model de tendință pe desezon",
+    "RegressionModel":   "Model de regresie",
+    "ForecastingPeriod": "Perioada de prognoză",
+    "CreateTable":       "Tabel de date",
+    "SaveTable":         "Salvare tabel",
+    "MA":                "Media mobilă",
+    "EWMA":              "Model EWMA",
+    "CenterMA":          "Media mobilă centrată",
+    "MovingMedian":      "Median în mișcare centrat",
+    "ES":                "Netezire exponențială",
+    "Default":           "Mod implicit",
+    "Linear":            "Liniar",
+    "Quadratic":         "Cadratic",
+    "Cubic":             "Cub",
+    "SquareRoot":        "Rădăcină pătrată",
+    "Log":               "Logaritmic",
     "Exponent":          "Exponential",
-    "Power":             "Power",
+    "Power":             "Putere",
     "BoxCox":            "Box-Cox",
-    "SingleMA":          "Single Moving Average",
-    "SingleES":          "Single Exponential Smoothing",
-    "DoubleMA":          "Double Moving Average",
-    "DoubleES":          "Double Exponential Smoothing",
-    "HoltLinear":        "Holt's Linear Trend",
-    "DeseasonIntercept": "Deseasonal intercept",
-    "DeseasonSlope":     "Deseasonal slope",
-    "SeasonalIndex":     "Seasonal Index",
+    "SingleMA":          "Media mobilă unică",
+    "SingleES":          "Single Exponential Soothing",
+    "DoubleMA":          "Media mobilă dublă",
+    "DoubleES":          "Netezire exponențială dublă",
+    "HoltLinear":        "Netezirea exponențială Holt",
+    "DeseasonIntercept": "Interceptarea sezonieră",
+    "DeseasonSlope":     "Panta sezonieră",
+    "SeasonalIndex":     "Indexul sezonier",
+    "Diff":              "Diferență",
+    "DiffTime":          "Timp diferit",
+    "AR":                "Model autoregresiv",
+    "ResultTable":       "Resultatul regresiei",
+    "ForecastTable":     "Tabelul de prognoză",
+    "HoltLevel":         "Nivel",
+    "HoltTrend":         "Tendinţă",
+    "AutoCorrTable":     "Tabelul de autocorelare",
+    "DiffSeries":        "Seria diferențe",
+    "RawSeries":         "Serial temporal original",
+
 };
 // Romanian
 appStr[1][13] = "../eStatH/index.html";
@@ -9974,6 +10392,26 @@ svgStrU[111][13] = "Deplasați un punct cu mouse-ul";
 svgStrU[112][13] = "Extracția restaurării";
 svgStrU[113][13] = "fără înlocuire";
 svgStrU[114][13] = "Liniară"; 
+svgStrU[115][13] = "Modificare procentuală";
+svgStrU[116][13] = "Index simplu";
+svgStrU[117][13] = "Decalaj";
+svgStrU[118][13] = "Diferență";
+svgStrU[119][13] = "Autocorelare";
+svgStrU[120][13] = "Jurnal";
+svgStrU[121][13] = "Rădăcină pătrată";
+svgStrU[122][13] = "Box-Cox";
+svgStrU[123][13] = "Timp de bază";
+svgStrU[124][13] = "Media mobilă centrată";
+svgStrU[125][13] = "Netezire exponențială";
+svgStrU[126][13] = "Median în mișcare centrat";
+svgStrU[127][13] = "Model";
+svgStrU[128][13] = "Media mobilă";
+svgStrU[129][13] = "Medie mobilă dublă";
+svgStrU[130][13] = "Netezire exponențială dublă Holt";
+svgStrU[131][13] = "Index sezonier";
+svgStrU[132][13] = "Model sezonier multiplicativ Holt-Winters";
+svgStrU[133][13] = "Serial de sezon";
+
 
 // Thai
 $.message.th = {
@@ -10324,50 +10762,62 @@ $.message.th = {
     "RelationOperator":  "ความสัมพันธ์<br>โอเปอเรเตอร์",
     "SelectValue":       "ค่า",
     "MissingValue":      "ไม่มีค่า",
-    "option":            "option",
-    "TimeSeries":        "Time Series",
-    "Smoothing":         "Smoothing",
-    "Filtering":         "Filtering",
-    "Transformation":    "Transformation",
-    "Weight":            "Weight",
-    "WeightedIndex":     "Weighted Index",
-    "BaseTime":          "Base Time",
-    "LagTime":           "Lag Time",
-    "Lag":               "Time Lag",
-    "Forecasting":       "Forecasting",
-    "SeasonalModel":     "Seasonal Model",
-    "HoltWinter":        "Holt-Winters Multiplicative Seasonal Model",
-    "Trend":             "Trend",
-    "Seasonal":          "Seasonal",
-    "Deseasonal":        "Deseasonal Series",
-    "Nseason":           "Times in Season",
-    "Irregular":         "Irregular",
-    "TrendModel":        "Trend Model on Deseasonal",
-    "RegressionModel":   "Regression Model",
-    "ForecastingPeriod": "Forecasting Period",
-    "CreateTable":       "Data Table",
-    "SaveTable":         "Save Table",
-    "MA":                "Moving Average",
-    "CenterMA":          "Centered Moving Average",
-    "MovingMedian":      "Centered Moving Median",
-    "ES":                "Exponential Smoothing",
-    "Default":           "Default",
-    "Linear":            "Linear",
-    "Quadratic":         "Quadratic",
-    "Cubic":             "Cubic",
-    "SquareRoot":        "Square Root",
-    "Log":               "Logarithmic",
-    "Exponent":          "Exponential",
-    "Power":             "Power",
-    "BoxCox":            "Box-Cox",
-    "SingleMA":          "Single Moving Average",
-    "SingleES":          "Single Exponential Smoothing",
-    "DoubleMA":          "Double Moving Average",
-    "DoubleES":          "Double Exponential Smoothing",
-    "HoltLinear":        "Holt's Linear Trend",
-    "DeseasonIntercept": "Deseasonal intercept",
-    "DeseasonSlope":     "Deseasonal slope",
-    "SeasonalIndex":     "Seasonal Index",
+    "option":            "ตัวเลือก",                                  
+    "TimeSeries":        "ไทม์ซีรีส์",
+    "Smoothing":         "เรียบ",
+    "Filtering":         "การกรอง",
+    "Transformation":    "การเปลี่ยนแปลง",
+    "Weight":            "น้ำหนัก",
+    "PercentChange":     "เปอร์เซ็นต์การเปลี่ยนแปลง",
+    "WeightedIndex":     "ดัชนีอย่างง่าย",
+    "BaseTime":          "เวลาพื้นฐาน",
+    "LagTime":           "เวลาล่าช้า",
+    "Lag":               "เวลาล่าช้า",
+    "Forecasting":       "พยากรณ์",
+    "SeasonalModel":     "แบบจำลองตามฤดูกาล",
+    "HoltWinter":        "แบบจำลองตามฤดูกาลของ Holt-Winters",
+    "Trend":             "แนวโน้ม",
+    "Seasonal":          "ตามฤดูกาล",
+    "Deseasonal":        "ซีรีส์ดีซีซัน",
+    "Nseason":           "ครั้งในฤดูกาล",
+    "Irregular":         "ผิดปกติ",
+    "TrendModel":        "เทรนด์โมเดลเกี่ยวกับดีซีซันอล",
+    "RegressionModel":   "แบบจำลองการถดถอย",
+    "ForecastingPeriod": "ระยะเวลาพยากรณ์",
+    "CreateTable":       "ตารางข้อมูล",
+    "SaveTable":         "บันทึกตาราง",
+    "MA":                "ค่าเฉลี่ยเคลื่อนที่",
+    "EWMA":              "แบบจำลอง EWMA",
+    "CenterMA":          "เส้นค่าเฉลี่ยเคลื่อนที่กึ่งกลาง",
+    "MovingMedian":      "ค่ามัธยฐานการย้ายศูนย์กลาง",
+    "ES":                "การปรับให้เรียบแบบเอ็กซ์โพเนนเชียล",
+    "Default":           "ค่าเริ่มต้น",
+    "Linear":            "เชิงเส้น",
+    "Quadratic":         "กำลังสอง",
+    "Cubic":             "ลูกบาศก์",
+    "SquareRoot":        "รากที่สอง",
+    "Log":               "ลอการิทึม",
+    "Exponent":          "เลขชี้กำลัง",
+    "Power":             "พลัง",
+    "BoxCox":            "บ็อกซ์-ค็อกซ์",
+    "SingleMA":          "เส้นค่าเฉลี่ยเคลื่อนที่เดี่ยว",
+    "SingleES":          "การปรับให้เรียบแบบเอกซ์โปเนนเชียล",
+    "DoubleMA":          "เส้นค่าเฉลี่ยเคลื่อนที่สองเท่า",
+    "DoubleES":          "การปรับให้เรียบแบบเอกซ์โพเนนเชียลสองเท่า",
+    "HoltLinear":        "โฮลท์เอ็กซ์โปเนนเชียล สมูทติ้ง",
+    "DeseasonIntercept": "การสกัดกั้น Deseasonal",
+    "DeseasonSlope":     "ความลาดชันตามฤดูกาล",
+    "SeasonalIndex":     "ดัชนีตามฤดูกาล",
+    "Diff":              "ความแตกต่าง",
+    "DiffTime":          "แตกต่างเวลา",
+    "AR":                "แบบจำลองการถดถอยอัตโนมัติ",
+    "ResultTable":       "ผลการถดถอย",
+    "ForecastTable":     "ตารางพยากรณ์",
+    "HoltLevel":         "ระดับ",
+    "HoltTrend":         "แนวโน้ม",
+    "AutoCorrTable":     "ตารางความสัมพันธ์อัตโนมัติ",
+    "DiffSeries":        "ชุดความแตกต่าง",
+    "RawSeries":         "อนุกรมเวลาเดิม",
 };
 // Thai
 appStr[1][14] = "../eStatH/index.html";
@@ -10682,6 +11132,25 @@ svgStrU[111][14] = "เลื่อนจุดด้วยเมาส์";
 svgStrU[112][14] = "การสกัดการฟื้นฟู";
 svgStrU[113][14] = "โดยไม่ต้องเปลี่ยน";
 svgStrU[114][14] = "แผนภาพเส้น"; 
+svgStrU[115][14] = "เปอร์เซ็นต์การเปลี่ยนแปลง";
+svgStrU[116][14] = "ดัชนีอย่างง่าย";
+svgStrU[117][14] = "เวลาหน่วง";
+svgStrU[118][14] = "ความแตกต่าง";
+svgStrU[119][14] = "ความสัมพันธ์อัตโนมัติ";
+svgStrU[120][14] = "บันทึก";
+svgStrU[121][14] = "รากที่สอง";
+svgStrU[122][14] = "บ็อกซ์-ค็อกซ์";
+svgStrU[123][14] = "เวลาพื้นฐาน";
+svgStrU[124][14] = "เส้นค่าเฉลี่ยเคลื่อนที่กึ่งกลาง";
+svgStrU[125][14] = "การปรับให้เรียบแบบเอ็กซ์โพเนนเชียล";
+svgStrU[126][14] = "ค่ามัธยฐานการเคลื่อนที่ที่กึ่งกลาง";
+svgStrU[127][14] = "รุ่น";
+svgStrU[128][14] = "เส้นค่าเฉลี่ยเคลื่อนที่";
+svgStrU[129][14] = "เส้นค่าเฉลี่ยเคลื่อนที่สองเท่า";
+svgStrU[130][14] = "โฮลทดับเบิลเอ็กซ์โพเนนเชียล Smoothing";
+svgStrU[131][14] = "ดัชนีตามฤดูกาล";
+svgStrU[132][14] = "รูปแบบการคูณตามฤดูกาลของ Holt-Winters";
+svgStrU[133][14] = "ซีรีส์ที่ไม่เป็นไปตามฤดูกาล";
 
 
 // Polish
@@ -11034,50 +11503,63 @@ $.message.pl = {
     "RelationOperator":  "Relacja<br>Operator",
     "SelectValue":       "Wartość",
     "MissingValue":      "brakująca wartość",
-    "option":            "option",
-    "TimeSeries":        "Time Series",
-    "Smoothing":         "Smoothing",
-    "Filtering":         "Filtering",
-    "Transformation":    "Transformation",
-    "Weight":            "Weight",
-    "WeightedIndex":     "Weighted Index",
-    "BaseTime":          "Base Time",
-    "LagTime":           "Lag Time",
-    "Lag":               "Time Lag",
-    "Forecasting":       "Forecasting",
-    "SeasonalModel":     "Seasonal Model",
-    "HoltWinter":        "Holt-Winters Multiplicative Seasonal Model",
-    "Trend":             "Trend",
-    "Seasonal":          "Seasonal",
-    "Deseasonal":        "Deseasonal Series",
-    "Nseason":           "Times in Season",
-    "Irregular":         "Irregular",
-    "TrendModel":        "Trend Model on Deseasonal",
-    "RegressionModel":   "Regression Model",
-    "ForecastingPeriod": "Forecasting Period",
-    "CreateTable":       "Data Table",
-    "SaveTable":         "Save Table",
-    "MA":                "Moving Average",
-    "CenterMA":          "Centered Moving Average",
-    "MovingMedian":      "Centered Moving Median",
-    "ES":                "Exponential Smoothing",
-    "Default":           "Default",
-    "Linear":            "Linear",
-    "Quadratic":         "Quadratic",
-    "Cubic":             "Cubic",
-    "SquareRoot":        "Square Root",
-    "Log":               "Logarithmic",
-    "Exponent":          "Exponential",
-    "Power":             "Power",
+    "option":            "opcja",                                 
+    "TimeSeries":        "Szereg czasowy",
+    "Smoothing":         "Wygładzanie",
+    "Filtering":         "Filtracja",
+    "Transformation":    "Transformacja",
+    "Weight":            "Waga",
+    "PercentChange":     "Zmień procent",
+    "WeightedIndex":     "Prosty indeks",
+    "BaseTime":          "Czas Bazowy",
+    "LagTime":           "Czas opóźnienia",
+    "Lag":               "Opóźnienie czasowe",
+    "Forecasting":       "Prognozowanie",
+    "SeasonalModel":     "Model sezonowy",
+    "HoltWinter":        "Model sezonowy Holt-Winters",
+    "Trend":             "Tendencja",
+    "Seasonal":          "Sezonowy",
+    "Deseasonal":        "Seria pozasezonowa",
+    "Nseason":           "Czasy w sezonie",
+    "Irregular":         "Nieregularny",
+    "TrendModel":        "Model trendu w sezonowości",
+    "RegressionModel":   "Model regresji",
+    "ForecastingPeriod": "Okres Prognozowany",
+    "CreateTable":       "Tabela danych",
+    "SaveTable":         "Zapisz tabelę",
+    "MA":                "Średnia Ruchoma",
+    "EWMA":              "Model EWMA",
+    "CenterMA":          "Wyśrodkowana Średnia Ruchoma",
+    "MovingMedian":      "Centralna Ruchoma Mediana",
+    "ES":                "Wygładzanie wykładnicze",
+    "Default":           "Domyślna",
+    "Linear":            "Liniowy",
+    "Quadratic":         "Kwadratowy",
+    "Cubic":             "Sześcienny",
+    "SquareRoot":        "Pierwiastek kwadratowy",
+    "Log":               "logarytmiczna",
+    "Exponent":          "Wykładniczy",
+    "Power":             "Moc",
     "BoxCox":            "Box-Cox",
-    "SingleMA":          "Single Moving Average",
-    "SingleES":          "Single Exponential Smoothing",
-    "DoubleMA":          "Double Moving Average",
-    "DoubleES":          "Double Exponential Smoothing",
-    "HoltLinear":        "Holt's Linear Trend",
-    "DeseasonIntercept": "Deseasonal intercept",
-    "DeseasonSlope":     "Deseasonal slope",
-    "SeasonalIndex":     "Seasonal Index",
+    "SingleMA":          "Pojedyncza średnia krocząca",
+    "SingleES":          "Pojedyncze wygładzanie wykładnicze",
+    "DoubleMA":          "Podwójna średnia krocząca",
+    "DoubleES":          "Podwójne wygładzanie wykładnicze",
+    "HoltLinear":        "Holt Expnential Smoothing",
+    "DeseasonIntercept": "Przechwytywanie pozasezonowe",
+    "DeseasonSlope":     "Niesezonowy stok",
+    "SeasonalIndex":     "Indeks sezonowy",
+    "Diff":              "Różnica",
+    "DiffTime":          "Czas Różnic",
+    "AR":                "Model autoregresyjny",
+    "ResultTable":       "Wynik regresji",
+    "ForecastTable":     "Tabela Prognoz",
+    "HoltLevel":         "Poziom",
+    "HoltTrend":         "Tendencja",
+    "AutoCorrTable":     "Tabela Autokorelacji",
+    "DiffSeries":        "Seria Różnic",
+    "RawSeries":         "Oryginalna seria czasowa",
+
 };
 
 // Polish
@@ -11395,6 +11877,26 @@ svgStrU[111][15] = "Przesuń punkt za pomocą myszy";
 svgStrU[112][15] = "Ekstrakcja renowacji";
 svgStrU[113][15] = "bez zamiany";
 svgStrU[114][15] = "liniowy"; 
+svgStrU[115][15] = "Zmiana procentowa";
+svgStrU[116][15] = "Indeks prosty";
+svgStrU[117][15] = "Opóźnienie";
+svgStrU[118][15] = "Różnica";
+svgStrU[119][15] = "Autokorelacja";
+svgStrU[120][15] = "Dziennik";
+svgStrU[121][15] = "Pierwiastek kwadratowy";
+svgStrU[122][15] = "Box-Cox";
+svgStrU[123][15] = "Czas podstawowy";
+svgStrU[124][15] = "Wyśrodkowana średnia ruchoma";
+svgStrU[125][15] = "Wygładzanie wykładnicze";
+svgStrU[126][15] = "Wyśrodkowana ruchoma mediana";
+svgStrU[127][15] = "Model";
+svgStrU[128][15] = "Średnia krocząca";
+svgStrU[129][15] = "Podwójna średnia krocząca";
+svgStrU[130][15] = "Wstrzymaj podwójne wygładzanie wykładnicze";
+svgStrU[131][15] = "Indeks sezonowy";
+svgStrU[132][15] = "Model sezonowy multiplikatywny Holt-Winters";
+svgStrU[133][15] = "Seria pozasezonowa";
+
  
 // Azerbaijan
 $.message.az = {
@@ -11746,51 +12248,62 @@ $.message.az = {
     "RelationOperator":  "Əlaqə<br>Operator",
     "SelectValue":       "Dəyər",
     "MissingValue":      "itkin dəyər",
-    "option":            "option",
-    "TimeSeries":        "Time Series",
-    "Smoothing":         "Smoothing",
-    "Filtering":         "Filtering",
-    "Transformation":    "Transformation",
-    "Weight":            "Weight",
-    "WeightedIndex":     "Weighted Index",
-    "BaseTime":          "Base Time",
-    "LagTime":           "Lag Time",
-    "Lag":               "Time Lag",
-    "Forecasting":       "Forecasting",
-    "SeasonalModel":     "Seasonal Model",
-    "HoltWinter":        "Holt-Winters Multiplicative Seasonal Model",
+    "option":            "seçim",                                  
+    "TimeSeries":        "Zaman seriyası",
+    "Smoothing":         "hamarlayan",
+    "Filtering":         "Süzülmə",
+    "Transformation":    "Çevrilmə",
+    "Weight":            "Çəki",
+    "PercentChange":     "Dəyişmə faizi",
+    "WeightedIndex":     "Sadə İndeks",
+    "BaseTime":          "Əsas vaxt",
+    "LagTime":           "Gecikmə vaxtı",
+    "Lag":               "Zaman gecikməsi",
+    "Forecasting":       "Proqnozlaşdırma",
+    "SeasonalModel":     "Mövsümi Model",
+    "HoltWinter":        "Holt-Winters Mövsümi Model",
     "Trend":             "Trend",
-    "Seasonal":          "Seasonal",
-    "Deseasonal":        "Deseasonal Series",
-    "Nseason":           "Times in Season",
-    "Irregular":         "Irregular",
-    "TrendModel":        "Trend Model on Deseasonal",
-    "RegressionModel":   "Regression Model",
-    "ForecastingPeriod": "Forecasting Period",
-    "CreateTable":       "Data Table",
-    "SaveTable":         "Save Table",
-    "MA":                "Moving Average",
-    "CenterMA":          "Centered Moving Average",
-    "MovingMedian":      "Centered Moving Median",
-    "ES":                "Exponential Smoothing",
-    "Default":           "Default",
-    "Linear":            "Linear",
-    "Quadratic":         "Quadratic",
-    "Cubic":             "Cubic",
-    "SquareRoot":        "Square Root",
-    "Log":               "Logarithmic",
-    "Exponent":          "Exponential",
-    "Power":             "Power",
-    "BoxCox":            "Box-Cox",
-    "SingleMA":          "Single Moving Average",
-    "SingleES":          "Single Exponential Smoothing",
-    "DoubleMA":          "Double Moving Average",
-    "DoubleES":          "Double Exponential Smoothing",
-    "HoltLinear":        "Holt's Linear Trend",
-    "DeseasonIntercept": "Deseasonal intercept",
-    "DeseasonSlope":     "Deseasonal slope",
-    "SeasonalIndex":     "Seasonal Index",
-
+    "Seasonal":          "Mövsümi",
+    "Deseasonal":        "Mövsümi Seriya",
+    "Nseason":           "Mövsümdə vaxt",
+    "Irregular":         "Qaydasız",
+    "TrendModel":        "Mövsümə bağlı Trend Model",
+    "RegressionModel":   "Reqressiya modeli",
+    "ForecastingPeriod": "Proqnozlaşdırma dövrü",
+    "CreateTable":       "Məlumat cədvəli",
+    "SaveTable":         "Cədvəl saxla",
+    "MA":                "Hərəkətli Orta",
+    "EWMA":              "EWMA Modeli",
+    "CenterMA":          "Mərkəzləşdirilmiş Hərəkətli Orta",
+    "MovingMedian":      "Mərkəzləşdirilmiş Hərəkətli Media",
+    "ES":                "Exponensial Hamarlama",
+    "Default":           "Defolt",
+    "Linear":            "Xətti",
+    "Quadratic":         "Kvadrat",
+    "Cubic":             "Kubik",
+    "SquareRoot":        "kvadrat kök",
+    "Log":               "Loqarifmik",
+    "Exponent":          "Exponensial",
+    "Power":             "Güc",
+    "BoxCox":            "Boks-Koks",
+    "SingleMA":          "Tək Hərəkətli Orta",
+    "SingleES":          "Tək eksponensial hamarlaşdırma",
+    "DoubleMA":          "İkiqat Hərəkətli Orta",
+    "DoubleES":          "İkiqat eksponensial hamarlama",
+    "HoltLinear":        "Holt eksponensial hamarlama",
+    "DeseasonIntercept": "Mövsümi müdaxilə",
+    "DeseasonSlope":     "Mövsümi yamac",
+    "SeasonalIndex":     "Mövsümi indeks",
+    "Diff":              "Fərq",
+    "DiffTime":          "Fərqli vaxt",
+    "AR":                "Autoregressive Model",
+    "ResultTable":       "Reqressiya Nəticəsi",
+    "ForecastTable":     "Proqnoz Cədvəli",
+    "HoltLevel":         "Səviyyə",
+    "HoltTrend":         "Trend",
+    "AutoCorrTable":     "Avtokorrelyasiya Cədvəli",
+    "DiffSeries":        "Fərqlər seriyası",
+    "RawSeries":         "Orijinal Zaman Seriyası",
 };
 // Azerbaijan
 appStr[1][16] = "../eStatH/index.html";
@@ -12106,6 +12619,26 @@ svgStrU[111][16] = "Sichqoncha yordamida nuqtani siljiting";
 svgStrU[112][16] = "Bərpa hasilatı";
 svgStrU[113][16] = "almashtirishsiz";
 svgStrU[114][16] = "xətti"; 
+svgStrU[115][16] = "Faiz Dəyişikliyi";
+svgStrU[116][16] = "Sadə İndeks";
+svgStrU[117][16] = "Vaxt gecikməsi";
+svgStrU[118][16] = "Fərq";
+svgStrU[119][16] = "Avtokorrelyasiya";
+svgStrU[120][16] = "Giriş";
+svgStrU[121][16] = "Kvadrat Kök";
+svgStrU[122][16] = "Box-Cox";
+svgStrU[123][16] = "Əsas vaxt";
+svgStrU[124][16] = "Mərkəzləşdirilmiş Hərəkətli Orta";
+svgStrU[125][16] = "Eksponensial Hamarlama";
+svgStrU[126][16] = "Mərkəzləşdirilmiş Hərəkətli Median";
+svgStrU[127][16] = "Model";
+svgStrU[128][16] = "Hərəkətli Orta";
+svgStrU[129][16] = "İkiqat Hərəkətli Orta";
+svgStrU[130][16] = "Holt İkiqat Eksponensial Hamarlama";
+svgStrU[131][16] = "Mövsümi İndeks";
+svgStrU[132][16] = "Holt-Winters Multiplikativ Mövsümi Model";
+svgStrU[133][16] = "Mövsümi Seriya";
+
 
 // Uzbekistan
 $.message.uz = {
@@ -12457,50 +12990,63 @@ $.message.uz = {
     "RelationOperator":  "Aloqa<br>operator",
     "SelectValue":       "Qiymat",
     "MissingValue":      "etishmayotgan qiymat",
-    "option":            "option",
-    "TimeSeries":        "Time Series",
-    "Smoothing":         "Smoothing",
-    "Filtering":         "Filtering",
-    "Transformation":    "Transformation",
-    "Weight":            "Weight",
-    "WeightedIndex":     "Weighted Index",
-    "BaseTime":          "Base Time",
-    "LagTime":           "Lag Time",
-    "Lag":               "Time Lag",
-    "Forecasting":       "Forecasting",
-    "SeasonalModel":     "Seasonal Model",
-    "HoltWinter":        "Holt-Winters Multiplicative Seasonal Model",
+    "option":            "variant",
+    "TimeSeries":        "Vaqt seriyasi",                                 
+    "Smoothing":         "Temizlash",
+    "Filtering":         "Filtrlash",
+    "Transformation":    "Transformatsiya",
+    "Weight":            "Og'irlik",
+    "PercentChange":     "O'zgarish foizi",
+    "WeightedIndex":     "Oddiy indeks",
+    "BaseTime":          "Asosiy vaqt",
+    "LagTime":           "Kechikish vaqti",
+    "Lag":               "Vaqtning kechikishi",
+    "Forecasting":       "Prognozlash",
+    "SeasonalModel":     "Mavsumiy model",
+    "HoltWinter":        "Holt-Winters mavsumiy modeli",
     "Trend":             "Trend",
-    "Seasonal":          "Seasonal",
-    "Deseasonal":        "Deseasonal Series",
-    "Nseason":           "Times in Season",
-    "Irregular":         "Irregular",
-    "TrendModel":        "Trend Model on Deseasonal",
-    "RegressionModel":   "Regression Model",
-    "ForecastingPeriod": "Forecasting Period",
-    "CreateTable":       "Data Table",
-    "SaveTable":         "Save Table",
-    "MA":                "Moving Average",
-    "CenterMA":          "Centered Moving Average",
-    "MovingMedian":      "Centered Moving Median",
-    "ES":                "Exponential Smoothing",
-    "Default":           "Default",
-    "Linear":            "Linear",
-    "Quadratic":         "Quadratic",
-    "Cubic":             "Cubic",
-    "SquareRoot":        "Square Root",
-    "Log":               "Logarithmic",
-    "Exponent":          "Exponential",
-    "Power":             "Power",
-    "BoxCox":            "Box-Cox",
-    "SingleMA":          "Single Moving Average",
-    "SingleES":          "Single Exponential Smoothing",
-    "DoubleMA":          "Double Moving Average",
-    "DoubleES":          "Double Exponential Smoothing",
-    "HoltLinear":        "Holt's Linear Trend",
-    "DeseasonIntercept": "Deseasonal intercept",
-    "DeseasonSlope":     "Deseasonal slope",
-    "SeasonalIndex":     "Seasonal Index",
+    "Seasonal":          "Mavsumiy",
+    "Deseasonal":        "Mavsumiy seriya",
+    "Nseason":           "Mavsumdagi vaqtlar",
+    "Irregular":         "tartibsiz",
+    "TrendModel":        "Mavsumiy trend modeli",
+    "RegressionModel":   "Regressiya modeli",
+    "ForecastingPeriod": "Prognoz davri",
+    "CreateTable":       "Ma'lumotlar jadvali",
+    "SaveTable":         "Jadvalni saqlash",
+    "MA":                "Harakatlanuvchi o'rtacha",
+    "EWMA":              "EWMA modeli",
+    "CenterMA":          "Markazlangan harakatlanuvchi o'rtacha",
+    "MovingMedian":      "Markazlangan harakatlanuvchi median",
+    "ES":                "Eksponensial tekislash",
+    "Default":           "Standart",
+    "Linear":            "chiziqli",
+    "Quadratic":         "Kvadrat",
+    "Cubic":             "Kubik",
+    "SquareRoot":        "Kvadrat ildiz",
+    "Log":               "Logarifmik",
+    "Exponent":          "eksponensial",
+    "Power":             "Kuch",
+    "BoxCox":            "Boks-Koks",
+    "SingleMA":          "Yagona harakatlanuvchi o'rtacha",
+    "SingleES":          "Yagona eksponensial tekislash",
+    "DoubleMA":          "Ikki marta harakatlanuvchi o'rtacha",
+    "DoubleES":          "Ikki eksponensial tekislash",
+    "HoltLinear":        "Holt eksponentsial silliqlash",
+    "DeseasonIntercept": "Mavsumiy kesish",
+    "DeseasonSlope":     "Mavsumiy qiyalik",
+    "SeasonalIndex":     "Mavsumiy indeks",
+    "Diff":              "Farq",
+    "DiffTime":          "Vaqt farqi",
+    "AR":                "Autoregressiv model",
+    "ResultTable":       "Regressiya natijasi",
+    "ForecastTable":     "Prognoz jadvali",
+    "HoltLevel":         "Daraja",
+    "HoltTrend":         "Trend",
+    "AutoCorrTable":     "Avtokorrelyatsiya jadvali",
+    "DiffSeries":        "Farqlar seriyasi",
+    "RawSeries":         "Xom seriya",
+
 };
 // Uzbekistan
 appStr[1][17] = "../eStatH/index.html";
@@ -12816,6 +13362,25 @@ svgStrU[111][17] = "Sichqoncha yordamida nuqtani siljiting";
 svgStrU[112][17] = "Qayta tiklash ekstrakti";
 svgStrU[113][17] = "almashtirishsiz";
 svgStrU[114][17] = "chiziq"; 
+svgStrU[115][17] = "Foiz o'zgarishi";
+svgStrU[116][17] = "Oddiy indeks";
+svgStrU[117][17] = "Vaqtdagi kechikish";
+svgStrU[118][17] = "Farq";
+svgStrU[119][17] = "Avtokorrelyatsiya";
+svgStrU[120][17] = "Jurnal";
+svgStrU[121][17] = "Kvadrat ildiz";
+svgStrU[122][17] = "Boks-Koks";
+svgStrU[123][17] = "Asosiy vaqt";
+svgStrU[124][17] = "Markazlangan harakatlanuvchi o'rtacha";
+svgStrU[125][17] = "Eksponensial tekislash";
+svgStrU[126][17] = "Markazlangan harakatlanuvchi median";
+svgStrU[127][17] = "Model";
+svgStrU[128][17] = "Harakatlanuvchi o'rtacha";
+svgStrU[129][17] = "Ikki marta harakatlanuvchi o'rtacha";
+svgStrU[130][17] = "Holt ikki tomonlama eksponensial tekislash";
+svgStrU[131][17] = "Mavsumiy indeks";
+svgStrU[132][17] = "Holt-Winters multiplikativ mavsumiy modeli";
+svgStrU[133][17] = "Mavsumiy seriya";
 
 // Russian
 $.message.ru = {
@@ -13167,50 +13732,62 @@ $.message.ru = {
     "RelationOperator":  "Связь <br> Оператор",
     "SelectValue":       "Ценить",
     "MissingValue":      "отсутствующее значение",
-    "option":            "option",
-    "TimeSeries":        "Time Series",
-    "Smoothing":         "Smoothing",
-    "Filtering":         "Filtering",
-    "Transformation":    "Transformation",
-    "Weight":            "Weight",
-    "WeightedIndex":     "Weighted Index",
-    "BaseTime":          "Base Time",
-    "LagTime":           "Lag Time",
-    "Lag":               "Time Lag",
-    "Forecasting":       "Forecasting",
-    "SeasonalModel":     "Seasonal Model",
-    "HoltWinter":        "Holt-Winters Multiplicative Seasonal Model",
-    "Trend":             "Trend",
-    "Seasonal":          "Seasonal",
-    "Deseasonal":        "Deseasonal Series",
-    "Nseason":           "Times in Season",
-    "Irregular":         "Irregular",
-    "TrendModel":        "Trend Model on Deseasonal",
-    "RegressionModel":   "Regression Model",
-    "ForecastingPeriod": "Forecasting Period",
-    "CreateTable":       "Data Table",
-    "SaveTable":         "Save Table",
-    "MA":                "Moving Average",
-    "CenterMA":          "Centered Moving Average",
-    "MovingMedian":      "Centered Moving Median",
-    "ES":                "Exponential Smoothing",
-    "Default":           "Default",
-    "Linear":            "Linear",
-    "Quadratic":         "Quadratic",
-    "Cubic":             "Cubic",
-    "SquareRoot":        "Square Root",
-    "Log":               "Logarithmic",
-    "Exponent":          "Exponential",
-    "Power":             "Power",
-    "BoxCox":            "Box-Cox",
-    "SingleMA":          "Single Moving Average",
-    "SingleES":          "Single Exponential Smoothing",
-    "DoubleMA":          "Double Moving Average",
-    "DoubleES":          "Double Exponential Smoothing",
-    "HoltLinear":        "Holt's Linear Trend",
-    "DeseasonIntercept": "Deseasonal intercept",
-    "DeseasonSlope":     "Deseasonal slope",
-    "SeasonalIndex":     "Seasonal Index",
+    "option":            "вариант",
+    "TimeSeries":        "Временная последовательность",   
+    "Smoothing":         "Сглаживание",
+    "Filtering":         "Фильтрация",
+    "Transformation":    "Преображение",
+    "Weight":            "Масса",
+    "PercentChange":     "Изменить процент",
+    "WeightedIndex":     "Простой указатель",
+    "BaseTime":          "Базовое время",
+    "LagTime":           "Время задержки",
+    "Lag":               "Отставание во времени",
+    "Forecasting":       "Прогнозирование",
+    "SeasonalModel":     "Сезонная модель",
+    "HoltWinter":        "Сезонная модель Холт-Уинтерс",
+    "Trend":             "Тренд",
+    "Seasonal":          "Сезонный",
+    "Deseasonal":        "Десезонный сериал",
+    "Nseason":           "Время в сезоне",
+    "Irregular":         "Нерегулярный",
+    "TrendModel":        "Трендовая модель десезонности",
+    "RegressionModel":   "Регрессионная модель",
+    "ForecastingPeriod": "Период прогнозирования",
+    "CreateTable":       "Таблица данных",
+    "SaveTable":         "Сохранить таблицу",
+    "MA":                "Скользящее среднее",
+    "EWMA":              "Модель ЭВМА",
+    "CenterMA":          "Центрированная скользящая средняя",
+    "MovingMedian":      "Центрированная движущаяся медиана",
+    "ES":                "Экспоненциальное сглаживание",
+    "Default":           "По умолчанию",
+    "Linear":            "Линейный",
+    "Quadratic":         "Квадратный",
+    "Cubic":             "Кубик",
+    "SquareRoot":        "Квадратный корень",
+    "Log":               "логарифмический",
+    "Exponent":          "Экспоненциальный",
+    "Power":             "Власть",
+    "BoxCox":            "Бокс-Кокс",
+    "SingleMA":          "Единая скользящая средняя",
+    "SingleES":          "Однократное экспоненциальное сглажив",
+    "DoubleMA":          "Двойная скользящая средняя",
+    "DoubleES":          "Двойное экспоненциальное сглаживание",
+    "HoltLinear":        "Экспоненциальное сглаживание Холта",
+    "DeseasonIntercept": "Десезонный перехват",
+    "DeseasonSlope":     "Десезонный склон",
+    "SeasonalIndex":     "Сезонные индексы",
+    "Diff":              "Разница",
+    "DiffTime":          "Разное время",
+    "AR":                "Авторегрессионная модель",
+    "ResultTable":       "Результат регрессии",
+    "ForecastTable":     "Таблица прогнозов",
+    "HoltLevel":         "Уровень",
+    "HoltTrend":         "Тренд",
+    "AutoCorrTable":     "Таблица автокорреляции",
+    "DiffSeries":        "Серия отличий",
+    "RawSeries":         "Сырая серия",
 };
 // Russian
 appStr[1][18] = "../eStatH/index.html";
@@ -13525,6 +14102,26 @@ svgStrU[111][18] = "Переместить точку с помощью мыши
 svgStrU[112][18] = "Восстановление извлечения";
 svgStrU[113][18] = "без заменыt";
 svgStrU[114][18] = "Линейный"; 
+svgStrU[115][18] = "Изменение в процентах";
+svgStrU[116][18] = "Простой индекс";
+svgStrU[117][18] = "Задержка";
+svgStrU[118][18] = "Разница";
+svgStrU[119][18] = "Автокорреляция";
+svgStrU[120][18] = "Журнал";
+svgStrU[121][18] = "Квадратный корень";
+svgStrU[122][18] = "Бокс-Кокс";
+svgStrU[123][18] = "Базовое время";
+svgStrU[124][18] = "Скользящая средняя по центру";
+svgStrU[125][18] = "Экспоненциальное сглаживание";
+svgStrU[126][18] = "Центрированная движущаяся медиана";
+svgStrU[127][18] = "Модель";
+svgStrU[128][18] = "Скользящее среднее";
+svgStrU[129][18] = "Двойная скользящая средняя";
+svgStrU[130][18] = "Двойное экспоненциальное сглаживание Холта";
+svgStrU[131][18] = "Сезонные индексы";
+svgStrU[132][18] = "Мультипликативная сезонная модель Холта-Уинтерса";
+svgStrU[133][18] = "Десезонная серия";
+
 
 // Turkish
 $.message.tr = {
@@ -13874,6 +14471,64 @@ $.message.tr = {
     "SelectVariable":    "Seçim için<br>Değişken",
     "RelationOperator":  "İlişki<br>operatörü",
     "SelectValue":       "Değer",
+    "MissingValue":      "Eksik değer",
+    "option":            "seçenek",
+    "TimeSeries":        "Zaman serisi",                    
+    "Smoothing":         "yumuşatma",
+    "Filtering":         "Filtreleme",
+    "Transformation":    "Dönüşüm",
+    "Weight":            "Ağırlık",
+    "PercentChange":     "Yüzde Değişim",
+    "WeightedIndex":     "Basit Dizin",
+    "BaseTime":          "Temel Zaman",
+    "LagTime":           "Gecikme süresi",
+    "Lag":               "Gecikme süresi",
+    "Forecasting":       "Tahmin",
+    "SeasonalModel":     "Mevsimlik Model",
+    "HoltWinter":        "Holt-Winters Mevsimlik Modeli",
+    "Trend":             "Akım",
+    "Seasonal":          "Mevsimsel",
+    "Deseasonal":        "Sezonluk Serisi",
+    "Nseason":           "Sezondaki Zamanlar",
+    "Irregular":         "Düzensiz",
+    "TrendModel":        "Sezonsuz Trend Modeli",
+    "RegressionModel":   "Regresyon modeli",
+    "ForecastingPeriod": "Tahmin Dönemi",
+    "CreateTable":       "Veri tablosu",
+    "SaveTable":         "Tabloyu Kaydet",
+    "MA":                "Hareketli ortalama",
+    "EWMA":              "EWMA Modeli",
+    "CenterMA":          "Merkezli Hareketli Ortalama",
+    "MovingMedian":      "Merkezli Hareketli Medyan",
+    "ES":                "Üstel Yumuşatma",
+    "Default":           "Varsayılan",
+    "Linear":            "Doğrusal",
+    "Quadratic":         "Kuadratik",
+    "Cubic":             "Kübik",
+    "SquareRoot":        "Kare kök",
+    "Log":               "Logaritmik",
+    "Exponent":          "Üstel",
+    "Power":             "Güç",
+    "BoxCox":            "Kutu Cox",
+    "SingleMA":          "Tek Hareketli Ortalama",
+    "SingleES":          "Tek Üstel Düzeltme",
+    "DoubleMA":          "Çift Hareketli Ortalama",
+    "DoubleES":          "Çift Üstel Düzeltme",
+    "HoltLinear":        "Holt Üstel Düzeltme",
+    "DeseasonIntercept": "Sezonsuz müdahale",
+    "DeseasonSlope":     "Mevsimsiz eğim",
+    "SeasonalIndex":     "Mevsimsel İndeksi",
+    "Diff":              "Fark",
+    "DiffTime":          "Fark Zamanı",
+    "AR":                "Otoregresif Model",
+    "ResultTable":       "Regresyon Sonucu",
+    "ForecastTable":     "Tahmin Tablosu",
+    "HoltLevel":         "Seviye",
+    "HoltTrend":         "Akım",
+    "AutoCorrTable":     "Otokorelasyon Tablosu",
+    "DiffSeries":        "Fark Serisi",
+    "RawSeries":         "Ham Serisi",
+
 };
 
 // Turkish
@@ -14180,3 +14835,23 @@ svgStrU[111][19] = "Mouse'i kullanarak noktayı taşıyın";
 svgStrU[112][19] = "Değiştirilmiş";
 svgStrU[113][19] = "Değişimsiz";
 svgStrU[114][19] = "Satır";
+svgStrU[115][19] = "Yüzde Değişim";
+svgStrU[116][19] = "Basit Dizin";
+svgStrU[117][19] = "Gecikme Süresi";
+svgStrU[118][19] = "Fark";
+svgStrU[119][19] = "Otokorelasyon";
+svgStrU[120][19] = "Günlük";
+svgStrU[121][19] = "Kare Kök";
+svgStrU[122][19] = "Box-Cox";
+svgStrU[123][19] = "Temel zaman";
+svgStrU[124][19] = "Ortalanmış Hareketli Ortalama";
+svgStrU[125][19] = "Üstel Düzeltme";
+svgStrU[126][19] = "Merkezli Hareketli Medyan";
+svgStrU[127][19] = "Model";
+svgStrU[128][19] = "Hareketli Ortalama";
+svgStrU[129][19] = "Çift Hareketli Ortalama";
+svgStrU[130][19] = "Holt Çift Üstel Düzeltme";
+svgStrU[131][19] = "Mevsimsel Dizin";
+svgStrU[132][19] = "Holt-Winters Çarpımsal Mevsimsel Model";
+svgStrU[133][19] = "Sezonluk Seriler";
+

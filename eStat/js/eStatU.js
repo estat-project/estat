@@ -6130,6 +6130,13 @@ function model1Stat(nobs, tdata, xdata, ydata, stat) {
         var cov     = sxy / (nobs-1);
         var corr    = sxy / Math.sqrt(sxx * syy);
         var rsquare = corr * corr;
+        var sse     = 0;
+        for (i=0; i<nobs; i++) {
+            tempy = ydata[i] - (alpha + beta*xdata[i])
+            sse += tempy*tempy;
+        }
+        var mse = sse / (nobs-2);
+        var rmse = Math.sqrt(mse);
         // save statistic
         stat[0]  = nobs;
         stat[1]  = xavg;    stat[11] = yavg;
@@ -6141,7 +6148,12 @@ function model1Stat(nobs, tdata, xdata, ydata, stat) {
         stat[7]  = alpha;   stat[17] = xvar;
         stat[8]  = beta;    stat[18] = yvar;
         stat[9]  = corr;    stat[19] = cov;
-        stat[10] = rsquare; stat[20] = syy;   
+        stat[10] = rsquare; stat[20] = syy; 
+        stat[21] = sxx; 
+        stat[22] = sse;
+        stat[23] = mse;
+        stat[24] = rmse;
+        stat[25] = syy - sse; //regression ss 
 }
 // 산점도 그리기 함수 -------------------------------------------------------------
 function showTimeSeriesPlot(model, nobs, nforecast, xdata, ydata, checkTitle) {
@@ -6332,7 +6344,51 @@ function initialCordinate(tobs, tdata, ydata) {
         if (ymax < ydata[i]) ymax = ydata[i];
      } 
      ygap    = (ymax - ymin) / 10;
-     gymin   = ymin - ygap;
-     gymax   = ymax + ygap;
+     gymin   = ymin - 4*ygap;
+     gymax   = ymax + 4*ygap;
      gyrange = gymax - gymin;
+}
+// 신뢰대 그리기
+function confidenceBand(model, tobs, nforecast, clow, chigh) {
+     var tx, ty, pathStr, classStr;
+     var bandColor=["LightGrey","LightPink","LightGreen","LightYellow","MistyRose","PaleGoldenRod","LightCyan","Bisque"];
+     classStr="reglabel"+model;
+     if (nforecast > 0) {
+       removeConfidenceBand();
+       pathStr = "M";
+       tx = margin.left+graphWidth*(tdata[tobs]-gxmin)/gxrange;
+       pathStr += tx.toString()+",";
+       ty = margin.top+graphHeight-graphHeight*(clow[tobs]-gymin)/gyrange;
+       pathStr += ty.toString();
+       for (i=tobs+1; i<tobs+nforecast; i++) {
+          tx = margin.left+graphWidth*(tdata[i]-gxmin)/gxrange;
+          pathStr += "L"+tx.toString()+",";
+          ty = margin.top+graphHeight-graphHeight*(clow[i]-gymin)/gyrange;
+          pathStr += ty.toString()
+       }
+       for (i=tobs+nforecast-1; i>=tobs; i--) {
+          tx = margin.left+graphWidth*(tdata[i]-gxmin)/gxrange;
+          pathStr += "L"+tx.toString()+",";
+          ty = margin.top+graphHeight-graphHeight*(chigh[i]-gymin)/gyrange;
+          pathStr += ty.toString()
+       }
+       tx = margin.left+graphWidth*(tdata[tobs]-gxmin)/gxrange;
+       pathStr += "L"+tx.toString()+",";
+       ty = margin.top+graphHeight-graphHeight*(clow[tobs]-gymin)/gyrange;
+       pathStr += ty.toString()
+       svg.append("path").attr("class",classStr)
+          .attr("d", pathStr)
+          .style("fill",bandColor[model]) 
+          .style("stroke", myColor[model])
+     }
+}
+// 신뢰대 지우기
+function removeConfidenceBand() {
+     svg.selectAll("path.reglabel1").remove();
+     svg.selectAll("path.reglabel2").remove();
+     svg.selectAll("path.reglabel3").remove();
+     svg.selectAll("path.reglabel4").remove();
+     svg.selectAll("path.reglabel5").remove();
+     svg.selectAll("path.reglabel6").remove();
+     svg.selectAll("path.reglabel7").remove();
 }

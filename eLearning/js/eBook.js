@@ -648,6 +648,7 @@
     addrStrB[170] = "chapter10.html";
     addrStrB[171] = "chapter11.html";
     addrStrB[172] = "chapter12.html";
+    addrStrB[173] = "chapter13.html";
 
 // Move Section
 function moveSection(num) {
