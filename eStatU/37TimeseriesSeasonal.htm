@@ -74,7 +74,7 @@
           <td><span data-msgid="ForecastingPeriod"></span></td>
           <td><input type="number" min="0" max="10" value="0" id="nn42" style="text-align:center" onchange="clearScreen()"></td>
           <td>
-              <button type="button" id="createTable"><span class="tooltiptext" data-msgid="CreateTable"></span></button>    
+              <button type="button" id="createTable"><span class="tooltiptext" data-msgid="ForecastTable"></span></button>    
               &nbsp;&nbsp;&nbsp;
               <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="SaveTable"></span></button>    
           </td>
@@ -184,6 +184,8 @@
       var yobs, ymin, ymax, ygap, gymin, gymax, gyrange;
       var x1, x2, y1, y2;
       var fontsize = "1em";
+      var alpha = 0.05;
+      var df, info, tvalue, nindep, mse, rmse;
       var sumS      = new Array(30);      
       var numS      = new Array(30);      
       var minS      = new Array(30);      
@@ -210,9 +212,19 @@
       var SI        = new Array(rowmax);
       var T         = new Array(rowmax);
       var dseason   = new Array(rowmax);
+      var clow      = new Array(rowmax);
+      var chigh     = new Array(rowmax);
       var checkModel    = new Array(10);
       var checkForecast = false;
       for (i=1; i<=7; i++) checkModel[i] = false;
+      var nvar      = 10;
+      var X         = new Array(nvar)
+      var sumX      = new Array(nvar)
+      var invXPX    = new Array(nvar);
+      for (j = 0; j < nvar; j++) {
+        invXPX[j] = new Array(nvar);
+      }
+
       xTitle = "t";
       document.getElementById("nn41").disabled      = true;    
       document.getElementById("rsquare1").disabled  = true;    
@@ -340,7 +352,7 @@
             }
           showModel0(tobs, k1, k2, tdata, yhat1, dseason);
           model = 0;
-          forecastTableS(model, tobs, nforecast, tstat, S);
+          forecastTableS(model, tobs, nforecast, tstat, clow, chigh, S);     
       })
       // svg Graph Save
       d3.select("#saveGraphU").on("click", function() {
@@ -356,14 +368,34 @@
       // create Table
       d3.select("#createTable").on("click", function() {
           if ( nforecast == 0 ) {alert("Enter forecasting period"); return;}
-          if (model==1) for (j=0; j<30; j++) tstat[j] = stat1[j];
-          else if (model==2) for (j=0; j<30; j++) tstat[j] = beta2[j];
-          else if (model==3) for (j=0; j<30; j++) tstat[j] = beta3[j];
-          else if (model==4) for (j=0; j<30; j++) tstat[j] = stat4[j];
-          else if (model==5) for (j=0; j<30; j++) tstat[j] = stat5[j];
-          else if (model==6) for (j=0; j<30; j++) tstat[j] = stat6[j];
-          else if (model==7) for (j=0; j<30; j++) tstat[j] = stat7[j];
-          if ( nforecast > 0 ) forecastTableS(model, tobs, nforecast, tstat, S);  
+          if ( checkModel[1] ) {
+            for (j=0; j<30; j++) tstat[j] = stat1[j];
+            forecastTableS(1, tobs, nforecast, tstat, clow, chigh, S);     
+          }
+          if ( checkModel[2] ) {
+            for (j=0; j<30; j++) tstat[j] = beta2[j];
+            forecastTableS(2, tobs, nforecast, tstat, clow, chigh, S);    
+          }
+          if ( checkModel[3] ) {
+            for (j=0; j<30; j++) tstat[j] = beta3[j];
+            forecastTableS(3, tobs, nforecast, tstat, clow, chigh, S);     
+          }
+          if ( checkModel[4] ) {
+            for (j=0; j<30; j++) tstat[j] = stat4[j];
+            forecastTableS(4, tobs, nforecast, tstat, clow, chigh, S);   ;  
+          }
+          if ( checkModel[5] ) {
+            for (j=0; j<30; j++) tstat[j] = stat5[j];
+            forecastTableS(5, tobs, nforecast, tstat, clow, chigh, S);    
+          }
+          if ( checkModel[6] ) {
+            for (j=0; j<30; j++) tstat[j] = stat6[j];
+            forecastTableS(6, tobs, nforecast, tstat, clow, chigh, S);   
+          }
+          if ( checkModel[7] ) {
+            for (j=0; j<30; j++) tstat[j] = stat7[j];
+            forecastTableS(7, tobs, nforecast, tstat, clow, chigh, S);            
+          }
       });
       // save Table
       d3.select("#saveTable").on("click", function() {
@@ -374,50 +406,166 @@
 // Linear
 function drawModel1() {
             for (i=0; i<tobs; i++) xdata[i] = tdata[i];  
-            model1Stat(tobs, tdata, xdata, ydata, stat1);
+            model1Stat(tobs, tdata, xdata, dseason, stat1);
             for (i=tobs; i<tobs+nforecast; i++) tdata[i] = i+1;
-            for (i=tobs; i<tobs+nforecast; i++) ydata[i] = stat1[7] + stat1[8]*tdata[i];
+            for (i=tobs; i<tobs+nforecast; i++) dseason[i] = stat1[7] + stat1[8]*tdata[i];
+            // MSE
+            mse = 0;
+            for (i=0; i<tobs; i++) {
+              temp = dseason[i] - (stat1[7]+stat1[8]*tdata[i]);
+              mse += temp*temp;
+            }
+            rmse = mse / (tobs-2);
+            df = tobs - 2;
+            tvalue = t_inv(1-alpha/2, df, info);
+            if (nforecast > 0) {
+              for (i=tobs; i<tobs+nforecast; i++) {
+                j = (i-tobs) % ma1N;
+                k = Math.floor( (i-tobs)/ma1N ) + 1;
+                ydata[i] = dseason[i]*SI[j];
+                clow[i]  = (dseason[i] - tvalue*rmse*Math.sqrt(k))*SI[j];
+                chigh[i] = (dseason[i] + tvalue*rmse*Math.sqrt(k))*SI[j];;
+              }
+              confidenceBand(model, tobs, nforecast, clow, chigh);
+            }
             showModel1(stat1, checkTitle);
             document.getElementById("rsquare1").value = "r\u00B2 = " + f4(stat1[10]);    
             document.getElementById("equation1").value = "y = ("+f4(stat1[7])+") + ("+f4(stat1[8])+")t";  
 }
 // Quadratic
 function drawModel2() {
-            statRegression(3, tobs, ydata, beta2, stat2)
+            statRegression(3, tobs, dseason, beta2, stat2)
             beta2[10] = stat2[13];
             for (i=tobs; i<tobs+nforecast; i++) tdata[i] = i+1;
-            for (i=tobs; i<tobs+nforecast; i++) ydata[i] = beta2[0] + beta2[1]*tdata[i] + beta2[2]*tdata[i]*tdata[i];
-            showModel2(beta2, checkTitle);
+            for (i=tobs; i<tobs+nforecast; i++) dseason[i] = beta2[0] + beta2[1]*tdata[i] + beta2[2]*tdata[i]*tdata[i];
+        if (nforecast > 0) {
+            // confidence interval
+            df = tobs - 3;
+            nindep = 3;
+            tvalue = t_inv(1-alpha/2, df, info);
+            // x' (X'X)^-1 x
+            for (i=tobs; i<tobs+nforecast; i++) {
+              X[0] = 1;
+              X[1] = tdata[i];
+              X[2] = tdata[i]*tdata[i]; 
+              for (j=0; j<nindep; j++) {
+                sumX[j] = 0;
+                for (k=0; k<nindep; k++) {
+                  sumX[j] += X[k]*invXPX[k][j];
+                }
+              }
+              temp = 0;
+              for (j=0; j<nindep; j++) {
+                temp += sumX[j]*X[j];
+              }
+              temp1 = tvalue * Math.sqrt(stat2[8]*temp);
+              j = (i-tobs) % ma1N;
+              k = Math.floor( (i-tobs)/ma1N ) + 1;
+              ydata[i] = dseason[i]*SI[j];
+              clow[i]  = (dseason[i] - temp1*Math.sqrt(k))*SI[j];
+              chigh[i] = (dseason[i] + temp1*Math.sqrt(k))*SI[j];;
+            }
+            confidenceBand(model, tobs, nforecast, clow, chigh);
+        }
+            showModel2(beta2, ydata, checkTitle);
             document.getElementById("rsquare2").value = "r\u00B2 = " + f4(stat2[13]);    
             document.getElementById("equation2").value = "y = ("+f4(beta2[0])+") + ("+f4(beta2[1])+")t +("+f4(beta2[2])+")t\u00B2";  
 }
 // Cubic
 function drawModel3() {
-            statRegression(4, tobs, ydata, beta3, stat3)
+            statRegression(4, tobs, dseason, beta3, stat3)
             beta3[10] = stat3[13];
             for (i=tobs; i<tobs+nforecast; i++) tdata[i] = i+1;
-            for (i=tobs; i<tobs+nforecast; i++) ydata[i] = beta3[0] + beta3[1]*tdata[i] + beta3[2]*tdata[i]*tdata[i] + beta3[3]*tdata[i]*tdata[i]*tdata[i];
-            showModel3(beta3, checkTitle);
+            for (i=tobs; i<tobs+nforecast; i++) dseason[i] = beta3[0] + beta3[1]*tdata[i] + beta3[2]*tdata[i]*tdata[i] + beta3[3]*tdata[i]*tdata[i]*tdata[i];
+        if (nforecast > 0) {
+            // confidence interval
+            df = tobs - 4;
+            nindep = 4;
+            tvalue = t_inv(1-alpha/2, df, info);
+            // x' (X'X)^-1 x
+            for (i=tobs; i<tobs+nforecast; i++) {
+              X[0] = 1;
+              X[1] = tdata[i];
+              X[2] = tdata[i]*tdata[i]; 
+              X[3] = X[2]*tdata[i];
+              for (j=0; j<nindep; j++) {
+                sumX[j] = 0;
+                for (k=0; k<nindep; k++) {
+                  sumX[j] += X[k]*invXPX[k][j];
+                }
+              }
+              temp = 0;
+              for (j=0; j<nindep; j++) {
+                temp += sumX[j]*X[j];
+              }
+              temp1 = tvalue * Math.sqrt(stat3[8]*temp);
+              j = (i-tobs) % ma1N;
+              k = Math.floor( (i-tobs)/ma1N ) + 1;
+              ydata[i] = dseason[i]*SI[j];
+              clow[i]  = (dseason[i] - temp1*Math.sqrt(k))*SI[j];
+              chigh[i] = (dseason[i] + temp1*Math.sqrt(k))*SI[j];;
+            }
+            confidenceBand(model, tobs, nforecast, clow, chigh);
+        }
+            showModel3(beta3, ydata, checkTitle);
             document.getElementById("rsquare3").value = "r\u00B2 = " + f4(stat3[13]);    
             document.getElementById("equation3").value = "y=("+f4(beta3[0])+")+("+f4(beta3[1])+")t+("+f4(beta3[2])+")t\u00B2+("+f4(beta3[3])+")t\u00B3";  
 }
 // Model4: y = a + b * sqrt(t) 
 function drawModel4() {
             for (i=0; i<tobs; i++) xdata[i] = Math.sqrt(tdata[i])  
-            model1Stat(tobs, tdata, xdata, ydata, stat4);
+            model1Stat(tobs, tdata, xdata, dseason, stat4);
             for (i=tobs; i<tobs+nforecast; i++) tdata[i] = i+1;
-            for (i=tobs; i<tobs+nforecast; i++) ydata[i] = stat4[7] + stat4[8]*Math.sqrt(tdata[i]);
-            showModel4(stat4, checkTitle); 
+            for (i=tobs; i<tobs+nforecast; i++) dseason[i] = stat4[7] + stat4[8]*Math.sqrt(tdata[i]);
+            // MSE
+            mse = 0;
+            for (i=0; i<tobs; i++) {
+              temp = dseason[i] - (stat4[7] + stat4[8]*Math.sqrt(tdata[i]));
+              mse += temp*temp;
+            }
+            rmse = mse / (tobs-2);
+            df = tobs - 2;
+            tvalue = t_inv(1-alpha/2, df, info); 
+            if (nforecast > 0) {
+              for (i=tobs; i<tobs+nforecast; i++) {
+                j = (i-tobs) % ma1N;
+                k = Math.floor( (i-tobs)/ma1N ) + 1;
+                ydata[i] = dseason[i]*SI[j];
+                clow[i]  = (dseason[i] - tvalue*rmse*Math.sqrt(k))*SI[j];
+                chigh[i] = (dseason[i] + tvalue*rmse*Math.sqrt(k))*SI[j];;
+              }
+              confidenceBand(model, tobs, nforecast, clow, chigh);
+            }
+            showModel4(stat4, ydata, checkTitle); 
             document.getElementById("rsquare4").value  = "r\u00B2 = " + f4(stat4[10]);    
             document.getElementById("equation4").value = "y = ("+f4(stat4[7])+") + ("+f4(stat4[8])+") √t";  
 }
 // Model5: y = a + b * ln(t) 
 function drawModel5() {
             for (i=0; i<tobs; i++) xdata[i] = Math.log(tdata[i])  
-            model1Stat(tobs, tdata, xdata, ydata, stat5);
+            model1Stat(tobs, tdata, xdata, dseason, stat5);
             for (i=tobs; i<tobs+nforecast; i++) tdata[i] = i+1;
-            for (i=tobs; i<tobs+nforecast; i++) ydata[i] = stat5[7] + stat5[8]*Math.log(tdata[i]);
-            showModel5(stat5, checkTitle);
+            for (i=tobs; i<tobs+nforecast; i++) dseason[i] = stat5[7] + stat5[8]*Math.log(tdata[i]);
+            // MSE
+            mse = 0;
+            for (i=0; i<tobs; i++) {
+              temp = dseason[i] - (stat5[7] + stat5[8]*Math.log(tdata[i]));
+              mse += temp*temp;
+            }
+            rmse = mse / (tobs-2);
+            df = tobs - 2;
+            tvalue = t_inv(1-alpha/2, df, info); 
+            if (nforecast > 0) {
+              for (i=tobs; i<tobs+nforecast; i++) {
+                j = (i-tobs) % ma1N;
+                k = Math.floor( (i-tobs)/ma1N ) + 1;
+                ydata[i] = dseason[i]*SI[j];
+                clow[i]  = (dseason[i] - tvalue*rmse*Math.sqrt(k))*SI[j];
+                chigh[i] = (dseason[i] + tvalue*rmse*Math.sqrt(k))*SI[j];;
+              }
+              confidenceBand(model, tobs, nforecast, clow, chigh);
+            }
+            showModel5(stat5, ydata, checkTitle);
             document.getElementById("rsquare5").value  = "r\u00B2 = " + f4(stat5[10]);    
             document.getElementById("equation5").value = "y = ("+f4(stat5[7])+") + ("+f4(stat5[8])+") ln(t)"; 
 }
@@ -425,7 +573,7 @@ function drawModel5() {
 function drawModel6() {
             for (i=0; i<tobs; i++) {
               xdata[i] = Math.log(tdata[i]);
-              ylog[i]  = Math.log(ydata[i]);
+              ylog[i]  = Math.log(dseason[i]);
             }
             model1Stat(tobs, tdata, xdata, ylog, stat6);
             sse = 0;
@@ -434,9 +582,22 @@ function drawModel6() {
               sse += temp * temp;
             }
             stat6[10] = 1 - sse/sst;
+            rmse = mse / (tobs-2);
+            df = tobs - 2;
+            tvalue = t_inv(1-alpha/2, df, info);
             for (i=tobs; i<tobs+nforecast; i++) tdata[i] = i+1;
-            for (i=tobs; i<tobs+nforecast; i++) ydata[i] = Math.exp(stat6[7]) * Math.pow(tdata[i],stat6[8]);
-            showModel6(stat6, checkTitle);
+            for (i=tobs; i<tobs+nforecast; i++) dseason[i] = Math.exp(stat6[7]) * Math.pow(tdata[i],stat6[8]);
+            if (nforecast > 0) {
+              for (i=tobs; i<tobs+nforecast; i++) {
+                j = (i-tobs) % ma1N;
+                k = Math.floor( (i-tobs)/ma1N ) + 1;
+                ydata[i] = dseason[i]*SI[j];
+                clow[i]  = (dseason[i] - tvalue*rmse*Math.sqrt(k))*SI[j];
+                chigh[i] = (dseason[i] + tvalue*rmse*Math.sqrt(k))*SI[j];;
+              }
+              confidenceBand(model, tobs, nforecast, clow, chigh);
+            }
+            showModel6(stat6, ydata, checkTitle);
             document.getElementById("rsquare6").value  = "r\u00B2 = " + f4(stat6[10]);    
             document.getElementById("equation6").value = "y = ("+f4(Math.exp(stat6[7]))+") t ^ ("+f4(stat6[8])+")"; 
 }
@@ -444,7 +605,7 @@ function drawModel6() {
 function drawModel7() {
             for (i=0; i<tobs; i++) {
               xdata[i] = tdata[i];  
-              ylog[i]  = Math.log(ydata[i])  
+              ylog[i]  = Math.log(dseason[i])  
             }
             model1Stat(tobs, tdata, xdata, ylog, stat7);
             sse = 0;
@@ -453,9 +614,22 @@ function drawModel7() {
               sse += temp * temp;
             }
             stat7[10] = 1 - sse/sst;
+            rmse = mse / (tobs-2);
+            df = tobs - 2;
+            tvalue = t_inv(1-alpha/2, df, info);
             for (i=tobs; i<tobs+nforecast; i++) tdata[i] = i+1;
-            for (i=tobs; i<tobs+nforecast; i++) ydata[i] = Math.exp(stat7[7]) * Math.exp(stat7[8]*tdata[i]);
-            showModel7(stat7, checkTitle);
+            for (i=tobs; i<tobs+nforecast; i++) dseason[i] = Math.exp(stat7[7]) * Math.exp(stat7[8]*tdata[i]);
+            if (nforecast > 0) {
+              for (i=tobs; i<tobs+nforecast; i++) {
+                j = (i-tobs) % ma1N;
+                k = Math.floor( (i-tobs)/ma1N ) + 1;
+                ydata[i] = dseason[i]*SI[j];
+                clow[i]  = (dseason[i] - tvalue*rmse*Math.sqrt(k))*SI[j];
+                chigh[i] = (dseason[i] + tvalue*rmse*Math.sqrt(k))*SI[j];;
+              }
+              confidenceBand(model, tobs, nforecast, clow, chigh);
+            }
+            showModel7(stat7, ydata, checkTitle);
             document.getElementById("rsquare7").value  = "r\u00B2 = " + f4(stat7[10]);    
             document.getElementById("equation7").value = "y = ("+f4(Math.exp(stat7[7]))+") exp( "+f4(stat7[8])+" t )";    
 }
@@ -524,13 +698,13 @@ function showModel0(tobs, k1, k2, tdata, yhat, ydata) {
      svg.append("text").attr("class","reglabel0")
                 .attr("x", margin.left + graphWidth/2)
                 .attr("y", margin.top + graphHeight - 20)
-                .text("Deseasonalized Data")
+                .text(svgStrU[133][langNum])     // deseasonal
                 .style("stroke","red") 
 
 }
 // 회귀선 그리기 함수
 function showModel1(stat, checkTitle) {
-     var cx, cy, temp;
+     var cx, cy, temp, rmse;
      var x1, y1, x2, y2;
      // forecasting
      for (i=tobs; i<tobs+nforecast; i++) {
@@ -580,14 +754,13 @@ function showModel1(stat, checkTitle) {
                 .style("stroke",myColor[1]) 
      }
 }
-function showModel2(stat, checkTitle) {
+function showModel2(stat, ydata, checkTitle) {
      var cx, cy;
      var x1, y1, x2, y2, temp;
      // forecasting
      for (i=tobs; i<tobs+nforecast; i++) {
-          temp = (stat[0]+stat[1]*tdata[i]+ stat[2]*tdata[i]*tdata[i])*SI[i % ma1N];
           cx = margin.left+graphWidth*(tdata[i]-gxmin)/gxrange;
-          cy = margin.top+graphHeight-graphHeight*(temp-gymin)/gyrange; 
+          cy = margin.top+graphHeight-graphHeight*(ydata[i]-gymin)/gyrange; 
           svg.append("circle").attr("class","reglabel2")
              .attr("cx", cx)
              .attr("cy", cy)         
@@ -597,9 +770,8 @@ function showModel2(stat, checkTitle) {
      x1  = margin.left + graphWidth*(tdata[tobs-1]-gxmin)/gxrange;
      y1  = margin.top  + graphHeight - graphHeight*(ydata[tobs-1]-gymin)/gyrange;
      for (i=tobs; i<tobs+nforecast; i++) {
-          temp = (stat[0]+stat[1]*tdata[i]+ stat[2]*tdata[i]*tdata[i])*SI[i % ma1N];
           x2 = margin.left+graphWidth*(tdata[i]-gxmin)/gxrange;
-          y2 = margin.top+graphHeight-graphHeight*(temp-gymin)/gyrange; 
+          y2 = margin.top+graphHeight-graphHeight*(ydata[i]-gymin)/gyrange; 
           svg.append("line").attr("class","reglabel1")
                 .attr("x1",x1)
                 .attr("y1",y1)
@@ -636,14 +808,13 @@ function showModel2(stat, checkTitle) {
                 .style("stroke",myColor[2]) 
      }
 }
-function showModel3(stat, checkTitle) {
+function showModel3(stat, ydata, checkTitle) {
      var cx, cy;
      var x1, y1, x2, y2, temp;
      // forecasting
      for (i=tobs; i<tobs+nforecast; i++) {
-          temp = (stat[0]+stat[1]*tdata[i]+ stat[2]*tdata[i]*tdata[i] + stat[3]*tdata[i]*tdata[i]*tdata[i])*SI[i % ma1N];
           cx = margin.left+graphWidth*(tdata[i]-gxmin)/gxrange;
-          cy = margin.top+graphHeight-graphHeight*(temp-gymin)/gyrange; 
+          cy = margin.top+graphHeight-graphHeight*(ydata[i]-gymin)/gyrange; 
           svg.append("circle").attr("class","reglabel3")
              .attr("cx", cx)
              .attr("cy", cy)         
@@ -653,9 +824,8 @@ function showModel3(stat, checkTitle) {
      x1  = margin.left + graphWidth*(tdata[tobs-1]-gxmin)/gxrange;
      y1  = margin.top  + graphHeight - graphHeight*(ydata[tobs-1]-gymin)/gyrange;
      for (i=tobs; i<tobs+nforecast; i++) {
-          temp = (stat[0]+stat[1]*tdata[i]+ stat[2]*tdata[i]*tdata[i] + stat[3]*tdata[i]*tdata[i]*tdata[i])*SI[i % ma1N];
           x2 = margin.left+graphWidth*(tdata[i]-gxmin)/gxrange;
-          y2 = margin.top+graphHeight-graphHeight*(temp-gymin)/gyrange; 
+          y2 = margin.top+graphHeight-graphHeight*(ydata[i]-gymin)/gyrange; 
           svg.append("line").attr("class","reglabel1")
                 .attr("x1",x1)
                 .attr("y1",y1)
@@ -691,14 +861,13 @@ function showModel3(stat, checkTitle) {
                 .style("stroke",myColor[3]) 
      }
 }
-function showModel4(stat, checkTitle) {
+function showModel4(stat, ydata, checkTitle) {
      var cx, cy, temp;
      var x1, y1, x2, y2;
      // forecasting
      for (i=tobs; i<tobs+nforecast; i++) {
-          temp = (stat[7]+stat[8]*Math.sqrt(tdata[i]))*SI[i % ma1N];
           cx = margin.left+graphWidth*(tdata[i]-gxmin)/gxrange;
-          cy = margin.top+graphHeight-graphHeight*(temp-gymin)/gyrange; 
+          cy = margin.top+graphHeight-graphHeight*(ydata[i]-gymin)/gyrange; 
           svg.append("circle").attr("class","reglabel4")
              .attr("cx", cx)
              .attr("cy", cy)         
@@ -708,9 +877,8 @@ function showModel4(stat, checkTitle) {
      x1  = margin.left + graphWidth*(tdata[tobs-1]-gxmin)/gxrange;
      y1  = margin.top  + graphHeight - graphHeight*(ydata[tobs-1]-gymin)/gyrange;
      for (i=tobs; i<tobs+nforecast; i++) {
-          temp = (stat[7]+stat[8]*Math.sqrt(tdata[i]))*SI[i % ma1N];
           x2 = margin.left+graphWidth*(tdata[i]-gxmin)/gxrange;
-          y2 = margin.top+graphHeight-graphHeight*(temp-gymin)/gyrange; 
+          y2 = margin.top+graphHeight-graphHeight*(ydata[i]-gymin)/gyrange; 
           svg.append("line").attr("class","reglabel1")
                 .attr("x1",x1)
                 .attr("y1",y1)
@@ -746,14 +914,13 @@ function showModel4(stat, checkTitle) {
                 .style("stroke",myColor[4]) 
      }
 }
-function showModel5(stat, checkTitle) {
+function showModel5(stat, ydata, checkTitle) {
      var cx, cy, temp;
      var x1, y1, x2, y2;
      // forecasting
      for (i=tobs; i<tobs+nforecast; i++) {
-          temp = (stat[7]+stat[8]*Math.log(tdata[i]))*SI[i % ma1N];
           cx = margin.left+graphWidth*(tdata[i]-gxmin)/gxrange;
-          cy = margin.top+graphHeight-graphHeight*(temp-gymin)/gyrange; 
+          cy = margin.top+graphHeight-graphHeight*(ydata[i]-gymin)/gyrange; 
           svg.append("circle").attr("class","reglabel5")
              .attr("cx", cx)
              .attr("cy", cy)         
@@ -763,9 +930,8 @@ function showModel5(stat, checkTitle) {
      x1  = margin.left + graphWidth*(tdata[tobs-1]-gxmin)/gxrange;
      y1  = margin.top  + graphHeight - graphHeight*(ydata[tobs-1]-gymin)/gyrange;
      for (i=tobs; i<tobs+nforecast; i++) {
-          temp = (stat[7]+stat[8]*Math.log(tdata[i]))*SI[i % ma1N];
           x2 = margin.left+graphWidth*(tdata[i]-gxmin)/gxrange;
-          y2 = margin.top+graphHeight-graphHeight*(temp-gymin)/gyrange; 
+          y2 = margin.top+graphHeight-graphHeight*(ydata[i]-gymin)/gyrange; 
           svg.append("line").attr("class","reglabel1")
                 .attr("x1",x1)
                 .attr("y1",y1)
@@ -801,14 +967,13 @@ function showModel5(stat, checkTitle) {
                 .style("stroke",myColor[5]) 
      }
 }
-function showModel6(stat, checkTitle) {
+function showModel6(stat, ydata, checkTitle) {
      var cx, cy, temp;
      var x1, y1, x2, y2;
      // forecasting
      for (i=tobs; i<tobs+nforecast; i++) {
-          temp = (Math.exp(stat[7])*Math.pow(tdata[i],stat[8]))*SI[i % ma1N];
           cx = margin.left+graphWidth*(tdata[i]-gxmin)/gxrange;
-          cy = margin.top+graphHeight-graphHeight*(temp-gymin)/gyrange; 
+          cy = margin.top+graphHeight-graphHeight*(ydata[i]-gymin)/gyrange; 
           svg.append("circle").attr("class","reglabel6")
              .attr("cx", cx)
              .attr("cy", cy)         
@@ -818,9 +983,8 @@ function showModel6(stat, checkTitle) {
      x1  = margin.left + graphWidth*(tdata[tobs-1]-gxmin)/gxrange;
      y1  = margin.top  + graphHeight - graphHeight*(ydata[tobs-1]-gymin)/gyrange;
      for (i=tobs; i<tobs+nforecast; i++) {
-          temp = (Math.exp(stat[7])*Math.pow(tdata[i],stat[8]))*SI[i % ma1N];
           x2 = margin.left+graphWidth*(tdata[i]-gxmin)/gxrange;
-          y2 = margin.top+graphHeight-graphHeight*(temp-gymin)/gyrange; 
+          y2 = margin.top+graphHeight-graphHeight*(ydata[i]-gymin)/gyrange; 
           svg.append("line").attr("class","reglabel1")
                 .attr("x1",x1)
                 .attr("y1",y1)
@@ -857,14 +1021,13 @@ function showModel6(stat, checkTitle) {
      }
 }
 
-function showModel7(stat, checkTitle) {
+function showModel7(stat, ydata, checkTitle) {
      var cx, cy, temp;
      var x1, y1, x2, y2;
      // forecasting
      for (i=tobs; i<tobs+nforecast; i++) {
-          temp = (Math.exp(stat[7])*Math.exp(stat[8]*tdata[i]))*SI[i % ma1N];
           cx = margin.left+graphWidth*(tdata[i]-gxmin)/gxrange;
-          cy = margin.top+graphHeight-graphHeight*(temp-gymin)/gyrange; 
+          cy = margin.top+graphHeight-graphHeight*(ydata[i]-gymin)/gyrange; 
           svg.append("circle").attr("class","reglabel7")
              .attr("cx", cx)
              .attr("cy", cy)         
@@ -876,7 +1039,7 @@ function showModel7(stat, checkTitle) {
      for (i=tobs; i<tobs+nforecast; i++) {
           temp = (Math.exp(stat[7])*Math.exp(stat[8]*tdata[i]))*SI[i % ma1N];
           x2 = margin.left+graphWidth*(tdata[i]-gxmin)/gxrange;
-          y2 = margin.top+graphHeight-graphHeight*(temp-gymin)/gyrange; 
+          y2 = margin.top+graphHeight-graphHeight*(ydata[i]-gymin)/gyrange; 
           svg.append("line").attr("class","reglabel1")
                 .attr("x1",x1)
                 .attr("y1",y1)
@@ -1019,13 +1182,13 @@ function removeRegression7() {
      svg.selectAll("text.reglabel7").remove();
      svg.selectAll("circle.forecast7").remove();
 }
-function forecastTableS(model, nobs, nforecast, stat, S) {
+function forecastTableS(model, nobs, nforecast, stat, clow, chigh, S) {
     var screenTable = document.getElementById("screenTable");
     var table = document.createElement('table');
     loc.appendChild(table);
     var row, header;
     var i, j, k, strModel, temp;
-    var ncol = 2;
+    var ncol = 3;
     var cell = new Array(4);
     table.style.fontSize = "13px";
 
@@ -1059,35 +1222,47 @@ function forecastTableS(model, nobs, nforecast, stat, S) {
     k = 0;
     row = table.insertRow(k++);
     row.style.height ="30px";
-    for (j=0; j<ncol; j++) {
+    if (model == 0) {
+      for (j=0; j<2; j++) {
             cell[j] = row.insertCell(j);
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
+      }
+      cell[0].innerHTML = "<b>"+svgStrU[131][langNum]+"</b> "; // 계절지수
+      cell[1].innerHTML = "S(t)";
+      cell[0].style.width ="70px";
+      cell[1].style.width ="150px";
     }
-    if (model == 0) cell[0].innerHTML = "<b>Seasonal Index</b> "; 
-    else cell[0].innerHTML = "<b>Model</b> "+model;
-    cell[1].innerHTML = strModel;
-    cell[0].style.width ="70px";
-    cell[1].style.width ="100px";
+    else {
+      for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
+      }
+      cell[0].innerHTML = "<b>"+svgStrU[127][langNum]+"</b> "+model;
+      cell[1].innerHTML = strModel;
+      cell[0].style.width ="70px";
+      cell[1].style.width ="150px";
+      cell[2].style.width ="200px";
+    }
 
-    row  = table.insertRow(k++);
-    row.style.height ="25px";
-    for (j=0; j<ncol; j++) {
+    if (model > 0) {
+      row  = table.insertRow(k++);
+      row.style.height ="25px";
+      for (j=0; j<ncol; j++) {
             cell[j] = row.insertCell(j);
             cell[j].style.backgroundColor = "#eee";
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
+      }
+      cell[0].innerHTML = "<b>t</b>";
+      cell[1].innerHTML = "Y "+ svgStr[84][langNum]; // predicted value
+      cell[2].innerHTML = "95% "+svgStrU[20][langNum];  // confidence interval
     }
-    for (j=1; j<ncol; j++) {
-            cell[j].style.width ="60px";
-    }
-    cell[0].innerHTML = "<b>t</b>";
-    if (model == 0) cell[1].innerHTML = "S(t)";
-    else cell[1].innerHTML = "Y hat";
     if (model == 0) {
       for (i=0; i<ma1N; i++) {
        row = table.insertRow(k++);
-       for (j=0; j<ncol; j++) {
+       for (j=0; j<2; j++) {
               cell[j] = row.insertCell(j)          
               cell[j].style.textAlign = "center";
               cell[j].style.border = "1px solid black";
@@ -1131,6 +1306,7 @@ function forecastTableS(model, nobs, nforecast, stat, S) {
            break;
        }
        cell[1].innerHTML = f4(temp);
+       cell[2].innerHTML = "( "+f4(clow[i-1])+ " , "+f4(chigh[i-1])+ ")";
        cell[0].style.backgroundColor = "#eee";
        cell[0].style.textAlign = "center";
     }
@@ -1160,7 +1336,7 @@ function statRegression(numVar, prow, ydata, Beta, statF) {
     var U    = new Array(numVar); // 2차원 행렬
     var invL = new Array(numVar); // 2차원 행렬
     var invU = new Array(numVar); // 2차원 행렬
-    var invXPX = new Array(numVar); // 2차원 행렬
+//    var invXPX = new Array(numVar); // 2차원 행렬
     for (i = 0; i < prow; i++) {
         X[i] = new Array(numVar);
     }
@@ -1171,7 +1347,7 @@ function statRegression(numVar, prow, ydata, Beta, statF) {
         U[j] = new Array(nAug);
         invL[j] = new Array(numVar);
         invU[j] = new Array(numVar);
-        invXPX[j] = new Array(numVar);
+//        invXPX[j] = new Array(numVar);
     }
 
     // vector Y, matrix X
@@ -1376,8 +1552,8 @@ function initialCordinateS(tobs, tdata, ydata) {
         if (ymax < ydata[i]) ymax = ydata[i];
      } 
      ygap    = (ymax*1.2 - ymin) / 10;
-     gymin   = ymin - ygap;
-     gymax   = ymax*1.2 + ygap;
+     gymin   = ymin - 2*ygap;
+     gymax   = ymax*1.2 + 2*ygap;
      gyrange = gymax - gymin;
 }
 

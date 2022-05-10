@@ -326,7 +326,7 @@ function drawModel0() {
               yhat0[i] = 100*((ydata[i]-ydata[i-1])/ydata[i-1]);
             }
             ibegin = 1;
-            strModel = "Percent Change";
+            strModel = svgStrU[115][langNum]; // Percent Change;
             initialCordinate(tobs, xdata, ydata);    
             showTimeSeriesPlot2(strModel, tobs, ibegin, xdata, ydata, yhat0);
 }
@@ -340,7 +340,7 @@ function drawModel1(){
               yhat1[i] = 100 * ydata[i] / ydata[baseT1-1];
             }
             ibegin = 0;
-            strModel = "Simple Index (Base="+baseT1+")";
+            strModel = svgStrU[116][langNum]+" ("+svgStrU[123][langNum]+"="+baseT1+")"; // 단순지수
             initialCordinate(tobs, xdata, ydata);    
             showTimeSeriesPlot2(strModel, tobs, ibegin, xdata, ydata, yhat1);
 }
@@ -357,7 +357,7 @@ function drawModel2(){
               yhat2[i] = ydata[i-lag];
             }
             autocorrelation(tobs, ydata, acf)
-            strModel = "Y lag("+lag+"), r = "+f3(acf[lag-1]);
+            strModel = svgStrU[117][langNum] + " ("+lag+"), r = "+f3(acf[lag-1]); // 시차
             ibegin = lag;
             initialCordinate(tobs, xdata, ydata);    
             showTimeSeriesPlot2(strModel, tobs, ibegin, xdata, ydata, yhat2);
@@ -437,7 +437,7 @@ function drawModel3(){
             }
          }
          ibegin = diff;
-         strModel = "Differencing ("+diff+")";
+         strModel = svgStrU[118][langNum]+" ("+diff+")"; // differencing
          initialCordinate(tobs, xdata, ydata);    
          showTimeSeriesPlot2(strModel, tobs, ibegin, xdata, ydata, yhat3);
 }
@@ -503,8 +503,10 @@ function transformationTable(strModel, nobs, ydiff, yhat) {
       cell[j].style.border = "1px solid black";
       cell[j].style.width ="100px";
     }
-    cell[0].innerHTML = strModel;
-    cell[0].style.width ="70px";
+    if (strModel == "Autocorrelation function") {
+       cell[0].innerHTML = svgStrU[119][langNum]; //자기상관함수 
+    }
+    else cell[0].innerHTML = strModel;
 
     row  = table.insertRow(k++);
     row.style.height ="25px";
@@ -519,9 +521,12 @@ function transformationTable(strModel, nobs, ydiff, yhat) {
     if (strModel == "Autocorrelation function") {
        if (model == 2) cell[2].innerHTML = "Y(t-"+lag+")";
        else if (model == 3) cell[2].innerHTML = "▽<sup>"+diff+"</sup>Y(t)";
+       cell[3].innerHTML = svgStrU[119][langNum]; //자기상관함수 
     }
-    else cell[2].innerHTML = "Y(t)";
-    cell[3].innerHTML = strModel;
+    else {
+       cell[2].innerHTML = "Y(t)";
+       cell[3].innerHTML = strModel;  
+    }
 
     for (i=0; i<nobs; i++) {
        row = table.insertRow(k++);
@@ -570,7 +575,7 @@ function showTimeSeriesPlot2(strModel, nobs, ibegin, xdata, ydata, yhat) {
        svg.append("text").attr("class","acf")
           .attr("x", margin.left + 20)
           .attr("y", ty)
-          .text(strModel)
+          .text(svgStrU[119][langNum])     //autocorrelation
           .style("stroke",myColor[1])
      }
      else if (strModel != "model0") {

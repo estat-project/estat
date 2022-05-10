@@ -329,7 +329,7 @@ function drawModel1(){
               }
             }
             strLabel = "reglabel"+model;
-            strModel = "Centered MA(N="+ma1N+")";
+            strModel = svgStrU[124][langNum]+" (N="+ma1N+")"; // 중심이동평균
             showSmoothing(strModel, strLabel, tobs, k1, k2, xdata, yhat1);
 }
 // Draw time series smoothing on the plot
@@ -394,7 +394,7 @@ function drawModel2(){
               }
             }
             strLabel = "reglabel"+model;
-            strModel = "Centered MA(N="+ma2N+")";
+            strModel = svgStrU[124][langNum]+" (N="+ma2N+")"; //중심이동평균
             showSmoothing(strModel, strLabel, tobs, k1, k2, xdata, yhat2);
 }
 // Single ES1
@@ -415,7 +415,7 @@ function drawModel3() {
               yhat3[i] = S[i];
             }
             strLabel = "reglabel"+model;
-            strModel = "Exponential Smoothing(α="+es1Alpha+")";
+            strModel = svgStrU[125][langNum]+" (α="+es1Alpha+")"; //지수평활
             showSmoothing(strModel, strLabel, tobs, 0, tobs, xdata, yhat3);
 }
 // Single ES2
@@ -436,7 +436,7 @@ function drawModel4() {
               yhat4[i] = S[i];
             }
             strLabel = "reglabel"+model;
-            strModel = "Exponential Smoothing(α="+es2Alpha+")";
+            strModel = svgStrU[125][langNum]+" (α="+es2Alpha+")"; //지수평활
             showSmoothing(strModel, strLabel, tobs, 0, tobs, xdata, yhat4);
 }
 // Single Moving Median
@@ -485,7 +485,7 @@ function drawModel5(){
               }
             }
             strLabel = "reglabel"+model;
-            strModel = "Centered Moving Median(N="+mm1N+")";
+            strModel = svgStrU[126][langNum]+" (N="+mm1N+")";  //중심이동중앙값
             showSmoothing(strModel, strLabel, tobs, k1, k2, xdata, yhat5);
 
 }
@@ -581,7 +581,7 @@ function smoothingTable(model, nobs, yhat) {
       cell[j].style.border = "1px solid black";
       cell[j].style.width ="100px";
     }
-    cell[0].innerHTML = "<b>Model</b> "+model;
+    cell[0].innerHTML = "<b>"+svgStrU[127][langNum]+"</b> "+model;
     cell[1].innerHTML = strModel;
     cell[0].style.width ="70px";
 

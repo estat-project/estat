@@ -73,10 +73,10 @@
           <td></td>
           <td><span data-msgid="ForecastingPeriod"></span></td>
           <td><input type="number" min="0" max="12" value="0" id="nn42" style="text-align:center" onchange="clearScreen()">
-              <span style="color:red;">( ≤ N)</span>
+              <span style="color:red;">( ≤ L)</span>
           </td>
           <td>
-              <button type="button" id="createTable"><span class="tooltiptext" data-msgid="CreateTable"></span></button>    
+              <button type="button" id="createTable"><span class="tooltiptext" data-msgid="ForecastTable"></span></button>    
               &nbsp;&nbsp;&nbsp;
               <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="SaveTable"></span></button>    
           </td>
@@ -87,21 +87,21 @@
           <td>RMSE = <input type="text" class="textarea" size=6 id="mse" style="text-align: right;">&nbsp;</td>
         </tr>
         <tr>
-          <td>&nbsp;&nbsp;Level </td>
+          <td>&nbsp;&nbsp;<span data-msgid="HoltLevel"></span> </td>
           <td>α = <input type="text" size=5 value="0.3" style="text-align:center" id="holtAlpha" onchange="redrawModel1()"></td>
           <td><span style="color:red;">0 < α < 1</span></td>
           <td> l₀ = &nbsp;<input type="text" size=5 style="text-align:center" id="holtL0" onchange="redrawModel1()"></td>
           <td><span style="color:blue" data-msgid="Default"></span>: <span style="color:blue" data-msgid="DeseasonIntercept"></span></td>
 	</tr>
 	<tr>
-          <td>&nbsp;&nbsp;Trend </td>
+          <td>&nbsp;&nbsp;<span data-msgid="HoltTrend"></span></td>
           <td>β = <input type="text" size=5 value="0.3" style="text-align:center" id="holtBeta" onchange="redrawModel1()"></td>
           <td><span style="color:red;">0 < β < 1</span></td>
           <td> b₀ = &nbsp;<input type="text" size=5 style="text-align:center" id="holtT0" onchange="redrawModel1()"></td>
           <td><span style="color:blue" data-msgid="Default"></span>: <span style="color:blue" data-msgid="DeseasonSlope"></span></td>
 	</tr>
 	<tr>
-          <td>&nbsp;&nbsp;Season </td>
+          <td>&nbsp;&nbsp;<span data-msgid="Seasonal"></span></td>
           <td>&gamma; = <input type="text" size=5 value="0.3" style="text-align:center" id="holtGamma" onchange="redrawModel1()"></td>
           <td><span style="color:red;">0 < γ < 1</span></td>
           <td>s₀₁ = <input type="text" size=5 style="text-align:center" id="holtS01" onchange="redrawModel1()"></td>
@@ -198,7 +198,7 @@
       var graphHeight = svgHeight - margin.top - margin.bottom;
       var checkTitle  = true;
       var mTitle, yTitle, xTitle;
-      var tobs, sst, sse, temp, model;
+      var tobs, sst, sse, temp, model, mse, rmse;
       var nforecast = 0;
       var xobs, xmin, xmax, xgap, gxmin, gxmax, gxrange;
       var yobs, ymin, ymax, ygap, gymin, gymax, gyrange;
@@ -217,6 +217,8 @@
       var MA        = new Array(rowmax);
       var CMA       = new Array(rowmax);
       var yhat      = new Array(rowmax);
+      var clow      = new Array(rowmax);
+      var chigh     = new Array(rowmax);
       var S         = new Array(rowmax);
       var SI        = new Array(rowmax);
       var L         = new Array(rowmax);
@@ -394,7 +396,7 @@ function drawModel1() {
                 SI[i] = parseFloat(d3.select(strS).node().value); 
               }
             }
-
+            // Holt-Winter
               L[0] = holtAlpha*ydata[0]/SI[0] + (1-holtAlpha)*(holtL0+holtT0);
               T[0] = holtBeta*(L[0]-holtL0) + (1-holtBeta)*holtT0;
               S[0] = holtGamma*ydata[0]/(holtL0+holtT0) + (1-holtGamma)*SI[0];
@@ -418,11 +420,19 @@ function drawModel1() {
               sse  = temp * temp;
             }
             mse = sse / tobs;
-            document.getElementById("mse").value = f4(Math.sqrt(mse));
-            for (i=tobs; i<tobs+nforecast; i++) yhat[i] = (L[tobs-1] + (i+1-tobs)*T[tobs-1])*S[i-ma1N];
+            rmse = Math.sqrt(mse);
+            document.getElementById("mse").value = f4(rmse);
+            if (nforecast > 0) {
+              for (i=tobs; i<tobs+nforecast; i++) {
+                yhat[i] = (L[tobs-1] + (i+1-tobs)*T[tobs-1])*S[i-ma1N];
+                clow[i]  = yhat[i] - 1.96*rmse*Math.sqrt(k);
+                chigh[i] = yhat[i] + 1.96*rmse*Math.sqrt(k);
+              }
+              confidenceBand(model, tobs, nforecast, clow, chigh);
+            }
             ibegin = 0;
             strLabel = "reglabel"+model;
-            strModel = "Holt-Winter's Seasonal (α="+holtAlpha+", β="+holtBeta+", γ="+holtGamma+")";
+            strModel = svgStrU[132][langNum]+" (α="+holtAlpha+", β="+holtBeta+", γ="+holtGamma+")";
             showModel(strModel, strLabel, tobs, nforecast, ibegin, xdata, yhat);
 
 }
@@ -587,7 +597,7 @@ function forecastTableS(nobs, nforecast, yhat) {
     loc.appendChild(table);
     var row, header;
     var i, j, k, strModel, temp;
-    var ncol = 2;
+    var ncol = 3;
     var cell = new Array(4);
     table.style.fontSize = "13px";
 
@@ -599,10 +609,11 @@ function forecastTableS(nobs, nforecast, yhat) {
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
     }
-    cell[0].innerHTML = "<b>Model</b> "+model;
-    cell[1].innerHTML = "Holt-Winter Seasonal Model";
+    cell[0].innerHTML = "<b>"+svgStrU[127][langNum]+"</b>";
+    cell[1].innerHTML = svgStrU[132][langNum]; // Holt-Winters Seasonal Model;
     cell[0].style.width ="70px";
-    cell[1].style.width ="100px";
+    cell[1].style.width ="150px";
+    cell[2].style.width ="200px";
 
     row  = table.insertRow(k++);
     row.style.height ="25px";
@@ -612,11 +623,10 @@ function forecastTableS(nobs, nforecast, yhat) {
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
     }
-    for (j=1; j<ncol; j++) {
-            cell[j].style.width ="60px";
-    }
     cell[0].innerHTML = "<b>t</b>";
-    cell[1].innerHTML = "Y hat";
+    cell[1].innerHTML = "Y "+ svgStr[84][langNum]; // predicted value
+    cell[2].innerHTML = "95% "+svgStrU[20][langNum];  // confidence interval
+
     for (i=nobs; i<nobs+nforecast; i++) {
        row = table.insertRow(k++);
        for (j=0; j<ncol; j++) {
@@ -626,6 +636,7 @@ function forecastTableS(nobs, nforecast, yhat) {
        }
        cell[0].innerHTML = i;
        cell[1].innerHTML = f4(yhat[i]);
+       cell[2].innerHTML = "( "+f4(clow[i])+ " , "+f4(chigh[i])+ ")";
        cell[0].style.backgroundColor = "#eee";
        cell[0].style.textAlign = "center";
     }

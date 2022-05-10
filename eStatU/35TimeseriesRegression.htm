@@ -63,9 +63,9 @@
 	<tr>
  	  <td><button type="button" id="saveGraphU"><span class="tooltiptext" data-msgid="Graph Save">Graph Save</span></button></td>               
           <td><span data-msgid="ForecastingPeriod"></span></td>
-          <td><input type="number" min="0" max="10" value="0" id="nn42" style="text-align:center" onchange="clearScreen()"></td>
+          <td><input type="number" min="0" max="20" value="0" id="nn42" style="text-align:center" onchange="clearScreen()"></td>
           <td>
-              <button type="button" id="createTable"><span class="tooltiptext" data-msgid="CreateTable"></span></button>    
+              <button type="button" id="createTable"><span class="tooltiptext" data-msgid="ForecastTable"></span></button>    
               &nbsp;&nbsp;&nbsp;
               <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="SaveTable"></span></button>    
           </td>
@@ -165,7 +165,8 @@
       var graphHeight = svgHeight - margin.top - margin.bottom;
       var checkTitle  = true;
       var mTitle, yTitle, xTitle;
-      var tobs, sst, sse, temp, model, str;
+      var tobs, temp, temp1, temp2, model, str;
+      var sst, sse, mse, rmse, alpha, tvalue, info;
       var nforecast = 0;
       var xobs, xmin, xmax, xgap, gxmin, gxmax, gxrange;
       var yobs, ymin, ymax, ygap, gymin, gymax, gyrange;
@@ -185,8 +186,30 @@
       var tdata     = new Array(rowmax);
       var xdata     = new Array(rowmax);
       var ydata     = new Array(rowmax);
+      var yhat      = new Array(rowmax);
       var ylog      = new Array(rowmax);
+      var clow1     = new Array(rowmax);
+      var clow2     = new Array(rowmax);
+      var clow3     = new Array(rowmax);
+      var clow4     = new Array(rowmax);
+      var clow5     = new Array(rowmax);
+      var clow6     = new Array(rowmax);
+      var clow7     = new Array(rowmax);
+      var chigh1    = new Array(rowmax);
+      var chigh2    = new Array(rowmax);
+      var chigh3    = new Array(rowmax);
+      var chigh4    = new Array(rowmax);
+      var chigh5    = new Array(rowmax);
+      var chigh6    = new Array(rowmax);
+      var chigh7    = new Array(rowmax);
       var checkModel    = new Array(10);
+      var nvar      = 10;
+      var X         = new Array(nvar)
+      var sumX      = new Array(nvar)
+      var invXPX    = new Array(nvar);
+      for (j = 0; j < nvar; j++) {
+        invXPX[j] = new Array(nvar);
+      }
       var checkForecast = false;
       for (i=1; i<=7; i++) checkModel[i] = false;
       xTitle = "t";
@@ -206,6 +229,7 @@
       document.getElementById("equation6").disabled = true;       
       document.getElementById("equation7").disabled = true;
       svg.selectAll("*").remove();
+      alpha = 0.05;
       // input data control ===================================================
       d3.select("#data2").on("input", function() {
         stat = simplestat("#data2");  
@@ -256,17 +280,35 @@
       });
       // create Table
       d3.select("#createTable").on("click", function() {
-        if ( nforecast == 0 ) {alert("Enter forecasting period"); return;}
-        for (i=1; i<=7; i++) {
-          if (i==1) for (j=0; j<30; j++) tstat[j] = stat1[j];
-          else if (i==2) for (j=0; j<30; j++) tstat[j] = beta2[j];
-          else if (i==3) for (j=0; j<30; j++) tstat[j] = beta3[j];
-          else if (i==4) for (j=0; j<30; j++) tstat[j] = stat4[j];
-          else if (i==5) for (j=0; j<30; j++) tstat[j] = stat5[j];
-          else if (i==6) for (j=0; j<30; j++) tstat[j] = stat6[j];
-          else if (i==7) for (j=0; j<30; j++) tstat[j] = stat7[j];
-          if ( nforecast > 0 && checkModel[i] ) forecastTable(i, tobs, nforecast, tstat);  
-        }
+          if ( nforecast == 0 ) {alert("Enter forecasting period"); return;}
+          if ( checkModel[1] ) {
+            for (j=0; j<30; j++) tstat[j] = stat1[j];
+            forecastTable(1, tobs, nforecast, tstat, clow1, chigh1);  
+          }
+          if ( checkModel[2] ) {
+            for (j=0; j<30; j++) tstat[j] = beta2[j];
+            forecastTable(2, tobs, nforecast, tstat, clow2, chigh2);  
+          }
+          if ( checkModel[3] ) {
+            for (j=0; j<30; j++) tstat[j] = beta3[j];
+            forecastTable(3, tobs, nforecast, tstat, clow3, chigh3);  
+          }
+          if ( checkModel[4] ) {
+            for (j=0; j<30; j++) tstat[j] = stat4[j];
+            forecastTable(4, tobs, nforecast, tstat, clow4, chigh4);  
+          }
+          if ( checkModel[5] ) {
+            for (j=0; j<30; j++) tstat[j] = stat5[j];
+            forecastTable(5, tobs, nforecast, tstat, clow5, chigh5);  
+          }
+          if ( checkModel[6] ) {
+            for (j=0; j<30; j++) tstat[j] = stat6[j];
+            forecastTable(6, tobs, nforecast, tstat, clow6, chigh6);  
+          }
+          if ( checkModel[7] ) {
+            for (j=0; j<30; j++) tstat[j] = stat7[j];
+            forecastTable(7, tobs, nforecast, tstat, clow7, chigh7);            
+          }
       });
       // save Table
       d3.select("#saveTable").on("click", function() {
@@ -345,54 +387,141 @@
       })
 
 function drawModel1() {
-            for (i=0; i<tobs; i++) xdata[i] = tdata[i];  
-            model1Stat(tobs, tdata, xdata, ydata, stat1);
-            for (i=tobs; i<tobs+nforecast; i++) tdata[i] = i+1;
-            for (i=tobs; i<tobs+nforecast; i++) ydata[i] = stat1[7] + stat1[8]*tdata[i];
-            showTimeSeriesPlot(model, tobs, nforecast, tdata, ydata, checkTitle);
-            showModel1(stat1, checkTitle);
-            document.getElementById("rsquare1").value = "r\u00B2 = " + f4(stat1[10]);    
-            document.getElementById("equation1").value = "y = ("+f4(stat1[7])+") + ("+f4(stat1[8])+")t";  
+        for (i=0; i<tobs; i++) xdata[i] = tdata[i];  
+        model1Stat(tobs, tdata, xdata, ydata, stat1);           
+        for (i=tobs; i<tobs+nforecast; i++) tdata[i] = i+1;
+        for (i=tobs; i<tobs+nforecast; i++) ydata[i] = stat1[7] + stat1[8]*tdata[i];
+        showTimeSeriesPlot(model, tobs, nforecast, tdata, ydata, checkTitle);
+        if (nforecast > 0) {
+            // confidence interval
+            temp1 = stat1[21];   // Sxx
+            df = tobs - 2;
+            tvalue = t_inv(1-alpha/2, df, info);
+            for (i=tobs; i<tobs+nforecast; i++) {
+               temp2 = tdata[i] - (tobs+1)/2;
+               temp = tvalue * stat1[24] * Math.sqrt(1/tobs + temp2*temp2/temp1)
+               clow1[i]  = ydata[i] - temp;
+               chigh1[i] = ydata[i] + temp;
+            }
+        }
+        showModel1(model, tobs, nforecast, stat1, clow1, chigh1, checkTitle);
+        document.getElementById("rsquare1").value = "r\u00B2 = " + f4(stat1[10]);    
+        document.getElementById("equation1").value = "y = ("+f4(stat1[7])+") + ("+f4(stat1[8])+")t";  
 }
 function drawModel2() {
-            statRegression(3, tobs, ydata, beta2, stat2)
+            var nindep = 3;
+            statRegression(nindep, tobs, ydata, beta2, stat2);
             beta2[10] = stat2[13];
             for (i=tobs; i<tobs+nforecast; i++) tdata[i] = i+1;
             for (i=tobs; i<tobs+nforecast; i++) ydata[i] = beta2[0] + beta2[1]*tdata[i] + beta2[2]*tdata[i]*tdata[i];
             showTimeSeriesPlot(model, tobs, nforecast, tdata, ydata, checkTitle);
-            showModel2(beta2, checkTitle);
-            document.getElementById("rsquare2").value = "r\u00B2 = " + f4(stat2[13]);    
-            document.getElementById("equation2").value = "y = ("+f4(beta2[0])+") + ("+f4(beta2[1])+")t +("+f4(beta2[2])+")t\u00B2";  
+        if (nforecast > 0) {
+            // confidence interval
+            df = tobs - 3;
+            tvalue = t_inv(1-alpha/2, df, info);
+            // x' (X'X)^-1 x
+            for (i=tobs; i<tobs+nforecast; i++) {
+              X[0] = 1;
+              X[1] = tdata[i];
+              X[2] = tdata[i]*tdata[i]; 
+              for (j=0; j<nindep; j++) {
+                sumX[j] = 0;
+                for (k=0; k<nindep; k++) {
+                  sumX[j] += X[k]*invXPX[k][j];
+                }
+              }
+              temp = 0;
+              for (j=0; j<nindep; j++) {
+                temp += sumX[j]*X[j];
+              }
+              temp1 = tvalue * Math.sqrt(stat2[8]*temp);
+              clow2[i]  = ydata[i] - temp1;
+              chigh2[i] = ydata[i] + temp1;
+            }
+        }
+        showModel2(model, tobs, nforecast, beta2, clow2, chigh2, checkTitle);
+        document.getElementById("rsquare2").value = "r\u00B2 = " + f4(stat2[13]);    
+        document.getElementById("equation2").value = "y = ("+f4(beta2[0])+") + ("+f4(beta2[1])+")t +("+f4(beta2[2])+")t\u00B2";  
 }
 function drawModel3() {
-            statRegression(4, tobs, ydata, beta3, stat3)
+            var nindep = 4;
+            statRegression(nindep, tobs, ydata, beta3, stat3);
             beta3[10] = stat3[13];
             for (i=tobs; i<tobs+nforecast; i++) tdata[i] = i+1;
             for (i=tobs; i<tobs+nforecast; i++) ydata[i] = beta3[0] + beta3[1]*tdata[i] + beta3[2]*tdata[i]*tdata[i] + beta3[3]*tdata[i]*tdata[i]*tdata[i];
             showTimeSeriesPlot(model, tobs, nforecast, tdata, ydata, checkTitle);
-            showModel3(beta3, checkTitle);
-            document.getElementById("rsquare3").value = "r\u00B2 = " + f4(stat3[13]);    
-            document.getElementById("equation3").value = "y=("+f4(beta3[0])+")+("+f4(beta3[1])+")t+("+f4(beta3[2])+")t\u00B2+("+f4(beta3[3])+")t\u00B3";  
+        if (nforecast > 0) {
+            // confidence interval
+            df = tobs - 4;
+            tvalue = t_inv(1-alpha/2, df, info);
+            // x' (X'X)^-1 x
+            for (i=tobs; i<tobs+nforecast; i++) {
+              X[0] = 1;
+              X[1] = tdata[i];
+              X[2] = tdata[i]*tdata[i]; 
+              X[3] = X[2]*tdata[i];
+              for (j=0; j<nindep; j++) {
+                sumX[j] = 0;
+                for (k=0; k<nindep; k++) {
+                  sumX[j] += X[k]*invXPX[k][j];
+                }
+              }
+              temp = 0;
+              for (j=0; j<nindep; j++) {
+                temp += sumX[j]*X[j];
+              }
+              temp1 = tvalue * Math.sqrt(stat3[8]*temp);
+              clow3[i]  = ydata[i] - temp1;
+              chigh3[i] = ydata[i] + temp1;
+            }
+        }
+        showModel3(model, tobs, nforecast, beta3, clow3, chigh3, checkTitle);
+        document.getElementById("rsquare3").value = "r\u00B2 = " + f4(stat3[13]);    
+        document.getElementById("equation3").value = "y=("+f4(beta3[0])+")+("+f4(beta3[1])+")t+("+f4(beta3[2])+")t\u00B2+("+f4(beta3[3])+")t\u00B3";  
 }
 function drawModel4() {
-            for (i=0; i<tobs; i++) xdata[i] = Math.sqrt(tdata[i])  
-            model1Stat(tobs, tdata, xdata, ydata, stat4);
-            for (i=tobs; i<tobs+nforecast; i++) tdata[i] = i+1;
-            for (i=tobs; i<tobs+nforecast; i++) ydata[i] = stat4[7] + stat4[8]*Math.sqrt(tdata[i]);
-            showTimeSeriesPlot(model, tobs, nforecast, tdata, ydata, checkTitle);
-            showModel4(stat4, checkTitle); 
-            document.getElementById("rsquare4").value  = "r\u00B2 = " + f4(stat4[10]);    
-            document.getElementById("equation4").value = "y = ("+f4(stat4[7])+") + ("+f4(stat4[8])+") √t";  
+        for (i=0; i<tobs; i++) xdata[i] = Math.sqrt(tdata[i])  
+        model1Stat(tobs, tdata, xdata, ydata, stat4);
+        for (i=tobs; i<tobs+nforecast; i++) tdata[i] = i+1;
+        for (i=tobs; i<tobs+nforecast; i++) ydata[i] = stat4[7] + stat4[8]*Math.sqrt(tdata[i]);
+        showTimeSeriesPlot(model, tobs, nforecast, tdata, ydata, checkTitle);
+        if (nforecast > 0) {
+            // confidence interval
+            temp1 = stat4[21]; // Sxx
+            df = tobs - 2;
+            tvalue = t_inv(1-alpha/2, df, info);
+            for (i=tobs; i<tobs+nforecast; i++) {
+               temp2 = Math.sqrt(tdata[i]) - stat4[1];
+               temp = tvalue * stat4[24] * Math.sqrt(1/tobs + temp2*temp2/temp1)
+               clow4[i]  = ydata[i] - temp;
+               chigh4[i] = ydata[i] + temp;
+            }
+        }
+        showModel4(model, tobs, nforecast, stat4, clow4, chigh4, checkTitle);
+        document.getElementById("rsquare4").value  = "r\u00B2 = " + f4(stat4[10]);    
+        document.getElementById("equation4").value = "y = ("+f4(stat4[7])+") + ("+f4(stat4[8])+") √t";  
 }
 function drawModel5() {
-            for (i=0; i<tobs; i++) xdata[i] = Math.log(tdata[i])  
-            model1Stat(tobs, tdata, xdata, ydata, stat5);
-            for (i=tobs; i<tobs+nforecast; i++) tdata[i] = i+1;
-            for (i=tobs; i<tobs+nforecast; i++) ydata[i] = stat5[7] + stat5[8]*Math.log(tdata[i]);
-            showTimeSeriesPlot(model, tobs, nforecast, tdata, ydata, checkTitle);
-            showModel5(stat5, checkTitle);
-            document.getElementById("rsquare5").value  = "r\u00B2 = " + f4(stat5[10]);    
-            document.getElementById("equation5").value = "y = ("+f4(stat5[7])+") + ("+f4(stat5[8])+") ln(t)"; 
+        for (i=0; i<tobs; i++) xdata[i] = Math.log(tdata[i])  
+        model1Stat(tobs, tdata, xdata, ydata, stat5);
+        for (i=tobs; i<tobs+nforecast; i++) tdata[i] = i+1;
+        for (i=tobs; i<tobs+nforecast; i++) ydata[i] = stat5[7] + stat5[8]*Math.log(tdata[i]);
+        showTimeSeriesPlot(model, tobs, nforecast, tdata, ydata, checkTitle);
+        if (nforecast > 0) {
+            // confidence interval
+            temp1 = stat5[21]; // Sxx
+            df = tobs - 2;
+            tvalue = t_inv(1-alpha/2, df, info);
+            for (i=tobs; i<tobs+nforecast; i++) {
+               temp2 = Math.log(tdata[i]) - stat5[1];
+               temp = tvalue * stat5[24] * Math.sqrt(1/tobs + temp2*temp2/temp1)
+               clow5[i]  = ydata[i] - temp;
+               chigh5[i] = ydata[i] + temp;
+            }
+        }
+        showModel5(model, tobs, nforecast, stat5, clow5, chigh5, checkTitle);
+        document.getElementById("rsquare5").value  = "r\u00B2 = " + f4(stat5[10]);    
+        document.getElementById("equation5").value = "y = ("+f4(stat5[7])+") + ("+f4(stat5[8])+") ln(t)"; 
 }
 function drawModel6() {
             for (i=0; i<tobs; i++) {
@@ -409,9 +538,21 @@ function drawModel6() {
             for (i=tobs; i<tobs+nforecast; i++) tdata[i] = i+1;
             for (i=tobs; i<tobs+nforecast; i++) ydata[i] = Math.exp(stat6[7]) * Math.pow(tdata[i],stat6[8]);
             showTimeSeriesPlot(model, tobs, nforecast, tdata, ydata, checkTitle);
-            showModel6(stat6, checkTitle);
-            document.getElementById("rsquare6").value  = "r\u00B2 = " + f4(stat6[10]);    
-            document.getElementById("equation6").value = "y = ("+f4(Math.exp(stat6[7]))+") t ^ ("+f4(stat6[8])+")"; 
+        if (nforecast > 0) {
+            // confidence interval
+            temp1 = stat6[21]; // Sxx
+            df = tobs - 2;
+            tvalue = t_inv(1-alpha/2, df, info);
+            for (i=tobs; i<tobs+nforecast; i++) {
+               temp2 = Math.log(tdata[i]) - stat6[1];
+               temp  = tvalue * stat6[24] * Math.sqrt(1/tobs + temp2*temp2/temp1)
+               clow6[i]  = Math.exp( stat6[7] + stat6[8]*Math.log(tdata[i]) - temp );
+               chigh6[i] = Math.exp( stat6[7] + stat6[8]*Math.log(tdata[i]) + temp );
+            }
+        }
+        showModel6(model, tobs, nforecast, stat6, clow6, chigh6, checkTitle);
+        document.getElementById("rsquare6").value  = "r\u00B2 = " + f4(stat6[10]);    
+        document.getElementById("equation6").value = "y = ("+f4(Math.exp(stat6[7]))+") t ^ ("+f4(stat6[8])+")"; 
 }
 function drawModel7() {
             for (i=0; i<tobs; i++) {
@@ -428,13 +569,28 @@ function drawModel7() {
             for (i=tobs; i<tobs+nforecast; i++) tdata[i] = i+1;
             for (i=tobs; i<tobs+nforecast; i++) ydata[i] = Math.exp(stat7[7]) * Math.exp(stat7[8]*tdata[i]);
             showTimeSeriesPlot(model, tobs, nforecast, tdata, ydata, checkTitle);
-            showModel7(stat7, checkTitle);
-            document.getElementById("rsquare7").value  = "r\u00B2 = " + f4(stat7[10]);    
-            document.getElementById("equation7").value = "y = ("+f4(Math.exp(stat7[7]))+") exp( "+f4(stat7[8])+" t )";    
+        if (nforecast > 0) {
+            // confidence interval
+            temp1 = stat7[21]; // Sxx
+            df = tobs - 2;
+            tvalue = t_inv(1-alpha/2, df, info);
+            for (i=tobs; i<tobs+nforecast; i++) {
+               temp2 = tdata[i] - stat7[1];
+               temp  = tvalue * stat7[24] * Math.sqrt(1/tobs + temp2*temp2/temp1)
+               clow7[i]  = Math.exp( stat7[7] + stat7[8]*tdata[i] - temp );
+               chigh7[i] = Math.exp( stat7[7] + stat7[8]*tdata[i] + temp );
+            }
+        }
+        showModel7(model, tobs, nforecast, stat7, clow7, chigh7, checkTitle);
+        document.getElementById("rsquare7").value  = "r\u00B2 = " + f4(stat7[10]);    
+        document.getElementById("equation7").value = "y = ("+f4(Math.exp(stat7[7]))+") exp( "+f4(stat7[8])+" t )";    
 }
 // 회귀선 그리기 함수
-function showModel1(stat, checkTitle) {
-     var cx, cy;
+function showModel1(model, tobs, nforecast, stat, clow, chigh, checkTitle) {
+     var cx, cy, x1, y1, x2, y2;
+     // confidence interval
+     confidenceBand(model, tobs, nforecast, clow, chigh);
+     // forecast
      for (i=tobs; i<tobs+nforecast; i++) {
           cx = margin.left+graphWidth*(tdata[i]-gxmin)/gxrange;
           cy = margin.top+graphHeight-graphHeight*(stat[7]+stat[8]*tdata[i]-gymin)/gyrange; 
@@ -444,10 +600,10 @@ function showModel1(stat, checkTitle) {
              .attr("r", 3)
              .style("fill",myColor[1])
      }
-     var x1  = margin.left + graphWidth*(stat[3]-gxmin)/gxrange;
-     var y1  = margin.top  + graphHeight - graphHeight*((stat[7]+stat[8]*stat[3])-gymin)/gyrange;
-     var x2  = margin.left + graphWidth*(xmax-gxmin)/gxrange;
-     var y2  = margin.top  + graphHeight - graphHeight*((stat[7]+stat[8]*xmax)-gymin)/gyrange;
+     x1  = margin.left + graphWidth*(stat[3]-gxmin)/gxrange;
+     y1  = margin.top  + graphHeight - graphHeight*((stat[7]+stat[8]*stat[3])-gymin)/gyrange;
+     x2  = margin.left + graphWidth*(xmax-gxmin)/gxrange;
+     y2  = margin.top  + graphHeight - graphHeight*((stat[7]+stat[8]*xmax)-gymin)/gyrange;
      svg.append("line").attr("class","reglabel1")
                 .attr("x1",x1)
                 .attr("y1",y1)
@@ -462,8 +618,10 @@ function showModel1(stat, checkTitle) {
                 .style("stroke",myColor[1]) 
      }
 }
-function showModel2(stat, checkTitle) {
+function showModel2(model, tobs, nforecast, stat, clow, chigh, checkTitle) {
      var cx, cy;
+     // confidence interval
+     confidenceBand(model, tobs, nforecast, clow, chigh);
      for (i=tobs; i<tobs+nforecast; i++) {
           cx = margin.left+graphWidth*(tdata[i]-gxmin)/gxrange;
           cy = margin.top+graphHeight-graphHeight*(stat[0]+stat[1]*tdata[i]+ stat[2]*tdata[i]*tdata[i]-gymin)/gyrange; 
@@ -500,8 +658,10 @@ function showModel2(stat, checkTitle) {
                 .style("stroke",myColor[2]) 
      }
 }
-function showModel3(stat, checkTitle) {
+function showModel3(model, tobs, nforecast, stat, clow, chigh, checkTitle) {
      var cx, cy;
+     // confidence interval
+     confidenceBand(model, tobs, nforecast, clow, chigh);
      for (i=tobs; i<tobs+nforecast; i++) {
           cx = margin.left+graphWidth*(tdata[i]-gxmin)/gxrange;
           cy = margin.top+graphHeight-graphHeight*(stat[0]+stat[1]*tdata[i]+ stat[2]*tdata[i]*tdata[i] + stat[3]*tdata[i]*tdata[i]*tdata[i] -gymin)/gyrange; 
@@ -537,8 +697,11 @@ function showModel3(stat, checkTitle) {
                 .style("stroke",myColor[3]) 
      }
 }
-function showModel4(stat, checkTitle) {
+function showModel4(model, tobs, nforecast, stat, clow, chigh, checkTitle){
      var cx, cy;
+     // confidence interval
+     confidenceBand(model, tobs, nforecast, clow, chigh);
+     // forecast value
      for (i=tobs; i<tobs+nforecast; i++) {
           cx = margin.left+graphWidth*(tdata[i]-gxmin)/gxrange;
           cy = margin.top+graphHeight-graphHeight*(stat[7]+stat[8]*Math.sqrt(tdata[i])-gymin)/gyrange; 
@@ -573,8 +736,10 @@ function showModel4(stat, checkTitle) {
                 .style("stroke",myColor[4]) 
      }
 }
-function showModel5(stat, checkTitle) {
+function showModel5(model, tobs, nforecast, stat, clow, chigh, checkTitle) {
      var cx, cy;
+     // confidence interval
+     confidenceBand(model, tobs, nforecast, clow, chigh);
      for (i=tobs; i<tobs+nforecast; i++) {
           cx = margin.left+graphWidth*(tdata[i]-gxmin)/gxrange;
           cy = margin.top+graphHeight-graphHeight*(stat[7]+stat[8]*Math.log(tdata[i])-gymin)/gyrange; 
@@ -609,8 +774,10 @@ function showModel5(stat, checkTitle) {
                 .style("stroke",myColor[5]) 
      }
 }
-function showModel6(stat, checkTitle) {
+function showModel6(model, tobs, nforecast, stat, clow, chigh, checkTitle) {
      var cx, cy;
+     // confidence interval
+     confidenceBand(model, tobs, nforecast, clow, chigh);
      for (i=tobs; i<tobs+nforecast; i++) {
           cx = margin.left+graphWidth*(tdata[i]-gxmin)/gxrange;
           cy = margin.top+graphHeight-graphHeight*(Math.exp(stat[7])*Math.pow(tdata[i],stat[8])-gymin)/gyrange; 
@@ -646,8 +813,10 @@ function showModel6(stat, checkTitle) {
      }
 }
 
-function showModel7(stat, checkTitle) {
+function showModel7(model, tobs, nforecast, stat, clow, chigh, checkTitle) {
      var cx, cy;
+     // confidence interval
+     confidenceBand(model, tobs, nforecast, clow, chigh);
      for (i=tobs; i<tobs+nforecast; i++) {
           cx = margin.left+graphWidth*(tdata[i]-gxmin)/gxrange;
           cy = margin.top+graphHeight-graphHeight*(Math.exp(stat[7])*Math.exp(stat[8]*tdata[i])-gymin)/gyrange; 
@@ -714,6 +883,8 @@ function clearScreen(){
        ydata[i] = stat1[7] + stat1[8]*tdata[i];
      }
      initialCordinate(tobs+nforecast, tdata, ydata);
+     model = 1;
+     showTimeSeriesPlot(model, tobs, nforecast, tdata, ydata, checkTitle);
      if ( checkModel[1] ) drawModel1(stat1, checkTitle);
      if ( checkModel[2] ) drawModel2(stat1, checkTitle);
      if ( checkModel[3] ) drawModel3(stat1, checkTitle);
@@ -722,6 +893,7 @@ function clearScreen(){
      if ( checkModel[6] ) drawModel6(stat1, checkTitle);
      if ( checkModel[7] ) drawModel7(stat1, checkTitle);
 }
+
 function removeRegression1() {
      checkModel[1] = false;
      document.getElementById("rsquare1").value  = "";    
@@ -729,6 +901,7 @@ function removeRegression1() {
      svg.selectAll("circle.reglabel1").remove();
      svg.selectAll("line.reglabel1").remove();
      svg.selectAll("text.reglabel1").remove();
+     svg.selectAll("path.reglabel1").remove();
      svg.selectAll("circle.forecast1").remove();
 }
 function removeRegression2() {
@@ -738,6 +911,7 @@ function removeRegression2() {
      svg.selectAll("circle.reglabel2").remove();
      svg.selectAll("line.reglabel2").remove();
      svg.selectAll("text.reglabel2").remove();
+     svg.selectAll("path.reglabel2").remove();
      svg.selectAll("circle.forecast2").remove();
 }
 function removeRegression3() {
@@ -747,6 +921,7 @@ function removeRegression3() {
      svg.selectAll("circle.reglabel3").remove();
      svg.selectAll("line.reglabel3").remove();
      svg.selectAll("text.reglabel3").remove();
+     svg.selectAll("path.reglabel3").remove();
      svg.selectAll("circle.forecast3").remove();
 }
 function removeRegression4() {
@@ -756,6 +931,7 @@ function removeRegression4() {
      svg.selectAll("circle.reglabel4").remove();
      svg.selectAll("line.reglabel4").remove();
      svg.selectAll("text.reglabel4").remove();
+     svg.selectAll("path.reglabel4").remove();
      svg.selectAll("circle.forecast4").remove();
 }
 function removeRegression5() {
@@ -765,6 +941,7 @@ function removeRegression5() {
      svg.selectAll("circle.reglabel5").remove();
      svg.selectAll("line.reglabel5").remove();
      svg.selectAll("text.reglabel5").remove();
+     svg.selectAll("path.reglabel5").remove();
      svg.selectAll("circle.forecast5").remove();
 }
 function removeRegression6() {
@@ -774,6 +951,7 @@ function removeRegression6() {
      svg.selectAll("circle.reglabel6").remove();
      svg.selectAll("line.reglabel6").remove();
      svg.selectAll("text.reglabel6").remove();
+     svg.selectAll("path.reglabel6").remove();
      svg.selectAll("circle.forecast6").remove();
 }
 function removeRegression7() {
@@ -783,15 +961,16 @@ function removeRegression7() {
      svg.selectAll("circle.reglabel7").remove();
      svg.selectAll("line.reglabel7").remove();
      svg.selectAll("text.reglabel7").remove();
+     svg.selectAll("path.reglabel7").remove();
      svg.selectAll("circle.forecast7").remove();
 }
-function forecastTable(model, nobs, nforecast, stat) {
+function forecastTable(model, nobs, nforecast, stat, clow, chigh) {
     var screenTable = document.getElementById("screenTable");
     var table = document.createElement('table');
     loc.appendChild(table);
     var row, header;
     var i, j, k, strModel, temp;
-    var ncol = 2;
+    var ncol = 3;
     var cell = new Array(4);
     table.style.fontSize = "13px";
     switch (model) {
@@ -825,11 +1004,12 @@ function forecastTable(model, nobs, nforecast, stat) {
       cell[j] = row.insertCell(j);
       cell[j].style.textAlign = "center";
       cell[j].style.border = "1px solid black";
-      cell[j].style.width ="120px";
     }
-    cell[0].innerHTML = "<b>Model</b> "+model;
+    cell[0].innerHTML = "<b>"+svgStrU[127][langNum]+"</b> "+model;
     cell[1].innerHTML = strModel;
     cell[0].style.width ="70px";
+    cell[1].style.width ="150px";
+    cell[2].style.width ="200px";
 
     row  = table.insertRow(k++);
     row.style.height ="25px";
@@ -840,7 +1020,8 @@ function forecastTable(model, nobs, nforecast, stat) {
             cell[j].style.border = "1px solid black";
     }
     cell[0].innerHTML = "<b>t</b>";
-    cell[1].innerHTML = "Y hat";
+    cell[1].innerHTML = "Y "+ svgStr[84][langNum]; // predicted value
+    cell[2].innerHTML = "95% "+svgStrU[20][langNum];  // confidence interval
 
     for (i=nobs+1; i<=nobs+nforecast; i++) {
        row = table.insertRow(k++);
@@ -874,6 +1055,7 @@ function forecastTable(model, nobs, nforecast, stat) {
            break;
        }
        cell[1].innerHTML = f4(temp);
+       cell[2].innerHTML = "( "+f4(clow[i-1])+ " , "+f4(chigh[i-1])+ ")";
        cell[0].style.backgroundColor = "#eee";
        cell[0].style.textAlign = "center";
     }
@@ -903,7 +1085,7 @@ function statRegression(numVar, prow, ydata, Beta, statF) {
     var U    = new Array(numVar); // 2차원 행렬
     var invL = new Array(numVar); // 2차원 행렬
     var invU = new Array(numVar); // 2차원 행렬
-    var invXPX = new Array(numVar); // 2차원 행렬
+//    var invXPX = new Array(numVar); // 2차원 행렬
     for (i = 0; i < prow; i++) {
         X[i] = new Array(numVar);
     }
@@ -914,7 +1096,7 @@ function statRegression(numVar, prow, ydata, Beta, statF) {
         U[j] = new Array(nAug);
         invL[j] = new Array(numVar);
         invU[j] = new Array(numVar);
-        invXPX[j] = new Array(numVar);
+//        invXPX[j] = new Array(numVar);
     }
 
     // vector Y, matrix X

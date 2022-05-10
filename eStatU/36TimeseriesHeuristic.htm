@@ -67,7 +67,7 @@
  	  <td><button type="button" id="saveGraphU"><span class="tooltiptext" data-msgid="Graph Save">Graph Save</span></button></td>               
           <td><span data-msgid="ForecastingPeriod"></span>&nbsp;&nbsp;</td>
           <td><input type="number" min="0" max="10" value="0" id="nn42" style="text-align:center" onchange="clearScreen()"></td>
-          <td><button type="button" id="createTable"><span class="tooltiptext" data-msgid="CreateTable"></span></button>    
+          <td><button type="button" id="createTable"><span class="tooltiptext" data-msgid="ForecastTable"></span></button>    
           <td><button type="button" id="saveTable"><span class="tooltiptext" data-msgid="SaveTable"></span></button>    
 	</tr>
 	<tr>
@@ -109,14 +109,14 @@
               <input type="checkbox" id="model4">&nbsp;&nbsp;<span data-msgid="HoltLinear"></span>
             </label> 
           </td>
-          <td>&nbsp;&nbsp;Level α = <input type="text" size=5 value="0.3" style="text-align:center" id="holtAlpha" onchange="redrawModel4()"></td>
+          <td>&nbsp;&nbsp;<span data-msgid="HoltLevel"></span> α = <input type="text" size=5 value="0.3" style="text-align:center" id="holtAlpha" onchange="redrawModel4()"></td>
           <td><span style="color:red;">0 < α < 1</span></td>
           <td>L₀ = <input type="text" size=5 style="text-align:center" id="holtL0" onchange="redrawModel4()"></td>
           <td>&nbsp;RMSE=<input type="text" class="textarea" size=6 id="mse4" style="text-align: right;">&nbsp;</td>
 	</tr>
 	<tr>
           <td></td>
-          <td>&nbsp;&nbsp;Trend γ = <input type="text" size=5 value="0.3" style="text-align:center" id="holtBeta" onchange="redrawModel4()"></td>
+          <td>&nbsp;&nbsp;<span data-msgid="HoltTrend"></span> γ = <input type="text" size=5 value="0.3" style="text-align:center" id="holtBeta" onchange="redrawModel4()"></td>
           <td><span style="color:red;">0 < γ < 1</span></td>
           <td>T₀ = <input type="text" size=5 style="text-align:center" id="holtT0" onchange="redrawModel4()"></td>
 	</tr>
@@ -153,8 +153,8 @@
       var yobs, ymin, ymax, ygap, gymin, gymax, gyrange;
       var fontsize = "1em";
       var stat1     = new Array(30);
-      var tstat     = new Array(30);
       var rowmax    = 200;
+      var tstat     = new Array(rowmax);
       var tdata     = new Array(rowmax);
       var xdata     = new Array(rowmax);
       var ydata     = new Array(rowmax);
@@ -169,6 +169,14 @@
       var S         = new Array(rowmax);
       var L         = new Array(rowmax);
       var T         = new Array(rowmax);
+      var clow1     = new Array(rowmax);
+      var clow2     = new Array(rowmax);
+      var clow3     = new Array(rowmax);
+      var clow4     = new Array(rowmax);
+      var chigh1    = new Array(rowmax);
+      var chigh2    = new Array(rowmax);
+      var chigh3    = new Array(rowmax);
+      var chigh4    = new Array(rowmax);
       var checkModel    = new Array(10);
       var checkForecast = false;
       for (i=1; i<=4; i++) checkModel[i] = false;
@@ -259,14 +267,11 @@
       });
       // create Table
       d3.select("#createTable").on("click", function() {
-        if ( nforecast == 0 ) {alert("Enter forecasting period"); return;}
-        for (i=1; i<=4; i++) {
-          if (i==1) for (j=0; j<30; j++) tstat[j] = yhat1[j];
-          else if (i==2) for (j=0; j<30; j++) tstat[j] = yhat2[j];
-          else if (i==3) for (j=0; j<30; j++) tstat[j] = yhat3[j];
-          else if (i==4) for (j=0; j<30; j++) tstat[j] = yhat4[j];
-          if ( nforecast > 0 && checkModel[i] ) forecastTable(i, tobs, nforecast, tstat);  
-        }
+          if ( nforecast == 0 ) {alert("Enter forecasting period"); return;}
+          if ( checkModel[1] ) forecastTable(1, tobs, nforecast, yhat1, clow1, chigh1);  
+          if ( checkModel[2] ) forecastTable(2, tobs, nforecast, yhat2, clow2, chigh2);  
+          if ( checkModel[3] ) forecastTable(3, tobs, nforecast, yhat3, clow3, chigh3);  
+          if ( checkModel[4] ) forecastTable(4, tobs, nforecast, yhat4, clow4, chigh4);  
       });
       // save Table
       d3.select("#saveTable").on("click", function() {
@@ -279,6 +284,7 @@ function drawModel1(){
             model = 1;
             ma1N = parseFloat(d3.select("#ma1N").node().value);
             checkModel[1] = true;
+            document.getElementById("model1").checked = true;
             for (i=ma1N-1; i<tobs; i++) {
               sum = 0;
               for (j=i; j>i-ma1N; j--) sum += ydata[j];
@@ -292,16 +298,24 @@ function drawModel1(){
             mse1 = sse / (tobs-ma1N);
             document.getElementById("mse1").value = f4(Math.sqrt(mse1));
             for (i=tobs+1; i<tobs+nforecast; i++) yhat1[i] = yhat1[tobs];
+        if (nforecast > 0) {
+            // confidence interval
+            for (i=tobs; i<tobs+nforecast; i++) {
+               temp = Math.sqrt(mse1/ma1N)
+               clow1[i]  = yhat1[i] - 1.96*temp*Math.sqrt(i-tobs+1);
+               chigh1[i] = yhat1[i] + 1.96*temp*Math.sqrt(i-tobs+1);;
+            }
+        }
             ibegin = ma1N;
             strLabel = "reglabel"+model;
-            strModel = "Single MA(N="+ma1N+")";
-            showModel(strModel, strLabel, tobs, nforecast, ibegin, xdata, yhat1);
-//            if (nforecast > 0) forecastTable(model, tobs, nforecast, yhat1);  
+            strModel = svgStrU[128][langNum]+" MA(N="+ma1N+")"; // single Moving Average
+            showModel(strModel, strLabel, tobs, nforecast, ibegin, xdata, yhat1, clow1, chigh1);
 }
 // Single ES
 function drawModel2() {
             model = 2;
             checkModel[2] = true;
+            document.getElementById("model2").checked = true;
             es1Alpha = parseFloat(d3.select("#es1Alpha").node().value);
             S0 = parseFloat(d3.select("#S0").node().value);
             if ( isNaN(S0) ) {
@@ -322,11 +336,19 @@ function drawModel2() {
             mse2 = sse / tobs;
             document.getElementById("mse2").value = f4(Math.sqrt(mse2));
             for (i=tobs; i<tobs+nforecast; i++) yhat2[i] = S[tobs-1];
+        if (nforecast > 0) {
+            // confidence interval
+            for (i=tobs; i<tobs+nforecast; i++) {
+               temp1 = Math.sqrt(mse2);
+               temp = temp1*Math.sqrt(es1Alpha/(2-es1Alpha));
+               clow2[i]  = yhat2[i] - 1.96*temp*Math.sqrt(i-tobs+1);
+               chigh2[i] = yhat2[i] + 1.96*temp*Math.sqrt(i-tobs+1);
+            }
+        }
             ibegin = 0;
             strLabel = "reglabel"+model;
-            strModel = "Single ES(α="+es1Alpha+")";
-            showModel(strModel, strLabel, tobs, nforecast, ibegin, xdata, yhat2);
-//            if (nforecast > 0) forecastTable(model, tobs, nforecast, yhat2);  
+            strModel = svgStrU[125][langNum]+" ES(α="+es1Alpha+")"; //지수평활
+            showModel(strModel, strLabel, tobs, nforecast, ibegin, xdata, yhat2, clow2, chigh2);
 }
 // Double MA
 function drawModel3() {
@@ -334,6 +356,7 @@ function drawModel3() {
             ma2N = parseFloat(d3.select("#ma2N").node().value);
             ma1N = ma2N;
             checkModel[3] = true;
+            document.getElementById("model3").checked = true;
             for (i=ma1N-1; i<tobs; i++) {
               sum = 0;
               for (j=i; j>i-ma1N; j--) sum += ydata[j];
@@ -354,16 +377,24 @@ function drawModel3() {
             mse3 = sse / (tobs-ma1N-ma2N+1);
             document.getElementById("mse3").value = f4(Math.sqrt(mse3));
             for (i=tobs+1; i<tobs+nforecast; i++) yhat3[i] = yhat3[tobs] + b2*(i-tobs);
+        if (nforecast > 0) {
+            // confidence interval
+            for (i=tobs; i<tobs+nforecast; i++) {
+               temp = Math.sqrt(mse3/(ma1N+ma2N-1));
+               clow3[i]  = yhat3[i] - 1.96*temp*Math.sqrt(i-tobs+1);
+               chigh3[i] = yhat3[i] + 1.96*temp*Math.sqrt(i-tobs+1);
+            }
+        }
             ibegin = ma1N+ma2N-1;
             strLabel = "reglabel"+model;
-            strModel = "Double MA(N="+ma2N+")";
-            showModel(strModel, strLabel, tobs, nforecast, ibegin, xdata, yhat3);
-//            if (nforecast > 0) forecastTable(model, tobs, nforecast, yhat3);  
+            strModel = svgStrU[129][langNum]+" (N="+ma2N+")"; // 이중이동평균
+            showModel(strModel, strLabel, tobs, nforecast, ibegin, xdata, yhat3, clow3, chigh3);
 }
 // Holt's Linear ES
 function drawModel4() {
             model = 4;
             checkModel[4] = true;
+            document.getElementById("model4").checked = true;
             holtAlpha = parseFloat(d3.select("#holtAlpha").node().value);
             holtBeta  = parseFloat(d3.select("#holtBeta").node().value);
             holtL0    = parseFloat(d3.select("#holtL0").node().value);
@@ -391,11 +422,18 @@ function drawModel4() {
             mse4 = sse / tobs;
             document.getElementById("mse4").value = f4(Math.sqrt(mse4));
             for (i=tobs; i<tobs+nforecast; i++) yhat4[i] = L[tobs-1] + (i+1-tobs)*T[tobs-1];
+        if (nforecast > 0) {
+            // confidence interval
+            for (i=tobs; i<tobs+nforecast; i++) {
+               temp = Math.sqrt(mse4);
+               clow4[i]  = yhat4[i] - 1.96*temp*Math.sqrt(i-tobs+1);
+               chigh4[i] = yhat4[i] + 1.96*temp*Math.sqrt(i-tobs+1);
+            }
+        }
             ibegin = 0;
             strLabel = "reglabel"+model;
-            strModel = "Holt's Linear Trend (α="+holtAlpha+", β="+holtBeta+")";
-            showModel(strModel, strLabel, tobs, nforecast, ibegin, xdata, yhat4);
-//            if (nforecast > 0) forecastTable(model, tobs, nforecast, yhat4);  
+            strModel = svgStrU[130][langNum]+" (α="+holtAlpha+", β="+holtBeta+")";
+            showModel(strModel, strLabel, tobs, nforecast, ibegin, xdata, yhat4, clow4, chigh4);
 }
 function redrawModel1() {
   clearModel1();
@@ -415,41 +453,50 @@ function redrawModel4() {
 }
 function clearModel1() {
      checkModel[1] = false;
+     document.getElementById("model1").checked = false;
      document.getElementById("mse1").value = "";
      svg.selectAll("circle.reglabel1").remove();
      svg.selectAll("line.reglabel1").remove();
      svg.selectAll("text.reglabel1").remove();
+     svg.selectAll("path.reglabel1").remove();
      svg.selectAll("circle.forecast1").remove();
 }
 function clearModel2() {
      checkModel[2] = false;
+     document.getElementById("model2").checked = false;
      document.getElementById("S0").value = "";
      document.getElementById("mse2").value = "";
      svg.selectAll("circle.reglabel2").remove();
      svg.selectAll("line.reglabel2").remove();
      svg.selectAll("text.reglabel2").remove();
+     svg.selectAll("path.reglabel2").remove();
      svg.selectAll("circle.forecast2").remove();
 }
 function clearModel3() {
      checkModel[3] = false;
+     document.getElementById("model3").checked = false;
      document.getElementById("mse3").value = "";
      svg.selectAll("circle.reglabel3").remove();
      svg.selectAll("line.reglabel3").remove();
      svg.selectAll("text.reglabel3").remove();
+     svg.selectAll("path.reglabel3").remove();
      svg.selectAll("circle.forecast3").remove();
 }
 function clearModel4() {
      checkModel[4] = false;
+     document.getElementById("model4").checked = false;
      document.getElementById("holtL0").value = "";
      document.getElementById("holtT0").value = "";
      document.getElementById("mse4").value = "";
      svg.selectAll("circle.reglabel4").remove();
      svg.selectAll("line.reglabel4").remove();
      svg.selectAll("text.reglabel4").remove();
+     svg.selectAll("path.reglabel4").remove();
      svg.selectAll("circle.forecast4").remove();
 }
-
-function showModel(strModel, strLabel, nobs, nforecast, ibegin, xdata, yhat) {
+function showModel(strModel, strLabel, nobs, nforecast, ibegin, xdata, yhat, clow, chigh) {
+     // confidence interval
+     confidenceBand(model, tobs, nforecast, clow, chigh);
     var ty = margin.top + model*20;;
     for (i=ibegin; i<nobs+nforecast; i++) {
           svg.append("circle").attr("class",strLabel)
@@ -484,6 +531,11 @@ function showModel(strModel, strLabel, nobs, nforecast, ibegin, xdata, yhat) {
 // clear parameter
 function clearExecute() {
      svg.selectAll("*").remove();
+     document.getElementById("ma1N").value = 3;
+     document.getElementById("ma2N").value = 3;
+     document.getElementById("es1Alpha").value = 0.3;
+     document.getElementById("holtAlpha").value = 0.3;
+     document.getElementById("holtBeta").value = 0.3;
      document.getElementById("S0").value = "";
      document.getElementById("holtL0").value = "";
      document.getElementById("holtT0").value = "";
@@ -509,27 +561,27 @@ function clearScreen(){
      if ( checkModel[3] ) drawModel3();
      if ( checkModel[4] ) drawModel4();
 }
-function forecastTable(model, nobs, nforecast, yhat) {
+function forecastTable(model, nobs, nforecast, yhat, clow, chigh) {
     var screenTable = document.getElementById("screenTable");
     var table = document.createElement('table');
     loc.appendChild(table);
     var row, header;
     var i, j, k, strModel, temp;
-    var ncol = 2;
+    var ncol = 3;
     var cell = new Array(4);
     table.style.fontSize = "13px";
     switch (model) {
       case 1:
-        strModel = "Single Moving Average (N="+ma1N+")";
+        strModel = svgStrU[128][langNum]+" (N="+ma1N+")"; //"Single Moving Average 
         break;
       case 2:
-        strModel = "Single Exponential Smoothing (α="+es1Alpha+")";
+        strModel = svgStrU[125][langNum]+" (α="+es1Alpha+")";
         break;
       case 3:
-        strModel = "Double Moving Average (N="+ma2N+")";
+        strModel = svgStrU[129][langNum]+" (N="+ma2N+")";
         break;
       case 4:
-        strModel = "Holt Double Exponential Smoothing (α="+holtAlpha+", β="+holtBeta+")";
+        strModel = svgStrU[130][langNum]+" (α="+holtAlpha+", β="+holtBeta+")";
         break;
     }
 
@@ -541,10 +593,11 @@ function forecastTable(model, nobs, nforecast, yhat) {
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
     }
-    cell[0].innerHTML = "<b>Model</b> "+model;
+    cell[0].innerHTML = "<b>"+svgStrU[127][langNum]+"</b> "+model;
     cell[1].innerHTML = strModel;
     cell[0].style.width ="70px";
-    cell[1].style.width ="100px";
+    cell[1].style.width ="150px";
+    cell[2].style.width ="200px";
 
     row  = table.insertRow(k++);
     row.style.height ="25px";
@@ -554,11 +607,9 @@ function forecastTable(model, nobs, nforecast, yhat) {
             cell[j].style.textAlign = "center";
             cell[j].style.border = "1px solid black";
     }
-    for (j=1; j<ncol; j++) {
-            cell[j].style.width ="60px";
-    }
     cell[0].innerHTML = "<b>t</b>";
-    cell[1].innerHTML = "Y hat";
+    cell[1].innerHTML = "Y "+ svgStr[84][langNum]; // predicted value
+    cell[2].innerHTML = "95% "+svgStrU[20][langNum];  // confidence interval
 
     for (i=nobs; i<nobs+nforecast; i++) {
        row = table.insertRow(k++);
@@ -569,6 +620,7 @@ function forecastTable(model, nobs, nforecast, yhat) {
        }
        cell[0].innerHTML = i+1;
        cell[1].innerHTML = f4(yhat[i]);
+       cell[2].innerHTML = "( "+f4(clow[i])+ " , "+f4(chigh[i])+ ")";
        cell[0].style.backgroundColor = "#eee";
        cell[0].style.textAlign = "center";
     }
