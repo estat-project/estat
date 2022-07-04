@@ -46,6 +46,10 @@
     </form>
     <b>[<span data-msgid="Test Type">Test Type</span>]</b> &nbsp;
     <span data-msgid="t-test">t-test</span>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span data-msgid="Significance Level">Significance Level</span> &nbsp; 
+    <span class="fontmath">&alpha;</span> = 
+    <input type="text" class="textarea" size=4 value="0.05" id="alpha">&nbsp; <span class="fontguide">(0 < &alpha; < 1)</span>
    
     <form name="myForm3">
       [<b><span data-msgid="Sampling Type">Sample Type</span></b>] &nbsp; 
@@ -60,19 +64,10 @@
       <input type="radio" name = "type1" value="2" id="diffvari">
       &sigma;<sub>1</sub><sup>2</sup> &ne; &sigma;<sub>2</sub><sup>2</sup>  </span>  
     </form>
-
-    <form name="myForm2">
-      [<b><span data-msgid="Significance Level">Significance Level</span></b>] &nbsp; 
-      <span class="fontmath"> &alpha; </span> =
-      <input type="radio" name = "type2" value="1" checked> 5%  &nbsp;      
-      <input type="radio" name = "type2" value="2" > 1%
-    </form>  
-
     <b>[<span data-msgid="Sample Data">Sample Data</span>]</b>&nbsp; 
     <span class="fontguide" data-msgid="input either sample data">
       (input either sample data or sample statistics using bsv)
     </span>   
-    
     <table class="data">
       <tbody>
 	<tr>
@@ -89,7 +84,6 @@
     </table>
     
     <b>[<span data-msgid="Sample Statistics">Sample Statistics</span>]</b>   
-    
     <table class="stat">
       <tbody>
 	<tr>
@@ -133,16 +127,12 @@
 	</tr>
       </tbody>
     </table>
-    <p>
-    <button type="button" id="executeTH4" >
-        <span data-msgid="Execute">Execute</span>
-    </button> 
-    <p>
+    <b>[<span data-msgid="Confidence Interval"></span> : &mu;<sub>1</sub> - &mu;<sub>2</sub> ]</b>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="fontmath" id="tformula"></span> = 
+    <input type="text" class="textarea" size=6 id="tvalue">
     <table class="stat">
       <tbody>
-        <tr>
-          <td colspan="3"><b>[ <span data-msgid="Confidence Interval"></span> : &mu;<sub>1</sub> - &mu;<sub>2</sub> ]</b></td>
-        </tr>
 	<tr>
 	  <td><span class="fontmath" id="intFormula"></span></td>
           <td>&hArr;</td>
@@ -162,7 +152,17 @@
         </tr>
       </tbody>
     </table>
-    <p>
+    <br>
+    <button type="button" id="executeTH4" >
+        <span data-msgid="Execute">Execute</span>
+    </button> 
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="fontmath">&alpha; = </span>  
+    <input type="text" class="textarea" size=4 value="0.05" id="alpha2">&nbsp; 
+    <sup><small> 0 </small></sup>
+    <input type="range" min="1" max="999" value="50" id="rangeAlpha" onchange="showValueAlpha(this.value)"/> 
+    <sup><small> 1 </small></sup>
+    <br>
     <svg id="chart" width="600" height="400"> </svg>
     <br>
     <button type="button" id="saveGraphU" >
@@ -171,83 +171,78 @@
 
   </div> 
 
-  <script>
+<script>
       var bar = d3.select("#chart");
-
       var svgWidth, svgHeight, margin, graphWidth, graphHeight;
       var svgWidth2, svgHeight2, graphWidth2, graphHeight2;
       svgWidth2   = 600;
       svgHeight2  = 400;
-
       var k, nobs, avg, std, gxmin, gxmax, gymin, gymax, temp;
       var title;
-      var df, df1, df2, info, alpha, pvalue, b, c, d, e, f, g, h, t1, t2, temp1, temp2;
+      var df, df1, df2, info, alpha, tvalue, pvalue, b, c, d, e, f, g, h, t1, t2, temp1, temp2;
       var mu4, nn41,nn42, xbar41, xbar42, var41, var42, teststat, varPooled, varAdd, nDiff, avgDiff, varDiff, stdDiff;
       var x = [];
       var y = [];
       var left, right;
+      var tval1 = "t<sub>n<sub>1</sub> + n<sub>2</sub> - 2 ; &alpha;/2</sub> ";
+      var tval2 = "t<sub>&phi; ; &alpha;/2</sub>";
+      var tval3 = "t<sub>n<sub>d</sub> - 1 ; &alpha;/2</sub>";
       var intT1 = "( x&#772;<sub>1</sub> - x&#772;<sub>2</sub> ) &nbsp; &plusmn; &nbsp;[ D + t<sub>n<sub>1</sub> + n<sub>2</sub> - 2 ; &alpha;/2</sub> &nbsp; &radic; ( s<sub>p</sub><sup>2</sup> / n<sub>1</sub> + s<sub>p</sub><sup>2</sup> / n<sub>2</sub> ) ]";
       var intT2 = "( x&#772;<sub>1</sub> - x&#772;<sub>2</sub> ) &nbsp; &plusmn; &nbsp; [ D + t<sub>&phi; ; &alpha;/2</sub> &nbsp; &radic; ( s<sub>1</sub><sup>2</sup> / n<sub>1</sub> + s<sub>2</sub><sup>2</sup> / n<sub>2</sub> ) ]";
       var intT3 = "( x&#772;<sub>d</sub> ) &plusmn; [ D + t<sub>n<sub>d</sub>-1 ; &alpha;/2</sub> &nbsp; (s<sub>d</sub> / &radic; n<sub>d</sub> )";
       var varT1 = "s<sub>p</sub><sup>2</sup> = [(n<sub>1</sub>-1) s<sub>1</sub><sup>2</sup> + (n<sub>2</sub>-1) s<sub>2</sub><sup>2</sup>] / (n<sub>1</sub> + n<sub>2</sub> - 2)";
       var varT2 = "&phi; = (s<sub>1</sub><sup>2</sup>/n<sub>1</sub> + s<sub>2</sub><sup>2</sup>/n<sub>2</sub>)<sup>2</sup> / [(s<sub>1</sub><sup>2</sup>/n<sub>1</sub>)<sup>2</sup>/(n<sub>1</sub>-1) + (s<sub>2</sub><sup>2</sup>/n<sub>2</sub>)<sup>2</sup>/(n<sub>2</sub>-1)   ]"; 
       var varT3 = "s<sub>d</sub> / &radic; n<sub>d</sub>";
+      document.getElementById("tformula").innerHTML   = tval1;
       document.getElementById("intFormula").innerHTML = intT1;
       document.getElementById("varFormula").innerHTML = varT1;
-      document.getElementById("cleft").disabled = true;    
+      document.getElementById("tvalue").disabled = true;    
+      document.getElementById("cleft").disabled  = true;    
       document.getElementById("cright").disabled = true;    
       document.getElementById("ansFormula").disabled = true;    
 
       // H1 type
       var h1 = document.myForm0.type0;
       var h1Type = 1; 
-      h1[0].onclick = function() { h1Type = 1; bar.selectAll("*").remove(); }    // 양측검정
-      h1[1].onclick = function() { h1Type = 2; bar.selectAll("*").remove(); }    // 우측검정
-      h1[2].onclick = function() { h1Type = 3; bar.selectAll("*").remove(); }    // 좌측검정
+      h1[0].onclick = function() { h1Type = 1; if (checkExecute) testingHypothesisMu12(); }    // 양측검정
+      h1[1].onclick = function() { h1Type = 2; if (checkExecute) testingHypothesisMu12(); }    // 우측검정
+      h1[2].onclick = function() { h1Type = 3; if (checkExecute) testingHypothesisMu12(); }    // 좌측검정
 
       // Test type
       var test = document.myForm1.type1;
       var testType = 1;
       var hypoType = 41;
+      var checkExecute = false;
+      document.getElementById("cleft").disabled  = true; 
+      document.getElementById("cright").disabled = true;  
+      document.getElementById("alpha2").disabled = true;  
+      document.getElementById("tvalue").disabled = true;  
+
       test[0].onclick = function() { // same population variance
         testType = 1; 
         hypoType = 41; 
         bar.selectAll("*").remove();   
+        document.getElementById("tformula").innerHTML   = tval1;
         document.getElementById("intFormula").innerHTML = intT1;
         document.getElementById("varFormula").innerHTML = varT1;
         document.getElementById("cleft").value  = "";
         document.getElementById("cright").value = "";
         document.getElementById("ansFormula").value = "";
+        if (checkExecute) testingHypothesisMu12();
       }  
       test[1].onclick = function() { // not same population variances
         testType = 2; 
         hypoType = 42; 
         bar.selectAll("*").remove(); 
+        document.getElementById("tformula").innerHTML   = tval2;
         document.getElementById("intFormula").innerHTML = intT2;
         document.getElementById("varFormula").innerHTML = varT2;
         document.getElementById("cleft").value  = "";
         document.getElementById("cright").value = "";
         document.getElementById("ansFormula").value = "";
+        if (checkExecute) testingHypothesisMu12();
       }  
 
-      // alpha
-      var a = document.myForm2.type2;
-      alpha = 0.05;
-      a[0].onclick = function() { 
-        alpha = 0.05; 
-        bar.selectAll("*").remove(); 
-        document.getElementById("cleft").value  = "";
-        document.getElementById("cright").value = "";
-        document.getElementById("ansFormula").value = "";
-      }  
-      a[1].onclick = function() { 
-        alpha = 0.01; 
-        bar.selectAll("*").remove(); 
-        document.getElementById("cleft").value  = "";
-        document.getElementById("cright").value = "";
-        document.getElementById("ansFormula").value = "";
-      } 
- 
       // Sample type
       document.getElementById("nDiff").disabled = true;    
       document.getElementById("avgDiff").disabled = true;    
@@ -264,22 +259,25 @@
         document.getElementById("nDiff").value = "";    
         document.getElementById("avgDiff").value = "";    
         document.getElementById("varDiff").value = "";   
-        bar.selectAll("*").remove();   
-        if (testType == 1) {
+        if (testType == 1) { // same variance
           hypoType = 41;
           document.getElementById("intFormula").innerHTML = intT1;
           document.getElementById("varFormula").innerHTML = varT1;
+          document.getElementById("tvalue").value = "";
           document.getElementById("cleft").value  = "";
           document.getElementById("cright").value = "";
           document.getElementById("ansFormula").value = "";
+          if (checkExecute) testingHypothesisMu12();
         }
         else if (testType == 2) {
           hypoType = 42;
           document.getElementById("intFormula").innerHTML = intT2;
           document.getElementById("varFormula").innerHTML = varT2;
+          document.getElementById("tvalue").value = "";
           document.getElementById("cleft").value  = "";
           document.getElementById("cright").value = "";
           document.getElementById("ansFormula").value = "";
+          if (checkExecute) testingHypothesisMu12();
         }
       }  
       sample[1].onclick = function() { // paired sample
@@ -290,12 +288,14 @@
         document.getElementById("avgDiff").disabled = false;    
         document.getElementById("varDiff").disabled = false;   
         hypoType = 43;
+        document.getElementById("tformula").innerHTML   = tval3;
         document.getElementById("intFormula").innerHTML = intT3;
         document.getElementById("varFormula").innerHTML = varT3;
-        document.getElementById("cleft").value  = "";
-        document.getElementById("cright").value = "";
+        document.getElementById("tvalue").value   = "";
+        document.getElementById("cleft").value    = "";
+        document.getElementById("cright").value   = "";
         document.getElementById("ansFormula").value = "";
-        bar.selectAll("*").remove();   
+       if (checkExecute) testingHypothesisMu12();
       }
       
       // input data control ===================================================
@@ -329,7 +329,19 @@
 
       // Testing Hypothesis ===========================================================
       d3.select("#executeTH4").on("click",function() {
-        bar.selectAll("*").remove();
+        checkExecute = true;
+        // alpha
+        alpha = parseFloat(d3.select("#alpha").node().value);
+        if (alpha < 0.001) {
+          alpha = 0.001;
+          document.getElementById("alpha").value = alpha;
+        }
+        else if (alpha > 0.499) {
+          alpha = 0.499;
+          document.getElementById("alpha").value = alpha;
+        }
+        document.getElementById("alpha2").value = alpha;
+        document.getElementById("rangeAlpha").value = alpha*1000;
         // input value
         mu4    = parseFloat(d3.select("#mu4").node().value);
         stat = simplestat("#data1");
@@ -354,6 +366,7 @@
             xbar42 = parseFloat(d3.select("#xbar42").node().value);
             var42  = parseFloat(d3.select("#var42").node().value);
         }
+
         if (sampleType == 1) { // independent sample
           // input validataion
           if (isNaN(nn41) || isNaN(nn42) || isNaN(xbar41) || isNaN(xbar42) || isNaN(var41) || isNaN(var42) ||
@@ -386,7 +399,24 @@
             return;
           }
         }
-        // t-test        
+        testingHypothesisMu12();
+
+      })
+
+      // svg Graph Save
+      d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth2;
+        var height = svgHeight2;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+
+function testingHypothesisMu12() {
+        bar.selectAll("*").remove();
         // test statistics
         if (sampleType == 1) { // independent sample
             h = alpha / 2;
@@ -396,8 +426,9 @@
               df2 = nn42 - 1;
               varPooled = ( df1*var41 + df2*var42 ) / df;
               document.getElementById("ansFormula").value   = f3(varPooled);
-              temp1    = Math.sqrt(varPooled/nn41 + varPooled/nn42)
-              temp2    = mu4 + t_inv(1-h, df, info) * temp1;
+              temp1    = Math.sqrt(varPooled/nn41 + varPooled/nn42);
+              tvalue   = t_inv(1-h, df, info);
+              temp2    = mu4 + tvalue * temp1;
               teststat = (xbar41 - xbar42 - mu4) / temp1; 
               left  = (xbar41 - xbar42) - temp2 ;
               right = (xbar41 - xbar42) + temp2 ;
@@ -409,7 +440,8 @@
               temp1  = Math.sqrt(varAdd);
               df = varAdd * varAdd / ((t1*t1/df1) + (t2*t2/df2));
               document.getElementById("ansFormula").value   = f3(df);
-              temp2    = mu4 + t_inv(1-h, df, info) * temp1;
+              tvalue = t_inv(1-h, df, info);
+              temp2    = mu4 + tvalue * temp1;
               teststat = (xbar41 - xbar42 - mu4) / temp1;
               left  = (xbar41 - xbar42) - temp2 ;
               right = (xbar41 - xbar42) + temp2 ;
@@ -438,14 +470,16 @@
               df = nDiff - 1;
               temp1 = stdDiff / Math.sqrt(nDiff);
               h     = alpha / 2;
-              temp2 = mu4 + t_inv(1-h, df, info) * temp1;
+              tvalue= t_inv(1-h, df, info);
+              temp2 = mu4 + tvalue * temp1;
               teststat = (avgDiff - mu4) / temp1;
               left  = avgDiff - temp2 ;
               right = avgDiff + temp2 ;
             }
         }    
-        document.getElementById("cleft").value   = f3(left);
-        document.getElementById("cright").value  = f3(right); 
+        document.getElementById("tvalue").value = f3(tvalue);
+        document.getElementById("cleft").value  = f3(left);
+        document.getElementById("cright").value = f3(right); 
 
           if (h1Type == 1) {
             h = alpha / 2;  
@@ -490,21 +524,15 @@
                 pvalue = t_cdf(teststat, df, info);
             }
             drawTdistGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue, mu4);
-          }          
-      })
-
-      // svg Graph Save
-      d3.select("#saveGraphU").on("click", function() {
-        var svg = d3.select("#chart");
-        var width = svgWidth2;
-        var height = svgHeight2;
-        var svgString = getSVGString(svg.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
-
-  </script>
+          }  
+}        
+// alpha sliding bar control for testing hypothesis 
+function showValueAlpha(newValue) {
+        alpha = f3(newValue/1000);
+        document.getElementById("alpha").value   = alpha;
+        document.getElementById("alpha2").value  = alpha;
+        if (checkExecute) testingHypothesisMu12();
+} 
+</script>
 </body>
 </html>
