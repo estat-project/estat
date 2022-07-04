@@ -43,20 +43,19 @@
        </span>
     </form>
     
-    <form name="myForm1"> 
-      <b>[<span data-msgid="Test Type">Test Type</span>]</b> &nbsp;
+    <b>[<span data-msgid="Test Type">Test Type</span>]</b> &nbsp;
        <span data-msgid="SignedRankTest">Wilcoxon Test</span>
-    </form>
-
-    <form name="myForm2">&nbsp;&nbsp;&nbsp;
-      <span data-msgid="Significance Level">Significance Level</span> &nbsp; 
-      <span class="fontmath"> &alpha; </span> =
-      <input type="radio" name = "type2" value="1" checked> 5%  &nbsp;      
-      <input type="radio" name = "type2" value="2" > 1%
-    </form>  
+    &nbsp;
+    <span class="fontguide" >
+      <span data-msgid="WilcoxonSignCondition">Wilcoxon Signed Rank Condition</span> 
+    </span>   
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span data-msgid="Significance Level">Significance Level</span> &nbsp; 
+    <span class="fontmath">&alpha;</span> = 
+    <input type="text" class="textarea" size=4 value="0.05" id="alpha">&nbsp; <span class="fontguide">(0 < &alpha; < 1)</span>
+    <br>
      
     <b>[<span data-msgid="Sample Data">Sample Data</span>]</b>&nbsp; 
-    
     <table class="data">
       <tbody>
 	<tr>
@@ -68,7 +67,6 @@
     </table>
     
     <b>[<span data-msgid="Sample Statistics">Sample Statistics</span>]</b>   
-    
     <table class="stat">
       <tbody>
 	<tr>
@@ -93,15 +91,17 @@
 	</tr>
       </tbody>
     </table>
-    
+    <br>
     <button type="button" id="executeTH4" >
         <span data-msgid="Execute">Execute</span>
     </button> 
-    &nbsp;
-    <span class="fontguide" >
-      <span data-msgid="WilcoxonSignCondition">Wilcoxon Signed Rank Condition</span> 
-    </span>   
-    <p>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="fontmath">&alpha; = </span>  
+    <input type="text" class="textarea" size=4 value="0.05" id="alpha2">&nbsp; 
+    <sup><small> 0 </small></sup>
+    <input type="range" min="1" max="999" value="50" id="rangeAlpha" onchange="showValueAlpha(this.value)"/> 
+    <sup><small> 1 </small></sup>
+    <br>
     <svg id="chart" width="600" height="400"> </svg>
     <br>
     &nbsp;
@@ -127,9 +127,8 @@
     <table id="ranksumTable" cellpadding="2" cellspacing="2" border="2" >  </table>
   </div>
 
-  <script>
+<script>
       var bar = d3.select("#chart");
-
       var svgWidth, svgHeight, svgWidth2, svgHeight2, margin, graphWidth, graphHeight; 
       var margin = {top: 90, bottom: 90, left: 100, right: 120};
       svgWidth   = 600; svgWidth2  = svgWidth;
@@ -150,29 +149,24 @@
       var x = [];
       var y = [];
       var i,j,k;
-
-      document.getElementById("nn41").disabled = true;
-      document.getElementById("nn42").disabled = true;
+      var checkExecute = false;
+      document.getElementById("alpha2").disabled = true;  
+      document.getElementById("nn41").disabled   = true;
+      document.getElementById("nn42").disabled   = true;
       document.getElementById("xbar41").disabled = true;
       document.getElementById("xbar42").disabled = true;
       // H1 type
       var h1 = document.myForm0.type0;
       var h1Type = 1; 
-      h1[0].onclick = function() { h1Type = 1; bar.selectAll("*").remove(); }    // 양측검정
-      h1[1].onclick = function() { h1Type = 2; bar.selectAll("*").remove(); }    // 우측검정
-      h1[2].onclick = function() { h1Type = 3; bar.selectAll("*").remove(); }    // 좌측검정
-      // alpha
-      var a = document.myForm2.type2;
-      alpha = 0.05;
-      a[0].onclick = function() { alpha = 0.05; bar.selectAll("*").remove(); }  
-      a[1].onclick = function() { alpha = 0.01; bar.selectAll("*").remove(); } 
+      h1[0].onclick = function() { h1Type = 1; if (checkExecute) testingSignedRanksum(); }    // 양측검정
+      h1[1].onclick = function() { h1Type = 2; if (checkExecute) testingSignedRanksum(); }    // 우측검정
+      h1[2].onclick = function() { h1Type = 3; if (checkExecute) testingSignedRanksum(); }    // 좌측검정
 
       // input data control ===================================================
       d3.select("#data1").on("input", function() {
         stat = simplestat("#data1");  
         w = data;  
       });
-
       updateData = function() {
         document.getElementById("data1").value = '';
       }
@@ -180,79 +174,26 @@
 
     // Testing Hypothesis ===========================================================
     d3.select("#executeTH4").on("click",function() {
-      bar.selectAll("*").remove();
-
-      mu0 = parseFloat(document.getElementById("mu").value);
-      if (isNaN(mu0)) {
-        alert("Enter M\u2080 !!!")
-        return
-      }
-
-      nobs[1] = 0;
-      nobs[2] = 0;
-      for (i=0; i<w.length; i++) {
-        if (w[i] < mu0) {
-          x[nobs[1]] = Math.abs(w[i]-mu0); 
-          nobs[1]++;
+        checkExecute = true;
+        // alpha
+        alpha = parseFloat(d3.select("#alpha").node().value);
+        if (alpha < 0.001) {
+          alpha = 0.001;
+          document.getElementById("alpha").value = alpha;
         }
-        else if (w[i] > mu0) {
-          y[nobs[2]] = Math.abs(w[i] - mu0);
-          nobs[2]++;
+        else if (alpha > 0.499) {
+          alpha = 0.499;
+          document.getElementById("alpha").value = alpha;
         }
-      }
-      document.getElementById("nn41").value   = nobs[1];    
-      document.getElementById("nn42").value   = nobs[2];    
-
-      nobs[0] = nobs[1] + nobs[2]; 
-      var z = new Array(nobs[0]);
-      z = x.concat(y);        
-      // Calculate signed rank sum
-      T = statRankSum(ngroup, nobs, z, ranksum);
-      document.getElementById("xbar41").value = ranksum[1];
-      document.getElementById("xbar42").value = ranksum[2];
-
-      // check exact or approximation
-      if (nobs[0] < 21) { // Wilcoxon Signed Rank Test
-        // Wilcoxon Rank Sum Distribution
-        var checkRankSum = false;
-        for (j=0; j<maxCell; j++) dvalueP[j] = 0;
-        nvalue = rankSumDist(0, nobs[0], dataValue, dvalueP, checkRankSum);
-        // draw graph
-        var title  = svgStrU[68][langNum]; // "Wilcoxon Rank Sum Test" 
-        var sub1 = "H\u2080: M = M\u2080  " + " , H\u2081: M "+ symbol[h1Type-1] + " M\u2080" ;
-        var sub2 = svgStrU[23][langNum]+" (R+) ~ Wilcoxson Sign (n = "+nobs[0]+") "+svgStrU[24][langNum];
-        drawSignedRankGraph(title, sub1, sub2, nvalue, dataValue, dvalueP, ranksum[2], alpha, h1Type, checkData) 
-      }
-      else {  // Z-test
-        mu  = nobs[0]*(nobs[0]+1)/4;
-        std = Math.sqrt( (nobs[0]*(nobs[0]+1)*(2*nobs[0]+1) - 0.5*T) / 24 ); 
-        teststat = ranksum[2];
-        zobs = (ranksum[2] - mu) / std;
-        
-        if (h1Type == 1) {
-            h = alpha / 2;  
-            f = mu + stdnormal_inv(h, info)*std;
-            g = mu + stdnormal_inv(1-h, info)*std;
-            if (zobs < 0) pvalue = 2 * stdnormal_cdf(zobs);
-            else  pvalue = 2 * (1 - stdnormal_cdf(zobs));
-            drawNormalGraphTH(hypoType, h1Type, teststat, mu, std, f, g, h, pvalue, mu0);
+        document.getElementById("alpha2").value = alpha;
+        document.getElementById("rangeAlpha").value = alpha*1000;
+        // enter mu0
+        mu0 = parseFloat(document.getElementById("mu").value);
+        if (isNaN(mu0)) {
+          alert("Enter M\u2080 !!!");
+          return;
         }
-        else if (h1Type == 2) {
-            h = alpha;  
-            f = mu - 5*std
-            g = mu + stdnormal_inv(1-h, info)*std;
-            pvalue = 1 - stdnormal_cdf(zobs);
-            drawNormalGraphTH(hypoType, h1Type, teststat, mu, std, f, g, h, pvalue, mu0);
-        }
-        else {
-            h = alpha;  
-            f = mu + stdnormal_inv(h, info)*std;
-            g = mu + 5*std;
-            pvalue = stdnormal_cdf(zobs);
-            drawNormalGraphTH(hypoType, h1Type, teststat, mu, std, f, g, h, pvalue, mu0);
-        }
-      }  
-
+        testingSignedRanksum();
     })
 
     // svg Graph Save
@@ -539,6 +480,80 @@ function valueFreq(tobs, dataA, dataValue, dvalueFreq ) {
 }
 */
 
-  </script>
+function testingSignedRanksum() {
+      bar.selectAll("*").remove();
+      nobs[1] = 0;
+      nobs[2] = 0;
+      for (i=0; i<w.length; i++) {
+        if (w[i] < mu0) {
+          x[nobs[1]] = Math.abs(w[i]-mu0); 
+          nobs[1]++;
+        }
+        else if (w[i] > mu0) {
+          y[nobs[2]] = Math.abs(w[i] - mu0);
+          nobs[2]++;
+        }
+      }
+      document.getElementById("nn41").value   = nobs[1];    
+      document.getElementById("nn42").value   = nobs[2];    
+
+      nobs[0] = nobs[1] + nobs[2]; 
+      var z = new Array(nobs[0]);
+      z = x.concat(y);        
+      // Calculate signed rank sum
+      T = statRankSum(ngroup, nobs, z, ranksum);
+      document.getElementById("xbar41").value = ranksum[1];
+      document.getElementById("xbar42").value = ranksum[2];
+
+      // check exact or approximation
+      if (nobs[0] < 21) { // Wilcoxon Signed Rank Test
+        // Wilcoxon Rank Sum Distribution
+        var checkRankSum = false;
+        for (j=0; j<maxCell; j++) dvalueP[j] = 0;
+        nvalue = rankSumDist(0, nobs[0], dataValue, dvalueP, checkRankSum);
+        // draw graph
+        var title  = svgStrU[68][langNum]; // "Wilcoxon Rank Sum Test" 
+        var sub1 = "H\u2080: M = M\u2080  " + " , H\u2081: M "+ symbol[h1Type-1] + " M\u2080" ;
+        var sub2 = svgStrU[23][langNum]+" (R+) ~ Wilcoxson Sign (n = "+nobs[0]+") "+svgStrU[24][langNum];
+        drawSignedRankGraph(title, sub1, sub2, nvalue, dataValue, dvalueP, ranksum[2], alpha, h1Type, checkData) 
+      }
+      else {  // Z-test
+        mu  = nobs[0]*(nobs[0]+1)/4;
+        std = Math.sqrt( (nobs[0]*(nobs[0]+1)*(2*nobs[0]+1) - 0.5*T) / 24 ); 
+        teststat = ranksum[2];
+        zobs = (ranksum[2] - mu) / std;
+        
+        if (h1Type == 1) {
+            h = alpha / 2;  
+            f = mu + stdnormal_inv(h, info)*std;
+            g = mu + stdnormal_inv(1-h, info)*std;
+            if (zobs < 0) pvalue = 2 * stdnormal_cdf(zobs);
+            else  pvalue = 2 * (1 - stdnormal_cdf(zobs));
+            drawNormalGraphTH(hypoType, h1Type, teststat, mu, std, f, g, h, pvalue, mu0);
+        }
+        else if (h1Type == 2) {
+            h = alpha;  
+            f = mu - 5*std
+            g = mu + stdnormal_inv(1-h, info)*std;
+            pvalue = 1 - stdnormal_cdf(zobs);
+            drawNormalGraphTH(hypoType, h1Type, teststat, mu, std, f, g, h, pvalue, mu0);
+        }
+        else {
+            h = alpha;  
+            f = mu + stdnormal_inv(h, info)*std;
+            g = mu + 5*std;
+            pvalue = stdnormal_cdf(zobs);
+            drawNormalGraphTH(hypoType, h1Type, teststat, mu, std, f, g, h, pvalue, mu0);
+        }
+      }  
+}
+// alpha sliding bar control for testing hypothesis 
+function showValueAlpha(newValue) {
+        alpha = f3(newValue/1000);
+        document.getElementById("alpha").value   = alpha;
+        document.getElementById("alpha2").value  = alpha;
+        if (checkExecute) testingSignedRanksum();
+} 
+</script>
 </body>
 </html>
