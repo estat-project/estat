@@ -358,10 +358,10 @@ $.message.ko = {
     "Block": "블록",
     "Treatment": "처리",
     "At least one locations is different": "적어도 한쌍 이상의 위치모수가 다름",
-    "SignCondition": "n ≤ 100 이면 이항분포 검정,  n > 100 근사 정규분포 검정",
-    "WilcoxonSignCondition": "n ≤ 20 이면 윌콕슨 순위합 분포 검정,  n > 20 근사 정규분포 검정",
-    "WilcoxonRankCondition": "n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 이면 순위합 분포 검정,  n > 25 근사 정규분포 검정",
-    "KruskalCondition": "n ≤ 10 이면 H 분포 검정,  n>10 이면 근사 카이제곱 검정",
+    "SignCondition": "(n ≤ 100) 이항분포, (n > 100) 정규분포근사검정",
+    "WilcoxonSignCondition": "(n ≤ 20) 부호순위검정, (n > 20) 정규분포근사검정",
+    "WilcoxonRankCondition": "(n=n<sub>1</sub>+n<sub>2</sub> ≤ 25) 순위합검정,  (n > 25) 정규분포근사검정",
+    "KruskalCondition": "(n ≤ 10) H분포검정,  (n>10) 카이제곱근사검정",
     "VariableSelect":  "* 자료분석 : 파일불러오기 >> 변량선택 >> 분석 아이콘 클릭",
     "VariableSelect2": "* 변량선택 : 변량명을 클릭하거나 우측의 선택박스 이용",
     "VariableSelect3": "변량선택",
@@ -488,6 +488,8 @@ $.message.ko = {
     "AutoCorrTable":     "자기상관표",
     "DiffSeries":        "차분시계열",
     "RawSeries":         "원 시계열",
+    "RBD":               "확률화블록계획법",
+    "Latin":             "라틴방격법",
 };
 // Korean
 appStr[1][0] = "../eStatH/index.html";
@@ -823,6 +825,8 @@ svgStrU[130][0] = "Holt 이중지수평활";
 svgStrU[131][0] = "계절지수";
 svgStrU[132][0] = "Holt-Winters 승법계절모형";
 svgStrU[133][0] = "비계절시계열";
+svgStrU[134][0] = "블록";
+
 
 // English
 $.message.en = {
@@ -1065,7 +1069,7 @@ $.message.en = {
     "AnovaMeanGraph": "Mean Confidence Interval",
     "MultipleComparison": "Multiple Comparison",
     "ComparisonGraph": "Comparison",
-    "AnovaResidual": "Standardized Residual Plot",
+    "AnovaResidual": "Residual Plot",
     "AnovaQQ": "Residual Q-Q Plot",
     "TestingFit": "Categorical : Goodness of Fit Test",
     "FitTest0": "Observed & theoretical Dist. are the same",
@@ -1082,30 +1086,30 @@ $.message.en = {
     "NoInteraction": "No Interaction",
     "ExistInteraction": "Exist Interaction",
     "eStatLecture": "eLearning",
-    "NonParametricMu12_title": "Nonparametric : Wilcoxon Rank Sum Test", 
-    "NonParametricMu12": "Nonparametric : Wilcoxon Rank Sum Test : Location Parameter M<sub>1</sub>, M<sub>2</sub>", 
-    "WilcoxonTest": "Nonparametric : Rank Sum Test",
+    "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
+    "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter M<sub>1</sub>, M<sub>2</sub>", 
+    "WilcoxonTest": "Rank Sum Test",
     "Sample Range": "Rank Sum",
     "DistributionTable": "Distribution Table",
     "SignedRankTestDist": "Wilcoxon Signed Rank Sum Dist.",
     "WilcoxonTestDist": "Wilcoxon Rank Sum Distribution",
     "KruskalTestDist": "Kruskal-Wallis H Distribution",
     "FriedmanTestDist": "Friedman S Distribution",
-    "SignedRankTest": "Nonparametric : Signed Rank Sum Test",
-    "SignTest": "Nonparametric : Sign Test",
+    "SignedRankTest": "Signed Rank Sum Test",
+    "SignTest": "Sign Test",
     "SignCount": "Sign Count",
-    "KruskalTest": "Nonparametric : Kruskal-Wallis Test",
-    "KruskalTestANOVA": "Nonparametric : Kruskal-Wallis Test",
+    "KruskalTest": "Kruskal-Wallis Test",
+    "KruskalTestANOVA": "Kruskal-Wallis Test",
     "Total": "Total",
-    "FriedmanTest": "Nonparametric : Friedman Test",
-    "FriedmanTestANOVA": "Nonparametric : Friedman Test",
+    "FriedmanTest": "Friedman Test",
+    "FriedmanTestANOVA": "Friedman Test",
     "Block": "Block",
     "Treatment": "Treatment",
     "At least one locations is different": "At least one pair of locations is different",
-    "SignCondition": "If n ≤ 100 Binomial Test,  n > 100 Normal Approximation Test",
-    "WilcoxonSignCondition": "If n ≤ 20 Wilcoxon Rank Sum Test,  n > 20 Normal Approximation Test",
-    "WilcoxonRankCondition": "If n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Rank Sum Test,  n>25 Normal Approximation Test",
-    "KruskalCondition": "If n ≤ 10 H Distribution Test,  else &chi;&#178; approximation test",
+    "SignCondition": "(n ≤ 100) Binomial Test,  (n > 100) Normal Approximation Test",
+    "WilcoxonSignCondition": "(n ≤ 20) Signed Rank Sum Test, (n > 20) Normal Approximation Test",
+    "WilcoxonRankCondition": "(n=n<sub>1</sub>+n<sub>2</sub> ≤ 25) Rank Sum Test, (n>25) Normal Approximation Test",
+    "KruskalCondition": "(n ≤ 10) H Distribution Test,  (n > 10) &chi;&#178; approximation test",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
     "VariableSelect3": "Variable Selection",
@@ -1231,6 +1235,8 @@ $.message.en = {
     "AutoCorrTable":     "Autocorrelation Table",
     "DiffSeries":        "Difference Series",
     "RawSeries":         "Raw Series",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
 
 };
 // English
@@ -1566,6 +1572,7 @@ svgStrU[130][1] = "Holt Double Exponential Smoothing";
 svgStrU[131][1] = "Seasonal Index";
 svgStrU[132][1] = "Holt-Winters Multiplicative Seasonal Model";
 svgStrU[133][1] = "Deseasonal Series";
+svgStrU[134][1] = "Block";
 
 // Japanese
 $.message.ja = {
@@ -1841,7 +1848,7 @@ $.message.ja = {
     "Total": "全体",
     "FriedmanTest": "ウィルコクソンフリードマン檢定",
     "FriedmanTestANOVA": "ウィルコクソンフリードマン檢定",
-    "Block": "Block",
+    "Block": "ブロック",
     "Treatment": "處理",
     "At least one locations is different": "位置母数 !=",
     "SignCondition": "n ≤ 100 二項分布檢定,  n > 100 正規近似檢定",
@@ -1972,6 +1979,9 @@ $.message.ja = {
     "AutoCorrTable":     "自己相関表",
     "DiffSeries":        "差分時系列",
     "RawSeries":         "原始時系列",
+    "RBD":               "確率化ブロック計画法",
+    "Latin":             "ラテン防撃法",
+
 };
 // Japanese
 appStr[1][2] = "../eStatH/index.html";
@@ -2306,6 +2316,7 @@ svgStrU[130][2] = "Holt二重指数平滑";
 svgStrU[131][2] = "季節指数";
 svgStrU[132][2] = "Holt-Winters乗法季節モデル";
 svgStrU[133][2] = "非季節時系列";
+svgStrU[134][2] = "ブロック";
 
 
 // Chinese
@@ -2710,6 +2721,9 @@ $.message.zhTW = {
     "AutoCorrTable":     "自相關表",
     "DiffSeries":        "差分時間序列",
     "RawSeries":         "原始時間序列",
+    "RBD":               "隨機塊編程",
+    "Latin":             "拉丁文語法n",
+
 };
 // Chinese 
 appStr[1][3] = "../eStatH/index.html";
@@ -3044,6 +3058,7 @@ svgStrU[130][3] = "Holt雙指數平滑";
 svgStrU[131][3] = "季節性指數";
 svgStrU[132][3] = "Holt-Winters 乘法季節性模型";
 svgStrU[133][3] = "非季節性時間序列";
+svgStrU[134][3] = "塊";
 
 // French
 $.message.fr = {
@@ -3448,6 +3463,9 @@ $.message.fr = {
     "AutoCorrTable":     "Table d'autocorrélation",
     "DiffSeries":        "Série Différence",
     "RawSeries":         "Série brute",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
+
 };
 // French
 appStr[1][4] = "../eStatH/index.html";
@@ -3782,7 +3800,7 @@ svgStrU[130][4] = "Lissage exponentiel double Holt" ;
 svgStrU[131][4] = "Index saisonnier" ;
 svgStrU[132][4] = "Modèle saisonnier multiplicatif de Holt-Winters" ;
 svgStrU[133][4] = "Séries désaisonnalisées" ;
-
+svgStrU[134][4] = "Bloc";
 
 
 // German
@@ -4185,6 +4203,9 @@ $.message.de = {
     "AutoCorrTable":     "Autokorrelationstabelle",
     "DiffSeries":        "Unterschiedsserie",
     "RawSeries":         "Raw-Serie",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
+
 };
 // German 
 appStr[1][5] = "../eStatH/index.html";
@@ -4519,7 +4540,7 @@ svgStrU[130][5] = "Holt doppelte exponentielle Glättung";
 svgStrU[131][5] = "Saisonaler Index";
 svgStrU[132][5] = "Multiplikatives Saisonmodell von Holt-Winters";
 svgStrU[133][5] = "Seasonal Series";
-
+svgStrU[134][5] = "Block";
 
 // Spanish
 $.message.es = {
@@ -4924,6 +4945,8 @@ $.message.es = {
     "AutoCorrTable":     "Tabla de autocorrelación",
     "DiffSeries":        "Serie de diferencias",
     "RawSeries":         "Serie cruda",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
 
 };
 // Spanish
@@ -5259,7 +5282,7 @@ svgStrU[130][6] = "Suavizado exponencial doble Holt";
 svgStrU[131][6] = "Índice estacional";
 svgStrU[132][6] = "Modelo estacional multiplicativo de Holt-Winters";
 svgStrU[133][6] = "Serie estacional";
-
+svgStrU[134][6] = "Bloquear";
 
 // Vietnamese
 $.message.vi = {
@@ -5660,7 +5683,8 @@ $.message.vi = {
     "AutoCorrTable":     "Bảng tự tương quan",
     "DiffSeries":        "Chuỗi sự khác biệt",
     "RawSeries":         "Dòng thô",
-
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
 
 };
 // Vietnamese
@@ -5996,6 +6020,7 @@ svgStrU[130][7] = "Holt Double Exponential Smoothing";
 svgStrU[131][7] = "Chỉ số theo mùa";
 svgStrU[132][7] = "Mô hình theo mùa đa số Holt-Winters";
 svgStrU[133][7] = "Dòng Deseasonal";
+svgStrU[134][7] = "Khối";
 
 // Indonesian
 $.message.id = {
@@ -6400,6 +6425,9 @@ $.message.id = {
     "AutoCorrTable":     "Tabel Autokorelasi",
     "DiffSeries":        "Seri Perbedaan",
     "RawSeries":         "Seri Mentah",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
+
 };
 // Indonesian 
 appStr[1][8] = "../eStatH/index.html";
@@ -6734,7 +6762,7 @@ svgStrU[130][8] = "Holt Penghalusan Eksponensial Ganda";
 svgStrU[131][8] = "Indeks Musiman";
 svgStrU[132][8] = "Model Musiman Perkalian Holt-Winters";
 svgStrU[133][8] = "Seri Deseasonal";
-
+svgStrU[134][8] = "Blok";
 
 // Mongolian
 $.message.mn = {
@@ -7137,6 +7165,8 @@ $.message.mn = {
     "AutoCorrTable":     "Автокорреляцийн хүснэгт",
     "DiffSeries":        "Ялгаатай цуврал",
     "RawSeries":         "Түүхий цуврал",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
 
 };
 // Mongolian
@@ -7472,7 +7502,7 @@ svgStrU[130][9] = "Холт давхар экспоненциал тэгшитг
 svgStrU[131][9] = "Улирлын индекс";
 svgStrU[132][9] = "Холт-Винтерсийн үржүүлэх улирлын загвар";
 svgStrU[133][9] = "Улиралгүй цуврал";
- 
+svgStrU[134][9] = "Блок"; 
 
 // Chinese - Simplified
 $.message.zh = {
@@ -7745,7 +7775,7 @@ $.message.zh = {
     "Total": "全体",
     "FriedmanTest": "非參數Friedman檢定",
     "FriedmanTestANOVA": "非參數Friedman 檢定",
-    "Block": "Block",
+    "Block": "堵塞",
     "Treatment": "處理",
     "At least one locations is different": "位置母数 !=",
     "SignCondition": "n ≤ 100 二項分布檢定,  n > 100 正規近似檢定",
@@ -7877,6 +7907,8 @@ $.message.zh = {
     "AutoCorrTable":     "自相关表",
     "DiffSeries":        "差分时间序列",
     "RawSeries":         "原始系列",
+    "RBD":               "随机块编程",
+    "Latin":             "拉丁文语法",
 
 };
 // Chinese Simplified
@@ -8187,6 +8219,7 @@ svgStrU[130][10] = "霍尔特双指数平滑";
 svgStrU[131][10] = "季节性指数";
 svgStrU[132][10] = "Holt-Winters 乘法季节性模型";
 svgStrU[133][10] = "非季节性时间序列";
+svgStrU[134][10] = "堵塞";
 
 // Portugese
 $.message.pt = {
@@ -8593,6 +8626,8 @@ $.message.pt = {
     "AutoCorrTable":     "Tabela de Autocorrelação",
     "DiffSeries":        "Série Diferencial",
     "RawSeries":         "Série Bruta",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
 
 };
 // Portugese
@@ -8928,6 +8963,7 @@ svgStrU[130][11] = "Holt suavização exponencial dupla";
 svgStrU[131][11] = "Índice sazonal";
 svgStrU[132][11] = "Modelo Sazonal Multiplicativo de Holt-Winters";
 svgStrU[133][11] = "Série Fora de Temporada";
+svgStrU[134][11] = "Bloco";
 
 
 // Greek
@@ -9335,6 +9371,9 @@ $.message.gr = {
     "AutoCorrTable":     "Πίνακας αυτοσυσχέτισης",
     "DiffSeries":        "Σειρά Διαφορά",
     "RawSeries":         "Πρωτότυπη χρονοσειρά",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
+
 };
 // Greek
 appStr[1][12] = "../eStatH/index.html";
@@ -9668,6 +9707,7 @@ svgStrU[130][12] = "Holt Double Exponential Smoothing";
 svgStrU[131][12] = "Seasonal Index";
 svgStrU[132][12] = "Πολλαπλασιαστικό εποχικό μοντέλο Holt-Winters";
 svgStrU[133][12] = "Deseasonal Series";
+svgStrU[134][12] = "ΟΙΚΟΔΟΜΙΚΟ ΤΕΤΡΑΓΩΝΟ";
 
 
 // Romanian
@@ -10076,6 +10116,8 @@ $.message.ro = {
     "AutoCorrTable":     "Tabelul de autocorelare",
     "DiffSeries":        "Seria diferențe",
     "RawSeries":         "Serial temporal original",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
 
 };
 // Romanian
@@ -10411,6 +10453,7 @@ svgStrU[130][13] = "Netezire exponențială dublă Holt";
 svgStrU[131][13] = "Index sezonier";
 svgStrU[132][13] = "Model sezonier multiplicativ Holt-Winters";
 svgStrU[133][13] = "Serial de sezon";
+svgStrU[134][13] = "Bloc";
 
 
 // Thai
@@ -10818,6 +10861,9 @@ $.message.th = {
     "AutoCorrTable":     "ตารางความสัมพันธ์อัตโนมัติ",
     "DiffSeries":        "ชุดความแตกต่าง",
     "RawSeries":         "อนุกรมเวลาเดิม",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
+
 };
 // Thai
 appStr[1][14] = "../eStatH/index.html";
@@ -11151,6 +11197,7 @@ svgStrU[130][14] = "โฮลทดับเบิลเอ็กซ์โพเ
 svgStrU[131][14] = "ดัชนีตามฤดูกาล";
 svgStrU[132][14] = "รูปแบบการคูณตามฤดูกาลของ Holt-Winters";
 svgStrU[133][14] = "ซีรีส์ที่ไม่เป็นไปตามฤดูกาล";
+svgStrU[134][14] = "กลุ่ม";
 
 
 // Polish
@@ -11559,6 +11606,8 @@ $.message.pl = {
     "AutoCorrTable":     "Tabela Autokorelacji",
     "DiffSeries":        "Seria Różnic",
     "RawSeries":         "Oryginalna seria czasowa",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
 
 };
 
@@ -11896,6 +11945,7 @@ svgStrU[130][15] = "Wstrzymaj podwójne wygładzanie wykładnicze";
 svgStrU[131][15] = "Indeks sezonowy";
 svgStrU[132][15] = "Model sezonowy multiplikatywny Holt-Winters";
 svgStrU[133][15] = "Seria pozasezonowa";
+svgStrU[134][15] = "Blok";
 
  
 // Azerbaijan
@@ -12304,6 +12354,9 @@ $.message.az = {
     "AutoCorrTable":     "Avtokorrelyasiya Cədvəli",
     "DiffSeries":        "Fərqlər seriyası",
     "RawSeries":         "Orijinal Zaman Seriyası",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
+
 };
 // Azerbaijan
 appStr[1][16] = "../eStatH/index.html";
@@ -12638,6 +12691,7 @@ svgStrU[130][16] = "Holt İkiqat Eksponensial Hamarlama";
 svgStrU[131][16] = "Mövsümi İndeks";
 svgStrU[132][16] = "Holt-Winters Multiplikativ Mövsümi Model";
 svgStrU[133][16] = "Mövsümi Seriya";
+svgStrU[134][16] = "Blok";
 
 
 // Uzbekistan
@@ -13046,6 +13100,8 @@ $.message.uz = {
     "AutoCorrTable":     "Avtokorrelyatsiya jadvali",
     "DiffSeries":        "Farqlar seriyasi",
     "RawSeries":         "Xom seriya",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
 
 };
 // Uzbekistan
@@ -13381,6 +13437,7 @@ svgStrU[130][17] = "Holt ikki tomonlama eksponensial tekislash";
 svgStrU[131][17] = "Mavsumiy indeks";
 svgStrU[132][17] = "Holt-Winters multiplikativ mavsumiy modeli";
 svgStrU[133][17] = "Mavsumiy seriya";
+svgStrU[134][17] = "Bloklash";
 
 // Russian
 $.message.ru = {
@@ -13788,6 +13845,9 @@ $.message.ru = {
     "AutoCorrTable":     "Таблица автокорреляции",
     "DiffSeries":        "Серия отличий",
     "RawSeries":         "Сырая серия",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
+
 };
 // Russian
 appStr[1][18] = "../eStatH/index.html";
@@ -14121,6 +14181,7 @@ svgStrU[130][18] = "Двойное экспоненциальное сглажи
 svgStrU[131][18] = "Сезонные индексы";
 svgStrU[132][18] = "Мультипликативная сезонная модель Холта-Уинтерса";
 svgStrU[133][18] = "Десезонная серия";
+svgStrU[134][18] = "Блок";
 
 
 // Turkish
@@ -14528,6 +14589,8 @@ $.message.tr = {
     "AutoCorrTable":     "Otokorelasyon Tablosu",
     "DiffSeries":        "Fark Serisi",
     "RawSeries":         "Ham Serisi",
+    "RBD":               "Randomized Block Design",
+    "Latin":             "Latin Square Design",
 
 };
 
@@ -14854,4 +14917,5 @@ svgStrU[130][19] = "Holt Çift Üstel Düzeltme";
 svgStrU[131][19] = "Mevsimsel Dizin";
 svgStrU[132][19] = "Holt-Winters Çarpımsal Mevsimsel Model";
 svgStrU[133][19] = "Sezonluk Seriler";
+svgStrU[134][19] = "Engelle";
 

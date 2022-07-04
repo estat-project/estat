@@ -5487,6 +5487,7 @@ function inputValueAB() {
         if (mu0 < mu1) h1Type = 2; // 우측검정: 2
         else h1Type = 3;          // 좌측검정: 3
 }
+
 // alpha, beta 가설검정용 mu1
 function showValueMu1AB(newValue) {
         document.getElementById("mu1AB").value  = mu0 + stdP * (newValue-30)/10;

@@ -4209,23 +4209,23 @@ function dataClassifyANOVA2() {
     statF[3] = SSRC;
     statF[4] = SSE;
     statF[5] = SST;
-    statF[6] = ngroup - 1;
-    statF[7] = ngroup2 - 1;
-    statF[8] = statF[6] * statF[7];
-    statF[10] = dobs - 1;
-    statF[9] = statF[10] - statF[6] - statF[7] - statF[8];
+    statF[6] = ngroup - 1;          // treat A df
+    statF[7] = ngroup2 - 1;         // treat B df (or block)
+    statF[8] = statF[6] * statF[7]; // interaction df
+    statF[10] = dobs - 1;           // total df
+    statF[9] = statF[10] - statF[6] - statF[7] - statF[8]; // error df
     if (checkRBD) statF[9] = statF[8];
-    statF[11] = SSR / statF[6];
-    statF[12] = SSC / statF[7];
-    statF[13] = SSRC / statF[8];
-    statF[14] = SSE / statF[9];
+    statF[11] = SSR / statF[6];     // Mean square A
+    statF[12] = SSC / statF[7];     // Mean square B or block
+    statF[13] = SSRC / statF[8];    // Mean square Interaction
+    statF[14] = SSE / statF[9];     // Mean square error
     if (statF[14] == 0) {
       for (j=15; j<=20; j++) statF[j] = null;
     }
     else {
-      statF[15] = statF[11] / statF[14];
-      statF[16] = statF[12] / statF[14];
-      statF[17] = statF[13] / statF[14];
+      statF[15] = statF[11] / statF[14];   // Fobs for A
+      statF[16] = statF[12] / statF[14];   // Fobs for B 
+      statF[17] = statF[13] / statF[14];   // Fobs for Interaction
       statF[18] = 1 - f_cdf(statF[15], statF[6], statF[9], info);
       statF[19] = 1 - f_cdf(statF[16], statF[7], statF[9], info);
       statF[20] = 1 - f_cdf(statF[17], statF[8], statF[9], info);
@@ -10440,8 +10440,8 @@ function Anova2Table(gvarName, dvarName, nobs, avg, std, statF) {
 
 }
 
-// 다중비교표 --------------------------------------------------------------------------------------------------
-function multipleComparisonTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg) {
+// HSD 다중비교표 --------------------------------------------------------------------------------------------------
+function multipleComparisonTableHSD(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg) {
     var screenTable = document.getElementById("screenTable");
     var table = document.createElement('table');
     loc.appendChild(table);
@@ -10463,7 +10463,7 @@ function multipleComparisonTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, 
         cell[j].style.border = "1px solid black";
         cell[j].style.width = "80px";
     }
-    cell[0].innerHTML = "<h3>" + svgStr[90][langNum] + "<h3>"; // "다중비교"
+    cell[0].innerHTML = "<b>" + svgStr[90][langNum] + "</b><br>" + "(HSD)"; // "다중비교"
     cell[1].innerHTML = svgStr[26][langNum]
     cell[2].innerHTML = "(" + dvarName + ")";
     if (ngroup > 1) {
@@ -10479,13 +10479,14 @@ function multipleComparisonTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, 
         cell[g].style.backgroundColor = "#eee";
     }
     if (ngroup > 1) {
-        if (confidence == 0.95) str = "(95%HSD)";
-        else str = "(99%HSD)";
-        cell[0].innerHTML = "| "+svgStr[100][langNum] + " |<br> " + str; // "평균차"
-    } else cell[0].innerHTML = svgStr[21][langNum] + " (" + gvarName + ")";
+       if (alpha == 0.05) str = "(5%HSD)";
+       else str = "(1%HSD)";
+       cell[0].innerHTML = "| "+svgStr[100][langNum] + " |<br> " + str; // "평균차"
+    }
+    else cell[0].innerHTML = svgStr[21][langNum] + " (" + gvarName + ")";
     for (g = 1; g < ngroup + 1; g++) {
         str = "";
-        if (ngroup > 1) str = (g).toString() + " (" + gvalueLabel[g - 1] + ")<br>" + f2(avg[g - 1]);
+        if (ngroup > 1) str = (g).toString() + " (" + gvalueLabel[g - 1] + ")<br>" + f3(avg[g - 1]);
         cell[g].innerHTML = str;
         cell[g].style.textAlign = "center";
     }
@@ -10497,16 +10498,16 @@ function multipleComparisonTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, 
             cell[j].style.border = "1px solid black";
         }
         str = "";
-        if (ngroup > 1) str = (g + 1).toString() + " (" + gvalueLabel[g] + ")<br>" + f2(avg[g]);
+        if (ngroup > 1) str = (g + 1).toString() + " (" + gvalueLabel[g] + ")<br>" + f3(avg[g]);
         cell[0].innerHTML = str;
         cell[0].style.backgroundColor = "#eee";
         cell[0].style.textAlign = "center";
         for (k = 0; k < ngroup; k++) {
             if (g == k) continue;
             avgDiff = Math.abs(avg[g] - avg[k]);
-            if (confidence == 0.95) temp = q_inv(0.95, ngroup, dobs - ngroup, info) * Math.sqrt(0.5 * (1 / nobs[g] + 1 / nobs[k]) * statF[5]);
+            if (alpha == 0.05) temp = q_inv(0.95, ngroup, dobs - ngroup, info) * Math.sqrt(0.5 * (1 / nobs[g] + 1 / nobs[k]) * statF[5]);
             else temp = q_inv(0.99, ngroup, dobs - ngroup, info) * Math.sqrt(0.5 * (1 / nobs[g] + 1 / nobs[k]) * statF[5]);
-            cell[k + 1].innerHTML = f2(avgDiff).toString() + "<br>(" + f2(temp) + ")";
+            cell[k + 1].innerHTML = f3(avgDiff).toString() + "<br>(" + f3(temp) + ")";
             cell[k + 1].style.textAlign = "right";
             cell[k + 1].style.width = "80px";
         }
@@ -10530,7 +10531,7 @@ function multipleComparisonTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, 
     } else cell[0].innerHTML = svgStr[21][langNum] + " (" + gvarName + ")";
     for (g = 1; g < ngroup + 1; g++) {
         str = "";
-        if (ngroup > 1) str = (indexA[g - 1] + 1).toString() + " (" + gvalueLabel[indexA[g - 1]] + ")<br>" + f2(avg[indexA[g - 1]]);
+        if (ngroup > 1) str = (indexA[g - 1] + 1).toString() + " (" + gvalueLabel[indexA[g - 1]] + ")<br>" + f3(avg[indexA[g - 1]]);
         cell[g].innerHTML = str;
         cell[g].style.textAlign = "center";
     }
@@ -10543,7 +10544,7 @@ function multipleComparisonTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, 
             cell[j].style.border = "1px solid black";
         }
         str = "";
-        if (ngroup > 1) str = (indexA[g] + 1).toString() + " (" + gvalueLabel[indexA[g]] + ")<br>" + f2(avg[indexA[g]]);
+        if (ngroup > 1) str = (indexA[g] + 1).toString() + " (" + gvalueLabel[indexA[g]] + ")<br>" + f3(avg[indexA[g]]);
         cell[0].innerHTML = str;
         cell[0].style.backgroundColor = "#eee";
         cell[0].style.textAlign = "center";
@@ -10552,6 +10553,128 @@ function multipleComparisonTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, 
             avgDiff = Math.abs(avg[indexA[g]] - avg[indexA[k]]);
             HSD95 = q_inv(0.95, ngroup, dobs - ngroup, info) * Math.sqrt(0.5 * (1 / nobs[indexA[g]] + 1 / nobs[indexA[k]]) * statF[5]);
             HSD99 = q_inv(0.99, ngroup, dobs - ngroup, info) * Math.sqrt(0.5 * (1 / nobs[indexA[g]] + 1 / nobs[indexA[k]]) * statF[5]);
+            temp = "  ";
+            if (avgDiff > HSD99) temp = "**";
+            else if (avgDiff > HSD95) temp = "*";
+            cell[k + 1].innerHTML = temp;
+            cell[k + 1].style.textAlign = "right";
+        }
+    }
+
+    row = table.insertRow(++nrow);
+    row.style.height = "20px";
+}
+// LSD 다중비교표 --------------------------------------------------------------------------------------------------
+function multipleComparisonTableLSD(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg) {
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+
+    var g, k, row, nrow, str, temp, info, avgDiff, HSD95, HSD99;
+    var ncol = 10;
+    var cell = new Array(ncol);
+    nrow = 0;
+    table.style.fontSize = "13px";
+
+    var header = table.createTHead()
+    row = table.insertRow(nrow);
+    row.style.height = "40px";
+    for (j = 0; j < 5; j++) {
+        cell[j] = row.insertCell(j);
+        cell[j].style.width = "70px";
+        cell[j].style.textAlign = "center";
+        cell[j].style.backgroundColor = "#eee";
+        cell[j].style.border = "1px solid black";
+        cell[j].style.width = "80px";
+    }
+    cell[0].innerHTML = "<b>" + svgStr[90][langNum] + "</b></br>" + "(LSD)";
+    cell[1].innerHTML = svgStr[26][langNum]
+    cell[2].innerHTML = "(" + dvarName + ")";
+    if (ngroup > 1) {
+        cell[3].innerHTML = svgStr[37][langNum];
+        cell[4].innerHTML = "(" + gvarName + ")";
+    }
+
+    row = table.insertRow(++nrow);
+    row.style.height = "40px";
+    for (g = 0; g < ngroup + 1; g++) {
+        cell[g] = row.insertCell(g);
+        cell[g].style.border = "1px solid black";
+        cell[g].style.backgroundColor = "#eee";
+    }
+    if (ngroup > 1) {
+       str = "(LSD)";
+       cell[0].innerHTML = "| "+svgStr[100][langNum] + " |<br> " + str; // "평균차"
+    }
+    else cell[0].innerHTML = svgStr[21][langNum] + " (" + gvarName + ")";
+    for (g = 1; g < ngroup + 1; g++) {
+        str = "";
+        if (ngroup > 1) str = (g).toString() + " (" + gvalueLabel[g - 1] + ")<br>" + f3(avg[g - 1]);
+        cell[g].innerHTML = str;
+        cell[g].style.textAlign = "center";
+    }
+    // 다중비교 - 평균차, LSD
+    for (g = 0; g < ngroup; g++) {
+        row = table.insertRow(++nrow);
+        for (j = 0; j < ngroup + 1; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.border = "1px solid black";
+        }
+        str = "";
+        if (ngroup > 1) str = (g + 1).toString() + " (" + gvalueLabel[g] + ")<br>" + f3(avg[g]);
+        cell[0].innerHTML = str;
+        cell[0].style.backgroundColor = "#eee";
+        cell[0].style.textAlign = "center";
+        for (k = 0; k < ngroup; k++) {
+            if (g == k) continue;
+            avgDiff = Math.abs(avg[g] - avg[k]);
+            temp = t_inv(1-alpha/2, dobs - ngroup, info) * Math.sqrt((1 / nobs[g] + 1 / nobs[k]) * statF[5]);
+            cell[k + 1].innerHTML = f3(avgDiff).toString() + "<br>(" + f3(temp) + ")";
+            cell[k + 1].style.textAlign = "right";
+            cell[k + 1].style.width = "80px";
+        }
+    }
+
+    row = table.insertRow(++nrow); // 공란
+    row.style.height = "20px";
+
+    for (g = 0; g < ngroup; g++) tdata[g] = avg[g];
+    sortAscendIndex(ngroup, tdata, indexA);
+
+    row = table.insertRow(++nrow);
+    row.style.height = "40px";
+    for (g = 0; g < ngroup + 1; g++) {
+        cell[g] = row.insertCell(g);
+        cell[g].style.border = "1px solid black";
+        cell[g].style.backgroundColor = "#eee";
+    }
+    if (ngroup > 1) {
+        cell[0].innerHTML = svgStr[101][langNum] + "<br> * 5%, ** 1%"; // "평균차 검정"
+    } else cell[0].innerHTML = svgStr[21][langNum] + " (" + gvarName + ")";
+    for (g = 1; g < ngroup + 1; g++) {
+        str = "";
+        if (ngroup > 1) str = (indexA[g - 1] + 1).toString() + " (" + gvalueLabel[indexA[g - 1]] + ")<br>" + f3(avg[indexA[g - 1]]);
+        cell[g].innerHTML = str;
+        cell[g].style.textAlign = "center";
+    }
+
+    // 다중비교 - 평균 sorting
+    for (g = 0; g < ngroup; g++) {
+        row = table.insertRow(++nrow);
+        for (j = 0; j < ngroup + 1; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.border = "1px solid black";
+        }
+        str = "";
+        if (ngroup > 1) str = (indexA[g] + 1).toString() + " (" + gvalueLabel[indexA[g]] + ")<br>" + f3(avg[indexA[g]]);
+        cell[0].innerHTML = str;
+        cell[0].style.backgroundColor = "#eee";
+        cell[0].style.textAlign = "center";
+        for (k = 0; k < ngroup; k++) {
+            if (g == k) continue;
+            avgDiff = Math.abs(avg[indexA[g]] - avg[indexA[k]]);
+            HSD95 = t_inv(0.975, dobs - ngroup, info) * Math.sqrt((1 / nobs[indexA[g]] + 1 / nobs[indexA[k]]) * statF[5]);
+            HSD99 = t_inv(0.995, dobs - ngroup, info) * Math.sqrt((1 / nobs[indexA[g]] + 1 / nobs[indexA[k]]) * statF[5]);
             temp = "  ";
             if (avgDiff > HSD99) temp = "**";
             else if (avgDiff > HSD95) temp = "*";
@@ -10607,7 +10730,7 @@ function multipleComparisonTable2(ngroup, ngroup2, dvarName, gvarName, gvarName2
         cell[0].innerHTML = svgStr[100][langNum] + "<br> (95%HSD)"; // "평균차"
     } else cell[0].innerHTML = svgStr[21][langNum] + " (" + gvarName + ")";
     for (g = 1; g < ngroup + 1; g++) {
-        str = (g).toString() + " (" + gvalueLabel[g - 1] + ")<br>" + f2(avg[g - 1]);
+        str = (g).toString() + " (" + gvalueLabel[g - 1] + ")<br>" + f3(avg[g - 1]);
         cell[g].innerHTML = str;
         cell[g].style.textAlign = "center";
     }

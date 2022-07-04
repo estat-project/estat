@@ -469,8 +469,7 @@
                 &nbsp;&nbsp;&nbsp;
 		<span class="fontmath">
 		  <span data-msgid="Significance Level">significance level</span> &nbsp; &alpha; =
-                  <label><input type="radio" name = "type2" value="1" checked> 5%</label>
-                  <label><input type="radio" name = "type2" value="2" > 1%</label>
+                  <input type="text" class="textarea" size=4 value="0.05" id="alpha8"> 
                   &nbsp;&nbsp;
 		  <span data-msgid="Confidence Level">Confidence Level</span> &nbsp; 
                   <label><input type="radio" name = "type3" value="1" checked> 95%</label>
@@ -552,8 +551,7 @@
 		&nbsp;&nbsp;&nbsp;
 		<span class="fontmath">
 		  <span data-msgid="Significance Level">significance level</span> &nbsp; &alpha; =
-		  <label><input type="radio" name = "type2" value="1" checked> 5%</label>
-		  <label><input type="radio" name = "type2" value="2" > 1%</label>
+                  <input type="text" class="textarea" size=4 value="0.05" id="alpha9"> 
                   &nbsp;&nbsp;
 		  <span data-msgid="Confidence Level">Confidence Level</span> &nbsp; 
                   <label><input type="radio" name = "type3" value="1" checked> 95%</label>
@@ -619,8 +617,7 @@
 		&nbsp; &nbsp;
 		<span class="fontmath">
 		  <span data-msgid="Significance Level">significance level</span> &nbsp; &alpha; =
-		  <label><input type="radio" name = "type2" value="1" checked> 5%  </label>
-		  <label><input type="radio" name = "type2" value="2" > 1% </label>
+                  <input type="text" class="textarea" size=4 value="0.05" id="alpha10"> 
                   &nbsp;&nbsp;
 		  <span data-msgid="Confidence Level">Confidence Level</span>  
                   <label><input type="radio" name = "type3" value="1" checked> 95%</label>
@@ -666,8 +663,7 @@
                 &nbsp;&nbsp;&nbsp;
 		<span class="fontmath"> 
 		  <span data-msgid="Significance Level">significance level</span> &nbsp; &alpha; =
-		  <label><input type="radio" name = "type2" value="1" checked> 5% </label>
-		  <label><input type="radio" name = "type2" value="2" > 1% </label>
+                  <input type="text" class="textarea" size=4 value="0.05" id="alpha11"> 
                   &nbsp;&nbsp;
 		  <span data-msgid="Confidence Level">Confidence Level</span> &nbsp; 
                   <label><input type="radio" name = "type3" value="1" checked> 95%</label>
@@ -694,33 +690,39 @@
 		&nbsp;&nbsp;&nbsp;H<sub>o</sub> : &mu;<sub>1</sub> = &mu;<sub>2</sub> = ... = &mu;<sub>k</sub> 
                 &nbsp;&nbsp;&nbsp;
 		&nbsp;H<sub>1</sub> : <span data-msgid="At least one pair of means is different">at least one pair of population means is not equal</span>
+                &nbsp;
+                <button type="button" size=12 id="executeTH12" >
+		  ANOVA <span data-msgid="F-test" >F-test </span>
+                </button>
 	      </div>   
 	      <form action="#" name="myForm122">
 		&nbsp;&nbsp;&nbsp;
 		<span class="fontmath"> 
 		  <span data-msgid="Significance Level">significance level</span> &nbsp; &alpha; =
-		  <label><input type="radio" name = "type2" value="1" checked> 5% </label>
-		  <label><input type="radio" name = "type2" value="2" > 1% </label>
+                  <input type="text" class="textarea" size=4 value="0.05" id="alpha12"> 
                   &nbsp;&nbsp;
 		  <span data-msgid="Confidence Level">Confidence Level</span> &nbsp; 
                   <label><input type="radio" name = "type3" value="1" checked> 95%</label>
                   <label><input type="radio" name = "type3" value="2" > 99%</label>
 		</span>
-                <br>
 		&nbsp;&nbsp;
-		<button type="button" size=12 id="executeTH12" >
-		  ANOVA <span data-msgid="F-test" >F-test </span>
-		</button>
-                &nbsp;
                 <button type="button" id="anovaResidual" >
 		  <span data-msgid="AnovaResidual">잔차와 예측값 산점도</span>
 	        </button>
+	      </form>
+	      <form action="#" name="myForm123">
                 &nbsp; 
+                <button type="button" id="multipleComparison1" >
+		  <span data-msgid="MultipleComparison">다중비교</span>
+	        </button>
+                <label><input type="radio" name = "type4" value="1" checked> LSD</label>
+                <label><input type="radio" name = "type4" value="2" > 5%HSD</label>
+                <label><input type="radio" name = "type4" value="3" > 1%HSD</label>
+                &nbsp;&nbsp; 
 		<button type="button" size=12 id="executeTH12NP" >
 		  <span data-msgid="KruskalTest">크루스칼-월리스검정</span>
 		</button>
 	      </form>
-              <br>
 <!---
               &nbsp;
               <button type="button" id="anovaTable" >
