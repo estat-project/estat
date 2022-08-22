@@ -294,8 +294,8 @@
       // svg Graph Save
       d3.select("#saveGraphU").on("click", function() {
         var svg = d3.select("#chart");
-        var width = svgWidth2;
-        var height = svgHeight2;
+        var width = svgWidth;
+        var height = svgHeight;
         var svgString = getSVGString(svg.node());
         svgString2Image(svgString, width, height, 'png', save);
         function save(dataBlob, filesize) {

@@ -33,7 +33,7 @@
 	  <td><b>[<span data-msgid="Hypothesis">Hypothesis</span>]</b></td>
 	  <td></span></td>
 	  <td><span class="fontmath">
-                H<sub>o</sub> : &nbsp; &mu;<sub>A</sub> = &mu;<sub>B</sub> = ... = &mu;<sub>k</sub>
+                H<sub>o</sub> : &nbsp; &mu;<sub>A</sub> = &mu;<sub>B</sub> = ... = &mu;<sub>r</sub>
               </span>
           </td>
 	</tr>
@@ -54,7 +54,7 @@
     <br>
 
     <b>[<span data-msgid="Sample Data">Sample Data</span>]</b>&nbsp; 
-    <span data-msgid="Treatment"></span> k = 
+    <span data-msgid="Treatment"></span> r = 
        <input type="number" class="textarea" size=1 min=3 max=6 value=3 id="nkk" onchange="showValueAlpha(this.value)">
        (<span class="fontguide" id="tkk"></span>)      
     <table class="data">
@@ -267,8 +267,8 @@
       // svg Graph Save
       d3.select("#saveGraphU").on("click", function() {
         var svg = d3.select("#chart");
-        var width = svgWidth2;
-        var height = svgHeight2;
+        var width = svgWidth;
+        var height = svgHeight;
         var svgString = getSVGString(svg.node());
         svgString2Image(svgString, width, height, 'png', save);
         function save(dataBlob, filesize) {
