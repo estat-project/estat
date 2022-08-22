@@ -573,19 +573,33 @@
         <p>
         Therefore, there is a significant difference in fuel mileage between all three types of cars, since the 
         differences between the mean values (4.04, 1.40, 2.64) are all greater than the critical value of 1.257. 
+        <p>
+        The same analysis of randomized design can be done using 『eStatU』 by following data input and clicking [Execute] button..
+        <p>
+        <table>
+          <tr>
+            <td>
+              <input class="qrBtn" type="image" src="../../QR/eStatU900_TestANOVA_RBD.svg" onclick="window.open(addrStr[172])">
+            </td>
+            <td>
+              <img class="imgFig600400" src="../Figure/Fig090209.png">
+              <div class="figText">&lt;Figure 9.2.9&gt; Data input for 『eStatU』RBD</div>
+            </td>
+          </tr>
+        </table>
+        <p>
       </div>
      
     </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
        
-       
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
       <table class="width:650px">
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../../QR/PR090201.svg" onclick="window.open(addrStr[66])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU900_TestANOVA_RBD.svg" onclick="window.open(addrStr[172])">
           </td>
           <td>
             <b>Practice 9.2.1</b> 
@@ -610,6 +624,268 @@
     </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
+
+  <h4>9.2.3 Latin Square Design</h4>
+    <p>
+    <div class="mainTable">
+      In the experiments of randomized block design for measuring the fuel mileage explained in the previous section, 
+      there is one extraneous block variation which is the driver. If the researcher feels that there is an additional 
+      variation such as road type, there are two identifiable sources of extraneous block variations, i.e., 
+      two block variables. In this case, the researcher needs a design that will isolate and remove both sources 
+      of block variables from residual. The Latin square design is such a design.
+      <p>
+      In the Latin square design, we assign one sources of extraneous variation to the columns of the square and 
+      the second source of extraneous variation to the rows of the square. We then assign the treatments in such a way 
+      that each treatment occurs one and only once in each row and each column. The number of rows, the number of columns, 
+      and the number of treatments, therefore, are all equal.
+      <p>
+      Table 9.2.5 shows a 3 × 3 typical Latin squares with three rows, three columns and three treatments designated by capital letters A, B, C.
+      <p>
+      <div class="textLeft"> Table 9.2.5  Fuel mileage data by three drivers and three road types of three car types (A, B, C)</div>
+      <p>
+      <table style="width:600px"> 
+         <tr> 
+           <th style="width:130px"></th> <th>Column 1 (Road 1)</th> <th>Column 2 (Road 2</th> <th>Column 3 (Road 3)</th>
+         </tr>
+         <tr> <td class="tdCenter">Row 1 (Driver 1)</td>  <td class="tdCenter">A</td> <td class="tdCenter">B</td> <td class="tdCenter">C</td> </tr>
+         <tr> <td class="tdCenter">Row 2 (Driver 2)</td>  <td class="tdCenter">B</td> <td class="tdCenter">C</td> <td class="tdCenter">A</td> </tr>
+         <tr> <td class="tdCenter">Row 3 (Driver 3)</td>  <td class="tdCenter">C</td> <td class="tdCenter">A</td> <td class="tdCenter">B</td> </tr>
+      </table>
+      <p>
+      Table 9.2.6 shows a 4 × 4 typical Latin squares with four rows, four columns and four treatments designated by capital letters A, B, C, D.
+      <p>
+      <div class="textLeft"> Table 9.2.6  Fuel mileage data by four drivers and four road types of four car types (A, B, C, D)</div>
+      <p>
+      <table style="width:600px"> 
+         <tr> 
+           <th style="width:130px"></th> <th>Column 1 (Road 1)</th> <th>Column 2 (Road 2</th> <th>Column 3 (Road 3)</th> <th>Column 4 (Road 4)</th>
+         </tr>
+         <tr> <td class="tdCenter">Row 1 (Driver 1)</td>  <td class="tdCenter">A</td> <td class="tdCenter">B</td> <td class="tdCenter">C</td> <td class="tdCenter">D</td> </tr>
+         <tr> <td class="tdCenter">Row 2 (Driver 2)</td>  <td class="tdCenter">B</td> <td class="tdCenter">C</td> <td class="tdCenter">D</td> <td class="tdCenter">A</td> </tr>
+         <tr> <td class="tdCenter">Row 3 (Driver 3)</td>  <td class="tdCenter">C</td> <td class="tdCenter">D</td> <td class="tdCenter">A</td> <td class="tdCenter">B</td> </tr>
+         <tr> <td class="tdCenter">Row 4 (Driver 4)</td>  <td class="tdCenter">D</td> <td class="tdCenter">A</td> <td class="tdCenter">B</td> <td class="tdCenter">C</td> </tr>
+      </table>
+      <p>
+      In the Latin square design, treatments can be assigned randomly in such a way that the car type occurs one and only once 
+      in each row and each column. Therefore, there are many possible designs of 3 × 3 and 4 × 4 Latin square. 
+      We get randomization in the Latin square by randomly selection a square of the desired dimension from all possible 
+      squares of that dimension. One method of doing this is to randomly assign a different treatments to each cell 
+      in each column, with the restriction that each treatment must appear one and only once in each row.
+      <p>
+      Small Latin squares provided only a small number of degrees of freedom for the error mean square. So a minimum size 
+      of 5 × 5 is usually recommended.
+      <p>
+      The hypothesis of Latin square design with \(r\) treatments is as follows: 
+      <p>
+      Null Hypothesis        \(\qquad \qquad H  _{0} : \mu_{1} = \mu_{2} = \cdots = \mu_{r} \) <br>
+      Alternative Hypothesis \(\quad \; H_{1} : \) At least one pair of \(\mu_i \) is not equal.
+      <p>
+      Statistical model of the \(r × r \) Latin square design with \(r\) treatments can be represented as follows:
+      $$
+        Y_{ijk} = \mu + \alpha_i + \beta_j + \gamma_k + \epsilon_{ijk}, \quad i=1,2, ... ,r, \; j=1,2, ... ,r, \; k=1,2, ... , r
+      $$
+      Here \(\mu_i = \mu + \alpha_i\). In this equation, \(\alpha_i\) is the effect of \(i^{th}\) level of the row block variable to the response variable and  
+      \(\beta_j\) is the effect of \(j^{th}\) level of the column block variable to the response variable. 
+      \(\gamma_k\) is the effect of \(k^{th}\) level of the response variable.
+      <p> 
+      Notation for row averages, column averages and treatment averages of \(r × r \) Latin squre data are as follows;
+      <p>
+      <div class="textLeft"> Table 9.2.7 Notation for row means, column means and treatment averages of  ×  Latin squre data</div>
+      <p>
+      <table style="width:600px"> 
+         <tr> 
+           <th style="width:130px"></th> <th>Column 1 </th> <th>Column 2 </th> <th>\(\cdots \)</th> <th>Column r</th> <th>Row Average</th>
+         </tr>
+         <tr> <td class="tdCenter">Row 1 </td>      <td class="tdCenter"></td> <td class="tdCenter"></td> <td class="tdCenter"></td> <td class="tdCenter"></td> <td class="tdCenter">\({\overline Y}_{ 1 \cdot \cdot} \)</td></tr>
+         <tr> <td class="tdCenter">Row 2 </td>      <td class="tdCenter"></td> <td class="tdCenter"></td> <td class="tdCenter"></td> <td class="tdCenter"></td> <td class="tdCenter">\({\overline Y}_{ 2 \cdot \cdot} \)</td></tr>
+         <tr> <td class="tdCenter">\(\cdots \)</td> <td class="tdCenter">\(\cdots \)</td> <td class="tdCenter">\(Y_{ijk}\)</td> <td class="tdCenter"></td> <td class="tdCenter">\(\cdots \)</td> <td class="tdCenter">\(\cdots \)</td></tr>
+         <tr> <td class="tdCenter">Row r </td>      <td class="tdCenter"></td> <td class="tdCenter"></td> <td class="tdCenter"></td> <td class="tdCenter"></td> <td class="tdCenter">\({\overline Y}_{ r \cdot \cdot} \)</td></tr>
+         <tr> <td class="tdCenter">Column Average</td> 
+              <td class="tdCenter">\({\overline Y}_{ \cdot 1 \cdot} \)</td>
+              <td class="tdCenter">\({\overline Y}_{ \cdot 2 \cdot} \)</td> 
+              <td class="tdCenter">\(\cdots\)</td>
+              <td class="tdCenter">\({\overline Y}_{ \cdot r \cdot} \)</td>
+              <td class="tdCenter">\({\overline Y}_{ \cdot \cdot \cdot} \)</td>
+         </tr>
+      </table>
+      <p>
+      <table style="width:600px"> 
+         <tr> <td class="tdCenter">Treatment Average</td> 
+              <td class="tdCenter">\({\overline Y}_{ \cdot \cdot 1} \)</td>
+              <td class="tdCenter">\({\overline Y}_{ \cdot \cdot 2} \)</td> 
+              <td class="tdCenter">\(\cdots\)</td>
+              <td class="tdCenter">\({\overline Y}_{ \cdot \cdot r} \)</td>
+         </tr>
+      </table>
+      <p>
+      In the Latin square design, the variation resulting from the difference between levels of two block variables can be separated from the error term of the variation of the factor independently. In the Latin square design, the total variation is divided into as follows:
+      $$
+        Y_{ijk} - {\overline Y}_{\cdot \cdot \cdot} = (Y_{ijk} - {\overline Y}_{i \cdot \cdot} - {\overline Y}_{\cdot j \cdot} - {\overline Y}_{\cdot \cdot k} + 2 {\overline Y}_{\cdot \cdot \cdot}) + ({\overline Y}_{i \cdot \cdot} - {\overline Y}_{\cdot \cdot \cdot}) + ({\overline Y}_{\cdot j \cdot} - {\overline Y}_{\cdot \cdot \cdot}) + ({\overline Y}_{\cdot \cdot k} - {\overline Y}_{\cdot \cdot \cdot})
+      $$    
+      If you square both sides of the equation above and then combine for all \(i , j\) and \(k\), you can obtain 
+      the following sums of squares: 
+      <p>
+      <b>Total sum of squares</b> : <br>
+      <b>SST</b> = \(\sum_{i=1}^{r} \sum_{j=1}^{r} \sum_{k=1}^{r} ( Y_{ijk} - {\overline Y}_{\cdot \cdot \cdot} )^2 \) , 
+         &nbsp;&nbsp; degrees of freedom ; \(r^3 - 1\) 
+      <p>
+      <b>Error sum of squares</b> : <br>
+      <b>SSE</b> = \(\sum_{i=1}^{r} \sum_{j=1}^{r} \sum_{k=1}^{r} ( {Y}_{ijk} - {\overline Y}_{i \cdot \cdot} - {\overline Y}_{\cdot j \cdot}  - {\overline Y}_{\cdot \cdot k} + 2 {\overline Y}_{\cdot \cdot \cdot})^2 \) , 
+         &nbsp;&nbsp; degrees of freedom ; \(r^2 -3r + 2\) 
+      <p>
+      <b>Row sum of squares</b> : <br>
+      <b>SSTr</b> = \(\sum_{i=1}^{r} \sum_{j=1}^{r} \sum_{k=1}^{r} ( {\overline Y}_{i \cdot \cdot} - {\overline Y}_{\cdot \cdot \cdot} )^2 \)
+         &nbsp;&nbsp; degrees of freedom ; \(r - 1\) 
+      <p>
+      <b>Column sum of squares</b> : <br>
+      <b>SSB</b> = \(\sum_{i=1}^{r} \sum_{j=1}^{r} \sum_{k=1}^{r} ( {\overline Y}_{\cdot j \cdot} - {\overline Y}_{\cdot \cdot \cdot} )^2 \) 
+         &nbsp;&nbsp; degrees of freedom ; \(r - 1\) 
+      <p> 
+      <b>Treatment sum of squares</b> : <br>
+      <b>SSTr</b> = \(\sum_{i=1}^{r} \sum_{j=1}^{r} \sum_{k=1}^{r} ( {\overline Y}_{\cdot \cdot k} - {\overline Y}_{\cdot \cdot \cdot} )^2 \)
+         &nbsp;&nbsp; degrees of freedom ; \(r - 1\) 
+      <p>
+      The following facts are always established in the Latin square design.  
+    </div>      
+    <p>
+    <div class="mainTableYellow">
+      <b>Division of the sum of squares and degrees of freedom
+        <p>
+         Sum of squares :    SST  = SSE + SSR + SSC + SSTr <br>  
+         Degrees of freedom : \(r^3 -1 = (r^2 - 3r + 2)  + (r-1) + (r-1) + (r-1) \)
+      </b>
+    </div>
+      
+    <p>  
+    <div class="mainTable">
+      Table 9.2.8 shows the ANOVA table of the Latin squre design. In this ANOVA table, 
+      <p>
+             <div class="textLeft">Table 9.2.8  Analysis of Variance Table of the Latin square design</div>
+           <p>
+             <table style="width:600px"> 
+                <tr> 
+                  <th>Variation</th>
+                  <th>Sum of Squares</th>
+                  <th>Degree of freedom</th>
+                  <th>Mean Squares</th>
+                  <th>F value</th>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Treatment</td>
+                  <td class="tdCenter">SSTr</td>
+                  <td class="tdCenter">\(r-1\)</td>
+                  <td class="tdCenter">MSTr=\(\frac{SSTr}{r-1}\)</td>
+                  <td class="tdCenter">\(F_0 = \frac{MSTr}{MSE}\)</td>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Row</td>
+                  <td class="tdCenter">SSR</td>
+                  <td class="tdCenter">\(r-1\)</td>
+                  <td class="tdCenter">MSR=\(\frac{SSB}{r-1}\)</td>
+                  <td class="tdCenter"></td>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Columnk</td>
+                  <td class="tdCenter">SSC</td>
+                  <td class="tdCenter">\(r-1\)</td>
+                  <td class="tdCenter">MSC=\(\frac{SSB}{r-1}\)</td>
+                  <td class="tdCenter"></td>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Error</td>
+                  <td class="tdCenter">SSE</td>
+                  <td class="tdCenter">\(r^2 - 3r + 2\)</td>
+                  <td class="tdCenter">MSE=\(\frac{SSE}{(r^2 - 3r + 2)}\)</td>
+                  <td class="tdCenter"></td>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Total</td>
+                  <td class="tdCenter">SST</td>
+                  <td class="tdCenter">\(r^3 -1\)</td>
+                  <td class="tdCenter"></td>
+                  <td class="tdCenter"></td>
+                </tr>
+             </table>
+    </div>
+    <p>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 9.2.2</b>
+      Table 9.2.9 is the fuel mileage data of four car types (A, B, C, D) measured by four drivers and four road types with Latin square design.
+      <p>
+        <div class="textLeft">Table 9.2.9  Fuel mileage data by four drivers and four road types of four car types (A, B, C, D)</div>
+      <table style="width:700px"> 
+         <tr> 
+           <th style="width:120px"></th> <th>Column 1 (Road 1)</th> <th>Column 2 (Road 2)</th> <th>Column 3 (Road 3)</th> <th>Column 4 (Road 4)</th> </th>
+         </tr>
+         <tr> <td class="tdCenter">Row 1 (Driver 1)</td>  <td class="tdCenter">A (22)</td> <td class="tdCenter">B (16)</td> <td class="tdCenter">C (19)</td> <td class="tdCenter">D (21)</td> </tr>
+         <tr> <td class="tdCenter">Row 2 (Driver 2)</td>  <td class="tdCenter">B (24)</td> <td class="tdCenter">C (16)</td> <td class="tdCenter">D (12)</td> <td class="tdCenter">A (15)</td> </tr>
+         <tr> <td class="tdCenter">Row 3 (Driver 3)</td>  <td class="tdCenter">C (17)</td> <td class="tdCenter">D (21)</td> <td class="tdCenter">A (20)</td> <td class="tdCenter">B (15)</td> </tr>
+         <tr> <td class="tdCenter">Row 4 (Driver 4)</td>  <td class="tdCenter">D (18)</td> <td class="tdCenter">A (18)</td> <td class="tdCenter">B (23)</td> <td class="tdCenter">C (22)</td> </tr>
+      </table>
+      <p>
+      Use 『eStatU』 to do the analysis of variance whether the four car types have the same fuel mileage.
+      <p>
+      <b>Answer</b>
+      <p>
+        In 『eStatU』- ‘Testing Hypothesis ANOVA – Latin Square Design’, select the number of treatment 
+        r = 4 and enter data as shown in &lt;Figure 9.2.10&gt;.
+        <p>
+        <table class="width:650px">
+          <tr>
+            <td>
+              <input class="qrBtn" type="image" src="../../QR/eStatU900_TestANOVA_Latin.svg" onclick="window.open(addrStr[173])">
+            </td>
+            <td>
+              <img class="imgFig600400" src="../Figure/Fig090210.png">
+              <div class="figText">&lt;Figure 9.2.10&gt; Data input for Latin square design in 『eStatU』</div>
+            </td>
+          </tr>
+        </table>
+        <p>
+        Click [Execute] button to show Dot graph by car type in Latin square design as &lt;Figure 9.2.11&gt; and 
+        ANOVA table as in &lt;Figure 9.2.12&gt;. The dot graph and result of the ANOVA is that there is no difference 
+        in fuel mileage between the car types. 
+        <p>
+          <img class="imgFig600400" src="../Figure/Fig090211.png">
+          <div class="figText">&lt;Figure 9.2.11&gt; Dot graph by car type in Latin square design</div>
+        <p>
+          <img class="imgFig600400" src="../Figure/Fig090212.png">
+          <div class="figText">&lt;Figure 9.2.12&gt; ANOVA table of Latin square design</div>
+        <p>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+       
+       
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTablePink">
+      <table class="width:650px">
+        <tr>
+          <td>
+              <input class="qrBtn" type="image" src="../../QR/eStatU900_TestANOVA_Latin.svg" onclick="window.open(addrStr[173])">
+          </td>
+          <td>
+            <b>Practice 9.2.2</b> 
+            To study the effect of packaging on the sales of a certain cereal, a researcher tries three different packaging methods (treatments) at four different times of the week (columns) in four different supermarket chains (rows). The variable of interest is daily salse. The following table shows the results of the study. Do these data show a significant difference in shoppers’ response to the different packaging methods? Let \(\alpha\) = 0.05.
+            <p>
+            <table style="width:600px"> 
+              <tr> 
+                <th style="width:130px">Time of week</th> <th>Column 1 (Day 1)</th> <th>Column 2 (Day 2</th> <th>Column 3 (Day 3)</th> <th>Column 4 (Day 4)</th>
+              </tr>
+              <tr> <td class="tdCenter">Row 1 (Store 1)</td>  <td class="tdCenter">A</td> <td class="tdCenter">B</td> <td class="tdCenter">C</td> <td class="tdCenter">D</td> </tr>
+              <tr> <td class="tdCenter">Row 2 (Store 2)</td>  <td class="tdCenter">B</td> <td class="tdCenter">C</td> <td class="tdCenter">D</td> <td class="tdCenter">A</td> </tr>
+              <tr> <td class="tdCenter">Row 3 (Store 3)</td>  <td class="tdCenter">C</td> <td class="tdCenter">D</td> <td class="tdCenter">A</td> <td class="tdCenter">B</td> </tr>
+              <tr> <td class="tdCenter">Row 4 (Store 4)</td>  <td class="tdCenter">D</td> <td class="tdCenter">A</td> <td class="tdCenter">B</td> <td class="tdCenter">C</td> </tr>
+           </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
 
   <div class="mainTablePink">
     <h4>Multiple Choice Exercise</h4>
