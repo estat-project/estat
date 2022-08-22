@@ -442,7 +442,6 @@
     addrStr[139] = "../../../eStatU/38TimeseriesHoltWinter.htm";
     addrStr[140] = "../../../eStatU/39TimeseriesAutoRegressive.htm";
 
-
     // eStatM
     addrStr[141] = "../../../eStatU/01BarChart.htm";
     addrStr[142] = "../../../eStatU/05WordCloud.htm";
@@ -477,6 +476,8 @@
 // eLearning
     addrStr[170] = "../../../eLearning/kr/eStatBasicOperation.html";
     addrStr[171] = "../../../eLearning/kr/index.html";
+    addrStr[172] = "../../../eStatU/90TestingANOVA_RBD.htm";
+    addrStr[173] = "../../../eStatU/90TestingANOVA_Latin.htm";
 
 // eBook link address
     temp          = "..";
