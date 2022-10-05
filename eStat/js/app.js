@@ -4440,9 +4440,9 @@ d3.select("#executeSelectIf").on("click", function() {
     var selectOperator1 = parseInt(document.getElementById("varlistOperatorSelectIf1").value);
     var selectOperator2 = parseInt(document.getElementById("varlistOperatorSelectIf2").value);
     var selectOperator3 = parseInt(document.getElementById("varlistOperatorSelectIf3").value);
-    var selectIfValue1  = document.getElementById("selectIf1").value;
-    var selectIfValue2  = document.getElementById("selectIf2").value;
-    var selectIfValue3  = document.getElementById("selectIf3").value;
+    var selectIfValue1  = parseFloat(document.getElementById("selectIf1").value);
+    var selectIfValue2  = parseFloat(document.getElementById("selectIf2").value);
+    var selectIfValue3  = parseFloat(document.getElementById("selectIf3").value);
     var check1, check2, check3;
     document.getElementById("selectIfWarning").innerHTML = "";
     document.getElementById("selectIfWarning").style.display = "none"; 
@@ -4595,7 +4595,7 @@ d3.select("#executeSelectIf").on("click", function() {
             break;
         }
         check3 = false;
-        switch (selectOperator2) {
+        switch (selectOperator3) {
           case 1:
             if (rvar[selectVar3][i] == selectIfValue3) check3 = true;
             break;
