@@ -6403,7 +6403,8 @@ function showHistTable(ngroup, nvalueH, freq, dataValueH, dvarName, gvarName, gv
     var table = document.createElement('table');
     loc.appendChild(table);
 
-    var i, j, k, rowsum, totsum, row;
+    var i, j, k, totsum, row;
+    var rowsum = new Array(nvalueH+2);
     var colsum = new Array(ngroup);
     var cell = new Array(5);
 
@@ -6415,7 +6416,12 @@ function showHistTable(ngroup, nvalueH, freq, dataValueH, dvarName, gvarName, gv
         }
         totsum += colsum[j];
     }
-
+    for (i = 1; i < nvalueH; i++) {
+        rowsum[i] = 0;
+        for (j = 0; j < ngroup; j++) {
+          rowsum[i] += freq[j][i];
+        }
+    }
     table.style.fontSize = "13px";
     k = 0;
     row = table.insertRow(k);
@@ -6455,18 +6461,20 @@ function showHistTable(ngroup, nvalueH, freq, dataValueH, dvarName, gvarName, gv
             cell[j] = row.insertCell(j);
             cell[j].style.width = "90px";
         }
-        cell[0].innerHTML = (i).toString() + "<br> [" + f2(dataValueH[i]) + ", " + f2(dataValueH[i + 1]) + ")";
+        cell[0].innerHTML = (i).toString() + " : [" + f2(dataValueH[i]) + ", " + f2(dataValueH[i + 1]) + ")"
+                   +"<br>"+svgStr[126][langNum]+"<br>"+svgStr[127][langNum]+"<br>"+svgStr[128][langNum];
         cell[0].style.backgroundColor = "#eee";
         cell[0].style.textAlign = "center";
         cell[ngroup + 1].style.backgroundColor = "#eee";
         cell[ngroup + 1].style.textAlign = "right";
-        rowsum = 0;
         for (j = 0; j < ngroup; j++) {
-            rowsum += freq[j][i + 1];
-            cell[j + 1].innerHTML = freq[j][i + 1].toString() + "<br> (" + f1(100 * freq[j][i + 1] / colsum[j]).toString() + "%)";
+            cell[j + 1].innerHTML = freq[j][i + 1].toString() + "<br>" + f1(100 * freq[j][i + 1] / rowsum[i+1]).toString() + "%"
+                          + "<br>" + f1(100 * freq[j][i + 1] / colsum[j]).toString() + "%"
+                          + "<br>" + f1(100 * freq[j][i + 1] / totsum).toString() + "%";
             cell[j + 1].style.textAlign = "right";
         }
-        cell[ngroup + 1].innerHTML = rowsum.toString() + "<br> (" + f1(100 * rowsum / totsum).toString() + "%)";
+        cell[ngroup + 1].innerHTML = rowsum[i+1].toString() + "<br>" + f1(100).toString() + "%"
+                          + "<br>" + f1(100 * rowsum[i+1] / totsum).toString() + "%"+"<br> &nbsp; ";
     }
 
     k++;
@@ -6480,9 +6488,10 @@ function showHistTable(ngroup, nvalueH, freq, dataValueH, dvarName, gvarName, gv
     cell[0].style.textAlign = "right";
     cell[0].innerHTML = svgStr[23][langNum];
     for (j = 0; j < ngroup; j++) {
-        cell[j + 1].innerHTML = colsum[j].toString() + "<br> (" + f0(100).toString() + "%)";
+        cell[j + 1].innerHTML = colsum[j].toString() + "<br>" + f1(100*colsum[j]/totsum).toString() + "%"
+                     + "<br>" + f1(100).toString() + "%<br> ";
     }
-    cell[ngroup + 1].innerHTML = totsum.toString() + "<br> (" + f0(100).toString() + "%)";
+    cell[ngroup + 1].innerHTML = totsum.toString() + "<br>" + f1(100).toString() + "%" + "<br> &nbsp;" ;
     // 다음 표와의 공백을 위한 것
     k++;
     row = table.insertRow(k);
