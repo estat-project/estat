@@ -3,6 +3,7 @@
     <title data-msgid="Word Cloud">Word Cloud</title>
     <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
     <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/d3/d3.layout.cloud.js"></script>
     <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
     <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
     <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
@@ -10,8 +11,6 @@
     <script src="/estat/eStat/js/eStatU.js"></script>
     <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
     <script src="/estat/eStat/lib/convertSVG.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js"></script>
-    <script src="https://bl.ocks.org/jyucsiro/raw/767539a876836e920e38bc80d2031ba7/cloud.js"></script>
   </head>
   <body>
 
@@ -36,19 +35,12 @@
     <p>
     <svg id="chart" width="640" height="400"></svg>
     <p> 
-<!--
-    <div>
-      Powered by <a href="https://bl.ocks.org/jyucsiro/767539a876836e920e38bc80d2031ba7">D3 Wordcloud</a>
-    </div>
--->
-    <p>
     <button type="button" id="saveGraphU" >
 	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
     </button>
   </div>
 
-
-    <script>
+  <script>
       var svgWidth    = 640;
       var svgHeight   = 400;  // 그래프 영역
 
@@ -98,11 +90,11 @@
         var width = svgWidth; // $(document).width();
         var height = svgHeight; // $(document).height();
 
-        var fill = d3.scale.category20();
+        var fill = d3.schemeCategory20;
 
         var word_entries = d3.entries(word_count);
 
-        var xScale = d3.scale.linear()
+        var xScale = d3.scaleLinear()
            .domain([0, d3.max(word_entries, function(d) {
               return d.value;
             })
@@ -130,7 +122,7 @@
             .enter().append("text")
               .style("font-size", function(d) { return xScale(d.value) + "px"; })
               .style("font-family", "Impact")
-              .style("fill", function(d, i) { return fill(i); })
+              .style("fill", function(d, i) { return fill[i]; })
               .attr("text-anchor", "middle")
               .attr("transform", function(d) {
                 return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
@@ -140,6 +132,6 @@
 
         d3.layout.cloud().stop();
       }
-    </script>
+  </script>
   </body>
 </html>
