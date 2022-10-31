@@ -345,6 +345,7 @@ var SeparateBar, StackBar, RatioBar, SideBar, BothBar;
 var PieChart, DonutGraph, BandGraph, LineGraph, FreqTable;
 var DotGraph, Histogram, BoxGraph, StemLeaf, StemBoth, StatTable, Scatter;
 var THmean1, THmean12, THsigma1, THsigma12, THanova;
+var comparison;
 var checkFreq, checkBandFreq, checkMissing, checkSave;
 var checkDotMean, checkDotStd, checkHistMean, checkHistFreq, checkHistLine;
 var checkPairedT; // Paired T-test
@@ -357,6 +358,9 @@ var checkNumVar;
 var checkAlphabetic;
 var checkRBD, checkDataRBD; // Radomized Block Design
 var checkScatterMatrix;
+//var eStatVersion = new Date('2021-12-25');
+// localStorage['installDate'] = eStatVersion;
+
 
 // 그래프 초기화
 graphNum = 1;
@@ -2306,8 +2310,15 @@ d3.select("#executeTH8").on("click", function() {
     if (document.myForm81.type1.value == "2")      {testType = 2}
     else if (document.myForm81.type1.value == "1") {testType = 1}
     // alpha
-    if (document.myForm82.type2.value == "1") alpha = 0.05;
-    else alpha = 0.01;
+    alpha = parseFloat(d3.select("#alpha8").node().value);
+    if (alpha < 0.0001) {
+      alpha = 0.0001;
+      document.getElementById("alpha8").value = alpha;
+    }
+    else if (alpha > 0.9999) {
+      alpha = 0.9999;
+      document.getElementById("alpha8").value = alpha;
+    }
     // confidence
     if (document.myForm82.type3.value == "1") confidence = 0.95;
     else confidence = 0.99;
@@ -2415,8 +2426,15 @@ d3.select("#executeTH8NP").on("click", function() {
     else if (document.myForm80.type0.value == "2") h1Type = 2;
     else if (document.myForm80.type0.value == "3") h1Type = 3;
     // alpha
-    if (document.myForm82.type2.value == "1") alpha = 0.05;
-    else alpha = 0.01;
+    alpha = parseFloat(d3.select("#alpha8").node().value);
+    if (alpha < 0.0001) {
+      alpha = 0.0001;
+      document.getElementById("alpha8").value = alpha;
+    }
+    else if (alpha > 0.9999) {
+      alpha = 0.9999;
+      document.getElementById("alpha8").value = alpha;
+    }
     // confidence
     if (document.myForm82.type3.value == "1") confidence = 0.95;
     else confidence = 0.99;
@@ -2577,8 +2595,15 @@ d3.select("#executeTH9").on("click", function() {
     else if (document.myForm90.type0.value == "2") h1Type = 2;
     else if (document.myForm90.type0.value == "3") h1Type = 3;
     // alpha
-    if (document.myForm92.type2.value == "1") alpha = 0.05;
-    else alpha = 0.01;
+    alpha = parseFloat(d3.select("#alpha9").node().value);
+    if (alpha < 0.0001) {
+      alpha = 0.0001;
+      document.getElementById("alpha9").value = alpha;
+    }
+    else if (alpha > 0.9999) {
+      alpha = 0.9999;
+      document.getElementById("alpha9").value = alpha;
+    }
     // confidence
     if (document.myForm92.type3.value == "1") confidence = 0.95;
     else confidence = 0.99;
@@ -2737,8 +2762,15 @@ d3.select("#executeTH10").on("click", function() {
     if (document.myForm101.type1.value == "1")      {testType = 1; hypoType = 41}
     else if (document.myForm101.type1.value == "2") {testType = 2; hypoType = 42}
     // alpha
-    if (document.myForm102.type2.value == "1") alpha = 0.05;
-    else alpha = 0.01;
+    alpha = parseFloat(d3.select("#alpha10").node().value);
+    if (alpha < 0.0001) {
+      alpha = 0.0001;
+      document.getElementById("alpha10").value = alpha;
+    }
+    else if (alpha > 0.9999) {
+      alpha = 0.9999;
+      document.getElementById("alpha10").value = alpha;
+    }
     // confidence
     if (document.myForm102.type3.value == "1") confidence = 0.95;
     else confidence = 0.99;
@@ -2923,8 +2955,15 @@ d3.select("#executeTH10NP").on("click", function() {
     else if (document.myForm100.type0.value == "2") h1Type = 2;
     else if (document.myForm100.type0.value == "3") h1Type = 3;
     // alpha
-    if (document.myForm102.type2.value == "1") alpha = 0.05;
-    else alpha = 0.01;
+    alpha = parseFloat(d3.select("#alpha10").node().value);
+    if (alpha < 0.0001) {
+      alpha = 0.0001;
+      document.getElementById("alpha10").value = alpha;
+    }
+    else if (alpha > 0.9999) {
+      alpha = 0.9999;
+      document.getElementById("alpha10").value = alpha;
+    }
     // confidence
     if (document.myForm102.type3.value == "1") confidence = 0.95;
     else confidence = 0.99;
@@ -3044,8 +3083,15 @@ d3.select("#executeTH11").on("click", function() {
     else if (document.myForm110.type0.value == "2") h1Type = 2;  // 우측
     else if (document.myForm110.type0.value == "3") h1Type = 3;  // 좌측
     // alpha
-    if (document.myForm112.type2.value == "1") alpha = 0.05;
-    else alpha = 0.01;
+    alpha = parseFloat(d3.select("#alpha11").node().value);
+    if (alpha < 0.0001) {
+      alpha = 0.0001;
+      document.getElementById("alpha11").value = alpha;
+    }
+    else if (alpha > 0.9999) {
+      alpha = 0.9999;
+      document.getElementById("alpha11").value = alpha;
+    }
     // confidence
     if (document.myForm112.type3.value == "1") confidence = 0.95;
     else confidence = 0.99;
@@ -3185,8 +3231,15 @@ d3.select("#executeTH12").on("click", function() {
     graphNum = 34;
     chart.selectAll("*").remove();
     // siginificancelevel
-    if (document.myForm122.type2.value == "1") alpha = 0.05;
-    else alpha = 0.01;
+    alpha = parseFloat(d3.select("#alpha12").node().value);
+    if (alpha < 0.0001) {
+      alpha = 0.0001;
+      document.getElementById("alpha12").value = alpha;
+    }
+    else if (alpha > 0.9999) {
+      alpha = 0.9999;
+      document.getElementById("alpha12").value = alpha;
+    }
     // confidence
     if (document.myForm122.type3.value == "1") confidence = 0.95;
     else confidence = 0.99;
@@ -3203,10 +3256,36 @@ d3.select("#executeTH12").on("click", function() {
     // 1원분산분석표 그리기
     statTable2(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, stdnm1, mini, Q1, median, Q3, maxi, tstat);
     AnovaTable(gvarName,dvarName,nobs,avg,stdnm1,statF);
-    multipleComparisonTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg);
     document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
     graphNum = 33;
 })
+// 1원분산분석 다중비교 실행
+d3.select("#multipleComparison1").on("click", function() {
+    // siginificancelevel
+    alpha = parseFloat(d3.select("#alpha12").node().value);
+    if (alpha < 0.0001) {
+      alpha = 0.0001;
+      document.getElementById("alpha12").value = alpha;
+    }
+    else if (alpha > 0.9999) {
+      alpha = 0.9999;
+      document.getElementById("alpha12").value = alpha;
+    }
+    // confidence
+    if (document.myForm122.type3.value == "1") confidence = 0.95;
+    else confidence = 0.99;
+    // LSD=1 or HSD5%=2 or HSD1%=3
+    if (document.myForm123.type4.value == "1") comparison = 1;
+    else if (document.myForm123.type4.value == "2") comparison = 2;
+    else comparison = 3;
+    // 1원분산분석표 그리기
+    statTable2(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, stdnm1, mini, Q1, median, Q3, maxi, tstat);
+    if (comparison == 1) multipleComparisonTableLSD(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg);
+    else if (comparison == 2) {alpha=0.05; multipleComparisonTableHSD(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg);}
+    else {alpha=0.01; multipleComparisonTableHSD(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg)};
+    document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
+})
+
 // Kruskal-Wallis 1원분산분석 실행
 d3.select("#executeTH12NP").on("click", function() {
     graphNum = 34;
@@ -3214,8 +3293,15 @@ d3.select("#executeTH12NP").on("click", function() {
     hypoType  = 98;  // 크루스칼검정
     h1Type    = 2;   // 우측검정
     // siginificancelevel
-    if (document.myForm122.type2.value == "1") alpha = 0.05;
-    else alpha = 0.01;
+    alpha = parseFloat(d3.select("#alpha12").node().value);
+    if (alpha < 0.0001) {
+      alpha = 0.0001;
+      document.getElementById("alpha12").value = alpha;
+    }
+    else if (alpha > 0.9999) {
+      alpha = 0.9999;
+      document.getElementById("alpha12").value = alpha;
+    }
     // confidence
     if (document.myForm122.type3.value == "1") confidence = 0.95;
     else confidence = 0.99;
@@ -3578,7 +3664,15 @@ d3.select("#estatH").on("click", function() {
 })
 // eStatU 메뉴
 d3.select("#estatU").on("click", function() {
-    window.open(appStr[2][langNum]);
+/*
+   var eStatVersion = localStorage['installDate'];
+   var tempStorage = localStorage['temp'];
+   let currentDate = new Date();  // 날짜
+   console.log(currentDate);
+   if (tempStorage === undefined) console.log("tempStorage is undefined");
+   console.log(eStatVersion);
+*/
+   window.open(appStr[2][langNum]);
 })
 // eStatE 메뉴
 d3.select("#estatE").on("click", function() {
@@ -4440,9 +4534,9 @@ d3.select("#executeSelectIf").on("click", function() {
     var selectOperator1 = parseInt(document.getElementById("varlistOperatorSelectIf1").value);
     var selectOperator2 = parseInt(document.getElementById("varlistOperatorSelectIf2").value);
     var selectOperator3 = parseInt(document.getElementById("varlistOperatorSelectIf3").value);
-    var selectIfValue1  = parseFloat(document.getElementById("selectIf1").value);
-    var selectIfValue2  = parseFloat(document.getElementById("selectIf2").value);
-    var selectIfValue3  = parseFloat(document.getElementById("selectIf3").value);
+    var selectIfValue1  = document.getElementById("selectIf1").value;
+    var selectIfValue2  = document.getElementById("selectIf2").value;
+    var selectIfValue3  = document.getElementById("selectIf3").value;
     var check1, check2, check3;
     document.getElementById("selectIfWarning").innerHTML = "";
     document.getElementById("selectIfWarning").style.display = "none"; 
@@ -4595,7 +4689,7 @@ d3.select("#executeSelectIf").on("click", function() {
             break;
         }
         check3 = false;
-        switch (selectOperator3) {
+        switch (selectOperator2) {
           case 1:
             if (rvar[selectVar3][i] == selectIfValue3) check3 = true;
             break;
