@@ -1310,7 +1310,6 @@ function showValueGeoP(newValue, valueLabel, geometricP) {
 }
 function clearInputValue1() {
         document.getElementById("a1").value = "";
-        document.getElementById("a1").value = "";
         document.getElementById("b1").value = "";
         document.getElementById("c1").value = "";
         document.getElementById("b2").value = "";

@@ -378,6 +378,7 @@ if (levelNum == "1") { // 초등
     document.getElementById("tool-group-graph-numeric").style.display = "none"; // 연속형 그래프 감추기
     document.getElementById("bothstem2").style.display = "none"; // 양쪽형 줄기잎 감추기
     document.getElementById("statTable").style.display = "none"; // 기초통계량 감추기
+    document.getElementById("estatM").style.display = "none"; // 중등 모듈 감추기
     document.getElementById("estatH").style.display = "none"; // 고등 모듈 감추기
     document.getElementById("estatU").style.display = "none"; // 대학 모듈 감추기
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
@@ -388,6 +389,7 @@ if (levelNum == "1") { // 초등
     document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
     document.getElementById("statTable").style.display = "block"; // 기초통계량
     document.getElementById("tool-group-testing").style.display = "none"; // 가설검정 감추기
+    document.getElementById("estatM").style.display = "block"; // 즁둥 모듈
     document.getElementById("estatH").style.display = "none"; // 고등 모듈 감추기
     document.getElementById("estatU").style.display = "none"; // 대학 모듈 감추기
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
@@ -397,6 +399,7 @@ if (levelNum == "1") { // 초등
     document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
     document.getElementById("statTable").style.display = "block"; // 기초통계량
     document.getElementById("tool-group-testing").style.display = "none"; // 가설검정
+    document.getElementById("estatM").style.display = "block"; // 즁둥 모듈
     document.getElementById("estatH").style.display = "block"; // 고등모듈 보이기
     document.getElementById("estatU").style.display = "none"; // 대학 모듈 감추기
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
@@ -406,6 +409,7 @@ if (levelNum == "1") { // 초등
     document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
     document.getElementById("statTable").style.display = "block"; // 기초통계량
     document.getElementById("tool-group-testing").style.display = "inline-block"; // 가설검정
+    document.getElementById("estatM").style.display = "block"; // 즁둥 모듈
     document.getElementById("estatH").style.display = "block"; // 고등모듈 보이기
     document.getElementById("estatU").style.display = "block"; // 대학 모듈
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
@@ -1292,7 +1296,6 @@ d3.select("#debugBtn").on("click", function() {
 // =================================================================
 // 학습수준 버튼
 var rad1 = document.myForm1.type1;
-/*
 rad1[0].onclick = function() { // 초등
     localStorage.removeItem("level");
     levelNum = document.myForm1.type1.value;
@@ -1301,13 +1304,13 @@ rad1[0].onclick = function() { // 초등
     document.getElementById("bothstem2").style.display = "none"; // 양쪽형 줄기잎 감추기
     document.getElementById("statTable").style.display = "none"; // 기초통계량 감추기
     document.getElementById("tool-group-testing").style.display = "none"; // 가설검정 감추기
+    document.getElementById("estatM").style.display = "none"; // 중둥 모듈 감추기
     document.getElementById("estatH").style.display = "none"; // 고등 모듈 감추기
     document.getElementById("estatU").style.display = "none"; // 대학 모듈 감추기
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
 }
-*/
-rad1[0].onclick = function() { // 중등
+rad1[1].onclick = function() { // 중등
     localStorage.removeItem("level");
     levelNum = document.myForm1.type1.value;
     localStorage.setItem("level", levelNum);
@@ -1315,12 +1318,13 @@ rad1[0].onclick = function() { // 중등
     document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
     document.getElementById("statTable").style.display = "block"; // 기초통계량
     document.getElementById("tool-group-testing").style.display = "none"; // 가설검정 감추기
-    document.getElementById("estatH").style.display = "none"; // 고등 모듈 감추기
+    document.getElementById("estatM").style.display = "block"; // 중둥 모듈
+    document.getElementById("estatH").style.display = "none"; // 고등 모듈
     document.getElementById("estatU").style.display = "none"; // 대학 모듈 감추기
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
 }
-rad1[1].onclick = function() { // 고등
+rad1[2].onclick = function() { // 고등
     localStorage.removeItem("level");
     levelNum = document.myForm1.type1.value;
     localStorage.setItem("level", levelNum);
@@ -1328,12 +1332,13 @@ rad1[1].onclick = function() { // 고등
     document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
     document.getElementById("statTable").style.display = "block"; // 기초통계량
     document.getElementById("tool-group-testing").style.display = "none"; // 가설검정 감추기
+    document.getElementById("estatM").style.display = "block"; // 중둥 모듈
     document.getElementById("estatH").style.display = "block"; // 고등 모듈 보이기
     document.getElementById("estatU").style.display = "none"; // 대학 모듈 감추기
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
 }
-rad1[2].onclick = function() { // 대학
+rad1[3].onclick = function() { // 대학
     localStorage.removeItem("level");
     levelNum = document.myForm1.type1.value;
     localStorage.setItem("level", levelNum);
@@ -1341,6 +1346,7 @@ rad1[2].onclick = function() { // 대학
     document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
     document.getElementById("statTable").style.display = "block"; // 기초통계량
     document.getElementById("tool-group-testing").style.display = "inline-block"; // 가설검정
+    document.getElementById("estatM").style.display = "block"; // 중둥 모듈
     document.getElementById("estatH").style.display = "block"; // 고등 모듈 보이기
     document.getElementById("estatU").style.display = "block"; // 대학 모듈
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
@@ -3658,9 +3664,13 @@ d3.select("#regressQQ").on("click", function() {
     document.getElementById("regressBand").disabled = true;
     regressionQQ(tobs,yhat,stdResidual);
 })
+// eStatM 메뉴
+d3.select("#estatM").on("click", function() {
+    window.open("../eStatM/index.html");
+})
 // eStatH 메뉴
 d3.select("#estatH").on("click", function() {
-    window.open(appStr[1][langNum]);
+    window.open("../eStatH/index.html");
 })
 // eStatU 메뉴
 d3.select("#estatU").on("click", function() {
