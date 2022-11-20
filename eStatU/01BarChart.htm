@@ -973,7 +973,7 @@
             tratio[i] = 100 * datafreq[i] / sum;
             bandWidth[i] = Math.floor(0.5 + graphWidth * datafreq[i] / sum);
     }
-    bandX[0] = margin.left + 20;
+    bandX[0] = 10;
     for (i = 1; i < ndvalue; i++) {
             bandX[i] = bandX[i - 1] + bandWidth[i - 1];
     }
@@ -1009,7 +1009,7 @@
     ty = margin.top + bandHeight ;
     k  = svgHeight - ty;
     for (j = 0; j < ndvalue; j++) {
-        tr = (graphWidth - bandX[j]) / 2 + 20;            
+        tr = (graphWidth - bandX[j]) / 2;            
         chart.append("circle")
              .attr("cx", tx)
              .attr("cy", ty)

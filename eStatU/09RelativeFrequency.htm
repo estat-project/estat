@@ -216,13 +216,23 @@
         </tr>
         <tr>
           <td> </td>
-          <td> <button type="button" id="execute"><span data-msgid="Execute">Execute</span></button> </td>
           <td> </td>
-	  <td style="text-align: right;"><span data-msgid="Std Deviation"> </span> </td>
+          <td> </td>
+	  <td style="text-align: right;"><span data-msgid="Variance"> </span> </td>
           <td> </td>
 	  <td><input type="text" size="9" id="data122" style="text-align: right;"></td>
           <td> </td>
 	  <td><input type="text" size="9" id="data123" style="text-align: right;"></td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td> <button type="button" id="execute"><span data-msgid="Execute">Execute</span></button> </td>
+          <td> </td>
+	  <td style="text-align: right;"><span data-msgid="Std Deviation"> </span> </td>
+          <td> </td>
+	  <td><input type="text" size="9" id="data132" style="text-align: right;"></td>
+          <td> </td>
+	  <td><input type="text" size="9" id="data133" style="text-align: right;"></td>
         </tr>
       </tbody>
     </table>
@@ -257,7 +267,7 @@
       var nrow = new Array(maxcol);
       var i, j, k, ith;
       var x1, x2, y1, y2, cx, cy, tx, ty;
-      var nobs, sum1, sum2, mean1, mean2, stdv1, stdv2, start, xstep, temp;
+      var nobs, sum1, sum2, mean1, mean2, vari1, vari2, stdv1, stdv2, start, xstep, temp;
       var nvalueH, gxminH, gxmaxH, gyminH, gymaxH, xgap, xwidth, Histogram;
       var mTitle, yTitle, xTitle;
       var freq1Name, freq2Name;
@@ -297,6 +307,8 @@
       document.getElementById("data113").disabled = true;
       document.getElementById("data122").disabled = true;
       document.getElementById("data123").disabled = true;
+      document.getElementById("data132").disabled = true;
+      document.getElementById("data133").disabled = true;
 
       document.getElementById("data02").value = colr[2]; // Yellow
       document.getElementById("data04").value = colr[0]; // red
@@ -304,7 +316,6 @@
       document.getElementById("ytitle").value = svgStr[30][langNum];
       document.getElementById("freq1").value  = svgStr[16][langNum]+ " 1";
       document.getElementById("freq2").value  = svgStr[16][langNum]+ " 2";
-
 
       // Draw Histogram ======================================
       d3.select("#execute").on("click",function() {
@@ -502,16 +513,20 @@
         }
         mean1 = mean1 / sum1;
         if (nrow[3] > 0) mean2 = mean2 / sum2;
-        stdv1 = 0;
-        stdv2 = 0;      
+        vari1 = 0;
+        vari2 = 0;      
         for (i = 0; i < nvalueH; i++) {
-            stdv1 += (catgm[i] - mean1) * (catgm[i] - mean1) * freq1[i+1];
+            vari1 += (catgm[i] - mean1) * (catgm[i] - mean1) * freq1[i+1];
             if (nrow[3] > 0) {
-              stdv2 += (catgm[i] - mean2) * (catgm[i] - mean2) * freq2[i+1]; 
+              vari2 += (catgm[i] - mean2) * (catgm[i] - mean2) * freq2[i+1]; 
             }
         }
-        stdv1 = Math.sqrt(stdv1 / sum1);
-        if (nrow[3] > 0) stdv2 = Math.sqrt(stdv2 / sum2);
+        vari1 = vari1 / sum1;
+        stdv1 = Math.sqrt(vari1);
+        if (nrow[3] > 0) {
+          vari2 = vari2 / sum2;
+          stdv2 = Math.sqrt(vari2);
+        }
         for (i = 0; i < nvalueH; i++) {
             perc1[i+1] = freq1[i+1] / sum1;
             if (nrow[3] > 0) perc2[i+1] = freq2[i+1] / sum2;
@@ -538,12 +553,14 @@
         document.getElementById("data102").value = sum1;
         document.getElementById("data104").value = f3(1);
         document.getElementById("data112").value = f2(mean1);
-        document.getElementById("data122").value = f2(stdv1);
+        document.getElementById("data122").value = f2(vari1);
+        document.getElementById("data132").value = f2(stdv1);
         if (nrow[3] > 0) {
           document.getElementById("data103").value = sum2;
           document.getElementById("data105").value = f3(1);
           document.getElementById("data113").value = f2(mean2);
-          document.getElementById("data123").value = f2(stdv2);
+          document.getElementById("data123").value = f2(vari2);
+          document.getElementById("data133").value = f2(stdv2);
         }
   }
 
