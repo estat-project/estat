@@ -51,8 +51,12 @@
 	 </script>
        <link rel="stylesheet" href="../../css/pandoc.css">
        <script src="../../js/eBook.js"></script>
-       <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="../../../eStat/js/language.js" ></script>   
+       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
+       <script src="../../../eStat/js/eStatU.js"></script>
+       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
+       <script src="../../../eStat/lib/convertSVG.js"></script>
 </head>
 <body>
 
@@ -321,20 +325,436 @@
          선택하고, (1, 50) 을 입력한 후 자료수 3개를 선택한 후 [실행] 버튼을 누르면 &lt;그림 4.2&gt;와
          같이 난수가 생성된다. 
       <p>
-      <table style="width:600px">
+      <!-------- html for random number generator ------------------------------------------->
+      <b>[<span data-msgid="RandomNumber">Random Number Generation</span>]</b> 
+
+    <form name="myForm">&nbsp;&nbsp; 
+      <table>
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU110_RandomNum.svg" onclick="window.open(addrStr[160])">
+             <label><input type="radio" name = "type" value="1" checked>
+                    <span data-msgid="UniformDist">Uniform</span> 
+             </label>
           </td>
+          <td>(<input type="text" style="text-align:center;" value="1" size=3 id="left1"> , </td>
+          <td> <input type="text" style="text-align:center;" value="50" size=3 id="right1"> )</td>
+          <td><span data-msgid="IntegerNumber">Integer</span></td>
+          <td>(<span data-msgid="WithoutReplacement">without replacement</span>)</td>
+        </tr>
+        <tr>
           <td>
-            <img class="imgFig600600" src="../FigureH/HFig0402.png">
-            <div class="figText">&lt;그림 4.2&gt; 『eStatH』의 균등분포(1,50) 난수생성</div>
+             <label><input type="radio" name = "type" value="2">
+                    <span data-msgid="UniformDist">Uniform</span> 
+             </label>
           </td>
+          <td>(<input type="text" style="text-align:center;" value="1" size=3 id="left2"> , </td>
+          <td> <input type="text" style="text-align:center;" value="100" size=3 id="right2"> )</td>
+          <td><span data-msgid="IntegerNumber">Integer</span></td>
+          <td>(<span data-msgid="WithReplacement">with replacement</span>)</td>
+        </tr>
+        <tr>
+          <td>
+             <label><input type="radio" name = "type" value="3">
+                    <span data-msgid="UniformDist">Uniform</span> 
+             </label>
+          </td>
+          <td>(<input type="text" style="text-align:center;" value="0" size=3 id="left3"> , </td>
+          <td> <input type="text" style="text-align:center;" value="1" size=3 id="right3"> )</td>
+          <td><span data-msgid="RealNumber">Real</span></td>
+        </tr>
+        <tr>
+          <td>
+             <label><input type="radio" name = "type" value="4">
+                    <span data-msgid="Normal Distribution">Normal</span> 
+             </label>       
+          </td>
+          <td>(<input type="text" style="text-align:center;" value="0" size=3 id="mean"> ,</td>
+          <td> <input type="text" style="text-align:center;" value="1" size=3 id="std"> )</td>
+          <td>(<span data-msgid="Mean">Mean</span> μ ,</td>
+          <td><span data-msgid="Std Dev">Standard Deviation</span> σ )</td>
+        </tr>
+        <tr>
+          <td>
+             <label><input type="radio" name = "type" value="5">
+                    2D <span data-msgid="Normal Distribution">Normal</span> 
+             </label>   
+          </td>
+          <td>( <input type="text" style="text-align:center;" value="0" size=3 id="mu1"> ,  </td>
+          <td>  <input type="text" style="text-align:center;" value="0" size=3 id="mu2"> ,  </td>
+          <td>  <input type="text" style="text-align:center;" value="1" size=3 id="sigma1"> , </td>
+          <td>  <input type="text" style="text-align:center;" value="1" size=3 id="sigma2"> , </td>
+          <td>  <input type="text" style="text-align:center;" value="0.9" size=3 id="rho"> )</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>(&nbsp;&nbsp;<span data-msgid="Mean"></span> μ₁</td>
+          <td>&nbsp;<span data-msgid="Mean"></span> μ₂</td>
+          <td><span data-msgid="Std Dev"></span> σ₁</td>
+          <td><span data-msgid="Std Dev"></span> σ₂</td>
+          <td><span data-msgid="Correlation Coefficient"></span> ρ)</td>
         </tr>
       </table>
+    </form>   
+    <table style="width:700px">
+      <tr>
+        <td><span data-msgid="NumberData">Number of Data</span></td>
+        <td>n = </td>
+        <td><input type="number" style="text-align:center;" value="3" size=3 min=1 max=100 id="nn"></td>
+        <td><span class="fontguide" id="nmax"> ( &leq; 100) </span></td>
+        <td></td>
+        <td><span data-msgid="NumberDigit">Number of Decimal Digit</span></td>
+        <td><span class="fontguide" >0 &leq; </span></td>
+        <td><input type="number" style="text-align:center;" value="0" size=3 min=0 max=4 id="digit"></td>
+        <td><span class="fontguide" > &leq; 4 </span></td>
+      </tr>
+    </table>
+    <table style="width:400px">
+      <tr>
+        <td><button type="button" id="execute" style="width:100px"><b><span data-msgid="Execute">Execute</span></b></button></td>
+        <td></td>
+        <td><button type="button" id="saveTable" style="width:100px"><b><span class="tooltiptext" data-msgid="Table Save">Table Save</span></b></button></td>
+        <td></td>
+      </tr>
+    </table>
+    <p><span id="warning")</span>
+    <div width="650" > 
+      <p>
+      <div id="screenTable">
+        <div id="loc">
+        </div>
+      </div>
+    </div>
+    <p>
+    <div class="figText">&lt;그림 4.2&gt; 『eStatH』의 균등분포(1,50) 난수생성</div>
   </div>
   <!------------------------------------------------------------------------------------------------->
   <p>
+  <!----- Script for random number generator ------------------------------------------------>
+  <script>
+      setLanguage('ko');
+      var i, j, k, temp, info;
+      var nn, digit;
+      var left1, right1, left2, right2, left3, right3;
+      var mean, std, mu1, mu2, sigma1, sigma2, rho;
+      var nvalueMax = 200;
+      var nmaxR = "(&leq; 100)";
+      var nmaxI = "("+svgStrU[110][langNum]+")";
+      document.getElementById("nmax").innerHTML = nmaxR;
+
+       // 실수형 정수형
+      var a = document.myForm.type;
+      var type = 1;
+      a[0].onclick = function() { // 정수형 비복원
+        type  = 1;   
+        digit = 0;
+        document.getElementById("digit").disabled = true;
+        document.getElementById("digit").value = 0;
+      }
+      a[1].onclick = function() { // 정수형 복원
+        type  = 2;   
+        digit = 0
+        document.getElementById("digit").disabled = true;
+        document.getElementById("digit").value = 0;
+      }
+      a[2].onclick = function() { // 실수형
+        type  = 3;
+        digit = 4;
+        document.getElementById("digit").disabled = false;
+        document.getElementById("digit").value = 4;
+      }  
+      a[3].onclick = function() { // 정규분포
+        type  = 4;   
+        digit = 4;
+        document.getElementById("digit").disabled = false;
+        document.getElementById("digit").value = 4;
+      }
+      a[4].onclick = function() { // 2D정규분포
+        type  = 5;   
+        digit = 4;
+        document.getElementById("digit").disabled = false;
+        document.getElementById("digit").value = 4;
+      }
+      // 실행버튼 클릭 =================================================================================
+      d3.select("#execute").on("click",function() {
+        //문자 데이터 체크
+        if (type == 1) { // Integer Uniform(left1,right1) without replacement
+          left1  = d3.select("#left1").node().value;    
+          right1 = d3.select("#right1").node().value;   
+          if ( isNaN(left1) || isNaN(right1) ) { 
+              document.getElementById("warning").innerHTML= "!!! " + alertMsg[48][langNum];
+              document.getElementById("warning").style.color= "red";
+              return;
+          }
+        } 
+        else if (type == 2) { // Integer Uniform(left2,right2) without replacement
+          left2  = d3.select("#left2").node().value;    
+          right2 = d3.select("#right2").node().value;   
+          if ( isNaN(left2) || isNaN(right2) ) { 
+              document.getElementById("warning").innerHTML= "!!! " + alertMsg[48][langNum];
+              document.getElementById("warning").style.color= "red";
+              return;
+          }
+        } 
+        else if (type == 3) { // real Uniform(left3,right3) 
+          left3  = d3.select("#left3").node().value;    
+          right3 = d3.select("#right3").node().value;   
+          if ( isNaN(left3) || isNaN(right3) ) { 
+              document.getElementById("warning").innerHTML= "!!! " + alertMsg[48][langNum];
+              document.getElementById("warning").style.color= "red";
+              return;
+          }
+        } 
+        else if (type == 4) {
+          mean  = d3.select("#mean").node().value;    
+          std   = d3.select("#std").node().value;     
+          if ( isNaN(mean) || isNaN(std) ) { 
+              document.getElementById("warning").innerHTML= "!!! " + alertMsg[48][langNum];
+              document.getElementById("warning").style.color= "red";
+              return;
+          }
+        } 
+        else if (type == 5) {
+          mu1    = d3.select("#mu1").node().value;    
+          mu2    = d3.select("#mu2").node().value;     
+          sigma1 = d3.select("#sigma1").node().value;    
+          sigma2 = d3.select("#sigma2").node().value;     
+          rho    = d3.select("#rho").node().value;     
+          if ( isNaN(mu1) || isNaN(mu2) || isNaN(sigma1) || isNaN(sigma2) || isNaN(rho) ) { 
+              document.getElementById("warning").innerHTML= "!!! " + alertMsg[48][langNum];
+              document.getElementById("warning").style.color= "red";
+              return;
+          }
+        }
+
+        nn    = parseFloat(d3.select("#nn").node().value);      // data 크기 n
+        digit = parseFloat(d3.select("#digit").node().value);   // digit 크기 n
+        if ( nn > nvalueMax ) nn = nvalueMax;
+        if ( nn < 0) nn = 1;
+        if ( digit < 0) digit = 0;
+        if ( digit > 4) digit = 4;      
+        if (type == 1) {
+          left1  = parseFloat(d3.select("#left1").node().value);    // uniform(left, right)
+          right1 = parseFloat(d3.select("#right1").node().value);   // uniform(left, right)
+          if ( right1 < left1 ) {
+            temp   = left1;
+            left1  = right1;
+            right1 = temp;
+            document.getElementById("left1").value = left1;
+            document.getElementById("right1").value = right1;
+          }
+        }
+        else if (type == 2) {
+          left2  = parseFloat(d3.select("#left2").node().value);    // uniform(left, right)
+          right2 = parseFloat(d3.select("#right2").node().value);   // uniform(left, right)
+          if ( right2 < left2 ) {
+            temp   = left2;
+            left2  = right2;
+            right2 = temp;
+            document.getElementById("left2").value = left2;
+            document.getElementById("right2").value = right2;
+          }
+        }
+        else if (type == 3) {
+          left3  = parseFloat(d3.select("#left3").node().value);    // uniform(left, right)
+          right3 = parseFloat(d3.select("#right3").node().value);   // uniform(left, right)
+          if ( right3 < left3 ) {
+            temp   = left3;
+            left3  = right3;
+            right3 = temp;
+            document.getElementById("left3").value = left3;
+            document.getElementById("right3").value = right3;
+          }
+        }
+        else if (type == 4) {
+          mean  = parseFloat(mean);    
+          std   = parseFloat(std);     
+        }
+        else if (type == 5) {
+          mu1    = parseFloat(mu1);    
+          mu2    = parseFloat(mu2);     
+          sigma1 = parseFloat(sigma1);    
+          sigma2 = parseFloat(sigma2);     
+          rho    = parseFloat(rho);    
+        }
+        randomTable(nn, digit, type);
+      })
+      // save Table
+      d3.select("#saveTable").on("click", function() {
+        head = '<html><head><meta charset="UTF-8"></head><body>';
+        tail = '</body></html>';
+        saveAs(new Blob([head + d3.select("#screenTable").html() + tail]), "eStatULog.html");
+      });
+
+
+// Uniform - Normal Random Number
+function randomTable(nn, digit, type) {
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+
+//        var table = document.getElementById("table");
+        var row, header;
+        var i, j, m, mcount, num, delta, tt, z1, z2;
+        var temp, temp2, tempDigit, tempDigit2, check, nnMax;
+        var phi11, phi12, phi21, phi22;
+        var G, J, K, H, U, V;
+        var ncol = 2;
+        var colmax = 3;
+        var cell = new Array(colmax);
+        var randNum = new Array(nvalueMax);
+        for (i=0; i<nvalueMax; i++) randNum[i] = null;
+        var k = 0;
+        table.style.fontSize = "14px";
+
+          row  = table.insertRow(k++);
+          row.style.height ="40px";
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.textAlign = "center";
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.border = "1px solid black";
+          }
+          cell[0].style.columnWidth = "30px";
+          cell[1].style.columnWidth = "130px";
+          cell[0].innerHTML = "i";
+          // Heading - \u00B2  superscript 2
+          if (type == 1) cell[1].innerHTML = "<b>"+svgStrU[50][langNum]+"( "+left1+" , "+right1+" )<br>"+svgStrU[99][langNum]+"</b><br>("+svgStrU[113][langNum]+")";
+          else if (type == 2) cell[1].innerHTML = "<b>"+svgStrU[50][langNum]+"( "+left2+" , "+right2+" )<br>"+svgStrU[99][langNum]+"</b><br>("+svgStrU[112][langNum]+")";
+          else if (type == 3) cell[1].innerHTML = "<b>"+svgStrU[50][langNum]+"( "+left3+" , "+right3+" )<br>"+svgStrU[99][langNum]+"</b>";
+          else if (type == 4) cell[1].innerHTML = "<b>"+svgStrU[100][langNum]+"( "+mean+" , "+std+"\u00B2 )<br>"+svgStrU[99][langNum]+"</b>";
+          else if (type == 5) {
+            cell[1].innerHTML = "<b>2D "+svgStrU[100][langNum]+"<br>"+svgStrU[99][langNum]+"</b>";
+            cell[2] = row.insertCell(2);
+            cell[2].style.textAlign = "center";
+            cell[2].style.backgroundColor = "#eee";
+            cell[2].style.border = "1px solid black";
+            cell[2].style.columnWidth = "130px";
+            cell[2].innerHTML = "(μ₁,μ₂,σ₁,σ₂, ρ)<br>=( "+mu1+", "+mu2+", "+sigma1+", "+sigma2+", "+rho+")";
+          }
+          nnMax = nn;
+          if (type == 1) {
+              num = right1 - left1 + 1;
+              if(nn <= num) nnMax = nn;
+          }
+
+          mcount = 0;
+          for (i=0; mcount<nnMax; i++) {
+            // ****************   random number generation
+            tt = Math.random();
+            if (type == 1){ // Integer Uniform(a,b) without replacement
+              delta = 1. / num;
+              for (j = 1; j < num+1; j++) {
+                if (tt < j*delta) {
+                  temp = left1 + j - 1;
+                  break;
+                } 
+              }
+            }
+            else if (type == 2){  // Integer Uniform(a,b) with replacement
+              num = right2 - left2 + 1;
+              delta = 1. / num;
+              for (j = 1; j < num+1; j++) {
+                if (tt < j*delta) {
+                  temp = left2 + j - 1;
+                  break;
+                } 
+              }
+            }
+            else if (type == 3) temp = left3 + (right3-left3)*tt;
+            else if (type == 4) temp = mean + std * stdnormal_inv(tt, info );
+            else if (type == 5) { // Algorithm By Prof. Werner Antweiler - Univ British Columbia Sauder https://wernerantweiler.ca/blog.php?item=2019-03-03
+              if (rho==0.0) {
+                  phi11=sigma1; phi22=sigma2; sigma12=sigma21=0.0;
+              }
+              else if (rho==1.0) {
+                phi11=sigma1; phi21=sigma2; phi21=phi22=0.0;
+              }
+              else if (rho==-1.0) {
+                phi11=sigma1; phi21=-sigma2; phi21=phi22=0.0;
+              }
+              else {
+                G = sigma1*sigma1 + sigma2*sigma2;
+                J = sigma2*sigma2 - sigma1*sigma1;
+                K = rho*sigma1*sigma2;
+                H = Math.sqrt(J*J + 4.0*K*K);
+                U = Math.sqrt(2.0*(G+H) / ((H+J)*(H+J) + 4.0*K*K));
+                V = Math.sqrt(2.0*(G-H) / ((H-J)*(H-J) + 4.0*K*K));  
+                phi11 = K*U;           phi12 = -K*V;
+                phi21 = (J+H)*U/2.0;   phi22 = (H-J)*V/2.0;
+              }
+              z1 = stdnormal_inv(Math.random(), info );
+              z2 = stdnormal_inv(Math.random(), info );
+              temp  = mu1 + phi11*z1 + phi12*z2;
+              temp2 = mu2 + phi21*z1 + phi22*z2;
+            }
+            // ************************
+            // digit 조정           
+            if (digit == 0) tempDigit = f0(temp)
+            else if (digit == 1) tempDigit = f1(temp);
+            else if (digit == 2) tempDigit = f2(temp);
+            else if (digit == 3) tempDigit = f3(temp);
+            else if (digit == 4) tempDigit = f4(temp);
+            if (type == 5) {
+              if (digit == 0) tempDigit2 = f0(temp2)
+              else if (digit == 1) tempDigit2 = f1(temp2);
+              else if (digit == 2) tempDigit2 = f2(temp2);
+              else if (digit == 3) tempDigit2 = f3(temp2);
+              else if (digit == 4) tempDigit2 = f4(temp2);
+            }
+            // Write data
+            if (type == 1) { // integer uniform without replacement
+              check = 0;
+              if (i == 0) {
+                randNum[0] = tempDigit;
+              }
+              else {
+                for (m=0; m<mcount; m++) {
+                  if (randNum[m] == tempDigit) { check = 1; break }
+                }
+                if (check == 0) {
+                  randNum[mcount] = tempDigit;
+                }
+              }
+              if (check == 0) {
+                row = table.insertRow(k++);
+                for (j=0; j<ncol; j++) {
+                  cell[j] = row.insertCell(j);
+                  cell[j].style.textAlign = "center";
+                  cell[j].style.border = "1px solid black";
+                }
+                cell[0].innerHTML = mcount+1;         
+                cell[1].innerHTML = tempDigit;           
+                mcount++;
+              }
+            } // end of elseif type==1
+            else if (type == 2 || type == 3 || type == 4) { 
+              row = table.insertRow(k++);
+              for (j=0; j<ncol; j++) {
+                cell[j] = row.insertCell(j);
+                cell[j].style.textAlign = "center";
+                cell[j].style.border = "1px solid black";
+              }
+              cell[0].innerHTML = mcount+1;         
+              cell[1].innerHTML = tempDigit; 
+              mcount++;
+            }
+            else if (type == 5) { // 2D Normal
+              row = table.insertRow(k++);
+              for (j=0; j<colmax; j++) {
+                cell[j] = row.insertCell(j);
+                cell[j].style.textAlign = "center";
+                cell[j].style.border = "1px solid black";
+              }
+              cell[0].innerHTML = mcount+1;         
+              cell[1].innerHTML = tempDigit; 
+              cell[2].innerHTML = tempDigit2; 
+              mcount++;
+            }
+
+          } // end of i<nn
+}
+  </script>
+
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
       <table >
@@ -443,19 +863,634 @@
          시뮬레이션이다. 그림을 살펴보면 모집단의 특성값 중 최솟값(min), 최댓값(max) 등은 
          모집단과 표본의 값이 차이가 있지만 모평균과 표본평균은 큰 차이가 없음을 알 수 있다 
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU610_PopSample.svg" onclick="window.open(addrStr[152])">
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/HFig0403.png">
-            <div class="figText">&lt;그림 4.3&gt; 모집단과 표본의 관계를 보여주는 시뮬레이션</div>
-          </td>
-        </tr>
-      </table>
   </div>
   <p>
+
+  <div class="mainTableGrey">
+      <!------ html for Population and Sample simulation ------------------------------->
+      <b>[<span data-msgid="Population vs Sample">Population vs Sample</span>]</b>
+      <p> 
+      <svg id="chart1" width="600" height="600" style="border-style:solid;"> </svg>
+      <form name="myFormP">  
+        &nbsp;&nbsp;&nbsp;<span data-msgid="Population">Population</span> :
+        <label><input type="radio" name = "type1" value="1" checked> N(0,1)</label>&nbsp;&nbsp;
+        <label><input type="radio" name = "type1" value="2" ><span data-msgid="Exponential"> Exponentia(0.3) </span></label>&nbsp;&nbsp;
+        <label><input type="radio" name = "type1" value="3" ><span data-msgid="Uniform"> Uniform(0,1)</span></label> <br>
+      </form>
+      <br>
+      <button type="button" id="sampling05"  style="width:130px">
+        <b><span data-msgid="Sample05">Sampling 5%</span></b>
+      </button> &nbsp;
+      <button type="button" id="sampling10"  style="width:130px">
+        <b><span data-msgid="Sample10">Sampling 10%</span></b>
+      </button> &nbsp;
+      <button type="button" id="sampling20"  style="width:130px">
+        <b><span data-msgid="Sample20">Sampling 20%</span></b>
+      </button> 
+      &nbsp;&nbsp;&nbsp;
+      <label><input type="checkbox" id="meanSample">
+        <span data-msgid="Statistics/BoxPlot"> Statistics/BoxPlot</span>
+      </label> 
+      <p> 
+      <button type="button" id="saveGraphP"  style="width:120px">
+	<b><span class="tooltiptext" data-msgid="Graph Save">Graph Save</span></b>
+      </button>
+      <p>
+      <div class="figText">&lt;그림 4.3&gt; 모집단과 표본의 관계를 보여주는 시뮬레이션</div>
+  </div>
+      <!------ script for Population and Sample simulation ------------------------------->
+  <script>
+      setLanguage('ko');
+      var chart1 = d3.select("#chart1")
+
+      var totalHeight = 640;
+      var svgWidth    = 600;
+      var svgHeight   = 320;  // 모집단 그래프 영역
+      var margin, graphWidth, graphHeight;
+
+      var i, j, k; // 
+      var nint, step, buffer, nvalue, gxmin, gxmax; 
+  
+      var nobs   = 10000;
+      var radius = 1;
+      var samplePercent;
+      var checkPercent  = false;
+      var checkSampling = true;
+      var checkInterval = false;
+      var checkMean     = false;
+      var checkCLT      = false;
+
+      var statP1      = new Array(20);
+      var statS1      = new Array(20);
+      var bins       = new Array(1001);
+      var dataSet    = new Array(nobs);
+      var dataA      = new Array(nobs);
+      var dataValue  = new Array(nobs);
+      var dvalueFreq = new Array(nobs);
+      var tdata      = new Array(nobs);
+      var tdataY     = new Array(nobs);
+
+      var generator, title;
+
+      // 모집단 표본추출 ----------------------------------------------------------------------------------
+        chart1.selectAll("*").remove();        
+        margin      = {top: 20, bottom: 100, left: 20, right: 20};
+        graphWidth  = svgWidth - margin.left - margin.right;
+        graphHeight = svgHeight - margin.top - margin.bottom;
+        title  = "N(0,1) "+svgStrU[8][langNum]+" (N="+nobs.toString()+")";
+        chart1.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top).text(title);
+        normalGenerator(nobs, dataSet);
+        nint    = 400;
+        step    = 8/nint;
+        bins[0] = -4;
+        showDotSampleP1(nobs, dataSet, nint, step, bins, statP1, tdata, tdataY, dataValue);
+        gxmin = statP1[9];
+        gxmax = statP1[10];
+
+      // 라디오 버튼 클릭 for data generation    // Normal(0,1)
+      var rad = document.myFormP.type1;
+      rad[0].onclick = function() {   
+         chart1.selectAll("*").remove();
+         title  = "N(0,1) "+svgStrU[8][langNum]+" (N="+nobs.toString()+")";
+         chart1.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top).text(title);
+         normalGenerator(nobs, dataSet);
+         nint    = 400;
+         step    = 8/nint;
+         bins[0] = -4;
+         showDotSampleP1(nobs, dataSet, nint, step, bins, statP1, tdata, tdataY, dataValue);
+      }
+      rad[1].onclick = function() {     // Exponential(0.3)
+         chart1.selectAll("*").remove();
+         title  = svgStrU[49][langNum]+"(0.3) "+svgStrU[8][langNum]+" (N="+nobs.toString()+")";
+         chart1.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top).text(title);
+         expGenerator(nobs, dataSet);
+         nint    = 900;
+         step    = 30/nint;
+         bins[0] = 0;
+         showDotSampleP1(nobs, dataSet, nint, step, bins, statP1, tdata, tdataY, dataValue);
+      }
+      rad[2].onclick = function() {     // Uniform(0,10)
+         chart1.selectAll("*").remove();
+         title  = svgStrU[50][langNum] + "(0,1) "+svgStrU[8][langNum]+" (N="+nobs.toString()+")";
+         chart1.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top).text(title);
+         for (i=0; i<nobs; i++) dataSet[i] = Math.random();
+         nint    = 250;
+         step    = 1/nint;
+         bins[0] = 0;
+         showDotSampleP1(nobs, dataSet, nint, step, bins, statP1, tdata, tdataY, dataValue);
+      }
+
+      // 통계량 및 상자그림 표시
+      d3.select("#meanSample").on("click",function() {
+            if(this.checked) {
+              checkMean = true;
+              showMeanSample(statP1, statS1);
+            } else {
+              checkMean = false;
+              removeMeanSample();
+            }
+      })
+ 
+      // 샘플링 버튼 클릭
+      d3.select("#sampling05").on("click",function() {
+          removeAllSample();
+          document.getElementById("meanSample").checked = false;
+          checkMean = false;
+          removeMeanSample();
+          samplePercent = 0.05;
+          drawSampling(samplePercent, nobs, tdata, tdataY, nvalue, dataValue, statP1, statS1);
+      }) 
+      d3.select("#sampling10").on("click",function() {
+          removeAllSample();
+          document.getElementById("meanSample").checked = false;
+          checkMean = false;
+          removeMeanSample();
+          samplePercent = 0.10;
+          drawSampling(samplePercent, nobs, tdata, tdataY, nvalue, dataValue, statP1, statS1);
+      })
+      d3.select("#sampling20").on("click",function() {
+          removeAllSample();
+          document.getElementById("meanSample").checked = false;
+          checkMean = false;
+          removeMeanSample();
+          samplePercent = 0.20;
+          drawSampling(samplePercent, nobs, tdata, tdataY, nvalue, dataValue, statP1, statS1);
+      }) 
+      // svg Graph Save
+      d3.select("#saveGraphP").on("click", function() {
+        var svg = d3.select("#chart1");
+        var width = svgWidth;
+        var height = 600;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+function drawSampling(samplePercent, nobs, tdata, tdataY, nvalue, dataValue, statP1, statS1) {
+        // 이전 그림 지우기
+        removeAllSample();
+        var i,j,k, start, sum, sqsum, temp, ty;
+        var sobs, savg, sstd, smin, sQ1, smedian, sQ3, smax;  
+        var freqMaxS; 
+        var dvalueFreq = new Array(nobs); 
+        var sdata  = [];
+        var sdataY = [];
+        var sindex = [];
+        var gxmax  = statP1[10];
+        var gxmin  = statP1[9];
+        var xrange = gxmax - gxmin;
+        var sobs = 0;
+        for (i=0; i<nobs; i++) {
+          if(Math.random() < samplePercent) {
+            sdata[sobs]  = tdata[i];
+            sindex[sobs] = i;
+            sobs++;
+          }
+        }
+        var str = Math.floor(samplePercent*100).toString()+"% "+svgStrU[9][langNum]+" (n="+sobs.toString()+")";
+        chart1.append("text")
+           .attr("class","titleS")
+           .attr("x", margin.left)
+           .attr("y", svgHeight+20)
+           .text(str)
+           .style("font-size","12pt").style("stroke","#FF3500").style("text-anchor","start")
+        for (j=0; j<=nvalue; j++) dvalueFreq[j]=0;
+        for (i=0; i<sobs; i++) {
+          for (j=0; j<=nvalue; j++) {
+            if(sdata[i] == dataValue[j]) {
+              dvalueFreq[j]++; 
+              sdataY[i] = dvalueFreq[j];
+              break;
+            };
+          }
+        }
+         // Maximum of frequency
+        freqMaxS = dvalueFreq[0];
+        for (j=1; j<=nvalue; j++) {
+          if (dvalueFreq[j] > freqMaxS) freqMaxS = dvalueFreq[j];
+        }
+       // draw chart1 graph using sample
+        start = svgHeight*2/3;
+        ty    = start+ margin.top + graphHeight
+        chart1.append("line") 
+           .attr("class","lineS")          
+           .attr("x1",margin.left)
+           .attr("y1",ty)
+           .attr("x2",margin.left+graphWidth)
+           .attr("y2",ty)
+           .style("stroke","#FF3500")
+//        drawAxisSample(start,gxmin, gxmax);
+        for (k=0; k<sobs; k++) {
+          var cx1 = margin.left+graphWidth*(tdata[k]-gxmin)/xrange;
+          var cy1 = margin.top + graphHeight - tdataY[k]*radius*2;
+          var cx2 = margin.left+graphWidth*(sdata[k]-gxmin)/xrange;
+          var cy2 = start+ margin.top + graphHeight - sdataY[k]*radius*2;
+          chart1.append("circle")
+             .attr("class","circleS")
+             .attr("fill","#FF3500")
+             .style("stroke","black")
+             .attr("cx", cx1)
+             .attr("cy", cy1 )
+             .transition()                           // 애니매이션 효과 지정
+             .delay(function(d,i) {return i*100;})   // 0.5초마다 그리도록 대기시간 설정
+             .duration(2000)                         // 1초동안 애니매이션이 진행되도록 설정
+             .attr("r", radius)
+             .attr("cx", cx2)
+             .attr("cy", cy2)
+        }
+        // 상자그림용 통계량 계산 after sorting
+        sdata.sort(function(a,b){return a-b});
+        sum   = 0;
+        for (i=0; i<sobs; i++) {sum += sdata[i];}
+        savg   = sum / sobs;
+        sqsum = 0;
+        for (i=0; i<sobs; i++) {
+          temp = sdata[i]-savg;
+          sqsum += temp*temp;
+        }
+        sstd = Math.sqrt(sqsum / sobs);
+  
+        smin    = sdata[0];
+        smax    = sdata[sobs-1];
+        smedian = d3.quantile(sdata, 0.5);
+        sQ1     = d3.quantile(sdata, 0.25);
+        sQ3     = d3.quantile(sdata, 0.75);
+        if(checkMean) showMeanSample(statP1, statS1);
+        statS1[0]  = sobs;
+        statS1[1]  = savg;
+        statS1[2]  = sstd;
+        statS1[3]  = smin;
+        statS1[4]  = sQ1;
+        statS1[5]  = smedian;
+        statS1[6]  = sQ3;
+        statS1[7]  = smax;
+        statS1[8]  = freqMaxS;
+        statS1[9]  = gxmin;
+        statS1[10] = gxmax;
+}
+// 모집단의 Dot Graph ================================================================
+function showDotSampleP1(nobs, dataSet, nint, step, bins, statP1, tdata, tdataY, dataValue) {
+      var i, j, k;
+      var sum, sqsum, temp, avg, std;
+      var min, max, median, Q1, Q3;
+      var buffer, gxmin, gxmax, xrange, freqMaxP;
+      var index      = new Array(nobs);
+      var dataA      = new Array(nobs);
+      var dvalueFreq = new Array(nobs);
+      for (k=1; k<=nint+1; k++) bins[k] = bins[k-1] + step;
+      buffer = (bins[nint] - bins[0] + 2*step) / 20;
+      gxmin  = bins[0]    - step - buffer;
+      gxmax  = bins[nint] + step + buffer;
+      xrange = gxmax - gxmin;
+      // 통계량 계산
+      for (i=0; i<nobs; i++) tdata[i] = dataSet[i];
+      sum = 0;
+      for (i=0; i<nobs; i++) {sum += dataSet[i];}
+      avg = sum / nobs;
+      sqsum = 0;
+      for (i=0; i<nobs; i++) {
+        temp = dataSet[i]-avg;
+        sqsum += temp*temp;
+      }
+      std = Math.sqrt(sqsum / nobs);
+  
+      tdata.sort(function(a,b){return a-b})
+      min    = tdata[0];
+      max    = tdata[nobs-1];
+      median = d3.quantile(tdata, 0.5);
+      Q1     = d3.quantile(tdata, 0.25);
+      Q3     = d3.quantile(tdata, 0.75);
+      // data regenaration by bins interval
+      for (i=0; i<nobs; i++) {
+          if(dataSet[i] < bins[0])    {dataA[i] = bins[0] - step; break}
+          for (k=1; k<=nint; k++) {
+            if (dataSet[i] >= bins[k-1] && dataSet[i]<bins[k]) {dataA[i] = bins[k-1]; break;}
+          }
+          if (dataSet[i] >= bins[nint]) dataA[i] = bins[nint];
+      }
+      // Sorting and indexing data in ascending order
+      for (i=0; i<nobs; i++) index[i] = i;
+      for (i=0; i<nobs-1; i++) {
+        for (j=i; j<nobs; j++) {
+          if(dataA[i] > dataA[j]) {
+              temp     = dataA[i];  tempi    = index[i];
+              dataA[i] = dataA[j];  index[i] = index[j];
+              dataA[j] = temp;      index[j] = tempi;  
+          }
+        }
+      } 
+      // Counting the number of value 
+      for(i=0; i<nobs; i++) {dvalueFreq[i]=0} ;
+      nvalue = 0;
+      dataValue[nvalue]  = dataA[0];  
+      for (i=1; i<nobs; i++) {
+        if (dataA[i] > dataA[i-1]) {
+          nvalue++;
+          dataValue[nvalue] = dataA[i];
+        }
+      }
+      
+      // Rearrange to original data with dataA and dataY in ascending
+      for (i=0; i<nobs; i++) tdata[i]  = dataA[index[i]];
+      for (j=0; j<=nvalue; j++) dvalueFreq[j] = 0;
+      for (i=0; i<nobs; i++) {
+        for (j=0; j<=nvalue; j++) {
+          if(tdata[i] == dataValue[j]) {
+            dvalueFreq[j]++; 
+            tdataY[i] = dvalueFreq[j];
+            break;
+          };
+        }
+      }
+      // Maximum of frequency
+      freqMaxP = dvalueFreq[0];
+      for (j=1; j<=nvalue; j++) {
+        if (dvalueFreq[j] > freqMaxP) freqMaxP = dvalueFreq[j];
+      }
+      // 점그래프
+      var start = 0;
+      drawDotSample1(nobs, tdata, tdataY, gxmin, gxmax, start);
+      statP1[0]  = nobs;
+      statP1[1]  = avg;
+      statP1[2]  = std;
+      statP1[3]  = dataA[0];
+      statP1[4]  = Q1;
+      statP1[5]  = median;
+      statP1[6]  = Q3;
+      statP1[7]  = dataA[nobs-1];
+      statP1[8]  = freqMaxP;
+      statP1[9]  = gxmin;
+      statP1[10] = gxmax;
+}
+// 점그래프 함수 for pop vs sample
+function drawDotSample1(obs, tdata, tdataY, gxmin, gxmax, start) {
+         var i; 
+         var cx = new Array(obs);
+         var xrange = gxmax - gxmin;
+         drawAxisSample(start, gxmin, gxmax);
+         for (i=0; i<obs; i++) cx[i] = margin.left + graphWidth*Math.random();
+       if (checkSampling) {
+         chart1.selectAll("circle")
+            .data(tdata)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d,i){ return cx[i];} )
+            .attr("cy", start + margin.top  + 10)
+            .transition()                           // 애니매이션 효과 지정
+//            .delay(function(d,i) {return i*100;})   // 0.5초마다 그리도록 대기시간 설정
+//            .duration(1000)                         // 1초동안 애니매이션이 진행되도록 설정
+            .attr("r", radius)
+            .attr("cx", function(d,i){ return margin.left+graphWidth*(d-gxmin)/xrange; } )
+            .attr("cy", function(d,i){ return start+ margin.top + graphHeight - tdataY[i]*2*radius; } )
+            .attr("fill","#0055FF").style("stroke","black")
+       } else if (checkInterval) {
+         chart1.selectAll("circle")
+            .data(tdata)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d,i){ return cx[i];} )
+            .attr("cy", start + margin.top  + 10)
+            .transition()                           // 애니매이션 효과 지정
+//            .delay(function(d,i) {return i*100;})   // 0.5초마다 그리도록 대기시간 설정
+//            .duration(1000)                         // 1초동안 애니매이션이 진행되도록 설정
+            .attr("r", radius)
+            .attr("cx", function(d,i){ return margin.left+graphWidth*(d-gxmin)/xrange; } )
+            .attr("cy", function(d,i){ return start+ margin.top + graphHeight - tdataY[i]*2*radius; } )
+            .attr("fill","#0055FF").style("stroke","black")
+       }
+}
+// x축 눈금 표시
+function drawAxisSample(start, gxmin, gxmax) {
+        var xScale = d3.scaleLinear().domain([gxmin,gxmax]).range([0,graphWidth])
+        var ty = start + margin.top + graphHeight;
+      if (checkSampling) {
+        chart1.append("g")
+           .attr("transform","translate("+margin.left+","+ty+")")
+           .call(d3.axisBottom(xScale))                  // 눈금을 표시할 함수 호출
+      }
+      else if (checkInterval) {
+        chart1.append("g")
+           .attr("transform","translate("+margin.left+","+ty+")")
+           .call(d3.axisBottom(xScale))                  // 눈금을 표시할 함수 호출
+      }
+}
+// 통계량 표시 함수
+function drawStatSample1(stat, start, type) {
+        var avg    = stat[1];
+        var std    = stat[2];
+        var freqMax= stat[8];
+        var gxmin  = stat[9];
+        var gxmax  = stat[10];
+        var xrange = gxmax - gxmin;
+        if (type == 1) var strmean = "#00A2FF";
+        else var strmean = "#FF3500";
+        var strstd =svgStrU[4][langNum]+" ";
+        if (type == 2 && checkSampling && checkCLT) strstd = svgStrU[18][langNum]+" ";
+        var ty    = start + margin.top  + graphHeight + 10;
+        var avgx  = margin.left + graphWidth*(avg-gxmin)/xrange;
+        var stdmx = margin.left + graphWidth*(avg-std-gxmin)/xrange;
+        var stdpx = margin.left + graphWidth*(avg+std-gxmin)/xrange;
+      if (checkSampling) {  
+        chart1.append("line") 
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("x1",avgx)
+           .attr("y1",ty)
+           .attr("x2",avgx)
+           .attr("y2",start + margin.top + graphHeight - freqMax*2*radius - 10) 
+        chart1.append("circle")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("cx",avgx)
+           .attr("cy",ty)
+           .attr("r",2)
+        chart1.append("line")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("x1",stdmx)
+           .attr("y1",ty)
+           .attr("x2",avgx)
+           .attr("y2",ty)
+        chart1.append("line")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("x1",stdpx)
+           .attr("y1",ty)
+           .attr("x2",avgx)
+           .attr("y2",ty)
+        chart1.append("circle")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("cx",stdmx)
+           .attr("cy",ty)
+           .attr("r",2)
+        chart1.append("circle")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("cx",stdpx)
+           .attr("cy",ty)
+           .attr("r",2)
+        chart1.append("text")
+           .attr("class","meanP")      
+           .style("font-size","8pt")
+           .style("stroke",strmean)
+           .attr("x", avgx-28)
+           .attr("y", ty + 15)
+           .text(svgStrU[3][langNum]+"="+f2(avg))
+        chart1.append("text")
+           .attr("class","meanP")      
+           .style("font-size","8pt")
+           .style("stroke",strmean)
+           .attr("x", stdpx+10)
+           .attr("y", ty+5)
+           .text(strstd+f2(std))
+      }
+}     
+// 상자그래프 표시 함수
+function drawBoxSample(stat, start, type) {
+  
+        if (type == 1) var strmean = "#00A2FF";   // type = 1 for population
+        else var strmean = "#FF3500";             // type = 2 for sample
+        var avg    = stat[1];
+        var std    = stat[2];
+        var min    = stat[3];
+        var Q1     = stat[4];
+        var median = stat[5];
+        var Q3     = stat[6];
+        var max    = stat[7];
+        var freqMax= stat[8];
+        var gxmin  = stat[9];
+        var gxmax  = stat[10];
+        var xrange = gxmax - gxmin;
+        var x1,x2,y1,y2,width,height;
+        var lineHeight = 25;
+        var IQR = Q3 - Q1;
+        x1 = margin.left + graphWidth*(min-gxmin)/xrange;
+        y1 = start + margin.top  + graphHeight + 45;
+        x2 = x1;
+        y2 = y1 + lineHeight;
+        chart1.append("line")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("x1",x1)
+           .attr("y1",y1)
+           .attr("x2",x2)
+           .attr("y2",y2)
+        chart1.append("text")
+           .attr("class","meanP")      
+           .style("font-size","8pt")
+           .style("stroke",strmean)
+           .attr("x", x2-28)
+           .attr("y", y1-3)
+           .text("min="+f2(min))
+        x2 = x1 + graphWidth*(Q1-min)/xrange;
+        chart1.append("line")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("x1",x1)
+           .attr("y1",y1+lineHeight/2)
+           .attr("x2",x2)
+           .attr("y2",y1+lineHeight/2)
+        x1 = margin.left + graphWidth*(max-gxmin)/xrange;
+        x2 = x1;
+        chart1.append("line")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("x1",x1)
+           .attr("y1",y1)
+           .attr("x2",x2)
+           .attr("y2",y2) 
+        chart1.append("text")
+           .attr("class","meanP")      
+           .style("font-size","8pt")
+           .style("stroke",strmean)
+           .attr("x", x2-28)
+           .attr("y", y1-3)
+           .text("max="+f2(max))
+        x1 = margin.left + graphWidth*(Q1-gxmin)/xrange;
+        width = graphWidth*IQR/xrange;
+        height = lineHeight;
+        chart1.append("rect")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("stroke-width","1px")
+           .style("fill","yellow")
+           .attr("x",x1)
+           .attr("y",y1)
+           .attr("width",width)
+           .attr("height",height)
+         chart1.append("text")
+           .attr("class","meanP")      
+           .style("font-size","8pt")
+           .style("stroke",strmean)
+           .attr("x", x1-22)
+           .attr("y", y2+lineHeight/2)
+           .text("Q1="+f2(Q1))
+        chart1.append("text")
+           .attr("class","meanP")      
+           .style("font-size","8pt")
+           .style("stroke",strmean)
+           .attr("x", x1+width-20)
+           .attr("y", y2+lineHeight/2)
+           .text("Q3="+f2(Q3))
+        x1 = margin.left + graphWidth*(Q3-gxmin)/xrange;
+        x2 = x1 + graphWidth*(max-Q3)/xrange;
+        chart1.append("line")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("x1",x1)
+           .attr("y1",y1+lineHeight/2)
+           .attr("x2",x2)
+           .attr("y2",y1+lineHeight/2)
+        x1 = margin.left + graphWidth*(median-gxmin)/xrange;
+        x2 = x1;
+        chart1.append("line")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("x1",x1)
+           .attr("y1",y1)
+           .attr("x2",x2)
+           .attr("y2",y2)
+        chart1.append("text")
+           .attr("class","meanP")      
+           .style("font-size","8pt")
+           .style("stroke",strmean)
+           .attr("x", x1-30)
+           .attr("y", y2+lineHeight/2+10)
+           .text("Med="+f2(median))
+}
+// 평균 상자그림 그리기
+function showMeanSample(statP1, statS1) {
+          var start = 0;
+          drawStatSample1(statP1, start, 1) ;
+          drawBoxSample(statP1, start, 1);
+          if(checkSampling) {
+            start = svgHeight*2/3;
+            drawStatSample1(statS1, start, 2) ;
+            drawBoxSample(statS1, start, 2);
+          } 
+}
+// 평균 상자그림 제거
+function removeMeanSample() {
+	chart1.selectAll("circle.meanP").remove();
+	chart1.selectAll("text.meanP").remove();
+	chart1.selectAll("line.meanP").remove();
+	chart1.selectAll("rect.meanP").remove();
+	chart1.selectAll("circle.meanS").remove();
+	chart1.selectAll("text.meanS").remove();
+	chart1.selectAll("line.meanS").remove();
+	chart1.selectAll("rect.meanS").remove();
+}
+// 전체 표본그림 제거
+function removeAllSample() {
+	chart1.selectAll("circle.circleS").remove();
+	chart1.selectAll("line.lineS").remove();
+	chart1.selectAll("text.titleS").remove();
+        removeMeanSample();
+}
+
+  </script>
 
   <!-------------------------------------------------------------------------->
   <h3>가. 모든 가능한 표본평균의 분포</h3>
@@ -645,27 +1680,445 @@
          된다는 것을 의미한다. 즉 우리가 얻는 표본평균은 모든 가능한 표본평균 중에 하나지만 
          모평균에 근접한 값이어서 어느 표본평균이라도 모평균을 잘 추정할 수 있는 근거가 된다.
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU620_CLT.svg" onclick="window.open(addrStr[153])">
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/HFig0406.png">
-            <div class="figText">&lt;그림 4.6&gt; 『eStatH』의 표본평균의 분포 시뮬레이션 </div>
-          </td>
-        </tr>
-      </table>
   </div>
   <p> 
+  <div class="mainTableGrey">
+    <!-----------  html for  CLT  ------------------------------------------------------>
+      <b>[<span data-msgid="Dist of Sample Means">Sampling Distribution of Sample Means</span>]</b> 
+      <p>
+    <svg id="chart2" width="600" height="620" style="border-style:solid;"> </svg>
+    <br>
+    <form name="myFormC">  
+      &nbsp;&nbsp;&nbsp;<span data-msgid="Population">Population</span> :
+      <label><input type="radio" name = "type1" value="1" checked> N(0,1)</label>
+      <label><input type="radio" name = "type1" value="2" ><span data-msgid="Exponential"> Exponentia(0.3) </span></label>
+      <label><input type="radio" name = "type1" value="3" ><span data-msgid="Uniform"> Uniform(0,1)</span></label> <br>
+    </form>
+    <br>
+    <form> 
+      <button type="button" id="samplingCLT" style="width:120px;">
+        <b><span data-msgid="Execute">Execute</span></b>
+      </button> 
+      &nbsp;
+      <span data-msgid="Sample Size">Sample Size</span> 
+      n1 = <input type="text" class="textarea" value="5" size=4 id="init1CLT"> &nbsp;
+      n2 = <input type="text" class="textarea" value="10" size=4 id="init2CLT"> &nbsp;
+      n3 = <input type="text" class="textarea" value="20" size=4 id="init3CLT"> <p>
+    </form>
+    <button type="button" id="saveGraphCLT"  style="width:120px;">
+	<b><span class="tooltiptext" data-msgid="Graph Save">Graph Save</span></b>
+    </button>
+    <p>
+    <div class="figText">&lt;그림 4.6&gt; 『eStatH』의 표본평균의 분포 시뮬레이션 </div>
+  </div>
+  <p>
+    <!-----------  Script for  CLT  ------------------------------------------------------>
+  <script>
+      setLanguage('ko');
+      var chart2 = d3.select("#chart2")
+      var totalHeight = 640;
+      var svgWidth    = 600;
+      var svgHeight   = 320;  // 모집단 그래프 영역
+ 
+      var i, j, k; // 
+      var nint, step, buffer, nvalue, gxminCLT, gxmaxCLT; 
+ 
+      var nobs   = 10000;
+      var radius = 1;
+      
+      var checkSampling = true;
+      var checkInterval = false;
+      var checkMean     = false;
+      var checkCLT      = true;
+
+      var statP2      = new Array(20);
+      var statS2      = new Array(20);
+      var bins       = new Array(1001);
+      var dataSet    = new Array(nobs);
+      var dataA      = new Array(nobs);
+      var dataValue  = new Array(nobs);
+      var dvalueFreq = new Array(nobs);
+      var tdata      = new Array(nobs);
+      var tdataY     = new Array(nobs);
+
+      var generator, title;
+
+      // 표본추출 선택 ----------------------------------------------------------------------------------
+      chart2.selectAll("*").remove();        
+
+      marginCLT      = {top: 20, bottom: 100, left: 20, right: 20};
+      graphWidthCLT  = svgWidth - marginCLT.left - marginCLT.right;
+      graphHeightCLT = svgHeight - marginCLT.top - marginCLT.bottom;
+      title  = "N(0,1) "+svgStrU[8][langNum]+" (N="+nobs.toString()+")";
+      chart2.append("text").attr("class","title").attr("x",marginCLT.left).attr("y",marginCLT.top).text(title);
+      normalGenerator(nobs, dataSet);
+      nint    = 400;
+      step    = 8/nint;
+      bins[0] = -4;
+      showDotSampleP2(nobs, dataSet, nint, step, bins, statP2, tdata, tdataY, dataValue);
+      gxminCLT = statP2[9];
+      gxmaxCLT = statP2[10];
+
+      // 라디오 버튼 클릭 for data generation
+      var rad = document.myFormC.type1;
+      rad[0].onclick = function() {     // Normal(0,1)
+         chart2.selectAll("*").remove();
+         title  = "N(0,1) "+svgStrU[8][langNum]+" (N="+nobs.toString()+")";
+         chart2.append("text").attr("class","title").attr("x",marginCLT.left).attr("y",marginCLT.top).text(title);
+         normalGenerator(nobs, dataSet);
+         nint    = 400;
+         step    = 8/nint;
+         bins[0] = -4;
+         showDotSampleP2(nobs, dataSet, nint, step, bins, statP2, tdata, tdataY, dataValue);
+      }
+      rad[1].onclick = function() {     // Exponential(0.3)
+         chart2.selectAll("*").remove();
+         title  = svgStrU[49][langNum]+"(0.3) "+svgStrU[8][langNum]+" (N="+nobs.toString()+")";
+         chart2.append("text").attr("class","title").attr("x",marginCLT.left).attr("y",marginCLT.top).text(title);
+         expGenerator(nobs, dataSet);
+         nint    = 900;
+         step    = 30/nint;
+         bins[0] = 0;
+         showDotSampleP2(nobs, dataSet, nint, step, bins, statP2, tdata, tdataY, dataValue);
+      }
+      rad[2].onclick = function() {     // Uniform(0,10)
+         chart2.selectAll("*").remove();
+         title  = svgStrU[50][langNum] + "(0,1) "+svgStrU[8][langNum]+" (N="+nobs.toString()+")";
+         chart2.append("text").attr("class","title").attr("x",marginCLT.left).attr("y",marginCLT.top).text(title);
+         for (i=0; i<nobs; i++) dataSet[i] = Math.random();
+         nint    = 250;
+         step    = 1/nint;
+         bins[0] = 0;
+         showDotSampleP2(nobs, dataSet, nint, step, bins, statP2, tdata, tdataY, dataValue);
+      }
+
+      // CLT 샘플링 버튼 클릭
+      d3.select("#samplingCLT").on("click",function() {
+          removeAllSample();
+          CLT();
+      }) 
+      // svg Graph Save
+      d3.select("#saveGraphCLT").on("click", function() {
+        var svg = d3.select("#chart2");
+        var width = svgWidth;
+        var height = 600;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+// 점그래프 함수 for CLT
+function drawDotSample2(obs, tdata, tdataY, gxminCLT, gxmaxCLT, start) {
+         var i; 
+         var cx = new Array(obs);
+         var xrange = gxmaxCLT - gxminCLT;
+         drawAxisSample(start, gxminCLT, gxmaxCLT);
+         for (i=0; i<obs; i++) cx[i] = marginCLT.left + graphWidthCLT*Math.random();
+       if (checkSampling) {
+         chart2.selectAll("circle")
+            .data(tdata)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d,i){ return cx[i];} )
+            .attr("cy", start + marginCLT.top  + 10)
+            .transition()                           // 애니매이션 효과 지정
+//            .delay(function(d,i) {return i*100;})   // 0.5초마다 그리도록 대기시간 설정
+//            .duration(1000)                         // 1초동안 애니매이션이 진행되도록 설정
+            .attr("r", radius)
+            .attr("cx", function(d,i){ return marginCLT.left+graphWidthCLT*(d-gxminCLT)/xrange; } )
+            .attr("cy", function(d,i){ return start+ marginCLT.top + graphHeightCLT - tdataY[i]*2*radius; } )
+            .attr("fill","#0055FF").style("stroke","black")
+       } else if (checkInterval) {
+         chart2.selectAll("circle")
+            .data(tdata)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d,i){ return cx[i];} )
+            .attr("cy", start + marginCLT.top  + 10)
+            .transition()                           // 애니매이션 효과 지정
+//            .delay(function(d,i) {return i*100;})   // 0.5초마다 그리도록 대기시간 설정
+//            .duration(1000)                         // 1초동안 애니매이션이 진행되도록 설정
+            .attr("r", radius)
+            .attr("cx", function(d,i){ return marginCLT.left+graphWidthCLT*(d-gxminCLT)/xrange; } )
+            .attr("cy", function(d,i){ return start+ marginCLT.top + graphHeightCLT - tdataY[i]*2*radius; } )
+            .attr("fill","#0055FF").style("stroke","black")
+       }
+}
+// 모집단의 Dot Graph ================================================================
+function showDotSampleP2(nobs, dataSet, nint, step, bins, statP2, tdata, tdataY, dataValue) {
+      var i, j, k;
+      var sum, sqsum, temp, avg, std;
+      var min, max, median, Q1, Q3;
+      var buffer, gxmin, gxmax, xrange, freqMaxP;
+      var index      = new Array(nobs);
+      var dataA      = new Array(nobs);
+      var dvalueFreq = new Array(nobs);
+      for (k=1; k<=nint+1; k++) bins[k] = bins[k-1] + step;
+      buffer = (bins[nint] - bins[0] + 2*step) / 20;
+      gxmin  = bins[0]    - step - buffer;
+      gxmax  = bins[nint] + step + buffer;
+      xrange = gxmax - gxmin;
+      // 통계량 계산
+      for (i=0; i<nobs; i++) tdata[i] = dataSet[i];
+      sum = 0;
+      for (i=0; i<nobs; i++) {sum += dataSet[i];}
+      avg = sum / nobs;
+      sqsum = 0;
+      for (i=0; i<nobs; i++) {
+        temp = dataSet[i]-avg;
+        sqsum += temp*temp;
+      }
+      std = Math.sqrt(sqsum / nobs);
+  
+      tdata.sort(function(a,b){return a-b})
+      min    = tdata[0];
+      max    = tdata[nobs-1];
+      median = d3.quantile(tdata, 0.5);
+      Q1     = d3.quantile(tdata, 0.25);
+      Q3     = d3.quantile(tdata, 0.75);
+      // data regenaration by bins interval
+      for (i=0; i<nobs; i++) {
+          if(dataSet[i] < bins[0])    {dataA[i] = bins[0] - step; break}
+          for (k=1; k<=nint; k++) {
+            if (dataSet[i] >= bins[k-1] && dataSet[i]<bins[k]) {dataA[i] = bins[k-1]; break;}
+          }
+          if (dataSet[i] >= bins[nint]) dataA[i] = bins[nint];
+      }
+      // Sorting and indexing data in ascending order
+      for (i=0; i<nobs; i++) index[i] = i;
+      for (i=0; i<nobs-1; i++) {
+        for (j=i; j<nobs; j++) {
+          if(dataA[i] > dataA[j]) {
+              temp     = dataA[i];  tempi    = index[i];
+              dataA[i] = dataA[j];  index[i] = index[j];
+              dataA[j] = temp;      index[j] = tempi;  
+          }
+        }
+      } 
+      // Counting the number of value 
+      for(i=0; i<nobs; i++) {dvalueFreq[i]=0} ;
+      nvalue = 0;
+      dataValue[nvalue]  = dataA[0];  
+      for (i=1; i<nobs; i++) {
+        if (dataA[i] > dataA[i-1]) {
+          nvalue++;
+          dataValue[nvalue] = dataA[i];
+        }
+      }
+      
+      // Rearrange to original data with dataA and dataY in ascending
+      for (i=0; i<nobs; i++) tdata[i]  = dataA[index[i]];
+      for (j=0; j<=nvalue; j++) dvalueFreq[j] = 0;
+      for (i=0; i<nobs; i++) {
+        for (j=0; j<=nvalue; j++) {
+          if(tdata[i] == dataValue[j]) {
+            dvalueFreq[j]++; 
+            tdataY[i] = dvalueFreq[j];
+            break;
+          };
+        }
+      }
+      // Maximum of frequency
+      freqMaxP = dvalueFreq[0];
+      for (j=1; j<=nvalue; j++) {
+        if (dvalueFreq[j] > freqMaxP) freqMaxP = dvalueFreq[j];
+      }
+      // 점그래프
+      var start = 0;
+      drawDotSample2(nobs, tdata, tdataY, gxmin, gxmax, start);
+      statP2[0]  = nobs;
+      statP2[1]  = avg;
+      statP2[2]  = std;
+      statP2[3]  = dataA[0];
+      statP2[4]  = Q1;
+      statP2[5]  = median;
+      statP2[6]  = Q3;
+      statP2[7]  = dataA[nobs-1];
+      statP2[8]  = freqMaxP;
+      statP2[9]  = gxmin;
+      statP2[10] = gxmax;
+}
+// CLT
+function CLT() {      
+        var kiter = 500; // sample 반복 추출 회수
+        chart2.append("text")
+           .attr("class","titleS")
+           .attr("x", marginCLT.left).attr("y", svgHeight - marginCLT.bottom/2 + 20)
+           .text(svgStrU[16][langNum]+" ("+svgStrU[17][langNum]+"="+kiter+")" )
+           .style("font-size","12pt").style("stroke","#FF3500").style("text-anchor","start")
+        var niter = 3;  
+        var n = new Array(30)
+	n[0] = parseFloat(d3.select("#init1CLT").node().value);    // 표본크기 
+	n[1] = parseFloat(d3.select("#init2CLT").node().value);    // 표본크기 
+	n[2] = parseFloat(d3.select("#init3CLT").node().value);    // 표본크기 
+        gxminCLT  = statP2[9];
+        gxmaxCLT  = statP2[10];
+        xrange = gxmaxCLT - gxminCLT;
+        oneHeight   = (totalHeight - svgHeight) / niter; 
+        for (var gg = 0; gg < niter; gg++) {  // 세 표본크기에 대한 표집분포
+          chart2.append("text")
+             .attr("class","titleS")
+             .attr("x", marginCLT.left)
+             .attr("y", svgHeight + gg*oneHeight)
+             .text("n = "+n[gg])
+             .style("font-size","12pt").style("stroke","#FF3500").style("text-anchor","start")
+          var sdata  = [];
+          var sdataY = [];
+          var avg = 0;
+          for (j=0; j<=nint; j++) dvalueFreq[j]=0;     
+          for (k=0; k<kiter; k++) {
+            sdata[k] = 0;
+            for (i=0; i<n[gg]; i++) {
+              var jth = Math.floor(Math.random()*nobs);
+              sdata[k]  += dataSet[jth];
+            } // endof i
+            sdata[k] = sdata[k] / n[gg];
+            avg += sdata[k];
+            if(sdata[k] < bins[0])    {dataA[k] = bins[0] - step; break}
+            for (j=1; j<=nint; j++) {
+              if (sdata[k] >= bins[j-1] && sdata[k]<bins[j]) {dataA[k] = bins[j-1]; break;}
+            } // endof i
+            if (sdata[k] >= bins[nint]) dataA[k] = bins[nint];
+          } // endof k
+          avg /= kiter;
+          var std = 0;
+          for (k=0; k<kiter; k++) {
+            temp = sdata[k] - avg;
+            std += temp*temp;
+          }
+          std = Math.sqrt(std/kiter);
+          for (j=0; j<=nint; j++) dvalueFreq[j]=0;
+          for (k=0; k<kiter; k++) {
+            for (j=1; j<=nint; j++) {
+              if(dataA[k] >= dataValue[j-1] && dataA[k] < dataValue[j]) {
+                dvalueFreq[j]++; 
+                sdataY[k] = dvalueFreq[j];
+                break;
+              };
+            } // endof j
+          } // endof k
+          freqMax = dvalueFreq[0];
+          for (k=1; k<kiter; k++) {
+            if (dvalueFreq[k] > freqMax) freqMax = dvalueFreq[k];
+          }
+          // draw dot graph using sample
+          start = svgHeight - marginCLT.bottom/2 + gg*oneHeight;
+          var xScale = d3.scaleLinear().domain([gxminCLT,gxmaxCLT]).range([0,graphWidthCLT])
+          var ty = start + oneHeight;
+          chart2.append("line")  
+             .attr("class","lineS")          
+             .attr("x1",marginCLT.left)
+             .attr("y1",ty)
+             .attr("x2",marginCLT.left+graphWidthCLT)
+             .attr("y2",ty)
+             .style("stroke","#FF3500")
+           
+          for (k=0; k<kiter; k++) {
+            chart2.append("circle")
+               .attr("class","circleS")
+               .attr("fill","#FF3500").style("stroke","black")
+               .transition()                           // 애니매이션 효과 지정
+               .delay(function(d,i) {return i*100;})   // 0.5초마다 그리도록 대기시간 설정
+               .duration(2000)                         // 1초동안 애니매이션이 진행되도록 설정
+               .attr("r", radius)
+               .attr("cx", marginCLT.left+graphWidthCLT*(dataA[k]-gxminCLT)/xrange)
+               .attr("cy", start + oneHeight - sdataY[k]*2*radius)
+          } // end of k
+          statS2[1] = avg;
+          statS2[2] = std;
+          statS2[8] = freqMax;
+          statS2[9] = gxminCLT;
+          statS2[10]= gxmaxCLT;
+          start    = marginCLT.bottom/2 + (gg+1)*oneHeight;
+          drawStatSample2(statP2, 0, 1) ;
+          drawStatSample2(statS2, start, 2) ;
+        } // endof gg
+}
+// 통계량 표시 함수
+function drawStatSample2(stat, start, type) {
+        var avg    = stat[1];
+        var std    = stat[2];
+        var freqMax= stat[8];
+        var gxmin  = stat[9];
+        var gxmax  = stat[10];
+        var xrange = gxmax - gxmin;
+        if (type == 1) var strmean = "#00A2FF";
+        else var strmean = "#FF3500";
+        var strstd =svgStrU[4][langNum]+" ";
+        if (type == 2 && checkSampling && checkCLT) strstd = svgStrU[18][langNum]+" ";
+        var ty    = start + marginCLT.top  + graphHeightCLT + 10;
+        var avgx  = marginCLT.left + graphWidthCLT*(avg-gxmin)/xrange;
+        var stdmx = marginCLT.left + graphWidthCLT*(avg-std-gxmin)/xrange;
+        var stdpx = marginCLT.left + graphWidthCLT*(avg+std-gxmin)/xrange;
+      if (checkSampling) {  
+        chart2.append("line") 
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("x1",avgx)
+           .attr("y1",ty)
+           .attr("x2",avgx)
+           .attr("y2",start + marginCLT.top + graphHeightCLT - freqMax*2*radius - 10) 
+        chart2.append("circle")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("cx",avgx)
+           .attr("cy",ty)
+           .attr("r",2)
+        chart2.append("line")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("x1",stdmx)
+           .attr("y1",ty)
+           .attr("x2",avgx)
+           .attr("y2",ty)
+        chart2.append("line")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("x1",stdpx)
+           .attr("y1",ty)
+           .attr("x2",avgx)
+           .attr("y2",ty)
+        chart2.append("circle")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("cx",stdmx)
+           .attr("cy",ty)
+           .attr("r",2)
+        chart2.append("circle")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("cx",stdpx)
+           .attr("cy",ty)
+           .attr("r",2)
+        chart2.append("text")
+           .attr("class","meanP")      
+           .style("font-size","8pt")
+           .style("stroke",strmean)
+           .attr("x", avgx-28)
+           .attr("y", ty + 15)
+           .text(svgStrU[3][langNum]+"="+f2(avg))
+        chart2.append("text")
+           .attr("class","meanP")      
+           .style("font-size","8pt")
+           .style("stroke",strmean)
+           .attr("x", stdpx+10)
+           .attr("y", ty+5)
+           .text(strstd+f2(std))
+      }
+}     
+
+  </script>
+
+
   <!------------------------------------------------------------------------------------------------->
   <div class="mainTableGrey">
       <p><h5>🎲 예제 4.3</h5>
          고등학교 1학년 전체 모집단의 신장이 모평균 170cm, 모표준편차 10com인 정규분포를 따른다고 
          한다. 100명의 표본을 임의추출할 때, 다음 확률을 구하라. 
       <p>
-        1) \( P(168 \le {\overline X} \le 172) \) <br>
-        2) \( P({\overline X} \ge 173) \) 
+        1) \(\small P(168 \le {\overline X} \le 172) \) <br>
+        2) \(\small P({\overline X} \ge 173) \) 
       <h5>풀이</h5>
       <table>
         <tr>
@@ -802,18 +2255,447 @@
          결과는 약간씩 달라질 수 있다. 이 시뮬레이션은 위의 공식으로 모평균의 구간추정을 
          여러 번 하였을 때 대략 신뢰도만큼의 구간만 모평균을 포함함을 보여 준다.
       <p>
-      <table style="width:700px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU640_ConfIntSim.svg" onclick="window.open(addrStr[155])">
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/HFig0407.png">
-            <div class="textLeft">&lt;그림 4.7&gt;  『eStatH』 모평균의 95% 구간추정 의미 실험</div>
-          </td>
-        </tr>
-      </table>
-      <p>
+  <div class="mainTableGrey">
+     <!----   html for confidence interval ----------------------------------------------------->
+     <b>[<span data-msgid="Confidence Interval Simulation">Confidence Interval Experiment</span>]</b> 
+     <p>
+     <svg id="chart3" width="600" height="620" style="border-style:solid;"> </svg>
+     <p> 
+       <button type="button" id="intervalEst" style="width:120px">
+         <b><span data-msgid="Execute">Execute</span></b>
+       </button> 
+       &nbsp; 
+       <span data-msgid="Sample Size">Sample Size</span>
+       n = <input type="text" style="text-align:center" value="20" size=4 id="initEst"> &nbsp; &nbsp;
+       <span data-msgid="Repetition">Repetition</span>
+       r = <input type="text" style="text-align:center" value="100"  size=4 id="iterEst"> 
+     <form name="myFormEst">  
+       &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+       <span data-msgid="Confidence Level">Confidence Level</span>  
+       &nbsp; <label><input type="radio" name = "type1" value="1" > 0.90</label>  &nbsp; 
+       <label><input type="radio" name = "type1" value="2" checked> 0.95</label>  &nbsp; 
+       <label><input type="radio" name = "type1" value="3" > 0.99</label>
+     </form>
+     <p>
+       <button type="button" id="saveGraphCIS"  style="width:120px;">
+	 <b><span class="tooltiptext" data-msgid="Graph Save">Graph Save</span></b>
+       </button>
+     <p>
+     <div class="textLeft">&lt;그림 4.7&gt;  『eStatH』 모평균의 95% 구간추정 의미 실험</div>
+  </div>
+  <p>
+     <!----   script for confidence interval simulation ---------------------------------------------->
+  <script>
+      setLanguage('ko');
+      var chart3 = d3.select("#chart3")
+      var totalHeight = 640;
+      var i, j, k, tx, ty, ty2;  
+      var nint, step, buffer, nvalue, gxminCI, gxmaxCI, error, str; 
+      var sobs, niterCI, str;
+      var nobs   = 10000;
+      var radius = 1;
+      var samplePercent;
+
+      var statP3     = new Array(20);
+      var statS3     = new Array(20);
+      var bins       = new Array(1000);
+      var dataSet    = new Array(nobs);
+      var dataA      = new Array(nobs);
+      var dataValue3  = new Array(nobs);
+      var dvalueFreq3 = new Array(nobs);
+      var tdata3      = new Array(nobs);
+      var tdata3Y     = new Array(nobs);
+
+      var generator, title;
+      var checkInterval = true;
+
+      // Confidence Interval Initital Simulation ---------------------------------------------------------------
+      chart3.selectAll("*").remove();        
+      marginCI      = {top: 20, bottom: 100, left: 20, right: 20};;
+      graphWidthCI  = svgWidth - marginCI.left - marginCI.right;
+      graphHeightCI = svgHeight - marginCI.top - marginCI.bottom;
+
+      title  = svgStrU[8][langNum]+" ~ N(0,1)  (N="+nobs.toString()+")";
+      chart3.append("text").attr("class","title").attr("x",marginCI.left).attr("y",marginCI.top).text(title);
+
+      normalGenerator(nobs, dataSet);       
+      nint    = 400;
+      step    = 8/nint;
+      bins[0] = -4;
+      showDotSampleP3(nobs, dataSet, nint, step, bins, statP3, tdata3, tdata3Y, dataValue3);
+      gxminCI  = statP3[9];
+      gxmaxCI  = statP3[10];
+      xrangeCI = gxmaxCI - gxminCI;
+      start = 0;
+      drawStatSample3(statP3, start, 1) ;
+
+      // 신뢰도 선택
+      var rad = document.myFormEst.type1;
+      var confidenceLevel = "95%";
+      var zvalue = 1.96;
+      rad[0].onclick = function() {     // 90%
+        confidenceLevel = "90%";
+        zvalue = 1.645;
+      }
+      rad[1].onclick = function() {     // 95%
+        confidenceLevel = "95%";
+        zvalue = 1.96;
+      }
+      rad[2].onclick = function() {     // 99%
+        confidenceLevel = "99%";
+        zvalue = 2.575;
+      }
+
+      // 구간추정 시뮬레이션 버튼 클릭
+      d3.select("#intervalEst").on("click",function() {
+        removeAllSample3(); 
+
+        str = svgStrU[19][langNum]+" "+confidenceLevel+" "+svgStrU[20][langNum]+" "+svgStrU[98][langNum];
+	sobs  = parseFloat(d3.select("#initEst").node().value);    // 표본크기 
+        niterCI = parseFloat(d3.select("#iterEst").node().value);    // 시뮬레이션 반복수 
+        if (sobs < 20 ) sobs = 20;
+        if (niterCI > 300) niterCI = 300;
+        str = str + " n = "+sobs+", r = "+niterCI;
+        chart3.append("text").style("stroke","blue").attr("x", marginCI.left)
+            .attr("y", svgHeight - marginCI.bottom/3 - 20).attr("class","meanG")
+            .text(str)
+        tx  = marginCI.left + graphWidthCI*(statP3[1]-gxminCI)/xrangeCI; // population mean location
+        ty  = svgHeight - marginCI.bottom/3 - 20;
+        ty2 = totalHeight - 20;
+        chart3.append("line").style("stroke","blue").style("stroke","blue")
+            .attr("x1",tx).attr("y1",ty).attr("x2",tx).attr("y2",ty2)
+
+        var oneHeight = (totalHeight - svgHeight) / niterCI; 
+        error = 0;
+        for (var gg = 0; gg < niterCI; gg++) {
+          var sdata3  = [];
+          var sdata3Y = [];
+          var sindex3 = [];
+          var jth;
+          for (i=0; i<sobs; i++) {
+           jth = Math.floor(Math.random()*nobs);
+           sdata3[i]  = tdata3[jth];
+           sindex3[i] = jth;
+          }
+
+          for (j=0; j<=nvalue; j++) dvalueFreq3[j]=0;
+          for (i=0; i<sobs; i++) {
+            for (j=0; j<=nvalue; j++) {
+              if(sdata3[i] == dataValue3[j]) {
+                dvalueFreq3[j]++; 
+                sdata3Y[i] = dvalueFreq3[j];
+                break;
+              }
+            } // endof j
+          } // endof i
+
+          // draw dot graph using sample
+          start = svgHeight - marginCI.bottom/3 - 10 + gg*oneHeight;
+          if(niterCI < 11) {
+            for (k=0; k<sobs; k++) {
+              chart3.append("circle")
+                 .attr("class","circleS")
+                 .attr("cx", marginCI.left+graphWidthCI*(tdata3[k]-gxminCI)/xrangeCI)
+                 .attr("cy", marginCI.top + graphHeightCI - tdata3Y[k]*4)
+                 .transition()                           // 애니매이션 효과 지정
+                 .delay(function(d,i) {return i*100;})   // 0.5초마다 그리도록 대기시간 설정
+                 .duration(2000)                         // 1초동안 애니매이션이 진행되도록 설정
+                 .attr("r", 2)
+                 .attr("cx", marginCI.left+graphWidthCI*(sdata3[k]-gxminCI)/xrangeCI)
+                 .attr("cy", start + oneHeight - sdata3Y[k]*4)
+            }
+          }
+          // 표본 통계량 계산 after sorting
+          sdata3.sort(function(a,b){return a-b});
+          sum   = 0;
+          for (i=0; i<sobs; i++) {sum += sdata3[i];}
+          savg   = sum / sobs;
+          sqsum = 0;
+          for (i=0; i<sobs; i++) {
+            temp = sdata3[i]-savg;
+            sqsum += temp*temp;
+          }
+          sstd = Math.sqrt(sqsum / sobs);
+
+          temp = zvalue*statP3[2]/Math.sqrt(sobs);
+          if ( savg - temp > statP3[1] || savg + temp < statP3[1] ) error++;
+          drawInterval(sobs, savg, statP3, gxminCI, xrangeCI, zvalue, oneHeight, niterCI, start);
+  
+        } // endof gg
+
+        var accuracy = niterCI - error;
+        var accuracyPercent = 100*accuracy/niterCI;
+        var str = svgStrU[51][langNum] + " = " + accuracyPercent+"%"+" ("+accuracy+"/"+niterCI+")";
+
+        chart3.append("text").style("stroke","blue").attr("class","meanG")
+           .attr("x", marginCI.left)
+           .attr("y", svgHeight - marginCI.bottom/3 )
+           .text(str)
+      }) 
+      // svg Graph Save
+      d3.select("#saveGraphCIS").on("click", function() {
+        var svg = d3.select("#chart3");
+        var width = svgWidth;
+        var height = 600;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+
+// 점그래프 함수 for CI
+function drawDotSample3(obs, tdata3, tdata3Y, gxmin, gxmax, start) {
+         var i; 
+         var cx = new Array(obs);
+         var xrange = gxmax - gxmin;
+         drawAxisSample(start, gxmin, gxmax);
+         for (i=0; i<obs; i++) cx[i] = marginCI.left + graphWidthCI*Math.random();
+       if (checkSampling) {
+         chart3.selectAll("circle")
+            .data(tdata3)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d,i){ return cx[i];} )
+            .attr("cy", start + marginCI.top  + 10)
+            .transition()                           // 애니매이션 효과 지정
+//            .delay(function(d,i) {return i*100;})   // 0.5초마다 그리도록 대기시간 설정
+//            .duration(1000)                         // 1초동안 애니매이션이 진행되도록 설정
+            .attr("r", radius)
+            .attr("cx", function(d,i){ return marginCI.left+graphWidthCI*(d-gxmin)/xrange; } )
+            .attr("cy", function(d,i){ return start+ marginCI.top + graphHeightCI - tdata3Y[i]*2*radius; } )
+            .attr("fill","#0055FF").style("stroke","black")
+       } else if (checkInterval) {
+         chart3.selectAll("circle")
+            .data(tdata3)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d,i){ return cx[i];} )
+            .attr("cy", start + marginCI.top  + 10)
+            .transition()                           // 애니매이션 효과 지정
+//            .delay(function(d,i) {return i*100;})   // 0.5초마다 그리도록 대기시간 설정
+//            .duration(1000)                         // 1초동안 애니매이션이 진행되도록 설정
+            .attr("r", radius)
+            .attr("cx", function(d,i){ return marginCI.left+graphWidthCI*(d-gxmin)/xrange; } )
+            .attr("cy", function(d,i){ return start+ marginCI.top + graphHeightCI - tdata3Y[i]*2*radius; } )
+            .attr("fill","#0055FF").style("stroke","black")
+       }
+}
+// 모집단의 Dot Graph ================================================================
+function showDotSampleP3(nobs, dataSet, nint, step, bins, statP3, tdata3, tdata3Y, dataValue3) {
+      var i, j, k;
+      var sum, sqsum, temp, avg, std;
+      var min, max, median, Q1, Q3;
+      var buffer, gxmin, gxmax, xrange, freqMaxP;
+      var index      = new Array(nobs);
+      var dataA      = new Array(nobs);
+      var dvalueFreq3 = new Array(nobs);
+      for (k=1; k<=nint+1; k++) bins[k] = bins[k-1] + step;
+      buffer = (bins[nint] - bins[0] + 2*step) / 20;
+      gxmin  = bins[0]    - step - buffer;
+      gxmax  = bins[nint] + step + buffer;
+      xrange = gxmax - gxmin;
+      // 통계량 계산
+      for (i=0; i<nobs; i++) tdata3[i] = dataSet[i];
+      sum = 0;
+      for (i=0; i<nobs; i++) {sum += dataSet[i];}
+      avg = sum / nobs;
+      sqsum = 0;
+      for (i=0; i<nobs; i++) {
+        temp = dataSet[i]-avg;
+        sqsum += temp*temp;
+      }
+      std = Math.sqrt(sqsum / nobs);
+  
+      tdata3.sort(function(a,b){return a-b})
+      min    = tdata3[0];
+      max    = tdata3[nobs-1];
+      median = d3.quantile(tdata3, 0.5);
+      Q1     = d3.quantile(tdata3, 0.25);
+      Q3     = d3.quantile(tdata3, 0.75);
+      // data regenaration by bins interval
+      for (i=0; i<nobs; i++) {
+          if(dataSet[i] < bins[0])    {dataA[i] = bins[0] - step; break}
+          for (k=1; k<=nint; k++) {
+            if (dataSet[i] >= bins[k-1] && dataSet[i]<bins[k]) {dataA[i] = bins[k-1]; break;}
+          }
+          if (dataSet[i] >= bins[nint]) dataA[i] = bins[nint];
+      }
+      // Sorting and indexing data in ascending order
+      for (i=0; i<nobs; i++) index[i] = i;
+      for (i=0; i<nobs-1; i++) {
+        for (j=i; j<nobs; j++) {
+          if(dataA[i] > dataA[j]) {
+              temp     = dataA[i];  tempi    = index[i];
+              dataA[i] = dataA[j];  index[i] = index[j];
+              dataA[j] = temp;      index[j] = tempi;  
+          }
+        }
+      } 
+      // Counting the number of value 
+      for(i=0; i<nobs; i++) {dvalueFreq3[i]=0} ;
+      nvalue = 0;
+      dataValue3[nvalue]  = dataA[0];  
+      for (i=1; i<nobs; i++) {
+        if (dataA[i] > dataA[i-1]) {
+          nvalue++;
+          dataValue3[nvalue] = dataA[i];
+        }
+      }
+      
+      // Rearrange to original data with dataA and dataY in ascending
+      for (i=0; i<nobs; i++) tdata3[i]  = dataA[index[i]];
+      for (j=0; j<=nvalue; j++) dvalueFreq3[j] = 0;
+      for (i=0; i<nobs; i++) {
+        for (j=0; j<=nvalue; j++) {
+          if(tdata3[i] == dataValue3[j]) {
+            dvalueFreq3[j]++; 
+            tdata3Y[i] = dvalueFreq3[j];
+            break;
+          };
+        }
+      }
+      // Maximum of frequency
+      freqMaxP = dvalueFreq3[0];
+      for (j=1; j<=nvalue; j++) {
+        if (dvalueFreq3[j] > freqMaxP) freqMaxP = dvalueFreq3[j];
+      }
+      // 점그래프
+      var start = 0;
+      drawDotSample3(nobs, tdata3, tdata3Y, gxmin, gxmax, start);
+      statP3[0]  = nobs;
+      statP3[1]  = avg;
+      statP3[2]  = std;
+      statP3[3]  = dataA[0];
+      statP3[4]  = Q1;
+      statP3[5]  = median;
+      statP3[6]  = Q3;
+      statP3[7]  = dataA[nobs-1];
+      statP3[8]  = freqMaxP;
+      statP3[9]  = gxmin;
+      statP3[10] = gxmax;
+}
+// 구간추정 표시 함수
+function drawInterval(nobs, avg, statP, gxmin, xrange, clevel, height, niter, start) {
+        var ty    = start + height;
+        var temp  = clevel*statP[2]/Math.sqrt(nobs);
+        var avgx  = marginCI.left + graphWidthCI*(avg-gxmin)/xrange;
+        var stdmx = marginCI.left + graphWidthCI*(avg-temp-gxmin)/xrange;
+        var stdpx = marginCI.left + graphWidthCI*(avg+temp-gxmin)/xrange;
+        var checkMu = true;
+        if (avg - temp > statP[1]) checkMu = false;
+        if (avg + temp < statP[1]) checkMu = false;
+        if (checkMu) {
+          chart3.append("circle").attr("class","meanG").attr("cx",avgx).attr("cy",ty).attr("r",2)
+              .style("stroke","green")
+          chart3.append("line")  .attr("class","meanG").attr("x1",stdmx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
+              .style("stroke","green")
+          chart3.append("line")  .attr("class","meanG").attr("x1",stdpx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
+              .style("stroke","green")
+        }
+        else {
+          chart3.append("circle").attr("class","meanR").attr("cx",avgx).attr("cy",ty).attr("r",2)
+              .style("stroke","red")
+          chart3.append("line")  .attr("class","meanR").attr("x1",stdmx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
+              .style("stroke","red")
+          chart3.append("line")  .attr("class","meanR").attr("x1",stdpx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
+              .style("stroke","red")
+        }
+        if (niter < 11) {
+          if (checkMu) chart3.append("text").attr("class","meanG").attr("x", avgx-28).attr("y", ty + 15).text(svgStrU[22][langNum]+"="+f2(avg))
+                           .style("stroke","green")
+		           .style("font-family","sans-serif").style("font-size","9pt")
+          else chart3.append("text").attr("class","meanR").attr("x", avgx-28).attr("y", ty + 15).text(svgStrU[22][langNum]+"="+f2(avg))
+                   .style("stroke","red")
+		   .style("font-family","sans-serif").style("font-size","9pt")
+        }
+}
+// 전체 구간추정 표본그림 제거
+function removeAllSample3() {
+	chart3.selectAll("circle.circleS").remove();
+	chart3.selectAll("circle.meanG").remove();
+	chart3.selectAll("circle.meanR").remove();
+	chart3.selectAll("text.meanG").remove();
+	chart3.selectAll("text.meanR").remove();
+	chart3.selectAll("line.meanG").remove();
+	chart3.selectAll("line.meanR").remove();
+}
+// 통계량 표시 함수
+function drawStatSample3(stat, start, type) {
+        var avg    = stat[1];
+        var std    = stat[2];
+        var freqMax= stat[8];
+        var gxmin  = stat[9];
+        var gxmax  = stat[10];
+        var xrange = gxmax - gxmin;
+        if (type == 1) var strmean = "#00A2FF";
+        else var strmean = "#FF3500";
+        var strstd =svgStrU[4][langNum]+" ";
+        if (type == 2 && checkSampling && checkCLT) strstd = svgStrU[18][langNum]+" ";
+        var ty    = start + marginCI.top  + graphHeightCI + 10;
+        var avgx  = marginCI.left + graphWidthCI*(avg-gxmin)/xrange;
+        var stdmx = marginCI.left + graphWidthCI*(avg-std-gxmin)/xrange;
+        var stdpx = marginCI.left + graphWidthCI*(avg+std-gxmin)/xrange;
+      if (checkSampling) {  
+        chart3.append("line") 
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("x1",avgx)
+           .attr("y1",ty)
+           .attr("x2",avgx)
+           .attr("y2",start + marginCI.top + graphHeightCI - freqMax*2*radius - 10) 
+        chart3.append("circle")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("cx",avgx)
+           .attr("cy",ty)
+           .attr("r",2)
+        chart3.append("line")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("x1",stdmx)
+           .attr("y1",ty)
+           .attr("x2",avgx)
+           .attr("y2",ty)
+        chart3.append("line")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("x1",stdpx)
+           .attr("y1",ty)
+           .attr("x2",avgx)
+           .attr("y2",ty)
+        chart3.append("circle")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("cx",stdmx)
+           .attr("cy",ty)
+           .attr("r",2)
+        chart3.append("circle")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("cx",stdpx)
+           .attr("cy",ty)
+           .attr("r",2)
+        chart3.append("text")
+           .attr("class","meanP")      
+           .style("font-size","8pt")
+           .style("stroke",strmean)
+           .attr("x", avgx-28)
+           .attr("y", ty + 15)
+           .text(svgStrU[3][langNum]+"="+f2(avg))
+        chart3.append("text")
+           .attr("class","meanP")      
+           .style("font-size","8pt")
+           .style("stroke",strmean)
+           .attr("x", stdpx+10)
+           .attr("y", ty+5)
+           .text(strstd+f2(std))
+      }
+}     
+
+  </script>
+
+  <div class="mainTable">
          일반적으로 모집단이 평균이 \(\mu\)인 정규분포이고 모분산 \(\sigma^2\)을 알고 있다면 
          모평균 \(\mu\)의 신뢰구간은 신뢰도를 \(1-\alpha\)로 하였을 때 다음과 같다.
   </div>
@@ -889,22 +2771,11 @@
          그러므로, 표본의 크기가 증가하면 구간의 너비가 좁아진다. 즉, 보다 정확한 추정이 된다. 
       </div>
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatH_65ConfidenceIntervalMuH.svg" onclick="window.open(addrStr[156])">     
-          </td>
-          <td>
-            <p>『eStatH』를 이용하면 쉽게 모평균을 추정할 수 있다. 주메뉴에서 ‘추정: 모평균 ’를 
-                선택하고 표본크기, 표본평균, 모표준편차를 &lt;그림 4.8&gt;과 같이 입력한 후 [실행] 버튼을 
-                클릭하면 신뢰구간이 계산된다. 그 아래에 있는 표본의 크기와 신뢰도를 조정하며 
-                신뢰구간의 너비를 조절하는 시뮬레이션 창이다.
-            <p>
-               <img class="imgFig600600" src="../FigureH/HFig0408.png">
-               <div class="textLeft">&lt;그림 4.8&gt;  『eStatH』 모평균의 추정</div>
-          </td>
-        </tr>
-      </table>
+         『eStatH』를 이용하면 쉽게 모평균을 추정할 수 있다. 주메뉴에서 ‘추정: 모평균 ’를 
+         선택하고 &lt;그림 4.8&gt;에서 표본크기, 표본평균, 모표준편차를 입력한 후 [실행] 버튼을 
+         클릭하면 신뢰구간이 계산된다. 그 아래에 있는 표본의 크기와 신뢰도를 조정하며 
+         신뢰구간의 너비를 조절하는 시뮬레이션 창이다.
+     <p>
     </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
@@ -945,28 +2816,347 @@
          2) 신뢰도 99%의 신뢰구간을 구하라. <br>
          3) 위의 두 신뢰구간을 비교하라. 
       <p><b>풀이</b>
-      <table style="width:650px">
+      <p>자료가 있을 경우 『eStatH』를 이용하면 쉽게 모평균을 추정할 수 있다. 주메뉴에서
+         ‘추정: 모평균 \(\mu\)’를 선택하고 데이터를  &lt;그림 4.8&gt;과 같이 입력한 후 [실행] 
+         버튼을 클릭하면 신뢰도 95%의 신뢰구간이 계산된다. 
+      <p>
+         신뢰도를 99%을 선택하고 [실행] 버튼을 누르면 99% 신뢰구간이 계산된다.
+      <p>
+         그 아래에 있는 표본의 크기와 신뢰도를 조정하며 신뢰구간의 너비를 조절하는 시뮬레이션 창이다.
+      <p>
+      <!---------- html Confidence Interval --------------------------------------------------->
+      <b>[<span data-msgid="Confidence Interval Mu">Confidence Interval : Population Mean &mu;</span> ]</b> 
+      <p>
+      <button type="button" id="eraseCI" style="width:120px;"><b>새 데이터</b></button>
+      <p>
+      &nbsp;
+      <b>[<span data-msgid="Sample Data">Sample Data</span>]</b>&nbsp; 
+      <span style="color:blue;" data-msgid="input either sample data">
+        (input either sample data or sample statistics using csv / bsv)
+      </span>   
+      <table class="data">
+	<tr>
+	  <td> &nbsp;<input type="text" size=90 id="data1"></td>
+  	</tr>
+      </table>
+    
+      <table class="stat">
         <tr>
+          <td>&nbsp;&nbsp;<b>[<span data-msgid="Sample Statistics">Sample Statistics</span>]</b></td>
+          <td>&nbsp;&nbsp;</td>
+          <td><span data-msgid="Sample Size">Sample Size</span></td>
+          <td style="text-align:center;"><span class="fontmath">n</span></td>
+          <td>=</td>
+          <td><input type="text"  style="text-align:center;" size=9 id="nnCI"></td>
+          <td> <span style="color:red;">(>1) </span></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td><span data-msgid="Sample Mean">Sample Mean</span></td>
+          <td style="text-align:center;"><span class="fontmath">x&#772;</span></td>
+          <td>=</td>
+          <td><input type="text"  style="text-align:center;" size=9 id="xbar"></td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp;<b>[<span data-msgid="PopulationStd">Population Std</span>]</b></td>
+          <td></td>
+          <td></td>
+          <td style="text-align:center;">&sigma;</td>
+          <td>=</td>
+          <td><input type="text"  style="text-align:center;" size=9 id="stdP"></td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp;<b>[<span data-msgid="Confidence Level">Confidence Level</span>]</b></td>
+          <td></td>
+          <td></td>
+          <td><span class="fontmath">1 - &alpha;</span></td>
+          <td>=</td>
           <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatH_65ConfidenceIntervalMuH.svg" onclick="window.open(addrStr[156])">     
-          </td>
-          <td>
-            <p>자료가 있을 경우 『eStatH』를 이용하면 쉽게 모평균을 추정할 수 있다. 주메뉴에서
-              ‘추정: 모평균 \(\mu\)’를 선택하고 데이터를  &lt;그림 4.9&gt;와 같이 입력한 후 [실행] 
-               버튼을 클릭하면 신뢰도 95%의 신뢰구간이 계산된다. 
-            <p>
-               <img class="imgFig600600" src="../FigureH/HFig0409.png">
-               <div class="textLeft">&lt;그림 4.9&gt; 자료를 이용항 『eStatH』 모평균의 추정</div>
-            <p>
-               신뢰도를 99%을 선택하고 [실행] 버튼을 누르면 99% 신뢰구간이 계산된다.
-            <p>
-               그 아래에 있는 표본의 크기와 신뢰도를 조정하며 신뢰구간의 너비를 조절하는 시뮬레이션 창이다.
+            <form name="myForm2">&nbsp;&nbsp;&nbsp; 
+              <input type="radio" name = "type2" value="1" checked> 95%       
+              <input type="radio" name = "type2" value="2" > 99%
+            </form>       
           </td>
         </tr>
       </table>
+      <button type="button" id="executeTH" style="width:120px;">
+        <b><span data-msgid="Execute">Execute</span></b>
+      </button> 
+      <p>
+ 
+      <table class="stat">
+        <tbody>
+        <tr>
+          <td style="width:170px">&nbsp;&nbsp;<b>[<span data-msgid="Confidence Interval">Confidence Interval</span>]</b></td>
+          <td></td>
+          <td><span class="fontmath">x&#772; &plusmn; </span> <span class="fontmath" id="intFormula"></span></td>
+          <td></td>
+          <td></td>
+          <td style="text-align:center;"> &hArr; </td>
+          <td>[&nbsp;<input type="text" class="textarea" size=6 id="cleft">&nbsp;&nbsp;&nbsp;,</td>
+          <td><input type="text" class="textarea" size=6 id="cright">&nbsp;]</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td><span class="fontmath" id="tFormula"></span> = 
+              <input type="text" class="textarea" size=6 id="tvalue">
+          </td>
+          <td></td>
+          <td><span class="fontmath" id="stderrFormula"></span> &nbsp;= </td>
+          <td><input type="text" class="textarea" size=6 id="stderr"></td>
+        </tr>
+        </tbody>
+      </table>
+      <p>
+      <svg id="chart4" width="700" height="300" style="border-style:solid;"> </svg>
+      <table style="width:600px; color:red; stroke:2">
+        <tr>
+          <td style="width:100px;"> n = <input type="text" class="textarea" value="20" size=3 id="nn2"></td>
+          <td><sup><small> 1 </small></sup></td>  
+          <td><input type="range" min="1" max="200" value="100" id="rangeN" onchange="showValueNN2(this.value)"/></td>  
+          <td><sup><small>200</small></sup>  &nbsp;&nbsp;</td>
+          <td style="width:100px;">1-&alpha; = <input type="text" class="textarea" value="0.95" size=3 id="alpha2"></td>
+          <td><sup><small> 0.60 </small></sup></td> 
+          <td><input type="range" min="60" max="99" value="95" id="rangeAlpha" onchange="showValueAlpha2(this.value)"/></td>
+          <td><sup><small> 0.99 </small></sup></td> 
+        </tr>
+      </table>
+
+      <button type="button" id="saveGraphCI"  style="width:120px;">
+	<b><span class="tooltiptext" data-msgid="Graph Save">Graph Save</span></b>
+      </button>
+      <p>
+      <div class="textLeft">&lt;그림 4.8&gt; 자료를 이용항 『eStatH』 모평균의 추정</div>
     </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
+    <!---------Script for Confidence Interval ------------------------------------------------->
+    <p>
+    <script>
+      setLanguage('ko');
+      var chart = d3.select("#chart4");
+      var margin2      = {top: 10, bottom: 10, left: 10, right: 10};
+      var svgWidth2    = 700;
+      var svgHeight2   = 300;
+      var graphWidth2  = svgWidth2 - margin2.left - margin2.right;
+      var graphHeight2 = svgHeight2 - margin2.top - margin2.bottom;
+
+      var gxmin, gxmax, gymin, gymax;
+      var title;
+      var df, info, alpha, alpha2, confidence, confidence2;
+      var nn, xbar, variS, stdS, stat, left, right, temp, tvalue, zvalue, stderr;
+      var nn2, left2, right2, temp2, tvalue2, zvalue2, stderr2;
+      var leftMin, rightMax, range;
+      var strZ    = "z<sub>&alpha;/2</sub> ";
+      var stderrT = "s / &radic; n";
+      var stderrZ = "&sigma; / &radic; n";
+      var intZ    = strZ+"&nbsp;&nbsp; ("+stderrZ+")";
+
+      document.getElementById("stderr").disabled  = true; 
+      document.getElementById("cleft").disabled   = true; 
+      document.getElementById("cright").disabled  = true;  
+      document.getElementById("nn2").disabled     = true;
+      document.getElementById("tvalue").disabled  = true; 
+      document.getElementById("alpha2").disabled  = true; 
+      document.getElementById("stderrFormula").innerHTML = stderrT;
+      document.getElementById("intFormula").innerHTML = intZ;
+
+      // Test type
+      var testType = 2; // Z-test
+      clearText();
+      document.getElementById("tFormula").innerHTML = strZ;
+      document.getElementById("stderrFormula").innerHTML = stderrZ;
+      document.getElementById("intFormula").innerHTML = intZ;
+
+      // alpha
+      confidence = 0.95;
+      alpha = 1 - confidence;
+      var a = document.myForm2.type2;
+      a[0].onclick = function() { confidence = 0.95;  alpha = 1 - confidence; clearText();}  
+      a[1].onclick = function() { confidence = 0.99;  alpha = 1 - confidence; clearText();} 
+      // init example
+      document.getElementById("data1").value = "171, 172, 185, 169, 175, 177, 174, 179, 168, 173";
+      document.getElementById("nnCI").value  = "10";
+      document.getElementById("xbar").value  = "174.3";
+      document.getElementById("stdP").value  = "10";
+
+      // data input control =====================================
+      d3.select("#data1").on("input", function() {
+        stat = simplestat("#data1");  
+        document.getElementById("nnCI").value   = stat.n;    
+        document.getElementById("xbar").value = f2(stat.xbar);
+      });
+
+      updateData = function() {
+        document.getElementById("data1").value = ''; 
+      }
+
+      d3.select("#nnCI").on("input", updateData);
+      d3.select("#xbar").on("input", updateData);
+
+      // erase Data and Graph
+      d3.select("#eraseCI").on("click",function() {
+        chart.selectAll("*").remove();
+        document.getElementById("data1").value  = "";
+        document.getElementById("nnCI").value   = "";
+        document.getElementById("xbar").value   = "";
+        document.getElementById("stdP").value   = "";
+        document.getElementById("cleft").value  = "";
+        document.getElementById("cright").value = "";
+        document.getElementById("tvalue").value = "";
+        document.getElementById("stderr").value = "";
+      })
+
+      // Confidence Interval ======================================
+      d3.select("#executeTH").on("click",function() {
+        chart.selectAll("*").remove();
+        // input value
+        nn   = parseFloat(d3.select("#nnCI").node().value);
+        xbar = parseFloat(d3.select("#xbar").node().value);
+        stdP = parseFloat(d3.select("#stdP").node().value);
+        // check input value
+        if ( isNaN(nn) || isNaN(xbar) || nn < 2 ) {  // wrong input
+          chart.append("text").attr("class","mean")
+               .attr("x", 150).attr("y", 100)
+               .text("No input or wrong input !!   Try again.")
+               .style("stroke","red")
+          return;
+        }
+        if ( isNaN(stdP) || stdP <=0) {
+          chart.append("text").attr("class","mean")
+               .attr("x", 150).attr("y", 100)
+               .text("Population std dev  - No input or wrong input !!   Try again.")
+               .style("stroke","red")
+          return;
+        }
+        // confidence interval
+          tvalue = stdnormal_inv(1 - alpha/2, info);
+          stderr = stdP / Math.sqrt(nn);
+          temp  = tvalue * stderr;
+          left  = xbar - temp;
+          right = xbar + temp;  
+          leftMin  = xbar - 4*stdP;
+          rightMax = xbar + 4*stdP;
+          range    = rightMax - leftMin;
+          if (nn > 1) document.getElementById("tvalue").value = f3(tvalue);
+          document.getElementById("stderr").value = f3(stderr);
+          document.getElementById("cleft").value   = f3(left);
+          document.getElementById("cright").value  = f3(right); 
+          document.getElementById("nn2").value  = nn;
+          document.getElementById("alpha2").value  = confidence;
+          drawConfidenceIntervalMu();
+      })
+
+      // svg Graph Save
+      d3.select("#saveGraphCI").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth2;
+        var height = svgHeight2;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+
+// alpha t Z 바뀔때 clear
+function clearText() {
+        chart.selectAll("*").remove();
+        document.getElementById("tvalue").value = null;
+        document.getElementById("stderr").value = null;
+        document.getElementById("cleft").value  = null;
+        document.getElementById("cright").value = null;
+}
+// n slide bar
+function showValueNN2(newValue) {
+        chart.selectAll("*").remove();
+        document.getElementById("nn2").value = newValue;
+        drawConfidenceIntervalMu();
+}
+// alpha slide bar
+function showValueAlpha2(newValue) {
+        chart.selectAll("*").remove();
+        document.getElementById("alpha2").value = f2(newValue/100);
+        drawConfidenceIntervalMu();
+}
+// draw confidence interval
+function drawConfidenceIntervalMu() {
+        var x1, x2, xm, y1, y2, tempy;
+        chart.selectAll("*").remove();
+
+        nn2    = parseFloat(d3.select("#nn2").node().value); 
+        confidence2 = parseFloat(d3.select("#alpha2").node().value); 
+        alpha2 = 1 - confidence2;
+        df2   = nn2 - 1;
+
+        // confidence interval
+        tvalue2 = stdnormal_inv(1 - alpha2/2, info);
+        stderr2 = stdP / Math.sqrt(nn2);
+        temp   = tvalue2 * stderr2;
+        left2  = xbar - temp;
+        right2 = xbar + temp;  
+
+        tempy    = margin2.top + graphHeight2/2 -10;
+        var xScale = d3.scaleLinear().domain([leftMin,rightMax]).range([0,graphWidth2])
+        chart.append("g")
+          .attr("transform","translate("+margin2.left+","+tempy+")")
+          .call(d3.axisBottom(xScale))                  // 눈금을 표시할 함수 호출
+
+        // draw conf interval
+        x1 = margin2.left + 30;
+        y1 = margin2.top + 20; 
+        chart.append("text").attr("x",x1).attr("y", y1)
+           .text("  ***  "+svgStrU[20][langNum]+" : n="+f0(nn) +",          (1-\u03B1)="+f2(confidence)+"  ***")
+           .style("font-size","10pt").style("stroke","blue").style("text-anchor","start");
+        xm = margin2.left + (xbar-leftMin)*graphWidth2/range;
+        x1 = margin2.left + (left-leftMin)*graphWidth2/range;
+        x2 = margin2.left + (right-leftMin)*graphWidth2/range;
+        y1 = margin2.top + graphHeight2/3 - 20; 
+        y2 = y1;
+        chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+           .style("stroke","black").style("stroke-width","2");
+        chart.append("circle").attr("cx",x1).attr("cy",y1).attr("r",3).style("fill","blue");
+        chart.append("circle").attr("cx",xm).attr("cy",y1).attr("r",3).style("fill","blue");
+        chart.append("circle").attr("cx",x2).attr("cy",y2).attr("r",3).style("fill","blue");
+        y1 += 20;
+        y2 = y1;
+        chart.append("text").attr("x", x1).attr("y", y1).text("[ "+f3(left))
+           .style("font-size","10pt").style("stroke","blue").style("text-anchor","middle")
+        chart.append("text").attr("x", xm).attr("y", y1).text(" ,")
+           .style("font-size","10pt").style("stroke","blue").style("text-anchor","middle")
+        chart.append("text").attr("x", x2).attr("y", y1).text(f3(right)+" ]")
+           .style("font-size","10pt").style("stroke","blue").style("text-anchor","middle")
+
+        // conf interval simulation
+        x1 = margin2.left + (left2-leftMin)*graphWidth2/range;
+        x2 = margin2.left + (right2-leftMin)*graphWidth2/range;
+        y1 = margin2.top + 2*graphHeight2/3 + 10; 
+        y2 = y1;
+        chart.append("text").attr("x", margin2.left+30).attr("y", y1)
+           .text("  ***  "+svgStrU[20][langNum]+" "+svgStrU[98][langNum]+" : n="+f0(nn2) +",          (1-\u03B1)="+f2(confidence2)+"  ***")
+           .style("font-size","10pt").style("stroke","red").style("text-anchor","start");
+        y1 += 20;
+        y2 = y1;
+        chart.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+           .style("stroke","red").style("stroke-width","2");
+        chart.append("circle").attr("cx",x1).attr("cy",y1).attr("r",3).style("fill","red");
+        chart.append("circle").attr("cx",xm).attr("cy",y1).attr("r",3).style("fill","red");
+        chart.append("circle").attr("cx",x2).attr("cy",y2).attr("r",3).style("fill","red");
+        y1 += 20;
+        y2 = y1;
+        chart.append("text").attr("x", x1).attr("y", y1).text("[ "+f3(left2))
+           .style("font-size","10pt").style("stroke","red").style("text-anchor","middle");
+        chart.append("text").attr("x", xm).attr("y", y1).text(" ,")
+           .style("font-size","10pt").style("stroke","red").style("text-anchor","middle")
+        chart.append("text").attr("x", x2).attr("y", y1).text(f3(right2)+" ]")
+           .style("font-size","10pt").style("stroke","red").style("text-anchor","middle");
+
+}
+ 
+  </script>
+
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
       <table >

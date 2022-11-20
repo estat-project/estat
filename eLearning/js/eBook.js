@@ -300,9 +300,9 @@
     var nString   = 200;
     var addrStr   = new Array(nString);
     var addrStrB  = new Array(nString);
-    addrStr[0]   = "http://www.estat.me/estat/eStat/index.html";
-    addrStr[1]   = "http://www.estat.me/estat/eStatH/index.html";
-    addrStr[2]   = "http://www.estat.me/estat/eStatU/index.html";
+    addrStr[0]   = "../../../eStat/index.html";
+    addrStr[1]   = "../../../eStatH/index.html";
+    addrStr[2]   = "../../../eStatU/index.html";
     addrStr[3]   = "https://www.youtube.com/watch?v=jjfCqdDZZ6Q";
     addrStr[4]   = temp+JSON.stringify({"dataURL":"../Example/eBook/A21Summary_StudentByGender.csv","analysisVar":1,"groupVars":[2,3],"graphNum":1});
     addrStr[5]   = temp+JSON.stringify({"dataURL":"../Example/eBook/A34Raw_Gender.csv","analysisVar":1,"graphNum":1});
@@ -442,13 +442,13 @@
     addrStr[139] = "../../../eStatU/38TimeseriesHoltWinter.htm";
     addrStr[140] = "../../../eStatU/39TimeseriesAutoRegressive.htm";
 
-    // eStatM
+    // eStatM, eStatH
     addrStr[141] = "../../../eStatU/01BarChart.htm";
     addrStr[142] = "../../../eStatU/05WordCloud.htm";
     addrStr[143] = "../../../eStatU/07StemLeafPlot.htm";
     addrStr[144] = "../../../eStatU/08Histogram.htm";
     addrStr[145] = "../../../eStatU/09RelativeFrequency.htm";
-    addrStr[146] = "../../../eStatH/10DotGraph.htm";
+    addrStr[146] = "../../../eStatM/10DotGraph.htm";
     addrStr[147] = "../../../eStatU/40Permutation.htm";
     addrStr[148] = "../../../eStatU/41BinomialEng.htm";
     addrStr[149] = "../../../eStatU/42BinomialEng.htm";
@@ -459,7 +459,7 @@
     addrStr[154] = "../../../eStatU/63SampleEng.htm";
     addrStr[155] = "../../../eStatU/64SampleEng.htm";
     addrStr[156] = "../../../eStatH/65ConfidenceIntervalMu_H.htm";
-    addrStr[157] = "../../../eStatH/30ScatterPlotH.htm";
+    addrStr[157] = "../../../eStatM/30ScatterPlotH.htm";
     addrStr[158] = "../../../eStatU/31CorrelationEng.htm";
     addrStr[159] = "../../../eStatU/32RegressionEng.htm";
     addrStr[160] = "../../../eStatU/11RandomNumber.htm";
@@ -478,6 +478,8 @@
     addrStr[171] = "../../../eLearning/kr/index.html";
     addrStr[172] = "../../../eStatU/90TestingANOVA_RBD.htm";
     addrStr[173] = "../../../eStatU/90TestingANOVA_Latin.htm";
+// eStatM
+    addrStr[181] = "../../../eStatM/index.html";
 
 // eBook link address
     temp          = "..";
