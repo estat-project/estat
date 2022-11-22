@@ -2679,16 +2679,16 @@ function removeRegressionScatter() {
       var graphHeightCorr = svgHeight - marginCorr.top - marginCorr.bottom;
 
       var statCorr  = new Array(30);
-      var tobs      = 200;
-      var xdataCorr = new Array(tobs);
-      var ydataCorr = new Array(tobs);
+      var tobsCorr  = 200;
+      var xdataCorr = new Array(tobsCorr);
+      var ydataCorr = new Array(tobsCorr);
       var generator = d3.randomNormal(0,1) 
       var checkTitle = true;
 
       d3.select("#redrawCorr").on("click", function(){  
           chartCorr.selectAll("*").remove();  // 전화면 제거
           document.getElementById("regressCorr").checked = false;
-          for (i=0; i<tobs; i++) {
+          for (i=0; i<tobsCorr; i++) {
             xdataCorr[i] = 0;
             ydataCorr[i] = 0;
           }
@@ -2697,16 +2697,16 @@ function removeRegressionScatter() {
           if (rr < -1) rr = -0.999;
           // slider control
           document.getElementById("rangeCorr").value  = 100*(1+rr);
-          for (i=0; i<tobs; i++) {
+          for (i=0; i<tobsCorr; i++) {
             xdataCorr[i] = generator();
             ydataCorr[i] = rr*xdataCorr[i] + Math.sqrt(1-rr*rr)*generator();
           }
-          basicScatterStat(tobs, xdataCorr, ydataCorr, statCorr);
+          basicScatterStat(tobsCorr, xdataCorr, ydataCorr, statCorr);
           statCorr[5]  = -4; // gxmin
           statCorr[6]  = 4;  // gxmax
           statCorr[15] = -4; // gymin
           statCorr[16] = 4;  // gymax
-          showCorrelation(tobs, xdataCorr, ydataCorr, statCorr[5], statCorr[6], statCorr[15], statCorr[16], graphWidthCorr, graphHeightCorr, checkTitle);
+          showCorrelation(tobsCorr, xdataCorr, ydataCorr, statCorr[5], statCorr[6], statCorr[15], statCorr[16], graphWidthCorr, graphHeightCorr, checkTitle);
       })
 
       // 회귀선 그리기
