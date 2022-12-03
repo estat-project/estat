@@ -165,6 +165,13 @@
       h1[1].onclick = function() { h1Type = h1.value; if (checkExecute) testingHypothesisMu(); }    // 우측검정
       h1[2].onclick = function() { h1Type = h1.value; if (checkExecute) testingHypothesisMu(); }    // 좌측검정
 
+function clearText(){
+      document.getElementById("tformula").value  = ""; 
+      document.getElementById("tvalue").value  = ""; 
+      document.getElementById("intFormula").value  = ""; 
+      document.getElementById("cleft").value  = ""; 
+      document.getElementById("cright").value  = ""; 
+}
       // Test type
       var test = document.myForm1.type1;
       var testType = 1;
@@ -249,6 +256,7 @@
           }
         }
         if (isNaN(mu) || isNaN(nn) || isNaN(xbar) || nn < 2 || std <= 0 ) {  // wrong input
+          bar.selectAll("*").remove();
           bar.append("text").attr("class","mean")
              .attr("x", 150)
              .attr("y", 100)
@@ -256,13 +264,23 @@
              .style("stroke","red")
           return;
         }
+        if (testType == 1 && isNaN(variS) ) {    // t-test Sample Statistics checking
+          bar.selectAll("*").remove();
+          bar.append("text").attr("class","mean")
+             .attr("x", 150)
+             .attr("y", 100)
+             .text("input sample variance")
+             .style("stroke","red")
+          return;
+        }
         if (testType == 2 && isNaN(variP) ) {    // Z-test Population variance checking
-            bar.append("text").attr("class","mean")
-               .attr("x", 150)
-               .attr("y", 100)
-               .text("input population variance")
-               .style("stroke","red")
-            return;
+          bar.selectAll("*").remove();
+          bar.append("text").attr("class","mean")
+             .attr("x", 150)
+             .attr("y", 100)
+             .text("input population variance")
+             .style("stroke","red")
+          return;
         }
         // Testing
         testingHypothesisMu()
