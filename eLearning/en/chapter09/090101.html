@@ -51,7 +51,12 @@
 	 </script>
        <link rel="stylesheet" href="../../css/pandoc.css">
        <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="../../../eStat/js/language.js" ></script>   
+       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
+       <script src="../../../eStat/js/eStatU.js"></script>
+       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
+       <script src="../../../eStat/lib/convertSVG.js"></script>
 </head>
 <body>
 
@@ -276,7 +281,7 @@
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <button type="button" style="width:160px" onclick="moveSection(94)"><b>Next</b>&nbsp;&nbsp; &#10095;</button>
   <p>
-  <h4>9.1.1 Multiple Comparison</h4>
+  <h4>9.1.1 Multiple Comparisons</h4>
   <p>
   <h6>
       <a href="090101-02.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
@@ -290,17 +295,17 @@
       levels are different from each other. 
       <p>
       The analysis of differences between population means after ANOVA requires several tests for the mean difference 
-      to be performed simultaneously and it is called as the multiple comparison. The hypothesis for the multiple 
+      to be performed simultaneously and it is called as the multiple comparisons. The hypothesis for the multiple 
       comparison to test whether the level means, \(\mu_i\) and \(\mu_j\), are equal is as follows:
       $$
         H_0 : \mu_i = \mu_j , \quad H_1 : \mu_i \ne \mu_j \quad i=1,2,...,k-1,\; j=i+1,i+2,...,k  
       $$
       It means that there are \(_{k}C_{2}\) tests to be done simultaneously for the multiple comparisons 
-      if there is \(k\) level of the factor. 
+      if there are \(k\) levels of the factor. 
       <p>
-      There are many multiple comparison tests, but Tukey's Honestly Significant Difference (HSD) test is most commonly 
+      There are many multiple comparisons tests, but Tukey's Honestly Significant Difference (HSD) test is most commonly 
       used. The statistic for Tukey's HSD test to compare means \(\mu_i\) and \(\mu_j\) is the sample mean 
-      difference \({\overline y}_i - {\overline y}_j\) and the decision rule to test \(H_0 : \mu_i = \mu_j\) is as follows:
+      difference \({\overline y}_{i \cdot} - {\overline y}_{j \cdot}\) and the decision rule to test \(H_0 : \mu_i = \mu_j\) is as follows:
       <p>
       <div class="textL20">
         If \(|{\overline y}_{i\cdot} - {\overline y}_{j\cdot} | > HSD_{ij}\), then reject \(H_0\) <br>
@@ -308,7 +313,7 @@
         \(n_i\) and \(n_j\) are the number of samples (repetitions) in \(i^{th}\) level and \(j^{th}\) level, 
         \(MSE\) is the mean squared error, \(q_{k,n-k; &alpha;}\) is the right tail 100\(\times \alpha\) 
         percentile of the studentized range distribution with parameter \(k\) and \(n-k\) degrees of freedom. 
-        (It can be found at『eStatU』 (&lt;Figure 9.1.8&gt;)).
+        (It can be found at 『eStatU』 (&lt;Figure 9.1.8&gt;)).
       </div>
       <p>
       <table class="width:650px">
@@ -318,7 +323,7 @@
           </td>
           <td>
             <img class="imgFig600400" src="../Figure/Fig090108.png">
-            <div class="figText">&lt;Figure 9.1.8&gt;『eStatU』HSD percentile table</div>
+            <div class="figText">&lt;Figure 9.1.8&gt; 『eStatU』 HSD percentile table</div>
           </td>
         </tr>
       </table>
@@ -326,11 +331,12 @@
        
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
-      <b>Example 9.1.2</b> 
-      In [Example 9.1.1], the analysis variance of English scores by the grade concluded that the null hypothesis was 
-      rejected and the average English scores for each grade were not all the same. Now let's apply the multiple 
-      comparisons to check where the differences exist among each school grade with the significance level of 5%. Use 
-      『eStat』 to check the result.
+      <p>
+         <b>Example 9.1.2</b> 
+         In [Example 9.1.1], the analysis variance of English scores by the grade concluded that the null hypothesis was 
+         rejected and the average English scores for each grade were not all the same. Now let's apply the multiple 
+         comparisons to check where the differences exist among each school grade with the significance level of 5%. Use 
+        『eStat』 to check the result.
       <p>
       <b>Answer</b>
       <p>
@@ -397,8 +403,8 @@
         \(\mu_3\) and \(\mu_4\) as can be seen in the dot graph with average in &lt;Figure 9.1.1&gt;. 
         It also shows that \(\mu_1\) has no significant difference from other means. 
       <p> 
-        If you click 'Multiple Comparison' in the options of the ANOVA as in &lt;Figure 9.1.3&gt;, 『eStat』shows 
-        the result of Tukey's multiple comparisons as shown in &lt;Figure 9.1.9&gt;. 『eStat』also shows the mean 
+        If you click [Multiple Comparison] in the options of the ANOVA as in &lt;Figure 9.1.3&gt;, 『eStat』 shows 
+        the result of Tukey's multiple comparisons as shown in &lt;Figure 9.1.9&gt;. 『eStat』 also shows the mean 
         difference and 95% HSD value for the sample mean combination after rearranging levels of rows and columns in 
         ascending order of the sample means. 
       <p> 
@@ -435,7 +441,7 @@
             <div class="textLeft"> [Ex] ⇨ eBook ⇨ PR090101_Rdatasets_PlantGrowth.csv</div> 
             <p>
             apply the multiple comparisons to check where differences exist among Control and two treatments with 
-            the significance level of 5%. Use『eStat』 .
+            the significance level of 5%. Use 『eStat』.
           </td>
         </tr>
       </table>
@@ -455,18 +461,19 @@
       should always be investigated. However, since \(\epsilon_{ij}\) can not be observed, the residual 
       as the estimate of \(\epsilon_{ij}\) is used to check the assumptions. The residuals in 
       the ANOVA are defined as the deviations used in the equation of the error sum of squares, for example, 
-      \(Y_{ij} - {\overline Y}_{i \cdot}\) in the one-way variance analysis.
+      \(Y_{ij} - {\overline Y}_{i \cdot}\) in the one-way analysis of variance.
     </div>
     <p>   
        
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
-      <b>Example 9.1.3</b> 
-      In [Example 9.1.1] of English score comparison by the grade, apply the residual analysis using『eStat』. 
+      <p>
+         <b>Example 9.1.3</b> 
+         In [Example 9.1.1] of English score comparison by the grade, apply the residual analysis using 『eStat』. 
       <p>
       <b>Answer</b>
       <p>
-        If you click on ‘Standardized Residual Plot’ of the ANOVA option in &lt;Figure 9.1.3&gt;, a scatter plot 
+        If you click on [Standardized Residual Plot] of the ANOVA option in &lt;Figure 9.1.3&gt;, a scatter plot 
         of residuals versus fitted values appears as shown in &lt;Figure 9.1.10&gt;. In this scatter plot, if the 
         residuals show no unusual tendency around zero and appear randomly, then the assumptions of independence and 
         homoscedasticity are valid. There is no unusual tendency in this scatter plot. Normality of the residuals can be 

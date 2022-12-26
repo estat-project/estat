@@ -51,7 +51,12 @@
 	 </script>
        <link rel="stylesheet" href="../../css/pandoc.css">
        <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="../../../eStat/js/language.js" ></script>   
+       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
+       <script src="../../../eStat/js/eStatU.js"></script>
+       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
+       <script src="../../../eStat/lib/convertSVG.js"></script>
 </head>
 <body>
 
@@ -254,7 +259,6 @@
                 <li><a href="../chapter13/1307.html">13.7 Exercise</a></li>
 	      </ul>
 	    </li>
-
 	  </ul>
 	</li>
       </ul>
@@ -291,9 +295,10 @@
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
-      <b>Example 12.1.1</b>
+      <p>
+         <b>Example 12.1.1</b>
          Based on the survey of advertising costs and sales for 10 companies that make the same product, 
-         we obtained the following data as Table 12.1.1. Using 『eStat』 , draw a scatter plot for this data 
+         we obtained the following data as in Table 12.1.1. Using 『eStat』 , draw a scatter plot for this data 
          and investigate the relation of the two variables.
       <p>
       <div class="textLeft">Table 12.1.1  Advertising costs and sales (unit: 1 million USD)</div>
@@ -351,21 +356,21 @@
       two variables, there is a covariance. The population covariance of the two variables \(X\) and \(Y\)
       is denoted as \(Cov(X,Y)\). When the random samples of two variables are given as 
       \( (X_1 , Y_1 ) , (X_2 , Y_2 ), ... , (X_n , Y_n ) \), the estimate of the population covariance 
-      using samples, which is called the sample covariance, \(s_{XY}\), is defined as follows:
-      $$
+      using samples, which is called the <b>sample covariance</b>, \(S_{XY}\), is defined as follows:
+      $$\small 
         \begin{align}
-          s_{XY} &= \frac{1}{n-1} \sum_{i=1}^{n} ( X_i - \overline X )( Y_i - \overline Y ) \\
+          S_{XY} &= \frac{1}{n-1} \sum_{i=1}^{n} ( X_i - \overline X )( Y_i - \overline Y ) \\
                  &= \frac{1}{n-1} ( \sum_{i=1}^{n} X_i  Y_i - n {\overline X}{\overline Y} )
         \end{align}
       $$
-      In the above equation, \(\overline X\) and \(\overline Y\) represent the sample means of \(X\) and
+      In the above equation, \(\small \overline X\) and \(\small \overline Y\) represent the sample means of \(X\) and
       \(Y\) respectively. 
       <p>
       In order to understand the meaning of covariance, consider a case that \(Y\) increases if \(X\) 
-      increases. If the value of \(X\) is larger than \(\overline X\) and the value of \(Y\) is larger than
-      \(\overline Y\), then \((X - \overline X)(Y- \overline Y) \) always has a positive value. Also, 
-      if the value of \(X\) is smaller than \(\overline X\) and the value of \(Y\) is smaller than 
-      \(\overline Y\), then \((X - \overline X)(Y- \overline Y) \) has a positive value. Therefore, 
+      increases. If the value of \(X\) is larger than \(\small \overline X\) and the value of \(Y\) is larger than
+      \(\small \overline Y\), then \(\small (X - \overline X)(Y- \overline Y) \) always has a positive value. Also, 
+      if the value of \(X\) is smaller than \(\small \overline X\) and the value of \(Y\) is smaller than 
+      \(\small \overline Y\), then \(\small (X - \overline X)(Y- \overline Y) \) has a positive value. Therefore, 
       their mean value which is the covariance tends to be positive. Conversely, if the value of the 
       covariance is negative, the value of the other variable decreases as the value of one variable 
       increases. Hence, by calculating covariance, we can see the relation between two variables: 
@@ -376,7 +381,7 @@
       it makes difficult to interpret the covariance according to the size of the value and inconvenient
       to compare with other data. Standardized covariance which divides the covariance by the standard 
       deviation of \(X\) and \(Y\), \(\sigma_{X}\) and \(\sigma_{Y}\), to obtain a measurement unrelated 
-      to the type of variable or specific unit, is called the population correlation coefficient 
+      to the type of variable or specific unit, is called the <b>population correlation coefficient</b> 
       and denoted as \(\rho\). 
       <p>
       $$
@@ -410,36 +415,57 @@
       <p>
        『eStatU』 provides a simulation of scatter plot shapes for different correlations as in &lt;Figure 12.1.4&gt;.
       <p>
-      <table style="width:650px">
+      <!---  Correlation simulation html -------------->
+      <b>[ Correlation Simulation using 『eStatU』 ]</b>
+      <p>
+      <table style="width:600px">
         <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU310_Correlation.svg" onclick="window.open(addrStr[79])">
+          <td style="width:150px">
+            <button type="button" id="redrawCorr" >
+              <b><span data-msgid="Execute">Execute</span></b>
+            </button>
           </td>
-          <td>
-            <img class="imgFig600400" src="../Figure/Fig120104.png">
-            <div class="figText">&lt;Figure 12.1.4&gt; Simulation of correlation coefficient at 『eStatU』</div>
+          <td style="width:400px"> <span data-msgid="Correlation Coefficient">Correlation Coefficient</span> =
+                  <input type="text" class="textarea" value="0.8" size=4 id="initCorr" style="text-align: center;">
+          </td>
+          <td style="width:20px">-1</td>
+          <td style="width:100px"><input style="width:150px" type="range" min="0" max="200" value="180" step="10" id="rangeCorr" onchange="showValue(this.value)"></td>
+          <td style="width:20px">1</td>
           </td>
         </tr>
       </table>
+      <p>
+      <svg id="chartCorr" width="750" height="540" style="border-style:solid;"> </svg> 
+      <p>
+      <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+      </button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <label>
+        <input type="checkbox" id="regressCorr">
+        <span data-msgid="Regression Line">Regression Line </span>
+      </label> 
+      <p>
+         <div class="figText">&lt;Figure 12.1.4&gt; Simulation of correlation coefficient at 『eStatU』</div>
       <p>
       An estimate of the population correlation coefficient using samples of two variables is called 
       the sample correlation coefficient and denoted as \(r\). The formula for the sample correlation 
       coefficient \(r\) can be obtained by replacing each parameter with the estimates in the formula 
       for the population correlation coefficient.  
       $$
-        r = \frac {s_{XY}} { s_X s_Y } 
+        r = \frac {S_{XY}} { S_X S_Y } 
       $$
-      where \(s_{XY}\) is the sample covariance and \(s_{X}\), \(s_{Y}\) are the sample standard 
+      where \(S_{XY}\) is the sample covariance and \(S_{X}\), \(S_{Y}\) are the sample standard 
       deviations of \(X\) and \(Y\) as follows:
-      $$
+      $$\small 
         \begin{align}
-          s_{XY} &= \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \overline X )(Y_i - \overline Y )  \\
-          s_X^2    &= \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \overline X )^{2}  \\
-          s_Y^2    &= \frac{1}{n-1} \sum_{i=1}^{n} (Y_i - \overline Y )^{2}  \\
+          S_{XY} &= \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \overline X )(Y_i - \overline Y )  \\
+          S_X^2  &= \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \overline X )^{2}  \\
+          S_Y^2  &= \frac{1}{n-1} \sum_{i=1}^{n} (Y_i - \overline Y )^{2}  \\
         \end{align}
       $$
       Therefore, the formula \(r\) can be written as follows
-      $$
+      $$\small 
         \begin{align}
         r &= \frac {\sum_{i=1}^{n} (X_i - \overline X )(Y_i - \overline Y )} { \sqrt{\sum_{i=1}^{n} (X_i - \overline X )^{2} \sum_{i=1}^{n} (Y_i - \overline Y )^{2} } } \\
           &= \frac {\sum_{i=1}^{n} X_i Y_i - n \overline X \overline Y } { \sqrt{\left (\sum_{i=1}^{n} X_{i}^{2} - n {\overline X}^2 \right) \left( \sum_{i=1}^{n} Y_{i}^{2} - n {\overline Y}^{2} \right) } } 
@@ -447,10 +473,192 @@
       $$
     </div>
     <p>
+    <!---script for Corr Simulation------------------------------------------------------------------------------->
+    <script type="text/javascript">
+      function showValue(newValue) {
+        var newV = (newValue - 100)/100;
+        document.getElementById("initCorr").value=newV;  
+      }
+    </script>
+
+    <script>
+      var chartCorr   = d3.select("#chartCorr"); 
+      var rr;
+      var marginCorr  = {top: 80, bottom: 40, left: 80, right: 80};
+      var buffer      = 40;
+      var svgWidth    = 750;
+      var svgHeight   = 540;  
+      var graphWidthCorr  = svgWidth - marginCorr.left - marginCorr.right;
+      var graphHeightCorr = svgHeight - marginCorr.top - marginCorr.bottom;
+
+      var statCorr  = new Array(30);
+      var tobsCorr  = 200;
+      var xdataCorr = new Array(tobsCorr);
+      var ydataCorr = new Array(tobsCorr);
+      var generator = d3.randomNormal(0,1) 
+      var checkTitle = true;
+
+      d3.select("#redrawCorr").on("click", function(){  
+          chartCorr.selectAll("*").remove();  // 전화면 제거
+          document.getElementById("regressCorr").checked = false;
+          for (i=0; i<tobsCorr; i++) {
+            xdataCorr[i] = 0;
+            ydataCorr[i] = 0;
+          }
+	  rr = parseFloat(d3.select("#initCorr").node().value);  // 시작값 
+          if (rr > 1 ) rr = 0.999;
+          if (rr < -1) rr = -0.999;
+          // slider control
+          document.getElementById("rangeCorr").value  = 100*(1+rr);
+          for (i=0; i<tobsCorr; i++) {
+            xdataCorr[i] = generator();
+            ydataCorr[i] = rr*xdataCorr[i] + Math.sqrt(1-rr*rr)*generator();
+          }
+          basicScatterStat(tobsCorr, xdataCorr, ydataCorr, statCorr);
+          statCorr[5]  = -4; // gxmin
+          statCorr[6]  = 4;  // gxmax
+          statCorr[15] = -4; // gymin
+          statCorr[16] = 4;  // gymax
+          showCorrelation(tobsCorr, xdataCorr, ydataCorr, statCorr[5], statCorr[6], statCorr[15], statCorr[16], graphWidthCorr, graphHeightCorr, checkTitle);
+      })
+
+      // 회귀선 그리기
+      d3.select("#regressCorr").on("click",function() {
+          if(this.checked) {
+            showCorrRegression(statCorr[7], statCorr[8], statCorr[9], statCorr[10], statCorr[5], statCorr[6], statCorr[15], statCorr[16], checkTitle);
+          } else {
+	    removeCorrRegression();
+          }
+      })
+      // svg Graph Save
+      d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth;
+        var height = svgHeight;
+        var svgString = getSVGString(chartCorr.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+
+// 산점도 그리기 함수 -------------------------------------------------------------
+function showCorrelation(nobs, xdata, ydata, gxmin, gxmax, gymin, gymax, graphWidthCorr, graphHeightCorr, checkTitle) {
+     var gxrange = gxmax - gxmin;
+     var gyrange = gymax - gymin;
+     var xgrid   = new Array(nobs);
+     var ygrid   = new Array(nobs);
+
+     var i, tx, ty;
+         // 주제목
+         chartCorr.append("text")
+            .attr("x", marginCorr.left + graphWidthCorr/2)
+            .attr("y", marginCorr.top / 2 + 10)
+            .style("font-size", "1.8em")
+            .style("font-family", "sans-seirf")
+            .style("stroke", "black")
+            .style("text-anchor", "middle")
+            .text("Correlation Simulation")
+        // x축 그리기
+        var xScaleCorr = d3.scaleLinear().domain([gxmin,gxmax]).range([0,graphWidthCorr])
+        xgrid = xScaleCorr.ticks();
+        // x축 그리드
+        for (i = 1; i < xgrid.length; i++) {
+          tx = marginCorr.left + xScaleCorr(xgrid[i]);
+          chartCorr.append("line")
+           .attr("x1", tx)
+           .attr("x2", tx)
+           .attr("y1", marginCorr.top)
+           .attr("y2", marginCorr.top + graphHeightCorr)
+           .style("stroke", "lightgrey")
+        }
+        ty = marginCorr.top + graphHeightCorr;
+        chartCorr.append("g")
+             .attr("transform","translate("+marginCorr.left+","+ty+")")
+	     .attr("class", "main axis date")
+             .call(d3.axisBottom(xScaleCorr)) 
+        chartCorr.append("g")
+             .attr("transform","translate("+marginCorr.left+","+marginCorr.top+")")
+	     .attr("class", "main axis date")
+             .call(d3.axisTop(xScaleCorr)) 
+        // y축 그리기
+        var yScale = d3.scaleLinear().domain([gymin,gymax]).range([graphHeightCorr, 0])
+        ygrid = yScale.ticks();
+        // Y축 그리드
+        for (i = 1; i < ygrid.length; i++) {
+          ty = marginCorr.top + yScale(ygrid[i]);
+          chartCorr.append("line")
+           .attr("x1", marginCorr.left)
+           .attr("x2", marginCorr.left + graphWidthCorr)
+           .attr("y1", ty)
+           .attr("y2", ty)
+           .style("stroke", "lightgrey")
+        }
+        ty = marginCorr.top;
+        chartCorr.append("g")
+             .attr("transform","translate("+marginCorr.left+","+ty+")")
+	     .attr("class", "main axis date")
+             .call(d3.axisLeft(yScale)) 
+        var tx = marginCorr.left + graphWidthCorr;
+        chartCorr.append("g")
+             .attr("transform","translate("+tx+","+ty+")")
+	     .attr("class", "main axis date")
+             .call(d3.axisRight(yScale)) 
+        // 산점도 점 그리기
+        chartCorr.selectAll("circle")
+             .data(xdata)
+             .enter()
+             .append("circle")
+             .attr("cx", function(d,i){ return marginCorr.left + graphWidthCorr*Math.random() })
+             .attr("cy", marginCorr.top + 20)
+             .transition()                           // 애니매이션 효과 지정
+             .delay(function(d,i) {return i*50;})   // 0.5초마다 그리도록 대기시간 설정
+             .duration(500) 
+             .attr("cx", function(d,i){ return marginCorr.left+graphWidthCorr*(d-gxmin)/gxrange;})
+             .attr("cy", function(d,i){ return marginCorr.top+graphHeightCorr-graphHeightCorr*(ydata[i]-gymin)/gyrange;})         
+             .attr("r", 5)
+             .attr("class","circle")
+             .style("fill",function(d,i){return myColor[i] })
+}
+
+// 회귀선 그리기 함수
+function showCorrRegression(alpha, beta, corr, rsquare, gxmin, gxmax, gymin, gymax, checkTitle) {
+        var gxrange = gxmax - gxmin;
+        var gyrange = gymax - gymin;
+        var x1  = marginCorr.left + graphWidthCorr*(statCorr[3]-gxmin)/gxrange;
+        var y1  = marginCorr.top  + graphHeightCorr - graphHeightCorr*((alpha+beta*statCorr[3])-gymin)/gyrange;
+        var x2  = marginCorr.left + graphWidthCorr*(statCorr[4]-gxmin)/gxrange;
+        var y2  = marginCorr.top  + graphHeightCorr - graphHeightCorr*((alpha+beta*statCorr[4])-gymin)/gyrange;
+        chartCorr.append("line").attr("class","reglabel2")
+                .attr("x1",x1)
+                .attr("y1",y1)
+                .attr("x2",x2)
+                .attr("y2",y2)
+                .style("stroke","green") 
+     if(checkTitle) {   
+        chartCorr.append("text").attr("class","reglabel2")
+                .attr("x", marginCorr.left + 20)
+                .attr("y", marginCorr.top +  20)
+                .text(svgStrU[31][langNum]+" :  y = ("+f2(alpha)+") + ("+f2(beta)+ ") x")
+      
+        chartCorr.append("text").attr("class","reglabel2").attr("x", marginCorr.left + 80).attr("y", marginCorr.top +  40)
+                .text("ρ = "+f2(corr))
+     }
+}
+// Remove Regression Line of Simulation
+function removeCorrRegression() {
+	 chartCorr.selectAll("line.reglabel2").remove();
+         chartCorr.selectAll("text.reglabel2").remove();
+}
+
+
+  </script>
+
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
-      <b>Example 12.1.2</b>
+      <p>
+         <b>Example 12.1.2</b>
          Find the sample covariance and correlation coefficient for the advertising costs and sales of [Example 12.1.1].
       <p>
       <b>Answer</b>
@@ -479,8 +687,8 @@
         <tr> <td class="tdCenter">8</td> <td class="tdCenter">10</td> <td class="tdCenter">55</td> <td class="tdCenter">100</td><td class="tdCenter">3025</td> <td class="tdCenter">550</td> </tr>
         <tr> <td class="tdCenter">9</td> <td class="tdCenter">12</td> <td class="tdCenter">57</td> <td class="tdCenter">144</td><td class="tdCenter">3249</td> <td class="tdCenter">684</td> </tr>
         <tr> <td class="tdCenter">10</td><td class="tdCenter">12</td> <td class="tdCenter">60</td> <td class="tdCenter">144</td><td class="tdCenter">3600</td> <td class="tdCenter">720</td> </tr>
-        <tr> <td class="tdCenter">Sum</td><td class="tdCenter">64</td> <td class="tdCenter">497</td> <td class="tdCenter">766</td><td class="tdCenter">25097</td> <td class="tdCenter">4326</td> </tr>
-        <tr> <td class="tdCenter">Mean</td><td class="tdCenter">8.4</td> <td class="tdCenter">49.7</td> </tr>
+        <tr> <td class="tdCenter"><b>Sum</b></td><td class="tdCenter"><b>64</b></td> <td class="tdCenter"><b>497</b></td> <td class="tdCenter"><b>766</b></td><td class="tdCenter"><b>25097</b></td> <td class="tdCenter"><b>4326</b></td> </tr>
+        <tr> <td class="tdCenter"><b>Mean</b></td><td class="tdCenter"><b>8.4</b></td> <td class="tdCenter"><b>49.7</b></td> </tr>
       </table>
       <p>
 
@@ -494,7 +702,7 @@
       \(\small Y\), the sum of squares of \(\small XY\). Hence, the covariance and 
       correlation coefficient are as follows: 
       <p>
-      \(\small \quad s_{XY} = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \overline X )(Y_i - \overline Y ) = \frac{151.2}{10-1} = 16.8  \)
+      \(\small \quad S_{XY} = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \overline X )(Y_i - \overline Y ) = \frac{151.2}{10-1} = 16.8  \) <br>
       \(\small \quad r = \frac {\sum_{i=1}^{n} (X_i - \overline X )(Y_i - \overline Y )} { \sqrt{\sum_{i=1}^{n} (X_i - \overline X )^{2} \sum_{i=1}^{n} (Y_i - \overline Y )^{2} } } = \frac{151.2} { \sqrt{ 60.4 × 396.1 } } = 0.978 \)
       <p>
       This value of the correlation coefficient is consistent with the scatter plot which shows a strong positive 
@@ -530,7 +738,8 @@
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
-      <b>Example 12.1.3</b>
+      <p>
+         <b>Example 12.1.3</b>
          In the Example 12.1.2, test the hypothesis that the population correlation coefficient between 
          advertising cost and the sales amount is zero at the significance level of 0.05. 
          (Since the sample correlation coefficient is 0.978 which is close to 1, this test will not be 
@@ -616,7 +825,8 @@
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
-      <b>Example 12.1.4</b>
+      <p>
+         <b>Example 12.1.4</b>
          Draw a scatter plot matrix and correlation coefficient matrix using four variables of the iris data
          saved in the following location of 『eStat』.
       <p>
@@ -858,7 +1068,7 @@
       <label><input type="radio" name="item" value="1"> \(-1 \le r \le 1\)</label><br>
       <label><input type="radio" name="item" value="2"> Distribution of \(r\) is a normal distribution.</label><br>
       <label><input type="radio" name="item" value="3"> \(r\) is a random variable.</label><br>
-      <label><input type="radio" name="item" value="4"> The formula to calculate \(r\) is \(r = \frac{\sum (x_i -\overline x)(y_i - \overline y)}{\sqrt{{\sum(x_i -   \overline x)^2}{\sum(y_i - \overline y)^2}}}\)</label><br>
+      <label><input type="radio" name="item" value="4"> The formula to calculate \(r\) is \(\small r = \frac{\sum (x_i -\overline x)(y_i - \overline y)}{\sqrt{{\sum(x_i -   \overline x)^2}{\sum(y_i - \overline y)^2}}}\)</label><br>
       <p>
       <input type="button" value="Submit" onClick="radio(12,10,Q10)"> &nbsp;&nbsp;&nbsp;
       <input type="text" size=15 id="ansQ10">

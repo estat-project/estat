@@ -51,7 +51,12 @@
 	 </script>
        <link rel="stylesheet" href="../../css/pandoc.css">
        <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="../../../eStat/js/language.js" ></script>   
+       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
+       <script src="../../../eStat/js/eStatU.js"></script>
+       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
+       <script src="../../../eStat/lib/convertSVG.js"></script>
 </head>
 <body>
 
@@ -290,7 +295,7 @@
       The testing hypothesis for the two population means in Chapter 8 used the t-distribution in case of a small 
       sample, if each population could be assumed to be a normal distribution. However, the assumption that the 
       population follows a normal distribution may not be appropriate for real world data, or that there may not be 
-      enough sample data to assume a normal distribution. Alternatively, if data collected may be ordinal such as 
+      enough sample data to assume a normal distribution. Alternatively, if collected data is ordinal such as 
       ranking, then the parametric t-test is not appropriate. In such cases, a nonparametric method is used to test 
       parameters by converting data to ranks without assuming the distribution of the population. This section 
       introduces the Wilcoxon rank sum test.
@@ -312,12 +317,13 @@
     <p>
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
-      <b>Example 10.2.1</b>
-         A professor of a university teaches the Statistics courses to students in the Department of Economics 
+      <p>
+         <b>Example 10.2.1</b>
+         A professor teaches Statistics courses to students in the Department of Economics 
          and the Department of Management. In order to compare exam scores of students in the two departments, 
          seven students were randomly sampled from the Economics Department and six students from the Management           Department and their scores were as follows: 
       <p>
-        <div class="textLeft">Department of Economics 	87 75 65 95 90 81 93</div>
+        <div class="textLeft">Department of Economics &nbsp;&nbsp;	87 75 65 95 90 81 93</div>
         <div class="textLeft">Department of Management 	57 85 90 83 87 71</div> 
         <div class="textLeft">[Ex] ⇨ eBook ⇨ EX100201_ScoreByDepartment.csv</div>
       <p>
@@ -328,7 +334,7 @@
         2) Apply the Wilcoxon rank sum test with the significance level of 5%.
       </div>
       <div class="textL20M20">
-        3) Check the result of the Wilcoxon rank sum test using『eStat』.
+        3) Check the result of the Wilcoxon rank sum test using 『eStat』.
       </div>
       <p>
       <b>Answer</b>
@@ -354,7 +360,7 @@
             </td>
             <td>
               <img class="imgFig600400" src="../Figure/Fig100201.png">
-              <div class="figText">&lt;Figure 10.2.1&gt; Data input at『eStat』</div>
+              <div class="figText">&lt;Figure 10.2.1&gt; Data input at 『eStat』</div>
             </td>
           </tr>
         </table>
@@ -365,7 +371,7 @@
         the Economics Department appears to be higher than the average score of students in the Management 
         Department, but it should be tested for statistical significance. Pressing the [Histogram] button 
         in the options window below the graph will reveal the histogram and normal distribution curves 
-        for each department, as in&lt;Figure 10.2.3&gt;.
+        for each department as in&lt;Figure 10.2.3&gt;.
       </div>
 
       <p>
@@ -414,7 +420,7 @@
         <tr> <td class="tdCenter">90</td> <td class="tdCenter">90</td> <td class="tdCenter">10.5</td> <td class="tdCenter">10.5</td> </tr>
         <tr> <td class="tdCenter">93</td> <td class="tdCenter">  </td> <td class="tdCenter">12</td>   <td class="tdCenter">  </td> </tr>
         <tr> <td class="tdCenter">95</td> <td class="tdCenter">  </td> <td class="tdCenter">13</td>   <td class="tdCenter">  </td> </tr>
-        <tr> <td class="tdCenter"></td> <td class="tdCenter">Sum of ranks</td> <td class="tdCenter">\(\small R_{1}=55\)</td> <td class="tdCenter">\(\small R_{2}=36\)</td> </tr>
+        <tr> <td class="tdCenter"></td> <td class="tdCenter"><b>Sum of ranks</b></td> <td class="tdCenter"><b>\(\small R_{1}=55\)</b></td> <td class="tdCenter"><b>\(\small R_{2}=36\)</b></td> </tr>
       </table>
       <p>
       <div class="textL20">
@@ -429,10 +435,10 @@
       <p>
       <div class="textL20">
         To investigate how large a difference in the rank sum is statistically significant when the null
-        hypothesis is true, the distribution of the random variable \(\small R_{2}\) = 'Rank sum of sample 2' 
+        hypothesis is true, the sampling distribution of the random variable \(\small R_{2}\) = 'Rank sum of sample 2' 
         (or \(\small R_{1}\) = 'Rank sum of sample 1') should be known. If \(\small H_0\) is true, the number of cases
         for \(\small R_{2}\) is \({}_{13}P_{6}\) = 1716 as shown in Table 10.2.2. It is not easy to examine all of these possible 
-        rankings to find the distribution table. 『eStatU』provides the Wilcoxon rank sum distribution and its table as shown in &lt;Figure 10.2.4&gt;.
+        rankings to find the distribution table. 『eStatU』 provides the Wilcoxon rank sum distribution and its table as shown in &lt;Figure 10.2.4&gt;.
       </div>
       <p>
         <div class="textLeft">Table 10.2.2  All possible ranks for six data in sample 2 if n = 13</div>
@@ -598,49 +604,515 @@
         <p>
           \(\quad \small \)‘If \(\small R_2 \le\) 27.5 or \(\small R_2 \ge\) 56.5, then reject \(\small H_0 \)’
         <p>
-        In this problem \(\small R_2\) = 36, and therefore, we can not reject \(\small H_0\) which means 
+        In this problem \(\small R_2\) = 36, and therefore, we cannot reject \(\small H_0\) which means 
         the difference between \(\small R_1\) and \(\small R_2\) is not statistically significant. 
       </div>
       <p>
       <div class="textL20M20">
-        3) In『eStatU』, enter the data as &lt;Figure 10.2.5&gt; and click the [Execute] button. 
+        3) In 『eStatU』, enter the data as shown in &lt;Figure 10.2.5&gt; and click the [Execute] button. 
            It will calculate the sample statistics and show the test result graph as &lt;Figure 10.2.6&gt;. 
            The two critical lines which correspond to 2.5% from the end are shown here. For a discrete
            distribution such as this, the choice of the final rejection region should be determined 
            by the analyst.
       </div>
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
+      <!---   ************ html for Rank Sum Test ************  ---->
+      <b>[<span data-msgid="NonParametricMu12"></span>]</b>
+      <p>
             <input class="qrBtn" type="image" src="../../QR/eStatU960_TestRankSum.svg" onclick="window.open(addrStr[116])">
-          </td>
+      <p>
+      <button type="button" id="erase" style="width:100px;"><b>New Data</b></button>
+      <p>
+      <table Style="width:750px">
+        <tr>
+          <td><b><span data-msgid="Hypothesis">Hypothesis</span></b></td>
+          <td><span class="fontmath">H<sub>o</sub> : M<sub>1</sub> = M<sub>2</sub></span></td>
+        </tr>
+        <tr>
+          <td></td>
           <td>
-            <img class="imgFig600400" src="../Figure/Fig100205.png">
-            <div class="figText">&lt;Figure 10.2.5&gt; Data input for the Wilcoxon rank sum test at『eStatU』</div>
+            <form name="myForm0"> 
+              <span class="fontmath">
+              <input type="radio" name = "type0" value="1" checked> H<sub>1</sub> : M<sub>1</sub> &ne; M<sub>2</sub> &nbsp;&nbsp;
+              <input type="radio" name = "type0" value="2" > H<sub>1</sub> : M<sub>1</sub> > M<sub>2</sub>  &nbsp;&nbsp;      
+              <input type="radio" name = "type0" value="3" > H<sub>1</sub> : M<sub>1</sub> < M<sub>2</sub>      
+              </span>
+            </form>
           </td>
+        </tr>
+        <tr>
+          <td><b><span data-msgid="Test Type">Test Type</span></b></td>
+          <td><span class="fontguide" data-msgid="WilcoxonRankCondition">Wilcoxon Rank Condition</span></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span data-msgid="Significance Level">Significance Level</span> &nbsp; <span class="fontmath">&alpha;</span> = 
+              <input type="text" style="text-align:center;" size=4 value="0.05" style="text-align:center;" id="alpha">&nbsp; <span class="fontguide">(0 < &alpha; < 1)</span>
+          </td>
+        </tr>
+        <tr>
+          <td><b><span data-msgid="Sample Data">Sample Data</span></b></td>
+          <td>Sample 1 <input type="text" size=70 id="data1"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Sample 2 <input type="text" size=70 id="data2"></td>
+        </tr>
+        <tr>
+          <td><b><span data-msgid="Sample Statistics">Sample Statistics</span></b></td>
+	  <td>
+            <table style="width:400px;">
+              <tr>
+                <td><span data-msgid="Sample Size">Sample Size</span></td>         
+                <td><span class="fontmath">n<sub>1</sub></span> = <input type="text" style="text-align:center;" size=6 id="nn41"></td>
+                <td><span class="fontmath">n<sub>2</sub></span> = <input type="text" style="text-align:center;" size=6 id="nn42"></td>        
+              </tr>
+              <tr>
+               <td><span data-msgid="Sample Range">Sample Range</span></td>
+               <td><span class="fontmath">R<sub>1</sub></span> = <input type="text" style="text-align:center;" size=6 id="xbar41"></td>
+               <td><span class="fontmath">R<sub>2</sub></span> = <input type="text" style="text-align:center;" size=6 id="xbar42"></td>
+              </tr>
+            </table>
+          </td>
+	</tr>
+      </table>
+      <p>
+         <div class="figText">&lt;Figure 10.2.5&gt; Data input for the Wilcoxon rank sum test at 『eStatU』</div>
+      <p>
+      <button type="button" id="executeTH4" >
+        <span data-msgid="Execute">Execute</span>
+      </button> 
+      <p>
+      <table style="width:350px;">
+        <tr>
+          <td>&nbsp;&nbsp;</td>
+          <td><span class="fontmath">&alpha; = </span> <input type="text" style="text-align:center;" size=4 value="0.05" id="alpha2">&nbsp; </td>
+          <td><sup><small> 0 </small></sup></td>
+          <td><input type="range" min="1" max="999" value="50" id="rangeAlpha" onchange="showValueAlpha(this.value)"/> </td>
+          <td><sup><small> 1 </small></sup></td>
+          <td></td>
         </tr>
       </table>
       <p>
-        <img class="imgFig600400" src="../Figure/Fig100206.svg">
-        <div class="figText">&lt;Figure 10.2.6&gt; Wilcoxon rank sum test using 『eStatU』</div>
+      <svg id="chart" width="600" height="400" style="border-style:solid;"> </svg> 
       <p>
-
+      <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+      </button> 
+      &nbsp;
+      <button type="button" id="ranksumBtn" >
+	<span class="tooltiptext" data-msgid="DistributionTable">Show Table</span>
+      </button>
+      &nbsp;
+      <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button>
+      <p>
+      <div> 
+        <div id="screenTable">
+          <div id="loc">
+          </div>
+        </div>
+      </div>
+      <p>
+         <div class="figText">&lt;Figure 10.2.6&gt; Wilcoxon rank sum test using 『eStatU』</div>
+      <p>
       <div class="textL20">
-        The rank sum test can be performed using『eStat』. After you saw &lt;Figure 10.2.2&gt;, 
+        The rank sum test can be performed using 『eStat』. After you saw &lt;Figure 10.2.2&gt;, 
         click the [Wilcoxon Rank Sum Test] button in the options window below the graph. 
         Then a test result graph as shown in &lt;Figure 10.2.6&gt; will appear in the Graph Area 
         and a test result table as in &lt;Figure 10.2.7&gt; will appear in the Log Area. 
       </div>
 
       <p>
-      <img class="imgFig600400" src="../Figure/Fig100207.png">
-      <div class="figText">&lt;Figure 10.2.7&gt; Result table of Wilcoxon rank sum test</div>
-
+         <img class="imgFig600400" src="../Figure/Fig100207.png">
+         <div class="figText">&lt;Figure 10.2.7&gt; Result table of Wilcoxon rank sum test</div>
+      <p>
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
+    <!---   ************ html for Rank Sum Test ************  ---->
+<script>
+      setLanguage('en');
+      var bar = d3.select("#chart");
+      var svgWidth, svgHeight, svgWidth2, svgHeight2, margin, graphWidth, graphHeight; 
+      var margin = {top: 90, bottom: 90, left: 100, right: 120};
+      svgWidth   = 600; svgWidth2 = svgWidth;
+      svgHeight  = 400; svgHeight2 = svgHeight;
+      graphWidth  = svgWidth - margin.left - margin.right;
+      graphHeight = svgHeight - margin.top - margin.bottom;   
 
+      var nvalue, checkData, mu, std, alpha;
+      var hypoType, h1Type, df, info, f, g, h, pvalue, stat, T;
+      hypoType = 96;
+      var ngroup  = 2;
+      var maxCell   = 1000;
+      var nobs      = new Array(5);
+      var ranksum   = new Array(5);
+      var dataValue = new Array(maxCell);
+      var dvalueP   = new Array(maxCell);
+      var x = [];
+      var y = [];
+      var z = [];
+      var i,j,k;
+      var checkRankSum = true;  // rank sum인 경우 true, signed rank sum인 경우 false
+      var checkExecute = false;
+      document.getElementById("alpha2").disabled = true;  
+      document.getElementById("nn41").disabled   = true;
+      document.getElementById("nn42").disabled   = true;
+      document.getElementById("xbar41").disabled = true;
+      document.getElementById("xbar42").disabled = true;
+      // H1 type
+      var h1 = document.myForm0.type0;
+      var h1Type = 1; 
+      h1[0].onclick = function() { h1Type = 1; if (checkExecute) testingRanksum(); }    // 양측검정
+      h1[1].onclick = function() { h1Type = 2; if (checkExecute) testingRanksum(); }    // 우측검정
+      h1[2].onclick = function() { h1Type = 3; if (checkExecute) testingRanksum(); }    // 좌측검정
+
+      // input data control ===================================================
+      d3.select("#data1").on("input", function() {
+        stat = simplestat("#data1");  
+        x = data;
+        document.getElementById("nn41").value   = stat.n;    
+      });
+      d3.select("#data2").on("input", function() {
+        stat = simplestat("#data2");  
+        y = data; 
+        document.getElementById("nn42").value   = stat.n;    
+      });
+      updateData = function() {
+        document.getElementById("data1").value = '';
+        document.getElementById("data2").value = '';    
+      }
+
+      // init example
+      document.getElementById("data1").value = "87,75,65,95,90,81,93";
+      stat = simplestat("#data1");  
+      x = data;
+      document.getElementById("nn41").value   = stat.n;    
+      document.getElementById("data2").value = "57,85,90,83,87,71";
+      stat = simplestat("#data2");  
+      y = data;
+      document.getElementById("nn42").value   = stat.n;    
+
+      // erase Data and Graph
+      d3.select("#erase").on("click",function() {
+        bar.selectAll("*").remove();
+        document.getElementById("data1").value  = "";
+        document.getElementById("data2").value  = "";
+        document.getElementById("nn41").value   = "";
+        document.getElementById("nn42").value   = "";
+        document.getElementById("xbar41").value = "";
+        document.getElementById("xbar42").value = "";
+      })
+
+    // Testing Hypothesis ===========================================================
+    d3.select("#executeTH4").on("click",function() {
+        checkExecute = true;
+        // alpha
+        alpha = parseFloat(d3.select("#alpha").node().value);
+        if (alpha < 0.001) {
+          alpha = 0.001;
+          document.getElementById("alpha").value = alpha;
+        }
+        else if (alpha > 0.499) {
+          alpha = 0.499;
+          document.getElementById("alpha").value = alpha;
+        }
+        document.getElementById("alpha2").value = alpha;
+        document.getElementById("rangeAlpha").value = alpha*1000;
+        if (x.length == 0 || y.length == 0) {
+          checkData = false
+          nobs[1] = parseInt(document.getElementById("nn41").value);
+          nobs[2] = parseInt(document.getElementById("nn42").value);
+          return;
+        }
+        checkData = true;
+        nobs[1] = x.length;
+        nobs[2] = y.length;
+        nobs[0] = nobs[1] + nobs[2];   
+        testingRanksum();
+    })
+
+    // svg Graph Save
+    d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth;
+        var height = svgHeight;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+    });
+
+    // 순위합통계표 버튼 클릭
+    d3.select("#ranksumBtn").on("click",function() {
+      if (nobs[0] < 25) {
+        nobs[1] = parseInt(document.getElementById("nn41").value);
+        nobs[2] = parseInt(document.getElementById("nn42").value);
+        nobs[0] = nobs[1] + nobs[2];
+//        for (j=0; j<maxCell; j++) dvalueP[j] = 0;
+        nvalue = rankSumDist(nobs[1], nobs[2], dataValue, dvalueP, checkRankSum);
+        WilcoxonRankSumTable(nvalue, nobs, dataValue, dvalueP);
+      }
+      else alert("No Exact Distribution if n > 25")
+    })
+    // save Table
+    d3.select("#saveTable").on("click", function() {
+        head = '<html><head><meta charset="UTF-8"></head><body>';
+        tail = '</body></html>';
+        saveAs(new Blob([head + d3.select("#screenTable").html() + tail]), "eStatULog.html");
+    });
+
+//******************************************************************
+function drawBarGraph(title,sub1,sub2, nvalue, dataValue, dvalueP, ranksum, alpha, h1Type, checkData) {
+         var i, k, sum1, sum2, str, x1, y1, x2, y2;
+         var sum11, sum12, sum21, sum32, loc11, loc12, loc21, loc32;
+         var xmin      = dataValue[0];
+         var xmax      = dataValue[nvalue-1];
+         var ymin      = d3.min(dvalueP);
+         var ymax      = d3.max(dvalueP);
+         var gymin     = ymin;
+         var gymax     = ymax + ymax/5;  
+         var yRatio    = graphHeight / gymax;          // 그래프 영역과 데이터 영역의 비율
+         var betweenbarWidth = graphWidth / nvalue;   // 막대와 막대 사이의 너비
+         var barWidth  = betweenbarWidth * 2 / 3;    // 막대의 너비
+         var barMargin = (betweenbarWidth / 3) / 2; // 왼쪽 마진
+
+         // draw title
+         x1 = margin.left + graphWidth/2;
+         y1 = margin.top/2;
+         bar.append("text").attr("x",x1).attr("y",y1).text(title)
+            .style("font-family","sans-serif").style("font-size","12pt").style("stroke","black").style("text-anchor","middle")         
+         bar.append("text").attr("x",x1).attr("y",y1+15).text(sub1)
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","black").style("text-anchor","middle")
+         bar.append("text").attr("x",x1).attr("y",y1+30).text(sub2)
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
+
+         // draw Y and X axis
+         drawBinomialAxis(gymin, gymax);
+         drawBinomialLabel(nvalue, dataValue, betweenbarWidth);
+         // 분포함수 막대그래프
+         for (var k=0; k<nvalue; k++) {
+           bar.append("rect")
+            .style("fill",myColor[0])
+            .attr("height",0)
+            .attr("width",barWidth)
+            .attr("x", margin.left +barMargin + k*betweenbarWidth)
+            .attr("y",svgHeight - margin.bottom)
+            .transition()                           // 애니매이션 효과 지정
+            .delay(function(d,i) {return i*100;})   // 0.5초마다 그리도록 대기시간 설정
+            .duration(1000)                         // 2초동안 애니매이션이 진행되도록 설정
+            .attr("y", svgHeight - margin.bottom - dvalueP[k]*yRatio)
+            .attr("height", dvalueP[k]*yRatio)
+         }
+         if (checkData == false) return; 
+         // 표본통계량 위치 표시
+         sum1 = 0;
+         sum2 = 0;
+         for (i=0; i<nvalue; i++) {
+           if (dataValue[i] < ranksum) sum1 += dvalueP[i];
+           else if (dataValue[i] == ranksum) {
+             sum1 += dvalueP[i];
+             sum2 += dvalueP[i];
+           }
+           else sum2 += dvalueP[i];
+         }
+         x1 = margin.left +barMargin + (ranksum-dataValue[0])*betweenbarWidth + barWidth/2;
+         x2 = x1;
+         y1 = margin.top + 20;
+         y2 = margin.top + graphHeight + 45;
+         bar.append("line").style("stroke","green").style("stroke-width","2px")
+            .attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+         str = "R\u2082 = "+ranksum;
+         bar.append("text").attr("x", x2).attr("y", y2+15).text(str)
+            .style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
+         str = "P(X \u2264 R\u2082) = "+f4(sum1);
+         bar.append("text").attr("x", x2-5).attr("y", y2+30).text(str)
+            .style("font-size","9pt").style("stroke","green").style("text-anchor","end")
+         str = "P(X \u2265 R\u2082) = "+f4(sum2);
+         bar.append("text").attr("x", x2+5).attr("y", y2+30).text(str)
+            .style("font-size","9pt").style("stroke","green").style("text-anchor","start")
+
+         // 기준선 표시            
+         sum11 = 0;
+         for (i=0; i<nvalue; i++) {
+           sum11 += dvalueP[i];
+           if (sum11 > alpha/2) {loc11 = dataValue[i]; break;}
+         }
+         sum12 = 0;
+         for (i=nvalue-1; i>=0; i--) {
+           sum12 += dvalueP[i];
+           if (sum12 > alpha/2) {loc12 = dataValue[i]; break;}
+         } 
+         sum21 = 0;
+         for (i=0; i<nvalue; i++) {
+           sum21 += dvalueP[i];
+           if (sum21 > alpha) {loc21 = dataValue[i]; break;}
+         }
+         sum32 = 0;
+         for (i=nvalue-1; i>=0; i--) {
+           sum32 += dvalueP[i];
+           if (sum32 > alpha) {loc32 = dataValue[i]; break;}
+         } 
+         y1 = margin.top + graphHeight/2 + 20;
+         y2 = margin.top + graphHeight + 30 ;
+         if (h1Type == 1) {
+           x1 = margin.left +barMargin + (loc11-dataValue[0])*betweenbarWidth + barWidth/2;
+           x2 = x1;
+           bar.append("line").style("stroke","red").style("stroke-width","1px")
+              .attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+           bar.append("text").attr("x", x2).attr("y", y2+10).text(loc11)
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+           bar.append("text").attr("x", x2-5).attr("y", y2-50).text(f4(sum11))
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","end")
+           x1 = margin.left +barMargin + (loc12-dataValue[0])*betweenbarWidth + barWidth/2;
+           x2 = x1;
+           bar.append("line").style("stroke","red").style("stroke-width","1px")
+              .attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+           bar.append("text").attr("x", x2).attr("y", y2+10).text(loc12)
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+           bar.append("text").attr("x", x2+5).attr("y", y2-50).text(f4(sum12))
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","start")
+         }
+         else if (h1Type == 2) {
+           x1 = margin.left +barMargin + (loc21-dataValue[0])*betweenbarWidth + barWidth/2;
+           x2 = x1;
+           bar.append("line").style("stroke","red").style("stroke-width","1px")
+              .attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+           bar.append("text").attr("x", x2).attr("y", y2+10).text(loc21)
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+           bar.append("text").attr("x", x2-5).attr("y", y2-50).text(f4(sum21))
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","end")
+         }
+         else {
+           x1 = margin.left +barMargin + (loc32-dataValue[0])*betweenbarWidth + barWidth/2;
+           x2 = x1;
+           bar.append("line").style("stroke","red").style("stroke-width","1px")
+              .attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+           bar.append("text").attr("x", x2).attr("y", y2+10).text(loc32)
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+           bar.append("text").attr("x", x2+5).attr("y", y2-50).text(f4(sum32))
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","start")
+         }
+
+}
+
+// 윌콕슨분포표
+function WilcoxonRankSumTable(nvalue, nobs, dataValue, dvalueP) {
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+
+        var row, header;
+        var i, j, sum;
+        var nrow = 0;
+        var ncol = 4;
+        var cell = new Array(4);
+
+         table.style.fontSize = "13px";
+    
+          row = table.insertRow(nrow);
+          row.style.height ="30px";
+          for (j=0; j<3; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = "<h3>"+svgStrU[63][langNum]+"</h3>";
+          cell[1].innerHTML = "n<sub>1</sub> = "+nobs[1];
+          cell[2].innerHTML = "n<sub>2</sub> = "+nobs[2];
+
+          row  = table.insertRow(++nrow);
+          row.style.height ="30px";
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
+          }
+          for (j=0; j<ncol; j++) {
+            cell[j].style.width ="80px";
+          }
+          cell[0].innerHTML = "x";
+          cell[1].innerHTML = "P(X = x)";
+          cell[2].innerHTML = "P(X &leq; x)";
+          cell[3].innerHTML = "P(X &geq; x)";
+          sum = 0;
+          for (i=0; i<nvalue; i++) {
+            row = table.insertRow(++nrow);
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j)          
+              cell[j].style.textAlign = "center";
+              cell[j].style.border = "1px solid black";
+            }
+            cell[0].style.backgroundColor = "#eee";
+            cell[0].innerHTML = dataValue[i];
+            cell[1].innerHTML = f4(dvalueP[i]);
+            sum += dvalueP[i];
+            cell[2].innerHTML = f4(sum);
+            cell[3].innerHTML = f4(1 - sum + dvalueP[i]);
+          }
+}
+
+// testing Wilcoxon Ranksum
+function testingRanksum() {
+      bar.selectAll("*").remove();
+      z = x.concat(y);
+      // Calculate sample 2 rank sum
+      T = statRankSum(ngroup, nobs, z, ranksum);
+      document.getElementById("xbar41").value = ranksum[1];
+      document.getElementById("xbar42").value = ranksum[2];
+      // check exact or approximation
+      if (nobs[0] < 25) { // exact distribution
+        // Wilcoxon Rank Sum Distribution
+        nvalue = rankSumDist(nobs[1], nobs[2], dataValue, dvalueP, checkRankSum);
+        // draw graph
+        var title = svgStrU[63][langNum] ;
+        var sub1  = "H\u2080: M\u2081 = M\u2082  " + " , H\u2081: M\u2081 "+ symbol[h1Type-1] + " M\u2082" ;
+        var sub2  = svgStrU[23][langNum]+" R\u2082 ~ Wilcoxson (n\u2081 = "+nobs[1]+", n\u2082 = "+nobs[2]+") "+svgStrU[24][langNum];
+        drawBarGraph(title, sub1, sub2, nvalue, dataValue, dvalueP, ranksum[2], alpha, h1Type, checkData) 
+      }
+      else {  // Z-test
+        mu  = nobs[2]*(nobs[0]+1)/2;
+        std = Math.sqrt(nobs[1]*nobs[2]*(nobs[0]+1 - T/(nobs[0]*(nobs[0]+1)) ) / 12); 
+        teststat = ranksum[2];
+        var zobs = (ranksum[2] - mu) / std;
+        if (h1Type == 1) {
+            h = alpha / 2;  
+            f = mu + stdnormal_inv(h, info)*std;
+            g = mu + stdnormal_inv(1-h, info)*std;
+            if (zobs < 0) pvalue = 2 * stdnormal_cdf(zobs);
+            else  pvalue = 2 * (1 - stdnormal_cdf(zobs));
+            drawNormalGraphTH(hypoType, h1Type, teststat, mu, std, f, g, h, pvalue, mu);
+        }
+        else if (h1Type == 2) {
+            h = alpha;  
+            f = mu - 5*std
+            g = mu + stdnormal_inv(1-h, info)*std;
+            pvalue = 1 - stdnormal_cdf(zobs);
+            drawNormalGraphTH(hypoType, h1Type, teststat, mu, std, f, g, h, pvalue, mu);
+        }
+        else {
+            h = alpha;  
+            f = mu + stdnormal_inv(h, info)*std;
+            g = mu + 5*std;
+            pvalue = stdnormal_cdf(zobs);
+            drawNormalGraphTH(hypoType, h1Type, teststat, mu, std, f, g, h, pvalue, mu);
+        }
+      }  
+}
+// alpha sliding bar control for testing hypothesis 
+function showValueAlpha(newValue) {
+        alpha = f3(newValue/1000);
+        document.getElementById("alpha").value   = alpha;
+        document.getElementById("alpha2").value  = alpha;
+        if (checkExecute) testingRanksum();
+} 
+</script>
+
+
+
+
+    <!------------------------------------------------------------------------------------------------->
     <div class="mainTable">
       Let's generalize the Wilcoxon rank sum test described in [Example 10.2.1]. Denote random samples selected 
       independently from each of the two populations as follows. The sample sizes are \(n_1\) and \(n_1\)
@@ -763,7 +1235,7 @@
         </tr>
         <tr style="height:40px">
           <td class="tdLeft">3) \( \; H_0 : M = M_0 \)<br>\(\quad\,\, H_1 : M \ne M_0 \)</td>
-          <td class="tdLeft">If \( \left | \frac{ R_{2} - E(R_{2}) } {\sqrt{V(R_{2})}} \right | > z_{&alpha;/2} \), then reject \( H_0 \) </td>
+          <td class="tdLeft">If \( | \frac{ R_{2} - E(R_{2}) } {\sqrt{V(R_{2})}} | > z_{&alpha;/2} \), then reject \( H_0 \) </td>
         </tr>
       </table>
     <p>
@@ -894,7 +1366,7 @@
       $$
          V(R_2 ) = \frac{n_1 n_2} {12} \left[n_1 + n_2 + 1 - \frac{ \sum_{j=1}^{g} {t}_{j} ({t}_{j}-1)({t}_{j}+1) } {(n_1 + n_2 ) (n_1 + n_2 - 1) } \right]
       $$
-      Here \(g\) = (number of tied groups), \(g\) = (size of \(j^{th}\) tie group, i.e., number of observations
+      Here \(g\) = (number of tied groups), \(t_j\) = (size of \(j^{th}\) tie group, i.e., number of observations
       in the tie group). If there is no tie, size of \(j^{th}\) tie group is 1 and \(t_j\) = 1. 
     </div>
     <p>

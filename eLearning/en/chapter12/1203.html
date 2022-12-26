@@ -51,7 +51,12 @@
 	 </script>
        <link rel="stylesheet" href="../../css/pandoc.css">
        <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="../../../eStat/js/language.js" ></script>   
+       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
+       <script src="../../../eStat/js/eStatU.js"></script>
+       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
+       <script src="../../../eStat/lib/convertSVG.js"></script>
 </head>
 <body>
 
@@ -315,7 +320,8 @@
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
-      <b>Example 12.3.1</b>
+      <p>
+         <b>Example 12.3.1</b>
          When logging trees in forest areas, it is necessary to investigate the amount of timber in those areas. 
          Since it is difficult to measure the volume of a tree directly, we can think of ways to estimate the 
          volume using the diameter and height of a tree that is relatively easy to measure. The data in 
@@ -488,7 +494,7 @@
       If the estimated regression coefficients are \({\bf b} = (b_0 , b_1 , ... , b_k )\), the estimate of 
       the response variable \(Y\) is as follows: 
       $$
-        {\hat Y}_i = Y_i - (b_0 + b_1 X_{i1} + \cdots + b_k X_{ik} ) 
+        {\hat Y}_i = b_0 + b_1 X_{i1} + \cdots + b_k X_{ik}  
       $$
       The residuals are as follows:
       $$
@@ -559,8 +565,8 @@
           <td class="tdCenter"></td>
         </tr>
         <tr>
-          <td class="tdCenter">Total</td>
-          <td class="tdCenter">SST</td>
+          <td class="tdCenter"><b>Total</b></td>
+          <td class="tdCenter"><b>SST</b></td>
           <td class="tdCenter">\(n-1\)</td>
           <td class="tdCenter"></td>
           <td class="tdCenter"></td>
@@ -630,7 +636,8 @@
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
-      <b>Example 12.3.2</b>
+      <p>
+         <b>Example 12.3.2</b>
          For the tree data of [Example 12.3.1], obtain the least squares estimate of each coefficient of 
          the proposed regression equation using 『eStat』 and apply the analysis of variance, test for 
          goodness of fit and test for regression coefficients.

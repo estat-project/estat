@@ -51,7 +51,12 @@
 	 </script>
        <link rel="stylesheet" href="../../css/pandoc.css">
        <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="../../../eStat/js/language.js" ></script>   
+       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
+       <script src="../../../eStat/js/eStatU.js"></script>
+       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
+       <script src="../../../eStat/lib/convertSVG.js"></script>
 </head>
 <body>
 
@@ -384,7 +389,8 @@
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
-      <b>Example 11.2.3</b>
+      <p>
+         <b>Example 11.2.3</b>
          In order to investigate whether viewers of TV programs are different by age for three programs (A, B and C),
          200, 100 and 100 samples were taken separately from the population of young people(20s), middle-aged people 
          (30s and 40s), and older people (50s and over) respectively. Their preference of the program were summarized 
@@ -422,11 +428,11 @@
           <td class="tdCenter">125</td>
        </tr>
        <tr>
-          <td class="tdCenter">Total</td>
-          <td class="tdCenter">200</td>
-          <td class="tdCenter">100</td>
-          <td class="tdCenter">100</td>
-          <td class="tdCenter">400</td>
+          <td class="tdCenter"><b>Total</b></td>
+          <td class="tdCenter"><b>200</b></td>
+          <td class="tdCenter"><b>100</b></td>
+          <td class="tdCenter"><b>100</b></td>
+          <td class="tdCenter"><b>400</b></td>
        </tr>
       </table>
       <p>
@@ -474,7 +480,7 @@
       <table style="width:650px">
         <tr>
           <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU990_TestFriedman.svg" onclick="window.open(addrStr[121])">
+            <input class="qrBtn" type="image" src="../../QR/eStatU920_TestIndependence.svg" onclick="window.open(addrStr[111])">
           </td>
           <td>
             <b>Practice 11.2.2</b>
@@ -512,10 +518,10 @@
                 <td class="tdCenter">75</td>
              </tr>
              <tr>
-                <td class="tdCenter">Total</td>
-                <td class="tdCenter">100</td>
-                <td class="tdCenter">100</td>
-                <td class="tdCenter">200</td>
+                <td class="tdCenter"><b>Total</b></td>
+                <td class="tdCenter"><b>100</b></td>
+                <td class="tdCenter"><b>100</b></td>
+                <td class="tdCenter"><b>200</b></td>
              </tr>
             </table>
           </td>

@@ -51,7 +51,12 @@
 	 </script>
        <link rel="stylesheet" href="../../css/pandoc.css">
        <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="../../../eStat/js/language.js" ></script>   
+       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
+       <script src="../../../eStat/js/eStatU.js"></script>
+       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
+       <script src="../../../eStat/lib/convertSVG.js"></script>
 </head>
 <body>
 
@@ -302,12 +307,13 @@
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
-      <b>Example 11.1.1</b>
+      <p>
+         <b>Example 11.1.1</b>
          The result of a survey of 150 people before a local election to find out the approval ratings of 
          three candidates is as follows. Looking at this frequency table alone, it seems that A candidate 
          has a 40 percent approval rating, higher than the other candidates. Based on this sample survey, 
          perform the goodness of fit test whether three candidates have the same approval rating or not. 
-         Use『eStatU』with the 5% significance level.
+         Use 『eStatU』 with the 5% significance level.
       <p>
         <div class="textLeft">Table 11.1.1 Frequency table of survey result in an election. </div>
       <p>
@@ -320,7 +326,7 @@
        <tr> <td class="tdCenter">A</td> <td class="tdCenter">60</td> <td class="tdCenter">40.0％</td> </tr>
        <tr> <td class="tdCenter">B</td> <td class="tdCenter">50</td> <td class="tdCenter">33.3％</td> </tr>
        <tr> <td class="tdCenter">C</td> <td class="tdCenter">40</td> <td class="tdCenter">25.7％</td> </tr>
-       <tr> <td class="tdCenter">Total</td> <td class="tdCenter">150</td> <td class="tdCenter">100%</td> </tr>
+       <tr> <td class="tdCenter"><b>Total</b></td> <td class="tdCenter"><b>150</b></td> <td class="tdCenter"><b>100.0%</b></td> </tr>
       </table>
       <p>
       <b>Answer</b>
@@ -347,12 +353,12 @@
        <tr> <td class="tdCenter">A</td> <td class="tdCenter">\(O_1 = 60\)</td> <td class="tdCenter">\(E_1 = 50\)</td> </tr>
        <tr> <td class="tdCenter">B</td> <td class="tdCenter">\(O_2 = 50\)</td> <td class="tdCenter">\(E_2 = 50\)</td> </tr>
        <tr> <td class="tdCenter">C</td> <td class="tdCenter">\(O_3 = 40\)</td> <td class="tdCenter">\(E_3 = 50\)</td> </tr>
-       <tr> <td class="tdCenter">Total</td> <td class="tdCenter">150</td> <td class="tdCenter">150</td> </tr>
+       <tr> <td class="tdCenter"><b>Total</b></td> <td class="tdCenter"><b>150</b></td> <td class="tdCenter"><b>150</b></td> </tr>
       </table>
       <p>
-      If \(\small H_0\) is true, the observed frequency (\(\small O_i\)) and the expected frequency (\(\small E_i\)) will coincide. Therefore, in order to test 
-      the hypothesis, a statistic which uses the difference between \(\small O_i\) and \(\small E_i\) is used. Specifically, the statistic 
-      to test the hypotheses is as follows:
+      If \(\small H_0\) is true, the observed frequency (\(\small O_i\)) and the expected frequency (\(\small E_i\)) will coincide. 
+      Therefore, in order to test the hypothesis, a statistic which uses the squared difference between \(\small O_i\) and \(\small E_i\)
+      is used. Specifically, the statistic to test the hypotheses is as follows:
       <div class="textLeft">
         \( 
         {\chi}_{obs}^2 = \frac {(O_1 - E_1 )^2} {E_1} + \frac {(O_2 - E_2 ) ^2} {E_2} + \frac {(O_3 - E_3 )^2} {E_3}  
@@ -382,12 +388,12 @@
         \)
       </div>
       <p>
-      Therefore, \(\small H_0\) can not be rejected. In other words, although the above sample frequency table shows that the 
+      Therefore, \(\small H_0\) cannot be rejected. In other words, although the above sample frequency table shows that the 
       approval ratings of the three candidates differ, this difference does not provide sufficient evidence to 
       conclude that the three candidates have different approval ratings. 
       <p>
       Using each candidate's sample approval rating \(\hat p_1 = \frac{60}{150}\) = 0.40, 
-      \(\hat p_2 = \frac{50}{150}\) = 0.33, \(\hat p_1 = \frac{40}{150}\) = 0.27, 95% confidence intervals 
+      \(\hat p_2 = \frac{50}{150}\) = 0.33, \(\hat p_3 = \frac{40}{150}\) = 0.27, 95% confidence intervals 
       for the population proportion of each candidate's approval rating using the formula 
       (\(  {{\hat p}} ± 1.96 \sqrt { \hat p (1- \hat p ) / n } \)) (refer Chapter 6.4) are as follows:
       <div class="textLeft">
@@ -396,35 +402,348 @@
         C: \( \quad 0.27 \pm 1.96 \sqrt { \frac {0.27 \times 0.73} {150} } \quad \quad \Leftrightarrow \quad \) [0.190, 0.330] <br>
       </div>
       <p>
-      The overlapping of the confidence intervals on the three candidates' approval ratings does not mean that 
-      one candidate's approval rating is completely different from the other.
+      The overlapping of the confidence intervals on the three candidates' approval ratings means that 
+      one candidate's approval rating is not completely different from the other.
       <p>
-      In the Input box that appears by selecting the 'Goodness of Fit Test' of 『eStatU』, enter the 'Observed 
+      In the data input box that appears by selecting the [Goodness of Fit Test] of 『eStatU』, enter the 'Observed 
       Frequency' and 'Expected Probability' data as shown in &lt;Figure 11.1.1&gt;. After entering the data, 
       select the significance level and click [Execute] button to calculate the 'Expected Frequency' and to see 
       the result of the chi-square test. Be sure that this chi-square goodness of fit test should be applied when 
       the expected frequency of each category is at least 5.
       <p>
-      <table style="width:650px">
+
+      <!---   ************ html for Goodness of Fit Test ************  ---->
+      <p>
+      <b>[<span data-msgid="TestingFit"></span>]</b>
+      <p>
+         <input class="qrBtn" type="image" src="../../QR/eStatU910_TestFit.svg" onclick="window.open(addrStr[110])">
+      <p>
+      <button type="button" id="erase" style="width:100px;"><b>New Data</b></button>
+      <p>
+      <table style="width:700px;">
         <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU910_TestFit.svg" onclick="window.open(addrStr[110])">
+	    <td><b><span data-msgid="Hypothesis">Hypothesis</span></b></td>
+            <td colspan="3">
+              <span class="fontmath"> H<sub>o</sub> : 
+                <span data-msgid="FitTest0">Observed Distritution = Theoretical Distribution</span> 
+              </span>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+	    <td colspan="3">
+              <span class="fontmath"> H<sub>1</sub> : 
+                <span data-msgid="FitTest1">Observed Distritution &ne; Theoretical Distribution</span> 
+              </span> 
+            </td>
+        </tr>
+        <tr>
+            <td><b><span data-msgid="Test Type">Test Type</span></b></td>
+            <td colspan="3">&chi;<sup>2</sup><sub>k-m-1</sub> test, k = category, m = estimated parameters <input type="text" style="text-align:center;" size=4 value="0" id="mm"></td> 
+        </tr>
+	<tr>  
+          <td></td>
+	  <td colspan="3"><span data-msgid="Significance Level">Significance Level</span> &alpha; = 
+              <input type="text" style="text-align:center;" size=4 value="0.05" id="alpha">&nbsp; <span class="fontguide">(0 < &alpha; < 1)</span>
           </td>
-          <td>
-            <img class="imgFig600400" src="../Figure/Fig110101.png">
-            <div class="figText">&lt;Figure 11.1.1&gt; Goodness of fit test in 『eStatU』</div>
-          </td>
+	</tr>
+        <tr>
+          <td><b><span data-msgid="Sample Data">Sample Data</span></b></td>
+	  <td colspan="3"><span class="fontguide" data-msgid="InputFitData">(input Observed Frequenc & Expected Probability)</span></td>
+        </tr>
+	<tr>
+          <td></td>
+	  <td>&nbsp;<span data-msgid="ObservedFreq">Observed Frequency</span></td>
+	  <td>&nbsp;<span data-msgid="ExpectedProb">Expected Probability</span> </td>
+	  <td>&nbsp;<span data-msgid="ExpectedFreq">Expected Probability</span></td>
+	</tr>
+	<tr>
+          <td style="text-align:right;"> <span data-msgid="Row">Row</span> 1 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;" value="60" size=10 id="data11"></td>
+	  <td><input type="text" style="text-align:center;" value="0.333" size=10 id="data12"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data13"></td>
+	</tr>
+	<tr>
+          <td style="text-align:right;"> <span data-msgid="Row">Row</span> 2 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;" value="50" size=10 id="data21"></td>
+	  <td><input type="text" style="text-align:center;" value="0.333" size=10 id="data22"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data23"></td>
+	</tr>
+	<tr>
+          <td style="text-align:right;"> <span data-msgid="Row">Row</span> 3 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;" value="40" size=10 id="data31"></td>
+	  <td><input type="text" style="text-align:center;" value="0.333" size=10 id="data32"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data33"></td>
+	</tr>
+	<tr>
+          <td style="text-align:right;"> <span data-msgid="Row">Row</span> 4 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data41"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data42"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data43"></td>
+	</tr>
+	<tr>
+          <td style="text-align:right;"> <span data-msgid="Row">Row</span> 5 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data51"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data52"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data53"></td>
+	</tr>
+	<tr>
+          <td style="text-align:right;"> <span data-msgid="Row">Row</span> 6 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data61"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data62"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data63"></td>
+	</tr>
+	<tr>
+          <td style="text-align:right;"> <span data-msgid="Row">Row</span> 7 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data71"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data72"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data73"></td>
+	</tr>
+	<tr>
+          <td style="text-align:right;"> <span data-msgid="Row">Row</span> 8 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data81"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data82"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data83"></td>
+	</tr>
+	<tr>
+          <td style="text-align:right;"> <span data-msgid="Row">Row</span> 9 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data91"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data92"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data93"></td>
+	</tr>
+	<tr>
+	  <td style="text-align:right;"><span data-msgid="Total">Sum</span> </td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data101"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data102"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data103"></td>
+	</tr>
+      </table>
+      <p>
+          <div class="figText">&lt;Figure 11.1.1&gt; Goodness of fit test in 『eStatU』</div>
+      <p>
+      <button type="button" id="executeTH8" >
+        <span data-msgid="Execute">Execute</span>
+      </button> 
+      <p>
+      <table style="width:300px;">
+        <tr>
+          <td><span class="fontmath">&alpha; = </span><input type="text" style="text-align:center;" size=4 value="0.05" id="alpha2"></td>
+          <td><sup><small> 0 </small></sup></td>
+          <td><input type="range" min="1" max="999" value="50" id="rangeAlpha" onchange="showValueAlpha(this.value)"/></td>
+          <td><sup><small> 1 </small></sup></td>
         </tr>
       </table>
       <p>
-        <img class="imgFig600400" src="../Figure/Fig110102.png">
-        <div class="figText">&lt;Figure 11.1.2&gt; 『eStatU』Chi-square Goodness of Fit Test</div>
+      <svg id="chart" width="600" height="400" style="border-style:solid;"> </svg>
+      <p>
+      <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+      </button>
+      <p>
+        <div class="figText">&lt;Figure 11.1.2&gt; 『eStatU』 Chi-square Goodness of Fit Test</div>
+      <p>
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
 
+    <!---   ************ script for Goodness of Fit Test ************  ---->
+<script>
+      setLanguage('en');
+      var bar = d3.select("#chart");
+      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
+      var svgWidth2, svgHeight2, graphWidth2, graphHeight2;
+      svgWidth2   = 600;
+      svgHeight2  = 400;
+
+      var i, j, k, mm, nobs, nrow, df, info, stat, pvalue, alpha, f, g, h; 
+      var gxmin, gxmax, gymin, gymax, title, temp;
+      var hypoType = 9;
+      var h1Type   = 2;
+      var nr = 10;
+      var obsF = new Array(nr);
+      var expP = new Array(nr);
+      var expF = new Array(nr);
+      var checkExecute = false;
+      document.getElementById("alpha2").disabled = true;  
+      document.getElementById("data13").disabled = true;
+      document.getElementById("data23").disabled = true;
+      document.getElementById("data33").disabled = true;
+      document.getElementById("data43").disabled = true;
+      document.getElementById("data53").disabled = true;
+      document.getElementById("data63").disabled = true;
+      document.getElementById("data73").disabled = true;
+      document.getElementById("data83").disabled = true;
+      document.getElementById("data93").disabled = true;
+      document.getElementById("data101").disabled = true;
+      document.getElementById("data102").disabled = true;
+      document.getElementById("data103").disabled = true;
+
+      // erase Data and Graph
+      d3.select("#erase").on("click",function() {
+        bar.selectAll("*").remove();
+        document.getElementById("mm").value = "0";
+        document.getElementById("data11").value = "";
+        document.getElementById("data12").value = "";
+        document.getElementById("data13").value = "";
+        document.getElementById("data21").value = "";
+        document.getElementById("data22").value = "";
+        document.getElementById("data23").value = "";
+        document.getElementById("data31").value = "";
+        document.getElementById("data32").value = "";
+        document.getElementById("data33").value = "";
+        document.getElementById("data41").value = "";
+        document.getElementById("data42").value = "";
+        document.getElementById("data43").value = "";
+        document.getElementById("data51").value = "";
+        document.getElementById("data52").value = "";
+        document.getElementById("data53").value = "";
+        document.getElementById("data61").value = "";
+        document.getElementById("data62").value = "";
+        document.getElementById("data63").value = "";
+        document.getElementById("data71").value = "";
+        document.getElementById("data72").value = "";
+        document.getElementById("data73").value = "";
+        document.getElementById("data81").value = "";
+        document.getElementById("data82").value = "";
+        document.getElementById("data83").value = "";
+        document.getElementById("data91").value = "";
+        document.getElementById("data92").value = "";
+        document.getElementById("data93").value = "";
+        document.getElementById("data101").value = "";
+        document.getElementById("data102").value = "";
+        document.getElementById("data103").value = "";
+     })
+
+      // Testing Hypothesis ======================================
+      d3.select("#executeTH8").on("click",function() {
+        checkExecute = true;
+        // alpha
+        alpha = parseFloat(d3.select("#alpha").node().value);
+        if (alpha < 0.001) {
+          alpha = 0.001;
+          document.getElementById("alpha").value = alpha;
+        }
+        else if (alpha > 0.499) {
+          alpha = 0.499;
+          document.getElementById("alpha").value = alpha;
+        }
+        document.getElementById("alpha2").value = alpha;
+        document.getElementById("rangeAlpha").value = alpha*1000;
+
+        // input value
+        mm      = parseFloat(d3.select("#mm").node().value);
+        obsF[1] = parseFloat(d3.select("#data11").node().value);
+        expP[1] = parseFloat(d3.select("#data12").node().value);
+        obsF[2] = parseFloat(d3.select("#data21").node().value);
+        expP[2] = parseFloat(d3.select("#data22").node().value);
+        obsF[3] = parseFloat(d3.select("#data31").node().value);
+        expP[3] = parseFloat(d3.select("#data32").node().value);
+        obsF[4] = parseFloat(d3.select("#data41").node().value);
+        expP[4] = parseFloat(d3.select("#data42").node().value);
+        obsF[5] = parseFloat(d3.select("#data51").node().value);
+        expP[5] = parseFloat(d3.select("#data52").node().value);
+        obsF[6] = parseFloat(d3.select("#data61").node().value);
+        expP[6] = parseFloat(d3.select("#data62").node().value);
+        obsF[7] = parseFloat(d3.select("#data71").node().value);
+        expP[7] = parseFloat(d3.select("#data72").node().value);
+        obsF[8] = parseFloat(d3.select("#data81").node().value);
+        expP[8] = parseFloat(d3.select("#data82").node().value);
+        obsF[9] = parseFloat(d3.select("#data91").node().value);
+        expP[9] = parseFloat(d3.select("#data92").node().value);
+
+        // 관찰도수 입력한 행의 수 카운트
+        nrow = 0;
+        for (i=1; i<nr; i++) {
+          if ( !isNaN(obsF[i]) ) nrow++;
+        }
+        // 입력행은 하나 이상 체크
+        if (nrow < 2 ) {
+          bar.append("text").attr("class","mean").attr("x", 250).attr("y", 100)
+             .text("At least two rows are required !!   Try again.").style("stroke","red");
+          return;
+        }
+        // 최종 입력행 전에 빈칸 있나 체크
+        for (i=1; i<=nrow; i++) {
+            if (isNaN(obsF[i]) || isNaN(expP[i])) {
+              bar.append("text").attr("class","mean").attr("x", 250).attr("y", 100)
+                 .text("No input or wrong input !!   Try again.").style("stroke","red");
+              return;
+            }
+        }
+        testingGoodnessFit();
+      })
+
+      // svg Graph Save
+      d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth2;
+        var height = svgHeight2;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+// goodness of fit test
+function testingGoodnessFit() {
+        bar.selectAll("*").remove();
+        // 입력값 합계 => 기대도수 계산
+        obsF[0] = 0;
+        expP[0] = 0;
+        for (i=1; i<=nrow; i++) { 
+            obsF[0] += obsF[i];
+            expP[0] += expP[i];
+        }
+        // 기대확률값이 0.99보다 작으면 경고
+            if (expP[0] < 0.99) {
+              bar.append("text").attr("class","mean").attr("x", 250).attr("y", 100)
+                 .text("Expecte Probability < 0.99!   Try again.").style("stroke","red");
+              return;
+            }
+        // 기대도수 계산
+        expF[0] = 0;
+        for (i=1; i<=nrow; i++) { 
+            expF[i] = obsF[0]*expP[i];
+            expF[0] += expF[i];
+            temp = "data"+(i).toString()+"3";
+            document.getElementById(temp).value = f2(expF[i]);
+        }
+        document.getElementById("data101").value = f0(obsF[0]);
+        document.getElementById("data102").value = f3(expP[0]);
+        document.getElementById("data103").value = f2(expF[0]);
+        // test statistics
+        df = nrow - mm - 1;
+        stat = 0;
+        for (i=1; i<=nrow; i++) {
+            temp = obsF[i] - expF[i];
+            stat += temp * temp / expF[i];
+        }
+
+        // chisq-test
+            h = alpha;  
+            if (df < 10) f = 0;
+            else f = chisq_inv(0.0001, df, info);
+            g = chisq_inv(1-h, df, info);
+            pvalue = 1 - chisq_cdf(stat, df, info)
+            drawChisqGraphTH(hypoType, h1Type, stat, df, f, g, h, pvalue, temp );
+}         
+// alpha sliding bar control for testing hypothesis 
+function showValueAlpha(newValue) {
+        alpha = f3(newValue/1000);
+        document.getElementById("alpha").value   = alpha;
+        document.getElementById("alpha2").value  = alpha;
+        if (checkExecute) testingGoodnessFit();
+} 
+</script>
+
+
+
+
+
+
+    <!------------------------------------------------------------------------------------------------->
     <div class="mainTable">
-      Consider a categorical variable X which has  number of possible values  and their probabilities are  
+      Consider a categorical variable X which has \(k\) number of possible values \(x_1 , x_2 , ... , x_k\) and 
+      their probabilities are \(p_1 , p_2 , ... , p_k\) 
       respectively. In other words, the probability distribution for the categorical variable X is as follows:  
       <p>
       <table style="width:400px"> 
@@ -436,7 +755,7 @@
        <tr> <td class="tdCenter">\(x_2\)</td>    <td class="tdCenter">\(p_2\)</td>    </tr>
        <tr> <td class="tdCenter">\(\cdots\)</td> <td class="tdCenter">\(\cdots\)</td> </tr>
        <tr> <td class="tdCenter">\(x_k\)</td>    <td class="tdCenter">\(p_k\)</td>    </tr>
-       <tr> <td class="tdCenter">Total</td>      <td class="tdCenter">1</td>          </tr>
+       <tr> <td class="tdCenter"><b>Total</b></td>      <td class="tdCenter"><b>1</b></td>          </tr>
       </table>
       <p>
       When random samples are collected from the population of the categorical random variable X and their 
@@ -444,12 +763,12 @@
       distribution of (\(p_1 , p_2 , ... , p_k \)) = (\(p_{10} , p_{20} , ... , p_{k0} \)) is as follows:
       <p>
       <div class="textLeft">
-        \(H_0\) : Data \(O_1 , O_2 , ... , O_k \) are from the distribution (\(p_1 , p_2 , ... , p_k \)) = (\(p_{10} , p_{20} , ... , p_{k0} ) \) <br>
-        \(H_1\) : Data \(O_1 , O_2 , ... , O_k \) are not from the distribution (\(p_1 , p_2 , ... , p_k \)) = (\(p_{10} , p_{20} , ... , p_{k0} ) \) <br>
+        \(H_0\) : Distribution of (\(O_1 , O_2 , ... , O_k \)) are from the distribution (\(p_1 , p_2 , ... , p_k \)) = (\(p_{10} , p_{20} , ... , p_{k0} ) \) <br>
+        \(H_1\) : Distribution of (\(O_1 , O_2 , ... , O_k \)) are not from the distribution (\(p_1 , p_2 , ... , p_k \)) = (\(p_{10} , p_{20} , ... , p_{k0} ) \) <br>
       </div>
       <p>
       If the total number of samples \(n\) is large enough, the above hypothesis can be tested using the following 
-      decision rule of the chi-square test statistic. 
+      chi-square test statistic as follows: 
       $$
         \text{‘If } \chi_{obs}^{2} = \sum_{i=1}^{k} \frac { (O_{i} - E_{i} )^{2}} {E_{i}} > \chi_{k-m-1 ; &alpha;}^{2}, \text{ then reject } H_0 ’   
       $$
@@ -470,8 +789,8 @@
       <p>
       <b>Hypothesis:</b>
       <div class="textLeft">
-        \(H_0\) : Distribution of \(O_1 , O_2 , ... , O_k \) follows \( (p_{10} , p_{20} , ... , p_{k0} )\)  <br>
-        \(H_1\) : Distribution of \(O_1 , O_2 , ... , O_k \) does not follow \((p_{10} , p_{20} , ... , p_{k0} )\) <br>
+        \(H_0\) : Distribution of (\(O_1 , O_2 , ... , O_k \)) follows \( (p_{10} , p_{20} , ... , p_{k0} )\)  <br>
+        \(H_1\) : Distribution of (\(O_1 , O_2 , ... , O_k \)) does not follow \((p_{10} , p_{20} , ... , p_{k0} )\) <br>
       </div>
       <p>
       <b>Decision Rule:</b>
@@ -513,7 +832,7 @@
              <tr> <td class="tdCenter">B</td>    <td class="tdCenter">342</td> </tr>
              <tr> <td class="tdCenter">C</td>    <td class="tdCenter"> 44</td> </tr>
              <tr> <td class="tdCenter">D</td>    <td class="tdCenter"> 22</td> </tr>
-             <tr> <td class="tdCenter">Total</td><td class="tdCenter">600</td> </tr>
+             <tr> <td class="tdCenter"><b>Total</b></td><td class="tdCenter"><b>600</b></td> </tr>
             </table> 
           </td>
         </tr>

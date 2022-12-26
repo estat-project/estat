@@ -51,7 +51,12 @@
 	 </script>
        <link rel="stylesheet" href="../../css/pandoc.css">
        <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="../../../eStat/js/language.js" ></script>   
+       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
+       <script src="../../../eStat/js/eStatU.js"></script>
+       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
+       <script src="../../../eStat/lib/convertSVG.js"></script>
 </head>
 <body>
 
@@ -289,7 +294,7 @@
         -  Is there a gender gap in the approval rating for a particular candidate in this year's presidential election?
       </div>
       <div class="textL30M10">
-        -  A factory has two machines that make products. Do two machines have different defect rates?
+        -  A factory has two machines that make products. Have two machines different defect rates?
       </div>
       <p>
         Comparing proportions \(p_1\) and \(p_2\) of two populations is possible by testing the difference
@@ -326,7 +331,7 @@
         </tr>
         <tr style="height:40px">
           <td class="tdLeft">3) \( \; H_0 : p_1 = p_2 \)<br>\(\quad\,\, H_1 : p_1 \ne p_2 \)</td>
-          <td class="tdLeft">If \( \left | \frac { {\hat p}_1 - {\hat p}_2 } { \sqrt{ \frac{\overline p (1 - \overline p )}{n_1 } + \frac{\overline p (1 - \overline p ) }{n_2 }  } }  \right | > z_{&alpha;/2} \), then reject \( H_0 \) </td>
+          <td class="tdLeft">If \( | \frac { {\hat p}_1 - {\hat p}_2 } { \sqrt{ \frac{\overline p (1 - \overline p )}{n_1 } + \frac{\overline p (1 - \overline p ) }{n_2 }  } }  | > z_{&alpha;/2} \), then reject \( H_0 \) </td>
         </tr>
       </table>
     </div>
@@ -334,6 +339,7 @@
  
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
+      <p>
       <b>Example 8.3.1</b>
         A survey was conducted for a presidential election and samples were selected independently 
         from both male and female populations. 54 out of 225 samples from the male population 
@@ -346,7 +352,7 @@
       The hypothesis of this problem is \(\small  \; H_0 : p_1 = p_2 , H_1 : p_1 \ne p_2 \),  and its decision rule is as follows: 
       $$ \small
         \begin{multline}
-        \shoveleft '\text{If } \left | \frac { {\hat p}_1 - {\hat p}_2 } { \sqrt{ \frac{\overline p (1 - \overline p )}{n_1 } + \frac{\overline p (1 - \overline p ) }{n_2 }  } }  \right | > z_{&alpha;/2}, \text{ then reject } H_0
+        \shoveleft '\text{If } \; | \frac { {\hat p}_1 - {\hat p}_2 } { \sqrt{ \frac{\overline p (1 - \overline p )}{n_1 } + \frac{\overline p (1 - \overline p ) }{n_2 }  } }  | > z_{&alpha;/2}, \text{ then reject } H_0 \;'
         \end{multline}
       $$
         Since \({\hat p}_1 = \frac{54}{225} \) = 0.240, \({\hat p}_2 = \frac{52}{175} = 0.297,\; \overline p  \) 
@@ -354,40 +360,256 @@
       $$ \small
         \begin{multline}
         \shoveleft \overline p = \frac{54 + 52}{ 225 + 175} = \frac{106}{400} = 0.265 \\
-        \shoveleft \left | \frac { {\hat p}_1 - {\hat p}_2 } { \sqrt{ \frac{\overline p (1 - \overline p )}{n_1 } + \frac{\overline p (1 - \overline p ) }{n_2 }  } }  \right |  
-           = \left | \frac { {0.240} - {0.297} } { \sqrt{ \frac{0.265(1 - 0.265)}{225} + \frac{0.265(1 - 0.265)}{175}  } }  \right | = 1.28\\
+        \shoveleft  | \frac { {\hat p}_1 - {\hat p}_2 } { \sqrt{ \frac{\overline p (1 - \overline p )}{n_1 } + \frac{\overline p (1 - \overline p ) }{n_2 }  } }  |  
+           = | \frac { {0.240} - {0.297} } { \sqrt{ \frac{0.265(1 - 0.265)}{225} + \frac{0.265(1 - 0.265)}{175}  } }  | = 1.28\\
         \shoveleft z_{&alpha;/2} = z_{0.05/2} = z_{0.025} = 1.96 \\
         \end{multline}
       $$
         Therefore, the hypothesis \(\small H_0\) can not be rejected and we conclude that there is not enough 
         evidence that the approval ratings of male and female are different. 
       <p>
-        In 『eStatU』 menu, select ’Testing Hypothesis \(p_1 , p_2\)’ and enter 
+        In 『eStatU』 menu, select [Testing Hypothesis \(p_1 , p_2\)] and enter 
         \(n_1 = 225,\; {\hat p}_1 = 0.240,\; n_2 = 175,\; {\hat p}_2 = 0.297\) as shown in &lt;Figure 8.3.1&gt;. 
         Clicking the [Execute] button will show the result of the hypothesis test as shown in &lt;Figure 8.3.2&gt;.
       <p>
-      <table class="width:650">
+      <!---   ************ html for Testing Proportion 1 and 2 ************  ---->
+      <b>[<span data-msgid="Testing Hypothesis P12"></span>]</b>
+      <p>
+         <input class="qrBtn" type="image" src="../../QR/eStatU840_TestP12.svg" onclick="window.open(addrStr[108])">
+      <p>
+      <button type="button" id="erase" style="width:100px;"><b>New Data</b></button>
+      <p>
+      <table style="width:600px;">
         <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU840_TestP12.svg" onclick="window.open(addrStr[108])">
+          <td><b><span data-msgid="Hypothesis">Hypothesis</span></b></td>
+          <td colspan="2"><span class="fontmath">H<sub>o</sub> : p<sub>1</sub> - p<sub>2</sub> = D </span>&nbsp; <input type="text" style="text-align:center;" size=6 value=0 id="mu6"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td colspan="2">
+            <form name="myForm0"> 
+              <span class="fontmath">
+	      <input type="radio" name = "type0" value="1" checked>
+	      H<sub>1</sub> : p<sub>1</sub> - p<sub>2</sub> &ne; D &nbsp;&nbsp;
+	      <input type="radio" name = "type0" value="2" >
+              H<sub>1</sub> : p<sub>1</sub> - p<sub>2</sub> > D &nbsp;&nbsp;      
+	      <input type="radio" name = "type0" value="3" >
+              H<sub>1</sub> : p<sub>1</sub> - p<sub>2</sub> < D      
+              </span>
+            </form>
           </td>
-          <td>
-            <img class="imgFig600400" src="../Figure/Fig080301.png">
-            <div class="figText">&lt;Figure 8.3.1&gt; Data input for testing two population proportions in 『eStatU』</div>
-          </td>
+        </tr>
+        <tr>
+          <td><b><span data-msgid="Test Type">Test Type</span></b></td>
+          <td colspan="2"><span class="fontmath" data-msgid="Z-test">Z-test</span></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td colspan="2"><span data-msgid="Significance Level">Significance Level</span> &nbsp;<span class="fontmath">&alpha;</span> = <input type="text" style="text-align:center;" size=4 value="0.05" id="alpha">&nbsp; <span class="fontguide">(0 < &alpha; < 1)</span></td>
+        </tr>
+        <tr>
+          <td><b><span data-msgid="Sample Data">Sample Data</span></b></td>
+          <td colspan="2"></td>
+        </tr>
+        <tr>
+           <td style="width:130px; text-align:right;"><span data-msgid="Sample Size">Sample Size</span></td>         
+           <td><span class="fontmath">n<sub>1</sub></span> = <input type="text" style="text-align:center;" value="225" size=6 id="nn61"></td>
+           <td><span class="fontmath">n<sub>2</sub></span> = <input type="text" style="text-align:center;" value="175" size=6 id="nn62"></td>        
+        </tr>
+        <tr>
+           <td style="text-align:right;"><span data-msgid="Sample Proportion">Sample Proportion</span></td>
+           <td><span class="fontmath">p&#770;<sub>1</sub></span> = <input type="text" style="text-align:center;" value="0.240" size=6 id="pp61"></td>
+           <td><span class="fontmath">p&#770;<sub>2</sub></span>> = <input type="text" style="text-align:center;" value="0.297" size=6 id="pp62"></td>
         </tr>
       </table>
       <p>
-        <img class="imgFig600400" src="../Figure/Fig080302.png">
-        <div class="figText">Result of testing hypothesis for two population proportions using 『eStatU』</div>
+         <div class="figText">&lt;Figure 8.3.1&gt; Data input for testing two population proportions in 『eStatU』</div>
+      <p>
+      <button type="button" id="executeTH6" >
+        <span data-msgid="Execute">Execute</span>
+      </button> 
+      <p>
+      <table style="width:750px;">
+        <tr>
+          <td style="width:330px;">
+            <b><span data-msgid="Confidence Interval">Confidence Interval</span></b>   
+          </td>
+          <td>   
+            <span class="fontmath">z<sub>&alpha;/2</sub></span> = 
+            <input type="text" style="text-align:center;" size=6 id="zvalue">
+          </td>
+          <td>
+            <span class="fontmath">p&#772; = (n<sub>1</sub> p<sub>1</sub> + n<sub>2</sub> p<sub>2</sub>) / (n<sub>1</sub>+n<sub>2</sub>)</span> = 
+            <input type="text" style="text-align:center;" size=6 id="pbar">
+          </td>
+        </tr>
+	<tr>
+	  <td><span class="fontmath">(p&#770;<sub>1</sub> - p&#770;<sub>2</sub> - D)</span>
+	    &plusmn;
+	    <span class="fontmath">z<sub>&alpha;/2<sub></span>
+            <span class="fontmath"> &radic; ( p&#772; (1-p&#772;) / n<sub>1</sub> + p&#772; (1-p&#772;) / n<sub>2</sub> )</span>
+          </td>
+          <td style="text-align:center;">&hArr;</td>
+	  <td>(&nbsp;<input type="text" style="text-align:center;" size=6 id="cleft">&nbsp;&nbsp;&nbsp;, <input type="text" style="text-align:center;" size=6 id="cright">&nbsp;)</td>
+	</tr>
+      </table>
+      <p>
+      <table style="width:300px;">
+        <tr>
+          <td style="width:100px;"><span class="fontmath">&alpha; = </span><input type="text" style="text-align:center;" size=4 value="0.05" id="alpha2"></td>
+          <td><sup><small> 0 </small></sup></td>
+          <td><input type="range" min="1" max="999" value="50" id="rangeAlpha" onchange="showValueAlpha(this.value)"/> </td>
+          <td><sup><small> 1 </small></sup></td>
+        </tr>
+      </table>
+      <p>   
+        <svg id="chart" width="600" height="400" style="border-style:solid;"> </svg> 
+      <p>
+      <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+      </button> 
+      <p>
+        <div class="figText">&lt;Figure 8.3.2&gt;Result of testing hypothesis for two population proportions using 『eStatU』</div>
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
+    <!---   ************ script for Testing Proportion 1 and 2 ************  ---->
+<script>
+      setLanguage('en');
+      var bar = d3.select("#chart");
+
+      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
+      var svgWidth2, svgHeight2, graphWidth2, graphHeight2;
+      svgWidth2   = 600;
+      svgHeight2  = 400;
+
+      var nobs, avg, std, gxmin, gxmax, gymin, gymax;
+      var title;
+      var info, alpha, pvalue, b, c, d, e, f, g, h, t1, t2;
+      var mu6, nn61,nn62, pp61, pp62, teststat, pbar, zvalue, cleft, cright, temp;
+      var hypoType = 6;
+      var checkExecute = false;
+
+      document.getElementById("cleft").disabled  = true;
+      document.getElementById("cright").disabled = true; 
+      document.getElementById("alpha2").disabled = true;  
+      document.getElementById("zvalue").disabled = true;  
+      document.getElementById("pbar").disabled = true;  
+
+      // H1 type
+      var h1 = document.myForm0.type0;
+      var h1Type = h1.value; 
+      h1[0].onclick = function() { h1Type = h1.value; if (checkExecute) testingHypothesisP12(); }    // 양측검정
+      h1[1].onclick = function() { h1Type = h1.value; if (checkExecute) testingHypothesisP12(); }    // 우측검정
+      h1[2].onclick = function() { h1Type = h1.value; if (checkExecute) testingHypothesisP12(); }    // 좌측검정
+
+      // erase Data and Graph
+      d3.select("#erase").on("click",function() {
+        bar.selectAll("*").remove();
+        document.getElementById("nn61").value   = "";
+        document.getElementById("nn62").value   = "";
+        document.getElementById("pp61").value   = "";
+        document.getElementById("pp62").value   = "";
+        document.getElementById("cleft").value  = "";
+        document.getElementById("cright").value = "";
+        document.getElementById("zvalue").value = "";
+        document.getElementById("pbar").value   = "";
+      })
+
+      // Testing Hypothesis ===========================================================
+      d3.select("#executeTH6").on("click",function() {
+        checkExecute = true;
+        // alpha
+        alpha = parseFloat(d3.select("#alpha").node().value);
+        if (alpha < 0.001) {
+          alpha = 0.001;
+          document.getElementById("alpha").value = alpha;
+        }
+        else if (alpha > 0.499) {
+          alpha = 0.499;
+          document.getElementById("alpha").value = alpha;
+        }
+        document.getElementById("alpha2").value = alpha;
+        document.getElementById("rangeAlpha").value = alpha*1000;
+        // input value
+        mu6    = parseFloat(d3.select("#mu6").node().value);
+        nn61   = parseFloat(d3.select("#nn61").node().value);
+        nn62   = parseFloat(d3.select("#nn62").node().value);
+        pp61   = parseFloat(d3.select("#pp61").node().value);
+        pp62   = parseFloat(d3.select("#pp62").node().value);
+        if (isNaN(nn61) || isNaN(nn62) || isNaN(pp61) || isNaN(pp62) ||
+            nn61 < 2 || nn62 < 2 || pp61 <= 0 || pp62 <= 0 || pp61 >= 1 || pp62 >= 1) {  // wrong input
+          bar.append("text").attr("class","mean").attr("x", 150).attr("y", 100)
+             .text("No input or wrong input !!   Try again.")
+             .style("stroke","red")
+          return;
+        }
+        testingHypothesisP12();
+      })
+      // svg Graph Save
+      d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth2;
+        var height = svgHeight2;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+
+function testingHypothesisP12() {
+        bar.selectAll("*").remove();
+        // test statistics
+        pbar = ( nn61*pp61 + nn62*pp62 ) / (nn61 + nn62);
+        temp = Math.sqrt(pbar*(1-pbar)* (1/nn61 + 1/nn62)); 
+        teststat = (pp61 - pp62 - mu6) / temp; 
+        // confidence interval
+        h = 1 - alpha / 2;
+        zvalue   = stdnormal_inv(h, info);
+        cleft  = (pp61 - pp62 - mu6) - zvalue * temp;
+        cright = (pp61 - pp62 - mu6) + zvalue * temp;
+        document.getElementById("zvalue").value = f3(zvalue);  
+        document.getElementById("pbar").value   = f3(pbar);  
+        document.getElementById("cleft").value  = f3(cleft);  
+        document.getElementById("cright").value = f3(cright);  
+
+        if (h1Type == 1) {
+            h = alpha / 2;  
+            f = stdnormal_inv(h, info);
+            g = -f;
+            if (teststat < 0) pvalue = 2 * stdnormal_cdf(teststat);
+            else  pvalue = 2 * (1 - stdnormal_cdf(teststat));
+            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue, mu6);
+        }
+        else if (h1Type == 2) {
+            h = alpha;  
+            f = -5
+            g = stdnormal_inv(1-h, info);
+            pvalue = 1 - stdnormal_cdf(teststat);
+            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue, mu6);
+        }
+        else {
+            h = alpha;  
+            f = stdnormal_inv(h, info);
+            g = 5;
+            pvalue = stdnormal_cdf(teststat);
+            drawNormalGraphTH(hypoType, h1Type, teststat, 0, 1, f, g, h, pvalue, mu6);
+        }
+}
+// alpha sliding bar control for testing hypothesis 
+function showValueAlpha(newValue) {
+        alpha = f3(newValue/1000);
+        document.getElementById("alpha").value   = alpha;
+        document.getElementById("alpha2").value  = alpha;
+        if (checkExecute) testingHypothesisP12();
+} 
+</script>
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
+      <p>
       <b>Example 8.3.2</b>
-      In 2000, a simple random sampling of 1,000 people aged 15 to 29 across the country examined the status of marriage, and 63.5 percent were single. In 2020, another 1,000 people were surveyed independently, with 69.8 percent of them being single. From this fact, can you say that there has been a tendency to get married late in recent years? In other words, test at the 5% significance level whether the population aged 15 to 29 in 2020 is more likely to be single than in 2000. What is the p-value of this test?
+      In the year 2000, a simple random sampling of 1,000 people aged 15 to 29 across the country examined the status of marriage, and 63.5 percent were single. In the year 2020, another 1,000 people were surveyed independently, with 69.8 percent of them being single. From this fact, can you say that there has been a tendency to get married late in recent years? In other words, test at the 5% significance level whether the population aged 15 to 29 in 2020 is more likely to be single than in 2000. What is the p-value of this test?
       <p>
       <b>Answer</b>
       <p>

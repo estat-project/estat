@@ -51,7 +51,12 @@
 	 </script>
        <link rel="stylesheet" href="../../css/pandoc.css">
        <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="../../../eStat/js/language.js" ></script>   
+       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
+       <script src="../../../eStat/js/eStatU.js"></script>
+       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
+       <script src="../../../eStat/lib/convertSVG.js"></script>
 </head>
 <body>
 
@@ -365,29 +370,276 @@
       In 『eStatU』, enter data in the [Sample Data] box as shown in &lt;Figure 6.4.3&gt; and click the [Execute] 
       button to calculate the confidence interval [0.5321, 0.6679] using the normal distribution.
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
+      <!---   ************ html for Estimation of proportion ************  ---->
+      <b>[<span data-msgid="Confidence Interval P"></span> <span data-msgid="Confidence Interval"></span>]</b>
+      <p>
             <input class="qrBtn" type="image" src="../../QR/eStatU670_ConfIntP.svg" onclick="window.open(addrStr[99])">
-          </td>
-          <td>
-            <img class="imgFig600400" src="../Figure/Fig060403.png">
-            <div class="figText">&lt;Figure 6.4.3&gt;  『eStatU』 Estimation of the population proportion</div>
-          </td>
+      <p>
+      <button type="button" id="eraseCI" style="width:100px;"><b>New Data</b></button>
+      <p>
+      <table style="width:600px;">
+        <tr>
+          <td style="width:170px;"><b><span data-msgid="Sample Data">Sample Data</span></b></td>
         </tr>
+	<tr>
+          <td></td>
+	  <td><span data-msgid="Sample Size">Sample Size</span></td>
+	  <td><span class="fontmath">n</span> = <input type="text" style="text-align:center;" size=6 value="200" id="nn"></td>
+	</tr>
+	<tr>
+          <td></td>
+	  <td><span data-msgid="Sample Proportion">Sample Proportion</span></td>
+	  <td><span class="fontmath">p&#770;</span> = <input type="text" style="text-align:center;" size=6 value="0.6" id="pp"></td>
+          <td><span class="fontmath"> 0 < p&#770; < 1</span>  </td>
+	</tr>
+	<tr>
+          <td><b><span data-msgid="Confidence Level">Confidence Level</span></b></td>
+	  <td><span class="fontmath">1 - &alpha;</span></td>
+	  <td colspan="2">
+              <form name="myForm2">
+                <input type="radio" name = "type2" value="1" checked> 95%       
+                <input type="radio" name = "type2" value="2" > 99%
+              </form>
+          </td>
+	</tr>
+	<tr>
+          <td><b><span data-msgid="Sampling Distribution">Sampling Distribution</span></b></td>
+	  <td colspan="2"><span data-msgid="Normal Distribution">Normal Distribution</span></td>
+	</tr>
       </table>
+      <p>
+         <div class="figText">&lt;Figure 6.4.3&gt; Data input for 『eStatU』 Estimation of the population proportion</div>
+      <p>
+      <button type="button" id="executeTH3" >
+        <span data-msgid="Execute">Execute</span>
+      </button> 
+      <table style="width:600px">
+        <tr>
+          <td style="width:170px"><b><span data-msgid="Confidence Interval">Confidence Interval</span></b></td>
+          <td></td>
+          <td><span class="fontmath">z<sub>&alpha;/2<sub></span> = <input type="text" style="text-align:center;" size=6 id="zvalue"></td>
+          <td><span class="fontmath"> &radic; p&#770; (1-p&#770;) /n </span> = <input type="text" style="text-align:center;" size=6 id="varphat"></td>
+        </tr>
+        <tr>
+          <td><span class="fontmath">p&#770;</span> &nbsp; &plusmn; &nbsp; <span class="fontmath">z<sub>&alpha;/2<sub></span> <span class="fontmath"> &radic; p&#770; (1-p&#770;) /n </span></td>
+          <td>&hArr;</td>
+          <td>[&nbsp;<input type="text" style="text-align:center;" size=6 id="cleft"> , &nbsp;<input type="text" size=6 id="cright">&nbsp;]</td>
+       </tr>
+      </table>
+      <p>
+      <svg id="chart" width="600" height="200" style="border-style:solid;"> </svg> 
+      <br>
+      <table style="width:600px">
+        <tr>
+          <td style="width:100px">n = <input type="text" style="text-align:center;" value="100" size=3 id="nn2"></td>
+          <td><sup><small> 1 </small></sup></td>
+          <td><input type="range" min="1" max="1000" value="100" id="rangeN" onchange="showValueNN2(this.value)"/> </td>
+          <td><sup><small>1000</small></sup></td>
+          <td></td>         
+          <td style="width:100px">1-&alpha; = <input type="text" style="text-align:center;" value="0.95" size=3 id="alpha2"></td>
+          <td><sup><small> 0.60 </small></sup></td>         
+          <td><input type="range" min="60" max="99" value="95" id="rangeAlpha" onchange="showValueAlpha2(this.value)"/></td>         
+          <td><sup><small> 0.99 </small></sup></td>         
+        </tr>
+      </table>  
+      <p>
+      <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+      </button>
+      <p>
+        <div class="figText">&lt;Figure 6.4.4&gt; Simulation for estimating the population proportion </div>
       <p> 
         In this module of 『eStatU』, a simulation experiment to investigate the size of the confidence interval 
         can be done by changing the sample size \(n\) and the confidence level 1 - &alpha; as in &lt;Figure 6.4.4&gt;. 
         If you increase \(n\), the interval size becomes narrower. If you increase 1 - &alpha;, the interval size
         becomes wider.   
       <p> 
-        <img class="imgFig500200" src="../Figure/Fig060404.png">
-        <div class="figText">&lt;Figure 6.4.4&gt; Simulation for estimating the population proportion </div>
-      <p>
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
+      <!---   ********* script for Estimation of proportion *************  ---->
+  <script>
+      setLanguage('en');
+      var bar = d3.select("#chart");
+ 
+      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
+      var margin      = {top: 10, bottom: 10, left: 10, right: 10};
+      var svgWidth2   = 600;
+      var svgHeight2  = 200;
+      var graphWidth  = svgWidth2 - margin.left - margin.right;
+      var graphHeight = svgHeight2 - margin.top - margin.bottom;
+
+      var nobs, avg, std, info, gxmin, gxmax, gymin, gymax;
+      var title, confidence, confidence2;
+      var nn, pp, alpha, left, right, temp, zvalue, varphat;
+      var nn2, alpha2, left2, right2, temp2, zvalue2, varphat2;
+
+      // alpha
+      var a = document.myForm2.type2;
+      confidence = 0.95;
+      alpha = 1 - confidence;
+      a[0].onclick = function() { confidence = 0.95;  alpha = 1 - confidence; clearText();}  
+      a[1].onclick = function() { confidence = 0.99;  alpha = 1 - confidence; clearText();} 
+
+      document.getElementById("zvalue").disabled  = true;
+      document.getElementById("varphat").disabled = true;
+      document.getElementById("cleft").disabled   = true;
+      document.getElementById("cright").disabled  = true; 
+      document.getElementById("nn2").disabled     = true;
+      document.getElementById("alpha2").disabled  = true; 
+
+      // erase Data and Graph
+      d3.select("#eraseCI").on("click",function() {
+        bar.selectAll("*").remove();
+        document.getElementById("nn").value      = "";
+        document.getElementById("pp").value      = "";
+        document.getElementById("cleft").value   = "";
+        document.getElementById("cright").value  = "";
+        document.getElementById("zvalue").value  = "";
+        document.getElementById("varphat").value = "";
+      })
+
+      // Testing Hypothesis ======================================
+      d3.select("#executeTH3").on("click",function() {
+        bar.selectAll("*").remove();
+
+        // input value
+        nn     = parseFloat(d3.select("#nn").node().value);
+        pp     = parseFloat(d3.select("#pp").node().value);
+        document.getElementById("nn2").value  = nn;
+        document.getElementById("alpha2").value  = confidence;
+        nn2    = parseFloat(d3.select("#nn2").node().value); 
+        confidence2 = parseFloat(d3.select("#alpha2").node().value); 
+        alpha2 = 1 - confidence2;
+        // confidence interval
+        varphat  = Math.sqrt(pp*(1-pp)/nn);
+        varphat2 = Math.sqrt(pp*(1-pp)/nn2);
+        zvalue   = stdnormal_inv(1 - alpha/2, info);
+        zvalue2  = stdnormal_inv(1 - alpha2/2, info);
+        temp     = zvalue * varphat;
+        temp2    = zvalue2 * varphat2;
+        left     = pp - temp;
+        left2    = pp - temp2;
+        right    = pp + temp;  
+        right2   = pp + temp2;  
+
+        document.getElementById("zvalue").value  = f4(zvalue);
+        document.getElementById("varphat").value = f4(varphat);
+        document.getElementById("cleft").value   = f4(left);
+        document.getElementById("cright").value  = f4(right); 
+
+        if (isNaN(nn) || isNaN(pp) || nn < 2 || pp <= 0 || pp >= 1) {  // wrong input
+           bar.append("text").attr("class","mean")
+                .attr("x", 150) .attr("y", 100)
+                .text("No input or wrong input !!   Try again.")
+                .style("stroke","red")
+        }
+        else {    // Draw confidence interval
+          drawConfidenceIntervalP();
+        }
+      })
+
+      // svg Graph Save
+      d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth2;
+        var height = svgHeight2;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+
+// alpha 바뀔때 clear
+function clearText() {
+        bar.selectAll("*").remove();
+        document.getElementById("zvalue").value  = "";
+        document.getElementById("varphat").value = "";
+        document.getElementById("cleft").value    = "";
+        document.getElementById("cright").value   = "";
+}
+// n slide bar
+function showValueNN2(newValue) {
+        bar.selectAll("*").remove();
+        document.getElementById("nn2").value = newValue;
+        drawConfidenceIntervalP();
+}
+// alpha slide bar
+function showValueAlpha2(newValue) {
+        bar.selectAll("*").remove();
+        document.getElementById("alpha2").value = f2(newValue/100);
+        drawConfidenceIntervalP();
+}
+// draw confidence interval
+function drawConfidenceIntervalP() {
+        var x1, x2, xm, y1, y2, tempy;
+        bar.selectAll("*").remove();
+        nn2    = parseFloat(d3.select("#nn2").node().value); 
+        confidence2 = parseFloat(d3.select("#alpha2").node().value); 
+        alpha2 = 1 - confidence2;
+        // confidence interval
+        varphat2 = Math.sqrt(pp*(1-pp)/nn2);
+        zvalue2  = stdnormal_inv(1 - alpha2/2, info);
+        temp2    = zvalue2 * varphat2;
+        left2    = pp - temp2;
+        right2   = pp + temp2;  
+        tempy    = margin.top + graphHeight/2 -10;
+        var xScale = d3.scaleLinear().domain([0,1]).range([margin.left,graphWidth])
+        bar.append("g")
+          .attr("transform","translate("+margin.left+","+tempy+")")
+          .call(d3.axisBottom(xScale))                  // 눈금을 표시할 함수 호출
+
+        // draw conf interval
+        x1 = margin.left +30;
+        y1 = margin.top + 20; 
+        bar.append("text").attr("x",x1).attr("y", y1)
+           .text("  ***  "+svgStrU[20][langNum]+" : n="+f0(nn) +",          (1-\u03B1)="+f2(confidence)+"  ***")
+           .style("font-size","10pt").style("stroke","blue").style("text-anchor","start");
+        xm = margin.left + pp*graphWidth;
+        x1 = margin.left + left*graphWidth;
+        x2 = margin.left + right*graphWidth;
+        y1 = margin.top + graphHeight/3 - 20; 
+        y2 = y1;
+        bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+           .style("stroke","black").style("stroke-width","2");
+        bar.append("circle").attr("cx",x1).attr("cy",y1).attr("r",3).style("fill","blue");
+        bar.append("circle").attr("cx",xm).attr("cy",y1).attr("r",3).style("fill","blue");
+        bar.append("circle").attr("cx",x2).attr("cy",y2).attr("r",3).style("fill","blue");
+        y1 += 20;
+        y2 = y1;
+        bar.append("text").attr("x", x1).attr("y", y1).text("[ "+f4(left))
+           .style("font-size","10pt").style("stroke","blue").style("text-anchor","middle")
+        bar.append("text").attr("x", xm).attr("y", y1).text(" ,")
+           .style("font-size","10pt").style("stroke","blue").style("text-anchor","middle")
+        bar.append("text").attr("x", x2).attr("y", y1).text(f4(right)+" ]")
+           .style("font-size","10pt").style("stroke","blue").style("text-anchor","middle")
+
+        // conf interval simulation
+        x1 = margin.left + left2*graphWidth;
+        x2 = margin.left + right2*graphWidth;
+        y1 = margin.top + 2*graphHeight/3 + 10; 
+        y2 = y1;
+        bar.append("text").attr("x", margin.left+30).attr("y", y1)
+           .text("  ***  "+svgStrU[20][langNum]+" "+svgStrU[98][langNum]+" : n="+f0(nn2) +",          (1-\u03B1)="+f2(confidence2)+"  ***")
+           .style("font-size","10pt").style("stroke","red").style("text-anchor","start");
+        y1 += 20;
+        y2 = y1;
+        bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+           .style("stroke","red").style("stroke-width","2");
+        bar.append("circle").attr("cx",x1).attr("cy",y1).attr("r",3).style("fill","red");
+        bar.append("circle").attr("cx",xm).attr("cy",y1).attr("r",3).style("fill","red");
+        bar.append("circle").attr("cx",x2).attr("cy",y2).attr("r",3).style("fill","red");
+        y1 += 20;
+        y2 = y1;
+        bar.append("text").attr("x", x1).attr("y", y1).text("[ "+f4(left2))
+           .style("font-size","10pt").style("stroke","red").style("text-anchor","middle");
+        bar.append("text").attr("x", xm).attr("y", y1).text(" ,")
+           .style("font-size","10pt").style("stroke","red").style("text-anchor","middle")
+        bar.append("text").attr("x", x2).attr("y", y1).text(f4(right2)+" ]")
+           .style("font-size","10pt").style("stroke","red").style("text-anchor","middle");
+
+}
+  </script>
 
     <!------------------------------------------------------------------------------------------------->
     <div  class="mainTablePink">

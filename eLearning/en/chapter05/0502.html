@@ -51,7 +51,12 @@
 	 </script>
        <link rel="stylesheet" href="../../css/pandoc.css">
        <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="../../../eStat/js/language.js" ></script>   
+       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
+       <script src="../../../eStat/js/eStatU.js"></script>
+       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
+       <script src="../../../eStat/lib/convertSVG.js"></script>
 </head>
 <body>
 
@@ -289,7 +294,11 @@
   <p>
 
     <div class="mainTable">
-      <p>In order to calculate the probability of an event in a discrete sample space, the number of elements in the sample space and the number of elements included in the event should be counted. If all possible outcomes of the sample space is not large, the probability can be simply calculated, but it is generally not easy to count the number of possible outcomes. Effective methods for counting the number of complex cases include the permutation and combination.
+      <p>In order to calculate the probability of an event in a discrete sample space, the number of elements 
+         in the sample space and the number of elements included in the event should be counted. 
+         If all possible outcomes of the sample space is not large, the probability can be simply calculated, 
+         but it is generally not easy to count the number of all possible outcomes. Effective methods 
+         for counting the number of complex cases include the permutation and combination.
     </div>
     <p>
 
@@ -378,17 +387,7 @@
       <p>
       <b>Answer</b>
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_40AdditionRule.svg" onclick="window.open(addrStr[126])">
-          </td>
-          <td>
-            <p>
-              Since there are 25 students who take Economics and 20 students taking both courses, 25 - 20 = 5 students take only Economics. Also, since there are 30 students who take Political Science, 30 - 20 = 10 students take only Political Science. Thus, as shown in &lt;Figure 5.2.1&gt;, the number of students taking either Economics or Political Science is 5 + 10 + 20 = 35. Therefore, the probability of students taking either Economics or Political Science is 35 / 40.
-          </td>
-        </tr>
-      </table>
+         Since there are 25 students who take Economics and 20 students taking both courses, 25 - 20 = 5 students take only Economics. Also, since there are 30 students who take Political Science, 30 - 20 = 10 students take only Political Science. Thus, as shown in &lt;Figure 5.2.1&gt;, the number of students taking either Economics or Political Science is 5 + 10 + 20 = 35. Therefore, the probability of students taking either Economics or Political Science is 35 / 40.
       <p>
          <img class="imgFig400300" src="../Figure/Fig050201.png">
          <div class="figText">&lt;Figure 5.2.1&gt; Students who take either economics or political science</div>
@@ -406,21 +405,232 @@
         Probabilities of these events on this example are as follows: 
       <p>
         <div class="textL40">
-          P(A) = 25 / 40  <br>
-          P(B) = 30 / 40  <br>
-          P(A ∩ B) = 20 / 40 <br>
-          P(A ∪ B) = 35 / 40 <br>
+          P(A) = 25 / 40 = 0.625 <br>
+          P(B) = 30 / 40 = 0.750 <br>
+          P(A ∩ B) = 20 / 40 = 0.500<br>
+          P(A ∪ B) = 35 / 40 = 0.875<br>
         </div>
       <p>
         The probability of P(A ∪ B) can also be calculated as follows if you look at the &lt;Figure 5.2.1&gt;.
       <p>
         <div class="textL40">
-          P(A ∪ B) = P(A) ＋ P(B) － P(A ∩ B) = 25/40 ＋ 30/40 － 20/40  = 35/40
+          P(A ∪ B) = P(A) ＋ P(B) － P(A ∩ B) = 25/40 ＋ 30/40 － 20/40  = 0.625 + 0.750 - 0.500 = 0.875
         </div>
       <p>
         That is, the probability of taking either Economics or Political Science, P(A ∪ B), can be calculated by adding the probability of taking each course and then by subtracting the probability of taking both courses.
+      <p>
+      <!--- html for Addition Rule --------------------------------------------------------------------->
+      <b>[<span data-msgid="AdditionRule">Addition Rule of Probability</span>]</b> 
+      <p>
+      <button type="button" id="eraseAdd" style="width:140px;"><b>New Data</b></button>
+      <table style="width: 400px;">
+        <tr>
+          <td style="text-align: right;"><span class="fontmath">P(A)</span> = </td>
+          <td><input type="text" size=4 id="pa" style="text-align: center;"></td>
+          <td><sup><small> 0.00 </small></sup></td>
+          <td><input type="range" style="width: 100px;" min="0" max="20" value="13" id="rangePA" onchange="showValuePA(this.value)"/></td>
+          <td><sup><small> 1.00 </small></sup></td>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><span class="fontmath">P(B)</span> = </td>
+          <td><input type="text" size=4 id="pb" style="text-align: center;"></td>
+          <td><sup><small> 0.00 </small></sup></td>
+          <td><input type="range" style="width: 100px;" min="0" max="20" value="15" id="rangePB" onchange="showValuePB(this.value)"/></td>
+          <td><sup><small> 1.00 </small></sup></td>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;"><span class="fontmath">P(A ∩ B)</span> = </td>
+          <td><input type="text" size=4 id="panb" style="text-align: center;"></td>
+          <td><sup><small><span id="minPANB"></span></small></sup></td>
+          <td><input type="range" style="width: 80px;" min="0" max="20" value="10" id="rangePANB" onchange="showValuePANB(this.value)"/></td>
+          <td><sup><small><span id="maxPANB"></span></small></sup></td>
+          </td>
+        </tr>
+      </table>
+      <b><button type="button" style="width:140px;" id="executeAUB"><span data-msgid="Execute"></span></button> </b>
+      <table style="width: 500px;">
+        <tr>
+          <td colspan="3"><span class="fontmath" id="paubstr" style="color:red; fontsize:1.5em"></span></td>
+        </tr>
+      </table>
+      <svg id="chartAdd" width="600" height="480" style="border-style:solid;"> </svg> 
+      <br>
+      <button type="button" id="saveGraphADD" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+      </button>
+      <p>
     </div>
     <p>
+    <!------ Script for Addition Rule ------------------------------------------------------------------>
+    <script>
+      setLanguage('en');
+      var chartAdd = d3.select("#chartAdd");
+      var marginAdd      = {top: 10, bottom: 10, left: 10, right: 10};
+      var svgWidthAdd    = 600;
+      var svgHeightAdd   = 480;
+      var graphWidthAdd  = svgWidthAdd - marginAdd.left - marginAdd.right;
+      var graphHeightAdd = svgHeightAdd - marginAdd.top - marginAdd.bottom;
+      var i, pa, pb, panb, paub, temp, tmin, tmax, str1, str2, str3;
+      var colr = ["#FF0000","#FF8000","#FFFF00","#80FF00","#00FFFF","#BF00FF","#FF00FF","#0080FF","#00BFFF","#8000FF"];
+      str1 = "P(A ∪ B) = P(A) + P(B) - P(A∩B)" ;
+      // init Example
+      document.getElementById("pa").value   = "0.625";
+      document.getElementById("pb").value   = "0.750";
+      document.getElementById("panb").value = "0.500";
+      document.getElementById("rangePA").value = 13;
+      document.getElementById("rangePB").value = 15;
+      document.getElementById("rangePANB").value = 10;
+      document.getElementById("minPANB").value = "0.00";
+      document.getElementById("maxPANB").value = "0.62";
+
+      // Calculate A union B ======================================
+      d3.select("#executeAUB").on("click",function() {
+        chartAdd.selectAll("*").remove();
+        pa   = d3.select("#pa").node().value;
+        pb   = d3.select("#pb").node().value;
+        panb = d3.select("#panb").node().value;
+        // initial calculation
+        tmin = 0;
+        tmax = pb;
+        document.getElementById("rangePA").value = f0(pa*20);
+        document.getElementById("rangePB").value = f0(pb*20);
+        document.getElementById("rangePANB").value = f0(20 * (panb - tmin) / (tmax - tmin));
+        // input value
+        if ( isNaN(pa) || isNaN(pb) || isNaN(panb) ) {  // wrong input
+          chartAdd.append("text").attr("class","mean")
+             .attr("x", 250).attr("y", 100)
+             .text(alertMsg[48][langNum])
+             .style("stroke","red")
+             .style("font-size","1.2em")
+          return;
+        }
+        if ( panb > pa || panb > pb ) {  // wrong input
+          chartAdd.append("text").attr("class","mean")
+             .attr("x", 250).attr("y", 100)
+             .text("P(A ∩ B) < P(A) or P(B)")
+             .style("stroke","red")
+             .style("font-size","1.2em")
+          return;
+        }
+        calculateAUB();
+      })
+
+      // svg Graph Save
+      d3.select("#saveGraphADD").on("click", function() {
+        var svg = d3.select("#chartAdd");
+        var width = svgWidthAdd;
+        var height = svgHeightAdd;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+
+      // Calculate paub
+      function calculateAUB() {
+        pa   = parseFloat(d3.select("#pa").node().value);
+        pb   = parseFloat(d3.select("#pb").node().value);
+        panb = parseFloat(d3.select("#panb").node().value);
+        if (panb > pa) {panb = pa }
+        if (panb > pb) {panb = pb;}
+        if (pa <= pb) tmax = pa;
+        else tmax = pb;
+        tmin = 0;
+        if (pa+pb >= 1) tmin = pa + pb - 1;
+        document.getElementById("pa").value   = f3(pa);
+        document.getElementById("pb").value   = f3(pb);
+        document.getElementById("panb").value = f3(panb);
+        document.getElementById("minPANB").innerHTML = f3(tmin);
+        document.getElementById("maxPANB").innerHTML = f3(tmax);
+        if (tmin == tmax) temp = 20;
+        else temp = 20*(panb-tmin)/(tmax-tmin)
+        document.getElementById("rangePANB").value = temp;
+        // P(A U B)
+        paub = parseFloat(pa) + parseFloat(pb) - parseFloat(panb);
+        str2 = " = " + f3(pa) + " + " + f3(pb) + " - " + f3(panb); 
+        str3 = " = " + f3(paub);
+        document.getElementById("paubstr").innerHTML = str1 + str2 + str3;
+        drawUnion(pa, pb, panb, paub, str3);   
+      }
+
+      // pa slidebar
+      function showValuePA(newValue) {
+        document.getElementById("pa").value = f3(newValue*0.05);
+        pa   = parseFloat(d3.select("#pa").node().value);
+        pb   = parseFloat(d3.select("#pb").node().value);
+        panb = parseFloat(d3.select("#panb").node().value);
+        calculateAUB();       
+      }
+      // pb slide bar
+      function showValuePB(newValue) {
+        document.getElementById("pb").value = f3(newValue*0.05);
+        pa   = parseFloat(d3.select("#pa").node().value);
+        pb   = parseFloat(d3.select("#pb").node().value);
+        panb = parseFloat(d3.select("#panb").node().value);
+        calculateAUB();
+      }
+      // panb slide bar
+      function showValuePANB(newValue) {
+        panb = tmin + (tmax - tmin) * newValue * 0.05;
+        document.getElementById("panb").value = f3(panb);
+        pa   = parseFloat(d3.select("#pa").node().value);
+        pb   = parseFloat(d3.select("#pb").node().value);
+        panb = parseFloat(d3.select("#panb").node().value);
+        calculateAUB();
+      }
+      // draw paub
+      function drawUnion(pa, pb, panb, paub, str3) {
+        chartAdd.selectAll("*").remove();
+        var i, j, tx, ty, cx, cy, rx, ry, width, height;
+        var radius, radiusA, radiusB, radiusAB;
+        var xgap   = 20;
+        var ygap   = 20;
+        var fontsize  = "0.9em";
+        var fontsize2 = "1.3em";
+        radius   = 150;
+        radiusA  = radius * Math.sqrt(pa);
+        radiusB  = radius * Math.sqrt(pb);
+        radiusAB = radius * Math.sqrt(panb)
+        cx = marginAdd.left + xgap + radius;
+        cy = marginAdd.top  + 170;
+        tx = marginAdd.left + 10;
+        ty = marginAdd.top  + 10;
+        rx = 20;
+        ry = 20;
+        width  = graphWidthAdd - xgap;
+        height = graphHeightAdd - ygap;
+        // A union B
+//        chartAdd.style("fill","yellow");
+        chartAdd.append("rect").attr("x",tx).attr("y",ty).attr("rx",rx).attr("ry",ry).attr("width",width).attr("height",height)
+             .style("stroke","black").style("stroke-width","2").style("opacity","0.2").style("fill","yellow");
+        chartAdd.append("circle").attr("cx",cx).attr("cy",cy).attr("r",radiusA)
+             .style("stroke","black").style("stroke-width","2").style("opacity","0.2").style("fill","red");
+        chartAdd.append("text").attr("x", cx-10).attr("y", cy-radiusA+30).text("P(A)="+f3(pa))
+             .style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
+        if (pa == 1 || pb == 1) tx = cx;
+        else if (panb == 0)  tx = cx + 2*radiusA; 
+        else if (pb == panb) tx = cx + radiusAB/3;
+        else tx = cx + radius - radiusAB/2+10;
+        chartAdd.append("circle").attr("cx",tx).attr("cy",cy).attr("r",radiusB)
+             .style("stroke","black").style("stroke-width","2").style("opacity","0.2").style("fill","green");
+        chartAdd.append("text").attr("x", tx+20).attr("y", cy-radiusB+30).text("P(B)="+f3(pb))
+             .style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
+        chartAdd.append("text").attr("x", (cx+tx)/2).attr("y", cy+10).text("P(A∩B)="+f3(panb))
+             .style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
+        tx = marginAdd.left + xgap + 30;
+        ty =  cy + 200;
+        chartAdd.append("text").attr("x", tx).attr("y", ty).text(str1)
+             .style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
+        chartAdd.append("text").attr("x", tx).attr("y", ty+30).text(str2)
+             .style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
+        chartAdd.append("text").attr("x", tx).attr("y", ty+60).text(str3)
+             .style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
+      }
+  </script>
+
     <!------------------------------------------------------------------------------------------------->
 
     <div class="mainTable">
@@ -469,9 +679,9 @@
         Students of ADA University come from either Baku or a province. Among the 30 sophomores in the Department of Economics, there are 10 males and 20 females, one of males and five of females are from the province.
       <p>
       <div class="textL20M20">1) When selecting a student, what is the probability that the student is from the province? </div>
-      <div class="textL20M20">2) When I selected a student, she was a female. What is the probability that this student is from the province? </div>
-      <div class="textL20M20">3) When I selected a student, he was from the province. What is the probability of this student being a male? </div>
-      <div class="textL20M20">4) When selecting a student, what is the probability that he is a male and from Baku? </div>
+      <div class="textL20M20">2) When I selected a student, the student was female. What is the probability that this student is from the province? </div>
+      <div class="textL20M20">3) When I selected a student, the student was from the province. What is the probability of this student being a male? </div>
+      <div class="textL20M20">4) When selecting a student, what is the probability that the student is male and from Baku? </div>
       <p>
       <b>Answer</b>
       <p>
@@ -557,8 +767,543 @@
         \( \qquad \small
           P(M ∩ B) = P(B) P(M∣B) = (24/30) × (9/24)
         \)
+      <p>
+      <!----- html for Multiplication Rule ---------------------------------------------------------->
+      <b>[<span data-msgid="ConditionalProb">Multiplication Rule of Probability</span>]</b> 
+      <p> You can calculate the conditional probabilities and their graphs using eStat as follows:
+      <table style="width: 750px;">
+        <tr>
+          <td style="background-color: #dddddd; width:100px"><span data-msgid="JointProb"></span></td>
+          <td style="background-color: #dddddd; width:150px">\(B_1\)</td>
+          <td style="background-color: #dddddd; width:150px">\(B_2\)</td>
+          <td style="background-color: #dddddd; width:150px"><span data-msgid="Total"></span> </td>
+        </tr>
+        <tr>
+          <td style="background-color: #dddddd;">\(A_1\)</td>
+          <td style="text-align:left">
+            \( P(A_1 ∩ B_1 )\) = <input type="text" style="text-align: center;" size="3" value="0.300" id="p11" >
+            <table>
+              <td><sup><small> 0 </small></sup></td>
+              <td><input type="range" style="width: 80px;" min="0" max="20" value="18" id="rangeP11" onchange="showValueP11(this.value)"></td>
+              <td><sup><small> <span id="p11max"></span>  </small></sup></td>
+            </table>
+          </td>
+          <td style="text-align:left">\( P(A_1 ∩ B_2 )\) = <span id="p12"></span><br>&nbsp;</td>
+          <td style="background-color: #dddddd; text-align:left">
+              \( P(A_{1})\) = <input type="text" style="text-align: center;" size="3" value="0.333" id="p1dot" >
+            <table>
+              <td><sup><small> 0 </small></sup></td>
+              <td><input type="range" style="width: 80px;" min="0" max="20" value="7" id="rangeP1dot" onchange="showValueP1dot(this.value)"></td>
+              <td><sup><small> 1 </small></sup></td>
+            </table>
+          </td>          
+        </tr>
+        <tr>
+          <td style="background-color: #dddddd;">\(A_2\)</td>
+          <td style="text-align:left">\( P(A_2 ∩ B_1 )\) = <span id="p21"></span></td>
+          <td style="text-align:left">\( P(A_2 ∩ B_2 )\) = <span id="p22"></span></td>
+          <td style="background-color: #dddddd; text-align:left">\( P(A_{2})\) = <span id="p2dot"></span></td>
+        </tr>
+        <tr>
+          <td style="background-color: #dddddd;"><span data-msgid="Total"></span></td>
+          <td style="background-color: #dddddd; text-align:left">
+            \( P(B_{1})\) = <input type="text" style="text-align: center;" size="3" value="0.8" id="pdot1" >
+            <table>
+              <td><sup><small> 0 </small></sup></td>
+              <td><input type="range" style="width: 80px;" min="0" max="20" value="16" id="rangePdot1" onchange="showValuePdot1(this.value)"></td>
+              <td><sup><small> 1 </small></sup></td>
+            </table>
+          </td>
+          <td style="background-color: #dddddd; text-align:left">\( P(B_{2})\) = <span id="pdot2"></span><br>&nbsp;</td>
+          <td style="background-color: #dddddd;"><span id="ptotal"></span></td>
+        </tr>
+      </table>
+      <br>
+      <table style="width: 750px;">
+        <tr>
+          <td style="background-color: #dddddd; width:100px"><span data-msgid="ConditionalProb"></span></td>
+          <td style="background-color: #dddddd; width:200px">\(B_1\)</td>
+          <td style="background-color: #dddddd; width:200px">\(B_2\)</td>
+          <td style="background-color: #dddddd; width:50px"><span data-msgid="Total"></span> </td>
+        </tr>
+        <tr>
+          <td style="background-color: #dddddd;">\(A_1\)</td>
+          <td>\( P(B_1 | A_1 ) = \frac{P(A_1 ∩ B_1 )}{P(A_{1}) } = \)<span id="c11"><span></td>
+          <td>\( P(B_2 | A_1 ) = \frac{P(A_1 ∩ B_2 )}{P(A_{1}) } = \)<span id="c12"><span></td>
+          <td style="background-color: #dddddd;">1.00</td>
+        </tr>
+        <tr>
+          <td style="background-color: #dddddd;">\(A_2\)</td>
+          <td>\( P(B_1 | A_2 ) = \frac{P(A_2 ∩ B_1 )}{P(A_{2}) } = \)<span id="c21"><span></td>
+          <td>\( P(B_2 | A_2 ) = \frac{P(A_2 ∩ B_2 )}{P(A_{2}) } = \)<span id="c22"><span></td>
+          <td style="background-color: #dddddd;">1.00</td>
+        </tr>
+      </table>
+      <p>
+      <b><button type="button" style="width:100px;" id="execute"><span data-msgid="Execute"></span></button> </b>
+      <p>
+      <svg id="chartMult" width="640" height="500"  style="border-style:solid;"> </svg> 
+      <br>
+      <button type="button" id="saveGraphMULT" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+      </button>
+      <p>
+         <div class="textLeft">&lt;Figure 5.2.4&gt;  Graph of joint probabilities and their conditional probability</div>
+      <p>
+         If you adjust the joint probability as \(P(A_1 \cap B_1 )\) = 0.300,   
+         \(P(A_1 )\) = 0.600 and \(P(B_1 )\) = 0.500,, then the conditional probability becomes as in &lt;Figure 5.2.5&gt;. &lt;Figure 5.2.6&gt;
+         displays a line graph and conditional probability in case of independent events.
+      <p>
+         <img class="imgFig600600" src="../FigureH/Fig0208.png">
+         <div class="textLeft">&lt;Figure 5.2.5&gt; Probabilities when two variables are independent</div>
+      <p>
+         <img class="figure90" src="../FigureH/Fig0209.png">
+         <div class="textLeft">&lt;Figure 5.2.6&gt; Line graph and conditional probabilities when two variables are independent.</div>
+
     </div>
     <p>
+    <!--------Script for Multiplication Rule ---------------------------------------------------------->
+    <script>
+      setLanguage('en');
+      var chartMult = d3.select("#chartMult");
+      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
+      var margin      = {top:90, bottom:50, left:80, right:160};
+      var svgWidth    = 640;
+      var svgHeight   = 500;
+      var graphWidth  = svgWidth - margin.left - margin.right;
+      var graphHeight = svgHeight - margin.top - margin.bottom;
+      var colr = ["#FF0000","#FF8000","#FFFF00","#80FF00","#00FFFF","#BF00FF","#FF00FF","#0080FF","#00BFFF","#8000FF"];
+      var i, temp, tmin, tmax, str1, str2, str3;
+      var p11, p12, p21, p22, p1dot, p2dot, pdot1, pdot2, ptotal, p11max;
+      var c11, c12, c21, c22;
+      var mTitle, yTitle, xTitle;
+      var freqMax, freqMaxC, barColor;
+      var fontsize    = "1em";
+      var ndvalue     = 2;
+      var rowMax      = 5;
+      var dvalueLabel = new Array(rowMax);
+      var dataSet     = new Array(rowMax);
+      var dataSet1    = new Array(rowMax);
+      var dataSet2    = new Array(rowMax);
+      var dataSet3    = new Array(rowMax);
+      var dataSet4    = new Array(rowMax);
+      dvalueLabel[0]  = "B1";
+      dvalueLabel[1]  = "B2";
+      // initial value
+      p11 = 0.3;
+      p12 = 1/30;
+      p21 = 0.5;
+      p22 = 5/30;
+      p1dot  = p11 + p12;
+      p2dot  = p21 + p22;
+      pdot1  = p11 + p21;
+      pdot2  = p12 + p22;
+      ptotal = p1dot + p2dot;
+      if (p1dot > pdot1) p11max = pdot1;
+      else p11max = p1dot;
+      document.getElementById("p12").innerHTML = f3(p12);
+      document.getElementById("p21").innerHTML = f3(p21);
+      document.getElementById("p22").innerHTML = f3(p22);
+      document.getElementById("p22").innerHTML = f3(p22);
+      document.getElementById("p1dot").value   = f3(p1dot);
+      document.getElementById("p2dot").innerHTML = f3(p2dot);
+      document.getElementById("pdot1").value     = f3(pdot1);
+      document.getElementById("pdot2").innerHTML = f3(pdot2);
+      document.getElementById("ptotal").innerHTML = f3(ptotal);
+      document.getElementById("p11max").innerHTML = f3(p11max);
+      document.getElementById("rangeP11").value = f0(20*p11/p11max);
+//      calculate();
+
+      // Draw conditional distribution ======================================
+      d3.select("#execute").on("click",function() {
+        chartMult.selectAll("*").remove();
+        p11   = d3.select("#p11").node().value;
+        p1dot = d3.select("#p1dot").node().value;
+        pdot1 = d3.select("#pdot1").node().value;
+        // input value
+        if ( isNaN(p11) || isNaN(p1dot) || isNaN(pdot1) ) {  // wrong input
+          chartMult.append("text").attr("class","mean")
+             .attr("x", 250).attr("y", 100)
+             .text(alertMsg[48][langNum])
+             .style("stroke","red")
+             .style("font-size","1.2em")
+          return;
+        }
+        p11   = parseFloat(p11);
+        p1dot = parseFloat(p1dot);
+        pdot1 = parseFloat(pdot1);
+        p12   = p1dot - p11;
+        p21   = pdot1 - p11;
+        p2dot = 1 - p1dot;
+        p22   = p2dot - p21;
+        pdot2 = 1 - pdot1;
+        if ( p11 < 0 || p11 > p11max ) {  // wrong input
+          chartMult.append("text").attr("class","mean")
+             .attr("x", 200).attr("y", 100)
+             .text("Wrong input:  0 < p11 < min( P(A1), P(B1) )")
+             .style("stroke","red")
+             .style("font-size","1.2em")
+          return;
+        }
+        if ( p21 > p2dot ) {  // wrong input
+          chartMult.append("text").attr("class","mean")
+             .attr("x", 200).attr("y", 100)
+             .text("Wrong input: 0 < p21 < P(A2)")
+             .style("stroke","red")
+             .style("font-size","1.2em")
+          return;
+        }
+        if ( p1dot < 0 || p1dot > 1 || pdot1 < 0 || pdot1 > 1 ) {  // wrong input
+          chartMult.append("text").attr("class","mean")
+             .attr("x", 200).attr("y", 100)
+             .text("Wrong input: 0 < P(B1) < 1, 0 < P(A1) < 1")
+             .style("stroke","red")
+             .style("font-size","1.2em")
+          return;
+        }
+        calculateMult();
+      })
+
+      // svg Graph Save
+      d3.select("#saveGraphMULT").on("click", function() {
+        var svg = d3.select("#chartMult");
+        var width = svgWidth;
+        var height = svgHeight;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+
+      // Calculate 
+      function calculateMult() {
+        if (p1dot > pdot1) p11max = pdot1;
+        else p11max = p1dot;
+        if (p11 > p11max) {
+           p11 = p11max;
+           p12 = p1dot - p11;
+           p21 = pdot1 - p11;
+           p22 = p2dot - p21;
+        }
+        
+        c11   = p11 / p1dot;
+        c12   = p12 / p1dot;
+        c21   = p21 / p2dot;
+        c22   = p22 / p2dot;
+
+        dataSet1[0] = p11;
+        dataSet1[1] = p12;
+        dataSet2[0] = p21;
+        dataSet2[1] = p22;
+        dataSet3[0] = c11;
+        dataSet3[1] = c12;
+        dataSet4[0] = c21;
+        dataSet4[1] = c22;
+        if (p11 > p12) freqMax = p11;
+        else freqMax = p12;
+        if (p21 > freqMax) freqMax = p21;
+        if (p22 > freqMax) freqMax = p22;
+        // freq max for conditional
+        if (c11 > c12) freqMaxC = c11;
+        else freqMaxC = c12;
+        if (c21 > freqMaxC) freqMaxC = c21;
+        if (c22 > freqMaxC) freqMaxC = c22;
+        document.getElementById("p11").value = f3(p11);
+        document.getElementById("p12").innerHTML = f3(p12);
+        document.getElementById("p21").innerHTML = f3(p21);
+        document.getElementById("p22").innerHTML = f3(p22);
+        document.getElementById("p1dot").value   = f3(p1dot);
+        document.getElementById("p2dot").innerHTML = f3(p2dot);
+        document.getElementById("pdot1").value     = f3(pdot1);
+        document.getElementById("pdot2").innerHTML = f3(pdot2);
+        document.getElementById("ptotal").innerHTML = f3(ptotal);
+        document.getElementById("p11max").innerHTML = f3(p11max);
+        document.getElementById("rangeP11").value = f0(20*p11/p11max);
+
+//        if (ptotal != 1) document.getElementById("ptotal").style.color = "red";
+//        else document.getElementById("ptotal").style.color = "black";
+        document.getElementById("c11").innerHTML = f3(c11);
+        document.getElementById("c12").innerHTML = f3(c12);
+        document.getElementById("c21").innerHTML = f3(c21);
+        document.getElementById("c22").innerHTML = f3(c22);
+        chartMult.selectAll("*").remove();
+        // line graph
+        margin      = {top:90, bottom:50, left:60, right:240};   
+        graphWidth  = svgWidth - margin.left - margin.right;
+        graphHeight = svgHeight - margin.top - margin.bottom;
+        mTitle = svgStr[123][langNum]; // 결합확률
+        drawLineGraph(ndvalue, dataSet1, dataSet2, dvalueLabel, freqMax) 
+        // conditional A1 bar graph
+        margin      = {top:100, bottom:280, left:440, right:20};   
+        graphWidth  = svgWidth - margin.left - margin.right;
+        graphHeight = svgHeight - margin.top - margin.bottom;
+        mTitle = "";
+        xTitle = svgStr[124][langNum] + " P(B | A1)"; // 조건부확률
+        barColor = colr[0];
+        drawBarGraph(ndvalue, dataSet3, dvalueLabel, freqMaxC, barColor) 
+        // Conditional A2 bar graph
+        margin      = {top:300, bottom:80, left:440, right:20};   
+        graphWidth  = svgWidth - margin.left - margin.right;
+        graphHeight = svgHeight - margin.top - margin.bottom;
+        xTitle = svgStr[124][langNum] + " P(B | A2)"; // 조건부확률
+        barColor = colr[7];
+        drawBarGraph(ndvalue, dataSet4, dvalueLabel, freqMaxC, barColor) 
+      }
+
+      // p11 slidebar
+      function showValueP11(newValue) {
+        p11 = p11max * newValue * 0.05;
+        p12 = p1dot - p11;
+        p21 = pdot1 - p11;
+        p22 = p2dot - p21
+        calculateMult();       
+      }
+      // p1dot slidebar
+      function showValueP1dot(newValue) {
+        p1dot = newValue * 0.05;
+        p2dot = 1- p1dot;
+        p12   = p1dot - p11;
+        if (p12 > pdot2) p12 = pdot2;
+        p22   = pdot2 - p12;
+        p21   = p2dot - p22;
+        calculateMult();       
+      }
+      // pdot1 slidebar
+      function showValuePdot1(newValue) {
+        pdot1 = newValue * 0.05;
+        pdot2 = 1 - pdot1;
+        p21   = pdot1 - p11;
+        if (p21 > p2dot) p21 = p2dot;
+        p22   = p2dot - p21;
+        p12   = pdot2 - p22;
+        calculateMult();       
+      }
+
+  // Draw Line Graph
+  function drawLineGraph(ndvalue, dataSet, dataSet2, dvalueLabel, freqMax) {
+    var i, j, str, tx, ty;
+    var betweenbarWidth = graphWidth / ndvalue; // 막대와 막대 사이의 너비
+    var barWidth = betweenbarWidth * 0.6; // 막대의 너비
+    var gapWidth = betweenbarWidth * 0.2;
+    var ybuffer  = graphHeight * 0.1;
+    var yheight  = graphHeight * 0.8;
+    var freqRatioV = yheight / freqMax; // 그래프 영역과 데이터 영역의 비율
+    var iconsize = barWidth / 2;
+
+    xTitle = "";
+    drawTitle(mTitle, yTitle, xTitle);
+    drawLabel(ndvalue, dvalueLabel, betweenbarWidth, barWidth, gapWidth);
+    drawAxis(freqMax, graphHeight);
+
+    // x축 위 선
+    y1 = margin.top;
+    chartMult.append("line")
+         .attr("class", "line")
+         .attr("x1", margin.left)
+         .attr("x2", margin.left + graphWidth)
+         .attr("y1", y1)
+         .attr("y2", y1)
+         .style("stroke", "black")
+    // x축 선
+    y1 = margin.top + graphHeight;
+    chartMult.append("line")
+         .attr("class", "line")
+         .attr("x1", margin.left)
+         .attr("x2", margin.left + graphWidth)
+         .attr("y1", y1)
+         .attr("y2", y1)
+         .style("stroke", "black")
+    // draw line
+    x1 = margin.left + gapWidth + barWidth / 2;
+    x2 = margin.left + gapWidth + barWidth / 2 +betweenbarWidth;
+    y1 = margin.top + graphHeight - dataSet[0] * freqRatioV;
+    y2 = margin.top + graphHeight - dataSet[1] * freqRatioV;
+    chartMult.append("line")
+         .attr("class", "line")
+         .attr("x1", x1)
+         .attr("x2", x2)
+         .attr("y1", y1)
+         .attr("y2", y2)
+         .style("stroke", colr[0])
+         .style("stroke-width", "3")
+    y1 = margin.top + graphHeight - dataSet2[0] * freqRatioV + 2;
+    y2 = margin.top + graphHeight - dataSet2[1] * freqRatioV + 2;
+    chartMult.append("line")
+         .attr("class", "line")
+         .attr("x1", x1)
+         .attr("x2", x2)
+         .attr("y1", y1)
+         .attr("y2", y2)
+         .style("stroke", colr[7])
+         .style("stroke-width", "3")
+  }
+  // Draw Bar Graph
+  function drawBarGraph(ndvalue, dataSet, dvalueLabel, freqMax, barColor) {
+    var i, j, str, tx, ty;
+    var betweenbarWidth = graphWidth / ndvalue; // 막대와 막대 사이의 너비
+    var barWidth = betweenbarWidth * 0.6; // 막대의 너비
+    var gapWidth = betweenbarWidth * 0.2;
+    var ybuffer  = graphHeight * 0.1;
+    var yheight  = graphHeight * 0.8;
+    var freqRatioV = yheight / freqMax; // 그래프 영역과 데이터 영역의 비율
+    var iconsize = barWidth / 2;
+
+//    drawTitle(mTitle, yTitle, xTitle);
+    drawLabel(ndvalue, dvalueLabel, betweenbarWidth, barWidth, gapWidth);
+    drawAxis(freqMax, graphHeight);
+
+    // x축 위 선
+    y1 = margin.top;
+    chartMult.append("line")
+         .attr("class", "line")
+         .attr("x1", margin.left)
+         .attr("x2", margin.left + graphWidth)
+         .attr("y1", y1)
+         .attr("y2", y1)
+         .style("stroke", "black")
+    // x축 선
+    y1 = margin.top + graphHeight;
+    chartMult.append("line")
+         .attr("class", "line")
+         .attr("x1", margin.left)
+         .attr("x2", margin.left + graphWidth)
+         .attr("y1", y1)
+         .attr("y2", y1)
+         .style("stroke", "black")
+    // 막대
+    for (j=0; j<ndvalue; j++) {
+      chartMult.append("rect")
+           .attr("class", "bar")
+           .style("fill", barColor)
+           .attr("height", 0)
+           .attr("width", barWidth)
+           .attr("x", margin.left + gapWidth + j * betweenbarWidth)
+           .attr("y", margin.top + graphHeight)
+           .transition() // 애니매이션 효과 지정
+           .delay(function(d, i) {return i * 500;}) // 0.5초마다 그리도록 대기시간 설정
+           .duration(2000) // 2초동안 애니매이션이 진행되도록 설정
+           .attr("y", margin.top + graphHeight - dataSet[j] * freqRatioV)
+           .attr("height", dataSet[j] * freqRatioV);
+    }
+  }
+
+  // 그래프 제목 쓰기 함수
+  function drawTitle(mTitle, yTitle, xTitle) {
+    // 주제목
+    chartMult.append("text")
+        .attr("x", margin.left + graphWidth/2)
+        .attr("y", margin.top / 2 + 10)
+        .style("font-size", "1.8em")
+        .style("font-family", "sans-seirf")
+        .style("stroke", "black")
+        .style("text-anchor", "middle")
+        .text(mTitle)
+    // X축 제목
+    chartMult.append("text")
+            .style("font-size", fontsize)
+            .style("font-family", "sans-seirf")
+            .style("stroke", "black")
+            .style("text-anchor", "middle")
+            .attr("x", margin.left + graphWidth / 2)
+            .attr("y", margin.top + graphHeight + margin.bottom / 2 + 15)
+            .text(xTitle)
+     // Y축 제목
+     var tx = margin.left / 2 - 30;
+     var ty = margin.top + 15;
+     chartMult.append("text")
+            .style("font-size", fontsize)
+            .style("font-family", "sans-seirf")
+            .style("stroke", "black")
+            .style("text-anchor", "end")
+            .attr("x", tx)
+            .attr("y", ty)
+            .text(yTitle)
+            .attr("transform", "rotate(-90 30 100)")
+  }
+  // 변량값명 쓰기 함수
+  function drawLabel(ndvalue, label, betweenbarWidth, barWidth, gapWidth) {
+    var i, j, k, x1, y1, tx, ty, str, strAnchor;
+    var angle;
+
+    ty = margin.top + graphHeight;
+    angle = 0;
+    str = "middle";
+    y1 = ty + 20;
+ 
+    for (j = 0; j < ndvalue; j++) {
+      tx = margin.left + gapWidth + barWidth / 2 + j * betweenbarWidth;
+      x1 = margin.left + gapWidth + barWidth / 2 + j * betweenbarWidth;
+      chartMult.append("line") // tick
+                    .attr("x1", tx)
+                    .attr("x2", tx)
+                    .attr("y1", ty)
+                    .attr("y2", ty + 5)
+                    .style("stroke", "black")
+                    .style("stroke-width", "0.5")
+      chartMult.append("text")
+                    .style("text-anchor", str)
+                    .style("font-family", "sans-serif")
+                    .style("font-size", fontsize)
+                    .attr("x", x1)
+                    .attr("y", y1)
+                    .attr("transform", "rotate(" + angle + "," + x1 + "," + y1 + ")  ")
+                    .text(label[j])
+    }
+    y1 += 20;
+    // X축 제목
+    chartMult.append("text")
+            .style("font-size", fontsize)
+            .style("font-family", "sans-seirf")
+            .style("stroke", "black")
+            .style("text-anchor", "middle")
+            .attr("x", margin.left + graphWidth / 2)
+            .attr("y", y1)
+            .text(xTitle)
+  }
+  // 막대그래프 축 그리기
+  function drawAxis(freqMax, height) {
+    var tx, ty;
+    var xScale, yScale;
+    var ygrid    = new Array(rowMax);
+//    var graphMax = freqMax / 0.8;
+    yScale = d3.scaleLinear().domain([0, freqMax/0.8]).range([height, 0]);
+    ygrid = yScale.ticks();
+    tx = margin.left;
+    ty = margin.top;
+    chartMult.append("g")
+         .attr("transform", "translate(" + tx + "," + ty + ")")
+         .call(d3.axisLeft(yScale)) // 눈금을 표시할 함수 호출
+    // Y축 그리드
+    for (i = 1; i < ygrid.length; i++) {
+      ty = margin.top + yScale(ygrid[i]);
+      chartMult.append("line")
+           .attr("x1", margin.left)
+           .attr("x2", margin.left + graphWidth)
+           .attr("y1", ty)
+           .attr("y2", ty)
+           .style("stroke", "lightgrey")
+    }
+    chartMult.append("line").attr("class", "line")
+                    .attr("x1", margin.left)
+                    .attr("x2", margin.left)
+                    .attr("y1", margin.top)
+                    .attr("y2", margin.top + graphHeight)
+                    .style("stroke", "black")
+    chartMult.append("line").attr("class", "line")
+                    .attr("x1", margin.left + graphWidth)
+                    .attr("x2", margin.left + graphWidth)
+                    .attr("y1", margin.top)
+                    .attr("y2", margin.top + graphHeight)
+                    .style("stroke", "black")
+
+     //   tx = margin.left + graphWidth;
+     //   chartMult.append("g")
+     //        .attr("transform","translate("+tx+","+ty+")")
+     //        .call(d3.axisRight(yScale))             // 눈금을 표시할 함수 호출
+  }
+  </script>
+
     <!------------------------------------------------------------------------------------------------->
 
     <div>
@@ -573,7 +1318,6 @@
       $$ \small
         P(A ∣ B) = \frac {P(A ∩ B)} {P(B)}  \qquad \qquad  \textrm{if} \quad P(B) ≠ 0       
       $$
-      <input class="qrBtn" type="image" src="../../QR/eStatU_40MultiplicationRule.svg" onclick="window.open(addrStr[130])">
     </div>
     <p>
     <!------------------------------------------------------------------------------------------------->
@@ -596,7 +1340,6 @@
       $$
       In this case, the events \(\small A\) and \(\small B\) are called <b>independent events</b>.
       <p>
-        <input class="qrBtn" type="image" src="../../QR/eStatU_40MultiplicationRule.svg" onclick="window.open(addrStr[130])">
     </div>
     <p>
 
@@ -715,10 +1458,10 @@
     <!------------------------------------------------------------------------------------------------->
 
     <div class="mainTable">
-      The method used in the above example is called a rule of probability calculation using a complementary event, and is often used to obtain the probability that the word 'at least' is contained. &lt;Figure 5.2.4&gt; is a picture of an event.
+      The method used in the above example is called a rule of probability calculation using a complementary event, and is often used to obtain the probability that the word 'at least' is contained. &lt;Figure 5.2.7&gt; is a picture of an event.
       <p>
         <img class="imgFig400300" src="../Figure/Fig050204.gif">
-        <div class="figText">&lt;Figure 5.2.4&gt; Complementary event</div>
+        <div class="figText">&lt;Figure 5.2.7&gt; Complementary event</div>
     </div>
     <p>
 

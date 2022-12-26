@@ -51,7 +51,12 @@
 	 </script>
        <link rel="stylesheet" href="../../css/pandoc.css">
        <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="../../../eStat/js/language.js" ></script>   
+       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
+       <script src="../../../eStat/js/eStatU.js"></script>
+       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
+       <script src="../../../eStat/lib/convertSVG.js"></script>
 </head>
 <body>
 
@@ -427,17 +432,18 @@
 
     <div class="mainTable">
       If we divide both the numerator and the denominator of \(b\) by \(n-1\), \(b\) can be written as 
-      \(b = \frac{s_{XY}}{s_{X}^2}\). Since the correlation coefficient is  \(r = \frac{s_{XY}}{s_X s_Y}\)
+      \(b = \frac{S_{XY}}{S_{X}^2}\). Since the correlation coefficient is  \(r = \frac{S_{XY}}{S_X S_Y}\)
       and therefore, the slope \(b\) can also be calculated by using the correlation coefficient as follows: 
       $$
-        b = \frac{s_{XY}}{s_X ^2} = \frac{ r s_X s_Y } {s_X ^2 } =  r \frac{s_Y}{s_X}
+        b = \frac{S_{XY}}{S_X ^2} = \frac{ r S_X S_Y } {S_X ^2 } =  r \frac{S_Y}{S_X}
       $$      
     </div>
     <p>
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
-      <b>Example 12.2.1</b>
+      <p>
+         <b>Example 12.2.1</b>
          In [Example 12.1.1], find the least squares estimate of the slope and intercept if the sales amount
          is a dependent variable and the advertising cost is an independent variable. Predict the amount 
          of sales when you have spent on advertising by 10.
@@ -564,7 +570,8 @@
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
-      <b>Example 12.2.2</b>
+      <p>
+         <b>Example 12.2.2</b>
          Calculate the value of the residual standard error and the coefficient of determination in the data on advertising costs and sales.
       <p>
       <b>Answer</b>
@@ -597,8 +604,8 @@
         <tr> <td class="tdCenter">8</td> <td class="tdCenter">10</td> <td class="tdCenter">55</td> <td class="tdCenter">53.657</td> <td class="tdCenter"> 28.09</td> <td class="tdCenter"> 15.658</td> <td class="tdCenter">1.804</td </tr>
         <tr> <td class="tdCenter">9</td> <td class="tdCenter">12</td> <td class="tdCenter">57</td> <td class="tdCenter">58.663</td> <td class="tdCenter"> 53.29</td> <td class="tdCenter"> 80.335</td> <td class="tdCenter">2.766</td </tr>
         <tr> <td class="tdCenter">10</td><td class="tdCenter">12</td> <td class="tdCenter">60</td> <td class="tdCenter">58.663</td> <td class="tdCenter">106.09</td> <td class="tdCenter"> 80.335</td> <td class="tdCenter">1.788</td </tr>
-        <tr> <td class="tdCenter">Sum</td><td class="tdCenter">64</td> <td class="tdCenter">497</td> <td class="tdCenter">496.522</td> <td class="tdCenter">396.1</td> <td class="tdCenter">378.429</td> <td class="tdCenter">17.622</td </tr>
-        <tr> <td class="tdCenter">Average</td><td class="tdCenter">8.4</td> <td class="tdCenter">49.7</td> </tr>
+        <tr> <td class="tdCenter"><b>Sum</b></td><td class="tdCenter"><b>64</b></td> <td class="tdCenter"><b>497</b></td> <td class="tdCenter"><b>496.522</b></td> <td class="tdCenter"><b>396.1</b></td> <td class="tdCenter"><b>378.429</b></td> <td class="tdCenter"><b>17.622</b></td </tr>
+        <tr> <td class="tdCenter"><b>Average</td><td class="tdCenter"><b>8.4</b></td> <td class="tdCenter"><b>49.7</b></td> </tr>
       </table>
       <p>
       In Table 12.2.1, \(\small SST\) = 396.1,  \(\small SSR\) = 378.429,  \(\small SSE\) = 17.622. Here, 
@@ -673,8 +680,8 @@
           <td class="tdCenter"></td>
         </tr>
         <tr>
-          <td class="tdCenter">Total</td>
-          <td class="tdCenter">SST</td>
+          <td class="tdCenter"><b>Total</b></td>
+          <td class="tdCenter"><b>SST</b></td>
           <td class="tdCenter">\(n-1\)</td>
           <td class="tdCenter"></td>
           <td class="tdCenter"></td>
@@ -713,7 +720,8 @@
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
-      <b>Example 12.2.3</b>
+      <p>
+         <b>Example 12.2.3</b>
          Prepare an ANOVA table for the example of advertising cost and test it using the 5% significance level.
       <p>
       <b>Answer</b>
@@ -744,9 +752,9 @@
           <td class="tdCenter"></td>
         </tr>
         <tr>
-          <td class="tdCenter">Total</td>
-          <td class="tdCenter">396.04</td>
-          <td class="tdCenter">10-1</td>
+          <td class="tdCenter"><b>Total</b></td>
+          <td class="tdCenter"><b>396.04</b></td>
+          <td class="tdCenter"><b>10-1</b></td>
           <td class="tdCenter"></td>
           <td class="tdCenter"></td>
         </tr>
@@ -805,8 +813,8 @@
     <div class="mainTableYellow">
       <b>Inference for the parameter \(\; \beta\)</b>
       <p>
-         Point estimate: \(\quad b = \frac {\sum_{i=1}^{n} (X_i - \overline X) (Y_i - \overline Y)} { \sum_{i=1}^{n} (X_i - \overline X)^2 } , \quad b \sim N(\beta, \frac{\sigma^2} {\sum_{i=1}^{n} (X_i - \overline X )^2 } ) \)  <p>
-         Standard error of estimate \(b\):   \(\quad SE(b) = \frac{s}{\sqrt {{\sum_{i=1}^{n} (X_i - \overline X)^2} } }\) <p>
+         Point estimate: \(\small \quad b = \frac {\sum_{i=1}^{n} (X_i - \overline X) (Y_i - \overline Y)} { \sum_{i=1}^{n} (X_i - \overline X)^2 } , \quad b \sim N(\beta, \frac{\sigma^2} {\sum_{i=1}^{n} (X_i - \overline X )^2 } ) \)  <p>
+         Standard error of estimate \(b\):   \(\small \quad SE(b) = \frac{s}{\sqrt {{\sum_{i=1}^{n} (X_i - \overline X)^2} } }\) <p>
          Confidence interval of \(\; \beta\): \(\quad b \pm t_{n-2; &alpha;/2} \cdot SE(b)\) <p> 
          Testing hypothesis:  <br>
          \(\quad\)     Null hypothesis: \(\quad H_0 : \beta = \beta_0\)   <br>
@@ -833,7 +841,7 @@
       <b>Inference for the parameter \(\; \alpha\)</b>
       <p>
          Point estimate: \(\quad \small a = \overline Y - b  \overline X , \quad a \sim N( \alpha, ( \frac{1}{n} + \frac {{\overline X }^2} { \sum_{i=1}^{n} (X_i - \overline X )^2 } ) \cdot \sigma^2  )  \)  <p>
-         Standard error of estimate \(a\):   \(\quad SE(a) = s \cdot \sqrt {\frac{1}{n} + \frac {{\overline X }^2} { \sum_{i=1}^{n} (X_i - \overline X )^2 } ) } \) <p>
+         Standard error of estimate \(a\):   \(\small \quad SE(a) = s \cdot \sqrt {\frac{1}{n} + \frac {{\overline X }^2} { \sum_{i=1}^{n} (X_i - \overline X )^2 } ) } \) <p>
          Confidence interval of \(\; \alpha\): \(\quad a \pm t_{n-2; &alpha;/2} \cdot SE(a)\) <p> 
          Testing hypothesis:  <br>
          \(\quad\)     Null hypothesis: \(\quad H_0 : \alpha = \alpha_0\)   <br>
@@ -860,7 +868,7 @@
       <b>Inference for the average value \(\; \mu_{Y|x} = \alpha + \beta X_0\)</b>
       <p>
          Point estimate: \(\quad {\hat Y}_0 = a + b X_0 \)  <p>
-         Standard error of estimate \({\hat Y}_0\):   \(\quad SE({\hat Y}_0) = s \cdot \sqrt { \frac{1}{n} + \frac { (X_0 - \overline X )^2} { \sum_{i=1}^{n} (X_i - \overline X )^2 } } \) <p>
+         Standard error of estimate \({\hat Y}_0\):   \(\small \quad SE({\hat Y}_0) = s \cdot \sqrt { \frac{1}{n} + \frac { (X_0 - \overline X )^2} { \sum_{i=1}^{n} (X_i - \overline X )^2 } } \) <p>
          Confidence interval of \(\; \mu_{Y|x}\): \(\quad {\hat Y}_0  \pm t_{n-2; &alpha;/2} \cdot SE ({\hat Y}_0  )\) <p> 
     </div>
     <p>
@@ -869,7 +877,7 @@
       The confidence interval formula of the mean value \(\mu_{Y|x}\) depends on the value of the \(X\) 
       given the standard error of the estimate, so the width of the confidence interval depends on the value 
       of the given \(X\). As the formula for the standard error shows, this width is the narrowest at a time
-      \(X = \overline X\), and if \(X\) is the farther away from \(\overline X\), the wider it becomes. 
+      \(\small X = \overline X\), and if \(X\) is the farther away from \(\small \overline X\), the wider it becomes. 
       If we calculate the confidence interval for the mean value of \(Y\) at each point of \(X\), and then 
       if we connect the upper and lower limits to each other, we have a <b>confidence band</b> of the 
       regression line on the above and below of the sample regression line. 
@@ -878,7 +886,8 @@
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
-      <b>Example 12.2.4</b>
+      <p>
+         <b>Example 12.2.4</b>
          Let's make inferences about each parameter with the result of a regression analysis of the previous 
          data for the sales amount and advertising costs. Use 『eStat』 to check the test result and confidence band.
       <p>
@@ -1003,7 +1012,7 @@
       investigated using scatter plots of the residuals. The following scatter plots used primarily for each 
       assumption:
       <p>
-        \(\quad \)1) Residuals versus predicted values (i.e., \(e_i\) vs \(Y_i\))   : \(\quad A_3\)   <br>
+        \(\quad \)1) Residuals versus predicted values (i.e., \(e_i\) vs \(\hat Y_i\))   : \(\quad A_3\)   <br>
         \(\quad \)2) Residuals versus independent variables (i.e., \(e_i\) vs \(X_i\)) : \(\quad A_1\)  <br>
         \(\quad \)3) Residuals versus observations (i.e., \(e_i\) vs \(i\))   :  \(\quad A_2 , A4\)  <br>
       <p>
@@ -1026,7 +1035,8 @@
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
-      <b>Example 12.2.5</b>
+      <p>
+         <b>Example 12.2.5</b>
          Draw a scatter plot of residuals and a Q-Q scatter plot for the advertising cost example.
       <p>
       <b>Answer</b>
@@ -1064,19 +1074,266 @@
       create multiple dots, you can see how much the regression line changes each time. You can observe how sensitive 
       the correlation coefficient and the coefficient of determination are as you move a point along with the mouse.
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU320_RegressionSim.svg" onclick="window.open(addrStr[80])">
-          </td>
-          <td>
-            <img class="imgFig600400" src="../Figure/Fig120208.png">
-            <div class="figText">&lt;Figure 12.2.8&gt; Simulation experiment of regression analysis at 『eStatU』</div>
-          </td>
-        </tr>
-      </table>
+      <!-----html for regression simulation ----------------------------------------------------------------------------->
+      <b>[ Regression Simulation using 『eStatU』 ]</b>
+         <input class="qrBtn" type="image" src="../../QR/eStatU320_RegressionSim.svg" onclick="window.open(addrStr[80])">
+      <p>
+      <button type="button" id="erase" >
+        <span data-msgid="Erase All">Erase All</span>
+      </button> 
+      <p>
+      <svg id="chartReg" width="750" height="540" style="border-style:solid;"> </svg>
+      <p>
+      <button type="button" id="saveGraphReg" >
+ 	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+      </button>
+      &nbsp;&nbsp;   
+      <input type="radio" name="addtype" id="add_on"  value="on" checked />
+        <label><span data-msgid="Add Point">Add Point</span></label>&nbsp;   
+      <input type="radio" name="addtype" id="add_off" value="off" />
+        <label><span data-msgid="Erase Point">Erase Point</span></label>   
+      <p>
+         <div class="figText">&lt;Figure 12.2.8&gt; Simulation experiment of regression analysis at 『eStatU』</div>
     </div>
     <p>
+    <!-------script for Regression Simulation -------------------------------------------------------------------------------->
+    <script>
+      var chartReg = d3.select("#chartReg"); 
+      var svgWidth    = 750;
+      var svgHeight   = 540;  
+      var marginReg = {top: 100, bottom: 70, left: 70, right: 100};
+      var buffer      = 40;
+      var graphWidthReg  = svgWidth - marginReg.left - marginReg.right;
+      var graphHeightReg = svgHeight - marginReg.top - marginReg.bottom;
+
+      // 회귀 시뮬레이션 변수들
+      var width  = svgWidth;
+      var height = svgHeight;
+      var xlim = [0, 10];
+      var ylim = [0, 10];
+      var xScaleReg = d3.scaleLinear()
+                     .domain(xlim)
+                     .range([marginReg.left, width - marginReg.right]);
+      var yscale = d3.scaleLinear()
+                     .domain(ylim)
+                     .range([height - marginReg.bottom, marginReg.top]);
+      var xaxis  = d3.axisBottom(xScaleReg)
+                     .ticks(5);
+      var yaxis  = d3.axisLeft(yscale)
+                     .ticks(5);
+      var line = chartReg.append("line");
+              
+      var removePoint = function() {
+           if(document.getElementById("add_off").checked) {	    
+             this.remove();
+	     updateRegressionLine();
+           }
+         }
+
+      var drag = d3.drag()
+            .on("start", function(d) {
+           	d3.event.sourceEvent.stopPropagation();
+	        d3.select(this)
+	          .style("fill", "#bf616a")
+	          .attr("r", 10);
+            })
+            .on("drag", function(d) {
+               var x = d3.event.x;
+	       var y = d3.event.y;
+	       d3.select(this)
+	         .attr("cx", x)
+	         .attr("cy", y);
+	    updateRegressionLine();
+            })
+           .on("end", function(d) {
+	       d3.select(this)
+	         .style("fill", "black")
+	        .attr("r", 5);
+            });
+
+
+      // 회귀선 시뮬레이션 -------------------------------------------------------------
+      var sub1  = svgStrU[52][langNum];
+      var sub2  = svgStrU[53][langNum];
+      var ty    = marginReg.top/3;
+      chartReg.append("text").attr("class","titleS").attr("x",marginReg.left).attr("y",ty).text(sub1);
+      chartReg.append("text").attr("class","titleS").attr("x",marginReg.left).attr("y",ty+20).text(sub2);
+
+      showScatterPlot3(graphWidthReg, graphHeightReg); // 화면
+
+      ncount = 0;
+      chartReg.on("click", function() {
+      if(d3.event.defaultPrevented) return;
+    
+      var pos = d3.mouse(this);
+      if(document.getElementById("add_on" ).checked) {
+                if ( pos[0] > marginReg.left && pos[0] < marginReg.left+graphWidthReg 
+                     && pos[1] > marginReg.top && pos[1] < marginReg.top+graphHeightReg) {
+            	  addPoint(pos[0], pos[1]);
+                  ncount++;
+                  updateRegressionLine();
+                }
+          }
+      });
+
+      // 회귀 시뮬레이션 화면 지우기
+      d3.select("#erase").on("click",function() {
+         chartReg.selectAll("circle").remove();
+         chartReg.selectAll("text.reglabel3").remove(); 
+         chartReg.selectAll("line.regline").remove();  
+         updateRegressionLine();
+         ncount = 0;
+      })
+
+      // svg Graph Save
+      d3.select("#saveGraphReg").on("click", function() {
+        var svg = d3.select("#chartReg");
+        var width = svgWidth;
+        var height = svgHeight;
+        var svgString = getSVGString(chartReg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+
+function showScatterPlot3(graphWidthReg, graphHeightReg) {
+        var gxmin = 0;
+        var gxmax = 10;
+        var gymin = 0;
+        var gymax = 10;
+        var gxrange = gxmax - gxmin;
+        var gyrange = gymax - gymin;
+        // x축 그리기
+        var xScaleReg = d3.scaleLinear().domain([gxmin,gxmax]).range([0,graphWidthReg])
+        var ty = marginReg.top + graphHeightReg;
+        chartReg.append("g")
+           .attr("transform","translate("+marginReg.left+","+ty+")")
+           .attr("class", "main axis date")
+           .call(d3.axisBottom(xScaleReg)) 
+        chartReg.append("g")
+           .attr("transform","translate("+marginReg.left+","+marginReg.top+")")
+	   .attr("class", "main axis date")
+           .call(d3.axisTop(xScaleReg)) 
+        // y축 그리기
+        var yScale = d3.scaleLinear().domain([gymin,gymax]).range([graphHeightReg, 0])
+        var ty = marginReg.top;
+        chartReg.append("g")
+           .attr("transform","translate("+marginReg.left+","+ty+")")
+           .attr("class", "main axis date")
+           .call(d3.axisLeft(yScale)) 
+        var tx = marginReg.left + graphWidthReg;
+        chartReg.append("g")
+           .attr("transform","translate("+tx+","+ty+")")
+	   .attr("class", "main axis date")
+           .call(d3.axisRight(yScale)) 
+}
+function addPoint(x, y) {
+    chartReg.append("circle")
+	.attr("cx", x)
+	.attr("cy", y)
+	.attr("r", 5)
+	.style("cursor", "pointer")
+        .style("fill","#0055FF")
+	.on("mouseenter", function() {
+	    d3.select(this)
+		.style("fill", "#bf616a");
+	})
+	.on("mouseleave", function() {
+	    d3.select(this)
+		    .style("fill", "#0055FF");
+	})
+	.on("click", removePoint)
+	.on("touch", removePoint)
+	.call(drag);
+}
+function lsfit(points) {
+    var n = points.length;
+    var sx = 0;
+    var sy = 0;
+    var sxx = 0;
+    var syy = 0;
+    var sxy = 0;
+    for(var i=0; i<n; ++i) {
+	var x = xScaleReg.invert(points[i].cx.baseVal.value);
+	var y = yscale.invert(points[i].cy.baseVal.value);
+	sx = sx + x;
+	sy = sy + y;
+	sxx = sxx + x*x;
+	sxy = sxy + x*y;
+	syy = syy + y*y;
+    }
+    b1 = (sxy - sx*sy/n)/(sxx - sx*sx/n);
+    b0 = sy/n - b1 * sx/n;
+    var sst = syy - sy*sy/n;
+    var sse = 0;
+    for(var i=0; i<n; ++i) {
+	var x = xScaleReg.invert(points[i].cx.baseVal.value);
+	var y = yscale.invert(points[i].cy.baseVal.value);
+	var e = y - (b0 + b1*x);
+	sse = sse + e*e;
+    }
+
+    r = (sxy - sx*sy/n) / Math.sqrt((sxx-sx*sx/n)*(syy-sy*sy/n))
+    return {a : b0, b : b1, xbar : sx/n, ybar : sy/n, rsq: 1 - sse/sst, r: r};
+}
+function updateRegressionLine() {
+    var x1, x2, y1, y2;
+    var coef = lsfit(chartReg.selectAll("circle").nodes());
+    if(isNaN(coef.a) || isNaN(coef.b) || isNaN(coef.xbar) || isNaN(coef.ybar)) {
+	 chartReg.selectAll("line.regline").remove();
+    } else {
+        chartReg.selectAll("line.regline").remove();
+         x1 = marginReg.left;
+        y1 = yscale(coef.a + xScaleReg.invert(marginReg.left)*coef.b);
+        x2 = marginReg.left + graphWidthReg;
+        y2 = yscale(coef.a + xScaleReg.invert(marginReg.left+graphWidthReg)*coef.b);
+        if (y1 < marginReg.top) {
+          y1 = marginReg.top;
+          x1 = xScaleReg( (yscale.invert(marginReg.top)-coef.a) / coef.b);
+        }
+        if (y1 > marginReg.top + graphHeightReg) {
+          y1 = marginReg.top + graphHeightReg;
+          x1 = xScaleReg( (yscale.invert(marginReg.top+graphHeightReg)-coef.a) / coef.b);
+        }      
+        if (y2 < marginReg.top) {
+          y2 = marginReg.top;
+          x2 = xScaleReg( (yscale.invert(marginReg.top)-coef.a) / coef.b);
+        }
+        if (y2 > marginReg.top + graphHeightReg) {
+          y2 = marginReg.top + graphHeightReg;
+          x2 = xScaleReg( (yscale.invert(marginReg.top+graphHeightReg)-coef.a) / coef.b);
+        } 
+        chartReg.append("line") 
+           .attr("class","regline")    
+	   .attr("x1", x1)
+	   .attr("y1", y1)
+	   .attr("x2", x2)
+	   .attr("y2", y2)
+	   .style("stroke", "royalblue");
+    }
+    // 회귀선, 상관계수, 결정계수
+    var y1 = marginReg.top + graphHeightReg +  marginReg.bottom/2 + 10;
+    chartReg.selectAll("text.reglabel3").remove();     
+    chartReg.append("text").attr("class","reglabel3")
+        .attr("x", marginReg.left + 20)
+        .attr("y", y1)
+        .text("y = ("+f2(coef.a)+") + ("+f2(coef.b)+ ") x")         
+    chartReg.append("text").attr("class","reglabel3")
+        .attr("x", marginReg.left + graphHeightReg/2)
+        .attr("y", y1)
+        .text("r = "+f2(coef.r))
+    chartReg.append("text").attr("class","reglabel3")
+        .attr("x", marginReg.left + graphHeightReg/2 + 70)
+        .attr("y", y1)
+        .text("r\u00B2 = "+f2(coef.rsq))
+ }function clearAll() {
+    chartReg.selectAll("circle").remove();
+    chartReg.selectAll("text.reglabel3").remove(); 
+    chartReg.selectAll("line.regline").remove();    
+    updateRegressionLine();
+ }
+  </script>
 
   <div class="mainTablePink">
     <h4>Multiple Choice Exercise</h4>
@@ -1109,17 +1366,17 @@
       and the standard deviations of \(X\) and \(Y\), \(s_x\)  and \(s_y\)  respectively, 
       what is the regression line equation? </h6>
     <form name="Q16">
-      <label><input type="radio" name="item" value="1"> \(y = \overline y +\frac{s_y}{s_x} r(x-\overline x)\)</label><br>
-      <label><input type="radio" name="item" value="2"> \(y = \overline x +\frac{s_y}{s_x} r(y-\overline y)\)</label><br>
-      <label><input type="radio" name="item" value="3"> \(y = \overline y +\frac{s_x}{s_y} r(x-\overline x)\)</label><br>
-      <label><input type="radio" name="item" value="4"> \(y = \overline x +\frac{s_x}{s_y} r(y-\overline y)\)</label><br>
+      <label><input type="radio" name="item" value="1"> \(\small y = \overline y +\frac{s_y}{s_x} r(x-\overline x)\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(\small y = \overline x +\frac{s_y}{s_x} r(y-\overline y)\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(\small y = \overline y +\frac{s_x}{s_y} r(x-\overline x)\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(\small y = \overline x +\frac{s_x}{s_y} r(y-\overline y)\)</label><br>
      <p>
       <input type="button" value="Submit" onClick="radio(12,16,Q16)"> &nbsp;&nbsp;&nbsp;
       <input type="text" size=15 id="ansQ16">
     </form>
    
     <h6 class="textL30M30">12.17 If the sample correlation coefficient of two random variables 
-      \(x\) and \(y\) is \(r\) = 0.5, the sample means are \(\overline x = 10, \overline y = 14\), 
+      \(x\) and \(y\) is \(r\) = 0.5, the sample means are \(\small \overline x = 10, \overline y = 14\), 
       and the sample standard deviations are \(s_x = 2, s_y = 3\), what is the regression line 
       of \(y\) on \(x\)? </h6>
     <form name="Q17">

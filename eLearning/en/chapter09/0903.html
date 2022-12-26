@@ -51,7 +51,12 @@
 	 </script>
        <link rel="stylesheet" href="../../css/pandoc.css">
        <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="../../../eStat/js/language.js" ></script>   
+       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
+       <script src="../../../eStat/js/eStatU.js"></script>
+       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
+       <script src="../../../eStat/lib/convertSVG.js"></script>
 </head>
 <body>
 
@@ -293,10 +298,10 @@
       to increase the reliability of the experimental results. 
       <p>
       When data are obtained from repeated experiments at each factor level, the two-way ANOVA tests whether the 
-      population means of each level of factor A  are the same (called the main effect test of the factor A) as the 
-      one-way ANOVA, or tests whether the population means of each level of factor B are the same (called the main 
-      effect test of the factor B). In addition, the two-way ANOVA tests whether the effect of one factor A is 
-      influenced by each level of the other factor B (called the interaction effect test). For example, in a chemical 
+      population means of each level of factor A  are the same (called the <b>main effect test of the factor A</b>) as the 
+      one-way ANOVA, or tests whether the population means of each level of factor B are the same (called the <b>main 
+      effect test of the factor B</b>). In addition, the two-way ANOVA tests whether the effect of one factor A is 
+      influenced by each level of the other factor B (called the <b>interaction effect test</b>). For example, in a chemical 
       process, if the higher the pressure when the temperature is low, the greater the amount of products, and the 
       lower the pressure when the temperature is high, the greater the amount of products, the interaction effect 
       exists between the two factors of temperature and pressure. The interaction effect exists where the effects of 
@@ -319,6 +324,7 @@
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
+       <p>
        <b>Example 9.3.1</b>
        Table 9.3.1 shows the yield data of three repeated agricultural experiments for each combination of four 
        fertilizer levels and three rice types to investigate the yield of rice. 
@@ -372,7 +378,7 @@
         3) Test the main effects of fertilizers and rice types and test the interaction effect of the two factors.
       </div>       
       <div class="textL20M20">
-        4) Using『eStat』, check the result of the two-way analysis of variance.
+        4) Using 『eStat』, check the result of the two-way analysis of variance.
       </div>       
       <p>
       <b>Answer</b>
@@ -426,7 +432,7 @@
            <td class="tdCenter">\(\overline y_{4\cdot\cdot}\) = 53.1</td>
          </tr>
          <tr> 
-           <td class="tdCenter">Column Average</td>
+           <td class="tdCenter"><b>Column Average</b></td>
            <td class="tdCenter">\(\overline y_{\cdot1\cdot}\) = 61.3</td>
            <td class="tdCenter">\(\overline y_{\cdot2\cdot}\) = 61.3</td>
            <td class="tdCenter">\(\overline y_{\cdot3\cdot}\) = 54.8</td>
@@ -626,9 +632,9 @@
                   <td class="tdCenter"></td>
                 </tr>
                 <tr> 
-                  <td class="tdCenter">Total</td>
-                  <td class="tdCenter">3267.5556</td>
-                  <td class="tdCenter">35</td>
+                  <td class="tdCenter"><b>Total</b></td>
+                  <td class="tdCenter"><b>3267.5556</b></td>
+                  <td class="tdCenter"><b>35</b></td>
                   <td class="tdCenter"></td>
                   <td class="tdCenter"></td>
                   <td class="tdCenter"></td>
@@ -637,7 +643,7 @@
            <p>
 
       <div class="textL20M20">
-        4) If you press the [ANOVA F-test] button in the options window below &lt;Figure 9.3.2&gt; of『eStat』, the 
+        4) If you press the [ANOVA F-test] button in the options window below &lt;Figure 9.3.2&gt; of 『eStat』, the 
            two-dimensional table of means / standard deviations for each level combination as in &lt;Figure 9.3.3&gt; and 
            the two-way analysis of variance table as in &lt;Figure 9.3.4&gt; will appear in the Log Area. 
       </div>       
@@ -749,9 +755,9 @@
                   <td class="tdCenter"></td>
                 </tr>
                 <tr> 
-                  <td class="tdCenter">Total</td>
-                  <td class="tdCenter">SST</td>
-                  <td class="tdCenter">\(n-1\)</td>
+                  <td class="tdCenter"><b>Total</b></td>
+                  <td class="tdCenter"><b>SST</b></td>
+                  <td class="tdCenter"><b>\(n-1\)</b></td>
                   <td class="tdCenter"></td>
                   <td class="tdCenter"></td>
                 </tr>

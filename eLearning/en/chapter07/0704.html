@@ -51,7 +51,12 @@
 	 </script>
        <link rel="stylesheet" href="../../css/pandoc.css">
        <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="../../../eStat/js/language.js" ></script>   
+       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
+       <script src="../../../eStat/js/eStatU.js"></script>
+       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
+       <script src="../../../eStat/lib/convertSVG.js"></script>
 </head>
 <body>
 
@@ -327,29 +332,127 @@
       \( \small        \qquad \;\; = P( Z \lt -1.09 ) \) <br>
       \( \small        \qquad \;\; = 0.137   \)
       <p>
-        Select ‘Testing \( \mu - C, \beta \) ’ at 『eStatU』 menu. Enter \(\small \mu_0 = 1500 , \mu_1 = 1600, 
+        Select [Testing \( \mu - C, \beta \)] at 『eStatU』 menu. Enter \(\small \mu_0 = 1500 , \mu_1 = 1600, 
         \sigma = 200, \alpha = 0.05, n = 30 \) in the input box window as &lt;Figure 7.4.1&gt; 
         and click the [Execute] button. The result of the testing hypothesis, the critical value \(C\) 
         and the probability of the type 2 error &beta;, will be shown as in &lt;Figure 7.4.2&gt;.
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
+      <!---   ************ html for Testing hypothesis mu - C, beta ************  ---->
+      <b>[<span data-msgid="Testing Hypothesis muA">Testing Hypothesis : Population Mean &mu; </span>]</b>
+      <p>
             <input class="qrBtn" type="image" src="../../QR/eStatU750_TestMuAlpha.svg" onclick="window.open(addrStr[104])">
-          </td>
-          <td>
-            <img class="imgFig400300" src="../Figure/Fig070401.png">
-            <div class="figText">&lt;Figure 7.4.1&gt;  Testing hypothesis for &mu; with &alpha; using 『eStatU』 </div>
-          </td>
+      <p>
+      <button type="button" id="erase" style="width:100px;"><b>New Data</b></button>
+      <p>
+      <table style="width:500px;">
+        <tr>
+          <td><b><span data-msgid="Hypothesis"></span></b> </td>
+          <td><span class="fontmath">&nbsp;&nbsp; H<sub>o</sub> : &mu; = &mu;<sub>o</sub> &nbsp;</span> <input type="text" size=6 value="1500" style="text-align:center;" id="mu0AB"> </td>
+          <td><span class="fontmath">&nbsp;&nbsp; H<sub>1</sub> : &mu; = &mu;<sub>1</sub> &nbsp;</span> <input type="text" size=6 value="1600" style="text-align:center;" id="mu1AB"> </td>
+        </tr>
+	<tr>
+          <td></td>
+          <td><span data-msgid="PopulationStd">모표준편차 </span></td>
+          <td><span class="fontmath">&sigma; = </span><input type="text" size=6 value="200" style="text-align:center;" id="stdPAB"> </td>
+        </tr>
+        <tr>
+          <td></td>
+	  <td><span data-msgid="Sample Size">Sample Size</span></td>
+          <td><span class="fontmath">n = </span><input type="text" value="30" style="text-align:center;" size=6 id="nn1AB"></td>
+	</tr>
+	<tr>
+          <td></td>
+	  <td><span data-msgid="Type1Error">1종오류</span></td>
+	  <td><span class="fontmath">&alpha; = </span><input type="text" value="0.050" style="text-align:center;" size=6 id="alpha1AB"></td>
         </tr>
       </table>
       <p>
-      <img class="imgFig600400" src="../Figure/Fig070402.png">
-      <div class="figText">&lt;Figure 7.4.2&gt; Calculation of &beta; and power using 『eStatU』</div>
+         <div class="figText">&lt;Figure 7.4.1&gt;  Testing hypothesis for &mu; with &alpha; using 『eStatU』 </div>
+      <p>
+         <button type="button" id="executeTH" ><span data-msgid="Execute">Execute</span></button></span>
+      <p>
+      <table style="width:500px;">
+        <tr>
+          <td><span class="fontmath">C = </span> <input type="text" style="text-align:center;" size=6 id="C"></td>
+          <td><span class="fontmath">&beta; = </span><input type="text" size=6 style="text-align:center;" id="betaAB"></td>
+        </tr>
+      </table>
+      <p>
+      <table style="width:400px;">
+        <tr>
+          <td style="width:120px;"><span class="fontmath">&mu;<sub>1</sub> = <input type="text" size=6 value="1600" style="text-align:center;" id="mu1AB2"></td>
+          <td><sup><small> &mu;<sub>0</sub>-3&sigma; </small></sup></span></td>
+          <td><input type="range" min="0" max="60" value="30" id="rangeMu1AB" onchange="showValueMu1AB(this.value)"/></td>
+          <td><span class="fontmath"><sup><small> &mu;<sub>0</sub>+3&sigma; </small></sup></span></td>
+        </tr>
+      </table>
+      <svg id="chart" width="600" height="400" style="border-style:solid;"> </svg> 
+      <table style="width:600px;">
+        <tr>
+          <td style="width:120px;"><span class="fontmath">&alpha;</span> = <input type="text" value="0.050" style="text-align:center;" size=6 id="alpha1AB2"></td>
+          <td><sup><small> 0.01 </small></sup></td>
+          <td><input type="range" min="1" max="50" value="5" id="rangeAlpha1AB" onchange="showValueAlpha1AB(this.value)"/> </td>
+          <td><sup><small>0.50</small></sup></td>
+          <td></td>
+          <td style="width:120px;"><span class="fontmath">n</span> = <input type="text" value="30" style="text-align:center;" size=6 id="nn1AB2"></td>
+          <td><sup><small> 1 </small></sup></td>
+          <td><input type="range" min="1" max="100" value="100" id="rangenn1AB" onchange="showValuenn1AB(this.value)"/> </td>
+          <td><sup><small>100</small></sup></td>
+        </tr>
+      </table>
+      <p>
+      <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+      </button>
+      <p>
+         <div class="figText">&lt;Figure 7.4.2&gt; Calculation of &beta; and power using 『eStatU』</div>
       <p>
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
+    <!---   ************ script for Testing hypothesis mu - C, beta ************  ---->
+  <script>
+      setLanguage('en');
+      var bar = d3.select("#chart");
+      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
+      var graphWidth2, graphHeight2;
+      var svgWidth2   = 600;
+      var svgHeight2  = 400;
+      var title;
+      var mu0, mu1, stdP, alpha1, alpha2, beta1, beta2, nn1, nn2;
+      var ansBeta, ansC;
+      var h1Type;
+
+      // Test type
+      var testType = 1; 
+      document.getElementById("C").disabled = true; 
+      document.getElementById("betaAB").disabled = true;  
+      document.getElementById("mu1AB2").disabled = true;  
+      document.getElementById("alpha1AB2").disabled = true;  
+      document.getElementById("nn1AB2").disabled = true;  
+
+      // Testing Hypothesis ======================================
+      d3.select("#executeTH").on("click",function() {
+        inputValueAB();
+        if (isNaN(mu0) || isNaN(mu1) || isNaN(stdP) ) return;
+        if (testType == "1" && isNaN(nn1)) return;
+        drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1, alpha2, beta1, beta2);
+        document.getElementById("C").value = f2(ansC); 
+        document.getElementById("betaAB").value = f3(ansBeta);  
+      });
+
+      // svg Graph Save
+      d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth2;
+        var height = svgHeight2;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+    
+  </script>
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
@@ -368,7 +471,7 @@
       <b>Answer</b>
       <p>
       <div>
-          Although the alternative hypothesis has been changed to , the decision rule will not be changed in case of the conservative decision making, because the alternative hypothesis is the same type of . 
+          1) Although the alternative hypothesis has been changed to \(\small H_1 : \mu = 1580\), the decision rule will not be changed in case of the conservative decision making, because the alternative hypothesis is the same type of \(\small H_1 : \mu > 1500\). 
       </div>
       <p>
         \(\qquad\)‘If \(\small \overline X \lt 1500 + 1.645 \times \frac {200}{30} = 1560.06\), 
@@ -376,23 +479,14 @@
       <p>
         Hence the probability of type 2 error is as follows: 
       <p>
-        \(\qquad \small \beta = P(\overline X \lt 1560.06 | H_1 is true) \) <br>
+        \(\qquad \small \beta = P(\overline X \lt 1560.06 \;|\; H_1 \) \( \text{is true} )\) <br>
         \(\qquad \small   \;\;= P(\frac {\overline X - 1580}{\frac{200}{\sqrt{30}} } <  \frac {1560.06 - 1580}{\frac{200}{\sqrt{30}} }  )  \) <br>
         \(\qquad \small   \;\;= P( Z \lt -0.546 ) = 0.283 \)
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU750_TestMuAlpha.svg" onclick="window.open(addrStr[104])">
-          </td>
-          <td>
-            <div class="textL20M20">
+         <div class="textL20M20">
               2) In order to calculate &beta; using 『eStatU』 , enter \(\mu_1 = 1580\)  in &lt;Figure 7.4.1&gt; 
               and click the [Execute] button. 
-            </div>
-          </td>
-        </tr>
-      </table>
+         </div>
     </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
@@ -435,7 +529,7 @@
       <p>A function of the probability that the null hypothesis is correct when the null hypothesis is 
          true is called an <b>operating characteristic function</b>.
       $$ 
-        \text {Operatiing characteristic function = 1 - (probability of the type 1 error) = 1 - }\alpha 
+        \text {Operating characteristic function = 1 - (probability of the type 1 error) = 1 - }\alpha 
       $$
     </div>
     <p>
@@ -466,7 +560,7 @@
         \( \qquad \small '\text{If } \overline X \lt 1500 + 1.645 \times \frac {200}{30} = 1560.06, \text{ reject } H_0,\text{ else accept } H_0’\)
       <p>
       Hence if we calculate the probability of the type 2 error as [Example 7.4.2], the power of each test is as follows: 
-      <table style="width:400px"> 
+      <table style="width:500px"> 
         <tr> 
           <th class="thGrey" style="width:200px">Alternative Hypothesis</th>
           <th class="thGrey" style="width:100px">&beta;</th>
@@ -515,7 +609,7 @@
         </tr>
       </table>
       <p>
-      The power function can be approximated by connecting points of (, 1 - ) in each test as &lt;Figure 7.4.3&gt;. 
+      The power function can be approximated by connecting points of (\(\mu\), 1 - \(\beta\) ) in each test as &lt;Figure 7.4.3&gt;. 
       <p>
       <img class="imgFig600400" src="../Figure/Fig070403.png">
       <div class="figText">&lt;Figure 7.4.3&gt; Power function of  [Example 7.4.1]</div>
@@ -597,28 +691,386 @@
         \shoveleft '\text{If } \overline X \gt 1539.4, \text { then reject } H_0, \text { else accept } H_0’
         \end{multline}
       $$
-      Select ‘Testing &mu; - \(C, n\)’ at 『eStatU』 menu. Enter \(\mu_0 = 1500 ,\mu_1 = 1570 , \alpha = 0.05 \),
+      Select [Testing &mu; - \(C, n\)] at 『eStatU』 menu. Enter \(\mu_0 = 1500 ,\mu_1 = 1570 , \sigma = 200, \alpha = 0.05 \),
       \( \beta = 0.10 \) in the input box window as &lt;Figure 7.4.4&gt;. 
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
+         If you click the [Execute] button, you will see the test result of 『eStatU』 as in &lt;Figure 7.4.5&gt;. The critical value  and the sample size  are calculated. 
+      <p>
+      <!--- =================== html Testing for alpha and beta ================================= ---->
+      <b>[<span data-msgid="Testing Hypothesis muAB">Testing Hypothesis : Population Mean &mu;</span></b>
+      <p>
             <input class="qrBtn" type="image" src="../../QR/eStatU760_TestMuAlphaBeta.svg" onclick="window.open(addrStr[105])">
-          </td>
-          <td>
-            <img class="imgFig400300" src="../Figure/Fig070404.png">
-            <div class="figText">&lt;Figure 7.4.4&gt; Testing hypothesis for  with  using 『eStatU』 </div>
-          </td>
+      <p>
+      <button type="button" id="erase2" style="width:100px;"><b>New Data</b></button>
+      <p>
+      <table style="width:500px;">
+        <tr>
+          <td><b><span data-msgid="Hypothesis"></span></b> </td>
+          <td><span class="fontmath">&nbsp;&nbsp; H<sub>o</sub> : &mu; = &mu;<sub>o</sub> &nbsp;</span> <input type="text" size=6 value="1500" style="text-align:center;" id="mu02"> </td>
+          <td><span class="fontmath">&nbsp;&nbsp; H<sub>1</sub> : &mu; = &mu;<sub>1</sub> &nbsp;</span> <input type="text" size=6 value="1570" style="text-align:center;" id="mu12"> </td>
+        </tr>
+	<tr>
+          <td></td>
+          <td><span data-msgid="PopulationStd">모표준편차 </span></td>
+          <td><span class="fontmath">&sigma; = </span><input type="text" size=6 value="200" style="text-align:center;" id="stdP2"> </td>
+        </tr>
+	<tr>
+          <td></td>
+	  <td><span data-msgid="Type1Error">1종오류</span></td>
+	  <td><span class="fontmath">&alpha; = </span><input type="text" value="0.050" style="text-align:center;" size=6 id="alpha22"></td>
+        </tr>
+        <tr>
+          <td></td>
+	  <td><span data-msgid="Type2Error">2종오류</span></td>
+	  <td><span class="fontmath">&beta; = </span><input type="text" value="0.100"  style="text-align:center;" size=6 id="beta22"> </td>
+	</tr>
+      </table>
+      <p>
+         <div class="figText">&lt;Figure 7.4.4&gt; Testing hypothesis for &mu; with &alpha; and &beta; using 『eStatU』 </div>
+      <p>
+         <button type="button" id="executeTH2" ><span data-msgid="Execute">Execute</span></button></span>
+      <p>
+      <table style="width:300px;">
+        <tr>
+          <td><span class="fontmath">C = </span> <input type="text" style="text-align:center;" size=6 id="C2"></td>
+          <td><span class="fontmath">n = </span> <input type="text" style="text-align:center;" size=6 id="nnAB2"></td>
         </tr>
       </table>
       <p>
-        If you click the [Execute] button, you will see the test result of 『eStatU』 as in &lt;Figure 7.4.5&gt;. The critical value  and the sample size  are calculated. 
+      <table style="width:400px;">
+        <tr>
+          <td style="width:130px;"><span class="fontmath">&mu;<sub>1</sub></span> = <input type="text" style="text-align:center;" value="1570" size=6 id="mu12AB2"></td>
+          <td><sup><small> &mu;<sub>0</sub>-3&sigma; </small></sup></td>
+          <td><input type="range" min="0" max="60" value="33" id="rangeMu1AB2" onchange="showValueMu1AB2(this.value)"/></td>
+          <td><span class="fontmath"><sup><small> &mu;<sub>0</sub>+3&sigma; </small></sup></span></td>
+       </tr>
+      </table>
+      <svg id="chart2" width="600" height="400" style="border-style:solid;"> </svg> 
+      <table style="width:600px;">
+        <tr>
+          <td style="width:130px;"><span class="fontmath">&alpha;</span> = <input type="text" style="text-align:center;" value="0.05" size=6 id="alpha2AB2"></td>
+          <td><sup><small> 0.01 </small></sup></td>
+          <td><input type="range" min="1" max="50" value="5" id="rangeAlpha2AB2" onchange="showValueAlpha2AB2(this.value)"/> </td>
+          <td><sup><small>0.50</small></sup></td>
+          <td style="width:130px;"><span class="fontmath">&beta;</span> = <input type="text" style="text-align:center;" value="0.10" size=6 id="beta2AB2"></td>
+          <td><sup><small> 0.01 </small></sup></td>
+          <td><input type="range" min="1" max="50" value="10" id="rangeBeta2AB2" onchange="showValueBeta2AB2(this.value)"/> </td>
+          <td><sup><small>0.50</small></sup></td>
+        </tr>
+      </table>
       <p>
-        <img class="imgFig600400" src="../Figure/Fig070405.png">
-        <div class="figText">&lt;Figure 7.4.5&gt; Testing hypothesis for &mu; with &alpha;, &beta;  using 『eStatU』 </div>
+      <button type="button" id="saveGraphU2" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+      </button>
+      <p>
+         <div class="figText">&lt;Figure 7.4.5&gt; Testing hypothesis for &mu; with &alpha;, &beta;  using 『eStatU』 </div>
+      <p>
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
+    <!--- =================== script for Testing alpha and beta ================================= ---->
+  <script>
+      setLanguage('en');
+      var bar2 = d3.select("#chart2");
+      var mu02, mu12, stdP2, alpha12, alpha22, beta12, beta22, nn12, nn22;
+      var ansC2, ansN2, mu12AB2, alpha1AB2, beta1AB2;
+      var h1Type2, testType2;
+
+      // Test type
+      var testType2 = 2;
+      document.getElementById("C2").disabled = true; 
+      document.getElementById("nnAB2").disabled = true;  
+
+      // Testing Hypothesis ======================================
+      d3.select("#executeTH2").on("click",function() {
+        inputValueAB2();
+        if (isNaN(mu02) || isNaN(mu12) || isNaN(stdP2) ) return;
+        drawNormalGraphTHAB2(testType2, h1Type2, mu02, mu12, stdP2, nn12, nn22, alpha12, alpha22, beta12, beta22);
+        document.getElementById("C2").value = f2(ansC2); 
+        document.getElementById("nnAB2").value = f1(ansN2);  
+      });
+
+      // svg Graph Save
+      d3.select("#saveGraphU2").on("click", function() {
+        var svg = d3.select("#chart2");
+        var width = svgWidth2;
+        var height = svgHeight2;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+
+// alpha, beta 가설검정용 mu1
+function showValueMu1AB2(newValue) {
+        var temp = mu02 + stdP2 * (newValue-30)/10;
+        document.getElementById("mu12").value  = temp;
+        document.getElementById("mu12AB2").value  = temp;
+        bar2.selectAll("*").remove();
+        inputValueAB2();
+        drawNormalGraphTHAB2(testType2, h1Type2, mu02, mu12, stdP2, nn1, nn2, alpha12, alpha22, beta12, beta22);
+        document.getElementById("C2").value = f2(ansC2); 
+        document.getElementById("nnAB2").value = f1(ansN2);  
+}
+// alpha, beta 가설검정용 alpha2
+function showValueAlpha2AB2(newValue) {
+        document.getElementById("alpha22").value  = f3(newValue/100);
+        document.getElementById("alpha2AB2").value  = f3(newValue/100);
+        bar2.selectAll("*").remove();
+        inputValueAB2();
+        drawNormalGraphTHAB2(testType2, h1Type2, mu02, mu12, stdP2, nn1, nn2, alpha12, alpha22, beta12, beta22);
+        document.getElementById("C2").value = f2(ansC2); 
+        document.getElementById("nnAB2").value = f1(ansN2);  
+}
+// alpha, beta 가설검정용 beta2
+function showValueBeta2AB2(newValue) {
+        document.getElementById("beta22").value  = f3(newValue/100);
+        document.getElementById("beta2AB2").value  = f3(newValue/100);
+        bar2.selectAll("*").remove();
+        inputValueAB2();
+        drawNormalGraphTHAB2(testType2, h1Type2, mu02, mu12, stdP2, nn1, nn2, alpha12, alpha22, beta12, beta22);
+        document.getElementById("C2").value = f2(ansC2); 
+        document.getElementById("nnAB2").value = f1(ansN2);  
+}
+// input value
+function inputValueAB2() {
+        bar2.selectAll("*").remove();
+        mu02   = parseFloat(d3.select("#mu02").node().value);
+        mu12   = parseFloat(d3.select("#mu12").node().value);
+        stdP2  = parseFloat(d3.select("#stdP2").node().value);
+        alpha22= parseFloat(d3.select("#alpha22").node().value);
+        beta22 = parseFloat(d3.select("#beta22").node().value); 
+        if (isNaN(mu02))  {alert("Enter \u03BC\2080"); return}
+        if (isNaN(mu12))  {alert("Enter \u03BC\u2081"); return}
+        if (isNaN(stdP2)) {alert("Enter \u03C3"); return}
+        if (mu12 > mu02 + 3*stdP2) mu12 = mu02 + 3*stdP2;
+        if (mu12 < mu02 - 3*stdP2) mu12 = mu02 - 3*stdP2;
+        document.getElementById("rangeMu1AB2").value = 30 + 10*(mu12 - mu02) / stdP2;
+
+        if (alpha22 < 0.01) alpha22 = 0.01;
+        if (alpha22 > 0.50) alpha22 = 0.50;
+        document.getElementById("rangeAlpha2AB2").value = alpha22*100;
+        if (beta22  < 0.01) beta22  = 0.01;
+        if (beta22  > 0.50) beta22  = 0.50; 
+        document.getElementById("rangeBeta2AB2").value = beta22*100;
+        if (mu02 < mu12) h1Type2 = 2; // 우측검정: 2
+        else h1Type2 = 3;             // 좌측검정: 3
+}
+// 축 그리기
+function drawAxis2(top, bottom, left, right, gxmin, gxmax, gymin, gymax) {
+        var margin  = {top, bottom, left, right};
+        margin.top    = top;
+        margin.bottom = bottom;
+        margin.left   = left;
+        margin.right  = right;
+        var graphWidth2   = svgWidth2 - margin.left - margin.right;
+        var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
+        var xScale = d3.scaleLinear().domain([gxmin,gxmax]).range([0,graphWidth2]);
+        var yScale = d3.scaleLinear().domain([gymax,0]).range([0,graphHeight2]);
+        var ty =  margin.top + graphHeight2;
+        d3.select("#chart2")
+          .append("g")
+          .attr("transform","translate("+margin.left+","+ty+")")
+          .call(d3.axisBottom(xScale))     
+        d3.select("#chart2")
+          .append("g")
+          .attr("transform","translate("+margin.left+","+margin.top+")")
+          .call(d3.axisLeft(yScale))                  // 눈금을 표시할 함수 호출
+}
+// alpha beta 가설검정용 정규분포 그래프 함수 --------------------------------------------------
+function drawNormalGraphTHAB2(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1, alpha2, beta1, beta2) {
+         var margin  = {top: 80, bottom: 100, left: 50, right: 70};
+         var graphWidth2   = svgWidth2 - margin.left - margin.right;
+         var graphHeight2  = svgHeight2 - margin.top - margin.bottom;
+         var k, x1, y1, x2, y2, ta, tb, tx, ty, str;
+         var gxmin, gxmax, gxrange, gymin, ymax, gymax, gyrange;
+         var temp, tempx, tempy, step, stderr, tymax, talpha, tbeta;
+         var c1, c2, left0, right0, left1, right1, info, dmax;
+         var x = [];
+         var y = [];
+
+         if (h1Type == 2) {
+             nn2 = stdP*(stdnormal_inv(1-alpha2,info) - stdnormal_inv(beta2,info))/(mu1 - mu0);
+             nn2 = nn2*nn2;
+         }
+         else if (h1Type == 3) {
+             nn2 = stdP*(stdnormal_inv(alpha2,info) - stdnormal_inv(1-beta2,info))/(mu1 - mu0);
+             nn2 = nn2*nn2;
+         }
+         stderr = stdP / Math.sqrt(nn2);        
+         dmax = 4 * stderr
+         talpha = alpha2;
+         tbeta  = beta2;
+
+         if (h1Type == 2) { // 우측검정
+           gxmin  = mu0 - dmax;
+           gxmax  = mu1 + dmax;
+           left0  = mu0 + stdnormal_inv(1-talpha, info)*stderr;
+           right0 = mu0 + dmax;
+           left1  = mu1 - dmax;
+           right1 = left0;
+           beta1  = stdnormal_cdf((right1-mu1)/stderr);
+           tbeta  = beta1;
+         } else if (h1Type == 3) { // 좌측검정
+           gxmin  = mu1 - dmax;
+           gxmax  = mu0 + dmax;
+           left0  = mu0 - dmax;
+           right0 = mu0 + stdnormal_inv(talpha, info)*stderr;
+           left1  = right0;
+           right1 = mu1 + dmax;
+           beta1  = 1 - stdnormal_cdf((left1-mu1)/stderr);
+           tbeta = beta1;
+         }
+         ansBeta = tbeta
+
+         gxrange = gxmax - gxmin;
+         gymin   = 0;
+         tymax   = 1 / (stderr*Math.sqrt(2*Math.PI));
+         ymax    = 10/(stdP*Math.sqrt(2*Math.PI));
+         gymax   = ymax + ymax/5; 
+         gyrange = gymax - gymin;
+
+         // 주제목, x축제목, 축
+         temp = graphWidth2/2;
+         step = 8 * stderr / temp;
+         tx   = margin.left + temp;
+         ty   = margin.top / 2;
+         bar2.append("text").attr("x", tx).attr("y", ty).text(svgStr[11][langNum]) // "가설검정"
+            .style("font-family","sans-serif").style("font-size","16pt").style("stroke","black").style("text-anchor","middle")
+         bar2.append("text").attr("x", margin.left+graphWidth2+5).attr("y", margin.top+graphHeight2+5).text(svgStrU[22][langNum]) // "표본평균"
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","black").style("text-anchor","start")
+         drawAxis2(margin.top, margin.bottom, margin.left, margin.right, gxmin, gxmax, gymin, gymax);        
+
+         // 기준선 C, alpha, beta write
+         if (h1Type == 2) tempx = left0;
+         else if (h1Type == 3) tempx = right0;
+         ansC2 = tempx;
+         if (testType == "2") nn1 = nn2;
+         ansN2 = nn1;
+         tempy = normal_pdf(mu0, stderr, tempx );
+         x1   = margin.left + graphWidth2*(tempx-gxmin)/gxrange;
+         x2   = x1;
+         y1   = margin.top  + graphHeight2 + 60;
+         y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange + 1;
+         bar2.append("line")
+            .attr("x1",x1)
+            .attr("y1",y1)
+            .attr("x2",x2)
+            .attr("y2",y2)
+            .attr("stroke-width","2px").style("stroke","#0055FF")
+         bar2.append("text").attr("x", x1).attr("y", y1+15).text("C = "+f2(tempx))
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
+         bar2.append("text").attr("x", x1).attr("y", y1+30).text("n = "+f1(nn1))
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
+         y1 = y1 - 30;
+         y2 = y1 + 25;
+         bar2.append("text").attr("x", x1-20).attr("y", y2).text(svgStrU[26][langNum]) // "Ho 채택역"
+            .style("font-family","sans-serif").style("font-size","10pt").style("stroke","#0055FF").style("text-anchor","end")
+         bar2.append("text").attr("x", x1+20).attr("y", y2).text(svgStrU[25][langNum]) // "Ho 기각역"
+            .style("font-family","sans-serif").style("font-size","10pt").style("stroke","red").style("text-anchor","start")
+         if (h1Type == 2) {
+           bar2.append("text").attr("x", x1-10).attr("y", y1).text("\u03B2 = "+f3(tbeta))
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","end")
+           bar2.append("text").attr("x", x1+10).attr("y", y1).text("\u03B1 = "+f3(talpha))
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","start")
+         } else if (h1Type == 3) {
+           bar2.append("text").attr("x", x1-10).attr("y", y1).text("\u03B1 = "+f3(talpha))
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","end")
+           bar2.append("text").attr("x", x1+10).attr("y", y1).text("\u03B2 = "+f3(tbeta))
+              .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","start")
+         }
+
+         // Ho alpha 영역
+         tempx = left0;
+         do { 
+           tempy = normal_pdf(mu0, stderr, tempx );
+           x1   = margin.left + graphWidth2*(tempx-gxmin)/gxrange;
+           x2   = x1;
+           y1   = margin.top  + graphHeight2;
+           y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange + 1;
+           bar2.append("line")
+              .attr("x1",x1)
+              .attr("y1",y1)
+              .attr("x2",x2)
+              .attr("y2",y2)
+              .attr("stroke-width","2px").style("stroke","#0055FF")
+           tempx += step;        
+         } while( tempx <= right0 ) 
+
+
+         // H1 beta 영역
+         tempx = left1;
+         do { 
+           tempy = normal_pdf(mu1, stderr, tempx );
+           x1   = margin.left + graphWidth2*(tempx-gxmin)/gxrange;
+           x2   = x1;
+           y1   = margin.top  + graphHeight2;
+           y2   = margin.top  + graphHeight2 - graphHeight2*(tempy-gymin)/gyrange + 1;
+           bar2.append("line")
+              .attr("x1",x1)
+              .attr("y1",y1)
+              .attr("x2",x2)
+              .attr("y2",y2)
+              .attr("stroke-width","2px").style("stroke","red")
+           tempx += step;        
+         } while( tempx < right1-step ) 
+
+         // H0 graph
+         x1   = margin.left + graphWidth2*(mu0-gxmin)/gxrange;
+         y1   = margin.top;
+         y2   = margin.top + graphHeight2 - graphHeight2*(tymax-gymin)/gyrange - 15;
+         bar2.append("text").attr("x", x1).attr("y",y1).text("H\u2080: \u03BC = "+f2(mu0))
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
+         bar2.append("text").attr("x", x1).attr("y",y2).text("N("+f2(mu0)+" ,"+f2(stderr)+"\u00B2)")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
+         y1 = margin.top + graphHeight2 - 20;
+         bar2.append("text").attr("x", x1).attr("y",y1).text("1 - \u03B1 = "+f3(1-talpha))
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
+         x[0] = mu0 - dmax;
+         y[0] = normal_pdf(mu0, stderr, x[0] );
+         x1   = margin.left + graphWidth2*(x[0]-gxmin)/gxrange;
+         y1   = margin.top + graphHeight2 - graphHeight2*(y[0]-gymin)/gyrange;
+         for (k=1; k<=temp; k++) {
+           x[k] = x[k-1] + step;
+           y[k] = normal_pdf(mu0, stderr, x[k] );
+           x2   = margin.left + graphWidth2*(x[k]-gxmin)/gxrange;
+           y2   = margin.top + graphHeight2 - graphHeight2*(y[k]-gymin)/gyrange;
+           bar2.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+              .style("stroke","#0055FF").attr("stroke-width","2px");
+           x1   = x2;
+           y1   = y2;    
+         }
+
+         // H1 graph
+         x1   = margin.left + graphWidth2*(mu1-gxmin)/gxrange;
+         y1   = margin.top;
+         y2   = margin.top + graphHeight2 - graphHeight2*(tymax-gymin)/gyrange - 15;
+         bar2.append("text").attr("x", x1).attr("y",y1).text("H\u2081: \u03BC = "+f2(mu1))
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+         bar2.append("text").attr("x", margin.left+graphWidth2).attr("y",y1).text("\u03C3 = "+f2(stdP))
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","black").style("text-anchor","middle")
+         bar2.append("text").attr("x", x1).attr("y",y2).text("N("+f2(mu1)+" ,"+f2(stderr)+"\u00B2)")
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+         y1 = margin.top + graphHeight2 - 20;
+         bar2.append("text").attr("x", x1).attr("y",y1).text("1 - \u03B2 = "+f3(1-tbeta))
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+         x[0] = mu1 - dmax;
+         y[0] = normal_pdf(mu1, stderr, x[0] );
+         x1   = margin.left + graphWidth2*(x[0]-gxmin)/gxrange;
+         y1   = margin.top + graphHeight2 - graphHeight2*(y[0]-gymin)/gyrange;
+         for (k=1; k<=temp; k++) {
+           x[k] = x[k-1] + step;
+           y[k] = normal_pdf(mu1, stderr, x[k] );
+           x2   = margin.left + graphWidth2*(x[k]-gxmin)/gxrange;
+           y2   = margin.top + graphHeight2 - graphHeight2*(y[k]-gymin)/gyrange;
+           bar2.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+              .style("stroke","red").attr("stroke-width","2px");
+           x1   = x2;
+           y1   = y2;    
+         }
+
+}         
+  </script>
 
     <!------------------------------------------------------------------------------------------------->
     <div  class="mainTablePink">

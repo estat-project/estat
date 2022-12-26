@@ -51,7 +51,12 @@
 	 </script>
        <link rel="stylesheet" href="../../css/pandoc.css">
        <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="../../../eStat/js/language.js" ></script>   
+       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
+       <script src="../../../eStat/js/eStatU.js"></script>
+       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
+       <script src="../../../eStat/lib/convertSVG.js"></script>
 </head>
 <body>
 
@@ -308,21 +313,21 @@
       <table style="width:650px"> 
         <tr> 
           <th class="thGrey">Pair number</th>
-          <th class="thGrey">Sample of population 1 <br>(\(x_{i1}\))</th>
-          <th class="thGrey">Sample of population 2 <br>(\(x_{i2}\))</th>
-          <th class="thGrey">Difference <br>(\(d_{i} = x_{i1} - x_{i2}\))</th>
+          <th class="thGrey">Sample of population 1 <br>\(x_{i1}\)</th>
+          <th class="thGrey">Sample of population 2 <br>\(x_{i2}\)</th>
+          <th class="thGrey">Difference <br>\(d_{i} = x_{i1} - x_{i2}\)</th>
         </tr>
         <tr> 
           <td class="tdCenter">1</td>
-          <td class="tdCenter">(\(x_{11}\))</td>
-          <td class="tdCenter">(\(x_{12}\))</td>
-          <td class="tdCenter">(\(d_{1} = x_{11} - x_{12}\))</td>
+          <td class="tdCenter">\(x_{11}\)</td>
+          <td class="tdCenter">\(x_{12}\)</td>
+          <td class="tdCenter">\(d_{1} = x_{11} - x_{12}\)</td>
         </tr>                  
         <tr>                   
           <td class="tdCenter">2</td>
-          <td class="tdCenter">(\(x_{21}\))</td>
-          <td class="tdCenter">(\(x_{22}\))</td>
-          <td class="tdCenter">(\(d_{2} = x_{21} - x_{22}\))</td>
+          <td class="tdCenter">\(x_{21}\)</td>
+          <td class="tdCenter">\(x_{22}\))</td>
+          <td class="tdCenter">\(d_{2} = x_{21} - x_{22}\)</td>
         </tr>                  
         <tr>                   
           <td class="tdCenter">\(\cdots\)</td>
@@ -332,9 +337,9 @@
         </tr>                  
         <tr>                   
           <td class="tdCenter">n</td>
-          <td class="tdCenter">(\(x_{n1}\))</td>
-          <td class="tdCenter">(\(x_{n2}\))</td>
-          <td class="tdCenter">(\(d_{n} = x_{n1} - x_{n2}\))</td>
+          <td class="tdCenter">\(x_{n1}\)</td>
+          <td class="tdCenter">\(x_{n2}\)</td>
+          <td class="tdCenter">\(d_{n} = x_{n1} - x_{n2}\)</td>
         </tr>
       </table>
       <p>
@@ -346,9 +351,10 @@
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
-      <b>Example 10.2.2</b>
+      <p>
+         <b>Example 10.2.2</b>
          The following is the survey result of eight samples from young couples. The husband’s age and wife’s age of each couple are recorded. 
-       <p>
+      <p>
          <div class="textLeft">[(28, 28) (30, 29) (34, 31) (29, 32) (28, 29) (31, 33) (39, 35) (34, 29)</div>
          <div class="textLeft">[Ex] ⇨ eBook ⇨ EX100202_AgeOfCouple.csv</div>
       <p>
@@ -373,9 +379,9 @@
       <table style="width:600px"> 
         <tr> 
           <th class="thGrey">Pair number</th>
-          <th class="thGrey">Husband Age<br>(\(x_{i1}\))</th>
-          <th class="thGrey">Wife Age<br>(\(x_{i2}\))</th>
-          <th class="thGrey">Difference <br>(\(d_{i} = x_{i1} - x_{i2}\))</th>
+          <th class="thGrey">Husband Age<br>\(x_{i1}\)</th>
+          <th class="thGrey">Wife Age<br>\(x_{i2}\)</th>
+          <th class="thGrey">Difference <br>\(d_{i} = x_{i1} - x_{i2}\)</th>
         </tr>
         <tr> <td class="tdCenter">1</td> <td class="tdCenter">28</td> <td class="tdCenter">28</td> <td class="tdCenter">0</td> </tr>
         <tr> <td class="tdCenter">2</td> <td class="tdCenter">30</td> <td class="tdCenter">29</td> <td class="tdCenter">1</td> </tr>
@@ -389,7 +395,7 @@
       <p>
 
       <div class="textL20">
-        The histogram for the data of differences by using『eStat』 (the testing hypothesis for 
+        The histogram for the data of differences by using 『eStat』 (the testing hypothesis for 
         a population mean) is as in &lt;Figure 10.2.8&gt;. If you look at the histogram, 
         it is not sufficient evidence that the data of differences follow a normal distribution, 
         because the number of data is small. In such a case, applying the parametric hypothesis test 
@@ -420,7 +426,7 @@
         \(\quad \small \quad H_0 : M_1 = M_2, \quad \quad H_1 : M_1 \ne M_2 \)
         <p>
         Since it is a paired sample, the hypothesis can be written whether the population median of differences 
-        (\(\small M_d = M_1 - M_2\)) is equal to 0 or not as follows: 
+        (\(\small M_d \)) is equal to 0 or not as follows: 
         <p>
         \(\quad \small \quad H_0 : M_d = 0, \quad \quad H_1 : M_d \ne 0 \)
         <p>
@@ -485,7 +491,7 @@
       <p>
 
       <div class="textL20">
-        In『eStatU』, the distribution of the Wilcoxon signed rank sum when  is shown in &lt;Figure 10.2.9&gt; 
+        In 『eStatU』, the distribution of the Wilcoxon signed rank sum when  is shown in &lt;Figure 10.2.9&gt; 
         and Table 10.2.8.
       </div>
       <p>
@@ -573,7 +579,7 @@
       <p>
 
       <div class="textL20M20">
-        3) Enter the data as shown in &lt;Figure 10.2.9&gt; in『eStat』and click the icon  which is      
+        3) Enter the data as shown in &lt;Figure 10.2.9&gt; in 『eStat』 and click the icon  which is      
            the test for a population mean. If you select the variable ‘Difference’ as the analysis 
            variable,  a dot graph with the 95% confidence interval for the population mean difference will
             appear. 
@@ -599,7 +605,7 @@
       </table>
       <p>
         <img class="imgFig600400" src="../Figure/Fig100210.svg">
-        <div class="figText">&lt;Figure 10.2.10&gt; 『eStat』Signed rank sum test</div>
+        <div class="figText">&lt;Figure 10.2.10&gt; 『eStat』 Signed rank sum test</div>
       <p>
         <img class="imgFig600400" src="../Figure/Fig100211.png">
         <div class="figText">&lt;Figure 10.2.11&gt; Result of Wilcoxon signed rank sum test</div>
@@ -614,7 +620,7 @@
       the difference \(d_i = x_i - y_i\) first and assign ranks on \(|d_i|\). The sum of ranks of \(|d_i|\)
       which has + sign of \(d_i\), \(R_+\), is used as the test statistic. 『eStatU』 provides the distribution
       of \(R_+\), denoted as \(w_{+}(n)\), up to \(n\) = 22. \(w_{+}(n)_{&alpha;}\) refers to the 
-      right-hand 100 \(\times &alpha;\) percentile of this distribution  which may not have an accurate 
+      right tail 100 \(\times &alpha;\) percentile of this distribution  which may not have an accurate 
       percentile value, because it is a discrete distribution. In this case the average of two values near 
       \(w_{+}(n)_{&alpha;}\) is used approximately. Table 10.2.9 summarizes the decision rule of the 
       Wilcoxon signed rank sum test for paired samples by the type of hypothesis.
@@ -669,9 +675,9 @@
             <table style="width:400px"> 
               <tr> 
                 <th class="thGrey">Pair number</th>
-                <th class="thGrey">Additive<br>(\(x_{i1}\))</th>
-                <th class="thGrey">No Additive<br>(\(x_{i2}\))</th>
-                <th class="thGrey">Difference <br>(\(d_{i} = x_{i1} - x_{i2}\))</th>
+                <th class="thGrey">Additive<br>\(x_{i1}\)</th>
+                <th class="thGrey">No Additive<br>\(x_{i2}\)</th>
+                <th class="thGrey">Difference <br>\(d_{i} = x_{i1} - x_{i2}\)</th>
               </tr>
               <tr> <td class="tdCenter">1</td> <td class="tdCenter">17.1</td> <td class="tdCenter">16.3</td> <td class="tdCenter">0.8</td> </tr>
               <tr> <td class="tdCenter">2</td> <td class="tdCenter">12.7</td> <td class="tdCenter">11.6</td> <td class="tdCenter">1.1</td> </tr>

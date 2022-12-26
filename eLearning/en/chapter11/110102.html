@@ -51,7 +51,12 @@
 	 </script>
        <link rel="stylesheet" href="../../css/pandoc.css">
        <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="../../../eStat/js/language.js" ></script>   
+       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
+       <script src="../../../eStat/js/eStatU.js"></script>
+       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
+       <script src="../../../eStat/lib/convertSVG.js"></script>
 </head>
 <body>
 
@@ -337,8 +342,9 @@
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
-      <b>Example 11.1.2</b>
-         The age of 30 people who visited a library in the morning is as follows. Test the hypothesis that 
+      <p>
+         <b>Example 11.1.2</b>
+         Ages of 30 people who visited a library in the morning are as follows. Test the hypothesis that 
          the population is normally distributed at the significance level of 5%.
       <p>
         <div class="textLeft">28 55 26 35 43 47 47 17 35 36 48 47 34 28 43</div>
@@ -351,7 +357,7 @@
       intervals as we studied in histogram of Chapter 3. It is called a categorization of the continuous data. 
       <p>
       Let's find a frequency table which starts at the age of 10 with the interval size of 10. The histogram 
-      of『eStat』makes this frequency table easy to obtain.     <p>
+      of 『eStat』 makes this frequency table easy to obtain.     <p>
       If you enter the data as shown in &lt;Figure 11.1.3&gt;, click the histogram icon and select Age from the 
       variable selection box, then the histogram as &lt;Figure 11.1.4&gt; will appear.
       <p>
@@ -362,7 +368,7 @@
           </td>
           <td>
             <img class="imgFig600400" src="../Figure/Fig110103.png">
-            <div class="figText">&lt;Figure 11.1.3&gt;   Data input at『eStat』 </div>
+            <div class="figText">&lt;Figure 11.1.3&gt;   Data input at 『eStat』 </div>
           </td>
         </tr>
       </table>
@@ -393,41 +399,41 @@
           <th class="thGrey">Observed frequency</th>
          </tr>
          <tr> <td class="tdCenter">1</td> <td class="tdCenter">\(    X < 20   \)</td> <td class="tdCenter">2</td> </tr>
-         <tr> <td class="tdCenter">2</td> <td class="tdCenter">\(20 \le X < 30\)</td> <td class="tdCenter">7</td> </tr>
-         <tr> <td class="tdCenter">3</td> <td class="tdCenter">\(30 \le X < 40\)</td> <td class="tdCenter">7</td> </tr>
-         <tr> <td class="tdCenter">4</td> <td class="tdCenter">\(40 \le X < 50\)</td> <td class="tdCenter">9</td> </tr>
-         <tr> <td class="tdCenter">5</td> <td class="tdCenter">\(50 \le X < 60\)</td> <td class="tdCenter">3</td> </tr>
-         <tr> <td class="tdCenter">6</td> <td class="tdCenter">\(    X \ge 60   \)</td> <td class="tdCenter">2</td> </tr>
+         <tr> <td class="tdCenter">2</td> <td class="tdCenter">\(20 \le X < 30\)</td> <td class="tdCenter">6</td> </tr>
+         <tr> <td class="tdCenter">3</td> <td class="tdCenter">\(30 \le X < 40\)</td> <td class="tdCenter">8</td> </tr>
+         <tr> <td class="tdCenter">4</td> <td class="tdCenter">\(40 \le X < 50\)</td> <td class="tdCenter">11</td> </tr>
+         <tr> <td class="tdCenter">5</td> <td class="tdCenter">\(50 \le X < 60\)</td> <td class="tdCenter">2</td> </tr>
+         <tr> <td class="tdCenter">6</td> <td class="tdCenter">\(    X \ge 60   \)</td> <td class="tdCenter">1</td> </tr>
         </table>
       <p>
         The frequency table of sample data as Table 11.1.2 can be used to test the goodness of fit whether the 
         sample data follows a normal distribution using the chi-square distribution. The hypothesis of this problem 
         is as follows: 
       <p>
-        <div class="textLeft"> \(\small H_0\) Sample data follows a normal distribution </div> 
-        <div class="textLeft"> \(\small H_1\) Sample data does not follow a normal distribution </div>
+        <div class="textLeft"> \(\small H_0\): Sample data follows a normal distribution </div> 
+        <div class="textLeft"> \(\small H_1\): Sample data does not follow a normal distribution </div>
       <p>
         This hypothesis does not specify what a normal distribution is and therefore, the population mean \(\mu\)  and the 
         population variance \(\sigma^2\) should be estimated from sample data. Pressing the 'Basic Statistics' icon on the main 
-        menu of『eStat』will display a table of basic statistics in the Log Area, as shown in 
-        &lt;Figure 11.1.7&gt;. The sample mean is 38.567 and the sample standard deviation is 12.982.
+        menu of 『eStat』 will display a table of basic statistics in the Log Area, as shown in 
+        &lt;Figure 11.1.7&gt;. The sample mean is 38.000 and the sample standard deviation is 11.519.
       <p>
         <img class="imgFig600400" src="../Figure/Fig110107.png">
         <div class="figText">&lt;Figure 11.1.7&gt; Descriptive statistics of age</div>
       <p>
         Hence, the above hypothesis can be written in detail as follows: 
       <p>
-        <div class="textLeft"> \(\small H_0\) Sample data follows \(N(38.567, 12.982^2 )\)</div> 
-        <div class="textLeft"> \(\small H_1\) Sample data does not follow \(N(38.567, 12.982^2 )\)</div>
+        <div class="textLeft"> \(\small H_0\): Sample data follows \(N(38.000, 11.519^2 )\)</div> 
+        <div class="textLeft"> \(\small H_1\): Sample data does not follow \(N(38.000, 11.519^2 )\)</div>
       <p>
         In order to find the expected frequency of each interval when \(\small H_0\) is true, the expected probability of each 
-        interval is calculated first using the normal distribution \(\small N(38.567, 12.982^2 )\)  as follows. The normal distribution module 
+        interval is calculated first using the normal distribution \(\small N(38.000, 11.519^2 )\)  as follows. The normal distribution module 
         of 『eStatU』 makes it easy to calculate this probability of an interval. At the normal distribution module 
-        of 『eStatU』, enter the mean of 38.567 and the standard deviation of 12.982. Click the second radio button 
+        of 『eStatU』, enter the mean of 38.000 and the standard deviation of 11.519. Click the second radio button 
         of P(X < x) type and enter 20, then press the [Execute] button to calculate the probability as shown in 
         &lt;Figure 11.1.8&gt;.
       <p>
-        <div class="textLeft"> \(P(X \lt 20) = P(Z \lt  \frac {20-38.567} {12.982} ) = P(Z \lt -1.430)=0.075\)</div> 
+        <div class="textLeft"> \(P(X \lt 20) = P(Z \lt  \frac {20-38.000} {11.519} ) = P(Z \lt -1.563)=0.059\)</div> 
       <p>
       <table style="width:650px">
         <tr>
@@ -436,18 +442,18 @@
           </td>
           <td>
             <img class="imgFig600400" src="../Figure/Fig110108.png">
-            <div class="figText">&lt;Figure 11.1.8&gt; Calculation of normal probability using『eStatU』</div>
+            <div class="figText">&lt;Figure 11.1.8&gt; Calculation of normal probability using 『eStatU』</div>
           </td>
         </tr>
       </table>
       <p>
         Similarly you can calculate the following probabilities. 
       <p>
-        <div class="textLeft"> \(P(20 \le X \lt 30) = P(\frac{20-38.567}{12.982} \le Z \lt \frac {30-38.567}{12.982} ) = P(-1.430 \le Z \lt -0.660) = 0.178\)</div> 
-        <div class="textLeft"> \(P(30 \le X \lt 40) = P(\frac{30-38.567}{12.982} \le Z \lt \frac {40-38.567}{12.982} ) = P(-0.660 \le Z \lt  0.110) = 0.289\)</div> 
-        <div class="textLeft"> \(P(40 \le X \lt 50) = P(\frac{40-38.567}{12.982} \le Z \lt \frac {50-38.567}{12.982} ) = P( 0.110 \le Z \lt  0.881) = 0.267\)</div> 
-        <div class="textLeft"> \(P(50 \le X \lt 60) = P(\frac{50-38.567}{12.982} \le Z \lt \frac {60-38.567}{12.982} ) = P( 0.881 \le Z \lt  1.651) = 0.140\)</div> 
-        <div class="textLeft"> \(P(       X \ge 60) = P(                             Z \ge \frac {60-38.567}{12.982} ) = P(           Z \ge  1.651) = 0.049\)</div> 
+        <div class="textLeft"> \(P(20 \le X \lt 30) = P(\frac{20-38.000}{11.519} \le Z \lt \frac {30-38.000}{11.519} ) = P(-1.563 \le Z \lt -0.695) = 0.185\)</div> 
+        <div class="textLeft"> \(P(30 \le X \lt 40) = P(\frac{30-38.000}{11.519} \le Z \lt \frac {40-38.000}{11.519} ) = P(-0.695 \le Z \lt  0.174) = 0.325\)</div> 
+        <div class="textLeft"> \(P(40 \le X \lt 50) = P(\frac{40-38.000}{11.519} \le Z \lt \frac {50-38.000}{11.519} ) = P( 0.174 \le Z \lt  1.042) = 0.282\)</div> 
+        <div class="textLeft"> \(P(50 \le X \lt 60) = P(\frac{50-38.000}{11.519} \le Z \lt \frac {60-38.000}{11.519} ) = P( 1.042 \le Z \lt  1.910) = 0.121\)</div> 
+        <div class="textLeft"> \(P(       X \ge 60) = P(                             Z \ge \frac {60-38.000}{11.519} ) = P(           Z \ge  1.910) = 0.028\)</div> 
       <p>
         Expected frequency can be calculated by multiplying the sample size of 30 to the expected probability of 
         each interval obtained above. The observed frequencies, expected probabilities, and expected frequencies 
@@ -463,12 +469,12 @@
             <th class="thGrey">Expected probability</th>
             <th class="thGrey">Expected frequency</th>
           </tr>
-          <tr> <td class="tdCenter">1</td> <td class="tdCenter">\(    X < 20   \)</td> <td class="tdCenter">2</td> <td class="tdCenter">0.075</td> <td class="tdCenter">2.25</td> </tr>
-          <tr> <td class="tdCenter">2</td> <td class="tdCenter">\(20 \le X < 30\)</td> <td class="tdCenter">7</td> <td class="tdCenter">0.178</td> <td class="tdCenter">5.34</td> </tr>
-          <tr> <td class="tdCenter">3</td> <td class="tdCenter">\(30 \le X < 40\)</td> <td class="tdCenter">7</td> <td class="tdCenter">0.289</td> <td class="tdCenter">8.67</td> </tr>
-          <tr> <td class="tdCenter">4</td> <td class="tdCenter">\(40 \le X < 50\)</td> <td class="tdCenter">9</td> <td class="tdCenter">0.267</td> <td class="tdCenter">8.01</td> </tr>
-          <tr> <td class="tdCenter">5</td> <td class="tdCenter">\(50 \le X < 60\)</td> <td class="tdCenter">3</td> <td class="tdCenter">0.140</td> <td class="tdCenter">4.20</td> </tr>
-          <tr> <td class="tdCenter">6</td> <td class="tdCenter">\(    X \ge 60 \)</td> <td class="tdCenter">2</td> <td class="tdCenter">0.049</td> <td class="tdCenter">1.47</td> </tr>
+          <tr> <td class="tdCenter">1</td> <td class="tdCenter">\(    X < 20   \)</td> <td class="tdCenter">2</td> <td class="tdCenter">0.059</td> <td class="tdCenter">1.77</td> </tr>
+          <tr> <td class="tdCenter">2</td> <td class="tdCenter">\(20 \le X < 30\)</td> <td class="tdCenter">6</td> <td class="tdCenter">0.185</td> <td class="tdCenter">5.55</td> </tr>
+          <tr> <td class="tdCenter">3</td> <td class="tdCenter">\(30 \le X < 40\)</td> <td class="tdCenter">8</td> <td class="tdCenter">0.325</td> <td class="tdCenter">9.75</td> </tr>
+          <tr> <td class="tdCenter">4</td> <td class="tdCenter">\(40 \le X < 50\)</td> <td class="tdCenter">12</td> <td class="tdCenter">0.282</td> <td class="tdCenter">8.46</td> </tr>
+          <tr> <td class="tdCenter">5</td> <td class="tdCenter">\(50 \le X < 60\)</td> <td class="tdCenter">2</td> <td class="tdCenter">0.121</td> <td class="tdCenter">3.63</td> </tr>
+          <tr> <td class="tdCenter">6</td> <td class="tdCenter">\(    X \ge 60 \)</td> <td class="tdCenter">1</td> <td class="tdCenter">0.028</td> <td class="tdCenter">0.84</td> </tr>
         </table>
       <p>
         Since the expected frequencies of the 1st and 6th interval are less than 5, the intervals should be 
@@ -488,16 +494,16 @@
           <th class="thGrey">Expected probability</th>
           <th class="thGrey">Expected frequency</th>
        </tr>
-       <tr> <td class="tdCenter">1</td> <td class="tdCenter">\(    X < 30   \)</td> <td class="tdCenter">9</td> <td class="tdCenter">0.253</td> <td class="tdCenter">7.59</td> </tr>
-       <tr> <td class="tdCenter">2</td> <td class="tdCenter">\(30 \le X < 40\)</td> <td class="tdCenter">7</td> <td class="tdCenter">0.289</td> <td class="tdCenter">8.67</td> </tr>
-       <tr> <td class="tdCenter">3</td> <td class="tdCenter">\(40 \le X < 50\)</td> <td class="tdCenter">9</td> <td class="tdCenter">0.267</td> <td class="tdCenter">8.01</td> </tr>
-       <tr> <td class="tdCenter">4</td> <td class="tdCenter">\(    X \ge 50 \)</td> <td class="tdCenter">5</td> <td class="tdCenter">0.189</td> <td class="tdCenter">5.67</td> </tr>
-       <tr> <td class="tdCenter"> </td> <td class="tdCenter">Total</td>             <td class="tdCenter">30</td> <td class="tdCenter">0.998</td> <td class="tdCenter">29.94</td> </tr>
+       <tr> <td class="tdCenter">1</td> <td class="tdCenter">\(    X < 30   \)</td> <td class="tdCenter">8</td> <td class="tdCenter">0.244</td> <td class="tdCenter">7.32</td> </tr>
+       <tr> <td class="tdCenter">2</td> <td class="tdCenter">\(30 \le X < 40\)</td> <td class="tdCenter">8</td> <td class="tdCenter">0.325</td> <td class="tdCenter">9.75</td> </tr>
+       <tr> <td class="tdCenter">3</td> <td class="tdCenter">\(40 \le X < 50\)</td> <td class="tdCenter">11</td> <td class="tdCenter">0.282</td> <td class="tdCenter">8.48</td> </tr>
+       <tr> <td class="tdCenter">4</td> <td class="tdCenter">\(    X \ge 50 \)</td> <td class="tdCenter">3</td> <td class="tdCenter">0.149</td> <td class="tdCenter">4.47</td> </tr>
+       <tr> <td class="tdCenter"> </td> <td class="tdCenter"><b>Total</b></td>  <td class="tdCenter"><b>30</b></td> <td class="tdCenter"><b>1.000</b></td> <td class="tdCenter"><b>30.00</b></td> </tr>
       </table>
       <p>
         The test statistic for the goodness of fit test is as follows: 
       <p>
-         <div class="textLeft">\(\chi_{obs}^{2} = \frac{(9-7.59)^{2}}{7.59} + \frac{(7-8.67)^{2}}{8.67} + \frac{(9-8.01)^{2}}{8.01} + \frac{(5-5.67)^{2}}{5.67} = 0.785\) </div> 
+         <div class="textLeft">\(\chi_{obs}^{2} = \frac{(8-7.32)^{2}}{7.32} + \frac{(8-9.75)^{2}}{9.75} + \frac{(11-8.48)^{2}}{8.48} + \frac{(3-4.47)^{2}}{4.47} = 1.623\) </div> 
       <p>
         Since the number of intervals is 4, \(k\)  becomes 4, and \(m\)=2, because two population parameters \(\mu\) and \(\sigma^2\) are estimated 
         from the sample data. Therefore, the critical value is as follows:
@@ -505,31 +511,338 @@
         <div class="textLeft">\(\chi_{k-m-1; &alpha;}^{2} = \chi_{4-2-1; 0.05}^{2} = \chi_{1; 0.05}^{2} = 3.841\)</div> 
       <p>
         The observed test statistic is less than the critical value, we can not reject the null hypothesis that the 
-        sample data follows \(\small N(38.567, 12.982^2 )\) .
+        sample data follows \(\small N(38.000, 11.519^2 )\) .
       <p>
-        Test result can be verified using 'Goodness of Fit Test' in 『eStatU』. In the Input box that appears by 
-        selecting the 'Goodness of Fit Test' module, enter the data for 'observation frequency' and 'expected 
-        probability' in Table 11.1.4, as shown in &lt;Figure 11.1.9&gt;. After entering the data, select the 
+        Test result can be verified using [Categorical: Goodness of Fit Test] in 『eStatU』. In the Input box that appears by 
+        selecting the module, enter the data for 'Observed Frequency' and 'Expected 
+        Probability' in Table 11.1.4, as shown in &lt;Figure 11.1.9&gt;. After entering the data, select the 
         significance level and press the [Execute] button to calculate the 'expected frequency' and produce a 
-        chi-square test result (&lt;Figure 11.1.10&gt;).
+        chi-square test result as in &lt;Figure 11.1.10&gt;.
       <p>
-      <table style="width:650px">
+
+      <!---   ************ html for Goodness of Fit Test ************  ---->
+      <p>
+      <b>[<span data-msgid="TestingFit"></span>]</b>
+      <p>
+         <input class="qrBtn" type="image" src="../../QR/eStatU910_TestFit.svg" onclick="window.open(addrStr[110])">
+      <p>
+      <button type="button" id="erase" style="width:100px;"><b>New Data</b></button>
+      <p>
+      <table style="width:700px;">
         <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU910_TestFit.svg" onclick="window.open(addrStr[110])">
+	    <td><b><span data-msgid="Hypothesis">Hypothesis</span></b></td>
+            <td colspan="3">
+              <span class="fontmath"> H<sub>o</sub> : 
+                <span data-msgid="FitTest0">Observed Distritution = Theoretical Distribution</span> 
+              </span>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+	    <td colspan="3">
+              <span class="fontmath"> H<sub>1</sub> : 
+                <span data-msgid="FitTest1">Observed Distritution &ne; Theoretical Distribution</span> 
+              </span> 
+            </td>
+        </tr>
+        <tr>
+            <td><b><span data-msgid="Test Type">Test Type</span></b></td>
+            <td colspan="3">&chi;<sup>2</sup><sub>k-m-1</sub> test, k = category, m = estimated parameters <input type="text" style="text-align:center;" size=4 value="2" id="mm"></td> 
+        </tr>
+	<tr>  
+          <td></td>
+	  <td colspan="3"><span data-msgid="Significance Level">Significance Level</span> &alpha; = 
+              <input type="text" style="text-align:center;" size=4 value="0.05" id="alpha">&nbsp; <span class="fontguide">(0 < &alpha; < 1)</span>
           </td>
-          <td>
-            <img class="imgFig600400" src="../Figure/Fig110109.png">
-            <div class="figText">&lt;Figure 11.1.9&gt; Data input for goodness of fit test in 『eStatU』</div>
-          </td>
+	</tr>
+        <tr>
+          <td><b><span data-msgid="Sample Data">Sample Data</span></b></td>
+	  <td colspan="3"><span class="fontguide" data-msgid="InputFitData">(input Observed Frequenc & Expected Probability)</span></td>
+        </tr>
+	<tr>
+          <td></td>
+	  <td>&nbsp;<span data-msgid="ObservedFreq">Observed Frequency</span></td>
+	  <td>&nbsp;<span data-msgid="ExpectedProb">Expected Probability</span> </td>
+	  <td>&nbsp;<span data-msgid="ExpectedFreq">Expected Probability</span></td>
+	</tr>
+	<tr>
+          <td style="text-align:right;"> <span data-msgid="Row">Row</span> 1 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;" value="8" size=10 id="data11"></td>
+	  <td><input type="text" style="text-align:center;" value="0.244" size=10 id="data12"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data13"></td>
+	</tr>
+	<tr>
+          <td style="text-align:right;"> <span data-msgid="Row">Row</span> 2 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;" value="8" size=10 id="data21"></td>
+	  <td><input type="text" style="text-align:center;" value="0.325" size=10 id="data22"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data23"></td>
+	</tr>
+	<tr>
+          <td style="text-align:right;"> <span data-msgid="Row">Row</span> 3 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;" value="11" size=10 id="data31"></td>
+	  <td><input type="text" style="text-align:center;" value="0.282" size=10 id="data32"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data33"></td>
+	</tr>
+	<tr>
+          <td style="text-align:right;"> <span data-msgid="Row">Row</span> 4 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;" value="3" size=10 id="data41"></td>
+	  <td><input type="text" style="text-align:center;" value="0.149" size=10 id="data42"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data43"></td>
+	</tr>
+	<tr>
+          <td style="text-align:right;"> <span data-msgid="Row">Row</span> 5 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data51"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data52"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data53"></td>
+	</tr>
+	<tr>
+          <td style="text-align:right;"> <span data-msgid="Row">Row</span> 6 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data61"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data62"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data63"></td>
+	</tr>
+	<tr>
+          <td style="text-align:right;"> <span data-msgid="Row">Row</span> 7 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data71"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data72"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data73"></td>
+	</tr>
+	<tr>
+          <td style="text-align:right;"> <span data-msgid="Row">Row</span> 8 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data81"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data82"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data83"></td>
+	</tr>
+	<tr>
+          <td style="text-align:right;"> <span data-msgid="Row">Row</span> 9 &nbsp;</td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data91"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data92"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data93"></td>
+	</tr>
+	<tr>
+	  <td style="text-align:right;"><span data-msgid="Total">Sum</span> </td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data101"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data102"></td>
+	  <td><input type="text" style="text-align:center;"  size=10 id="data103"></td>
+	</tr>
+      </table>
+      <p>
+         <div class="figText">&lt;Figure 11.1.9&gt; Data input for goodness of fit test in 『eStatU』</div>
+      <p>
+      <button type="button" id="executeTH8" >
+        <span data-msgid="Execute">Execute</span>
+      </button> 
+      <p>
+      <table style="width:300px;">
+        <tr>
+          <td><span class="fontmath">&alpha; = </span><input type="text" style="text-align:center;" size=4 value="0.05" id="alpha2"></td>
+          <td><sup><small> 0 </small></sup></td>
+          <td><input type="range" min="1" max="999" value="50" id="rangeAlpha" onchange="showValueAlpha(this.value)"/></td>
+          <td><sup><small> 1 </small></sup></td>
         </tr>
       </table>
       <p>
-        <img class="imgFig600400" src="../Figure/Fig110110.svg">
-        <div class="figText">&lt;Figure 11.1.10&gt; Chi-square goodness of fit test using『eStatU』</div>
+      <svg id="chart" width="600" height="400" style="border-style:solid;"> </svg>
+      <p>
+      <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+      </button>
+      <p>
+        <div class="figText">&lt;Figure 11.1.10&gt; Chi-square goodness of fit test using 『eStatU』</div>
+      <p>
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
+
+    <!---   ************ script for Goodness of Fit Test ************  ---->
+<script>
+      setLanguage('en');
+      var bar = d3.select("#chart");
+      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
+      var svgWidth2, svgHeight2, graphWidth2, graphHeight2;
+      svgWidth2   = 600;
+      svgHeight2  = 400;
+
+      var i, j, k, mm, nobs, nrow, df, info, stat, pvalue, alpha, f, g, h; 
+      var gxmin, gxmax, gymin, gymax, title, temp;
+      var hypoType = 9;
+      var h1Type   = 2;
+      var nr = 10;
+      var obsF = new Array(nr);
+      var expP = new Array(nr);
+      var expF = new Array(nr);
+      var checkExecute = false;
+      document.getElementById("alpha2").disabled = true;  
+      document.getElementById("data13").disabled = true;
+      document.getElementById("data23").disabled = true;
+      document.getElementById("data33").disabled = true;
+      document.getElementById("data43").disabled = true;
+      document.getElementById("data53").disabled = true;
+      document.getElementById("data63").disabled = true;
+      document.getElementById("data73").disabled = true;
+      document.getElementById("data83").disabled = true;
+      document.getElementById("data93").disabled = true;
+      document.getElementById("data101").disabled = true;
+      document.getElementById("data102").disabled = true;
+      document.getElementById("data103").disabled = true;
+
+      // erase Data and Graph
+      d3.select("#erase").on("click",function() {
+        bar.selectAll("*").remove();
+        document.getElementById("mm").value = "0";
+        document.getElementById("data11").value = "";
+        document.getElementById("data12").value = "";
+        document.getElementById("data13").value = "";
+        document.getElementById("data21").value = "";
+        document.getElementById("data22").value = "";
+        document.getElementById("data23").value = "";
+        document.getElementById("data31").value = "";
+        document.getElementById("data32").value = "";
+        document.getElementById("data33").value = "";
+        document.getElementById("data41").value = "";
+        document.getElementById("data42").value = "";
+        document.getElementById("data43").value = "";
+        document.getElementById("data51").value = "";
+        document.getElementById("data52").value = "";
+        document.getElementById("data53").value = "";
+        document.getElementById("data61").value = "";
+        document.getElementById("data62").value = "";
+        document.getElementById("data63").value = "";
+        document.getElementById("data71").value = "";
+        document.getElementById("data72").value = "";
+        document.getElementById("data73").value = "";
+        document.getElementById("data81").value = "";
+        document.getElementById("data82").value = "";
+        document.getElementById("data83").value = "";
+        document.getElementById("data91").value = "";
+        document.getElementById("data92").value = "";
+        document.getElementById("data93").value = "";
+        document.getElementById("data101").value = "";
+        document.getElementById("data102").value = "";
+        document.getElementById("data103").value = "";
+     })
+
+      // Testing Hypothesis ======================================
+      d3.select("#executeTH8").on("click",function() {
+        checkExecute = true;
+        // alpha
+        alpha = parseFloat(d3.select("#alpha").node().value);
+        if (alpha < 0.001) {
+          alpha = 0.001;
+          document.getElementById("alpha").value = alpha;
+        }
+        else if (alpha > 0.499) {
+          alpha = 0.499;
+          document.getElementById("alpha").value = alpha;
+        }
+        document.getElementById("alpha2").value = alpha;
+        document.getElementById("rangeAlpha").value = alpha*1000;
+
+        // input value
+        mm      = parseFloat(d3.select("#mm").node().value);
+        obsF[1] = parseFloat(d3.select("#data11").node().value);
+        expP[1] = parseFloat(d3.select("#data12").node().value);
+        obsF[2] = parseFloat(d3.select("#data21").node().value);
+        expP[2] = parseFloat(d3.select("#data22").node().value);
+        obsF[3] = parseFloat(d3.select("#data31").node().value);
+        expP[3] = parseFloat(d3.select("#data32").node().value);
+        obsF[4] = parseFloat(d3.select("#data41").node().value);
+        expP[4] = parseFloat(d3.select("#data42").node().value);
+        obsF[5] = parseFloat(d3.select("#data51").node().value);
+        expP[5] = parseFloat(d3.select("#data52").node().value);
+        obsF[6] = parseFloat(d3.select("#data61").node().value);
+        expP[6] = parseFloat(d3.select("#data62").node().value);
+        obsF[7] = parseFloat(d3.select("#data71").node().value);
+        expP[7] = parseFloat(d3.select("#data72").node().value);
+        obsF[8] = parseFloat(d3.select("#data81").node().value);
+        expP[8] = parseFloat(d3.select("#data82").node().value);
+        obsF[9] = parseFloat(d3.select("#data91").node().value);
+        expP[9] = parseFloat(d3.select("#data92").node().value);
+
+        // 관찰도수 입력한 행의 수 카운트
+        nrow = 0;
+        for (i=1; i<nr; i++) {
+          if ( !isNaN(obsF[i]) ) nrow++;
+        }
+        // 입력행은 하나 이상 체크
+        if (nrow < 2 ) {
+          bar.append("text").attr("class","mean").attr("x", 250).attr("y", 100)
+             .text("At least two rows are required !!   Try again.").style("stroke","red");
+          return;
+        }
+        // 최종 입력행 전에 빈칸 있나 체크
+        for (i=1; i<=nrow; i++) {
+            if (isNaN(obsF[i]) || isNaN(expP[i])) {
+              bar.append("text").attr("class","mean").attr("x", 250).attr("y", 100)
+                 .text("No input or wrong input !!   Try again.").style("stroke","red");
+              return;
+            }
+        }
+        testingGoodnessFit();
+      })
+
+      // svg Graph Save
+      d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth2;
+        var height = svgHeight2;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+// goodness of fit test
+function testingGoodnessFit() {
+        bar.selectAll("*").remove();
+        // 입력값 합계 => 기대도수 계산
+        obsF[0] = 0;
+        expP[0] = 0;
+        for (i=1; i<=nrow; i++) { 
+            obsF[0] += obsF[i];
+            expP[0] += expP[i];
+        }
+        // 기대확률값이 0.99보다 작으면 경고
+            if (expP[0] < 0.99) {
+              bar.append("text").attr("class","mean").attr("x", 250).attr("y", 100)
+                 .text("Expecte Probability < 0.99!   Try again.").style("stroke","red");
+              return;
+            }
+        // 기대도수 계산
+        expF[0] = 0;
+        for (i=1; i<=nrow; i++) { 
+            expF[i] = obsF[0]*expP[i];
+            expF[0] += expF[i];
+            temp = "data"+(i).toString()+"3";
+            document.getElementById(temp).value = f2(expF[i]);
+        }
+        document.getElementById("data101").value = f0(obsF[0]);
+        document.getElementById("data102").value = f3(expP[0]);
+        document.getElementById("data103").value = f2(expF[0]);
+        // test statistics
+        df = (nrow-mm-1);
+        stat = 0;
+        for (i=1; i<=nrow; i++) {
+            temp = obsF[i] - expF[i];
+            stat += temp * temp / expF[i];
+        }
+
+        // chisq-test
+            h = alpha;  
+            if (df < 10) f = 0;
+            else f = chisq_inv(0.0001, df, info);
+            g = chisq_inv(1-h, df, info);
+            pvalue = 1 - chisq_cdf(stat, df, info)
+            drawChisqGraphTH(hypoType, h1Type, stat, df, f, g, h, pvalue, temp );
+}         
+// alpha sliding bar control for testing hypothesis 
+function showValueAlpha(newValue) {
+        alpha = f3(newValue/1000);
+        document.getElementById("alpha").value   = alpha;
+        document.getElementById("alpha2").value  = alpha;
+        if (checkExecute) testingGoodnessFit();
+} 
+</script>
+
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
@@ -540,11 +853,11 @@
           </td>
           <td>
             <b>Practice 11.1.2</b> <b>(Otter length)</b><br>
-            Data of 30 otter lengths can be found at the following location of『eStat』.
+            Data of 30 otter lengths can be found at the following location of 『eStat』.
             <p>
             <div class="textLeft">[Ex]  ⇨ eBook  ⇨ PR110102_OtterLength.csv</div> 
             <p>
-            Test the hypothesis that the population is normally distributed at the significance level of 5% using『eStat』.
+            Test the hypothesis that the population is normally distributed at the significance level of 5% using 『eStat』.
           </td>
         </tr>
       </table>

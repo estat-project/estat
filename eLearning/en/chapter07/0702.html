@@ -51,7 +51,12 @@
 	 </script>
        <link rel="stylesheet" href="../../css/pandoc.css">
        <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="../../../eStat/js/language.js" ></script>   
+       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
+       <script src="../../../eStat/js/eStatU.js"></script>
+       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
+       <script src="../../../eStat/lib/convertSVG.js"></script>
 </head>
 <body>
 
@@ -290,12 +295,13 @@
         -  Bolts produced by a company are currently supplied to an automaker and have an average diameter of 7mm and a variance of 0.25mm. Recently, a rival company has applied for the supply, claiming that their company's bolts have the same average diameter of 7 mm but a variance of 0.16mm. How can I find out if this claim is true?
       </div>
       <div class="textL30M10">
-        -  The variance of scores in mathematics on the last year's college scholastic aptitude test was 100. Questions in mathematics this year's test are said to be much easier than last year's. How can I test whether the variance of the mathematics score in this year is smaller than the last year?
+        -  The variance of scores in mathematics on the last year's college scholastic aptitude test was 100.
+           This year's questions in mathematics test are said to be much easier than last year's. How can I test whether the variance of the mathematics score in this year is smaller than the last year?
       </div>
       <p>
       If you understand the testing hypothesis for the population mean, the testing hypothesis 
       for the population variance differs only from the sampling distribution and the test statistic, 
-      and the basic concept is the same. In Chapter 6, we studied that the distribution of all possible 
+      but the basic concept is the same. In Chapter 6, we studied that the distribution of all possible 
       sample variances multiplied by a constant, \(\frac{(n-1)S^2}{\sigma^2}\), follows a chi-square 
       distribution with \(n-1\) degrees of freedom when the population is a normal distribution 
       with variance \(\sigma^2\). Using this theory, testing hypothesis for the population variance
@@ -329,7 +335,7 @@
     <div class="mainTableGrey">
       <b>Example 7.2.1</b>
         One company produces bolts for an automobile. If the average diameter of bolts is 15mm and 
-        its variance is less than \(0.1^2\), it can be delivered to the automobile company. 
+        its variance is less than or equal to \(0.1^2\), it can be delivered to the automobile company. 
         Twenty-five of the most recent products were randomly sampled and their variance was \(0.15^2\). 
         Assuming that the diameter of a bolt follows a normal distribution, 
       <p>
@@ -357,36 +363,277 @@
       </div>
       <p>
       <div class="textL20M20">
-        2) Select ‘Testing Hypothesis \(\sigma^2\)’ in 『eStatU』. Enter \(\sigma^2_{0} = 0.1^2 = 0.01\), 
+        2) Select [Testing Hypothesis \(\sigma^2\)] in 『eStatU』. Enter \(\sigma^2_{0} = 0.1^2 = 0.01\), 
         select the right sided test and the 5% significance level as &lt;Figure 7.2.1&gt; in the input box. 
         Then enter the sample size \(n\) = 25 and sample variance \(\small s^2 = 0.15^2 = 0.0225\). 
       </div>
       <p>
-      <table style="width:650px">
+      <!---   ************ html for testing variance ************  ---->
+      <b>[<span data-msgid="Testing Hypothesis sigma"></span>]</b>
+      <p>
+         <input class="qrBtn" type="image" src="../../QR/eStatU720_TestSigma.svg" onclick="window.open(addrStr[102])">
+      <p>
+      <button type="button" id="erase" style="width:100px;"><b>New Data</b></button>
+      <p>
+      <table Style="width:750px">
         <tr>
+          <td><b><span data-msgid="Hypothesis">Hypothesis</span></b></td>
+          <td><span class="fontmath">&nbsp;&nbsp;H<sub>o</sub> : &sigma; <sup>2</sup> = &sigma;<sub>o</sub><sup>2</sup></span> <input type="text" class="textarea" size=6 value="0.01" style="text-align:center;" id="var2"> <span class="fontguide">( > 0)</span> </td>
+        </tr>
+        <tr>
+          <td></td>
           <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU720_TestSigma.svg" onclick="window.open(addrStr[102])">
+            <form name="myForm0"> 
+              <span class="fontmath">
+	        <input type="radio" name = "type0" value="1" >
+	        H<sub>1</sub> : &sigma;<sup>2</sup> &ne;  &sigma;<sub>o</sub><sup>2</sup> &nbsp;&nbsp;
+                <input type="radio" name = "type0" value="2" checked>
+                H<sub>1</sub> : &sigma;<sup>2</sup> > &sigma;<sub>o</sub><sup>2</sup> &nbsp;&nbsp;      
+                <input type="radio" name = "type0" value="3" >
+                H<sub>1</sub> : &sigma;<sup>2</sup> < &sigma;<sub>o</sub><sup>2</sup>    
+              </span>
+            </form>
           </td>
+        </tr>
+        <tr>
+          <td><b><span data-msgid="Test Type">Test Type</span></b></td>
+          <td><span class="fontmath" data-msgid="Chi-test">&chi;<sup>2</sup>-test</span></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span data-msgid="Significance Level">Significance Level</span> &nbsp; <span class="fontmath">&alpha;</span> = 
+              <input type="text" class="textarea" size=4 style="text-align:center;" value="0.05" id="alpha">&nbsp; <span class="fontguide">(0 < &alpha; < 1)</span>
+          </td>
+        </tr>
+        <tr>
+          <td><b><span data-msgid="Sample Data">Sample Data</span></b></td>
+          <td><span class="fontguide" data-msgid="input either sample data">(input either sample data or sample statistics using csv / bsv)</span></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><input type="text" size=80 id="data1"></td>
+        </tr>
+        <tr>
+          <td><b><span data-msgid="Sample Statistics">Sample Statistics</span></b></td>
+	  <td><span data-msgid="Sample Size">Sample Size</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="fontmath">n</span> = <input type="text" class="textarea" size=6 value="25" style="text-align:center;" id="nn2"> <span class="fontguide">( > 1) </span></td>
+	</tr>
+	<tr>
+          <td></td>
+	  <td><span data-msgid="Sample Variance">Sample Variance</span>&nbsp; <span class="fontmath">s<sup>2</sup></span> = <input type="text" class="textarea" size=6 value="0.0225" style="text-align:center;" id="var2S"> <span class="fontguide">( > 0)</span> </td>
+	</tr>
+        <tr>
+          <td><b><span data-msgid="Confidence Interval">Confidence Interval</span></b> </td>
           <td>
-            <img class="imgFig600400" src="../Figure/Fig070201.png">
-            <div class="figText">&lt;Figure 7.2.1&gt; Testing hypothesis for \(\sigma^2\) using 『eStatU』 </div>
+            <span class="fontmath">&chi;<sup>2</sup><sub>n-1 ; 1-&alpha;/2</sub></span> = 
+            <input type="text" class="textarea" size=6 style="text-align:center;" id="chiValueL">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="fontmath">&chi;<sup>2</sup><sub>n-1 ; &alpha;/2</sub></span> = 
+            <input type="text" class="textarea" size=6 style="text-align:center;" id="chiValueR">
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span class="fontmath">(&nbsp;(n-1)s<sup>2</sup> / &chi;<sup>2</sup><sub>n-1 ; &alpha;/2</sub></span>&nbsp;,
+	      <span class="fontmath">(n-1) s<sup>2</sup> / &chi;<sup>2</sup><sub>n-1 ; 1-&alpha;/2</sub> &nbsp;)</span>
+              &nbsp; &hArr;&nbsp;
+	      (&nbsp;<input type="text" class="textarea" size=6 style="text-align:center;" id="cleft">&nbsp;&nbsp;&nbsp;,
+	      <input type="text" class="textarea" size=6 style="text-align:center;" id="cright">&nbsp;)</td>
           </td>
         </tr>
       </table>
+      <p>
+      <button type="button" id="executeTH2" >
+        <span data-msgid="Execute">Execute</span>
+      </button> 
+      <p>
+            <div class="figText">&lt;Figure 7.2.1&gt; Testing hypothesis for \(\sigma^2\) using 『eStatU』 </div>
       <p>
       <div class="textL20">
         If you click the [Execute] button, the confidence interval of \(\sigma^2\) is calculated and testing result will be shown as &lt;Figure 7.2.2&gt;. 
       </div>
       <p>
-      <img class="imgFig600400" src="../Figure/Fig070202.png">
+      <table style="width:500px;">
+        <tr>
+          <td>&nbsp;&nbsp;</td>
+          <td><span class="fontmath">&alpha; = </span> <input type="text" class="textarea" size=4 value="0.05" id="alpha2">&nbsp; </td>
+          <td><sup><small> 0 </small></sup></td>
+          <td><input type="range" min="1" max="999" value="50" id="rangeAlpha" onchange="showValueAlpha(this.value)"/> </td>
+          <td><sup><small> 1 </small></sup></td>
+          <td></td>
+        </tr>
+      </table>
+      <p>
+      <svg id="chart" width="600" height="400" style="border-style:solid;"> </svg> 
+      <p>
+      <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+      </button> 
+      <p>
       <div class="figText">&lt;Figure 7.2.2&gt; Testing hypothesis for \(\sigma^2\) </div>
       <p>
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
+    <!---   ************ html for testing variance ************  ---->
+<script>
+      setLanguage('en');
+      var bar = d3.select("#chart");
+      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
+      var svgWidth2, svgHeight2, graphWidth2, graphHeight2;
+      svgWidth2   = 600;
+      svgHeight2  = 400;
+      var nobs, gxmin, gxmax, gymin, gymax;
+      var stat = new Array(30);
+      var title;
+      var df, info, alpha, pvalue, b, c, d, e, f, g, h;
+      var var2, nn2, var2, teststat, left, right, chiValueL, chiValueR;
+      var hypoType = 2;
+      var checkExecute = false;
+
+      document.getElementById("cleft").disabled  = true;
+      document.getElementById("cright").disabled = true; 
+      document.getElementById("alpha2").disabled = true;  
+      document.getElementById("chiValueL").disabled = true;  
+      document.getElementById("chiValueR").disabled = true;  
+
+      // H1 type
+      var h1 = document.myForm0.type0;
+      var h1Type = h1.value; 
+      h1[0].onclick = function() { h1Type = h1.value; if (checkExecute) testingHypothesisVariance(); }    // 양측검정
+      h1[1].onclick = function() { h1Type = h1.value; if (checkExecute) testingHypothesisVariance(); }    // 우측검정
+      h1[2].onclick = function() { h1Type = h1.value; if (checkExecute) testingHypothesisVariance(); }    // 좌측검정
+
+
+      // data input control =====================================
+      d3.select("#data1").on("input", function() {
+        stat = simplestat("#data1");  
+        document.getElementById("nn2").value   = stat.n;    
+        document.getElementById("var2S").value  = f3(stat.var);    
+      });
+      updateData = function() {
+        document.getElementById("data1").value = ''; 
+      }
+      d3.select("#nn2").on("input", updateData);
+      d3.select("#var2S").on("input", updateData);
+
+      // erase Data and Graph
+      d3.select("#erase").on("click",function() {
+        bar.selectAll("*").remove();
+        document.getElementById("var2").value  = "";
+        document.getElementById("data1").value  = "";
+        document.getElementById("nn2").value     = "";
+        document.getElementById("var2S").value  = "";
+        document.getElementById("chiValueL").value = "";
+        document.getElementById("chiValueR").value = "";
+        document.getElementById("cleft").value  = "";
+        document.getElementById("cright").value = "";
+      })
+
+      // Testing Hypothesis ======================================
+      d3.select("#executeTH2").on("click",function() {
+        checkExecute = true;
+        // alpha
+        alpha = parseFloat(d3.select("#alpha").node().value);
+        if (alpha < 0.001) {
+          alpha = 0.001;
+          document.getElementById("alpha").value = alpha;
+        }
+        else if (alpha > 0.499) {
+          alpha = 0.499;
+          document.getElementById("alpha").value = alpha;
+        }
+        document.getElementById("alpha2").value = alpha;
+        document.getElementById("rangeAlpha").value = alpha*1000;
+
+        // input value
+        var2  = parseFloat(d3.select("#var2").node().value);
+        stat = simplestat("#data1");
+        if (stat.n > 0) {
+          nn2   = stat.n;
+          var2S = stat.var;
+        }
+        else {
+          nn2   = parseFloat(d3.select("#nn2").node().value);
+          var2S = parseFloat(d3.select("#var2S").node().value);
+        }
+        if (isNaN(var2) || isNaN(nn2) || isNaN(var2S) || var2 <= 0 || nn2 < 2 || var2S <= 0 ) {  // wrong input
+          bar.append("text").attr("class","mean")
+             .attr("x", 150)
+             .attr("y", 100)
+             .text("No input or wrong input !!   Try again.")
+             .style("stroke","red")
+          return;
+        }
+        // Testing
+        testingHypothesisVariance();
+      })
+
+      // svg Graph Save
+      d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth2;
+        var height = svgHeight2;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+
+function testingHypothesisVariance() {
+        bar.selectAll("*").remove();
+        // confidence interval
+        df = nn2 - 1;
+        chiValueL = chisq_inv(1 - alpha/2, df, info);
+        chiValueR = chisq_inv(alpha/2, df, info);
+        left  = (nn2 - 1) * var2S / chiValueL;
+        right = (nn2 - 1) * var2S / chiValueR;
+        document.getElementById("chiValueL").value = f3(chiValueL);  
+        document.getElementById("chiValueR").value = f3(chiValueR);  
+        document.getElementById("cleft").value   = f3(left);
+        document.getElementById("cright").value  = f3(right);
+        // test statistics
+        teststat = df *  var2S / var2;
+        if (h1Type == 1) {
+            h = alpha / 2;  
+            f = chisq_inv(h, df, info);
+            g = chisq_inv(1-h, df, info);
+            pvalue = chisq_cdf(teststat, df, info);
+            if (pvalue > 0.5 ) pvalue = 1 - pvalue; 
+            pvalue = 2 * pvalue;
+            drawChisqGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue, var2);
+        }
+        else if (h1Type == 2) {
+            h = alpha;  
+            if (df < 10) f = 0;
+            else f = chisq_inv(0.0001, df, info);
+            g = chisq_inv(1-h, df, info);
+            pvalue = 1 - chisq_cdf(teststat, df, info);
+            drawChisqGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue, var2);
+        }
+        else {
+            h = alpha;  
+            f = chisq_inv(h, df, info);
+            if (df < 5) g = 12;
+            else if (df < 10) g = 30;
+            else g = chisq_inv(0.9999, df, info);
+            pvalue = chisq_cdf(teststat, df, info);
+            drawChisqGraphTH(hypoType, h1Type, teststat, df, f, g, h, pvalue, var2);
+        }          
+}
+// alpha sliding bar control for testing hypothesis 
+function showValueAlpha(newValue) {
+        alpha = f3(newValue/1000);
+        document.getElementById("alpha").value   = alpha;
+        document.getElementById("alpha2").value  = alpha;
+        if (checkExecute) testingHypothesisVariance();
+} 
+</script>
+
+
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
+      <p>
       <b>Example 7.2.2</b>
       (Heights of college students) <br>
       Using 『eStat』 and the height data of 10 male college students in [Example 7.1.4], 
@@ -484,7 +731,7 @@
   </div>
 
   <script>
-    for (var i=1; 9 < 9+1; i++) document.getElementById(ansID[i]).disabled = true;
+    for (var i=9; i < 10; i++) document.getElementById(ansID[i]).disabled = true;
   </script>
   <p>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

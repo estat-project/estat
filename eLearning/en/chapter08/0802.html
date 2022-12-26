@@ -51,7 +51,12 @@
 	 </script>
        <link rel="stylesheet" href="../../css/pandoc.css">
        <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="../../../eStat/js/language.js" ></script>   
+       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
+       <script src="../../../eStat/js/eStatU.js"></script>
+       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
+       <script src="../../../eStat/lib/convertSVG.js"></script>
 </head>
 <body>
 
@@ -286,7 +291,7 @@
       Consider following examples to compare two population variances.
       <p>
       <div class="textL30M10">
-        -  When comparing two population means in the previous section, we studied that if the sample size was small, the decision rule for testing hypothesis were different depending on whether two population variances were the same or different. So how can we test if two population variances are the same? 
+        -  When comparing two population means in the previous section, we studied that if the sample size was small, the decision rule for testing hypothesis were different depending on whether two population variances were the same or different. So how can we test whether two population variances are the same? 
       </div>
       <div class="textL30M10">
         -  The quality of bolts used to assemble cars depends on the strict specification for their diameters. Average diameters of bolts produced by two factories were said to be the same and if the variance of diameters is smaller, it is considered as superior production. How can you compare variances of the diameter?  
@@ -309,6 +314,8 @@
         \(F\)-distribution is an asymmetrical distribution group with two parameters, the numerator 
         degrees of freedom and denominator degrees of freedom. &lt;Figure 8.2.1&gt; shows \(F\)-distributions 
         for different parameters.
+      <p>
+         <input class="qrBtn" type="image" src="../../QR/eStatU580_F.svg" onclick="window.open(addrStr[91])">
       <p>
       <img class="imgFig400300" src="../Figure/Fig080201.png">
       <div class="figText">&lt;Figure 8.2.1&gt;  \(F\)-distribution of different degrees of freedom.</div>
@@ -341,6 +348,7 @@
     <p>
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
+      <p>
       <b>Example 8.2.1</b>
         A company that produces a bolt has two plants. One day, ten bolts produced in Plant 1 were sampled 
         randomly and the variance of diameter was \(0.11^2\). 12 bolts produced in Plant 2 were sampled 
@@ -367,33 +375,259 @@
       $$
         Hence the hypothesis \(\small H_0\) can not be rejected and conclude that two variances are equal. 
       <p>
-        In 『eStatU』 menu, select ‘Testing Hypothesis \(\sigma_1^2 , \sigma_2^2\). At the window shown 
+        In 『eStatU』 menu, select [Testing Hypothesis \(\sigma_1^2 , \sigma_2^2\)]. At the window shown 
         in &lt;Figure 8.2.2&gt;, enter \(n_1 = 12, n_2 = 10, s_1^2 = 0.0121, s_2^2 = 0.0169\). 
         Click the [Execute] button to reveal the hypothesis test result shown in &lt;Figure 8.2.3&gt;.
       <p>
-      <table class="width:650">
+      <!---   ************ html for Testing Variance 1 and 2 ************  ---->
+      <b>[<span data-msgid="Testing Hypothesis sigma12">Testing Hypothesis : Two Population Variances &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup></span>]</b>
+      <p>
+         <input class="qrBtn" type="image" src="../../QR/eStatU820_TestSigma12.svg" onclick="window.open(addrStr[107])">
+      <p>
+      <button type="button" id="erase" style="width:100px;"><b>New Data</b></button>
+      <p>
+      <table style="width:700px;">
         <tr>
+          <td><b><span data-msgid="Hypothesis">Hypothesis</span></b></td>
+          <td><span class="fontmath"> H<sub>o</sub> : &sigma;<sub>1</sub><sup>2</sup> = &sigma;<sub>2</sub><sup>2</sup></span></td>
+        </tr>
+        <tr>
+          <td></td>
           <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU820_TestSigma12.svg" onclick="window.open(addrStr[107])">
+            <form name="myForm0"> 
+              <span class="fontmath">
+              <input type="radio" name = "type0" value="1" checked> 
+              H<sub>1</sub> : &sigma;<sub>1</sub><sup>2</sup> &ne; &sigma;<sub>2</sub><sup>2</sup> &nbsp; &nbsp;     
+              <input type="radio" name = "type0" value="2" > 
+              H<sub>1</sub> : &sigma;<sub>1</sub><sup>2</sup>  >   &sigma;<sub>2</sub><sup>2</sup> &nbsp; &nbsp;     
+              <input type="radio" name = "type0" value="3" >   
+              H<sub>1</sub> : &sigma;<sub>1</sub><sup>2</sup>  <   &sigma;<sub>2</sub><sup>2</sup>
+              </span>
+            </form>
           </td>
+        </tr>
+        <tr>
+          <td><b><span data-msgid="Test Type">Test Type</span></b></td>
+          <td><span class="fontmath" data-msgid="F-test">F test</span></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span data-msgid="Significance Level">Significance Level</span> &nbsp;<span class="fontmath">&alpha;</span> = <input type="text" style="text-align:center;" size=4 value="0.05" id="alpha">&nbsp; <span class="fontguide">(0 < &alpha; < 1)</span></td>
+        </tr>
+        <tr>
+          <td><b><span data-msgid="Sample Data">Sample Data</span></b></td>
+          <td><span class="fontguide" data-msgid="input either sample data">(input either sample data or sample statistics using csv / bsv)</span></td>
+        </tr>
+	<tr>
+	  <td style="text-align:right;"><span data-msgid="Sample">Sample</span> 1</td>
+	  <td><input type="text" size=70 id="data1"></td>
+	</tr>
+	<tr>
+	  <td style="text-align:right;"><span data-msgid="Sample">Sample</span> 2</td>
+	  <td><input type="text" size=70 id="data2"></td>
+	</tr>
+        <tr>
+          <td><b><span data-msgid="Sample Statistics">Sample Statistics</span></b></td>
           <td>
-            <img class="imgFig600400" src="../Figure/Fig080202.png">
-            <div class="figText">&lt;Figure 8.2.2&gt; Data input for testing hypothesis of two population variances using 『eStatU』</div>
+            <table style="width:400px;">
+              <tr>
+                <td style="width:120px;"><span data-msgid="Sample Size">Sample Size</span></td>         
+                <td><span class="fontmath">n<sub>1</sub></span> = <input type="text" style="text-align:center;" value="12" size=6 id="nn51"></td>
+                <td><span class="fontmath">n<sub>2</sub></span> = <input type="text" style="text-align:center;" value="10" size=6 id="nn52"></td>        
+              </tr>
+              <tr>
+                <td><span data-msgid="Sample Variance">Sample Variance</span></td>
+                <td><span class="fontmath">s<sub>1</sub><sup>2</sup></span> = <input type="text" style="text-align:center;" value="0.0121" size=6 id="var51"></td>
+                <td><span class="fontmath">s<sub>2</sub><sup>2</sup></span> = <input type="text" style="text-align:center;" value="0.0169" size=6 id="var52"></td>
+              </tr>
+            </table>
           </td>
         </tr>
       </table>
       <p>
-        <img class="imgFig600400" src="../Figure/Fig080203.svg">
+            <div class="figText">&lt;Figure 8.2.2&gt; Data input for testing hypothesis of two population variances using 『eStatU』</div>
+      <p>
+      <button type="button" id="executeTH5" >
+        <span data-msgid="Execute">Execute</span>
+      </button> 
+      <p>
+      <table style="width:300px;">
+        <tr>
+          <td style="width:100px;"><span class="fontmath">&alpha; = </span><input type="text" style="text-align:center;" size=4 value="0.05" id="alpha2"></td>
+          <td><sup><small> 0 </small></sup></td>
+          <td><input type="range" min="1" max="999" value="50" id="rangeAlpha" onchange="showValueAlpha(this.value)"/> </td>
+          <td><sup><small> 1 </small></sup></td>
+        </tr>
+      </table>
+      <p>   
+        <svg id="chart" width="600" height="400" style="border-style:solid;"> </svg> 
+      <p>
+      <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+      </button> 
         <div class="figText">&lt;Figure 8.2.3&gt; Testing hypothesis for two population variances using 『eStatU』</div>
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
+    <!---   ************ script for Testing Variance 1 and 2 ************  ---->
+<script>
+      setLanguage('en');
+      var bar = d3.select("#chart");
+      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
+      var svgWidth2, svgHeight2, graphWidth2, graphHeight2;
+      svgWidth2   = 600;
+      svgHeight2  = 400;
+      var nobs, stat, gxmin, gxmax, gymin, gymax;
+      var stat5 = new Array(9);
+      var title;
+      var df1, df2, info, alpha, pvalue, b, c, d, e, f, g, h;
+      var nn51, nn52, var51, var52;
+      var hypoType = 5;
+      var checkExecute = false;
+      document.getElementById("alpha2").disabled = true;  
+
+      // H1 type
+      var h1 = document.myForm0.type0;
+      var h1Type = h1.value; 
+      h1[0].onclick = function() { h1Type = h1.value; if (checkExecute) testingHypothesisV12(); }    // 양측검정
+      h1[1].onclick = function() { h1Type = h1.value; if (checkExecute) testingHypothesisV12(); }    // 우측검정
+      h1[2].onclick = function() { h1Type = h1.value; if (checkExecute) testingHypothesisV12(); }    // 좌측검정
+
+      // input data control ===================================================
+      d3.select("#data1").on("input", function() {
+        stat = simplestat("#data1");  
+        document.getElementById("nn51").value   = stat.n;    
+        document.getElementById("var51").value  = f2(stat.var);    
+      });
+
+      d3.select("#data2").on("input", function() {
+        stat = simplestat("#data2");   
+        document.getElementById("nn52").value   = stat.n;    
+        document.getElementById("var52").value  = f2(stat.var);    
+      });
+
+      updateData = function() {
+        document.getElementById("data1").value = '';
+        document.getElementById("data2").value = '';    
+      }
+
+      d3.select("#nn51").on("input", updateData);
+      d3.select("#nn52").on("input", updateData);
+      d3.select("#var51").on("input", updateData);
+      d3.select("#var52").on("input", updateData);
+
+      // erase Data and Graph
+      d3.select("#erase").on("click",function() {
+        bar.selectAll("*").remove();
+        document.getElementById("data1").value  = "";
+        document.getElementById("data2").value  = "";
+        document.getElementById("nn51").value   = "";
+        document.getElementById("nn52").value   = "";
+        document.getElementById("var51").value  = "";
+        document.getElementById("var52").value  = "";
+      })
+
+      // Testing Hypothesis ===========================================================
+      d3.select("#executeTH5").on("click",function() {
+        checkExecute = true;
+        // alpha
+        alpha = parseFloat(d3.select("#alpha").node().value);
+        if (alpha < 0.001) {
+          alpha = 0.001;
+          document.getElementById("alpha").value = alpha;
+        }
+        else if (alpha > 0.499) {
+          alpha = 0.499;
+          document.getElementById("alpha").value = alpha;
+        }
+        document.getElementById("alpha2").value = alpha;
+        document.getElementById("rangeAlpha").value = alpha*1000;
+
+        // input value
+        stat = simplestat("#data1");
+        if (stat.n > 0) {
+          nn51    = stat.n;
+          var51   = stat.var;
+        }
+        else {
+          nn51   = parseFloat(d3.select("#nn51").node().value);
+          var51  = parseFloat(d3.select("#var51").node().value);
+        }
+        stat = simplestat("#data2");
+        if (stat.n > 0) {
+          nn52    = stat.n;
+          var52   = stat.var;
+        }
+        else {
+          nn52   = parseFloat(d3.select("#nn52").node().value);
+          var52  = parseFloat(d3.select("#var52").node().value);
+        }
+        if (isNaN(nn51) || isNaN(nn52) || isNaN(var51) || isNaN(var52) ||
+               nn51 < 2 || nn52 <2 || var51 <= 0 || var52 <= 0) {  // wrong input
+          bar.append("text").attr("class","mean")
+             .attr("x", 150)
+             .attr("y", 100)
+             .text("No input or wrong input !!   Try again.")
+             .style("stroke","red")
+          return;
+        }
+        testingHypothesisV12();
+      })
+      // svg Graph Save
+      d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth2;
+        var height = svgHeight2;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+
+function testingHypothesisV12() {
+        bar.selectAll("*").remove();
+        // test statistics
+        df1   = nn51 - 1;
+        df2   = nn52 - 1;
+        stat5[0] = var51 / var52;
+        if (h1Type == 1) {
+            h = alpha / 2;  
+            f = f_inv(h, df1, df2, info);
+            g = f_inv(1-h, df1, df2, info);
+            pvalue = f_cdf(stat5[0], df1, df2, info);
+            if (pvalue > 0.5) pvalue = 1 - pvalue;
+            pvalue = 2 * pvalue;
+            drawFdistGraphTH(hypoType, h1Type, stat5, df1, df2, f, g, h, pvalue);
+        }
+        else if (h1Type == 2) {
+            h = alpha;  
+            f = 0;
+            g = f_inv(1-h, df1, df2, info);
+            pvalue = 1 - f_cdf(stat5[0], df1, df2, info);
+            drawFdistGraphTH(hypoType, h1Type, stat5, df1, df2, f, g, h, pvalue);
+          }
+        else {
+            h = alpha;  
+            f = f_inv(h, df1, df2, info);
+            g = 10;
+            pvalue = f_cdf(stat5[0], df1, df2, info);
+            drawFdistGraphTH(hypoType, h1Type, stat5, df1, df2, f, g, h, pvalue);
+        }          
+}
+// alpha sliding bar control for testing hypothesis 
+function showValueAlpha(newValue) {
+        alpha = f3(newValue/1000);
+        document.getElementById("alpha").value   = alpha;
+        document.getElementById("alpha2").value  = alpha;
+        if (checkExecute) testingHypothesisV12();
+} 
+</script>
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
       <b>Example 8.2.2</b>
       (Income of college graduates, data of [Example 8.1.3])
-      <p>
+      <br>
         Samples of 10 male and 10 female graduates of the college this year were taken and the average monthly income were examined as follows: Test whether variances of two populations are equal.
       <p>
       <div class="textLeft">Male    272  255  278  282  296  312  356  296  302  312

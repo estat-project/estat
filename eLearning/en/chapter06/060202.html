@@ -51,7 +51,12 @@
 	 </script>
        <link rel="stylesheet" href="../../css/pandoc.css">
        <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="../../../eStat/js/language.js" ></script>   
+       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
+       <script src="../../../eStat/js/eStatU.js"></script>
+       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
+       <script src="../../../eStat/lib/convertSVG.js"></script>
 </head>
 <body>
 
@@ -264,7 +269,6 @@
                 <li><a href="../chapter13/1307.html">13.7 Exercise</a></li>
 	      </ul>
 	    </li>
-
 	  </ul>
 	</li>
       </ul>
@@ -292,7 +296,16 @@
 
     <div class="mainTable">
       When a sample survey is conducted, only one set of samples is selected from the population to estimate a characteristic value of the population, such as the population mean. In general, we consider the sample mean of selected samples as an estimate of the population mean. Do you think this sample mean can estimate the population mean well even if it is only one set of samples? 
-      <p>This is a basic question on the estimation that everyone can think about at least once. The sampling distribution of all possible sample means which we studied in the previous section is the answer to this question. That is, whatever a population distribution is, if the sample size is large enough, all possible sample means are clustered around the population mean in the form of a normal distribution. Therefore, the sample mean obtained from one set of samples is usually close to the population mean. Even in the worst case, the difference between the population mean and sample mean, known as an error, is not so significant, and it is possible to estimate the population mean by using the sample mean. The larger the sample size, the more sample means are concentrated around the population mean based on the central limit theorem and hence we can reduces the error of the estimation.
+      <p>This is a basic question on the estimation that everyone can think about at least once. 
+         The sampling distribution of all possible sample means which we studied in the previous section 
+         is the answer to this question. That is, whatever a population distribution is, if the sample size
+         is large enough, all possible sample means are clustered around the population mean in the form 
+         of a normal distribution. Therefore, the sample mean obtained from one set of samples is usually
+         close to the population mean. Even in the worst case, the difference between the population mean 
+         and sample mean, known as an error, is not so significant, and it is possible to estimate the 
+         population mean by using the sample mean. The larger the sample size, the more sample means are 
+         concentrated around the population mean based on the central limit theorem and hence 
+         we can reduce the error of the estimation.
     </div>
     <p>
 
@@ -323,44 +336,44 @@
     <p>
 
     <div class="mainTableYellow">
-      <b>[Theorem 6.2.2]</b>&nbsp;&nbsp; Point estimation of the population mean &mu; is the sample mean \( \overline X \)   
-      <p>(Note that \( \overline X \) is an unbiased, consistent, efficient estimator of &mu;). 
+      <b>[Theorem 6.2.2]</b>&nbsp;&nbsp; Point estimation of the population mean &mu; is the sample mean \(\small  \overline X \)   
+      <p>(Note that \(\small  \overline X \) is an unbiased, consistent, efficient estimator of &mu;). 
     </div>
     <p>
 
     <h4>Interval Estimation of the Population Mean – Known Population Variance</h4>
     <p>
     <div class="mainTable">
-      <p>In contrast to the point estimate for the population mean, estimating by using an interval is called an <b>interval estimation</b>. 
+      <p>In contrast to the point estimate for the population mean, estimating population mean by using an interval is called an <b>interval estimation</b>. 
          If the population is a normal distribution with the mean &mu;  and variance \(&sigma;^2 \), 
          the distribution of all possible sample means is a normal distribution with the mean &mu; and variance \(\frac {&sigma;^2}{n} \), 
          so the probability that one sample mean will be included in the interval \( &mu; &plusmn; 1.96 \times \frac {&sigma;}{\sqrt{n}} \) is 95% as follows.
-      $$ 
+      $$\small  
         P(\mu - 1.96 \times \frac {&sigma;}{\sqrt{n}} < \overline X < \mu + 1.96 \times \frac {&sigma;}{\sqrt{n}} ) = 0.95
       $$
       We can rewrite this formula as follows.
-      $$
+      $$\small 
         P(\overline X - 1.96 \times \frac {&sigma;}{\sqrt{n}} < \mu < \overline X + 1.96 \times \frac {&sigma;}{\sqrt{n}} ) = 0.95
       $$
       Assuming &sigma; is known, the meaning of the above formula is that 95% of intervals obtained by applying the formula 
-      \( [ \overline {X} - 1.96 \times \frac {&sigma;}{\sqrt{n}}, \overline {X} + 1.96 \times \frac {&sigma;}{\sqrt{n}} ] \) 
+      \(\small  [ \overline {X} - 1.96 \times \frac {&sigma;}{\sqrt{n}}, \overline {X} + 1.96 \times \frac {&sigma;}{\sqrt{n}} ] \) 
       for all possible sample means include the population mean. The formula of this interval is referred to as the 95% confidence interval of the population mean.
-      $$
+      $$\small 
         \left[ \overline {X} - 1.96 \times \frac {&sigma;}{\sqrt{n}}, \overline {X} + 1.96 \times \frac {&sigma;}{\sqrt{n}} \right]
       $$
-      <p>Generally, since \( \overline {X} \sim N(&mu;, \frac {&sigma;^2}{n} ) \), the standardized random variable of \(\overline X \),
-         \(Z = \frac {\overline X - \mu}{\frac {\sigma}{\sqrt n}} \), follows the standard normal distribution \(N(0,1)\). 
+      <p>Generally, since \(\small  \overline {X} \sim N(&mu;, \frac {&sigma;^2}{n} ) \), the standardized random variable of \(\small \overline X \),
+         \(\small Z = \frac {\overline X - \mu}{\frac {\sigma}{\sqrt n}} \), follows the standard normal distribution \(N(0,1)\). 
          Therefore, the following probability of the standard normal random variable \(Z\) is \(1-&alpha;\) . 
-      $$
+      $$\small 
         P \left( -z_{\alpha/2} < \frac {\overline{X} - \mu } {\sigma/\sqrt{n}} < z_{\alpha/2} \right) = P ( -z_{\alpha/2} < Z < z_{\alpha/2} ) =  1 - \alpha
       $$
       This formula can be written as follows: 
-      $$
-        P \left( \mu - z_{\alpha/2} \frac {\sigma} {\sqrt{n}} <  \overline X  < \mu - z_{\alpha/2} \frac {\sigma} {\sqrt{n}} \right) =  1 - \alpha
+      $$\small 
+        P \left( \mu - z_{\alpha/2} \frac {\sigma} {\sqrt{n}} <  \overline X  < \mu + z_{\alpha/2} \frac {\sigma} {\sqrt{n}} \right) =  1 - \alpha
       $$
       This formula can also be written as follows: 
-      $$
-        P \left( \overline X - z_{\alpha/2} \frac {\sigma} {\sqrt{n}} <  \mu  < \overline X - z_{\alpha/2} \frac {\sigma} {\sqrt{n}} \right) =  1 - \alpha
+      $$\small 
+        P \left( \overline X - z_{\alpha/2} \frac {\sigma} {\sqrt{n}} <  \mu  < \overline X + z_{\alpha/2} \frac {\sigma} {\sqrt{n}} \right) =  1 - \alpha
       $$
       The confidence interval for the population mean &mu; is as follows if the population is normally distributed and the population variance \( \sigma^2 \) is known.
     </div>
@@ -370,7 +383,7 @@
       <b>[Theorem 6.2.3]&nbsp;&nbsp; 100(1-&alpha;)% Confidence Interval for Population Mean &mu;</b>
       <p>
       Assume a population is a normal distribution and the population variance  is known.  
-      $$
+      $$\small 
         \left[ \overline X - z_{\alpha/2} \frac {\sigma} {\sqrt{n}} , \overline X + z_{\alpha/2} \frac {\sigma} {\sqrt{n}} \right]
       $$
     </div>
@@ -392,26 +405,473 @@
          This result might be different on your computer, because the program use a random number generator which depends on computer. 
          Whenever we repeat these experiments, the result may also vary slightly.
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU640_ConfIntSim.svg" onclick="window.open(addrStr[95])">
-          </td>
-          <td>
-            <img class="imgFig600600" src="../Figure/Fig060206.png">
-            <div class="figText">&lt;Figure 6.2.6&gt;  『eStatU』 Simulation of the 95% confidence interval</div>
-          </td>
-        </tr>
-      </table>
     </div>
     <p>
+    <div class="mainTableGrey">
+      <p>
+      <!----   html for confidence interval Simulation----------------------------------------------------->
+      <b>[<span data-msgid="Confidence Interval Simulation">Confidence Interval Experiment</span>]</b> 
+      <p>
+      <svg id="chart3" width="600" height="620" style="border-style:solid;"> </svg>
+      <p> 
+        <button type="button" id="intervalEst" style="width:120px">
+          <b><span data-msgid="Execute">Execute</span></b>
+        </button> 
+        &nbsp; 
+        <span data-msgid="Sample Size">Sample Size</span>
+        n = <input type="text" style="text-align:center" value="20" size=4 id="initEst"> &nbsp; &nbsp;
+        <span data-msgid="Repetition">Repetition</span>
+        r = <input type="text" style="text-align:center" value="100"  size=4 id="iterEst"> 
+      <form name="myFormEst">  
+        &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+        <span data-msgid="Confidence Level">Confidence Level</span>  
+        &nbsp; <label><input type="radio" name = "type1" value="1" > 0.90</label>  &nbsp; 
+        <label><input type="radio" name = "type1" value="2" checked> 0.95</label>  &nbsp; 
+        <label><input type="radio" name = "type1" value="3" > 0.99</label>
+      </form>
+      <p>
+        <button type="button" id="saveGraphCIS"  style="width:120px;">
+	  <b><span class="tooltiptext" data-msgid="Graph Save">Graph Save</span></b>
+        </button>
+      <p>
+         <div class="figText">&lt;Figure 6.2.6&gt;  『eStatU』 Simulation of the 95% confidence interval</div>
+    </div>
+    <p>
+     <!----   script for confidence interval simulation ---------------------------------------------->
+    <script>
+      setLanguage('en');
+      var chart3 = d3.select("#chart3")
+      var totalHeight = 640;
+      var svgWidth    = 600;
+      var svgHeight   = 320;  // 모집단 그래프 영역
+
+      var i, j, k, tx, ty, ty2;  
+      var nint, step, buffer, nvalue, gxminCI, gxmaxCI, error, str; 
+      var sobs, niterCI, str;
+      var nobs   = 10000;
+      var radius = 1;
+      var samplePercent;
+
+      var statP3     = new Array(20);
+      var statS3     = new Array(20);
+      var bins       = new Array(1000);
+      var dataSet    = new Array(nobs);
+      var dataA      = new Array(nobs);
+      var dataValue3  = new Array(nobs);
+      var dvalueFreq3 = new Array(nobs);
+      var tdata3      = new Array(nobs);
+      var tdata3Y     = new Array(nobs);
+
+      var generator, title;
+      var checkSampling = false;
+      var checkInterval = true;
+
+      // Confidence Interval Initital Simulation ---------------------------------------------------------------
+      chart3.selectAll("*").remove();        
+      marginCI      = {top: 20, bottom: 100, left: 20, right: 20};;
+      graphWidthCI  = svgWidth - marginCI.left - marginCI.right;
+      graphHeightCI = svgHeight - marginCI.top - marginCI.bottom;
+
+      title  = svgStrU[8][langNum]+" ~ N(0,1)  (N="+nobs.toString()+")";
+      chart3.append("text").attr("class","title").attr("x",marginCI.left).attr("y",marginCI.top).text(title);
+
+      normalGenerator(nobs, dataSet);       
+      nint    = 400;
+      step    = 8/nint;
+      bins[0] = -4;
+      showDotSampleP3(nobs, dataSet, nint, step, bins, statP3, tdata3, tdata3Y, dataValue3);
+      gxminCI  = statP3[9];
+      gxmaxCI  = statP3[10];
+      xrangeCI = gxmaxCI - gxminCI;
+      start = 0;
+      drawStatSample3(statP3, start, 1) ;
+
+      // 신뢰도 선택
+      var rad = document.myFormEst.type1;
+      var confidenceLevel = "95%";
+      var zvalue = 1.96;
+      rad[0].onclick = function() {     // 90%
+        confidenceLevel = "90%";
+        zvalue = 1.645;
+      }
+      rad[1].onclick = function() {     // 95%
+        confidenceLevel = "95%";
+        zvalue = 1.96;
+      }
+      rad[2].onclick = function() {     // 99%
+        confidenceLevel = "99%";
+        zvalue = 2.575;
+      }
+
+      // 구간추정 시뮬레이션 버튼 클릭
+      d3.select("#intervalEst").on("click",function() {
+        removeAllSample3(); 
+
+        str = svgStrU[19][langNum]+" "+confidenceLevel+" "+svgStrU[20][langNum]+" "+svgStrU[98][langNum];
+	sobs  = parseFloat(d3.select("#initEst").node().value);    // 표본크기 
+        niterCI = parseFloat(d3.select("#iterEst").node().value);    // 시뮬레이션 반복수 
+        if (sobs < 20 ) sobs = 20;
+        if (niterCI > 300) niterCI = 300;
+        str = str + " n = "+sobs+", r = "+niterCI;
+        chart3.append("text").style("stroke","blue").attr("x", marginCI.left)
+            .attr("y", svgHeight - marginCI.bottom/3 - 20).attr("class","meanG")
+            .text(str)
+        tx  = marginCI.left + graphWidthCI*(statP3[1]-gxminCI)/xrangeCI; // population mean location
+        ty  = svgHeight - marginCI.bottom/3 - 20;
+        ty2 = totalHeight - 20;
+        chart3.append("line").style("stroke","blue").style("stroke","blue")
+            .attr("x1",tx).attr("y1",ty).attr("x2",tx).attr("y2",ty2)
+
+        var oneHeight = (totalHeight - svgHeight) / niterCI; 
+        error = 0;
+        for (var gg = 0; gg < niterCI; gg++) {
+          var sdata3  = [];
+          var sdata3Y = [];
+          var sindex3 = [];
+          var jth;
+          for (i=0; i<sobs; i++) {
+           jth = Math.floor(Math.random()*nobs);
+           sdata3[i]  = tdata3[jth];
+           sindex3[i] = jth;
+          }
+
+          for (j=0; j<=nvalue; j++) dvalueFreq3[j]=0;
+          for (i=0; i<sobs; i++) {
+            for (j=0; j<=nvalue; j++) {
+              if(sdata3[i] == dataValue3[j]) {
+                dvalueFreq3[j]++; 
+                sdata3Y[i] = dvalueFreq3[j];
+                break;
+              }
+            } // endof j
+          } // endof i
+
+          // draw dot graph using sample
+          start = svgHeight - marginCI.bottom/3 - 10 + gg*oneHeight;
+          if(niterCI < 11) {
+            for (k=0; k<sobs; k++) {
+              chart3.append("circle")
+                 .attr("class","circleS")
+                 .attr("cx", marginCI.left+graphWidthCI*(tdata3[k]-gxminCI)/xrangeCI)
+                 .attr("cy", marginCI.top + graphHeightCI - tdata3Y[k]*4)
+                 .transition()                           // 애니매이션 효과 지정
+                 .delay(function(d,i) {return i*100;})   // 0.5초마다 그리도록 대기시간 설정
+                 .duration(2000)                         // 1초동안 애니매이션이 진행되도록 설정
+                 .attr("r", 2)
+                 .attr("cx", marginCI.left+graphWidthCI*(sdata3[k]-gxminCI)/xrangeCI)
+                 .attr("cy", start + oneHeight - sdata3Y[k]*4)
+            }
+          }
+          // 표본 통계량 계산 after sorting
+          sdata3.sort(function(a,b){return a-b});
+          sum   = 0;
+          for (i=0; i<sobs; i++) {sum += sdata3[i];}
+          savg   = sum / sobs;
+          sqsum = 0;
+          for (i=0; i<sobs; i++) {
+            temp = sdata3[i]-savg;
+            sqsum += temp*temp;
+          }
+          sstd = Math.sqrt(sqsum / sobs);
+
+          temp = zvalue*statP3[2]/Math.sqrt(sobs);
+          if ( savg - temp > statP3[1] || savg + temp < statP3[1] ) error++;
+          drawInterval(sobs, savg, statP3, gxminCI, xrangeCI, zvalue, oneHeight, niterCI, start);
+  
+        } // endof gg
+
+        var accuracy = niterCI - error;
+        var accuracyPercent = 100*accuracy/niterCI;
+        var str = svgStrU[51][langNum] + " = " + accuracyPercent+"%"+" ("+accuracy+"/"+niterCI+")";
+
+        chart3.append("text").style("stroke","blue").attr("class","meanG")
+           .attr("x", marginCI.left)
+           .attr("y", svgHeight - marginCI.bottom/3 )
+           .text(str)
+      }) 
+      // svg Graph Save
+      d3.select("#saveGraphCIS").on("click", function() {
+        var svg = d3.select("#chart3");
+        var width = svgWidth;
+        var height = 600;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+
+// 점그래프 함수 for CI
+function drawDotSample3(obs, tdata3, tdata3Y, gxmin, gxmax, start) {
+         var i; 
+         var cx = new Array(obs);
+         var xrange = gxmax - gxmin;
+         drawAxisSample(start, gxmin, gxmax);
+         for (i=0; i<obs; i++) cx[i] = marginCI.left + graphWidthCI*Math.random();
+       if (checkSampling) {
+         chart3.selectAll("circle")
+            .data(tdata3)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d,i){ return cx[i];} )
+            .attr("cy", start + marginCI.top  + 10)
+            .transition()                           // 애니매이션 효과 지정
+//            .delay(function(d,i) {return i*100;})   // 0.5초마다 그리도록 대기시간 설정
+//            .duration(1000)                         // 1초동안 애니매이션이 진행되도록 설정
+            .attr("r", radius)
+            .attr("cx", function(d,i){ return marginCI.left+graphWidthCI*(d-gxmin)/xrange; } )
+            .attr("cy", function(d,i){ return start+ marginCI.top + graphHeightCI - tdata3Y[i]*2*radius; } )
+            .attr("fill","#0055FF").style("stroke","black")
+       } else if (checkInterval) {
+         chart3.selectAll("circle")
+            .data(tdata3)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d,i){ return cx[i];} )
+            .attr("cy", start + marginCI.top  + 10)
+            .transition()                           // 애니매이션 효과 지정
+//            .delay(function(d,i) {return i*100;})   // 0.5초마다 그리도록 대기시간 설정
+//            .duration(1000)                         // 1초동안 애니매이션이 진행되도록 설정
+            .attr("r", radius)
+            .attr("cx", function(d,i){ return marginCI.left+graphWidthCI*(d-gxmin)/xrange; } )
+            .attr("cy", function(d,i){ return start+ marginCI.top + graphHeightCI - tdata3Y[i]*2*radius; } )
+            .attr("fill","#0055FF").style("stroke","black")
+       }
+}
+function drawAxisSample(start, gxmin, gxmax) {
+        var xScale = d3.scaleLinear().domain([gxmin,gxmax]).range([0,graphWidthCI])
+        var ty = start + marginCI.top + graphHeightCI;
+      if (checkSampling) {
+        chart3.append("g")
+           .attr("transform","translate("+marginCI.left+","+ty+")")
+           .call(d3.axisBottom(xScale))                  // 눈금을 표시할 함수 호출
+      }
+      else if (checkInterval) {
+        chart3.append("g")
+           .attr("transform","translate("+marginCI.left+","+ty+")")
+           .call(d3.axisBottom(xScale))                  // 눈금을 표시할 함수 호출
+      }
+}
+// 모집단의 Dot Graph ================================================================
+function showDotSampleP3(nobs, dataSet, nint, step, bins, statP3, tdata3, tdata3Y, dataValue3) {
+      var i, j, k;
+      var sum, sqsum, temp, avg, std;
+      var min, max, median, Q1, Q3;
+      var buffer, gxmin, gxmax, xrange, freqMaxP;
+      var index      = new Array(nobs);
+      var dataA      = new Array(nobs);
+      var dvalueFreq3 = new Array(nobs);
+      for (k=1; k<=nint+1; k++) bins[k] = bins[k-1] + step;
+      buffer = (bins[nint] - bins[0] + 2*step) / 20;
+      gxmin  = bins[0]    - step - buffer;
+      gxmax  = bins[nint] + step + buffer;
+      xrange = gxmax - gxmin;
+      // 통계량 계산
+      for (i=0; i<nobs; i++) tdata3[i] = dataSet[i];
+      sum = 0;
+      for (i=0; i<nobs; i++) {sum += dataSet[i];}
+      avg = sum / nobs;
+      sqsum = 0;
+      for (i=0; i<nobs; i++) {
+        temp = dataSet[i]-avg;
+        sqsum += temp*temp;
+      }
+      std = Math.sqrt(sqsum / nobs);
+  
+      tdata3.sort(function(a,b){return a-b})
+      min    = tdata3[0];
+      max    = tdata3[nobs-1];
+      median = d3.quantile(tdata3, 0.5);
+      Q1     = d3.quantile(tdata3, 0.25);
+      Q3     = d3.quantile(tdata3, 0.75);
+      // data regenaration by bins interval
+      for (i=0; i<nobs; i++) {
+          if(dataSet[i] < bins[0])    {dataA[i] = bins[0] - step; break}
+          for (k=1; k<=nint; k++) {
+            if (dataSet[i] >= bins[k-1] && dataSet[i]<bins[k]) {dataA[i] = bins[k-1]; break;}
+          }
+          if (dataSet[i] >= bins[nint]) dataA[i] = bins[nint];
+      }
+      // Sorting and indexing data in ascending order
+      for (i=0; i<nobs; i++) index[i] = i;
+      for (i=0; i<nobs-1; i++) {
+        for (j=i; j<nobs; j++) {
+          if(dataA[i] > dataA[j]) {
+              temp     = dataA[i];  tempi    = index[i];
+              dataA[i] = dataA[j];  index[i] = index[j];
+              dataA[j] = temp;      index[j] = tempi;  
+          }
+        }
+      } 
+      // Counting the number of value 
+      for(i=0; i<nobs; i++) {dvalueFreq3[i]=0} ;
+      nvalue = 0;
+      dataValue3[nvalue]  = dataA[0];  
+      for (i=1; i<nobs; i++) {
+        if (dataA[i] > dataA[i-1]) {
+          nvalue++;
+          dataValue3[nvalue] = dataA[i];
+        }
+      }
+      
+      // Rearrange to original data with dataA and dataY in ascending
+      for (i=0; i<nobs; i++) tdata3[i]  = dataA[index[i]];
+      for (j=0; j<=nvalue; j++) dvalueFreq3[j] = 0;
+      for (i=0; i<nobs; i++) {
+        for (j=0; j<=nvalue; j++) {
+          if(tdata3[i] == dataValue3[j]) {
+            dvalueFreq3[j]++; 
+            tdata3Y[i] = dvalueFreq3[j];
+            break;
+          };
+        }
+      }
+      // Maximum of frequency
+      freqMaxP = dvalueFreq3[0];
+      for (j=1; j<=nvalue; j++) {
+        if (dvalueFreq3[j] > freqMaxP) freqMaxP = dvalueFreq3[j];
+      }
+      // 점그래프
+      var start = 0;
+      drawDotSample3(nobs, tdata3, tdata3Y, gxmin, gxmax, start);
+      statP3[0]  = nobs;
+      statP3[1]  = avg;
+      statP3[2]  = std;
+      statP3[3]  = dataA[0];
+      statP3[4]  = Q1;
+      statP3[5]  = median;
+      statP3[6]  = Q3;
+      statP3[7]  = dataA[nobs-1];
+      statP3[8]  = freqMaxP;
+      statP3[9]  = gxmin;
+      statP3[10] = gxmax;
+}
+// 구간추정 표시 함수
+function drawInterval(nobs, avg, statP, gxmin, xrange, clevel, height, niter, start) {
+        var ty    = start + height;
+        var temp  = clevel*statP[2]/Math.sqrt(nobs);
+        var avgx  = marginCI.left + graphWidthCI*(avg-gxmin)/xrange;
+        var stdmx = marginCI.left + graphWidthCI*(avg-temp-gxmin)/xrange;
+        var stdpx = marginCI.left + graphWidthCI*(avg+temp-gxmin)/xrange;
+        var checkMu = true;
+        if (avg - temp > statP[1]) checkMu = false;
+        if (avg + temp < statP[1]) checkMu = false;
+        if (checkMu) {
+          chart3.append("circle").attr("class","meanG").attr("cx",avgx).attr("cy",ty).attr("r",2)
+              .style("stroke","green")
+          chart3.append("line")  .attr("class","meanG").attr("x1",stdmx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
+              .style("stroke","green")
+          chart3.append("line")  .attr("class","meanG").attr("x1",stdpx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
+              .style("stroke","green")
+        }
+        else {
+          chart3.append("circle").attr("class","meanR").attr("cx",avgx).attr("cy",ty).attr("r",2)
+              .style("stroke","red")
+          chart3.append("line")  .attr("class","meanR").attr("x1",stdmx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
+              .style("stroke","red")
+          chart3.append("line")  .attr("class","meanR").attr("x1",stdpx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
+              .style("stroke","red")
+        }
+        if (niter < 11) {
+          if (checkMu) chart3.append("text").attr("class","meanG").attr("x", avgx-28).attr("y", ty + 15).text(svgStrU[22][langNum]+"="+f2(avg))
+                           .style("stroke","green")
+		           .style("font-family","sans-serif").style("font-size","9pt")
+          else chart3.append("text").attr("class","meanR").attr("x", avgx-28).attr("y", ty + 15).text(svgStrU[22][langNum]+"="+f2(avg))
+                   .style("stroke","red")
+		   .style("font-family","sans-serif").style("font-size","9pt")
+        }
+}
+// 전체 구간추정 표본그림 제거
+function removeAllSample3() {
+	chart3.selectAll("circle.circleS").remove();
+	chart3.selectAll("circle.meanG").remove();
+	chart3.selectAll("circle.meanR").remove();
+	chart3.selectAll("text.meanG").remove();
+	chart3.selectAll("text.meanR").remove();
+	chart3.selectAll("line.meanG").remove();
+	chart3.selectAll("line.meanR").remove();
+}
+// 통계량 표시 함수
+function drawStatSample3(stat, start, type) {
+        var avg    = stat[1];
+        var std    = stat[2];
+        var freqMax= stat[8];
+        var gxmin  = stat[9];
+        var gxmax  = stat[10];
+        var xrange = gxmax - gxmin;
+        if (type == 1) var strmean = "#00A2FF";
+        else var strmean = "#FF3500";
+        var strstd =svgStrU[4][langNum]+" ";
+        if (type == 2 && checkSampling && checkCLT) strstd = svgStrU[18][langNum]+" ";
+        var ty    = start + marginCI.top  + graphHeightCI + 10;
+        var avgx  = marginCI.left + graphWidthCI*(avg-gxmin)/xrange;
+        var stdmx = marginCI.left + graphWidthCI*(avg-std-gxmin)/xrange;
+        var stdpx = marginCI.left + graphWidthCI*(avg+std-gxmin)/xrange;
+      if (checkSampling) {  
+        chart3.append("line") 
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("x1",avgx)
+           .attr("y1",ty)
+           .attr("x2",avgx)
+           .attr("y2",start + marginCI.top + graphHeightCI - freqMax*2*radius - 10) 
+        chart3.append("circle")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("cx",avgx)
+           .attr("cy",ty)
+           .attr("r",2)
+        chart3.append("line")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("x1",stdmx)
+           .attr("y1",ty)
+           .attr("x2",avgx)
+           .attr("y2",ty)
+        chart3.append("line")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("x1",stdpx)
+           .attr("y1",ty)
+           .attr("x2",avgx)
+           .attr("y2",ty)
+        chart3.append("circle")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("cx",stdmx)
+           .attr("cy",ty)
+           .attr("r",2)
+        chart3.append("circle")
+           .attr("class","meanP")      
+           .style("stroke",strmean)
+           .attr("cx",stdpx)
+           .attr("cy",ty)
+           .attr("r",2)
+        chart3.append("text")
+           .attr("class","meanP")      
+           .style("font-size","8pt")
+           .style("stroke",strmean)
+           .attr("x", avgx-28)
+           .attr("y", ty + 15)
+           .text(svgStrU[3][langNum]+"="+f2(avg))
+        chart3.append("text")
+           .attr("class","meanP")      
+           .style("font-size","8pt")
+           .style("stroke",strmean)
+           .attr("x", stdpx+10)
+           .attr("y", ty+5)
+           .text(strstd+f2(std))
+      }
+}     
+
+  </script>
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
       <b>Example 6.2.2</b>
-      The average starting salary per month of college graduates was 275 (unit: 10,000 KRW) after a simple random sampling of 100 college graduates this year. Assume that the starting salary for all college graduates is a normal distribution and its standard deviation is 50. 
+      The average starting salary per month of college graduates was 275 (unit: 10,000 KRW) after a simple random sampling of 100 college graduates this year. Assume that the starting salary for all college graduates is a normal distribution and its standard deviation is 5. 
       <p>
-      <div class="textL20M20">1) What is the point estimate the average starting salary of all college graduates.
+      <div class="textL20M20">1) What is the point estimate of the average starting salary of all college graduates.
       </div>
       <div class="textL20M20">2) Estimate a 95% confidence interval of the average starting salary of college graduates.
       </div>
@@ -489,16 +949,16 @@
          So \(t\) distribution is often referred to as Student's \(t\) distribution. The \(t\) distribution is not just a single distribution, 
          but it is a family of distributions under a parameter called a degree of freedom, 1,2, ... , 30, ... and denoted as \(t_1 ,t_2 , ... , t_{30} , ... \)
       <p>
-         The shape of the \(t\) distribution is symmetrical about zero (y axis), similar to the standard normal distribution, but it has a tail that is flat and longer than the standard normal distribution. &lt;Figure 6.2.7&gt; shows the standard normal distribution N(0,1) and \(t\) distribution with 3 degrees of freedom at the same time by using the \(t\) distribution module of 『eStatU』.
+         The shape of the \(t\) distribution is symmetrical about zero (y axis), similar to the standard normal 
+         distribution, but it has a tail that is flat and longer than the standard normal distribution. 
+         &lt;Figure 6.2.7&gt; shows the standard normal distribution N(0,1) and \(t\) distribution with 3 degrees of freedom at the same time by using the \(t\) distribution module of 『eStatU』.
       <p>
       <table style="width:650px">
         <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU540_T.svg" onclick="window.open(addrStr[89])">
-          </td>
+          <td><input class="qrBtn" type="image" src="../../QR/eStatU540_T.svg" onclick="window.open(addrStr[89])"></td>
           <td>
             <img class="imgFig600400" src="../Figure/Fig060207.png">
-            <div class="figText">&lt;Figure 6.2.7&gt; Comparison of  and N(0,1)</div>
+            <div class="figText">&lt;Figure 6.2.7&gt; Comparison of \(t_3\) and N(0,1)</div>
           </td>
         </tr>
       </table>
@@ -516,26 +976,28 @@
       <p>     
       <table style="width:650px">
         <tr>
+          <td><input class="qrBtn" type="image" src="../../QR/eStatU540_T.svg" onclick="window.open(addrStr[89])"></td>
           <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU540_T.svg" onclick="window.open(addrStr[89])">
-          </td>
-          <td>
-            <img class="imgFig600600" src="../Figure/Fig060208.png">
-            <div class="figText">&lt;Figure 6.2.8&gt; Upper 5 percentile of  distribution  = 1.8946</div>
+            <img class="imgFig600400" src="../Figure/Fig060208.png">
+          <div class="figText">&lt;Figure 6.2.8&gt; Upper 5 percentile of \(t_7\) distribution  = 1.8946</div>
           </td>
         </tr>
       </table>
+      <p>
+    </div>
+    <p>
+    <div class="mainTable">
       <p>
          Consider the interval estimation of the population mean when you do not know the population variance, but assume that the population is a normal distribution.  
          If \( X_1 , X_2 , ... , X_n \) is the random sample of size \(n\) from the normal population, 
          then it can be shown that the distribution of \( \frac {\overline X -\mu}{S/\sqrt{n}} \), where &sigma; is replaced with S, 
          is the \(t\) distribution with \( n-1 \) degrees of freedom. 
-      $$
+      $$\small 
         \frac {\overline X -\mu}{\frac{S}{\sqrt{n}}} \sim t_{n-1}
       $$
       Hence the probability of the (1 - &alpha;)% interval is as follows.
-      $$
-        P \left( -t_{n-1;\alpha/2} < \frac {\overline{X} - \mu } {\sigma/\sqrt{n}} < t_{n-1:\alpha/2} \right) = 1 - \alpha
+      $$\small 
+        P \left( -t_{n-1;\alpha/2} < \frac {\overline{X} - \mu } {S\sqrt{n}} < t_{n-1:\alpha/2} \right) = 1 - \alpha
       $$
       The left hand side of the above formula can be summarized as the confidence interval for the population mean when the population variance is unknown as follows: 
     </div>
@@ -545,7 +1007,7 @@
       <b>[Theorem 6.2.4]&nbsp;&nbsp;100(1-&alpha;)% Confidence Interval for Population Mean &mu;</b>
       <p>
       Assume a population is a normal distribution and the population variance \(&sigma;^2\) is unknown.  
-      $$
+      $$\small 
         \left[ \overline X - t_{n-1:\alpha/2} \frac {S} {\sqrt{n}} , \overline X + t_{n-1:\alpha/2} \frac {S} {\sqrt{n}} \right] 
       $$
       <p>where \(n\) is the sample size and \(S\) is the sample standard deviation.
@@ -555,7 +1017,7 @@
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
       <b>Example 6.2.3</b>
-      Suppose we do not know the population variance in Example 6.2.2. If the sample size is 25 and the sample standard deviation is 50 (unit: 10,000 KRW), estimate the mean of the starting salary of college graduates at the 95% confidence level.
+      Suppose we do not know the population variance in Example 6.2.2. If the sample size is 25 and the sample standard deviation is 5 (unit: 10,000 KRW), estimate the mean of the starting salary of college graduates at the 95% confidence level.
       <p>
       <b>Answer</b>
       <p>
@@ -583,39 +1045,418 @@
       <p>
       <b>Answer</b>
       <p>
-        Click ‘Estimation : μ Confidence Interval’ on the menu of 『eStatU』 and enter data at the [Sample Data] box as &lt;Figure 6.2.9&gt;. 
-        Then the confidence intervals [170.68, 177.92] are calculated using the \(t_9\) distribution.
+         Click [Estimation : μ Confidence Interval] on the menu of 『eStatU』 and enter data at the [Sample Data] box as &lt;Figure 6.2.9&gt;. 
+         Then the confidence intervals [170.68, 177.92] are calculated using the \(t_9\) distribution.
       <p>
+         In this  『eStatU』 module, confidence intervals can be obtained by entering the sample sizes, sample mean, and sample variance without entering data.
+      <p>
+      <!------------------ html for Confidence Interval Mu ---------------------------------------------->
+         <b>[<span data-msgid="Confidence Interval Mu"></span> <span data-msgid="Confidence Interval"></span>]</b>
+      <p>
+            <input class="qrBtn" type="image" src="../../QR/eStatU650_ConfIntMu.svg" onclick="window.open(addrStr[96])">
+      <p>
+      <button type="button" id="eraseCI" style="width:100px;"><b>New Data</b></button>
+      <p>
+         &nbsp;&nbsp;&nbsp;
+         <span class="fontguide" data-msgid="input either sample data">(input either sample data or sample statistics using csv / bsv)</span>
+      <table style="width:800px">
+        <tr>
+          <td style="width:160px"><b><span data-msgid="Sample Data">Sample Data</span></b></td>
+	  <td><input type="text" size=80 id="data1"></td>
+	</tr>
+      </table>
+      <table style="width:600px">
+        <tr>
+          <td style="width:160px"><b><span data-msgid="Sample Statistics">Sample Statistics</span></b></td>
+          <td style="width:150px"><span data-msgid="Sample Size">Sample Size</span></td>
+          <td style="text-align:center"><span class="fontmath">n</span> = </td>
+          <td><input type="text" style="text-align:center;" size=6 id="nn"></td>
+          <td><span class="fontguide">(>1) </span></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span data-msgid="Sample Mean">Sample Mean</span></td>
+          <td style="text-align:center"><span class="fontmath">x&#772;</span> = </td>
+          <td><input type="text" style="text-align:center;" size=6 id="xbar"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span data-msgid="Sample Variance">Sample Variance</span></td>
+          <td style="text-align:center"><span class="fontmath">s<sup>2</sup></span> = </td>
+          <td><input type="text" style="text-align:center;" size=6 id="variS"></td>
+        </tr>
+        <tr>
+          <td><b><span data-msgid="Confidence Level">Confidence Level</span></b></td>
+          <td style="text-align:center"><span class="fontmath">1 - &alpha;</span></td>
+          <td colspan="2">
+              <form name="myForm2">&nbsp;&nbsp;&nbsp; 
+                <input type="radio" name = "type2" value="1" checked> 95% &nbsp; &nbsp;      
+                <input type="radio" name = "type2" value="2" > 99%
+              </form>       
+          </td>
+        </tr>
+        <tr>
+          <td><b><span data-msgid="Sampling Distribution">Sampling Distribution</span></b></td>
+          <td colspan="2">
+            <form name="myForm1"> 
+              <input type="radio" name = "type1" value="1" checked> <span class="fontmath" data-msgid="t Distribution"> t-Distribution</span>&nbsp;&nbsp;
+              <input type="radio" name = "type1" value="2" > <span class="fontmath" data-msgid="Normal Distribution"> Z-Distribution</span>      
+            </form> 
+          </td>
+          <td>&sigma;<sup>2</sup> = <input type="text" style="text-align:center;" size=6 id="variP"></td>
+        </tr>
+      </table>
+      <p>
+         <div class="figText">&lt;Figure 6.2.9&gt; Data input in 『eStatU』 Estimation for population mean</div>
+      <p>
+      <button type="button" id="executeTH" >
+        <span data-msgid="Execute">Execute</span>
+      </button> 
+      <p>
+      <table style="width:600px"> 
+        <tr>
+          <td style="width:160px"><b><span data-msgid="Confidence Interval">Confidence Interval</span></b></td>
+          <td><span class="fontmath" id="tFormula"></span> = <input type="text" style="text-align:center;" size=6 id="tvalue"></td>
+          <td></td>
+          <td><span class="fontmath" id="stderrFormula"></span> &nbsp;= <input type="text" style="text-align:center;" size=6 id="stderr"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span class="fontmath">x&#772;</span> &plusmn; <span class="fontmath" id="intFormula"></span></td>
+          <td>&hArr;</td>
+          <td>[&nbsp;<input type="text" style="text-align:center;" size=6 id="cleft">&nbsp;&nbsp;&nbsp;, <input type="text" style="text-align:center;" size=6 id="cright">&nbsp;]</td>
+        </tr>
+      </table>
+      <p>
+      <svg id="chart" width="600" height="200" style="border-style:solid;"> </svg>  
+      <p>
+      <table style="width:600px">
+        <tr>
+          <td style="width:100px">n = <input type="text" style="text-align:center;" value="20" size=3 id="nn2"></td>
+          <td><sup><small> 1 </small></sup></td>
+          <td><input type="range" min="1" max="200" value="100" id="rangeN" onchange="showValueNN2(this.value)"/></td>
+          <td><sup><small>200</small></sup></td>
+          <td></td>
+          <td style="width:100px">1-&alpha; = <input type="text" style="text-align:center;" value="0.95" size=3 id="alpha2"></td>
+          <td><sup><small> 0.60 </small></sup></td>
+          <td><input type="range" min="60" max="99" value="95" id="rangeAlpha" onchange="showValueAlpha2(this.value)"/></td>
+          <td><sup><small> 0.99 </small></sup></td>
+        </tr>
+      </table>
+      <p>
+      <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+      </button>
+      <p>
+         <div class="figText">&lt;Figure 6.2.10&gt; Simulation experiment to investigate the size of the confidence interval</div>
+      <p>
+         In this module of 『eStatU』, a simulation experiment to investigate the size of the confidence interval can be done by changing 
+         the sample size \(n\) and the confidence level 1 - &alpha;  as in &lt;Figure 6.2.10&gt;. 
+         If you increase \(n\), the interval size becomes narrower. If you increase 1 - &alpha;, the interval size becomes wider.
+      <p>
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+  <script>
+      setLanguage('en');
+      var bar = d3.select("#chart");
+      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
+      var margin      = {top: 10, bottom: 10, left: 10, right: 10};
+      var svgWidth2   = 600;
+      var svgHeight2  = 200;
+      var graphWidth  = svgWidth2 - margin.left - margin.right;
+      var graphHeight = svgHeight2 - margin.top - margin.bottom;
+
+      var gxmin, gxmax, gymin, gymax;
+      var title;
+      var df, info, alpha, alpha2, confidence, confidence2;
+      var nn, xbar, variS, variP, stdS, stdP, stat, left, right, temp, tvalue, zvalue, stderr;
+      var nn2, left2, right2, temp2, tvalue2, zvalue2, stderr2;
+      var leftMin, rightMax, range;
+      var strT    = "t<sub>n-1 ; &alpha;/2</sub> ";
+      var strZ    = "z<sub>&alpha;/2</sub> ";
+      var stderrT = "s / &radic; n";
+      var stderrZ = "&sigma; / &radic; n";
+      var intT    = strT+" ("+stderrT+")";
+      var intZ    = strZ+" ("+stderrZ+")";
+
+      document.getElementById("tvalue").disabled = true; 
+      document.getElementById("stderr").disabled = true; 
+      document.getElementById("cleft").disabled = true; 
+      document.getElementById("cright").disabled = true;  
+      document.getElementById("nn2").disabled  = true;
+      document.getElementById("alpha2").disabled  = true; 
+      document.getElementById("variP").disabled  = true; 
+      document.getElementById("tFormula").innerHTML = strT;
+      document.getElementById("stderrFormula").innerHTML = stderrT;
+      document.getElementById("intFormula").innerHTML = intT;
+      document.getElementById("data1").value = "171,172,185,169,175,177,174,179,168,173";
+      stat = simplestat("#data1");  
+      document.getElementById("nn").value   = stat.n;    
+      document.getElementById("xbar").value = f2(stat.xbar);
+      document.getElementById("variS").value  = f2(stat.var);  
+
+      // Test type
+      var test = document.myForm1.type1;
+      var testType = test.value;
+      test[0].onclick = function() { // t-test
+         testType = 1; 
+         clearText();
+         document.getElementById("variP").disabled  = true; 
+         document.getElementById("variS").disabled  = false; 
+         document.getElementById("variP").value     = null; 
+         document.getElementById("tFormula").innerHTML = strT;
+         document.getElementById("stderrFormula").innerHTML = stderrT;
+         document.getElementById("intFormula").innerHTML = intT;
+      }  
+      test[1].onclick = function() {  // Z-test
+         testType = 2; 
+         clearText();
+         document.getElementById("variS").value  = null; 
+         document.getElementById("variP").disabled  = false; 
+         document.getElementById("variS").disabled  = true; 
+         document.getElementById("tFormula").innerHTML = strZ;
+         document.getElementById("stderrFormula").innerHTML = stderrZ;
+         document.getElementById("intFormula").innerHTML = intZ;
+      } 
+
+      // alpha
+      var a = document.myForm2.type2;
+      confidence = 0.95;
+      alpha = 1 - confidence;
+      a[0].onclick = function() { confidence = 0.95;  alpha = 1 - confidence; clearText();}  
+      a[1].onclick = function() { confidence = 0.99;  alpha = 1 - confidence; clearText();} 
+
+      // data input control =====================================
+      d3.select("#data1").on("input", function() {
+        stat = simplestat("#data1");  
+        document.getElementById("nn").value   = stat.n;    
+        document.getElementById("xbar").value = f2(stat.xbar);
+        document.getElementById("variS").value  = f2(stat.var);  
+        if (testType == 1) tvalue = t_inv(1 - alpha/2, stat.n - 1, info);
+        else tvalue = stdnormal_inv(1 - alpha/2, info);
+        stderr = Math.sqrt(stat.var /stat.n);
+        temp = tvalue * stderr;
+        left  = stat.xbar - temp;
+        right = stat.xbar + temp;  
+        if (stat.n > 1) document.getElementById("tvalue").value = f3(tvalue);
+        document.getElementById("stderr").value = f3(stderr);
+        document.getElementById("cleft").value   = f3(left);
+        document.getElementById("cright").value  = f3(right); 
+      });
+
+      updateData = function() {
+        document.getElementById("data1").value = ''; 
+      }
+
+      d3.select("#nn").on("input", updateData);
+      d3.select("#xbar").on("input", updateData);
+      d3.select("#std").on("input", updateData);
+
+      // erase Data and Graph
+      d3.select("#eraseCI").on("click",function() {
+        bar.selectAll("*").remove();
+        document.getElementById("data1").value  = "";
+        document.getElementById("nn").value     = "";
+        document.getElementById("xbar").value   = "";
+        document.getElementById("variS").value  = "";
+        document.getElementById("variP").value  = "";
+        document.getElementById("cleft").value  = "";
+        document.getElementById("cright").value = "";
+        document.getElementById("tvalue").value = "";
+        document.getElementById("stderr").value = "";
+      })
+
+      // Testing Hypothesis ======================================
+      d3.select("#executeTH").on("click",function() {
+        bar.selectAll("*").remove();
+
+        // input value
+        stat = simplestat("#data1");
+        if (stat.n > 0) {
+          nn    = stat.n;
+          xbar  = stat.xbar;
+          variS = stat.var;
+        }
+        else {
+          nn    = parseFloat(d3.select("#nn").node().value);
+          xbar  = parseFloat(d3.select("#xbar").node().value);
+          variS = parseFloat(d3.select("#variS").node().value);
+        }
+        variP = parseFloat(d3.select("#variP").node().value);
+        stdS  = Math.sqrt(variS);
+        stdP  = Math.sqrt(variP);
+        df    = nn - 1;
+
+        if ( isNaN(nn) || isNaN(xbar)  || nn < 2 ) {  // wrong input
+          bar.append("text").attr("class","mean")
+             .attr("x", 150).attr("y", 100)
+             .text("No input or wrong input !!   Try again.")
+             .style("stroke","red")
+        }
+        else if ( isNaN(variS) && isNaN(variP) ) {  // wrong input
+          bar.append("text").attr("class","mean")
+             .attr("x", 150).attr("y", 100)
+             .text("No input or wrong input !!   Try again.")
+             .style("stroke","red")
+        }
+        else if ( variS < 0 || variP < 0 ) {  // wrong input
+          bar.append("text").attr("class","mean")
+             .attr("x", 150).attr("y", 100)
+             .text("wrong input on variance !!   Try again.")
+             .style("stroke","red")
+        }
+        else {
+          // confidence interval
+          if (testType == 1) { // t distribution
+            tvalue = t_inv(1 - alpha/2, nn - 1, info);
+            stderr = Math.sqrt(variS/nn);
+          }
+          else { // Z distribution
+            tvalue = stdnormal_inv(1 - alpha/2, info);
+//            variP = parseFloat(d3.select("#variP").node().value);
+            stderr = Math.sqrt(variP/nn);
+            variS  = variP;
+            stdS   = stdP;
+          }
+          temp  = tvalue * stderr;
+          left  = xbar - temp;
+          right = xbar + temp;  
+          leftMin = xbar - t_inv(0.999, nn - 1, info)*stdS;
+          rightMax = xbar + t_inv(0.999, nn - 1, info)*stdS;
+          range = rightMax - leftMin;
+          if (nn > 1) document.getElementById("tvalue").value = f3(tvalue);
+          document.getElementById("stderr").value = f3(stderr);
+          document.getElementById("cleft").value   = f3(left);
+          document.getElementById("cright").value  = f3(right); 
+          document.getElementById("nn2").value  = nn;
+          document.getElementById("alpha2").value  = confidence;
+          drawConfidenceIntervalMu();
+        }
+      })
+
+      // svg Graph Save
+      d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth2;
+        var height = svgHeight2;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+
+// alpha t Z 바뀔때 clear
+function clearText() {
+        bar.selectAll("*").remove();
+        document.getElementById("tvalue").value = null;
+        document.getElementById("stderr").value = null;
+        document.getElementById("cleft").value  = null;
+        document.getElementById("cright").value = null;
+}
+// n slide bar
+function showValueNN2(newValue) {
+        bar.selectAll("*").remove();
+        document.getElementById("nn2").value = newValue;
+        drawConfidenceIntervalMu();
+}
+// alpha slide bar
+function showValueAlpha2(newValue) {
+        bar.selectAll("*").remove();
+        document.getElementById("alpha2").value = f2(newValue/100);
+        drawConfidenceIntervalMu();
+}
+// draw confidence interval
+function drawConfidenceIntervalMu() {
+        var x1, x2, xm, y1, y2, tempy;
+        bar.selectAll("*").remove();
+
+        nn2    = parseFloat(d3.select("#nn2").node().value); 
+        confidence2 = parseFloat(d3.select("#alpha2").node().value); 
+        alpha2 = 1 - confidence2;
+        df2   = nn2 - 1;
+
+        // confidence interval
+        if (testType == 1) tvalue2 = t_inv(1 - alpha2/2, df2, info);
+        else tvalue2 = stdnormal_inv(1 - alpha2/2, info);
+        stderr2 = Math.sqrt(variS/nn2);
+        temp = tvalue2 * stderr2;
+        left2   = xbar - temp;
+        right2 = xbar + temp;  
+
+        tempy    = margin.top + graphHeight/2 -10;
+        var xScale = d3.scaleLinear().domain([leftMin,rightMax]).range([0,graphWidth])
+        bar.append("g")
+          .attr("transform","translate("+margin.left+","+tempy+")")
+          .call(d3.axisBottom(xScale))                  // 눈금을 표시할 함수 호출
+
+        // draw conf interval
+        x1 = margin.left + 30;
+        y1 = margin.top + 20; 
+        bar.append("text").attr("x",x1).attr("y", y1)
+           .text("  ***  "+svgStrU[20][langNum]+" : n="+f0(nn) +",          (1-\u03B1)="+f2(confidence)+"  ***")
+           .style("font-size","10pt").style("stroke","blue").style("text-anchor","start");
+        xm = margin.left + (xbar-leftMin)*graphWidth/range;
+        x1 = margin.left + (left-leftMin)*graphWidth/range;
+        x2 = margin.left + (right-leftMin)*graphWidth/range;
+        y1 = margin.top + graphHeight/3 - 20; 
+        y2 = y1;
+        bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+           .style("stroke","black").style("stroke-width","2");
+        bar.append("circle").attr("cx",x1).attr("cy",y1).attr("r",3).style("fill","blue");
+        bar.append("circle").attr("cx",xm).attr("cy",y1).attr("r",3).style("fill","blue");
+        bar.append("circle").attr("cx",x2).attr("cy",y2).attr("r",3).style("fill","blue");
+        y1 += 20;
+        y2 = y1;
+        bar.append("text").attr("x", x1).attr("y", y1).text("[ "+f3(left))
+           .style("font-size","10pt").style("stroke","blue").style("text-anchor","middle")
+        bar.append("text").attr("x", xm).attr("y", y1).text(" ,")
+           .style("font-size","10pt").style("stroke","blue").style("text-anchor","middle")
+        bar.append("text").attr("x", x2).attr("y", y1).text(f3(right)+" ]")
+           .style("font-size","10pt").style("stroke","blue").style("text-anchor","middle")
+
+        // conf interval simulation
+        x1 = margin.left + (left2-leftMin)*graphWidth/range;
+        x2 = margin.left + (right2-leftMin)*graphWidth/range;
+        y1 = margin.top + 2*graphHeight/3 + 10; 
+        y2 = y1;
+        bar.append("text").attr("x", margin.left+30).attr("y", y1)
+           .text("  ***  "+svgStrU[20][langNum]+" "+svgStrU[98][langNum]+" : n="+f0(nn2) +",          (1-\u03B1)="+f2(confidence2)+"  ***")
+           .style("font-size","10pt").style("stroke","red").style("text-anchor","start");
+        y1 += 20;
+        y2 = y1;
+        bar.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+           .style("stroke","red").style("stroke-width","2");
+        bar.append("circle").attr("cx",x1).attr("cy",y1).attr("r",3).style("fill","red");
+        bar.append("circle").attr("cx",xm).attr("cy",y1).attr("r",3).style("fill","red");
+        bar.append("circle").attr("cx",x2).attr("cy",y2).attr("r",3).style("fill","red");
+        y1 += 20;
+        y2 = y1;
+        bar.append("text").attr("x", x1).attr("y", y1).text("[ "+f3(left2))
+           .style("font-size","10pt").style("stroke","red").style("text-anchor","middle");
+        bar.append("text").attr("x", xm).attr("y", y1).text(" ,")
+           .style("font-size","10pt").style("stroke","red").style("text-anchor","middle")
+        bar.append("text").attr("x", x2).attr("y", y1).text(f3(right2)+" ]")
+           .style("font-size","10pt").style("stroke","red").style("text-anchor","middle");
+
+}
+
+  </script>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div  class="mainTablePink">
+      <b>Practice 6.2.2</b>
       <table style="width:650px">
         <tr>
           <td>
             <input class="qrBtn" type="image" src="../../QR/eStatU650_ConfIntMu.svg" onclick="window.open(addrStr[96])">
           </td>
           <td>
-            <img class="imgFig600400" src="../Figure/Fig060209.png">
-            <div class="figText">&lt;Figure 6.2.9&gt;  『eStatU』 Estimation for population mean</div>
+            In [Practice 6.2.1], suppose you do not know the population standard deviation and the sample standard deviation is 5 kg. Answer the same questions in [Practice 6.2.1] using 『eStatU』. 
           </td>
         </tr>
       </table>
-      <p>
-          In this module of 『eStatU』, a simulation experiment to investigate the size of the confidence interval can be done by changing 
-          the sample size \(n\) and the confidence level 1 - &alpha;  as in &lt;Figure 6.2.10&gt;. 
-          If you increase \(n\), the interval size becomes narrower. If you increase 1 - &alpah;, the interval size becomes wider.
-      <p>
-        <img class="imgFig500200" src="../Figure/Fig060210.png">
-        <div class="figText">&lt;Figure 6.2.10&gt; Simulation experiment to investigate the size of the confidence interval</div>
-      <p>
-      In this  『eStatU』 module, confidence intervals can be obtained by entering the sample sizes, sample mean, and sample variance without entering data.
-    </div>
-    <p>
-    <!------------------------------------------------------------------------------------------------->
-
-    <!------------------------------------------------------------------------------------------------->
-    <div  class="mainTablePink">
-      <b>Practice 6.2.2</b>
-      A salesperson found that there was a 30% chance of selling a product when a customer visited. If one day ten customers visit this salesman, calculate following probabilities using 『eStatU』.
-      <p>
-      In [Practice 6.2.1], suppose you do not know the population standard deviation and the sample standard deviation is 5 kg. Answer the same questions in [Practice 6.2.1] using 『eStatU』. 
       <p>
     </div>
     <!------------------------------------------------------------------------------------------------->
@@ -659,19 +1500,19 @@
     </form>
 
     <h6 class="textL30M30">6.7  Population variance of a normal population was \(\sigma^2\). A sample of size
-       n  was taken from this population to obtain a sample mean \(\overline x\). What is the 99% confidence 
+       n  was taken from this population to obtain a sample mean \(\small \overline x\). What is the 99% confidence 
        interval for the population mean \(\mu\)? </h6>
     <form name="Q7">
-      <label><input type="radio" name="item" value="1"> \(\overline x &plusmn; 1.96\frac{\sigma}{\sqrt{n}}\)</label><br>
-      <label><input type="radio" name="item" value="2"> \(\overline x &plusmn; 1.96\frac{\sigma}{\sqrt{n-1}}\)</label><br>
-      <label><input type="radio" name="item" value="3"> \(\overline x &plusmn; 2.58\frac{\sigma}{\sqrt{n}}\)</label><br>
-      <label><input type="radio" name="item" value="4"> \(\overline x &plusmn; 2.58\frac{\sigma^2}{\sqrt{n}}\)</label><br>
+      <label><input type="radio" name="item" value="1"> \(\small \overline x &plusmn; 1.96\frac{\sigma}{\sqrt{n}}\)</label><br>
+      <label><input type="radio" name="item" value="2"> \(\small \overline x &plusmn; 1.96\frac{\sigma}{\sqrt{n-1}}\)</label><br>
+      <label><input type="radio" name="item" value="3"> \(\small \overline x &plusmn; 2.58\frac{\sigma}{\sqrt{n}}\)</label><br>
+      <label><input type="radio" name="item" value="4"> \(\small \overline x &plusmn; 2.58\frac{\sigma^2}{\sqrt{n}}\)</label><br>
       <p>
       <input type="button" value="Submit" onClick="radio(6,7,Q7)"> &nbsp;&nbsp;&nbsp;
       <input type="text" size=15 id="ansQ7">
     </form>
 
-    <h6 class="textL30M30">6.8 Out of 2,000 products made by a company, 400 were randomly extracted to measure the weight and the sample mean was \(\overline x = 25.0\) and sample standard deviation was \(s = 4.99\). Obtain a 95% confidence interval of the population mean? </h6> 
+    <h6 class="textL30M30">6.8 Out of 2,000 products made by a company, 400 were randomly extracted to measure the weight and the sample mean was \(\small \overline x = 25.0\) and sample standard deviation was \(s = 4.99\). Obtain a 95% confidence interval of the population mean? </h6> 
     <form name="Q8">
       <label><input type="radio" name="item" value="1"> \(24.5 \le \mu \le 25.5\)</label><br>
       <label><input type="radio" name="item" value="2"> \(24.0 \le \mu \le 26.0\)</label><br>
@@ -694,7 +1535,7 @@
     </form>
 
     <h6 class="textL30M30">6.10 A sample of size 49 was taken from a population with a population standard 
-      deviation \(\sigma \) = 5. If the sample mean is \(\overline x\) = 16.2, what is a 95% confidence 
+      deviation \(\sigma \) = 5. If the sample mean is \(\small \overline x\) = 16.2, what is a 95% confidence 
       interval for the population mean ? 
     </h6>
     <form name="Q10">

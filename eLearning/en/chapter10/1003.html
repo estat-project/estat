@@ -51,7 +51,12 @@
 	 </script>
        <link rel="stylesheet" href="../../css/pandoc.css">
        <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="../../../eStat/js/language.js" ></script>   
+       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
+       <script src="../../../eStat/js/eStatU.js"></script>
+       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
+       <script src="../../../eStat/lib/convertSVG.js"></script>
 </head>
 <body>
 
@@ -313,13 +318,14 @@
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
-      <b>Example 10.3.1</b>
+      <p>
+         <b>Example 10.3.1</b>
          The result of a survey of the job satisfaction by sampling employees of three companies are as follows. 
          From this data, can you say that the three   companies have different job satisfaction? (unit: points out of 100 scores)
       <p>
-        <div class="textLeft">Company A    69   67   65   59   </div>
-        <div class="textLeft">Company B    56   63   55   </div>
-        <div class="textLeft">Company C    71   72   70   </div>
+        <div class="textLeft">Company A  &nbsp;&nbsp;&nbsp;  69   67   65   59   </div>
+        <div class="textLeft">Company B  &nbsp;&nbsp;&nbsp;  56   63   55   </div>
+        <div class="textLeft">Company C  &nbsp;&nbsp;&nbsp;  71   72   70   </div>
         <div class="textLeft">[Ex] ⇨ eBook ⇨ EX100301_JobSatisfaction.csv</div>
       <p>
       <div class="textL20M20">
@@ -330,7 +336,7 @@
            the same job satisfaction or not with the significance level of 5%
       </div>
       <div class="textL20M20">
-        3) Check the above result of the Kruskal-Wallis test using『eStat』.
+        3) Check the above result of the Kruskal-Wallis test using 『eStat』.
       </div>
       <p>
       <b>Answer</b>
@@ -344,7 +350,7 @@
       </div>
       <p>
       <div class="textL20">
-        Enter the data as shown in &lt;Figure 10.3.1&gt; in『eStat』.
+        Enter the data as shown in &lt;Figure 10.3.1&gt; in 『eStat』.
       </div>
       <p>
       <table style="width:650px">
@@ -354,7 +360,7 @@
           </td>
           <td>
             <img class="imgFig600400" src="../Figure/Fig100301.png">
-            <div class="figText">&lt;Figure 10.3.1&gt; 『eStat』data input</div>
+            <div class="figText">&lt;Figure 10.3.1&gt; 『eStat』 data input</div>
           </td>
         </tr>
       </table>
@@ -362,7 +368,7 @@
       <div class="textL20">
         Click the ANOVA icon . Select ‘Score’ as ‘Analysis Var’ and ‘Company’ as ‘by Group’ variable
         in the variable selection box. Then a dot graph with the 95% confidence interval of each population 
-        mean will appear as in &lt;Figure 10.3.2&gt;. Company C has the high average of satisfaction scores, 
+        mean will appear as in &lt;Figure 10.3.2&gt;. Company C has the highest average of satisfaction scores, 
         followed by Company A and Company B. However, it should be tested if these differences are statistically 
         significant. Clicking the [Histogram] button in the options window below the graph will reveal the
         histogram and its normal distribution curve for each company, as in&lt;Figure 10.3.3&gt;.
@@ -389,7 +395,7 @@
       <div class="textL20">
         The Kruskal–Wallis test combines all three samples into a single set of data and calculate ranks 
         of this data. If there is a tie, then the average rank will be assigned. Then the sum of the ranks
-        in each sample, \(\small R_1 , R_2 , R_3\), is calculated. The test statistic \(\small H\) for the 
+        in each sample, \(\small R_1 , R_2 , \text{ and } R_3\), is calculated. The test statistic \(\small H\) for the 
         Kruskal–Wallis test is similar to the \(\small F\)-test by converting sample data into ranks as follows: 
         <p>
           \(\qquad \small H = \frac{12}{n(n+1)} \sum_{j=1}^{3} \frac{R_j^2}{n_j} - 3(n+1)\)
@@ -419,7 +425,7 @@
         <tr> <td class="tdCenter">  </td> <td class="tdCenter">  </td> <td class="tdCenter">70</td> <td class="tdCenter"> </td> <td class="tdCenter"> </td> <td class="tdCenter">8</td> </tr>
         <tr> <td class="tdCenter">  </td> <td class="tdCenter">  </td> <td class="tdCenter">71</td> <td class="tdCenter"> </td> <td class="tdCenter"> </td> <td class="tdCenter">9</td> </tr>
         <tr> <td class="tdCenter">  </td> <td class="tdCenter">  </td> <td class="tdCenter">72</td> <td class="tdCenter"> </td> <td class="tdCenter"> </td> <td class="tdCenter">10</td> </tr>
-        <tr> <td></td> <td></td> <td class="tdCenter">Sum of ranks</td> <td class="tdCenter">\(R_{1}=21\)</td> <td class="tdCenter">\(R_{2}=7\)</td> <td class="tdCenter">\(R_{3}=27\)</td> </tr>
+        <tr> <td></td> <td></td> <td class="tdCenter"><b>Sum of ranks</b></td> <td class="tdCenter">\(R_{1}=21\)</td> <td class="tdCenter">\(R_{2}=7\)</td> <td class="tdCenter">\(R_{3}=27\)</td> </tr>
       </table>
       <p>
 
@@ -590,7 +596,7 @@
       <p>
 
       <div class="textL20">
-        \(\small H\) test is a right tail test and the 5 percentile from the right corresponding to the significance level is 
+        \(\small H\) test is a right tail test and the 5 percentile from the right tail corresponding to the significance level is 
         approximately \(\small P(X \ge 5.727)\) = 0.0505. Note that there is no exact 5 percentile in case of a discrete 
         distribution. Hence, the decision rule to test the null hypothesis is as follows: 
         <p>
@@ -601,25 +607,132 @@
       <p>
 
       <div class="textL20M20">
-        3) In 『eStatU』, enter data as &lt;Figure 10.3.5&gt; and click the [Execute] button. Then the sample 
+        3) In 『eStatU』, enter the data as shown in &lt;Figure 10.3.5&gt; and click the [Execute] button. Then the sample 
            statistics are calculated and the test result is shown as in &lt;Figure 10.3.6&gt;. The critical line 
            for values containing 5 percentile of the significance level is shown here. For a discrete 
            distribution, the choice of the final rejection region shall be determined by the analyst.
       </div>
       <p>
-      <table style="width:650px">
+
+      <!---   ************ html for Kruskal Test ************  ---->
+      <b>[<span data-msgid="KruskalTestANOVA"></span>]</b>
+      <p>
+         <input class="qrBtn" type="image" src="../../QR/eStatU98D_TestKruskalD.svg" onclick="window.open(addrStr[118])">
+      <p>
+      <button type="button" id="erase" style="width:100px;"><b>New Data</b></button>
+      <p>
+      <table Style="width:750px">
         <tr>
+          <td><b><span data-msgid="Hypothesis">Hypothesis</span></b></td>
           <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU98D_TestKruskalD.svg" onclick="window.open(addrStr[118])">
+            <span class="fontmath">
+                H<sub>o</sub> : &nbsp; M<sub>1</sub> = M<sub>2</sub> = ... = M<sub>k</sub>
+            </span>
           </td>
+        </tr>
+        <tr>
+          <td></td>
           <td>
-            <img class="imgFig600400" src="../Figure/Fig100305.png">
-            <div class="figText">&lt;Figure 10.3.5&gt; 『eStatU』 Kruskal-Wallis test </div>
+            <span class="fontmath">
+                H<sub>1</sub> : 
+                <span data-msgid="At least one locations is different">At least one pair of locations is not equal</span>
+            </span> 
           </td>
+        </tr>
+        <tr>
+          <td><b><span data-msgid="Test Type">Test Type</span></b></td>
+          <td><span data-msgid="KruskalTest">Kruskal-Wallis Test</span>  <span class="fontguide" data-msgid="KruskalCondition"></span></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span data-msgid="Significance Level">Significance Level</span> &nbsp; <span class="fontmath">&alpha;</span> = 
+              <input type="text" style="text-align:center;" size=4 value="0.05" style="text-align:center;" id="alpha">&nbsp; <span class="fontguide">(0 < &alpha; < 1)</span>
+          </td>
+        </tr>
+        <tr>
+          <td><b><span data-msgid="Sample Data">Sample Data</span></b></td>
+        </tr>
+        <tr>
+          <td style="text-align:right;"><span data-msgid="Sample">Sample</span> 1</td>
+          <td><input type="text" size=80 id="data1"></td>
+        </tr>
+        <tr>
+          <td style="text-align:right;"><span data-msgid="Sample">Sample</span> 2</td>
+          <td><input type="text" size=80 id="data2"></td>
+        </tr>
+        <tr>
+          <td style="text-align:right;"><span data-msgid="Sample">Sample</span> 3</td>
+          <td><input type="text" size=80 id="data3"></td>
+        </tr>
+        <tr>
+          <td style="text-align:right;"><span data-msgid="Sample">Sample</span> 4</td>
+          <td><input type="text" size=80 id="data4"></td>
+        </tr>
+        <tr>
+          <td><b><span data-msgid="Sample Statistics">Sample Statistics</span></b></td>
+	  <td>
+            <table style="width:550px;">
+              <tr>
+                <td><span data-msgid="Sample Size">Sample Size</span></td>         
+                <td><span class="fontmath">n<sub>1</sub></span> = <input type="text" style="text-align:center;" size=6 id="nn71"></td>
+                <td><span class="fontmath">n<sub>2</sub></span> = <input type="text" style="text-align:center;" size=6 id="nn72"></td>        
+                <td><span class="fontmath">n<sub>3</sub></span> = <input type="text" style="text-align:center;" size=6 id="nn73"></td>        
+                <td><span class="fontmath">n<sub>4</sub></span> = <input type="text" style="text-align:center;" size=6 id="nn74"></td>        
+              </tr>
+              <tr>
+                <td><span data-msgid="Sample Range">Sample Range</span></td>
+                <td><span class="fontmath">R<sub>1</sub></span> = <input type="text" style="text-align:center;" size=6 id="xbar71"></td>
+                <td><span class="fontmath">R<sub>2</sub></span> = <input type="text" style="text-align:center;" size=6 id="xbar72"></td>
+                <td><span class="fontmath">R<sub>3</sub></span> = <input type="text" style="text-align:center;" size=6 id="xbar73"></td>
+                <td><span class="fontmath">R<sub>4</sub></span> = <input type="text" style="text-align:center;" size=6 id="xbar74"></td>
+              </tr>
+              <tr>
+                <td>Number of population</td>         
+                <td><span class="fontmath">k =</span> <input type="text" style="text-align:center;" size=6 id="kgroup"></td>
+                <td>Sample Statistic</td>         
+                <td><span class="fontmath">H =</span> <input type="text" style="text-align:center;" size=6 id="statH"></td>
+              </tr>
+            </table>
+          </td>
+	</tr>
+      </table>
+      <p>
+         <div class="figText">&lt;Figure 10.3.5&gt; 『eStatU』 Kruskal-Wallis test </div>
+      <p>
+      <button type="button" id="executeTH4" >
+        <span data-msgid="Execute">Execute</span>
+      </button> 
+      <p>
+      <table style="width:350px;">
+        <tr>
+          <td>&nbsp;&nbsp;</td>
+          <td><span class="fontmath">&alpha; = </span> <input type="text" style="text-align:center;" size=4 value="0.05" id="alpha2">&nbsp; </td>
+          <td><sup><small> 0 </small></sup></td>
+          <td><input type="range" min="1" max="999" value="50" id="rangeAlpha" onchange="showValueAlpha(this.value)"/> </td>
+          <td><sup><small> 1 </small></sup></td>
+          <td></td>
         </tr>
       </table>
       <p>
-        <img class="imgFig600400" src="../Figure/Fig100306.svg">
+      <svg id="chart" width="600" height="400" style="border-style:solid;"> </svg> 
+      <p>
+      <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+      </button> 
+      &nbsp;
+      <button type="button" id="ranksumBtn" >
+	<span class="tooltiptext" data-msgid="DistributionTable">Show Table</span>
+      </button>
+      &nbsp;
+      <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button>
+      <p>
+      <div> 
+        <div id="screenTable">
+          <div id="loc">
+          </div>
+        </div>
+      </div>
+      <p>
         <div class="figText">&lt;Figure 10.3.6&gt; Kruskal-Wallis test</div>
       <p>
       <div class="textL20">
@@ -634,9 +747,487 @@
         <img class="imgFig600400" src="../Figure/Fig100307.png">
         <div class="figText">&lt;Figure 10.3.7&gt; Result of the Kruskal-Wallis test</div>
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
+    <!---   ************ script for Kruskal Test ************  ---->
+<script>
+      setLanguage('en');
+      var bar = d3.select("#chart");
+      var svgWidth, svgHeight, svgWidth2, svgHeight2, margin, graphWidth, graphHeight; 
+      var margin = {top: 90, bottom: 90, left: 100, right: 120};
+      svgWidth   = 600;
+      svgHeight  = 400;
+      svgWidth2  = svgWidth;
+      svgHeight2 = svgHeight;
+      graphWidth  = svgWidth - margin.left - margin.right;
+      graphHeight = svgHeight - margin.top - margin.bottom;   
 
+      var i,j,k,sum, temp, tempi, checkData;
+      var ngroup, tobs, nvalue, T, H;
+      var hypoType, h1Type, df, info, f, g, h, pvalue, stat;
+      var nobs      = new Array(5);
+      var ranksum   = new Array(5);
+      var R         = new Array(20);  
+      hypoType  = 98;  // 크루스칼검정
+      h1Type    = 2;   // 우측검정
+
+      var maxCell   = 1000  // H distribution 값의 최대수 
+      var dataValue = new Array(maxCell);
+      var dvalueP   = new Array(maxCell);
+      for (i=0; i<maxCell; i++) {
+        dataValue[i] = 0;
+        dvalueP[i]   = 0;
+      }
+      var w = [];
+      var x = [];
+      var y = [];
+      var u = []
+      var checkExecute = false;
+      document.getElementById("alpha2").disabled = true;  
+      document.getElementById("nn71").disabled   = true;
+      document.getElementById("nn72").disabled   = true;
+      document.getElementById("nn73").disabled   = true;
+      document.getElementById("nn74").disabled   = true;
+      document.getElementById("xbar71").disabled = true;
+      document.getElementById("xbar72").disabled = true;
+      document.getElementById("xbar73").disabled = true;
+      document.getElementById("xbar74").disabled = true;
+      document.getElementById("kgroup").disabled = true;
+      document.getElementById("statH").disabled  = true;
+
+      // input data control ===================================================
+      d3.select("#data1").on("input", function() {
+        stat = simplestat("#data1");  
+        w = data;
+        if (document.getElementById("data1").value == "") nobs[1] = 0;
+        else nobs[1] = w.length;
+        document.getElementById("nn71").value   = nobs[1];    
+        updateData(); 
+      });
+      d3.select("#data2").on("input", function() {
+        stat = simplestat("#data2");  
+        x = data; 
+        if (document.getElementById("data2").value == "") nobs[2] = 0;
+        else nobs[2] = x.length;
+        document.getElementById("nn72").value   = nobs[2];    
+        updateData(); 
+      });
+      d3.select("#data3").on("input", function() {
+        stat = simplestat("#data3");  
+        y = data;
+        if (document.getElementById("data3").value == "") nobs[3] = 0;
+        else nobs[3] = y.length;
+        document.getElementById("nn73").value   = nobs[3];   
+        updateData(); 
+      });
+      d3.select("#data4").on("input", function() {
+        stat = simplestat("#data4");  
+        u = data;
+        if (document.getElementById("data4").value == "") nobs[4] = 0;
+        else nobs[4] = u.length;
+        document.getElementById("nn74").value   = nobs[4];    
+        updateData(); 
+      });
+
+      function updateData() {
+        document.getElementById("xbar71").value = "";
+        document.getElementById("xbar72").value = "";
+        document.getElementById("xbar73").value = "";
+        document.getElementById("xbar74").value = "";
+        document.getElementById("kgroup").value = "";
+        document.getElementById("statH").value  = "";
+      }
+
+      // init example
+      document.getElementById("data1").value = "69,67,65,59";
+      stat = simplestat("#data1");  
+      w = data;
+      nobs[1] = w.length;
+      document.getElementById("nn71").value   = nobs[1];    
+      document.getElementById("data2").value = "56,63,55";
+      stat = simplestat("#data2");  
+      x = data;
+      nobs[2] = x.length;
+      document.getElementById("nn72").value   = nobs[2];    
+      document.getElementById("data3").value = "71,72,70";
+      stat = simplestat("#data3");  
+      y = data;
+      nobs[3] = y.length;
+      document.getElementById("nn73").value   = nobs[3];    
+
+      // erase Data and Graph
+      d3.select("#erase").on("click",function() {
+        bar.selectAll("*").remove();
+        document.getElementById("data1").value  = "";
+        document.getElementById("data2").value  = "";
+        document.getElementById("data3").value  = "";
+        document.getElementById("data4").value  = "";
+        document.getElementById("nn71").value   = "";
+        document.getElementById("nn72").value   = "";
+        document.getElementById("nn73").value   = "";
+        document.getElementById("nn74").value   = "";
+        document.getElementById("xbar71").value = "";
+        document.getElementById("xbar72").value = "";
+        document.getElementById("xbar73").value = "";
+        document.getElementById("xbar74").value = "";
+        document.getElementById("kgroup").value = "";
+        document.getElementById("statH").value  = "";
+      })
+
+    // Testing Hypothesis ===========================================================
+    d3.select("#executeTH4").on("click",function() {
+        checkExecute = true;
+        // alpha
+        alpha = parseFloat(d3.select("#alpha").node().value);
+        if (alpha < 0.001) {
+          alpha = 0.001;
+          document.getElementById("alpha").value = alpha;
+        }
+        else if (alpha > 0.499) {
+          alpha = 0.499;
+          document.getElementById("alpha").value = alpha;
+        }
+        document.getElementById("alpha2").value = alpha;
+        document.getElementById("rangeAlpha").value = alpha*1000;
+ 
+        // check data
+        nobs[1] = w.length;
+        nobs[2] = x.length;
+        nobs[3] = y.length;
+        nobs[4] = u.length;
+        if (nobs[1] == 0 || nobs[2] == 0 || nobs[3] == 0) { // 세 sample 이상 체크
+          alert("Wrong input!  Each n1, n2, n3 should be greater than 0 for Kruskal-Wallis Test");
+          return;
+        }
+        // ngroup 수
+        if (nobs[1] > 0 && nobs[2] > 0 && nobs[3] > 0 && nobs[4] == 0) ngroup = 3
+        else if (nobs[1] > 0 && nobs[2] >0 && nobs[3] > 0 && nobs[4] > 0) ngroup = 4
+        nobs[0] = nobs[1] + nobs[2] + nobs[3] + nobs[4];         
+
+        var z = new Array(nobs[0]);
+        z = w.concat(x);
+        z = z.concat(y);
+        z = z.concat(u);
+        // Calculate rank Sum of each sample
+        T = statRankSum(ngroup, nobs, z, ranksum )
+        document.getElementById("xbar71").value = ranksum[1];
+        document.getElementById("xbar72").value = ranksum[2];
+        document.getElementById("xbar73").value = ranksum[3];
+        if (nobs[4] == 0) document.getElementById("xbar74").value = "";
+        else document.getElementById("xbar74").value = ranksum[4];
+
+        testingKruskal();
+    })
+    // svg Graph Save
+    d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth;
+        var height = svgHeight;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+    });
+
+    // 크루스칼 통계표 버튼 클릭
+    d3.select("#ranksumBtn").on("click",function() {
+      if (nobs[0] < 11) {
+        KruskalDistTable(ngroup, nvalue, nobs, dataValue, dvalueP);
+      }
+      else alert("No Exact Distribution if n > 10")
+    })
+    // save Table
+    d3.select("#saveTable").on("click", function() {
+        head = '<html><head><meta charset="UTF-8"></head><body>';
+        tail = '</body></html>';
+        saveAs(new Blob([head + d3.select("#screenTable").html() + tail]), "eStatULog.html");
+    });
+
+//*******************************************************************
+function swap(arr, i, j) {
+  var temp = arr[i];
+  arr[i] = arr[j];	
+  arr[j] = temp;
+}
+
+function permKruskal(arr, depth, n, k) { 
+  if (depth == k) { // 한번 depth 가 k로 도달하면 사이클이 돌았음. 출력함. 
+    var i,j,sum;
+    for (j=1; j<=ngroup; j++) ranksum[j] = 0;
+    for (i=0; i<n; i++) { 
+      if (ngroup == 3) {
+        if (i<nobs[1]) ranksum[1] += arr[i];
+        else if (i<nobs[1]+nobs[2]) ranksum[2] += arr[i];
+        else ranksum[3] += arr[i];
+      }
+      else {
+        if (i<nobs[1]) ranksum[1] += arr[i];
+        else if (i<nobs[1]+nobs[2]) ranksum[2] += arr[i];
+        else if (i<nobs[1]+nobs[2]+nobs[3]) ranksum[3] += arr[i];
+        else ranksum[4] += arr[i];
+      }
+    }
+
+    // Calculate Kruskal H statitic
+    sum = 0;
+    for (j=1; j<=ngroup; j++) sum += ranksum[j]*ranksum[j]/nobs[j]
+    sum = 12*sum/(nobs[0]*(nobs[0]+1)) - 3*(nobs[0]+1);
+
+    checkDuplicate = false;
+    for (j=0; j<nvalue; j++) {
+        if (sum == dataValue[j]) {
+          dvalueP[j]++;
+          checkDuplicate = true;
+          break;
+        }
+    }
+    if (checkDuplicate == false) {
+        dataValue[nvalue] = sum;
+        dvalueP[nvalue]++;
+// console.log (sum+" "+nvalue+" "+dataValue[nvalue]+" "+dvalueP[nvalue])
+        nvalue++;
+    }
+    tobs++;
+  
+  } 
+  for (var i = depth; i < n; i++) {
+    swap(arr, i, depth); 
+    permKruskal(arr, depth + 1, n, k); 
+    swap(arr, i, depth); 
+  } 
+}
+// draw Kruskal Bar Graph
+function drawKruskalBarGraph(title,sub1,sub2, nvalue, dataValue, dvalueP, ranksum, alpha, h1Type, checkData) {
+         var i, k, sum1, sum2, str, x1, y1, x2, y2;
+         var sum32, loc32, loc;
+         var xmin      = dataValue[0];
+         var xmax      = dataValue[nvalue-1];
+         var ymin      = d3.min(dvalueP);
+         var ymax      = d3.max(dvalueP);
+         var gymin     = ymin;
+         var gymax     = ymax + ymax/5;  
+         var yRatio    = graphHeight / gymax;          // 그래프 영역과 데이터 영역의 비율
+         var betweenbarWidth = graphWidth / nvalue;   // 막대와 막대 사이의 너비
+         var barWidth  = betweenbarWidth * 2 / 3;    // 막대의 너비
+         var barMargin = (betweenbarWidth / 3) / 2; // 왼쪽 마진
+
+         // draw title
+         x1 = margin.left + graphWidth/2;
+         y1 = margin.top/2;
+         bar.append("text").attr("x",x1).attr("y",y1).text(title)
+            .style("font-family","sans-serif").style("font-size","12pt").style("stroke","black").style("text-anchor","middle")         
+         bar.append("text").attr("x",x1).attr("y",y1+15).text(sub1)
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","black").style("text-anchor","middle")
+         bar.append("text").attr("x",x1).attr("y",y1+30).text(sub2)
+            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
+
+         // draw Y and X axis
+         drawBinomialAxis(gymin, gymax);
+         drawBinomialLabel(nvalue, dataValue, betweenbarWidth);
+         // 분포함수 막대그래프
+         for (var k=0; k<nvalue; k++) {
+           bar.append("rect")
+            .style("fill",myColor[0])
+            .attr("height",0)
+            .attr("width",barWidth)
+            .attr("x", margin.left +barMargin + k*betweenbarWidth)
+            .attr("y",svgHeight - margin.bottom)
+            .transition()                           // 애니매이션 효과 지정
+            .delay(function(d,i) {return i*100;})   // 0.5초마다 그리도록 대기시간 설정
+            .duration(1000)                         // 2초동안 애니매이션이 진행되도록 설정
+            .attr("y", svgHeight - margin.bottom - dvalueP[k]*yRatio)
+            .attr("height", dvalueP[k]*yRatio)
+         }
+         if (checkData == false) return; 
+         // 표본통계량 위치 표시
+         sum1 = 0;
+         sum2 = 0;
+         for (i=0; i<nvalue; i++) {
+           if (dataValue[i] < ranksum) sum1 += dvalueP[i];
+           else if (Math.abs(dataValue[i] - ranksum) < 0.001 ) {
+             loc = i;
+             sum1 += dvalueP[i]; 
+             break;
+           }
+           else {
+             loc = i - 0.5;
+             break;
+           }
+         }
+         for (i=0; i<nvalue; i++) {
+           if (dataValue[i] == ranksum) {
+             sum2 += dvalueP[i];
+           }
+           else if (dataValue[i] > ranksum)  sum2 += dvalueP[i];
+         }
+         if (dataValue[nvalue-1] < ranksum) loc = nvalue-1;
+         x1 = margin.left +barMargin + loc*betweenbarWidth + barWidth/2;
+         x2 = x1;
+         y1 = margin.top + 20;
+         y2 = margin.top + graphHeight + 45;
+         bar.append("line").style("stroke","green").style("stroke-width","2px")
+            .attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+         str = "H = "+f3(ranksum);
+         bar.append("text").attr("x", x2).attr("y", y2+15).text(str)
+            .style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
+         str = "P(X \u2264 H) = "+f4(sum1);
+         bar.append("text").attr("x", x2-5).attr("y", y2+30).text(str)
+            .style("font-size","9pt").style("stroke","green").style("text-anchor","end")
+         str = "P(X \u2265 H) = "+f4(sum2);
+         bar.append("text").attr("x", x2+5).attr("y", y2+30).text(str)
+            .style("font-size","9pt").style("stroke","green").style("text-anchor","start")
+
+         // 기준선 표시            
+         sum32 = 0;
+         for (i=nvalue-1; i>=0; i--) {
+           sum32 += dvalueP[i];
+           if (sum32 > alpha) {loc32 = i; break;}
+         } 
+         y1 = margin.top + graphHeight/2 + 20;
+         y2 = margin.top + graphHeight + 30 ;
+         x1 = margin.left + barMargin + loc32*betweenbarWidth + barWidth/2;
+         x2 = x1;
+         bar.append("line").style("stroke","red").style("stroke-width","1px")
+            .attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+         bar.append("text").attr("x", x2).attr("y", y2+15).text(f3(dataValue[loc32]))
+            .style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+         bar.append("text").attr("x", x2+5).attr("y", y1+25).text(f4(sum32))
+            .style("font-size","9pt").style("stroke","red").style("text-anchor","start")
+
+}
+
+// 윌콕슨분포표
+function KruskalDistTable(ngroup, nvalue, nobs, dataValue, dvalueP) {
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+
+        var row, header;
+        var i, j, sum;
+        var nrow = 0;
+        var ncol = 4;
+        var cell = new Array(4);
+
+         table.style.fontSize = "13px";
+    
+          row = table.insertRow(nrow);
+          row.style.height ="30px";
+          for (j=0; j<2; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = "<h3>"+svgStrU[64][langNum]+"</h3>";
+          cell[1].innerHTML = "k = "+ngroup;
+
+          row  = table.insertRow(++nrow);
+          row.style.height ="30px";
+          for (j=0; j<ngroup; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
+          }
+          cell[0].innerHTML = "n<sub>1</sub> = "+nobs[1];
+          cell[1].innerHTML = "n<sub>2</sub> = "+nobs[2];
+          cell[2].innerHTML = "n<sub>3</sub> = "+nobs[3];
+          if (ngroup == 4) {
+            cell[3].innerHTML = "n<sub>4</sub> = "+nobs[4];
+          }
+
+          row  = table.insertRow(++nrow);
+          row.style.height ="30px";
+          for (j=0; j<ncol; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.backgroundColor = "#eee";
+            cell[j].style.textAlign = "center";
+            cell[j].style.border = "1px solid black";
+          }
+          for (j=0; j<ncol; j++) {
+            cell[j].style.width ="80px";
+          }
+          cell[0].innerHTML = "x";
+          cell[1].innerHTML = "P(X = x)";
+          cell[2].innerHTML = "P(X &leq; x)";
+          cell[3].innerHTML = "P(X &geq; x)";
+          sum = 0;
+          for (i=0; i<nvalue; i++) {
+            row = table.insertRow(++nrow);
+            for (j=0; j<ncol; j++) {
+              cell[j] = row.insertCell(j)          
+              cell[j].style.textAlign = "center";
+              cell[j].style.border = "1px solid black";
+            }
+            cell[0].style.backgroundColor = "#eee";
+            cell[0].innerHTML = f3(dataValue[i]);
+            cell[1].innerHTML = f4(dvalueP[i]);
+            sum += dvalueP[i];
+            cell[2].innerHTML = f4(sum);
+            cell[3].innerHTML = f4(1 - sum + dvalueP[i]);
+          }
+}
+// testing kruskal-Wallis
+function testingKruskal() {
+      bar.selectAll("*").remove();
+      // Calculate Kruskal H statitic
+      sum = 0;
+      for (j=1; j<=ngroup; j++) sum += ranksum[j]*ranksum[j]/nobs[j]
+      sum = 12*sum/(nobs[0]*(nobs[0]+1)) - 3*(nobs[0]+1);
+      H = sum / (1 - T/(nobs[0]*nobs[0]*nobs[0] - nobs[0]) )
+      document.getElementById("kgroup").value = f0(ngroup); 
+      document.getElementById("statH").value = f3(H); 
+
+      // check n <= 10 for exact distribution
+      if (nobs[0] < 11) {      // KruskalDistribution
+        tobs = 0;
+        nvalue = 0;
+        for (i=0; i<nobs[0]; i++) R[i] = i+1;
+        // All possible permutation and H statistics
+        permKruskal(R, 0, nobs[0], nobs[0]) ;  
+        // Sorting and indexing data in ascending order
+        for (i=0; i<nvalue-1; i++) {
+          for (j=i; j<nvalue; j++) {
+            if(dataValue[i] > dataValue[j]) {
+                temp         = dataValue[i];  tempi      = dvalueP[i];
+                dataValue[i] = dataValue[j];  dvalueP[i] = dvalueP[j];
+                dataValue[j] = temp;          dvalueP[j] = tempi;  
+            }
+          }
+        } 
+        // rank sum의 distribution 계산
+        for (j=0; j<nvalue; j++) {
+          dvalueP[j] = dvalueP[j] / tobs;
+          dataValue[j] = f3(dataValue[j]);
+        }
+
+        // draw graph
+        var title  = svgStrU[65][langNum] ;
+        var sub1 = "H\u2080: M\u2081 = M\u2082 = ... = M\u2096" ;
+        var sub2 = svgStrU[67][langNum];
+        drawKruskalBarGraph(title, sub1, sub2, nvalue, dataValue, dvalueP, H, alpha, h1Type, checkData) 
+      }
+      else {    // chisq-test
+        df = ngroup - 1;
+        h = alpha;  
+        if (df < 10) f = 0;
+        else f = chisq_inv(0.0001, df, info);
+        g = chisq_inv(1-h, df, info);
+        pvalue = 1 - chisq_cdf(sum, df, info)
+        drawChisqGraphTH(hypoType, h1Type, statT, H, df, f, g, h, pvalue);
+      }  
+}
+// alpha sliding bar control for testing hypothesis 
+function showValueAlpha(newValue) {
+        alpha = f3(newValue/1000);
+        document.getElementById("alpha").value   = alpha;
+        document.getElementById("alpha2").value  = alpha;
+        if (checkExecute) testingKruskal();
+} 
+</script>
+
+
+
+
+    <!------------------------------------------------------------------------------------------------->
     <div class="mainTable">
       Let us generalize the Kruskal–Wallis \(H\) test described so far with an example. Denote 
       random samples collected independently from the \(k\) populations (at each level of one factor) 
@@ -677,11 +1268,11 @@
           <td class="tdCenter">\(X_{kn_{k}}\)</td>
         </tr>
         <tr>
-          <td class="tdCenter">Mean \({\overline X}_{1\cdot}\)</td>
-          <td class="tdCenter">Mean \({\overline X}_{2\cdot}\)</td>
+          <td class="tdCenter"><b>Mean</b> \(\small {\overline X}_{1\cdot}\)</td>
+          <td class="tdCenter"><b>Mean</b> \(\small {\overline X}_{2\cdot}\)</td>
           <td class="tdCenter">\(\cdots\)</td>
-          <td class="tdCenter">Mean \({\overline X}_{k\cdot}\)</td>
-          <td class="tdCenter">Total Mean \({\overline X}_{\cdot \cdot}\)</td>
+          <td class="tdCenter"><b>Mean</b> \(\small {\overline X}_{k\cdot}\)</td>
+          <td class="tdCenter"><b>Total Mean</b> \(\small {\overline X}_{\cdot \cdot}\)</td>
         </tr>
       </table>
       <p>
@@ -743,19 +1334,19 @@
           <td class="tdCenter">\(R_{kn_{k}}\)</td>
         </tr>
         <tr>
-          <td class="tdLeft">Sum of ranks</td>
-          <td class="tdCenter">Sum \({R}_{1\cdot}\)</td>
-          <td class="tdCenter">Sum \({R}_{2\cdot}\)</td>
+          <td class="tdLeft"><b>Sum of ranks</b></td>
+          <td class="tdCenter"><b>Sum</b> \({R}_{1\cdot}\)</td>
+          <td class="tdCenter"><b>Sum</b> \({R}_{2\cdot}\)</td>
           <td class="tdCenter">\(\cdots\)</td>
-          <td class="tdCenter">Sum \({R}_{k\cdot}\)</td>
+          <td class="tdCenter"><b>Sum</b> \({R}_{k\cdot}\)</td>
         </tr>
         <tr>
-          <td class="tdLeft">Mean of ranks</td>
-          <td class="tdCenter">Mean \({\overline R}_{1\cdot}\)</td>
-          <td class="tdCenter">Mean \({\overline R}_{2\cdot}\)</td>
+          <td class="tdLeft"><b>Mean of ranks</b></td>
+          <td class="tdCenter"><b>Mean</b> \(\small {\overline R}_{1\cdot}\)</td>
+          <td class="tdCenter"><b>Mean</b> \(\small {\overline R}_{2\cdot}\)</td>
           <td class="tdCenter">\(\cdots\)</td>
-          <td class="tdCenter">Mean \({\overline R}_{k\cdot}\)</td>
-          <td class="tdCenter">Total Mean \({\overline R}_{\cdot \cdot} = \frac{n+1}{2}\)</td>
+          <td class="tdCenter"><b>Mean</b> \(\small {\overline R}_{k\cdot}\)</td>
+          <td class="tdCenter"><b>Total Mean</b> \(\small {\overline R}_{\cdot \cdot} = \frac{n+1}{2}\)</td>
         </tr>
       </table>
     <p>
@@ -763,7 +1354,7 @@
     <div class="mainTable">
       The sum of squares for the one-way analysis of variance studied in Chapter 9 by using the ranking data in 
       Table 10.3.4 are as follows:
-      $$
+      $$\small 
         \begin{align}
           SST  & = \sum_{i=1}^k \sum_{j=1}^{n_i} ( R_{ij} - {\overline R}_{\cdot \cdot} )^2 = \sum_{k=1}^n (k -{\overline R}_{\cdot \cdot} )^2 = n(n+1)(n-1) \\
           SSTr & = \sum_{i=1}^k \sum_{j=1}^{n_i} ( {\overline R}_{i \cdot} - {\overline R}_{\cdot \cdot} )^2 \\
@@ -777,7 +1368,7 @@
       Since \(SST\) is a constant, the statistic for the \(F\)-test is proportional to \(SSTr\). 
       <p>
       The statistic for the Kruskal-Wallis test \(H\) is proportional to \(SSTr\) as follows: 
-      $$
+      $$\small 
         \begin{align}
           H  & = \frac {12}{n(n+1)} \sum_{i=1}^{k} n_{i} ( {\overline {R}}_{i \cdot} - {\overline {R}}_{\cdot \cdot} )^{2} \\
              & = \frac{12}{n(n+1)} \sum_{i=1}^{k} \frac{{R}_{i \cdot}^2}{n_i} - 3(n+1) \\
@@ -789,9 +1380,9 @@
       freedom.
       <p>
       The distribution of the Kruskal-Wallis test statistic \(H\), denoted as \(h(n_1 ,n_2 , ... , n_k )\), 
-      can be obtained by considering all possible cases of ranks {1, 2, ,\(n\)} which is \(n!\). 『eStatU』 
+      can be obtained by considering all possible cases of ranks {\(1, 2, ... ,n\)} which is \(n!\). 『eStatU』 
       provides the table of \(h(n_1 ,n_2 , ... , n_k )\) up to \(n\) = 10. \(h(n_1 ,n_2 , ... , n_k )_&alpha;\)
-      denotes the right end 100\(\times &alpha;\) percentile, but it might not have the exact value of this 
+      denotes the right tail 100\(\times &alpha;\) percentile, but it might not have the exact value of this 
       percentile, because \(h(n_1 ,n_2 , ... , n_k )\) is a discrete distribution. In this case, the middle of 
       two adjacent values of 100\(\times &alpha;\) percentile is often used. The decision rule of the 
       Kruskal-Wallis test is as Table 10.3.5. 
@@ -864,9 +1455,9 @@
             in taste according to the mixing methods at the significance level of 0.05.
             <p>
             <div class="textLeft">Mixing ratio:</div>
-            <div class="textLeft">Method A:	   72   88   70   87   71</div>
-            <div class="textLeft">Method B:	   85   89   86   82   90</div>
-            <div class="textLeft">Method C:	   94   94   88   87   89</div>
+            <div class="textLeft">Method A: &nbsp;&nbsp;&nbsp;   72   88   70   87   71</div>
+            <div class="textLeft">Method B: &nbsp;&nbsp;&nbsp;   85   89   86   82   90</div>
+            <div class="textLeft">Method C: &nbsp;&nbsp;&nbsp;   94   94   88   87   89</div>
             <div class="textLeft">[Ex] ⇨ eBook ⇨ PR100301_ScoreByMixingMethod.csv</div>
           </td>
         </tr>

@@ -51,7 +51,12 @@
 	 </script>
        <link rel="stylesheet" href="../../css/pandoc.css">
        <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="../../../eStat/js/language.js" ></script>   
+       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
+       <script src="../../../eStat/js/eStatU.js"></script>
+       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
+       <script src="../../../eStat/lib/convertSVG.js"></script>
 </head>
 <body>
 
@@ -321,10 +326,11 @@
        
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
-      <b>Example 9.1.1</b>
-      In order to compare the English proficiency of each grade at a university, samples were randomly selected from 
-      each grade to take the same English test, and data are as in Table 9.1.1. The last row is a calculation of 
-      the average \({\overline y}_{1\cdot}\), \({\overline y}_{2\cdot}\), \({\overline y}_{3\cdot}\), \({\overline y}_{4\cdot}\) for each grade.
+      <p>
+         <b>Example 9.1.1</b>
+         In order to compare the English proficiency of each grade at a university, samples were randomly selected from 
+         each grade to take the same English test, and data are as in Table 9.1.1. The last row is a calculation of 
+         the average \({\overline y}_{1\cdot}\), \({\overline y}_{2\cdot}\), \({\overline y}_{3\cdot}\), \({\overline y}_{4\cdot}\) for each grade.
       <p>
         <div class="textLeft">Table 9.1.1  English Proficiency Score by Grade</div>
       <p>
@@ -383,7 +389,7 @@
       <p class="textLeft">[Ex] ⇨ eBook ⇨ EX090101_EnglishScoreByGrade.csv. 
       <p>
       <div class="textL20M20">
-        1) Using 『eStat』 , draw a dot graph of test scores for each grade and compare their averages.
+        1) Using 『eStat』, draw a dot graph of test scores for each grade and compare their averages.
       </div>
       <div class="textL20M20">
         2) We want to test a hypothesis whether average scores of each grade are the same or not. Set up a null 
@@ -405,7 +411,7 @@
         <br> 
            In order to draw a dot graph with data shown in Table 9.1.1 using  『eStat』 , enter data on the sheet 
            and set variable names to 'Grade' and 'Score' as shown in &lt;Figure 9.1.1&gt;. In the variable selection box 
-           which appears by clicking the ANOVA icon  on the main menu of 『eStat』 , select 'Analysis Var' as ‘Score’ 
+           which appears by clicking the ANOVA icon  on the main menu of 『eStat』, select 'Analysis Var' as ‘Score’ 
           and 'By Group' as ‘Grade’. The dot graph of English scores by each grade and the 95% confidence interval are displayed as shown in &lt;Figure 9.1.2&gt;.
       </div>
       <p>
@@ -438,19 +444,21 @@
         <div class="textL20">
           &lt;Figure 9.1.2&gt; shows sample means as \({\overline y}_{1\cdot}\)= 78.3,
           \({\overline y}_{2\cdot}\) = 74.5, \({\overline y}_{3\cdot}\) = 71.4,
-          \({\overline y}_{1\cdot}\) = 87.5. The sample mean of the 4th grader is 
+          \({\overline y}_{4\cdot}\) = 87.5. The sample mean of the 4th grader is 
           relatively large and the order of the sample means in English is 
           \({\overline y}_{3\cdot} \lt {\overline y}_{2\cdot} \lt {\overline y}_{1\cdot} \lt {\overline y}_{4\cdot} \).
           \({\overline y}_{2\cdot}\) and \({\overline y}_{3\cdot}\) are similar, but \({\overline y}_{4\cdot}\)  is 
-          much greater than the other three. Therefore, it can be expected that the population mean 
-          \(\mu_{2}\) and \(\mu_{3}\) would be the same and  \(\mu_{4}\) will differ from three other population means. However, we need to test whether this difference by sample 
-          means is statistically significant.
+          much greater than the other three means. Therefore, it can be expected that the population mean 
+          \(\mu_{2}\) and \(\mu_{3}\) would be the same and  \(\mu_{4}\) will differ from three other population means. 
+          However, we need to test whether these differences of sample 
+          means are statistically significant.
         </div>
         <p>
       <div class="textL20M20">
         2) In this example, the null hypothesis to test is that population means of English scores of the four grades 
            are all the same, and the alternative hypothesis is that population means of the English scores are not the same. 
-           In other words, if  are the population means of English scores for each grade, the hypothesis to test can be written as follows, 
+           In other words, if  \(\mu_1 , \mu_2 , \mu_3 ,\) and \(\mu_4\) are the population means of English scores 
+           for each grade, the hypothesis to test can be written as follows, 
         <p>
         <div class="textL30">
           Null hypothesis \(\small \qquad \qquad \; H_0\): \(\mu_1 = \mu_2 = \mu_3 = \mu_4\) 
@@ -463,8 +471,8 @@
       <div class="textL20M20">
         3) A measure that can be considered first as a basis for testing differences in multiple sample means would be 
            the distance from each mean to the overall mean. In other words, if the overall sample mean for all 21 students 
-           is expressed as \(\overline y_{\cdot \cdot}\), the distance from each sample mean to the overall mean is as follows when the number of samples 
-           in each grade is weighted. This distance is called the between sum of squares (SSB) or the treatment sum of squares (SSTr). 
+           is expressed as \(\overline y_{\cdot \cdot}\), the squared distance from each sample mean to the overall mean is as follows when the number of samples 
+           in each grade is weighted. This squared distance is called the between sum of squares (SSB) or the treatment sum of squares (SSTr). 
         <p>
         <div class="textL30">
           \(\small SSTr = 6(78.3 - {\overline y}_{\cdot \cdot})^2 + 6(74.5 - {\overline y}_{\cdot \cdot})^2 + 5(71.4 - {\overline y}_{\cdot \cdot})^2 + 4(87.5 - {\overline y}_{\cdot \cdot})^2  \) = 643.633
@@ -472,11 +480,11 @@
       </div>
       <p>
       <div class="textL20">
-           If the distance \(\small SSTr\) is close to zero, all sample means of English scores for four grades are similar.
+           If the squared distance \(\small SSTr\) is close to zero, all sample means of English scores for four grades are similar.
         <p>     
            However, this treatment sum of squares can be larger if the number of populations increases. 
            It requires modification to become a test statistic to determine whether several population means are equal. 
-           The distance from each observation to its sample mean of the grade is called the within sum of squares (SSW) or 
+           The squared distance from each observation to its sample mean of the grade is called the within sum of squares (SSW) or 
            the error sum of squares (SSE) as defined below.
         <p>
         <div class="textL30">
@@ -484,11 +492,11 @@
            \(\small \qquad + (65 -{\overline y}_{2 \cdot})^2 + (80 -{\overline y}_{2 \cdot})^2 + \cdots + (69 -{\overline y}_{2 \cdot})^2\) <br>   
            \(\small \qquad + (72 -{\overline y}_{3 \cdot})^2 + (67 -{\overline y}_{3 \cdot})^2 + \cdots + (80 -{\overline y}_{3 \cdot})^2\) <br>
            \(\small \qquad + (89 -{\overline y}_{4 \cdot})^2 + (94 -{\overline y}_{4 \cdot})^2 + \cdots + (88 -{\overline y}_{4 \cdot})^2\) <br>  
-           =  839.033
+           \(\small =  839.033\)
         </div>
         <p>
            If population distributions of English scores in each grade follow normal distributions and their variances are 
-           the same, the following test statistic has the  distribution.
+           the same, the following test statistic has the \(F_{3, 17}\) distribution.
         <div class="textL30">
           \(\small  F_{0} = \frac { \frac{SSTr}{(4-1)} } { \frac{SSE}{(21-4)} } \)
         </div>
@@ -522,16 +530,16 @@
                 </tr>
                 <tr> 
                   <td class="tdCenter">Treatment</td>
-                  <td class="tdCenter">SSTr=643.633</td>
+                  <td class="tdCenter">SSTr = 643.633</td>
                   <td class="tdCenter">4-1</td>
-                  <td class="tdCenter">MSTr=\(\frac{643.633}{3}\)</td>
+                  <td class="tdCenter">MSTr = \(\frac{643.633}{3}\)</td>
                   <td class="tdCenter">\(F_0 = 4.347\)</td>
                 </tr>
                 <tr> 
                   <td class="tdCenter">Error</td>
-                  <td class="tdCenter">SSE= 839.033</td>
+                  <td class="tdCenter">SSE = 839.033</td>
                   <td class="tdCenter">21-4</td>
-                  <td class="tdCenter">MSE=\(\frac{839.033}{17}\)</td>
+                  <td class="tdCenter">MSE = \(\frac{839.033}{17}\)</td>
                   <td class="tdCenter"></td>
                 </tr>
                 <tr> 
@@ -548,7 +556,7 @@
         4) In &lt;Figure 9.1.3&gt;, if you select the significance level of 5%, confidence level of 95%, 
            and click [ANOVA F test] button, a graph showing the location of the test statistic in the F distribution
            is appeared as shown in &lt;Figure 9.1.5&gt;. Also, in the Log Area, the mean and confidence interval tables 
-           and test result for each grade are appeared as in&lt;Figure 9.1.6&gt;.
+           and test result for each grade are appeared as in &lt;Figure 9.1.6&gt;.
       </div>
       <p>
       <div class="textL20">
@@ -558,13 +566,789 @@
           <img class="imgFig600400" src="../Figure/Fig090106.png">
           <div class="figText">&lt;Figure 9.1.6&gt;  『eStat』 Basic Statistics and ANOVA table</div>
         <p><br>
-           The analysis of variance is also possible using 『eStatU』. Entering the data as &lt;Figure 9.1.7&gt; 
+           The analysis of variance is also possible using 『eStatU』. Entering the data as in &lt;Figure 9.1.7&gt; 
            and clicking the [Execute] button will have the same result as in &lt;Figure 9.1.5&gt;.
         <p>
-          <img class="imgFig600400" src="../Figure/Fig090107.png">
-          <div class="figText">&lt;Figure 9.1.7&gt; ANOVA data input at 『eStatU』</div>
       </div> 
+      <p>
+      <!---   ************ html for ANOVA ************  ---->
+      <p>
+      <b>[<span data-msgid="Testing Hypothesis ANOVA">Testing Hypothesis : 3+ Population Means (ANOVA)</span>]</b>
+      <p>
+            <input class="qrBtn" type="image" src="../../QR/eStatU900_TestANOVA.svg" onclick="window.open(addrStr[109])">
+      <p>
+      <button type="button" id="erase" style="width:100px;"><b>New Data</b></button>
+      <p>
+      <table style="width:700px;">
+        <tr>
+	  <td><b><span data-msgid="Hypothesis">Hypothesis</span></b></td>
+	  <td><span class="fontmath">H<sub>o</sub> : &nbsp; &mu;<sub>1</sub> = &mu;<sub>2</sub> = ... = &mu;<sub>k</sub></span>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+	  <td><span class="fontmath">
+                H<sub>1</sub> : 
+                <span data-msgid="At least one pair">At least one pair of population means is not equal</span>
+              </span> 
+          </td>
+        </tr>
+        <tr>
+          <td><b><span data-msgid="Test Type">Test Type</span></b></td>
+          <td><span class="fontmath" data-msgid="F-test">F-test</span> (ANOVA)</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <span data-msgid="Significance Level">Significance Level</span> &nbsp; 
+            <span class="fontmath">&alpha;</span> = 
+            <input type="text" style="text-align:center;" size=4 value="0.05" id="alpha">&nbsp; <span class="fontguide">(0 < &alpha; < 1)</span>
+          </td>
+        </tr>
+        <tr>
+          <td><b><span data-msgid="Sample Data">Sample Data</span></b></td>
+          <td><span class="fontguide" data-msgid="input either sample data">(input either sample data or sample statistics using csv / bsv)</span></td>
+        </tr>
+	<tr>
+	  <td style="text-align:right;"><span data-msgid="Sample">Sample</span> 1</td>
+	  <td><input type="text" size=80 id="data1"></td>
+	</tr>
+	<tr>
+	  <td style="text-align:right;"><span data-msgid="Sample">Sample</span> 2</td>
+	  <td><input type="text" size=80 id="data2"></td>
+	</tr>
+	<tr>
+	  <td style="text-align:right;"><span data-msgid="Sample">Sample</span> 3</td>
+	  <td><input type="text" size=80 id="data3"></td>
+	</tr>
+	<tr>
+	  <td style="text-align:right;"><span data-msgid="Sample">Sample</span> 4</td>
+	  <td><input type="text" size=80 id="data4"></td>
+	</tr>
+      </table>
+      <table style="width:700px;">
+        <tr>
+          <td colspan="5"><b><span data-msgid="Sample Statistics">Sample Statistics</span></b></td>
+        </tr>
+	<tr>  
+          <td></td>
+	  <td><span class="fontmath">&nbsp; n<sub>1</sub> =</span></td>
+	  <td><input type="text" style="text-align:center;" size=5 id="nn71"></td>
+	  <td><span class="fontmath">&nbsp; n<sub>2</sub> =</span></td>
+	  <td><input type="text" style="text-align:center;" size=6 id="nn72"></td>        
+	  <td><span class="fontmath">&nbsp; n<sub>3</sub> =</span></td>
+	  <td><input type="text" style="text-align:center;" size=6 id="nn73"></td>        
+	  <td><span class="fontmath">&nbsp; n<sub>4</sub> =</span></td>
+	  <td><input type="text" style="text-align:center;" size=6 id="nn74"></td>        
+	</tr>
+	<tr>
+          <td></td>
+	  <td><span class="fontmath">&nbsp; x&#772;<sub>1</sub> =</span></td>
+	  <td><input type="text" style="text-align:center;" size=6 id="xbar71"></td>
+	  <td><span class="fontmath">&nbsp; x&#772;<sub>2</sub> =</span></td>	
+	  <td><input type="text" style="text-align:center;" size=6 id="xbar72"></td>
+	  <td><span class="fontmath">&nbsp; x&#772;<sub>3</sub> =</span></td>	
+	  <td><input type="text" style="text-align:center;" size=6 id="xbar73"></td>
+	  <td><span class="fontmath">&nbsp; x&#772;<sub>4</sub> =</span></td>	
+	  <td><input type="text" style="text-align:center;" size=6 id="xbar74"></td>
+	</tr>
+	<tr>
+          <td></td>
+	  <td><span class="fontmath">&nbsp; s<sub>1</sub><sup>2</sup> =</span></td>
+	  <td><input type="text" style="text-align:center;" size=6 id="var71"></td>
+	  <td><span class="fontmath">&nbsp; s<sub>2</sub><sup>2</sup> =</span></td>	
+	  <td><input type="text" style="text-align:center;" size=6 id="var72"></td>
+	  <td><span class="fontmath">&nbsp; s<sub>3</sub><sup>2</sup> =</span></td>	
+	  <td><input type="text" style="text-align:center;" size=6 id="var73"></td>
+	  <td><span class="fontmath">&nbsp; s<sub>4</sub><sup>2</sup> =</span></td>	
+	  <td><input type="text" style="text-align:center;" size=6 id="var74"></td>
+	</tr>
+      </table>
+      <p>
+        <div class="figText">&lt;Figure 9.1.7&gt; ANOVA data input at 『eStatU』</div>
+      <p>
+      <button type="button" id="executeTH7" >
+        <span data-msgid="Execute">Execute</span>
+      </button> 
+      <p>
+      <table style="width:300px;">
+        <tr>
+          <td><span class="fontmath">&alpha; = </span>  
+              <input type="text" style="text-align:center;" size=4 value="0.05" id="alpha2">&nbsp; 
+          </td>
+          <td><sup><small> 0 </small></sup></td>
+          <td><input type="range" min="1" max="999" value="50" id="rangeAlpha" onchange="showValueAlpha(this.value)"></td>
+          <td><sup><small> 1 </small></sup></td>
+        </tr>
+      </table>
+      <svg id="chart" width="600" height="400" style="border-style:solid;"> </svg> 
+      <p>
+      <form action="#" name="myForm123">
+        <button type="button" id="multipleComparison" >
+		  <span data-msgid="MultipleComparison">다중비교</span>
+        </button>
+                <label><input type="radio" name = "type4" value="1" checked> LSD</label>
+                <label><input type="radio" name = "type4" value="2" > 5%HSD</label>
+                <label><input type="radio" name = "type4" value="3" > 1%HSD</label>
+        &nbsp;
+        <button type="button" id="saveGraphU" >
+	  <span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+        </button>
+        &nbsp;
+        <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button>
+      </form>
+      <p>
+      <div> 
+        <div id="screenTable">
+          <div id="loc">
+          </div>
+        </div>
+      </div>
+      
     </div>
+    <!---   ************ script for ANOVA ************  ---->
+<script>
+      setLanguage('en');
+      var bar = d3.select("#chart");
+      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
+      var svgWidth2, svgHeight2, graphWidth2, graphHeight2;
+      svgWidth2   = 600;
+      svgHeight2  = 400;
+
+      var nobs, gxmin, gxmax, gymin, gymax;
+      var title;
+      var i, df1, df2, info, alpha, pvalue, b, c, d, e, f, g, h;
+      var ntot, mtot, ssb, ssw, msb, msw, temp; 
+      var nn7   = new Array(4);
+      var xbar7 = new Array(4);
+      var var7  = new Array(4);
+      var stat  = new Array(9);
+      var tdata = new Array(4);
+      var indexA= new Array(4);
+      var hypoType = 7;
+      var h1Type   = 2;
+      var checkExecute = false;
+      document.getElementById("alpha2").disabled = true;  
+
+     // input data control ===================================================
+      d3.select("#data1").on("input", function() {
+        stat = simplestat("#data1");  
+        document.getElementById("nn71").value   = stat.n;    
+        document.getElementById("xbar71").value = f2(stat.xbar);
+        document.getElementById("var71").value  = f2(stat.var);    
+      });
+      d3.select("#data2").on("input", function() {
+        stat = simplestat("#data2");   
+        document.getElementById("nn72").value   = stat.n;    
+        document.getElementById("xbar72").value = f2(stat.xbar);
+        document.getElementById("var72").value  = f2(stat.var);    
+      });
+      d3.select("#data3").on("input", function() {
+        stat = simplestat("#data3");   
+        document.getElementById("nn73").value   = stat.n;    
+        document.getElementById("xbar73").value = f2(stat.xbar);
+        document.getElementById("var73").value  = f2(stat.var);    
+      });
+      d3.select("#data4").on("input", function() {
+        stat = simplestat("#data4");   
+        document.getElementById("nn74").value   = stat.n;    
+        document.getElementById("xbar74").value = f2(stat.xbar);
+        document.getElementById("var74").value  = f2(stat.var);    
+      });
+
+      updateData = function() {
+        document.getElementById("data1").value = '';
+        document.getElementById("data2").value = '';  
+        document.getElementById("data3").value = '';    
+        document.getElementById("data4").value = '';      
+      }
+
+      d3.select("#nn71").on("input", updateData);
+      d3.select("#nn72").on("input", updateData);
+      d3.select("#nn73").on("input", updateData);
+      d3.select("#nn74").on("input", updateData);
+      d3.select("#xbar71").on("input", updateData);
+      d3.select("#xbar72").on("input", updateData);
+      d3.select("#xbar73").on("input", updateData)
+      d3.select("#xbar74").on("input", updateData)
+      d3.select("#var71").on("input", updateData);
+      d3.select("#var72").on("input", updateData);
+      d3.select("#var73").on("input", updateData);
+      d3.select("#var74").on("input", updateData);
+
+      // init example
+      document.getElementById("data1").value = "81,75,69,90,72,83";
+        stat = simplestat("#data1");  
+        document.getElementById("nn71").value   = stat.n;    
+        document.getElementById("xbar71").value = f2(stat.xbar);
+        document.getElementById("var71").value  = f2(stat.var);    
+      document.getElementById("data2").value = "65,80,73,79,81,69";
+        stat = simplestat("#data2");  
+        document.getElementById("nn72").value   = stat.n;    
+        document.getElementById("xbar72").value = f2(stat.xbar);
+        document.getElementById("var72").value  = f2(stat.var);    
+      document.getElementById("data3").value = "72,67,62,76,80";
+        stat = simplestat("#data3");  
+        document.getElementById("nn73").value   = stat.n;    
+        document.getElementById("xbar73").value = f2(stat.xbar);
+        document.getElementById("var73").value  = f2(stat.var);    
+      document.getElementById("data4").value = "89,94,79,88";
+        stat = simplestat("#data4");  
+        document.getElementById("nn74").value   = stat.n;    
+        document.getElementById("xbar74").value = f2(stat.xbar);
+        document.getElementById("var74").value  = f2(stat.var);    
+
+      // erase Data and Graph
+      d3.select("#erase").on("click",function() {
+        bar.selectAll("*").remove();
+        document.getElementById("data1").value  = "";
+        document.getElementById("data2").value  = "";
+        document.getElementById("data3").value  = "";
+        document.getElementById("data4").value  = "";
+        document.getElementById("nn71").value     = "";
+        document.getElementById("nn72").value     = "";
+        document.getElementById("nn73").value     = "";
+        document.getElementById("nn74").value     = "";
+        document.getElementById("xbar71").value   = "";
+        document.getElementById("xbar72").value   = "";
+        document.getElementById("xbar73").value   = "";
+        document.getElementById("xbar74").value   = "";
+        document.getElementById("var71").value  = "";
+        document.getElementById("var72").value  = "";
+        document.getElementById("var73").value  = "";
+        document.getElementById("var74").value  = "";
+      })
+
+      // Testing Hypothesis ===========================================================
+      d3.select("#executeTH7").on("click",function() {
+        checkExecute = true;
+        // alpha
+        alpha = parseFloat(d3.select("#alpha").node().value);
+        if (alpha < 0.001) {
+          alpha = 0.001;
+          document.getElementById("alpha").value = alpha;
+        }
+        else if (alpha > 0.999) {
+          alpha = 0.999;
+          document.getElementById("alpha").value = alpha;
+        }
+        document.getElementById("alpha2").value = alpha;
+        document.getElementById("rangeAlpha").value = alpha*1000;
+
+        // input value
+        stat = simplestat("#data1");
+        if (stat.n > 0) {
+          nn7[0]    = stat.n;
+          xbar7[0]  = stat.xbar;
+          var7[0]   = stat.var;
+        }
+        else {
+          nn7[0]   = parseFloat(d3.select("#nn71").node().value);
+          xbar7[0] = parseFloat(d3.select("#xbar71").node().value);
+          var7[0]  = parseFloat(d3.select("#var71").node().value);
+        }
+        stat = simplestat("#data2");
+        if (stat.n > 0) {
+          nn7[1]    = stat.n;
+          xbar7[1]  = stat.xbar;
+          var7[1]   = stat.var;
+        }
+        else {
+          nn7[1]   = parseFloat(d3.select("#nn72").node().value);
+          xbar7[1] = parseFloat(d3.select("#xbar72").node().value);
+          var7[1]  = parseFloat(d3.select("#var72").node().value);
+        }
+        stat = simplestat("#data3");
+        if (stat.n > 0) {
+          nn7[2]    = stat.n;
+          xbar7[2]  = stat.xbar;
+          var7[2]   = stat.var;
+        }
+        else {
+          nn7[2]   = parseFloat(d3.select("#nn73").node().value);
+          xbar7[2] = parseFloat(d3.select("#xbar73").node().value);
+          var7[2]  = parseFloat(d3.select("#var73").node().value);
+        }
+        stat = simplestat("#data4");
+        if (stat.n > 0) {
+          nn7[3]    = stat.n;
+          xbar7[3]  = stat.xbar;
+          var7[3]   = stat.var;
+        }
+        else {
+          nn7[3]   = parseFloat(d3.select("#nn74").node().value);
+          xbar7[3] = parseFloat(d3.select("#xbar74").node().value);
+          var7[3]  = parseFloat(d3.select("#var74").node().value);
+        }
+
+        // determine number of populations kk7
+        kk7 = 0;
+        if ( !isNaN(nn7[0]) && isNaN(nn7[1]) && isNaN(nn7[2]) && isNaN(nn7[3]) ) kk7 = 1;
+        else if ( !isNaN(nn7[0]) && !isNaN(nn7[1]) &&  isNaN(nn7[2]) &&  isNaN(nn7[3]) ) kk7 = 2;
+        else if ( !isNaN(nn7[0]) && !isNaN(nn7[1]) && !isNaN(nn7[2]) &&  isNaN(nn7[3]) ) kk7 = 3;
+        else if ( !isNaN(nn7[0]) && !isNaN(nn7[1]) && !isNaN(nn7[2]) && !isNaN(nn7[3]) ) kk7 = 4;
+
+        if (kk7 < 2 || kk7 > 4) {  // wrong input k
+          bar.append("text").attr("class","mean").attr("x", 150).attr("y", 100)
+             .text("No input or wrong input of k !!   Try again.").style("stroke","red");
+          return;
+        }
+        else if (kk7 == 2  && ( isNaN(nn7[0]) || isNaN(nn7[1]) ||
+             isNaN(xbar7[0])  || isNaN(xbar7[1])  ||
+             isNaN(var7[0]) || isNaN(var7[1]) ||  
+             nn7[0] < 2     || nn7[1] < 2     || 
+             var7[0] <= 0   || var7[1] <= 0 ) ) {  // wrong input when k = 2
+          bar.append("text").attr("class","mean").attr("x", 150).attr("y", 100)
+             .text("No input or wrong input !!   Try again.").style("stroke","red")
+          return;
+        }
+        else if (kk7 == 3   && ( isNaN(nn7[0])  || isNaN(nn7[1])  || isNaN(nn7[2]) ||
+             isNaN(xbar7[0])  || isNaN(xbar7[1])  || isNaN(xbar7[2])  ||
+             isNaN(var7[0]) || isNaN(var7[1]) || isNaN(var7[2]) ||
+             nn7[0] < 2     || nn7[1] < 2     || nn7[2] < 2     ||
+             var7[0] <= 0   || var7[1] <= 0   || var7[2] <= 0 ) ) {  // wrong input when k = 3
+          bar.append("text").attr("class","mean").attr("x", 150).attr("y", 100)
+             .text("No input or wrong input !!   Try again.").style("stroke","red")
+          return;
+        }
+        else if (kk7 == 4   && ( isNaN(nn7[0])  || isNaN(nn7[1])  || isNaN(nn7[2]) || isNaN(nn7[3]) &&
+             isNaN(xbar7[0])  || isNaN(xbar7[1])  || isNaN(xbar7[2])  || isNaN(xbar7[3]) ||
+             isNaN(var7[0]) || isNaN(var7[1]) || isNaN(var7[2]) || isNaN(var7[3])||
+             nn7[0] < 2     || nn7[1] < 2     || nn7[2] < 2     || nn7[3] < 2    ||
+             var7[0] <= 0   || var7[1] <= 0   || var7[2] <= 0   || var7[3] <= 0 ) ) {  // wrong input when k = 4
+          bar.append("text").attr("class","mean").attr("x", 150).attr("y", 100)
+             .text("No input or wrong input !!   Try again.").style("stroke","red")
+          return;
+        }
+        testingANOVA();
+        // 1원분산분석표 그리기
+        AnovaTable();
+//        document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
+      })
+
+      // Multiple Comparison ===========================================================
+      d3.select("#multipleComparison").on("click",function() {
+        // LSDd=1 or HSD5%=2 or HSD1%=3
+        if (document.myForm123.type4.value == "1") comparison = 1;
+        else if (document.myForm123.type4.value == "2") comparison = 2;
+        else comparison = 3;
+        // 1원분산분석표 그리기
+        if (comparison == 1) multipleComparisonTableLSD(kk7, ntot, nn7, xbar7);
+        else if (comparison == 2) {alpha=0.05; multipleComparisonTableHSD(kk7, ntot, nn7, xbar7);}
+        else {alpha=0.01; multipleComparisonTableHSD(kk7, ntot, nn7, xbar7)};
+//        document.getElementById("screenTable").scrollBy(0,screenTablePixelHeight);
+      })
+
+      // svg Graph Save
+      d3.select("#saveGraphU").on("click", function() {
+        var svg = d3.select("#chart");
+        var width = svgWidth2;
+        var height = svgHeight2;
+        var svgString = getSVGString(svg.node());
+        svgString2Image(svgString, width, height, 'png', save);
+        function save(dataBlob, filesize) {
+          saveAs(dataBlob, 'eStatGraphU.png');
+        }
+      });
+
+      // save Table
+      d3.select("#saveTable").on("click", function() {
+        head = '<html><head><meta charset="UTF-8"></head><body>';
+        tail = '</body></html>';
+        saveAs(new Blob([head + d3.select("#screenTable").html() + tail]), "eStatULog.html");
+      });
+// ANOVA
+function testingANOVA() {
+        bar.selectAll("*").remove();
+          // test statistics
+          df1 = kk7 - 1;
+          ntot = 0;
+          ssb  = 0;
+          ssw  = 0;
+          for (i=0; i<kk7; i++) ntot += nn7[i]; 
+          df2  = ntot - kk7;
+
+          // total mean
+          mtot = 0;
+          for (i=0; i<kk7; i++) mtot += nn7[i] * xbar7[i];
+          mtot /= ntot;
+
+          // between & within sum of squares
+          ssb = 0;
+          ssw = 0;
+          for (i=0; i<kk7; i++) {
+            temp = (xbar7[i]-mtot);
+            ssb += nn7[i] * temp*temp;
+            ssw += (nn7[i] - 1) * var7[i];
+          }
+        
+          msb = ssb / df1;
+          msw = ssw / df2;
+
+          stat[0] = msb / msw;
+          stat[1] = ssb;
+          stat[2] = ssw;
+          stat[3] = ssb + ssw;
+          stat[4] = msb;
+          stat[5] = msw;
+
+          h = alpha;  
+          f = 0;
+          g = f_inv(1-h, df1, df2, info);
+          pvalue = 1 - f_cdf(stat[0], df1, df2, info);
+          drawFdistGraphTH(hypoType, h1Type, stat, df1, df2, f, g, h, pvalue);
+}  
+// 분산분석표 --------------------------------------------------------------------------------------------------
+function AnovaTable() {
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+
+    var i, j, temp, info, str;
+    var row;
+    var num = 0;
+    var ncol = 6;
+    var k = 0;
+
+    var cell = new Array(ncol);
+
+    table.style.fontSize = "13px";
+    table.style.cellPadding = "10";
+
+    row = table.insertRow(num);
+    for (j = 0; j < ncol; j++) cell[j] = row.insertCell(j);
+    cell[0].innerHTML = "<h3>" + svgStr[15][langNum] + "</h3>"; // "분산분석표";
+    cell[0].style.textAlign = "center";
+    cell[0].style.backgroundColor = "#eee";
+    cell[0].style.border = "1px solid black";
+    //          row.style.height ="40px";
+    cell[0].style.width = "130px";
+
+    row = table.insertRow(++num);
+    for (j = 0; j < ncol; j++) {
+        cell[j] = row.insertCell(j);
+        cell[j].style.textAlign = "center";
+        cell[j].style.backgroundColor = "#eee";
+        cell[j].style.border = "1px solid black";
+        cell[j].style.width = "80px";
+    }
+    cell[0].innerHTML = svgStr[72][langNum]; // "요인";
+    cell[1].innerHTML = svgStr[73][langNum]; // "제곱합";  
+    cell[2].innerHTML = svgStr[74][langNum]; // "자유도";  
+    cell[3].innerHTML = svgStr[75][langNum]; // "평균제곱";  
+    cell[4].innerHTML = "F " + svgStr[69][langNum]; // "F관찰값";   
+    cell[5].innerHTML = "p " + svgStr[69][langNum]; // "p-값 =";    
+
+    row = table.insertRow(++num);
+    for (j = 0; j < ncol; j++) {
+        cell[j] = row.insertCell(j);
+        cell[j].style.textAlign = "right";
+        cell[j].style.border = "1px solid black";
+    }
+    cell[0].style.backgroundColor = "#eee";
+    cell[0].style.textAlign = "center";
+    cell[0].innerHTML = svgStr[102][langNum]; // "처리";
+    cell[1].innerHTML = f3(ssb).toString();
+    cell[2].innerHTML = f0(df1).toString();
+    cell[3].innerHTML = f3(msb).toString();
+    cell[4].innerHTML = f3(stat[0]).toString();
+    if (pvalue < 0.0001) str = " < 0.0001";
+    else str = f4(pvalue).toString();
+    cell[5].innerHTML = str;
+
+    row = table.insertRow(++num);
+    for (j = 0; j < ncol; j++) {
+        cell[j] = row.insertCell(j);
+        cell[j].style.textAlign = "right";
+        cell[j].style.border = "1px solid black";
+    }
+    cell[0].style.backgroundColor = "#eee";
+    cell[0].style.textAlign = "center";
+    cell[0].innerHTML = svgStr[77][langNum]; // "오차";
+    cell[1].innerHTML = f3(ssw).toString();
+    cell[2].innerHTML = f0(df2).toString();
+    cell[3].innerHTML = f3(msw).toString();
+
+    row = table.insertRow(++num);
+    for (j = 0; j < ncol; j++) {
+        cell[j] = row.insertCell(j);
+        cell[j].style.border = "1px solid black";
+        cell[j].style.textAlign = "right";
+        cell[j].style.backgroundColor = "#eee";
+    }
+    cell[0].style.textAlign = "center";
+    cell[0].innerHTML = svgStr[78][langNum]; // "전체";
+    cell[1].innerHTML = f3(stat[3]).toString();
+    cell[2].innerHTML = f0(ntot-1).toString();
+
+    // 다음 표와의 공백을 위한 것
+    row = table.insertRow(++num);
+    row.style.height = "20px";
+
+}
+// HSD 다중비교표 --------------------------------------------------------------------------------------------------
+function multipleComparisonTableHSD(ngroup, ntot, nobs, avg) {
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+
+    var g, k, row, nrow, str, temp, info, avgDiff, HSD95, HSD99;
+    var ncol = 10;
+    var cell = new Array(ncol);
+    nrow = 0;
+    table.style.fontSize = "13px";
+
+    var header = table.createTHead()
+    row = table.insertRow(nrow);
+    row.style.height = "40px";
+    cell[0] = row.insertCell(0);
+    cell[0].style.width = "130px";
+    cell[0].style.textAlign = "center";
+    cell[0].style.backgroundColor = "#eee";
+    cell[0].style.border = "1px solid black";
+    cell[0].innerHTML = "<b>" + svgStr[90][langNum] + "</b>"; // "다중비교"
+
+    row = table.insertRow(++nrow);
+    row.style.height = "40px";
+    for (g = 0; g < ngroup + 1; g++) {
+        cell[g] = row.insertCell(g);
+        cell[g].style.border = "1px solid black";
+        cell[g].style.backgroundColor = "#eee";
+    }
+    if (ngroup > 1) {
+       if (alpha == 0.05) str = "(5%HSD)";
+       else str = "(1%HSD)";
+       cell[0].style.textAlign = "center";
+       cell[0].innerHTML = "| "+svgStr[100][langNum] + " |<br> " + str; // "평균차"
+    }
+    else cell[0].innerHTML = svgStr[21][langNum];
+    for (g = 1; g < ngroup + 1; g++) {
+        str = "";
+        if (ngroup > 1) str = svgStrU[34][langNum] + (g).toString() + "<br>" + f3(avg[g - 1]);
+        cell[g].innerHTML = str;
+        cell[g].style.textAlign = "center";
+    }
+    // 다중비교 - 평균차, HSD
+    for (g = 0; g < ngroup; g++) {
+        row = table.insertRow(++nrow);
+        for (j = 0; j < ngroup + 1; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.border = "1px solid black";
+        }
+        str = "";
+        if (ngroup > 1) str = svgStrU[34][langNum] + (g + 1).toString() + "<br>" + f3(avg[g]);
+        cell[0].innerHTML = str;
+        cell[0].style.backgroundColor = "#eee";
+        cell[0].style.textAlign = "center";
+        for (k = 0; k < ngroup; k++) {
+            if (g == k) continue;
+            avgDiff = Math.abs(avg[g] - avg[k]);
+            if (alpha == 0.05) temp = q_inv(0.95, ngroup, ntot - ngroup, info) * Math.sqrt(0.5 * (1 / nobs[g] + 1 / nobs[k]) * msw);
+            else temp = q_inv(0.99, ngroup, ntot - ngroup, info) * Math.sqrt(0.5 * (1 / nobs[g] + 1 / nobs[k]) * msw);
+            cell[k + 1].innerHTML = f3(avgDiff).toString() + "<br>(" + f3(temp) + ")";
+            cell[k + 1].style.textAlign = "right";
+            cell[k + 1].style.width = "80px";
+        }
+    }
+
+    row = table.insertRow(++nrow); // 공란
+    row.style.height = "20px";
+
+    for (g = 0; g < ngroup; g++) tdata[g] = avg[g];
+    sortAscendIndex(ngroup, tdata, indexA);
+
+    row = table.insertRow(++nrow);
+    row.style.height = "40px";
+    for (g = 0; g < ngroup + 1; g++) {
+        cell[g] = row.insertCell(g);
+        cell[g].style.border = "1px solid black";
+        cell[g].style.backgroundColor = "#eee";
+    }
+    if (ngroup > 1) {
+        cell[0].style.textAlign = "center";
+        cell[0].innerHTML = svgStr[101][langNum] + "<br> * 5%, ** 1%"; // "평균차 검정"
+    } else cell[0].innerHTML = svgStr[21][langNum];
+    for (g = 1; g < ngroup + 1; g++) {
+        str = "";
+        if (ngroup > 1) str = (indexA[g - 1] + 1).toString() + "<br>" + f3(avg[indexA[g - 1]]);
+        cell[g].innerHTML = str;
+        cell[g].style.textAlign = "center";
+    }
+
+    // 다중비교 - 평균 sorting
+    for (g = 0; g < ngroup; g++) {
+        row = table.insertRow(++nrow);
+        for (j = 0; j < ngroup + 1; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.border = "1px solid black";
+        }
+        str = "";
+        if (ngroup > 1) str = (indexA[g] + 1).toString() + "<br>" + f3(avg[indexA[g]]);
+        cell[0].innerHTML = str;
+        cell[0].style.backgroundColor = "#eee";
+        cell[0].style.textAlign = "center";
+        for (k = 0; k < ngroup; k++) {
+            if (g == k) continue;
+            avgDiff = Math.abs(avg[indexA[g]] - avg[indexA[k]]);
+            HSD95 = q_inv(0.95, ngroup, ntot - ngroup, info) * Math.sqrt(0.5 * (1 / nobs[indexA[g]] + 1 / nobs[indexA[k]]) * msw);
+            HSD99 = q_inv(0.99, ngroup, ntot - ngroup, info) * Math.sqrt(0.5 * (1 / nobs[indexA[g]] + 1 / nobs[indexA[k]]) * msw);
+            temp = "  ";
+            if (avgDiff > HSD99) temp = "**";
+            else if (avgDiff > HSD95) temp = "*";
+            cell[k + 1].innerHTML = temp;
+            cell[k + 1].style.textAlign = "right";
+        }
+    }
+
+    row = table.insertRow(++nrow);
+    row.style.height = "20px";
+}
+// LSD 다중비교표 --------------------------------------------------------------------------------------------------
+function multipleComparisonTableLSD(ngroup, ntot, nobs, avg) {
+    var screenTable = document.getElementById("screenTable");
+    var table = document.createElement('table');
+    loc.appendChild(table);
+
+    var g, k, row, nrow, str, temp, info, avgDiff, HSD95, HSD99;
+    var ncol  = 10;
+    var cell  = new Array(ncol);
+    nrow = 0;
+    table.style.fontSize = "13px";
+
+    var header = table.createTHead()
+    row = table.insertRow(nrow);
+    row.style.height = "40px";
+    cell[0] = row.insertCell(0);
+    cell[0].style.width = "130px";
+    cell[0].style.textAlign = "center";
+    cell[0].style.backgroundColor = "#eee";
+    cell[0].style.border = "1px solid black";
+    cell[0].innerHTML = "<b>" + svgStr[90][langNum] + "</b>" ; // "다중비교"
+
+    row = table.insertRow(++nrow);
+    row.style.height = "40px";
+    for (g = 0; g < ngroup + 1; g++) {
+        cell[g] = row.insertCell(g);
+        cell[g].style.border = "1px solid black";
+        cell[g].style.backgroundColor = "#eee";
+    }
+    if (ngroup > 1) {
+       str = "(LSD)";
+       cell[0].style.textAlign = "center";
+       cell[0].innerHTML = "| "+svgStr[100][langNum] + " |<br> " + str; // "평균차"
+    }
+    else cell[0].innerHTML = svgStr[21][langNum];
+    for (g = 1; g < ngroup + 1; g++) {
+        str = "";
+        if (ngroup > 1) str = svgStrU[34][langNum] + (g).toString() + "<br>" + f3(avg[g - 1]);
+        cell[g].innerHTML = str;
+        cell[g].style.textAlign = "center";
+    }
+    // 다중비교 - 평균차, LSD
+    for (g = 0; g < ngroup; g++) {
+        row = table.insertRow(++nrow);
+        for (j = 0; j < ngroup + 1; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.border = "1px solid black";
+        }
+        str = "";
+        if (ngroup > 1) str = svgStrU[34][langNum] + (g + 1).toString() + "<br>" + f3(avg[g]);
+        cell[0].innerHTML = str;
+        cell[0].style.backgroundColor = "#eee";
+        cell[0].style.textAlign = "center";
+        for (k = 0; k < ngroup; k++) {
+            if (g == k) continue;
+            avgDiff = Math.abs(avg[g] - avg[k]);
+            temp = t_inv(1-alpha/2, ntot - ngroup, info) * Math.sqrt((1 / nobs[g] + 1 / nobs[k]) * msw);
+            cell[k + 1].innerHTML = f3(avgDiff).toString() + "<br>(" + f3(temp) + ")";
+            cell[k + 1].style.textAlign = "right";
+            cell[k + 1].style.width = "80px";
+        }
+    }
+
+    row = table.insertRow(++nrow); // 공란
+    row.style.height = "20px";
+
+    for (g = 0; g < ngroup; g++) tdata[g] = avg[g];
+    sortAscendIndex(ngroup, tdata, indexA);
+
+    row = table.insertRow(++nrow);
+    row.style.height = "40px";
+    for (g = 0; g < ngroup + 1; g++) {
+        cell[g] = row.insertCell(g);
+        cell[g].style.border = "1px solid black";
+        cell[g].style.backgroundColor = "#eee";
+    }
+    if (ngroup > 1) {
+        cell[0].style.textAlign = "center";
+        cell[0].innerHTML = svgStr[101][langNum] + "<br> * 5%, ** 1%"; // "평균차 검정"
+    } else cell[0].innerHTML = svgStr[21][langNum];
+    for (g = 1; g < ngroup + 1; g++) {
+        str = "";
+        if (ngroup > 1) str = (indexA[g - 1] + 1).toString() + "<br>" + f3(avg[indexA[g - 1]]);
+        cell[g].innerHTML = str;
+        cell[g].style.textAlign = "center";
+    }
+
+    // 다중비교 - 평균 sorting
+    for (g = 0; g < ngroup; g++) {
+        row = table.insertRow(++nrow);
+        for (j = 0; j < ngroup + 1; j++) {
+            cell[j] = row.insertCell(j);
+            cell[j].style.border = "1px solid black";
+        }
+        str = "";
+        if (ngroup > 1) str = (indexA[g] + 1).toString() + "<br>" + f3(avg[indexA[g]]);
+        cell[0].innerHTML = str;
+        cell[0].style.backgroundColor = "#eee";
+        cell[0].style.textAlign = "center";
+        for (k = 0; k < ngroup; k++) {
+            if (g == k) continue;
+            avgDiff = Math.abs(avg[indexA[g]] - avg[indexA[k]]);
+            HSD95 = t_inv(0.975, ntot - ngroup, info) * Math.sqrt((1 / nobs[indexA[g]] + 1 / nobs[indexA[k]]) * msw);
+            HSD99 = t_inv(0.995, ntot - ngroup, info) * Math.sqrt((1 / nobs[indexA[g]] + 1 / nobs[indexA[k]]) * msw);
+            temp = "  ";
+            if (avgDiff > HSD99) temp = "**";
+            else if (avgDiff > HSD95) temp = "*";
+            cell[k + 1].innerHTML = temp;
+            cell[k + 1].style.textAlign = "right";
+        }
+    }
+
+    row = table.insertRow(++nrow);
+    row.style.height = "20px";
+
+}
+      
+// alpha sliding bar control for testing hypothesis 
+function showValueAlpha(newValue) {
+        alpha = f3(newValue/1000);
+        document.getElementById("alpha").value   = alpha;
+        document.getElementById("alpha2").value  = alpha;
+        if (checkExecute) testingANOVA();
+} 
+// Sorting in ascending and find index
+function sortAscendIndex(dobs, dataA, index) {
+    var i, j, temp, tempi;
+    var nvalue = 0;
+    for (i = 0; i < dobs; i++) index[i] = i;
+    for (i = 0; i < dobs - 1; i++) {
+        for (j = i; j < dobs; j++) {
+            if (dataA[i] > dataA[j]) {
+                temp = dataA[i];
+                tempi = index[i];
+                dataA[i] = dataA[j];
+                index[i] = index[j];
+                dataA[j] = temp;
+                index[j] = tempi;
+            }
+        }
+    }
+}
+</script>
+
+
+
     <!------------------------------------------------------------------------------------------------->
     <p>      
  
@@ -572,9 +1356,9 @@
       The above example refers to two variables, the English score and grade. The variable such as the English score is 
       called as an analysis variable or a response variable. The response variable is mostly a continuous variable. The 
       variable used to distinguish populations such as the grade is called a group variable or a factor variable which 
-      is mostly a categorical variable. Each value of a factor variable Is called a level of the factor and the number 
+      is mostly a categorical variable. Each value of a factor variable is called a level of the factor and the number 
       of these levels is the number of populations to be compared. In the above example, the factor has four levels, 
-      1st, 2nd, 3rd and 4th grade. The term 'response' or 'factor' was originated to analyze data through experiments 
+      1st, 2nd, 3rd and 4th grade. The term 'response' or 'factor' is originated to analyze data through experiments 
       in engineering, agriculture, medicine and pharmacy. 
       <p>
       The analysis of variance method that examines the effect of single factor on the response variable is called the 
@@ -602,7 +1386,7 @@
         $$
          \begin{align}
            Y_{ij} &= \mu_i + \epsilon_{ij} \\
-                  &= \mu + \alpha_i + \epsilon_{ij}, i=1,2,...,k; j=1,2,..., n_i  \\
+                  &= \mu + \alpha_i + \epsilon_{ij}, \;i=1,2,...,k; \;j=1,2,..., n_i  \\
          \end{align}
         $$
       \(Y_{ij}\) represents the \(j^{th}\) observed value of the response variable for the \(i^{th}\) level of factor. 
@@ -614,8 +1398,8 @@
       <p>
       The error term \(\epsilon_{ij}\) is a random variable in the response variable due to reasons other than levels of the factor. 
       For example, in the English score example, differences in English performance for each grade can be caused 
-      by other variables besides the variables of grade, such as individual English study hours, gender and IQ. 
-      However, by assuming that these changes are relatively small compared to changes due to differences in grade, the 
+      by other variables besides the variables of grade, such as individual study hours, gender and IQ. 
+      However, by assuming that these variations are relatively small compared to variations due to differences in grade, the 
       error term can be interpreted as the sum of these various reasons. 
       <p>
       The hypothesis to test can be represented using \(\alpha_{i}\) instead of \(\mu_{i}\) as follows: 
@@ -668,7 +1452,7 @@
         </div>
         <p>
     <div class="mainTable">
-       The three sum of squares for the variance analysis can be described as follows: For an explanation, first define 
+       The three sum of squares for the analysis of variances can be described as follows: For an explanation, first define 
        the following statistics:
        <p>
        <div class="textL20">
@@ -686,7 +1470,7 @@
        <p>
        <b>SSE</b> = \(\sum_{i=1}^{k} \sum_{j=1}^{n_i} ( {Y}_{ij} - {\overline Y}_{i \cdot} )^2 \;\) : <br>
        The sum of squared distances between observations of the \(i^{th}\) level and the mean of the \(i^{th}\) level is referred to as 
-       'within variation,' and is called the <b>error sum of squares</b> (SSE).
+       'within variation', and is called the <b>error sum of squares</b> (SSE).
        <p>
        The degree of freedom of each sum of squares is determined by the following logic: 
        The SST consists of \(n\) number of squares, \(( Y_{ij} - {\overline Y}_{\cdot \cdot} )^2\), 
@@ -695,7 +1479,7 @@
        \(( {Y}_{ij} - {\overline Y}_{i \cdot} )^2 \), but the  number of values, 
        \({\overline Y}_{1 \cdot}, {\overline Y}_{2 \cdot}, ... , {\overline Y}_{k \cdot}\) 
        should be calculated first, before SSE is calculated, and hence the degree of freedom of SSE is \(n-k\).
-       The degree of freedom of SSTr is calculated as the degree of freedom of SST minus the degree of freedom of SSE which is .
+       The degree of freedom of SSTr is calculated as the degree of freedom of SST minus the degree of freedom of SSE which is \(k-1\).
        In the one-way analysis of variance, the following facts are always established:
     </div>
 
@@ -734,10 +1518,10 @@
       <b>One-way analysis of variance  test
         <p>
         <div class="textL20">
-          Null hypothesis \(\qquad \qquad \; H_0\): \(\alpha_1 = \alpha_2 = \alpha_3 = \alpha_4\) <br>
+          Null hypothesis \(\qquad \quad \; H_0\): \(\alpha_1 = \alpha_2 = \alpha_3 = \alpha_4 = 0\) <br>
         </div>
         <div class="textL20">
-          Alternative hypothesis \( \quad H_1\): at least one \(\alpha_i\) is not equal to 0
+          Alternative hypothesis \( \;\; H_1\): at least one \(\alpha_i\) is not equal to 0
         </div>
         <div class="textL20">
           Test Statistic \(\;\; F_{0} = \frac { \frac{SSTr}{(k-1)} } { \frac{SSE}{(n-k)} } \) 

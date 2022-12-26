@@ -51,7 +51,12 @@
 	 </script>
        <link rel="stylesheet" href="../../css/pandoc.css">
        <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="../../../eStat/js/language.js" ></script>   
+       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
+       <script src="../../../eStat/js/eStatU.js"></script>
+       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
+       <script src="../../../eStat/lib/convertSVG.js"></script>
 </head>
 <body>
 
@@ -299,8 +304,8 @@
   <p>
     <div class="mainTable">
       The 100(1-&alpha;)% confidence interval of a population mean &mu; is as follows as explained in section 6.2. 
-      $$
-        \left[ \overline X - z_{\alpha/2} \frac {\sigma} {\sqrt{n}} , \overline X + z_{\alpha/2} \frac {\sigma} {\sqrt{n}} \right]
+      $$\small 
+        \left[ \overline X - z_{\alpha/2} \frac {\sigma} {\sqrt{n}} ,\; \overline X + z_{\alpha/2} \frac {\sigma} {\sqrt{n}} \right]
       $$
       The term \( z_{\alpha/2} \frac {\sigma} {\sqrt{n}}\) which is the half size of the confidence interval 
       is called the <b>maximum allowable error bound</b> to estimate the population mean and is denoted as \(d\).
@@ -350,24 +355,92 @@
       <p>
       Hence the sample size is 96 approximately. 
       <p>
-      In  『eStatU』, select the menu ‘Estimation : &mu; - Sample Size ’. Enter the margin of Error 
+      In  『eStatU』, select the menu [Estimation : &mu; - Sample Size]. Enter the margin of Error 
       \(d\) = 20, the population standard deviation &sigma; = 100 and confidence level 1-&alpha; = 0.95 
       as in &lt;Figure 6.5.1&gt;, then click the [Execute] button to calculate the sample size \(n\). 
       <p>
-      <table style="width:650px">
+      <!---   ************ html for Determination N of mu ************  ---->
+      <b>[<span data-msgid="Confidence Interval Mu"> </span> - <span data-msgid="Sample Size"></span> n]</b>
+      <p>
+         <input class="qrBtn" type="image" src="../../QR/eStatU65N_ConfIntMuN.svg" onclick="window.open(addrStr[97])">
+      <p>
+      <button type="button" id="eraseNmu" style="width:100px;"><b>New Data</b></button>
+      <p>
+      <table style="width:600px;">
         <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU65N_ConfIntMuN.svg" onclick="window.open(addrStr[97])">
-          </td>
-          <td>
-            <img class="imgFig500200" src="../Figure/Fig060501.png">
-            <div class="figText">&lt;Figure 6.5.1&gt; Determination of sample size for estimating</div>
-          </td>
+          <td><b><span id="estimate" data-msgid="input data"></span></b></td>
+          <td><span data-msgid="MarginOfError"></span></td>
+          <td><span class="fontmath">d</span> = </td>
+          <td><input type="text" style="text-align:center;" size=6 value="20" id="marginDmu"></td>
+          <td>z<sub>&alpha;/2</sub> (&sigma; / &radic; n)</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span data-msgid="PopulationStd">Population Std Dev</span></td>
+          <td><span class="fontmath">&sigma;</span> = </td>
+          <td><input type="text" style="text-align:center;" size=6 value="100" id="stdS"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span data-msgid="Confidence Level">Confidence Level</span></td>
+          <td><span class="fontmath">1 - &alpha;</span> = </td>
+          <td><input type="text" style="text-align:center;" value="0.95" size=6 id="confidenceMu"></td>
         </tr>
       </table>
+      <p>
+      <button type="button" id="executeNmu" >
+        <span data-msgid="Execute">Execute</span>
+      </button> 
+      <p> 
+      <table style="width:400px;"> 
+        <tr>
+          <td><span data-msgid="Sample Size">Sample Size</span></td>
+          <td><span class="fontmath">n</span> = <span class="fontmath">(z<sub>&alpha;/2</sub> &sigma; / d)<sup>2</sup> </span></td>
+          <td>=</td>
+          <td><input type="text" style="text-align:center;" size=6 id="nnMu"></td>
+        </tr>
+      </table>
+      <div class="figText">&lt;Figure 6.5.1&gt; Determination of sample size for estimating population mean</div>
+      <p>
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
+    <!---   ************ script for Determination N of mu ************  ---->
+  <script>
+      setLanguage('en');
+      var df, info, alphaMu, confidenceMu;
+      var nnMu, marginDmu, stdS, tvalue;
+ 
+      document.getElementById("nnMu").disabled  = true;
+
+      // erase Data and Graph
+      d3.select("#eraseNmu").on("click",function() {
+        document.getElementById("marginDmu").value    = "";
+        document.getElementById("stdS").value         = "";
+        document.getElementById("confidenceMu").value = "";
+        document.getElementById("nnMu").value         = "";
+      })
+
+      // Execute ======================================
+      d3.select("#executeNmu").on("click",function() {
+        // input value
+        marginDmu  = parseFloat(d3.select("#marginDmu").node().value);
+        stdS  = parseFloat(d3.select("#stdS").node().value);
+        confidenceMu = parseFloat(d3.select("#confidenceMu").node().value);
+        alphaMu = 1 - confidenceMu;
+        tvalue = stdnormal_inv(1 - alphaMu/2, info);
+        if ( isNaN(marginDmu) || isNaN(stdS) || isNaN(confidenceMu) || confidenceMu < 0.00001 || confidenceMu > 0.99999 ) {  // wrong input
+          alert("No input or wrong input !!   Try again.")
+        }
+        else if ( stdS < 0 ) {  // wrong input
+          alert("wrong input on std dev !!   Try again.")
+        }
+        else {
+          nnMu = tvalue * tvalue * stdS * stdS / (marginDmu*marginDmu);
+          document.getElementById("nnMu").value = f1(nnMu);    
+        }
+      })
+
+  </script>
 
     <!------------------------------------------------------------------------------------------------->
     <div  class="mainTablePink">
@@ -408,7 +481,7 @@
       $$
       The solution of the above equation is as follows.
       $$
-        n = \hat p (1-\hat p) {\frac{z_{&alpha;/2}}{d}}^2  
+        n = \hat p (1-\hat p) ( {\frac{z_{&alpha;/2}}{d}}  )^2 
       $$
     </div>
     <p>
@@ -419,7 +492,7 @@
       If the maximum allowable error bound \(d\) and the confidence level 1 - &alpha; are given, 
       the sample size  can be determined as follows:  
       $$
-        n = \hat p (1-\hat p) {\frac{z_{&alpha;/2}}{d}}^2  
+        n = \hat p (1-\hat p) ( {\frac{z_{&alpha;/2}}{d}} )^2 
       $$
     </div>
     <p>
@@ -441,31 +514,98 @@
       Since we do not have any information on the population proportion, assume \(\hat p\) = 0.5. 
       Then the sample size  can be calculated as follows: 
       <p>
-      \( \qquad \small  n = \hat p (1-\hat p) {\frac{z_{&alpha;/2}}{d}}^2  = 0.5(1-0.5)\frac{1.96^2}{0.025^2} = 1536.6 \)
+      \( \qquad \small  n = \hat p (1-\hat p) ( {\frac{z_{&alpha;/2}}{d}})^2  = 0.5(1-0.5)\frac{1.96^2}{0.025^2} = 1536.6 \)
       <p>
       Therefore, samples must be extracted with at least 1537 persons to limit the error bound to 2.5%. 
       Various opinion polls conducted nationwide often show that the size of the sample is around 1,500 
       which implies that the margin of error does not exceed 3 percent.
       <p>
-      In 『eStatU』, select the menu ‘Estimation : \(p\) - Sample Size \(n\)’. Enter the margin of Error
+      In 『eStatU』, select the menu [Estimation : \(p\) - Sample Size \(n\)]. Enter the margin of Error
       \(d\) = 0.025, the estimate of the sample proportion \(\hat p\) = 0.5 (since we don’t know \(\hat p\), 
       it is an estimate), and the confidence level 1 - &alpha; = 0.95 as in &lt;Figure 6.5.2&gt;, then 
       click the [Execute] button to calculate the sample size . 
       <p>
-      <table style="width:650px">
+      <!---   ************ html for Determination N of proportion ************  ---->
+      <b>[<span data-msgid="Confidence Interval P"> </span> - <span data-msgid="Sample Size"></span> n]</b>
+      <p>
+         <input class="qrBtn" type="image" src="../../QR/eStatU67N_ConfIntPN.svg" onclick="window.open(addrStr[100])">
+      <p>
+      <button type="button" id="eraseNp" style="width:100px;"><b>New Data</b></button>
+      <p>
+      <table style="width:500px;">
         <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU67N_ConfIntPN.svg" onclick="window.open(addrStr[100])">
-          </td>
-          <td>
-            <img class="imgFig500200" src="../Figure/Fig060502.png">
-            <div class="figText">&lt;Figure 6.5.2&gt; Determination of sample size for estimating</div>
-          </td>
+          <td><b><span id="estimate" data-msgid="input data"></span></b></td>
+          <td><span data-msgid="MarginOfError"></span></td>
+          <td><span class="fontmath">d</span> = </td>
+          <td><input type="text" style="text-align:center;" size=6 value="0.025" id="marginDP"></td>
+          <td>z<sub>&alpha;/2</sub> &radic; ( p&#770; (1-p&#770;) / n )</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span data-msgid="Sample Proportion">Sample Proportion</span></td>
+	  <td><span class="fontmath">p&#770;</span> = </td>
+          <td><input type="text" style="text-align:center;" size=6 value="0.5" id="stdP"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span data-msgid="Confidence Level">Confidence Level</span></td>
+          <td><span class="fontmath">1 - &alpha;</span> = </td>
+          <td><input type="text" style="text-align:center;" value="0.95" size=6 id="confidenceP"></td>
+        </tr>
+      </table>     
+      <p>
+      <button type="button" id="executeNP" >
+        <span data-msgid="Execute">Execute</span>
+      </button> 
+      <p>  
+      <table style="width:400px;"> 
+        <tr>
+          <td><span data-msgid="Sample Size">Sample Size</span></td>
+          <td><span class="fontmath">n</span> = <span class="fontmath">p&#770; (1-p&#770;) (z<sub>&alpha;/2</sub> / d)<sup>2</sup> </span></td>
+          <td>=</td>
+          <td><input type="text" style="text-align:center;" size=6 id="nnP"></td>
         </tr>
       </table>
+            <div class="figText">&lt;Figure 6.5.2&gt; Determination of sample size for estimating</div>
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
+    <!---   ************ script for Determination N of proportion ************  ---->
+  <script>
+      setLanguage('en');
+      var alphaP, confidenceP;
+      var nnP, marginDP, stdP, tvalue;
+ 
+      document.getElementById("nnP").disabled  = true;
+
+      // erase Data and Graph
+      d3.select("#eraseNp").on("click",function() {
+        document.getElementById("marginDP").value    = "";
+        document.getElementById("stdP").value        = "";
+        document.getElementById("confidenceP").value = "";
+        document.getElementById("nnP").value         = "";
+      })
+
+      // Execute ======================================
+      d3.select("#executeNP").on("click",function() {
+        // input value
+        marginDP  = parseFloat(d3.select("#marginDP").node().value);
+        stdP  = parseFloat(d3.select("#stdP").node().value);
+        confidenceP = parseFloat(d3.select("#confidenceP").node().value);
+        alphaP = 1 - confidenceP;
+        tvalue = stdnormal_inv(1 - alphaP/2, info);
+        if ( isNaN(marginDP) || isNaN(stdP) || isNaN(confidenceP) || marginDP < 0 || confidenceP < 0.00001 || confidenceP > 0.99999 ) {  // wrong input
+          alert("No input or wrong input !!   Try again.")
+        }
+        else if ( stdP < 0 || stdP > 1) {  // wrong input
+          alert("wrong input on std dev !!   Try again.")
+        }
+        else {
+          nnP = stdP * (1 - stdP) * tvalue * tvalue / (marginDP*marginDP);
+          document.getElementById("nnP").value = f1(nnP);    
+        }
+      })
+
+  </script>
 
     <!------------------------------------------------------------------------------------------------->
     <div  class="mainTablePink">

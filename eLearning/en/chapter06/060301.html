@@ -51,7 +51,12 @@
 	 </script>
        <link rel="stylesheet" href="../../css/pandoc.css">
        <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       <script src="../../../eStat/js/language.js" ></script>   
+       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
+       <script src="../../../eStat/js/eStatU.js"></script>
+       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
+       <script src="../../../eStat/lib/convertSVG.js"></script>
 </head>
 <body>
 
@@ -369,7 +374,11 @@
         Note that the average of all possible sample variances is the same as the population variance which means the sample variance is an unbiased estimate of the population variance.
       </div>
       <p>
-      <div class="textL20M20">3) Table 6.3.2 shows the frequency distribution of all possible sample variances and &lt;Figure 6.3.1&gt; is its bar graph. This is called the sampling distribution of sample variances. The fact that can be observed in this Figure is that there are many small sample variances and there are few large sample variances. In addition, the average of all sample variances, , is equal to the population variance . In other words, the sample variance is an unbiased estimate of the population variance.
+      <div class="textL20M20">3) Table 6.3.2 shows the frequency distribution of all possible sample variances 
+          and &lt;Figure 6.3.1&gt; is its bar graph. This is called the sampling distribution of sample 
+          variances. The fact that can be observed in this Figure is that there are many small sample variances 
+          and there are few large sample variances. In addition, the average of all sample variances,
+          \(\mu_{S^2} \), is equal to the population variance \(\sigma^2 \). In other words, the sample variance is an unbiased estimate of the population variance.
       </div>
       <p>
         <div class="textLeft">Table 6.3.2 Frequency table of sample variances</div>
