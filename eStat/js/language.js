@@ -233,7 +233,7 @@ $.message.ko = {
     "Simulation": "시뮬레이션",
     "Confidence Interval Mu": "추정 : 모평균 &mu;",
     "Mu Confidence Interval": "모평균 신뢰구간",
-    "Confidence Interval Sigma": "추정 : 모분산 &sigma;&#178;",
+    "Confidence Interval Sigma": "추정 : 모분산 &sigma;&#178; ",
     "Confidence Interval P": "추정 : 모비율 p",
     "Estimation Accuracy": "추정 정확도",
     "Repetition": "반복수",
@@ -984,7 +984,7 @@ $.message.en = {
     "Simulation": "Simulation",
     "Confidence Interval Mu": "Estimation : &mu;",
     "Mu Confidence Interval": "Population Mean Confidence Interval",
-    "Confidence Interval Sigma": "Estimation : &sigma;&#178;",
+    "Confidence Interval Sigma": "Estimation : &sigma;&#178; ",
     "Confidence Interval P": "Estimation : p",
     "Estimation Accuracy": "Estimation Accuracy",
     "Repetition": "Repetition",
@@ -1296,7 +1296,7 @@ alertMsg[47][1] = "Character data in Frequency are not allowed !!   Try again.";
 alertMsg[48][1] = "Character data are not allowed !!   Try again."; // Stem and Leaf Plot
 alertMsg[49][1] = "Number of observations should be less than 100 !!   Try again.";
 alertMsg[50][1] = "Enter numbers in interval start or step.";
-alertMsg[51][1] = "Enter numbers / Nnumber of rows should be the same!!   Try again.";
+alertMsg[51][1] = "Enter numbers / Number of rows should be the same!!   Try again.";
 alertMsg[52][1] = "Enter numbers in category and frequency.";
 alertMsg[53][1] = "Interval size is not the same !!   Try again.";
 alertMsg[54][1] = "X observation is not equal Y observation !!   Try again.";
@@ -1732,7 +1732,7 @@ $.message.ja = {
     "Simulation": "シミュレーション",
     "Confidence Interval Mu": "推定 : &mu;",
     "Mu Confidence Interval": "信頼区間 &mu;",
-    "Confidence Interval Sigma": "推定 : &sigma;&#178;",
+    "Confidence Interval Sigma": "推定 : &sigma;&#178; ",
     "Confidence Interval P": "推定 : p",
     "Estimation Accuracy": "推定精度",
     "Repetition": "反復数",
@@ -2477,7 +2477,7 @@ $.message.zhTW = {
     "Simulation": "實驗",
     "Confidence Interval Mu": "估計 : &mu;",
     "Mu Confidence Interval": "信頼區間 &mu;",
-    "Confidence Interval Sigma": "估計 : &sigma;&#178;",
+    "Confidence Interval Sigma": "估計 : &sigma;&#178; ",
     "Confidence Interval P": "估計 : p",
     "Estimation Accuracy": "估計準確率",
     "Repetition": "重覆數",
@@ -3221,7 +3221,7 @@ $.message.fr = {
     "Simulation": "Essai",
     "Confidence Interval Mu": "Estimation : &mu;",
     "Mu Confidence Interval": "Estimation : &mu;",
-    "Confidence Interval Sigma": "Estimation : &sigma;&#178;",
+    "Confidence Interval Sigma": "Estimation : &sigma;&#178; ",
     "Confidence Interval P": "Estimation : p",
     "Estimation Accuracy": "Précision de l'estimation",
     "Repetition": "Répétition",
@@ -3967,7 +3967,7 @@ $.message.de = {
     "Simulation": "Experiment",
     "Confidence Interval Mu": "Einschätzung : &mu;",
     "Mu Confidence Interval": "Einschätzung : &mu;",
-    "Confidence Interval Sigma": "Einschätzung : &sigma;&#178;",
+    "Confidence Interval Sigma": "Einschätzung : &sigma;&#178; ",
     "Confidence Interval P": "Einschätzung : p",
     "Estimation Accuracy": "Schätzgenauigkeit",
     "Repetition": "Wiederholung",
@@ -4709,7 +4709,7 @@ $.message.es = {
     "Simulation": "Experimento",
     "Confidence Interval Mu": "Estimación : &mu;",
     "Mu Confidence Interval": "Estimación : &mu;",
-    "Confidence Interval Sigma": "Estimación : &sigma;&#178;",
+    "Confidence Interval Sigma": "Estimación : &sigma;&#178; ",
     "Confidence Interval P": "Estimación : p",
     "Estimation Accuracy": "Precisión de la estimación",
     "Repetition": "Repetición",
@@ -5454,7 +5454,7 @@ $.message.vi = {
     "Simulation": "Thi",
     "Confidence Interval Mu": "Ước lượng : &mu;",
     "Mu Confidence Interval": "Ước lượng : &mu;",
-    "Confidence Interval Sigma": "Ước lượng : &sigma;&#178;",
+    "Confidence Interval Sigma": "Ước lượng : &sigma;&#178; ",
     "Confidence Interval P": "Ước lượng : p",
     "Estimation Accuracy": "Độ chính xác của ước lượng",
     "Repetition": "Sự lặp lại",
@@ -6195,7 +6195,7 @@ $.message.id = {
     "Simulation": "Percobaan",
     "Confidence Interval Mu": "Estimasi : &mu;",
     "Mu Confidence Interval": "Estimasi : &mu;",
-    "Confidence Interval Sigma": "Estimasi : &sigma;&#178;",
+    "Confidence Interval Sigma": "Estimasi : &sigma;&#178; ",
     "Confidence Interval P": "Estimasi : p",
     "Estimation Accuracy": "Keakurasian Nilai Estimasi",
     "Repetition": "Ulangan",
@@ -6940,7 +6940,7 @@ $.message.mn = {
     "Simulation": "туршилт",
     "Confidence Interval Mu": "Тооцоолол : &mu;",
     "Mu Confidence Interval": "Тооцоолол : &mu;",
-    "Confidence Interval Sigma": "Тооцоолол : &sigma;&#178;",
+    "Confidence Interval Sigma": "Тооцоолол : &sigma;&#178; ",
     "Confidence Interval P": "Тооцоолол : p",
     "Estimation Accuracy": "нарийвчлалыг үнэлэх",
     "Repetition": "Давтамж",
@@ -7683,7 +7683,7 @@ $.message.zh = {
     "Simulation": "试验",
     "Confidence Interval Mu": "估计 : &mu;",
     "Mu Confidence Interval": "估计 : &mu;",
-    "Confidence Interval Sigma": "估计 : &sigma;&#178;",
+    "Confidence Interval Sigma": "估计 : &sigma;&#178; ",
     "Confidence Interval P": "估计 : p",
     "Estimation Accuracy": "估计准确率",
     "Repetition": "重复数",
@@ -8406,7 +8406,7 @@ $.message.pt = {
     "Simulation": "Experimento",
     "Confidence Interval Mu": "Estimativo : &mu;",
     "Mu Confidence Interval": "Estimativo : &mu;",
-    "Confidence Interval Sigma": "Estimativo : &sigma;&#178;",
+    "Confidence Interval Sigma": "Estimativo : &sigma;&#178; ",
     "Confidence Interval P": "Estimativo : p",
     "Estimation Accuracy": "Acurácia ",
     "Repetition": "Repetição",
@@ -9154,7 +9154,7 @@ $.message.gr = {
     "Simulation": "προσομοίωση",
     "Confidence Interval Mu": "Εκτίμηση : &mu;",
     "Mu Confidence Interval": "Εκτίμηση : &mu;",
-    "Confidence Interval Sigma": "Εκτίμηση : &sigma;&#178;",
+    "Confidence Interval Sigma": "Εκτίμηση : &sigma;&#178; ",
     "Confidence Interval P": "Εκτίμηση : p",
     "Estimation Accuracy": "Εκτίμηση Ορθότητας",
     "Repetition": "Επανάληψη",
@@ -9901,7 +9901,7 @@ $.message.ro = {
     "Simulation": "Simulare",
     "Confidence Interval Mu": "Estimației : &mu;",
     "Mu Confidence Interval": "Estimației : &mu;",
-    "Confidence Interval Sigma": "Estimației : &sigma;&#178;",
+    "Confidence Interval Sigma": "Estimației : &sigma;&#178; ",
     "Confidence Interval P": "Estimației : p",
     "Estimation Accuracy": "Acuretețea Estimației",
     "Repetition": "Repetiție",
@@ -10650,7 +10650,7 @@ $.message.th = {
     "Simulation": "จำลอง",
     "Confidence Interval Mu": "การประเมิน :  &mu;",
     "Mu Confidence Interval": "การประเมิน :  &mu;",
-    "Confidence Interval Sigma": "การประเมิน :  &sigma;&#178;",
+    "Confidence Interval Sigma": "การประเมิน :  &sigma;&#178; ",
     "Confidence Interval P": "การประเมิน :  p",
     "Estimation Accuracy": "ความแม่นยำของการประมาณ",
     "Repetition": "การทำซ้ำ",
@@ -11397,7 +11397,7 @@ $.message.pl = {
     "Simulation": "Symulacja",
     "Confidence Interval Mu": "Oszacowanie : &mu;",
     "Mu Confidence Interval": "Oszacowanie : &mu;",
-    "Confidence Interval Sigma": "Oszacowanie : &sigma;&#178;",
+    "Confidence Interval Sigma": "Oszacowanie : &sigma;&#178; ",
     "Confidence Interval P": "Oszacowanie : p",
     "Estimation Accuracy": "Dokładność szacowania",
     "Repetition": "Powtórzenie",
@@ -12017,16 +12017,16 @@ $.message.az = {
     "json Save": "json Yadda saxla",
     "Print Sheet": "vərəqi çap et",
     "Bar Graph": "Sütun qrafiki",
-    "Pie Chart": "dairə",
+    "Pie Chart": "Dairə qrafiki",
     "Band Graph": "Zolaq qrafiki",
     "Line": "xətti",
     "Line Graph": "xətti qrafik",
     "Dot Graph": "nöqtə qrafiki",
     "Histogram": "Histogram",
     "Stem & Leaf Plot": "saplaq və yarpaq sahəsi",
-    "maxStem": "** maksimum kök sayı <= 30 **",
-    "Box-Whisker Plot": "Qutu qrafiki",
-    "Scatterplot": "Səpələnmə diaqramı",
+    "maxStem": "** maksimum saplaq sayı <= 30 **",
+    "Box-Whisker Plot": "Qutu sahəsi",
+    "Scatterplot": "Səpələnmə sahəsi",
     "Frequency Table": "tezlik cədvəli",
     "Basic Statistics": "təsviri statistika",
     "Testing Hypothesis &mu;": "Fərziyyənin yoxlanması &mu;",
@@ -12035,8 +12035,8 @@ $.message.az = {
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Fərziyyənin yoxlanması &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Dispersiya analizi",
     "Middle School Stat Education": "Orta Məktəb Statistika Təhsili",
-    "High School Stat Education": "Ali məktəb stat təhsil",
-    "University Stat Education": "Universitet stat təhsil",
+    "High School Stat Education": "Ali məktəb stat təhsili",
+    "University Stat Education": "Universitet stat təhsili",
     "Elem Stat Graph Example": "İbtidai məktəb qrafik nümunəsi",
     "Learning eStat w Example": "eStat ?",
     "Vertical": "Şaquli",
@@ -12048,8 +12048,8 @@ $.message.az = {
     "Vertical Two Sided Bar": "Şaquli iki tərəfli Sütun qrafiki",
     "Horizontal Separated Bar": "Üfüqi Ayrılmış sütun Qrafiki",
     "Horizontal Stacked Bar": "Üfüqi üst-üstə sütun qrafiki",
-    "Horizontal Ratio Bar": "Üfüqi nisbət bar qrafiki",
-    "Horizontal Side by Side Bar": "Üfüqi Yanaşı Sütun Qrafiki",
+    "Horizontal Ratio Bar": "Üfüqi nisbət sütun qrafiki",
+    "Horizontal Side by Side Bar": "Üfüqi Yanbayan Sütun Qrafiki",
     "Horizontal Two Sided Bar": "Üfüqi iki tərəfli sütun qrafiki",
     "Doughnut Graph": "Halqa qrafiki",
     "Two Sided Stem & Leaf Plot": "İki tərəfli saplaq və yarpaq diaqramı",
@@ -12061,13 +12061,13 @@ $.message.az = {
     "Table Print": "cədvəli çap etmək",
     "Frequency": "tezlik",
     "Sorting": "Çeşidləmə",
-    "SortData": "Çeşidləmə",
+    "SortData": "Çeşidlənmiş Data",
     "Raw Data": "Xam Məlumat",
     "Descending": "azalan",
     "Ascending": "artan",
     "Mean": "Ədədi orta",
     "Std Deviation": "standart kənarlaşma",
-    "MeanStd": "Ədədi ortan/standart kənarlaşma",
+    "MeanStd": "Ədədi orta/standart kənarlaşma",
     "DotMeanStd": "nöqtə qrafiki - Ədədi ortan/standart kənarlaşma",
     "95CI": "95% İnam intervalı",
     "CorrelationAnalysis": "Korrelyasiya təhlili",
@@ -12087,31 +12087,31 @@ $.message.az = {
     "Significance Level": "Əhəmiyyət səviyyəsi",
     "Execute": "icra etmək",
     "(Confidence Interval)": "(İnam intervalı)",
-    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z-testidirsə, Z<sub>&alpha;/2</sub> istifadə edin.)",
+    "(if Z-test, Z<sub>1-&alpha;/2 </sub> is used)": "(Z-testidirsə, Z<sub>&alpha;/2</sub> istifadə edilir.)",
     "&chi;<sup>2</sup> test": "&chi;&#178; test",
     "Variance Assumption": "Dispersiya fərziyyəsi",
     "Variance": "Dispersiya",
     "F test": "F test",
-    "At least one pair of means is different": "Ən azı bir cüt ədədi orta fərqlidir",
+    "At least one pair of means is different": "Ən azı ədədi ortaların bir cütü fərqlidir",
     "Main Title": "əsas başlıq",
     "y title": "Y başlığı",
     "x title": "X başlığı",
     "Modify": "dəyişmək",
     "Confirm": "Təsdiq etmək",
     "Variable Name": "dəyişənin adı",
-    "Variable Value": "dəyişkən dəyəri",
-    "Value Label": "dəyər etiketi",
-    "* Less than nine value labels allowed.": "* Doqquz dəyərdən az etiketə icazə verilir..",
+    "Variable Value": "dəyişənin dəyəri",
+    "Value Label": "dəyərin etiketi",
+    "* Less than nine value labels allowed.": "* Doqquz dəyərdən etiketindən daha aza icazə verilir..",
     "Save": "Yadda saxla",
     "Exit": "çıxmaq",
     "eStatU UnivStatEdu": "eStatU - Universitet statistika təhsili SW",
-    "eStatH HighStatEdu": "eStatH - Ali məktəb statistika təhsili SW",
+    "eStatH HighStatEdu": "eStatH - Ali məktəb statistikası SW",
     "eStatM MiddleStatEdu": "eStatM - İbtidai / Orta məktəb statistikası SW",
     "MiddleStat": "Orta məktəb statistikası",
-    "HighStat":   "Orta məktəb statistikası",
+    "HighStat":   "Ali məktəb statistikası",
     "ebookLink":  "webBook Link (English)",
     "Menu": "menyu",
-    "Binomial Experiment": "Binomial təcrübə",
+    "Binomial Experiment": "Binomial experiment",
     "Binomial Distribution": "Binomial paylanma",
     "Binomial Prob Table": "Binomial ehtimal cədvəli",
     "Poisson Distribution": "Poisson Paylanması",
@@ -12132,8 +12132,8 @@ $.message.az = {
     "Population": "Populyasiya",
     "Sample": "nümunə",
     "Exponential": "qüvvət(0.3)",
-    "Uniform": "Vahid paylanma(0,1)",
-    "UniformDist": "Vahid paylanmam",
+    "Uniform": "Vahid(0,1)",
+    "UniformDist": "Vahid paylanma",
     "Sample05": "nümunə götürülməsi 5%",
     "Sample10": "nümunə götürülməsi 10%",
     "Sample20": "nümunə götürülməsi 20%",
@@ -12141,25 +12141,25 @@ $.message.az = {
     "StatisticalProb":     "Statistik ehtimal",
     "Law of Large Number": "böyük rəqəmlər qanunu",
     "Dist of Sample Means": "nümunə ədədi ortaların paylanması",
-    "Sampling Distribution": "nümunə götürülməsi paylanma",
+    "Sampling Distribution": "nümunə götürülməsinin paylanması",
     "Sample Size": "nümunə ölçüsü",
     "Confidence Interval": "İnam intervalı",
-    "Confidence Interval Simulation": "İnam intervalı Simulyasiya",
-    "Simulation": "Symulyaciya",
-    "Confidence Interval Mu": "Hesablama : &mu;",
-    "Mu Confidence Interval": "Hesablama : &mu;",
-    "Confidence Interval Sigma": "Hesablama : &sigma;&#178;",
-    "Confidence Interval P": "Hesablama : p",
-    "Estimation Accuracy": "Hesablama dəqiqliyi",
+    "Confidence Interval Simulation": "İnam intervalı Simulyasiyası",
+    "Simulation": "Simulyasiya",
+    "Confidence Interval Mu": "Dəyərləndirmə : &mu;",
+    "Mu Confidence Interval": "Populyasiya ədədi ortası inam intervalı : &mu;",
+    "Confidence Interval Sigma": "Dəyərləndirmə : &sigma;&#178; ",
+    "Confidence Interval P": "Dəyərləndirmə : p",
+    "Estimation Accuracy": "Dəyərləndirmə dəqiqliyi",
     "Repetition": "təkrar",
     "Confidence Level": "İnam sərhədi",
-    "Testing Hypothesis mu_titleAB": "Fərziyyənin yoxlanması Ədədi orta",
-    "Testing Hypothesis mu_title": "Fərziyyənin yoxlanması Ədədi orta",
-    "Testing Hypothesis sigma_title": "Fərziyyənin yoxlanması Dispersiya",
-    "Testing Hypothesis P_title": "Fərziyyənin yoxlanması Proporsiyanın",
-    "Testing Hypothesis mu12_title": "Fərziyyənin yoxlanması iki ədədi ortanın",
-    "Testing Hypothesis sigma12_title": "Fərziyyənin yoxlanması iki Dispersiya",
-    "Testing Hypothesis P12_title": "Fərziyyənin yoxlanması ike Proporsiyanın",
+    "Testing Hypothesis mu_titleAB": "Fərziyyənin Ədədi ortasının yoxlanması",
+    "Testing Hypothesis mu_title": "Ədədi ortanın yoxlanması",
+    "Testing Hypothesis sigma_title": "Dispersiyanın yoxlanması",
+    "Testing Hypothesis P_title": "Proporsiyanın yoxlanması",
+    "Testing Hypothesis mu12_title": "iki ədədi ortanın yoxlanması",
+    "Testing Hypothesis sigma12_title": "iki Dispersiyanın yoxlanması",
+    "Testing Hypothesis P12_title": "iki Proporsiyanın yoxlanması",
     "Testing Hypothesis muA":  "Fərziyyənin yoxlanması &mu; - C, &beta;",
     "Testing Hypothesis muAB": "Fərziyyənin yoxlanması &mu; - C, n",
     "Testing Hypothesis mu": "Fərziyyənin yoxlanması &mu;",
@@ -12173,7 +12173,7 @@ $.message.az = {
     "CategoryD": "Kateqoriya",
     "Category": "Kateqoriya",
     "Correlation Coefficient": "Korrelyasiya əmsalı",
-    "Regression Experiment": "reqressiya təcrübəsi",
+    "Regression Experiment": "reqressiya experimenti",
     "Hypothesis": "Fərziyyə",
     "Test Type": "Test növü",
     "Z-test": "Z test",
@@ -12184,15 +12184,15 @@ $.message.az = {
     "Independent Sample": "asılı olmayan nümunə",
     "Paired Sample": "cütlü nümunə",
     "Sample Data": "məlumat nümunəsi",
-    "input either sample data": "csv / bsv istifadə edərək növbəti qutularda nümunə məlumatlarını və ya nümunə statistikasını daxil edin",
+    "input either sample data": "növbəti qutularda ya csv / bsv istifadə edərək nümunə məlumatlarını ya da nümunə statistikasını daxil edin",
     "input data": "Məlumat daxil edin",
     "Sample Statistics": "nümunə statistikası",
     "Sample Mean": "nümumənin ədədi ortası",
     "Sample Variance": "Nümunənin dispersiyası",
     "Sample Proportion": "Nümunənin proposiyası",
     "if Z-test-1": "(Z-testdirsə, populyasiya dispersiyasını daxil edin &sigma;&#178;)",
-    "if Z-test-2": "(Z-testdirsə, z<sub>&alpha;/2 </sub> istifadə edin)",
-    "At least one pair": "Ən azı bir cüt ədədi orta fərqlidir",
+    "if Z-test-2": "(Z-testdirsə, z<sub>&alpha;/2 </sub> istifadə edilir)",
+    "At least one pair": "Ən azı ədədi ortaların bir cütü fərqlidir",
     "Row-Col-0": "sətir və sütun dəyişənləri asılı olmayandır",
     "Row-Col-1": "sətir və sütun dəyişənləri asılıdır",
     "Enter any number of row": "(Sol üst hücrədən müşahidəni daxil edin)",
@@ -12203,46 +12203,46 @@ $.message.az = {
     "Regression Line": "reqressiya xətti",
     "Erase All": "hamısını sil",
     "Add Point": "nöqtə əlavə edin",
-    "Erase Point": "silmək nöqtəsi",
-    "Reference Site": "rəy saytı",
+    "Erase Point": "nöqtəni silin",
+    "Reference Site": "istinad saytı",
     "Lot Size": "ərazi ölçüsü",
     "Defect Size": "qüsur ölçüsü",
     "If typed": "Nömrəni yazdıqdan sonra [İcra et] və ya [Enter] vurun",
     "Stat/BoxPlot": "statistika/Qutu qrafiki",
     "Mean": "Ədədi orta",
     "Std Dev": "standart kənarlaşma",
-    "SimulationWarning": "(Current simulation should be finished before you start the next simulation)",
+    "SimulationWarning": "(Növbəti simulyasiyaya başlamazdan öncə mövcud simulyasiya tamamlanmalıdır)",
     "OneGroup": "(bir qrup)",
-    "AnalysisVar": "Analiz dəyişəni",
-    "AnalysisVar2": "Y dəyişənin",
+    "AnalysisVar": "Dəyişən analizi",
+    "AnalysisVar2": "Y dəyişəni",
     "GroupVar": "Grup",
-    "GroupVar2": "X dəyişənin",
+    "GroupVar2": "X dəyişəni",
     "GroupVar3": "Vuruq1",
     "GroupVar4": "Vuruq2",
-    "AnalysisVarMu12": "Analizi(or X1) dəyişənin",
-    "GroupVarMu12": "Grup(or X2) dəyişənin",
-    "PairedMu12": " X1, X2 : cütlü dəyişən",
-    "SizeVar": "ölçü dəyişəni",
+    "AnalysisVarMu12": "Analiz(or X1) dəyişəni",
+    "GroupVarMu12": "Grup(or X2) dəyişəni",
+    "PairedMu12": " X1, X2 : cütlü dəyişənlər",
+    "SizeVar": "Dəyişənin ölçüsü",
     "RegressionBand": "İnam zolağı",
     "RegressionTable": "reqressiya analizi",
     "RegressionResidual": "qalıqların qrafiki",
-    "RegressionResidualLeverage": "qalıqların vs kaldıraç",
-    "RegressionCook": "Kuk məsafəsi",
-    "RegressionQQ": "qalıqların Q-Q Süjet",
+    "RegressionResidualLeverage": "qalıqlar vs rıçaq",
+    "RegressionCook": "Kukun məsafə Qrafiki",
+    "RegressionQQ": "qalıqlar Q-Q Qrafiki",
     "HistogramNormal": "Histogram",
     "HistogramChisq": "normallıq testi",
-    "HistogramNormalQQ": "Normal Q-Q Süjet",
+    "HistogramNormalQQ": "Normal Q-Q Qrafik",
     "PopulationStd": "Populyasiya standart kənarlaşması",
-    "Type1Error": "1-turdagi xato",
-    "Type2Error": "2-turdagi xato",
+    "Type1Error": "Növ-1 xəta",
+    "Type2Error": "Növ-2 xəta",
     "AnovaTable": "Dispersiya analizi cədvəli",
-    "AnovaMeanGraph": "Orta etimad intervalı",
+    "AnovaMeanGraph": "Orta İnam intervalı",
     "MultipleComparison": "çoxsaylı müqayisə",
     "ComparisonGraph": "Müqayisə qrafiki",
     "AnovaResidual": "standart qalıq Süjet",
     "AnovaQQ": "qalıq Q-Q Süjet",
     "TestingFit": "kategoriyali : Uyğunluğun keyfiyyəti testi",
-    "FitTest0": "Müşahidə olunan və nəzəri bölgülər eynidır",
+    "FitTest0": "Müşahidə olunan və nəzəri bölgülər eynidir",
     "FitTest1": "Müşahidə olunan və nəzəri bölgülər fərqlidir",
     "ObservedFreq": "müşahidə olunmuş tezlik O",
     "ExpectedProb": "gözlənilən ehtimal p",
@@ -12255,17 +12255,17 @@ $.message.az = {
     "Interaction": "qarşılıqlı əlaqə",
     "NoInteraction": "qarşlıqlı əlaqə yoxdur",
     "ExistInteraction": "qarşılıqlı əlaqə mövcuddur",
-    "eStatLecture": "eStat operatsiya ma'ruzasi",
+    "eStatLecture": "eStat fəaliyyət məruzəsi",
     "NonParametricMu12_title": "Parametrik emas : Wilcoxon Reytinq cəmi Test", 
     "NonParametricMu12": "Parametrik emas : Wilcoxon Reytinq cəmi Test : joylashuv parametrlari M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Parametrik emas : Reytinq cəmi Test",
     "Sample Range": "Reytinq cəmi",
     "DistributionTable": "paylanma cədvəli",
-    "SignedRankTestDist": "Wilcoxon Signed Reytinq cəmi Dist.",
-    "WilcoxonTestDist": "Wilcoxon Reytinq cəmi Distribution",
-    "KruskalTestDist": "Kruskal-Wallis H Distribution",
-    "FriedmanTestDist": "Friedman S Distribution",
-    "SignedRankTest": "Parametrik emas : işarə Reytinq Cəmi Test",
+    "SignedRankTestDist": "Wilcoxon Signed Reytinq cəmi Paylanma",
+    "WilcoxonTestDist": "Wilcoxon Reytinq cəmi Paylanma",
+    "KruskalTestDist": "Kruskal-Wallis H Paylanma",
+    "FriedmanTestDist": "Friedman S Paylanma",
+    "SignedRankTest": "Parametrik emas : işarələnmiş Reytinq Cəmi Test",
     "SignTest": "Parametrik emas : işarə sınağı",
     "SignCount": "işarələrin sayı",
     "KruskalTest": "Parametrik emas : Kruskal-Wallis Test",
@@ -12281,57 +12281,57 @@ $.message.az = {
     "WilcoxonRankCondition": "Agar n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Wilcoxon Reytinq Cəmi Test,  n>25 Normal Təxmin Test",
     "KruskalCondition": "Agar n ≤ 10 H Paylanma Test, yana &chi;&#178; Təxmin test",
     "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
-    "VariableSelect2": "* dəyişənin seçimi : O'zgaruvchan nomni bosing yoki RHS tanlash oynasidan foydalaning",
+    "VariableSelect2": "* dəyişənin seçimi : Dəyişən adına klikləyin ya da RHS seçim kutusunu istifadə edin",
     "VariableSelect3": "dəyişənin seçimi",
-    "VariableSelect4": "Ko'proq tahlil o'zgaruvchini tanlash mumkin",
-    "VariableSelect5": "Ko'proq X o'zgaruvchini tanlash mumkin",
-    "SummaryData": "xulosa ma'lumotlari",
-    "RawData": "Xam Məlumat",
+    "VariableSelect4": "Daha çok dəyişən analizi seçilə bilər",
+    "VariableSelect5": "Daha çok X dəyişən seçilə bilər",
+    "SummaryData": "xülasə məlumatlar",
+    "RawData": "Xam Məlumatlar",
     "MultiSelect": "",
-    "DataType": "(O'zgaruvchilarni chertish nomi bilan tanlang)",
-    "by": "tomonidan",
-    "NameVar": "nom o'zgaruvchisi",
-    "n_variance": "n-1 formula",
-    "RandomNumber": "təsadüfi rəqəm",
+    "DataType": "(Dəyişən adına klikləməklə dəyişənləri seçin)",
+    "by": "tərəfindən",
+    "NameVar": "dəyişən adı",
+    "n_variance": "n-1 formulası",
+    "RandomNumber": "təsadüfi rəqəm generatoru",
     "RealNumber":     "həqiqi ədəd",
     "IntegerNumber":  "tam",
     "NumberData":     "məlumatların sayı",
     "NumberDigit":    "onluq rəqəm",
-    "NormalTable":    "normal paylanma jadval",
+    "NormalTable":    "normal paylanma cədvəli",
     "Percentile":     "faiz cədvəli",
     "PercentileValue": "faiz",
     "StudentRangeDist": "HSD Tələbəli İnterval Paylanması",
-    "copy link": "havola nusxasi",
-    "WithoutReplacement": "almashtirishsiz",
-    "WithReplacement":    "Bərpa hasilatı",
-    "Replacement":     "Bərpa hasilatı",
-    "NonReplacement":  "almashtirishsiz",
+    "copy link": "linki kopyalayın",
+    "WithoutReplacement": "yerdəyişməsiz",
+    "WithReplacement":    "yerdəyişmə ilə",
+    "Replacement":     "yerdəyişmə ilə",
+    "NonReplacement":  "yerdəyişməsiz",
     "WordCloud":       "Söz Buludu (İngilis dili)",
     "oneColor":        "rəng",
     "defaultColor":    "standart rəng",
-    "RelativeFreq":    "nisbiy tezlik",
+    "RelativeFreq":    "nisbi tezlik",
     "MarginOfError":   "Xəta həddi",
-    "Permutation":     "İcazə",
-    "PermutationSame": "Eyni şey ilə icazə",
+    "Permutation":     "Permutasiya",
+    "PermutationSame": "Eyni obyektlər ilə Permutasiyalar",
     "Combination":     "Kombinasiya",
-    "NumberOfCase":    "İşlərin sayı",
-    "BinomialTheorem": "Binom Teoremi",
+    "NumberOfCase":    "Halların sayı",
+    "BinomialTheorem": "Binomial Teorem",
     "PascalTriangle":  "Paskal Üçbucağı",
     "Character":       "Emoji",
     "AdditionRule":      "Ehtimalın toplanması qaydası",
     "MultiplicationRule":"Ehtimalın vurma qaydası",
     "ConditionalProb":   "Şərti Ehtimal",
     "JointProb":         "Birgə Ehtimal",
-    "DiscreteDist":      "Diskret paylama",
-    "Categorize":        "Kateqoriyalara",
+    "DiscreteDist":      "Diskret paylanma",
+    "Categorize":        "Kateqoriyalaşdırmaq",
     "Recode":            "Yenidən kodla",
     "Compute":           "Hesablama",
     "SelectIf":          "Əgər seçin",
     "InfoValueLabel":    "*** Dəyişən seçin, dəyişən adını və/yaxud dəyər etiketini daxil edin.",
     "InfoSorting":       "*** Çeşidləmə dəyişənini seçin, 3 dəyişənə qədər çeşidləmə metodunu daxil edin.",
     "InfoCategorize":    "*** Kateqoriya üçün dəyişəni seçin, interval başlanğıcını və interval enini daxil edin.",
-    "InfoRecode":        "*** Qeyd üçün dəyişəni seçin, yeni dəyər daxil edin.",
-    "InfoRecode2":       "* 9 dəyərə qədər qeyd etməyə icazə verin.",
+    "InfoRecode":        "*** Yenidən kodlaşdırma üçün dəyişəni seçin, yeni dəyər daxil edin.",
+    "InfoRecode2":       "* 9 dəyərə qədər yenidən kodlaşdırmaya icazə verin.",
     "InfoCompute":       "*** Aşağıdakı düymələrdən istifadə edərək hesablama formulunu yaradın.",
     "InfoSelectIf":      "*** 3 dəyişənə qədər seçin, onların şərtlərini daxil edin.",
     "SortingVariable":   "Dəyişənlərin çeşidlənməsi",
@@ -12366,7 +12366,7 @@ $.message.az = {
     "Trend":             "Trend",
     "Seasonal":          "Mövsümi",
     "Deseasonal":        "Mövsümi Seriya",
-    "Nseason":           "Mövsümdə vaxt",
+    "Nseason":           "Mövsümdə vaxtlar",
     "Irregular":         "Qaydasız",
     "TrendModel":        "Mövsümə bağlı Trend Model",
     "RegressionModel":   "Reqressiya modeli",
@@ -12376,8 +12376,8 @@ $.message.az = {
     "MA":                "Hərəkətli Orta",
     "EWMA":              "EWMA Modeli",
     "CenterMA":          "Mərkəzləşdirilmiş Hərəkətli Orta",
-    "MovingMedian":      "Mərkəzləşdirilmiş Hərəkətli Media",
-    "ES":                "Exponensial Hamarlama",
+    "MovingMedian":      "Mərkəzləşdirilmiş Hərəkətli Median",
+    "ES":                "Qüvvəti Hamarlama",
     "Default":           "Defolt",
     "Linear":            "Xətti",
     "Quadratic":         "Kvadrat",
@@ -12393,20 +12393,20 @@ $.message.az = {
     "DoubleES":          "İkiqat eksponensial hamarlama",
     "HoltLinear":        "Holt eksponensial hamarlama",
     "DeseasonIntercept": "Mövsümi müdaxilə",
-    "DeseasonSlope":     "Mövsümi yamac",
+    "DeseasonSlope":     "Mövsümi maillik",
     "SeasonalIndex":     "Mövsümi indeks",
     "Diff":              "Fərq",
     "DiffTime":          "Fərqli vaxt",
-    "AR":                "Autoregressive Model",
+    "AR":                "Autoregressiya Modeli",
     "ResultTable":       "Reqressiya Nəticəsi",
     "ForecastTable":     "Proqnoz Cədvəli",
     "HoltLevel":         "Səviyyə",
     "HoltTrend":         "Trend",
     "AutoCorrTable":     "Avtokorrelyasiya Cədvəli",
     "DiffSeries":        "Fərqlər seriyası",
-    "RawSeries":         "Orijinal Zaman Seriyası",
-    "RBD":               "Randomized Block Design",
-    "Latin":             "Latin Square Design",
+    "RawSeries":         "Xam Zaman Seriyası",
+    "RBD":               "Təsadüfi Bloka Dizaynı",
+    "Latin":             "Latın Kvadrat Dizaynı",
 
 };
 // Azerbaijan
@@ -12417,45 +12417,45 @@ appStr[4][16] = "../eHelp/index_en.html";
 appStr[5][16] = "index.html";
 appStr[6][16] = "../eLearning/en/index.html";
 alertMsg[1][16] = "seçilmiş dəyişənlərdən birində məlumat yoxdur.";
-alertMsg[2][16] = "seçilmiş dəyişənlərdən birində məlumat yoxdur. ";
+alertMsg[2][16] = "Təhlil üçün dəyişənləri bir-bir seçin (sütun adına klikləyin və ya seçim qutusunda dəyişəni seçin). Xam məlumat üçün iki dəyişən seçilərsə, birincisi analiz (və ya Y) dəyişəni, ikincisi isə qrup (və ya X) dəyişənidir. ";
 alertMsg[3][16] = "seçilmiş dəyişən haqqında məlumat çatışmazlığı.";
-alertMsg[4][16] = "Əgər seçilmiş dəyişənlərin muşahidələri müxtəlifdirsə, analizə icazə verilmir.";
-alertMsg[5][16] = "THəddən çox qrup! Ekranın ölçüsünə görə qrafiklər üst-üstə düşə bilər..";
+alertMsg[4][16] = "Əgər hər bir sütunda muşahidələrin sayı müxtəlifdirsə, analizə icazə verilmir.";
+alertMsg[5][16] = "Həddən çox qrup! Ekranın ölçüsünə görə qrafiklər üst-üstə düşə bilər..";
 alertMsg[6][16] = "Xülasə məlumatlarındakı analiz dəyişəninində simvol varsa, statistik analiz və ya cədvəl yaratmağa icazə verilmir..";
-alertMsg[7][16] = "Xam məlumatlardan üçdən çox dəyişən seçilibsə, analizə icazə verilmir.";
+alertMsg[7][16] = "Xam məlumatlar üçün üçdən çox dəyişən seçilibsə, analizə və ya cədvəl yaratmağa icazə verilmir.";
 alertMsg[8][16] = "Müşahidələrin sayı 200-dən az olduqda nöqtə qrafikinə icazə verilir.";
-alertMsg[9][16] = "Müşahidələrin sayı 100-dən az olduqda kök və yarpaq diaqramına icazə verilir.";
+alertMsg[9][16] = "Müşahidələrin sayı 100-dən az olduqda saplaq və yarpaq diaqramına icazə verilir.";
 alertMsg[10][16] = "Analiz dəyişəni seçilməyib.";
 alertMsg[11][16] = "Analiz/Qrup dəyişənləri seçilməyib.";
-alertMsg[12][16] = "Təhlil dəyişənində simvol varsa, analizə icazə verilmir.";
+alertMsg[12][16] = "Analiz dəyişənində simvol varsa, analizə və ya cədvəl yaratmağa icazə verilmir.";
 alertMsg[13][16] = "";
 alertMsg[14][16] = "davamlı qrafiklər və fərziyyələrin testi üçün xülasə məlumatlarına icazə verilmir.";
-alertMsg[16][16] = "fərziyyəni yoxlamaq üçün yalnız iki qrupa icazə verilir.";
-alertMsg[17][16] = "Səpələnmə diaqramı ən azı x dəyişənini və y dəyişənini tələb edir.";
+alertMsg[16][16] = "bu fərziyyəni yoxlamaq üçün yalnız iki qrupa icazə verilir.";
+alertMsg[17][16] = "Səpələnmə diaqramı x dəyişənini və y dəyişənini tələb edir.";
 alertMsg[18][16] = "Səpələnmə diaqramında üçdən çox dəyişənə icazə verilmir.";
 alertMsg[19][16] = "Məlumatlarda simvol varsa, analizə icazə verilmir.";
 alertMsg[20][16] = "Məlumatlarda simvol varsa, reqressiya təhlili edilə bilməz.";
 alertMsg[21][16] = "Əgər məlumat əksikliyi varsa, yadda saxlamağa icazə verilmir.";
 alertMsg[22][16] = "Mənfi rəqəm varsa, sütun qrafiki çəkilə bilməz.";
 alertMsg[25][16] = "Yalnız bir qrup varsa, üst-üstə sütun qrafikinə icazə verilmir.";
-alertMsg[27][16] = "IYalnız bir qrup varsa, nisbət sütun qrafikinə icazə verilmir.";
-alertMsg[29][16] = "Yalnız bir qrup varsa, yanaşı sütun qrafikinə icazə verilmir.";
-alertMsg[31][16] = "Yalnız bir qrup varsa, ikitərfli sütun qrafikinə icazə verilmir.";
+alertMsg[27][16] = "Yalnız bir qrup varsa, nisbət sütun qrafikinə icazə verilmir.";
+alertMsg[29][16] = "Yalnız bir qrup varsa, yanbayan sütun qrafikinə icazə verilmir.";
+alertMsg[31][16] = "Yalnız bir qrup varsa, ikitərəfli sütun qrafikinə icazə verilmir.";
 alertMsg[32][16] = "Mənfi rəqəm varsa, dairə qrafiki çəkilə bilməz.";
 alertMsg[33][16] = "Mənfi rəqəm varsa, halqa qrafiki çəkilə bilməz.";
-alertMsg[34][16] = "Mənfi rəqəm varsa, zolaq qrafiki çəkilə bilməz.";
+alertMsg[34][16] = "Mənfi rəqəm varsa, lent (band) qrafiki çəkilə bilməz.";
 alertMsg[35][16] = "Mənfi rəqəm varsa, tezlik cədvəli çəkilə bilməz.";
-alertMsg[36][16] = "Bu sütun qrafiki yalnız iki qrup üçündür.";
-alertMsg[37][16] = "Bu fərziyyə yoxlanışı yalnız bir dəyişən üçündür.";
+alertMsg[36][16] = "Bu sütun qrafikinə yalnız iki qrup üçün icazə verilir.";
+alertMsg[37][16] = "Bu fərziyyə yoxlanışına yalnız bir dəyişən üçün icazə verilir.";
 alertMsg[38][16] = "mu rəqəm deyil. Rəqəm daxil edin və yenidən cəhd edin!";
 alertMsg[39][16] = "Standart kənarlaşma ya sıfır, ya da rəqəm deyil. Yenidən cəhd edin!";
 alertMsg[40][16] = "Giriş dispersiyası rəqəm deyil. Rəqəm daxil edin və yenidən cəhd edin!";
-alertMsg[41][16] = "Bu fərziyyə yoxlanışı yalnız iki dəyişən üçündür. Qrup dəyişənlərinin yalnız iki qrupu olmalıdır.";
+alertMsg[41][16] = "Bu fərziyyə yoxlanışı yalnız iki dəyişən üçündür. Birinci Analiz dəyişənidir, ikinci isə grup dəyişənidir. Qrup dəyişənlərinin yalnız iki qrupu olmalıdır.";
 alertMsg[42][16] = "Fərziyyə yoxlanışının başlığının redaktəsinə icazə verilmir.";
 alertMsg[43][16] = "Adi xətti reqressiya yalnız bir qrup üçündür.";
-alertMsg[44][16] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
-alertMsg[45][16] = "Cannot draw GIS graph if more than five variables.";
-alertMsg[46][16] = "Xuddi shu o'zgaruvchan raqam tanlangan.";
+alertMsg[44][16] = "Daxil edin Birinci:Ad, İkinci:Enlik, Üçüncü:Uzunluq, Dördüncü:Analiz Dəyişəni(istəyə bağlı)";
+alertMsg[45][16] = "beşdən çox dəyişəndirsə, GIS grafik çəkilə bilməz.";
+alertMsg[46][16] = "Ən azı iki sıra tələb olunur. Yenidən cəhd edin";
 alertMsg[47][16] = "Tezlikdə xarakter məlumatlarına icazə verilmir !! Yenidən cəhd edin.";
 alertMsg[48][16] = "Xarakter məlumatlarına icazə verilmir !! Yenidən cəhd edin.";
 alertMsg[49][16] = "Müşahidələrin sayı 100-dən az olmalıdır !! Yenidən cəhd edin.";
@@ -12481,7 +12481,7 @@ alertMsg[68][16] = "";
 alertMsg[69][16] = "";
 
 svgStr[1][16] = " Sütun qrafiki";
-svgStr[2][16] = " dairə ";
+svgStr[2][16] = " Dairə qrafiki";
 svgStr[3][16] = " Halqa qrafiki";
 svgStr[4][16] = " Zolaq qrafiki";
 svgStr[5][16] = " xətti qrafik";
@@ -12503,13 +12503,13 @@ svgStr[20][16] = "<h3>Xülasə məlumatları <br> Tezlik Cədvəli</h3>";
 svgStr[21][16] = "qrup dəyişəni";
 svgStr[22][16] = "sətir dəyişəni";
 svgStr[23][16] = "Cəm";
-svgStr[24][16] = "doira hajmi";
+svgStr[24][16] = "dairə ölçüsü";
 svgStr[25][16] = "<h3>tezlik cədvəli</h3>";
 svgStr[26][16] = "Analiz dəyişəni";
-svgStr[27][16] = "dəyişkən dəyəri";
+svgStr[27][16] = "dəyişən dəyəri";
 svgStr[28][16] = "dəyər etiketi";
 svgStr[29][16] = "tezlik";
-svgStr[30][16] = "nisbiy tezlik";
+svgStr[30][16] = "nisbi tezlik";
 svgStr[31][16] = "<h3>Kəsişən Cədvəl</h3>";
 svgStr[32][16] = "sütun dəyişəni";
 svgStr[33][16] = "sətir dəyişəni";
@@ -12522,33 +12522,33 @@ svgStr[39][16] = "saplaq";
 svgStr[40][16] = " yarpaq";
 svgStr[41][16] = "Grup 1  yarpaq";
 svgStr[42][16] = "Grup 2  yarpaq"
-svgStr[43][16] = "<h3>Ta'rif statistikasi</h3>";
+svgStr[43][16] = "<h3>Təsviri statistika</h3>";
 svgStr[44][16] = "müşahidə";
 svgStr[45][16] = "Minimum";
 svgStr[46][16] = "Median";
-svgStr[47][16] = "Makximum";
+svgStr[47][16] = "Maksimum";
 svgStr[48][16] = "Cəm";
 svgStr[49][16] = "<h3>normallıq testi</h3>";
-svgStr[50][16] = "gözlənilən tezlik > 5 <br> tavsiya eting";
+svgStr[50][16] = "gözlənilən tezlik > 5 <br> tövsiyə olunur";
 svgStr[51][16] = "&chi;&#178; Test<br>Interval i <br>[a<sub>i</sub> , b<sub>i</sub>)";
 svgStr[52][16] = "Məlumat<br>müşahidə olunmuş tezlik<br>(O<sub>i</sub>)";
 svgStr[53][16] = "Normal paylanma<br>gözlənilən ehtimal<br>P([a<sub>i</sub> , b<sub>i</sub>))";
 svgStr[54][16] = "Normal paylanma<br>gözlənilən tezlik<br>(E<sub>i</sub>)";
-svgStr[55][16] = "interval<br>&chi;&#178; qiymati<br>(O<sub>i</sub>-E<sub>i</sub>)&#178; / E<sub>i</sub>";
-svgStr[56][16] = "cəm &chi;&#178; qiymati";
+svgStr[55][16] = "interval<br>&chi;&#178; qiyməti<br>(O<sub>i</sub>-E<sub>i</sub>)&#178; / E<sub>i</sub>";
+svgStr[56][16] = "cəm &chi;&#178; qiyməti";
 svgStr[57][16] = "Ehtimal Histogram va Normal Paylanma";
-svgStr[58][16] = "Normal Q-Q Süjet";
+svgStr[58][16] = "Normal Q-Q Qrafik";
 svgStr[59][16] = "Normal Kvant";
 svgStr[60][16] = "Korrelyasiya əmsalı";
 svgStr[61][16] = "Təyinetmə əmsalı";
 svgStr[62][16] = "standart xəta";
 svgStr[63][16] = "dəyişənin";
 svgStr[64][16] = "dəyişənin adı";
-svgStr[65][16] = "mustaqil dəyişənin";
-svgStr[66][16] = "qaram dəyişənin";
+svgStr[65][16] = "mustəqil dəyişən";
+svgStr[66][16] = "asılı dəyişən";
 svgStr[67][16] = "Parametr";
-svgStr[68][16] = "hesablanmış qiymət";
-svgStr[69][16] = "qiymati";
+svgStr[68][16] = "hesablanmış dəyər";
+svgStr[69][16] = "dəyər";
 svgStr[70][16] = "kəsişmə";
 svgStr[71][16] = "bucaq";
 svgStr[72][16] = "Vuruq";
@@ -12559,44 +12559,44 @@ svgStr[76][16] = "reqressiya";
 svgStr[77][16] = "xəta";
 svgStr[78][16] = "Cəm";
 svgStr[79][16] = "<h3>Reqressiya Analizi</h3>";
-svgStr[80][16] = "standart qalıq Q-Q Süjet";
+svgStr[80][16] = "standart qalıq Q-Q Qrafik";
 svgStr[81][16] = "standart qalıq";
 svgStr[82][16] = "Normal Kvant";
 svgStr[83][16] = "qalıqların qrafiki";
-svgStr[84][16] = "ehtimal olunmuş dəyər";
+svgStr[84][16] = "Təxmin";
 svgStr[85][16] = "İki üsulluq Dispersiya analizi";
 svgStr[86][16] = "İnam intervalı qrafiki";
 svgStr[87][16] = "qalıq";
-svgStr[88][16] = "ikki o'lchovli statistika";
-svgStr[89][16] = "səpələnmə diaqramı matrisi";
+svgStr[88][16] = "iki istiqamətli statistika";
+svgStr[89][16] = "səpələnmə diaqramı matriksi";
 svgStr[90][16] = "çoxsaylı müqayisə";
 svgStr[91][16] = "Statistika";
 svgStr[92][16] = "Vuruq";
 svgStr[93][16] = "səviyyə";
-svgStr[94][16] = "cütlü nümunə grafiki";
-svgStr[95][16] = "standart qalıq vs bashorat qilish grafiki";
-svgStr[96][16] = "standart qalıq vs kaldıraç grafiki";
+svgStr[94][16] = "cütlü nümunə məlumat qrafiki";
+svgStr[95][16] = "standart qalıq vs proqnozlaşdırma grafiki";
+svgStr[96][16] = "standart qalıq vs rıçaq grafiki";
 svgStr[97][16] = "Kuk məsafəsi grafiki";
 svgStr[98][16] = "Kuk məsafəsi";
 svgStr[99][16] = "Məlumat sıralaması";
 svgStr[100][16] = "ədədi orta fərqi";
-svgStr[101][16] = "Ədədi ortanın yoxlanması";
+svgStr[101][16] = "Ədədi ortaların yoxlanması";
 svgStr[102][16] = "rəftar";
 svgStr[103][16] = "qarşılıqlı əlaqə";
 svgStr[104][16] = "Sətir cəmi";
 svgStr[105][16] = "Sütun cəmi";
 svgStr[106][16] = "çoxsaylı korrelyasiya əmsalı";
 svgStr[107][16] = "<h3>Korrelyasiya analizi</h3>";
-svgStr[108][16] = "Korrelyasiya matrisi";
+svgStr[108][16] = "Korrelyasiya matriksi";
 svgStr[109][16] = "Vuruq A - Vuruq B Ədədi orta grafiki";
-svgStr[110][16] = "ling";
-svgStr[111][16] = "Geographic Information Graph";
+svgStr[110][16] = "Rıçaq";
+svgStr[111][16] = "Coğrafi İnformasiya Qrafiki";
 svgStr[112][16] = "təyin intervalı";
 svgStr[113][16] = "Ədədi orta - standart kənarlaşma grafiki";
 svgStr[114][16] = "Populyasiya Dispersiyası";
 svgStr[115][16] = "fərziyyə";
 svgStr[116][16] = "Test";
-svgStr[117][16] = "Dispersiyası";
+svgStr[117][16] = "Dispersiya";
 svgStr[118][16] = "İnterval dəyəri";
 svgStr[119][16] = "Kateqoriya";
 svgStr[120][16] = "Rejim";
@@ -12604,7 +12604,7 @@ svgStr[121][16] = "Kovariasiya";
 svgStr[122][16] = "Paskal üçbucağı";
 svgStr[123][16] = "Birgə Ehtimal";
 svgStr[124][16] = "Şərti";
-svgStr[125][16] = "Diskret Dağıtım";
+svgStr[125][16] = "Diskret Dağılma";
 svgStr[126][16] = "sıra %";
 svgStr[127][16] = "sütun %";
 svgStr[128][16] = "ümumi %";
@@ -12613,7 +12613,7 @@ svgStrU[1][16] = "Binomial paylanma";
 svgStrU[2][16] = "təkrar";
 svgStrU[3][16] = "Ədədi orta";
 svgStrU[4][16] = "standart kənarlaşma";
-svgStrU[5][16] = "Poisson Paylanması";
+svgStrU[5][16] = "Poisson Paylanma";
 svgStrU[6][16] = "həndəsi paylanma";
 svgStrU[7][16] = "hiper həndəsi paylanma";
 svgStrU[8][16] = "Populyasiya";
@@ -12621,7 +12621,7 @@ svgStrU[9][16] = "Nümunə paylanması";
 svgStrU[10][16] = "böyük rəqəmlər qanunu";
 svgStrU[11][16] = "Quyruq";
 svgStrU[12][16] = "baş";
-svgStrU[13][16] = "tanga baş";
+svgStrU[13][16] = "qəpik baş";
 svgStrU[14][16] = "Başların sayı";
 svgStrU[15][16] = "Sınaqların sayı";
 svgStrU[16][16] = "nümunə ədədi ortaların paylanması";
@@ -12638,7 +12638,7 @@ svgStrU[26][16] = "H\u2080 qəbul et";
 svgStrU[27][16] = "p-dəyər";
 svgStrU[28][16] = "[Qərar] ";
 svgStrU[29][16] = "[Dispersiya analizi]";
-svgStrU[30][16] = "Dispersiya analizi";
+svgStrU[30][16] = "Korrelyasiya əmsalını daxil edin və İcra et düyməsini basın";
 svgStrU[31][16] = "reqressiya";
 svgStrU[32][16] = "sətir dəyişəni";
 svgStrU[33][16] = "sütun dəyişəni";
@@ -12655,13 +12655,13 @@ svgStrU[43][16] = "<h3>təsviri statistika</h3>";
 svgStrU[44][16] = "müşahidə ";
 svgStrU[45][16] = "Minimum";
 svgStrU[46][16] = "Median";
-svgStrU[47][16] = "Makximum";
+svgStrU[47][16] = "Maksimum";
 svgStrU[48][16] = "Cəm";
 svgStrU[49][16] = "qüvvət";
 svgStrU[50][16] = "Vahid paylanma";
 svgStrU[51][16] = "hesablama dəqiqliyi";
-svgStrU[52][16] = "- Bosish orqali nuqtalar yarating, so'ngra eStat regressiya chizig'ini topadi.";
-svgStrU[53][16] = "- Nuqtani siljiting yoki o'chiring. Regressiya chizig'ining o'zgarishini tomosha qiling.";
+svgStrU[52][16] = "- Kliklə nöqtələri yaradın, sonra eStat reqressiya xəttini tapır.";
+svgStrU[53][16] = "- Nöqtəni köçürün və ya silin. Reqressiya xəttinin dəyişməsinə baxın.";
 svgStrU[54][16] = "[nümunə statistikası] ";
 svgStrU[55][16] = "[nümunə 1 statistikası] ";
 svgStrU[56][16] = "[nümunə 2 statistikası] ";
@@ -12670,7 +12670,7 @@ svgStrU[58][16] = "sətir və sütun dəyişənləri asılı olmayandır";
 svgStrU[59][16] = "sətir və sütun dəyişənləri asılıdır";
 svgStrU[60][16] = "müşahidə olunmuş paylanma";
 svgStrU[61][16] = "Nəzəri paylanma";
-svgStrU[62][16] = "Uyğunluğun keyfiyyəti testi";
+svgStrU[62][16] = "Müşahidə olunan tezlik üçün Uyğunluğun keyfiyyəti testi";
 svgStrU[63][16] = "Wilcoxon Reytinq Cəmi Test";
 svgStrU[64][16] = "Wilcoxon Reytinq Cəmi Test cədvəl";
 svgStrU[65][16] = "Kruskal-Wallis Test";
@@ -12683,46 +12683,46 @@ svgStrU[71][16] = "Friedman S Statistika";
 svgStrU[72][16] = "Friedman S paylanması";
 svgStrU[73][16] = "t dəyər (yoki Z)";
 svgStrU[74][16] = "ChiSq dəyər";
-svgStrU[75][16] = "Nümunənin dispersiyası";
+svgStrU[75][16] = "Nümunə dispersiyası";
 svgStrU[76][16] = "nümunə ədədi ortalarının fərqi";
-svgStrU[77][16] = "Nümunə dispersiyasının nisbəti";
+svgStrU[77][16] = "Nümunə dispersiyalarının nisbəti";
 svgStrU[78][16] = "Dispersiya fərziyyəsi";
-svgStrU[79][16] = "Xülasə məlumatları";
+svgStrU[79][16] = "Xülasə məlumatlar";
 svgStrU[80][16] = "çoxsaylı seçim";
 svgStrU[81][16] = "İki qrupa qədər seçin";
-svgStrU[82][16] = "X dəyişənin";
-svgStrU[83][16] = "Y dəyişənin";
-svgStrU[84][16] = "tomonidan";
-svgStrU[85][16] = "Yo'q Grup dəyişənin";
+svgStrU[82][16] = "X dəyişəni";
+svgStrU[83][16] = "Y dəyişəni";
+svgStrU[84][16] = "tərəfindən";
+svgStrU[85][16] = "Qrup Dəyişəni yoxdur";
 svgStrU[86][16] = "seçilmiş məlumat: ";
 svgStrU[87][16] = "Xam Məlumat";
-svgStrU[88][16] = "Dəyişənin adını tıklayaraq dəyişənləri seçin";
+svgStrU[88][16] = "Dəyişənin adına klikləyərək dəyişənləri seçin";
 svgStrU[89][16] = "çatışmayan müşahidələr";
 svgStrU[90][16] = "Reytinq cəmi";
-svgStrU[91][16] = "Longitude";
-svgStrU[92][16] = "Latitude";
+svgStrU[91][16] = "Uzunluq";
+svgStrU[92][16] = "Enlik";
 svgStrU[93][16] = "Ən azı bir cüt lokasiya fərqlidir";
 svgStrU[94][16] = "Wilcoxon işarə Reytinq Cəmi Paylanma";
 svgStrU[95][16] = "cütlü dəyişən";
-svgStrU[96][16] = "cütlü nümunə";
+svgStrU[96][16] = "cütlü məlumat";
 svgStrU[97][16] = "asılı olmama testi";
 svgStrU[98][16] = "Simulyasiya";
 svgStrU[99][16] = "təsadüfi rəqəm";
 svgStrU[100][16] = "Normal Paylanma";
-svgStrU[101][16] = "t Paylanman";
+svgStrU[101][16] = "t Paylanma";
 svgStrU[102][16] = "&chi;&#178; Paylanma";
 svgStrU[103][16] = "F Paylanma";
 svgStrU[104][16] = "HSD Tələbəli İnterval Paylanması";
-svgStrU[105][16] = "birinchi kvartil";
-svgStrU[106][16] = "uchinchi kvartil";
-svgStrU[107][16] = "kvartil oralig'i";
-svgStrU[108][16] = "o'zgaruvchanlik koeffitsienti";
-svgStrU[109][16] = "To'plangan nisbiy chastota (%)";
-svgStrU[110][16] = "Uniform Distribution butun sonlarining maksimal soni";
-svgStrU[111][16] = "Sichqoncha yordamida nuqtani siljiting";
-svgStrU[112][16] = "Bərpa hasilatı";
-svgStrU[113][16] = "almashtirishsiz";
-svgStrU[114][16] = "xətti"; 
+svgStrU[105][16] = "birinci kvartil";
+svgStrU[106][16] = "üçüncü kvartil";
+svgStrU[107][16] = "Kvartallararası diapazon";
+svgStrU[108][16] = "Dəyişmə əmsalı";
+svgStrU[109][16] = "Toplanmış Nisbi Tezlik (%)";
+svgStrU[110][16] = "Vahid Paylanma tam ədədlərinin maksimum sayı";
+svgStrU[111][16] = "Mausu istifadə edərək nöqtəni hərəkət etdirin";
+svgStrU[112][16] = "yerdəyişmə ilə";
+svgStrU[113][16] = "yerdəyişməsiz";
+svgStrU[114][16] = "xətt"; 
 svgStrU[115][16] = "Faiz Dəyişikliyi";
 svgStrU[116][16] = "Sadə İndeks";
 svgStrU[117][16] = "Vaxt gecikməsi";
@@ -12743,7 +12743,6 @@ svgStrU[131][16] = "Mövsümi İndeks";
 svgStrU[132][16] = "Holt-Winters Multiplikativ Mövsümi Model";
 svgStrU[133][16] = "Mövsümi Seriya";
 svgStrU[134][16] = "Blok";
-
 
 // Uzbekistan
 $.message.uz = {
@@ -12897,7 +12896,7 @@ $.message.uz = {
     "Simulation": "Simulyatsiya",
     "Confidence Interval Mu": "Hisoblash : &mu;",
     "Mu Confidence Interval": "Hisoblash : &mu;",
-    "Confidence Interval Sigma": "Hisoblash : &sigma;&#178;",
+    "Confidence Interval Sigma": "Hisoblash : &sigma;&#178; ",
     "Confidence Interval P": "Hisoblash : p",
     "Estimation Accuracy": "Hisoblash Aniqlik",
     "Repetition": "takrorlash",
@@ -13645,7 +13644,7 @@ $.message.ru = {
     "Simulation": "Симуляция",
     "Confidence Interval Mu": "Oценки : &mu;",
     "Mu Confidence Interval": "Oценки : &mu;",
-    "Confidence Interval Sigma": "Oценки : &sigma;&#178;",
+    "Confidence Interval Sigma": "Oценки : &sigma;&#178; ",
     "Confidence Interval P": "Oценки : p",
     "Estimation Accuracy": "Точность оценки",
     "Repetition": "Повторение",
@@ -14392,7 +14391,7 @@ $.message.tr = {
     "Simulation": "simülasyonu",
     "Confidence Interval Mu": "Tahmin : &mu;",
     "Mu Confidence Interval": "Nüfus ortalama güven aralığı",
-    "Confidence Interval Sigma": "Tahmin: &sigma;&#178",
+    "Confidence Interval Sigma": "Tahmin: &sigma;&#178 ",
     "Confidence Interval P": "Tahmin : p",
     "Estimation Accuracy": "Tahmin doğruluğu",
     "Repetition": "Tekrar",

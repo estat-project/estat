@@ -4349,7 +4349,7 @@ function drawAxisSample(start, gxmin, gxmax) {
         var xScale = d3.scaleLinear().domain([gxmin,gxmax]).range([0,graphWidth])
         var ty = start + margin.top + graphHeight;
       if (checkSampling) {
-        dot.append("g")
+        dot2.append("g")
            .attr("transform","translate("+margin.left+","+ty+")")
            .call(d3.axisBottom(xScale))                  // 눈금을 표시할 함수 호출
       }
@@ -5490,6 +5490,7 @@ function inputValueAB() {
 // alpha, beta 가설검정용 mu1
 function showValueMu1AB(newValue) {
         document.getElementById("mu1AB").value  = mu0 + stdP * (newValue-30)/10;
+        document.getElementById("mu1AB2").value = mu0 + stdP * (newValue-30)/10;
         bar.selectAll("*").remove();
         inputValueAB();
         drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1, alpha2, beta1, beta2);
@@ -5497,6 +5498,7 @@ function showValueMu1AB(newValue) {
 // alpha, beta 가설검정용 alpha1
 function showValueAlpha1AB(newValue) {
         document.getElementById("alpha1AB").value  = f3(newValue/100);
+        document.getElementById("alpha1AB2").value = f3(newValue/100);
         bar.selectAll("*").remove();
         inputValueAB();
         drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1, alpha2, beta1, beta2);
@@ -5504,6 +5506,7 @@ function showValueAlpha1AB(newValue) {
 // alpha, beta 가설검정용 nn1
 function showValuenn1AB(newValue) {
         document.getElementById("nn1AB").value  = f0(newValue);
+        document.getElementById("nn1AB2").value = f0(newValue);
         bar.selectAll("*").remove();
         inputValueAB();
         drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1, alpha2, beta1, beta2);
@@ -5511,6 +5514,7 @@ function showValuenn1AB(newValue) {
 // alpha, beta 가설검정용 alpha2
 function showValueAlpha2AB(newValue) {
         document.getElementById("alpha2AB").value  = f3(newValue/100);
+        document.getElementById("alpha2AB2").value  = f3(newValue/100);
         bar.selectAll("*").remove();
         inputValueAB();
         drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1, alpha2, beta1, beta2);
@@ -5518,6 +5522,7 @@ function showValueAlpha2AB(newValue) {
 // alpha, beta 가설검정용 beta2
 function showValueBeta2AB(newValue) {
         document.getElementById("beta2AB").value  = f3(newValue/100);
+        document.getElementById("beta2AB2").value = f3(newValue/100);
         bar.selectAll("*").remove();
         inputValueAB();
         drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1, alpha2, beta1, beta2);
