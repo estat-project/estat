@@ -32,7 +32,7 @@
           <td>&nbsp;</td>
           <td><span class="fontmath">P(A)</span></td>
           <td>=</td>
-          <td><input type="text" size=2 id="pa" value="0.40" style="text-align: center;">&nbsp;
+          <td><input type="text" size=2 id="pa" value="0.400" style="text-align: center;">&nbsp;
               <sup><small> 0 </small></sup>
               <input type="range" style="width: 100px;" min="0" max="20" value="8" id="rangePA" onchange="showValuePA(this.value)"/>
               <sup><small> 1 </small></sup>
@@ -42,7 +42,7 @@
           <td>&nbsp;</td>
           <td><span class="fontmath">P(B)</span></td>
           <td>=</td>
-          <td><input type="text" size=2 id="pb" value="0.30" style="text-align: center;">&nbsp;
+          <td><input type="text" size=2 id="pb" value="0.300" style="text-align: center;">&nbsp;
               <sup><small> 0 </small></sup>
               <input type="range" style="width: 100px;" min="0" max="20" value="6" id="rangePB" onchange="showValuePB(this.value)"/>
               <sup><small> 1 </small></sup>
@@ -52,7 +52,7 @@
           <td>&nbsp;</td>
           <td><span class="fontmath">P(A ∩ B)</span></td>
           <td>=</td>
-          <td><input type="text" size=2 id="panb" value="0.20" style="text-align: center;">&nbsp;
+          <td><input type="text" size=2 id="panb" value="0.200" style="text-align: center;">&nbsp;
               <sup><small><span id="minPANB"></span></small></sup>
               <input type="range" style="width: 80px;" min="0" max="20" value="14" id="rangePANB" onchange="showValuePANB(this.value)"/>
               <sup><small><span id="maxPANB"></span></small></sup>
@@ -151,17 +151,17 @@
         else tmax = pb;
         tmin = 0;
         if (pa+pb >= 1) tmin = pa + pb - 1;
-        document.getElementById("pa").value   = f2(pa);
-        document.getElementById("pb").value   = f2(pb);
-        document.getElementById("panb").value = f2(panb);
-        document.getElementById("minPANB").innerHTML = f2(tmin);
-        document.getElementById("maxPANB").innerHTML = f2(tmax);
+        document.getElementById("pa").value   = f3(pa);
+        document.getElementById("pb").value   = f3(pb);
+        document.getElementById("panb").value = f3(panb);
+        document.getElementById("minPANB").innerHTML = f3(tmin);
+        document.getElementById("maxPANB").innerHTML = f3(tmax);
         if (tmin == tmax) temp = 20;
         else temp = 20*(panb-tmin)/(tmax-tmin)
         document.getElementById("rangePANB").value = temp;
         // P(A U B)
         paub = parseFloat(pa) + parseFloat(pb) - parseFloat(panb);
-        str2 = " = " + pa + " + " + pb + " - " + panb; 
+        str2 = " = " + f3(pa) + " + " + f3(pb) + " - " + f3(panb); 
         str3 = " = " + f3(paub);
         document.getElementById("paubstr").innerHTML = str1 + str2 + str3;
         drawUnion(pa, pb, panb, paub, str3);   
@@ -169,7 +169,7 @@
 
       // pa slidebar
       function showValuePA(newValue) {
-        document.getElementById("pa").value = f2(newValue*0.05);
+        document.getElementById("pa").value = f3(newValue*0.05);
         pa   = parseFloat(d3.select("#pa").node().value);
         pb   = parseFloat(d3.select("#pb").node().value);
         panb = parseFloat(d3.select("#panb").node().value);
@@ -177,7 +177,7 @@
       }
       // pb slide bar
       function showValuePB(newValue) {
-        document.getElementById("pb").value = f2(newValue*0.05);
+        document.getElementById("pb").value = f3(newValue*0.05);
         pa   = parseFloat(d3.select("#pa").node().value);
         pb   = parseFloat(d3.select("#pb").node().value);
         panb = parseFloat(d3.select("#panb").node().value);
@@ -186,7 +186,7 @@
       // panb slide bar
       function showValuePANB(newValue) {
         panb = tmin + (tmax - tmin) * newValue * 0.05;
-        document.getElementById("panb").value = f2(panb);
+        document.getElementById("panb").value = f3(panb);
         pa   = parseFloat(d3.select("#pa").node().value);
         pb   = parseFloat(d3.select("#pb").node().value);
         panb = parseFloat(d3.select("#panb").node().value);
@@ -219,7 +219,7 @@
              .style("stroke","black").style("stroke-width","2").style("opacity","0.2").style("fill","yellow");
         chart.append("circle").attr("cx",cx).attr("cy",cy).attr("r",radiusA)
              .style("stroke","black").style("stroke-width","2").style("opacity","0.2").style("fill","red");
-        chart.append("text").attr("x", cx-10).attr("y", cy-radiusA+30).text("P(A)="+pa)
+        chart.append("text").attr("x", cx-10).attr("y", cy-radiusA+30).text("P(A)="+f3(pa))
              .style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
         if (pa == 1 || pb == 1) tx = cx;
         else if (panb == 0)  tx = cx + 2*radiusA; 
@@ -227,9 +227,9 @@
         else tx = cx + radius - radiusAB/2+10;
         chart.append("circle").attr("cx",tx).attr("cy",cy).attr("r",radiusB)
              .style("stroke","black").style("stroke-width","2").style("opacity","0.2").style("fill","green");
-        chart.append("text").attr("x", tx+20).attr("y", cy-radiusB+30).text("P(B)="+pb)
+        chart.append("text").attr("x", tx+20).attr("y", cy-radiusB+30).text("P(B)="+f3(pb))
              .style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
-        chart.append("text").attr("x", (cx+tx)/2).attr("y", cy+10).text("P(A∩B)="+panb)
+        chart.append("text").attr("x", (cx+tx)/2).attr("y", cy+10).text("P(A∩B)="+f3(panb))
              .style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
         tx = margin.left + xgap + 30;
         ty =  cy + 200;

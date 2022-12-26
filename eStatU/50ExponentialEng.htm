@@ -262,6 +262,7 @@
           else if (lambda > 10)  { lambda = 10; d3.select("#explambda").node().value = f1(lambda);}
           c = parseFloat(d3.select("#c3").node().value); 
           a = exponential_inv(1-c, lambda, info);
+          b = exponential_inv(0.9999, lambda, info);
           if ( a < 0 ) a = 0.0001;   
           if ( a > b ) c = 0;
           else c = 1 - exponential_cdf(a, lambda, info);
@@ -397,6 +398,7 @@
           bar.selectAll("text.mean").remove();
           bar.selectAll("line.lineb").remove();
           a = parseFloat(d3.select("#a3").node().value); 
+          b = exponential_inv(0.9999, lambda, info);
           if ( a < 0 ) a = 0.0001;   
           if ( a > b ) c = 0;
           else c = 1 - exponential_cdf(a, lambda, info);

@@ -52,12 +52,12 @@
     <input type="text" class="textarea" size=4 value="0.05" id="alpha">&nbsp; <span class="fontguide">(0 < &alpha; < 1)</span>
    
     <form name="myForm3">
-      [<b><span data-msgid="Sampling Type">Sample Type</span></b>] &nbsp; 
+      <b>[<span data-msgid="Sampling Type">Sample Type</span>]</b> &nbsp; 
       <input type="radio" name = "type3" value="1" checked><span data-msgid="Independent Sample">independent</span>  &nbsp;      
       <input type="radio" name = "type3" value="2" > <span data-msgid="Paired Sample">paired </span> 
     </form>   
     <form name="myForm1">
-      [<b><span data-msgid="Variance Assumption">Variance Assumption</span></b>] &nbsp;
+      <b>[<span data-msgid="Variance Assumption">Variance Assumption</span>]</b> &nbsp;
       <span class="fontmath">
       <input type="radio" name = "type1" value="1" id="samevari" checked>
       &sigma;<sub>1</sub><sup>2</sup> = &sigma;<sub>2</sub><sup>2</sup> &nbsp;&nbsp;
@@ -172,6 +172,7 @@
   </div> 
 
 <script>
+      setLanguage('en');
       var bar = d3.select("#chart");
       var svgWidth, svgHeight, margin, graphWidth, graphHeight;
       var svgWidth2, svgHeight2, graphWidth2, graphHeight2;
@@ -261,6 +262,7 @@
         document.getElementById("varDiff").value = "";   
         if (testType == 1) { // same variance
           hypoType = 41;
+          document.getElementById("tformula").innerHTML   = tval1;
           document.getElementById("intFormula").innerHTML = intT1;
           document.getElementById("varFormula").innerHTML = varT1;
           document.getElementById("tvalue").value = "";
@@ -271,6 +273,7 @@
         }
         else if (testType == 2) {
           hypoType = 42;
+          document.getElementById("tformula").innerHTML   = tval2;
           document.getElementById("intFormula").innerHTML = intT2;
           document.getElementById("varFormula").innerHTML = varT2;
           document.getElementById("tvalue").value = "";
@@ -282,6 +285,14 @@
       }  
       sample[1].onclick = function() { // paired sample
         sampleType = 2; 
+        if ( nn41 != nn42 ){ // wrong input
+            bar.selectAll("*").remove();
+            bar.append("text").attr("x", 50).attr("y", 100).style("stroke","red")
+               .text("Paired sample should have the same sample size.")
+            bar.append("text").attr("x", 50).attr("y", 120).style("stroke","red")
+               .text("종속표본은 표본의 크기가 같아야 합니다.")
+            return;
+        }
         document.getElementById("samevari").disabled = true;    
         document.getElementById("diffvari").disabled = true;    
         document.getElementById("nDiff").disabled = false;    
@@ -297,7 +308,28 @@
         document.getElementById("ansFormula").value = "";
        if (checkExecute) testingHypothesisMu12();
       }
-      
+ 
+      // erase Data and Graph
+      d3.select("#erase").on("click",function() {
+        bar.selectAll("*").remove();
+        document.getElementById("mu4").value     = "0";
+        document.getElementById("data1").value   = "";
+        document.getElementById("data2").value   = "";
+        document.getElementById("nn41").value    = "";
+        document.getElementById("nn42").value    = "";
+        document.getElementById("nDiff").value   = "";
+        document.getElementById("xbar41").value  = "";
+        document.getElementById("xbar42").value  = "";
+        document.getElementById("avgDiff").value = "";
+        document.getElementById("var41").value   = "";
+        document.getElementById("var42").value   = "";
+        document.getElementById("varDiff").value = "";
+        document.getElementById("tvalue").value  = "";
+        document.getElementById("cleft").value   = "";
+        document.getElementById("cright").value  = "";
+        document.getElementById("ansFormula").value = "";
+      })
+     
       // input data control ===================================================
       d3.select("#data1").on("input", function() {
         stat = simplestat("#data1");  
@@ -372,9 +404,9 @@
           if (isNaN(nn41) || isNaN(nn42) || isNaN(xbar41) || isNaN(xbar42) || isNaN(var41) || isNaN(var42) ||
             nn41 < 2 || nn42 < 2 || var41 <= 0 || var42 <= 0) {  // wrong input
             bar.append("text").attr("x", 50).attr("y", 100).style("stroke","red")
-               .text("입력자료가 없든지 잘못 입력하였습니다.")
-            bar.append("text").attr("x", 50).attr("y", 120).style("stroke","red")
                .text("No input or wrong input !!   Try again.")  
+            bar.append("text").attr("x", 50).attr("y", 120).style("stroke","red")
+               .text("입력자료가 없든지 잘못 입력하였습니다.")
             return; 
           }          
         }
@@ -384,18 +416,20 @@
             avgDiff = parseFloat(d3.select("#avgDiff").node().value);
             stdDiff = parseFloat(d3.select("#varDiff").node().value);
             if ( isNaN(nDiff) || isNaN(avgDiff) || isNaN(stdDiff) ) {
+              bar.selectAll("*").remove();
               bar.append("text").attr("x", 50).attr("y", 100).style("stroke","red")
-                 .text("종속표본 검정을 위한 데이터 입력이 없습니다.")
-              bar.append("text").attr("x", 50).attr("y", 120).style("stroke","red")
                  .text("No data input for paired sample t-test.")
+              bar.append("text").attr("x", 50).attr("y", 120).style("stroke","red")
+                 .text("종속표본 검정을 위한 데이터 입력이 없습니다.")
               return;
             }
           }
           else if ( nn41 != nn42 ){ // wrong input
-            bar.append("text").attr("x", 50).attr("y", 100).style("stroke","red")
-               .text("종속표본은 표본의 크기가 같아야 합니다.")
+            bar.selectAll("*").remove();
             bar.append("text").attr("x", 50).attr("y", 120).style("stroke","red")
                .text("Paired sample should have the same sample size.")
+            bar.append("text").attr("x", 50).attr("y", 100).style("stroke","red")
+               .text("종속표본은 표본의 크기가 같아야 합니다.")
             return;
           }
         }
