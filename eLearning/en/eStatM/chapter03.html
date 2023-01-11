@@ -283,7 +283,7 @@
       var i, j, k, ith;
       var x1, x2, y1, y2, cx, cy, ty;
       var nint, step, buffer, nvalue; 
-      var nobs, mini, maxi;
+      var nobsL, mini, maxi;
       var maxrow = 100;
       var data1 = new Array(maxrow);
       var tdata = new Array(maxrow);
@@ -349,7 +349,7 @@
       document.getElementById("data1").value  = "39 18 20 22 16 44 59 18 16 23 53 76 77 76 37 15 13 17 24 42 46 30 18 25 34 24 11 14";
       data1 = [39,18,20,22,16,44,59,18,16,23,53,76,77,76,37,15,13,17,24,42,46,30,18,25,34,24,11,14];
       stat  = simplestat2("#data1");  
-      nobs  = data1.length;
+      nobsL  = data1.length;
       mini  = stat.mini;  
       maxi  = stat.maxi;
       data  = data1;
@@ -357,7 +357,7 @@
       // data input control =====================================
       d3.select("#data1").on("input", function() {
         stat = simplestat2("#data1");  
-        nobs  = stat.n;  
+        nobsL  = stat.n;  
         mini  = stat.mini;  
         maxi  = stat.maxi;
       });
@@ -376,7 +376,7 @@
       // Draw Stem and Leaf Graph ======================================
       d3.select("#execute").on("click",function() {
         chart.selectAll("*").remove();
-        for (i=0; i<nobs; i++) {
+        for (i=0; i<nobsL; i++) {
             if (isNaN(data[i]) ) { //문자 데이터 체크
               chart.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
                    .text(alertMsg[48][langNum]).style("stroke","red").style("font-size","1em");
@@ -384,8 +384,8 @@
             }
         }
         mTitle = d3.select("#mtitle").node().value;   
-        for (i=0; i<nobs; i++) tdata[i] = data[i];
-        drawStemLeaf(nobs, mini, maxi, tdata);
+        for (i=0; i<nobsL; i++) tdata[i] = data[i];
+        drawStemLeaf(nobsL, mini, maxi, tdata);
       })
 
       // svg Graph Save
@@ -402,7 +402,7 @@
 
 
   // 줄기잎그림 함수 -----------------------------------------------------------------------------
-  function drawStemLeaf(nobs, mini, maxi, dataSet) {
+  function drawStemLeaf(nobsL, mini, maxi, dataSet) {
     var colr = ["#FF0000","#FF8000","#80FF00","#00FFFF","#BF00FF","#FF00FF","#0080FF","#00BFFF","#8000FF","#0000FF"];
     var i, j, k, kk, digitMax, digitDeci, digit10, len, pos, temp, temp1, temp2, ty, x1, y1, x2, y2;
     var tempstr;
@@ -417,7 +417,7 @@
 
     // 소수아래 자리수 계산
     digitDeci = 0;
-    for (i = 0; i < nobs; i++) {
+    for (i = 0; i < nobsL; i++) {
        temp = dataSet[i].toString();
        pos = temp.indexOf(".");
        if (pos < 0) len = 0;
@@ -462,11 +462,11 @@
     }
 
     ty = 20;
-    for (i = 0; i < nobs; i++) {
+    for (i = 0; i < nobsL; i++) {
         tdata[i] = dataSet[i] * digit10;
     }
     // Determine Leaf
-    CountLeaf(nvalue, nobs, tdata, dataValue, dvalueFreq, stem, leaf);
+    CountLeaf(nvalue, nobsL, tdata, dataValue, dvalueFreq, stem, leaf);
     // 주제목
     chart.append("text")
         .attr("x", margin.left + graphWidth/2)
@@ -910,7 +910,7 @@
           <td><input type="text" size=10 id="stdS" style="text-align: right;"></td>
         </tr>
       </table>
-      <table>
+      <table style="width:750px;">
         <tr>
           <td><b><span data-msgid="Interval Start">Interval Start</span></b> = </td>
           <td>&nbsp;<input type="text" size=6 id="start" style="text-align: right;"></td>
@@ -925,19 +925,26 @@
       <p>
             <div class="textLeft">&lt;Figure 3.4&gt; Data input for a histogram</div>
       <p>
-      <button type="button" id="executeHist"  style="width:140px;">
-        <span data-msgid="Execute">Execute</span>
-      </button> 
-      <p>
+      <form name="myForm2">
+        <button type="button" id="executeHist"  style="width:140px;">
+          <span data-msgid="Execute">Execute</span>
+        </button> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        <span data-msgid="yAxis">Y</span> : 
+        <input type="radio" name = "type2" checked> <span data-msgid="Frequency">도수</span>      
+        <input type="radio" name = "type2"> <span data-msgid="RelativeFreq">%</span>   
+        <input type="radio" name = "type2"> <span data-msgid="Density">Density</span>   
+      </form>
+      <br>
       <svg id="chartHist" width="750" height="540" style="border-style:solid;"> </svg>
       <p>
       <button type="button" id="saveGraphHist"  style="width:140px;">
 	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
       </button>
       &nbsp;&nbsp;&nbsp;
-      <label>&nbsp;<input type="checkbox" id="HistMean"><span data-msgid="Mean"> Mean </span></label>
-      <label><input type="checkbox" id="HistFreq"><span data-msgid="Frequency"> Frequency </span></label>
-      <label><input type="checkbox" id="HistLine"><span data-msgid="Frequency Polygon"> Frequency Polygon </span></label> &nbsp
+      <label>&nbsp;<input type="checkbox" id="HistMean"> <span data-msgid="Mean"> Mean </span></label>
+      <label><input type="checkbox" id="HistFreq"> <span data-msgid="Frequency"> Frequency </span></label>
+      <label><input type="checkbox" id="HistLine"> <span data-msgid="Frequency Polygon"> Frequency Polygon </span></label> &nbsp
       &nbsp;&nbsp;&nbsp;
       <button type="button" id="HistTable"><span data-msgid="Frequency Table"> Frequency Table </span></button>
       <div width="650" > 
@@ -963,7 +970,7 @@
       var i, j, k, ith;
       var x1, x2, y1, y2, cx, cy, ty;
       var nint, step, buffer, nvalue; 
-      var nobs, mean, varS, stdS, miniH, maxiH, start, xstep;
+      var nobsH, mean, varS, stdS, miniH, maxiH, start, xstep;
       var nvalueH, gxminH, gxmaxH, gyminH, gymaxH, xgap, xwidth, Histogram;
       var mTitleHist, yTitleHist, xTitleHist;
       var rowMax = 100;
@@ -971,22 +978,50 @@
       var freq = new Array(rowMax);
       var dataHist = new Array(rowMax);
 
-      document.getElementById("histColor").value      = histColor;
+      // Frequency or % check
+      var a = document.myForm2.type2;
+      var checkFreqPercentY = true;
+      var checkDensity = false
       document.getElementById("yTitleHist").value   = svgStr[16][langNum];
+      yTitleHist = svgStr[16][langNum];
+      a[0].onclick = function() { 
+        checkFreqPercentY = true;  
+        checkDensity = false;
+        document.getElementById("yTitleHist").value = svgStr[16][langNum];
+        yTitleHist = svgStr[16][langNum];
+        drawHistogram(nobsH, start, xstep, dataH, dint, freq);
+      }  
+      a[1].onclick = function() { 
+        checkFreqPercentY = false; 
+        checkDensity = false;
+        document.getElementById("yTitleHist").value = svgStr[30][langNum];
+        yTitleHist = svgStr[30][langNum];
+        drawHistogram(nobsH, start, xstep, dataH, dint, freq);
+      } 
+      a[2].onclick = function() { 
+        checkFreqPercentY = false; 
+        checkDensity = true;
+        document.getElementById("yTitleHist").value = "";
+        yTitleHist = "";
+        drawHistogram(nobsH, start, xstep, dataH, dint, freq);
+      } 
+
+      document.getElementById("histColor").value    = histColor;
       document.getElementById("msgMed").innerHTML   = svgStr[46][langNum]; 
       document.getElementById("msgMin").innerHTML   = svgStr[45][langNum]; 
       document.getElementById("msgMax").innerHTML   = svgStr[47][langNum]; 
       document.getElementById("msgRange").innerHTML = svgStr[112][langNum]; 
       document.getElementById("msgVariance").innerHTML = svgStr[117][langNum]; 
 
-      document.getElementById("nn").disabled    = true;    
-      document.getElementById("xbar").disabled  = true; 
-      document.getElementById("medi").disabled  = true;   
+      document.getElementById("yTitleHist").disabled = true;
+      document.getElementById("nn").disabled     = true;    
+      document.getElementById("xbar").disabled   = true; 
+      document.getElementById("medi").disabled   = true;   
       document.getElementById("miniH").disabled  = true;  
       document.getElementById("maxiH").disabled  = true;  
-      document.getElementById("range").disabled = true; 
-      document.getElementById("varS").disabled  = true; 
-      document.getElementById("stdS").disabled  = true; 
+      document.getElementById("range").disabled  = true; 
+      document.getElementById("varS").disabled   = true; 
+      document.getElementById("stdS").disabled   = true; 
 
     // basic statistics function ============================================
     simplestatH = function(dataid) {
@@ -1045,12 +1080,11 @@
 
       // Initial Histogram example
         document.getElementById("mTitleHist").value = "Weight of Middle School Students (kg)";   
-        document.getElementById("yTitleHist").value = "Frequency";   
         document.getElementById("xTitleHist").value = "weight";   
         document.getElementById("dataHist").value  = "63 65 67 68 61 60 72 55 64 76 68 63 70 61 54 63 66 53 58 70 62 62 57 58 59 53 58 58 62 61";
         dataHist = [63,65,67,68,61,60,72,55,64,76,68,63,70,61,54,63,66,53,58,70,62,62,57,58,59,53,58,58,62,61];
         statHist  = simplestatH("#dataHist");  
-        nobs  = dataHist.length;
+        nobsH  = dataHist.length;
         miniH  = statHist.mini;  
         maxiH  = statHist.maxi;
         dataH  = dataHist;
@@ -1107,12 +1141,8 @@
 
       // Draw Histogram ======================================
       d3.select("#executeHist").on("click",function() {
-        chartHist.selectAll("*").remove();
-        document.getElementById("HistMean").checked = false;
-        document.getElementById("HistFreq").checked = false;
-        document.getElementById("HistLine").checked = false;
-        nobs  = statHist.n;  
-        for (i=0; i<nobs; i++) {
+        nobsH  = statHist.n;  
+        for (i=0; i<nobsH; i++) {
             if (isNaN(dataH[i]) ) { //문자 데이터 체크
               chartHist.append("text").attr("class","mean").attr("x", 250).attr("y", marginHist.top + 40)
                    .text(alertMsg[48][langNum]).style("stroke","red").style("font-size","1em");
@@ -1126,7 +1156,7 @@
         xstep = d3.select("#xstep").node().value;
         histColor = document.getElementById("histColor").value;
         // input check
-        if ( nobs > 100) {
+        if ( nobsH > 100) {
            chartHist.append("text").attr("class","mean").attr("x", 250).attr("y", 100)
                 .text(alertMsg[49][langNum]).style("stroke","red").style("font-size", "1em")
            return;
@@ -1141,11 +1171,10 @@
           xstep = parseFloat(xstep);
         }
         mTitleHist = d3.select("#mTitleHist").node().value;
-        yTitleHist = d3.select("#yTitleHist").node().value;
         xTitleHist = d3.select("#xTitleHist").node().value;
-        if (yTitleHist == "") yTitleHist = svgStr[16][langNum];
+
         if (start > miniH) start = miniH
-        var para = drawHistogram(nobs, start, xstep, dataH, dint, freq);
+        var para = drawHistogram(nobsH, start, xstep, dataH, dint, freq);
         Histogram = true;
         nvalueH = para.a;
         gxminH  = start;
@@ -1226,7 +1255,14 @@
   }
 
   // 히스토그램 그리기 함수 -----------------------------------------------------------------------------------------------
-  function drawHistogram(nobs, gxminH, xstep, data, dataValueH, dvalueFreq) {
+  function drawHistogram(nobsH, gxminH, xstep, data, dataValueH, dvalueFreq) {
+    chartHist.selectAll("*").remove();
+    document.getElementById("HistMean").checked = false; 
+    document.getElementById("HistFreq").checked = false; 
+    document.getElementById("HistLine").checked = false; 
+    checkHistMean = false;
+    checkHistFreq = false;
+    checkHistLine = false;
     var i, j, k;
     var label, tempx, tempy, tempw, temph, xgap, xwidth;
     var nvaluH, gxminH, gxmaxH, gxrangeH, gyminH, gymaxH, gyrangeH, freqmax;
@@ -1249,7 +1285,7 @@
 
     // 히스토그램 그리기
     freqmax = 0;
-    HistIntervalFreq(nobs, nvalueH, data, dataValueH, dvalueFreq);
+    HistIntervalFreq(nobsH, nvalueH, data, dataValueH, dvalueFreq);
 
     for (j = 0; j <= nvalueH; j++) {
         if (dvalueFreq[j] > freqmax) freqmax = dvalueFreq[j];
@@ -1291,14 +1327,27 @@
   // 히스토그램 y축, x축 그리기
   function drawHistAxis(nvalueH, dataValueH, gxminH, gxmaxH, gyminH, gymaxH, graphWidthHist, graphHeightHist) {
     var i, j, k;
-    var tx, ty, x1, x2, y1, y2, z1, z2;
+    var tx, ty, x1, x2, y1, y2, z1, z2, temp, yScale;
     var gxrangeH = gxmaxH - gxminH;
     var xgap     = graphWidthHist / (nvalueH + 2); // 좌우갭
     var xwidth   = graphWidthHist - 2 * xgap; // 좌우 갭을 뺀 실제 x 너비
     var ygrid    = new Array(rowMax);
 
     // Y축 그리기
-    var yScale = d3.scaleLinear().domain([gyminH, gymaxH]).range([graphHeightHist, 0]);
+    if (checkFreqPercentY) {
+      yScale = d3.scaleLinear().domain([gyminH, gymaxH]).range([graphHeightHist, 0]);
+    }
+    else {
+      if (!checkDensity) {
+        temp = gymaxH / nobsH;
+        yScale = d3.scaleLinear().domain([gyminH, temp]).range([graphHeightHist, 0]);
+      }
+      else {
+        temp = gymaxH / nobsH / xstep;
+        yScale = d3.scaleLinear().domain([gyminH, temp]).range([graphHeightHist, 0]);
+      }
+    }
+    
     ygrid = yScale.ticks();
     tx = marginHist.left;
     ty = marginHist.top;
@@ -1391,7 +1440,7 @@
             .attr("y", marginHist.top + graphHeightHist + marginHist.bottom*0.6 )
             .text(xTitleHist)
      // Y축 제목
-     var tx = marginHist.left / 2 - 30;
+     var tx = marginHist.left - 20 ;
      var ty = marginHist.top + 15;
      chartHist.append("text")
             .style("font-size", "1em")
@@ -1438,13 +1487,15 @@
   
   // 히스토그램 도수 표시 함수
   function showHistFreq(nvalueH, xstep, dataValueH, freq, gxminH, gxmaxH, gyminH, gymaxH, xgap, xwidth) {
-    var x1, y1;
+    var x1, y1, temp;
     var gxrangeH = gxmaxH - gxminH;
     var gyrangeH = gymaxH - gyminH;
 
     for (var i = 1; i <= nvalueH; i++) {
         x1 = marginHist.left + xgap + xwidth * (dataValueH[i - 1] + xstep / 2 - gxminH) / gxrangeH;
         y1 = marginHist.top + graphHeightHist - graphHeightHist * (freq[i] - gyminH) / gyrangeH;
+        if (checkFreqPercentY) temp = freq[i];
+        else temp = f2( freq[i] / nobsH );
         chartHist.append("text")
              .attr("class", "histfreq")
              .style("stroke", "red")
@@ -1453,7 +1504,7 @@
              .style("font-size", "0.8em")
              .attr("x", x1)
              .attr("y", y1 - 4)
-             .text(freq[i])
+             .text(temp)
     }
   }
 
@@ -2182,7 +2233,7 @@
       var nrow = new Array(maxcol);
       var i, j, k, ith;
       var x1, x2, y1, y2, cx, cy, tx, ty;
-      var nobs, sum1, sum2, mean1, mean2, vari1, vari2, stdv1, stdv2, start, xstep, temp;
+      var sum1, sum2, mean1, mean2, vari1, vari2, stdv1, stdv2, start, xstep, temp;
       var nvalueH, gxminH, gxmaxH, gyminH, gymaxH, xgap, xwidth, Histogram;
       var mTitleRelFreq, yTitleRelFreq, xTitleRelFreq;
       var freq1Name, freq2Name;

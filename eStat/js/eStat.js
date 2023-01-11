@@ -5821,6 +5821,13 @@ function drawMeanGraph(ngroup, gvalueLabel, nobs, avg, std, graphWidth, graphHei
 
 // 히스토그램 그리기 함수 -----------------------------------------------------------------------------------------------
 function drawHistGraph(ngroup, gxminH, xstep, dataSet, freq, gvalueLabel, dvalueLabel, dvarName) {
+    chart.selectAll("*").remove();
+    document.getElementById("HistMean").checked = false; 
+    document.getElementById("HistFreq").checked = false; 
+    document.getElementById("HistLine").checked = false; 
+    checkHistMean = false;
+    checkHistFreq = false;
+    checkHistLine = false;
     var i, j, k;
     var label, tempx, tempy, tempw, temph;
     var nvaluH, gxminH, gxmaxH, gxrangeH, gyminH, gymaxH, gyrangeH, freqmax, tobs;
@@ -5881,7 +5888,13 @@ function drawHistGraph(ngroup, gxminH, xstep, dataSet, freq, gvalueLabel, dvalue
         .text(dvarName)
     xTitle[graphNum] = dvarName;
     // Y축 제목
-    str = svgStr[16][langNum];
+    if (checkFreqPercentY) {   
+      str = svgStr[16][langNum];
+    }  
+    else { 
+      if (! checkDensity) str = svgStr[30][langNum];
+      else str ="";
+    } 
     chart.append("text")
         .style("font-size", "12px")
         .style("font-family", "sans-seirf")
@@ -6216,13 +6229,24 @@ function drawHistQQ(tobs, tdata, dvarName, option) {
 // 히스토그램 y축, x축 그리기
 function drawHistAxis(ngroup, nvalueH, dataValueH, gxminH, gxmaxH, gyminH, gymaxH, graphWidth, graphHeight) {
     var i, j, k;
-    var tx, ty, x1, x2, y1, y2, z1, z2;
+    var tx, ty, x1, x2, y1, y2, z1, z2, temp, yScale;
     var oneHeight = graphHeight / ngroup;
     var gxrangeH = gxmaxH - gxminH;
 
     // Y축 그리기
-    var yScale = d3.scaleLinear().domain([gyminH, gymaxH]).range([oneHeight, 0]);
-
+    if (checkFreqPercentY) {
+      yScale = d3.scaleLinear().domain([gyminH, gymaxH]).range([oneHeight, 0]);
+    }
+    else {
+      if (! checkDensity) {
+        temp = gymaxH / dobs;
+        yScale = d3.scaleLinear().domain([gyminH, temp]).range([oneHeight, 0]);
+      }
+      else {
+        temp = gymaxH / dobs / xstep;
+        yScale = d3.scaleLinear().domain([gyminH, temp]).range([oneHeight, 0]);
+      }
+    }
     for (k = 0; k < ngroup; k++) {
         tx = margin.left;
         ty = k * oneHeight + margin.top;
@@ -6315,7 +6339,7 @@ function removeHistMean() {
 
 // 히스토그램 도수 표시 함수
 function showHistFreq(ngroup, nvalueH, xstep, freq, dataValueH, gxminH, gxmaxH, gyminH, gymaxH) {
-    var x1, y1;
+    var x1, y1, temp;
 
     //        var graphWidth  = svgWidth - margin.left - margin.right;   // 그래프 영역의 너비
     //        var graphHeight = svgHeight - margin.top - margin.bottom;  // 그래프 영역의 높이
@@ -6327,6 +6351,8 @@ function showHistFreq(ngroup, nvalueH, xstep, freq, dataValueH, gxminH, gxmaxH, 
         for (var i = 1; i <= nvalueH; i++) {
             x1 = margin.left + graphWidth * (dataValueH[i - 1] + xstep / 2 - gxminH) / gxrangeH;
             y1 = margin.top + (k + 1) * oneHeight - oneHeight * (freq[k][i] - gyminH) / gyrangeH;
+            if (checkFreqPercentY) temp = freq[k][i];
+            else temp = f2( freq[k][i] / dobs );
             chart.append("text")
                 .attr("class", "histfreq")
                 .style("stroke", "red")
@@ -6335,7 +6361,7 @@ function showHistFreq(ngroup, nvalueH, xstep, freq, dataValueH, gxminH, gxmaxH, 
                 .style("font-size", "8pt")
                 .attr("x", x1)
                 .attr("y", y1 - 4)
-                .text(freq[k][i])
+                .text(temp)
         }
     }
 }
@@ -6401,6 +6427,7 @@ function removeHistLine() {
 function showHistTable(ngroup, nvalueH, freq, dataValueH, dvarName, gvarName, gvalueLabel) {
     var screenTable = document.getElementById("screenTable");
     var table = document.createElement('table');
+    var tempRow, tempCol, tempTot;
     loc.appendChild(table);
 
     var i, j, k, totsum, row;
@@ -6468,9 +6495,16 @@ function showHistTable(ngroup, nvalueH, freq, dataValueH, dvarName, gvarName, gv
         cell[ngroup + 1].style.backgroundColor = "#eee";
         cell[ngroup + 1].style.textAlign = "right";
         for (j = 0; j < ngroup; j++) {
-            cell[j + 1].innerHTML = freq[j][i + 1].toString() + "<br>" + f1(100 * freq[j][i + 1] / rowsum[i+1]).toString() + "%"
-                          + "<br>" + f1(100 * freq[j][i + 1] / colsum[j]).toString() + "%"
-                          + "<br>" + f1(100 * freq[j][i + 1] / totsum).toString() + "%";
+            if (rowsum[i+1] == 0) tempRow = 0;
+            else tempRow = 100 * freq[j][i + 1] / rowsum[i+1];
+            if (colsum[j] == 0) tempCol = 0;
+            else tempCol = 100 * freq[j][i + 1] / colsum[j];
+            if (totsum == 0) tempTot=0;
+            else tempTot = 100 * freq[j][i + 1] / totsum;
+
+            cell[j + 1].innerHTML = freq[j][i + 1].toString() + "<br>" + f1(tempRow).toString() + "%"
+                          + "<br>" + f1(tempCol).toString() + "%"
+                          + "<br>" + f1(tempTot).toString() + "%";
             cell[j + 1].style.textAlign = "right";
         }
         cell[ngroup + 1].innerHTML = rowsum[i+1].toString() + "<br>" + f1(100).toString() + "%"

@@ -860,7 +860,7 @@
           <td><input type="text" size=10 id="stdS" style="text-align: right;"></td>
         </tr>
       </table>
-      <table>
+      <table style="width:700px;">
         <tr>
           <td><b><span data-msgid="Interval Start">Interval Start</span></b> = </td>
           <td>&nbsp;<input type="text" size=6 id="start" style="text-align: right;"></td>
@@ -875,10 +875,17 @@
       <p>
          <div class="textLeft">&lt;그림 3.4&gt; 히스토그램 자료 입력창</div>
       <p>
-      <button type="button" id="executeHist"  style="width:140px;">
-        <span data-msgid="Execute">Execute</span>
-      </button> 
-      <p>
+      <form name="myForm2">
+        <button type="button" id="executeHist"  style="width:140px;">
+          <span data-msgid="Execute">Execute</span>
+        </button> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        <span data-msgid="yAxis">Y</span> : 
+        <input type="radio" name = "type2" checked> <span data-msgid="Frequency">도수</span>      
+        <input type="radio" name = "type2"> <span data-msgid="RelativeFreq">%</span>   
+        <input type="radio" name = "type2"> <span data-msgid="Density">Density</span>   
+      </form>
+      <br>
       <svg id="chartHist" width="750" height="540" style="border-style:solid;"> </svg>
       <p>
       <button type="button" id="saveGraphHist"  style="width:140px;">
@@ -896,7 +903,7 @@
         <div id="loc">
         </div>
       </div>
-<!----     ----
+<!----     ---->
       <p>
                히스토그램 밑에 선택 사항에서 '평균'과 '도수'를 체크하면 &lt;그림 3.5&gt;와 같이 히스토그램 막대위에 도수가 표시된다.
       <p>
@@ -924,13 +931,41 @@
       var i, j, k, ith;
       var x1, x2, y1, y2, cx, cy, ty;
       var nint, step, buffer, nvalue; 
-      var nobs, mean, varS, stdS, miniH, maxiH, start, xstep;
+      var nobsH, mean, varS, stdS, miniH, maxiH, start, xstep;
       var nvalueH, gxminH, gxmaxH, gyminH, gymaxH, xgap, xwidth, Histogram;
       var mTitleHist, yTitleHist, xTitleHist;
       var rowMax = 100;
       var dint = new Array(rowMax);
       var freq = new Array(rowMax);
       var dataHist = new Array(rowMax);
+
+      // Frequency or % check
+      var a = document.myForm2.type2;
+      var checkFreqPercentY = true;
+      var checkDensity = false
+      document.getElementById("yTitleHist").value   = svgStr[16][langNum];
+      yTitleHist = svgStr[16][langNum];
+      a[0].onclick = function() { 
+        checkFreqPercentY = true;  
+        checkDensity = false;
+        document.getElementById("yTitleHist").value = svgStr[16][langNum];
+        yTitleHist = svgStr[16][langNum];
+        drawHistogram(nobsH, start, xstep, dataH, dint, freq);
+      }  
+      a[1].onclick = function() { 
+        checkFreqPercentY = false; 
+        checkDensity = false;
+        document.getElementById("yTitleHist").value = svgStr[30][langNum];
+        yTitleHist = svgStr[30][langNum];
+        drawHistogram(nobsH, start, xstep, dataH, dint, freq);
+      } 
+      a[2].onclick = function() { 
+        checkFreqPercentY = false; 
+        checkDensity = true;
+        document.getElementById("yTitleHist").value = "";
+        yTitleHist = "";
+        drawHistogram(nobsH, start, xstep, dataH, dint, freq);
+      } 
 
       document.getElementById("histColor").value      = histColor;
       document.getElementById("yTitleHist").value   = svgStr[16][langNum];
@@ -940,6 +975,7 @@
       document.getElementById("msgRange").innerHTML = svgStr[112][langNum]; 
       document.getElementById("msgVariance").innerHTML = svgStr[117][langNum]; 
 
+      document.getElementById("yTitleHist").disabled = true;
       document.getElementById("nn").disabled    = true;    
       document.getElementById("xbar").disabled  = true; 
       document.getElementById("medi").disabled  = true;   
@@ -1011,7 +1047,7 @@
         document.getElementById("dataHist").value  = "63 65 67 68 61 60 72 55 64 76 68 63 70 61 54 63 66 53 58 70 62 62 57 58 59 53 58 58 62 61";
         dataHist = [63,65,67,68,61,60,72,55,64,76,68,63,70,61,54,63,66,53,58,70,62,62,57,58,59,53,58,58,62,61];
         statHist  = simplestatH("#dataHist");  
-        nobs  = dataHist.length;
+        nobsH  = dataHist.length;
         miniH  = statHist.mini;  
         maxiH  = statHist.maxi;
         dataH  = dataHist;
@@ -1072,8 +1108,8 @@
         document.getElementById("HistMean").checked = false;
         document.getElementById("HistFreq").checked = false;
         document.getElementById("HistLine").checked = false;
-        nobs  = statHist.n;  
-        for (i=0; i<nobs; i++) {
+        nobsH  = statHist.n;  
+        for (i=0; i<nobsH; i++) {
             if (isNaN(dataH[i]) ) { //문자 데이터 체크
               chartHist.append("text").attr("class","mean").attr("x", 250).attr("y", marginHist.top + 40)
                    .text(alertMsg[48][langNum]).style("stroke","red").style("font-size","1em");
@@ -1087,7 +1123,7 @@
         xstep = d3.select("#xstep").node().value;
         histColor = document.getElementById("histColor").value;
         // input check
-        if ( nobs > 100) {
+        if ( nobsH > 100) {
            chartHist.append("text").attr("class","mean").attr("x", 250).attr("y", 100)
                 .text(alertMsg[49][langNum]).style("stroke","red").style("font-size", "1em")
            return;
@@ -1102,11 +1138,10 @@
           xstep = parseFloat(xstep);
         }
         mTitleHist = d3.select("#mTitleHist").node().value;
-        yTitleHist = d3.select("#yTitleHist").node().value;
         xTitleHist = d3.select("#xTitleHist").node().value;
-        if (yTitleHist == "") yTitleHist = svgStr[16][langNum];
+
         if (start > miniH) start = miniH
-        var para = drawHistogram(nobs, start, xstep, dataH, dint, freq);
+        var para = drawHistogram(nobsH, start, xstep, dataH, dint, freq);
         Histogram = true;
         nvalueH = para.a;
         gxminH  = start;
@@ -1187,7 +1222,14 @@
   }
 
   // 히스토그램 그리기 함수 -----------------------------------------------------------------------------------------------
-  function drawHistogram(nobs, gxminH, xstep, data, dataValueH, dvalueFreq) {
+  function drawHistogram(nobsH, gxminH, xstep, data, dataValueH, dvalueFreq) {
+    chartHist.selectAll("*").remove();
+    document.getElementById("HistMean").checked = false; 
+    document.getElementById("HistFreq").checked = false; 
+    document.getElementById("HistLine").checked = false; 
+    checkHistMean = false;
+    checkHistFreq = false;
+    checkHistLine = false;
     var i, j, k;
     var label, tempx, tempy, tempw, temph, xgap, xwidth;
     var nvaluH, gxminH, gxmaxH, gxrangeH, gyminH, gymaxH, gyrangeH, freqmax;
@@ -1210,7 +1252,7 @@
 
     // 히스토그램 그리기
     freqmax = 0;
-    HistIntervalFreq(nobs, nvalueH, data, dataValueH, dvalueFreq);
+    HistIntervalFreq(nobsH, nvalueH, data, dataValueH, dvalueFreq);
 
     for (j = 0; j <= nvalueH; j++) {
         if (dvalueFreq[j] > freqmax) freqmax = dvalueFreq[j];
@@ -1252,14 +1294,26 @@
   // 히스토그램 y축, x축 그리기
   function drawHistAxis(nvalueH, dataValueH, gxminH, gxmaxH, gyminH, gymaxH, graphWidthHist, graphHeightHist) {
     var i, j, k;
-    var tx, ty, x1, x2, y1, y2, z1, z2;
+    var tx, ty, x1, x2, y1, y2, z1, z2, temp, yScale;
     var gxrangeH = gxmaxH - gxminH;
     var xgap     = graphWidthHist / (nvalueH + 2); // 좌우갭
     var xwidth   = graphWidthHist - 2 * xgap; // 좌우 갭을 뺀 실제 x 너비
     var ygrid    = new Array(rowMax);
 
     // Y축 그리기
-    var yScale = d3.scaleLinear().domain([gyminH, gymaxH]).range([graphHeightHist, 0]);
+    if (checkFreqPercentY) {
+      yScale = d3.scaleLinear().domain([gyminH, gymaxH]).range([graphHeightHist, 0]);
+    }
+    else {
+      if (!checkDensity) {
+        temp = gymaxH / nobsH;
+        yScale = d3.scaleLinear().domain([gyminH, temp]).range([graphHeightHist, 0]);
+      }
+      else {
+        temp = gymaxH / nobsH / xstep;
+        yScale = d3.scaleLinear().domain([gyminH, temp]).range([graphHeightHist, 0]);
+      }
+    }
     ygrid = yScale.ticks();
     tx = marginHist.left;
     ty = marginHist.top;
@@ -1399,13 +1453,15 @@
   
   // 히스토그램 도수 표시 함수
   function showHistFreq(nvalueH, xstep, dataValueH, freq, gxminH, gxmaxH, gyminH, gymaxH, xgap, xwidth) {
-    var x1, y1;
+    var x1, y1, temp;
     var gxrangeH = gxmaxH - gxminH;
     var gyrangeH = gymaxH - gyminH;
 
     for (var i = 1; i <= nvalueH; i++) {
         x1 = marginHist.left + xgap + xwidth * (dataValueH[i - 1] + xstep / 2 - gxminH) / gxrangeH;
         y1 = marginHist.top + graphHeightHist - graphHeightHist * (freq[i] - gyminH) / gyrangeH;
+        if (checkFreqPercentY) temp = freq[i];
+        else temp = f2( freq[i] / nobsH );
         chartHist.append("text")
              .attr("class", "histfreq")
              .style("stroke", "red")
@@ -1414,7 +1470,7 @@
              .style("font-size", "0.8em")
              .attr("x", x1)
              .attr("y", y1 - 4)
-             .text(freq[i])
+             .text(temp)
     }
   }
 
@@ -2083,7 +2139,7 @@
       var nrow = new Array(maxcol);
       var i, j, k, ith;
       var x1, x2, y1, y2, cx, cy, tx, ty;
-      var nobs, sum1, sum2, mean1, mean2, vari1, vari2, stdv1, stdv2, start, xstep, temp;
+      var sum1, sum2, mean1, mean2, vari1, vari2, stdv1, stdv2, start, xstep, temp;
       var nvalueH, gxminH, gxmaxH, gyminH, gymaxH, xgap, xwidth, Histogram;
       var mTitleRelFreq, yTitleRelFreq, xTitleRelFreq;
       var freq1Name, freq2Name;

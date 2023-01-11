@@ -1984,7 +1984,26 @@ d3.select("#HistMean").on("click", function() {
         removeHistMean();
     }
 })
-// 히스토그램 도수표시
+// 히스토그램 Y축 도수 or % 표시
+var checkFreqPercentY = true;
+var checkDensity = false
+var a = document.myFormH.typeH;
+a[0].onclick = function() { 
+    checkFreqPercentY = true;  
+    checkDensity = false;
+    drawHistGraph(ngroup, gxminH, xstep, dataSet, freq, gvalueLabel, dvalueLabel, dvarName);
+}  
+a[1].onclick = function() { 
+    checkFreqPercentY = false; 
+    checkDensity = false;
+    drawHistGraph(ngroup, gxminH, xstep, dataSet, freq, gvalueLabel, dvalueLabel, dvarName);
+} 
+a[2].onclick = function() { 
+    checkFreqPercentY = false; 
+    checkDensity = true;
+    drawHistGraph(ngroup, gxminH, xstep, dataSet, freq, gvalueLabel, dvalueLabel, dvarName);
+} 
+// 히스토그램 도수 또는 % 표시
 d3.select("#HistFreq").on("click", function() {
     if (Histogram == false) return;
     if (this.checked) {
@@ -2015,7 +2034,7 @@ d3.select("#HistTable").on("click", function() {;
 // 새 구간으로 히스토그램 업데이트
 d3.select("#HistRedraw").on("click", function() {
     if (Histogram == false) return;
-    chart.selectAll("*").remove(); // 전화면 제거
+//    chart.selectAll("*").remove(); // 전화면 제거
     var start = parseFloat(d3.select("#HistInit").node().value); // 시작값
     xstep = parseFloat(d3.select("#HistStep").node().value); // 구간너비
     if (start > tstat[3]) start = tstat[3];
