@@ -423,19 +423,20 @@
 
 	    <div id="sub7" class="option-group"> <!--- 히스토그램 --->
               <form name="myFormH">
-                &nbsp;&nbsp;&nbsp;
-	        <label>&nbsp;<input type="checkbox" id="HistMean"><span data-msgid="Mean">평균</span></label>
-	        <label><input type="checkbox" id="HistFreq"><span data-msgid="Frequency">도수</span> / %</label>
-	        <label><input type="checkbox" id="HistLine"><span data-msgid="Frequency Polygon">도수분포다각형</span></label> &nbsp
-	        <button type="button" id="HistTable" >
-		  <span data-msgid="Frequency Table">도수분포표</span>
-	        </button>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span data-msgid="yAxis">Y</span>: 
                 <input type="radio" name = "typeH" checked> <span data-msgid="Frequency">도수</span>      
                 <input type="radio" name = "typeH"> <span data-msgid="RelativeFreq">%</span>  
-                <input type="radio" name = "typeH"> <span data-msgid="Density">Density</span>   
+                <input type="radio" name = "typeH"> <span data-msgid="Density">Density</span>  
               </form>
-	      <br>&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;
+	      <label><input type="checkbox" id="HistMean"><span data-msgid="Mean">평균</span></label>
+	      <label><input type="checkbox" id="HistFreq"><span data-msgid="Frequency">도수</span> / %</label>
+	      <label><input type="checkbox" id="HistLine"><span data-msgid="Frequency Polygon">도수분포다각형</span></label> &nbsp
+	      <button type="button" id="HistTable" >
+		<span data-msgid="Frequency Table">도수분포표</span>
+	      </button>
+              <br>
+	      &nbsp;&nbsp;&nbsp;
 	      <button type="button" id="HistRedraw" >
 		<span data-msgid="Execute New Interval">새 구간으로 실행</span>
 	      </button>&nbsp
