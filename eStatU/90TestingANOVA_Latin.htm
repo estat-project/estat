@@ -259,9 +259,11 @@
         }
         // Latin Square
         testingLatin();
-        drawGraphLatin(nkk);
-        // 1원분산분석표 그리기
-        AnovaTableLatin();
+        if (sse > 0) {
+          drawGraphLatin(nkk);
+          // 1원분산분석표 그리기
+          AnovaTableLatin();
+        }
       })
 
       // svg Graph Save
@@ -364,6 +366,11 @@ function testingLatin() {
           }
 
           sse = sst - ssR - ssC - ssTr;
+          if (sse <= 0) {  // wrong input k
+            chart.append("text").attr("class","mean").attr("x", 150).attr("y", 100)
+                 .text("Error sum of square is zero!!   Try again.").style("stroke","red");
+            return;
+          }
           // mean squares  
           msTr = ssTr / dfTr     
           msR  = ssR  / dfR;

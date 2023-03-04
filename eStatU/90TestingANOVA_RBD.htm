@@ -286,9 +286,11 @@
         }
         // RBD
         testingRBD();
-        drawGraphRBD(nkk, nblock);
-        // 1원분산분석표 그리기
-        AnovaTableRBD();
+        if (sse > 0) {
+          drawGraphRBD(nkk, nblock);
+          // 1원분산분석표 그리기
+          AnovaTableRBD();
+        }
       })
 
       // svg Graph Save
@@ -365,6 +367,11 @@ function testingRBD() {
             ssw += nkk*temp*temp;
           }
           sse = sst - ssb - ssw;
+          if (sse <= 0) {  // wrong input k
+            chart.append("text").attr("class","mean").attr("x", 150).attr("y", 100)
+                 .text("Error sum of square is zero!!   Try again.").style("stroke","red");
+            return;
+          }
           // mean squares       
           msb  = ssb / dfb;
           msw  = ssw / dfw;
