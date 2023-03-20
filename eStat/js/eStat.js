@@ -11508,7 +11508,7 @@ function multivariateTable(numVar, tdobs, tdvar) {
         cell[j].style.border = "1px solid black";
         cell[j].style.width = "90px";
     }
-    cell[0].innerHTML = svgStr[107][langNum] + "<br>H<sub>0</sub>: &rho;=0 &rho;&ne;0 &nbsp;t-" + svgStr[69][langNum] + "<br>p-" + svgStr[69][langNum]; // "상관계수"
+    cell[0].innerHTML = svgStr[60][langNum] + "<br>H<sub>0</sub>: &rho;=0 H<sub>1</sub>:&rho;&ne;0 &nbsp;t-" + svgStr[69][langNum] + "<br>p-" + svgStr[69][langNum]; // "상관계수"
     cell[1].innerHTML = svgStr[64][langNum]; // "변량명";              
     for (k = 0; k < numVar; k++) {
         cell[k + 2].innerHTML = svgStr[63][langNum] + " " + (k + 1); // "변수 "
