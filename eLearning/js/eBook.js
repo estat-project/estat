@@ -478,6 +478,10 @@
     addrStr[171] = "../../../eLearning/kr/index.html";
     addrStr[172] = "../../../eStatU/90TestingANOVA_RBD.htm";
     addrStr[173] = "../../../eStatU/90TestingANOVA_Latin.htm";
+    addrStr[174] = "../../../eStatU/90TestingANOVA_TwoFactors.htm";
+    addrStr[175] = "../../../eStatU/30ScatterPlotU.htm";
+    addrStr[176] = "../../../eStatU/32RegressionAnalysis.htm";
+    addrStr[177] = "../../../eStatU/32RegressionAnalysis2.htm";
 // eStatM
     addrStr[181] = "../../../eStatM/index.html";
 
