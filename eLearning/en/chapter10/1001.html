@@ -428,7 +428,7 @@
  
       <p>
       <div class="textL20">
-        Since the above sign data only investigate whether a data is larger and smaller than 200 and 
+        Since the above sign data only investigate whether a data is larger or smaller than 200 and 
         never use a concept of the mean, it can be considered as testing for the population median 
         (\(\small M\)) as follows: 
         <p>
@@ -466,7 +466,7 @@
         This rejection region has a total probability of 2*0.011 = 0.022 which is smaller than 
         the significance level of 0.05. When we use a discrete distribution such as binomial distribution, 
         it may be difficult to find a rejection region which is exactly the same as the significance level. 
-        If we include one more values in the rejection region, the decision rule is as follows:   
+        If we include one more value in the rejection region, the decision rule is as follows:   
       </div>
       <p>
       <div class="textL30">
@@ -978,7 +978,7 @@ function showValueAlpha(newValue) {
     <p>
 
     <div class="mainTable">
-      When the population median is \(M\), the sign test is to test whether \(M = M_0\) or \(M \gt M_0\)
+      When the population median is \(M\), the sign test is used to test whether \(M = M_0\) or \(M \gt M_0\)
       (or \(M \lt M_0\), or \(M \ne M_0\)). However, if the population distribution is symmetrical to 
       the mean, the sign test is the same as the test of the population mean, because mean and median 
       are the same in this case.  
@@ -987,7 +987,7 @@ function showValueAlpha(newValue) {
       which are greater than \(M_0\) which is denoted \(n_+\). The sign test uses the random variable of ‘the number of
       + signs (\(n_+\))’ which follows a binomial distribution with parameters \(n\) and \(p\)=0,5, 
       i.e., \(B(n,0.5)\) when the null hypothesis is true. You can use the number of data  
-      which are less than  \(M_0\), \(n_- = n - n_+\).  ) \(n_-\) also follows a binomial distribution \(B(n,0.5)\). 
+      which are less than \(M_0\), i.e., \(n_- = n - n_+\) and \(n_-\) also follows a binomial distribution \(B(n,0.5)\). 
       Let us use \(n_+\) in this section. \(B(n,0.5)_{\alpha}\) represents the  100\(\times \alpha\)
       right tail percentile, but the accurate percentile value may not exist, because it is a discrete distribution. In  
       this case, middle value of two nearest percentile is often used. Table 10.1.1 summarizes the decision rule for  

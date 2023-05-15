@@ -1119,7 +1119,7 @@ function smoothingTable(model, nobs, yhat) {
         \( \qquad E_{2} \,=\, \alpha \,Y_{2} \,+\, (1- \alpha)\, E_{1} \)      <br>
         \( \qquad E_{3} \,=\, \alpha \,Y_{3} \,+\, (1- \alpha)\, E_{2} \)      <br>
         \( \qquad \cdots \)      <br>
-        \( \qquad E_{t} \,=\, \alpha \,Y_{t} \,+\, (1- \alpha)\, E_{t} \)      <br>
+        \( \qquad E_{t} \,=\, \alpha \,Y_{t} \,+\, (1- \alpha)\, E_{t-1} \)      <br>
       <p>
         Here, an initial value \(E_{0}\) is required, and \(Y_1\) is usually used a lot, and the average 
         value of the data can also be used. The exponentially smoothed value \(E_t\) at the point in time 
@@ -1127,7 +1127,7 @@ function smoothingTable(model, nobs, yhat) {
         smoothed data is given. The exponentially smoothed value \(E_t\) can be represented with 
         the original data \(Y_t\) as follows:
       $$
-        E_t \,=\, \alpha Y_t + (1-\alpha) Y_{t-1} + \alpha(1-\alpha)^2 Y_{t-2} + \cdots + \alpha(1-\alpha)^{t-2} Y_2 + (1-\alpha)^{t-1} Y_1    
+        E_t \,=\, \alpha Y_t + \alpha (1-\alpha) Y_{t-1} + \alpha(1-\alpha)^2 Y_{t-2} + \cdots + \alpha(1-\alpha)^{t-2} Y_2 + \alpha(1-\alpha)^{t-1} Y_1 + (1-\alpha)^t E_0   
       $$
         Therefore, the exponential smoothing method uses all data from the present and the past, but gives 
         the current data the highest weight &alpha;, and gives a lower weight as the distance from the present time increases.
@@ -1143,7 +1143,7 @@ function smoothingTable(model, nobs, yhat) {
         in the exponential smoothing method, there is no loss of data at both ends, unlike the moving average method. 
         The crude oil price time series and exponentially smoothed data are shown in &lt;Figure 13.2.2&gt;. 
         It can be seen that the smoothed data are not significantly different from the original data. 
-        If the value of\(\alpha\)  is small, more weight is given to the past data than to the present, 
+        If the value of \(\alpha\)  is small, more weight is given to the past data than to the present, 
         making it less sensitive to sudden changes in the present data. Conversely, the closer the value of 
         \(\alpha\) is to 1, that is, the more weight is given to the current data, the more the smoothed data
         resembles the original data, and the smoothing effect disappears.

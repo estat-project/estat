@@ -1208,8 +1208,8 @@ function forecastTable(model, nobs, nforecast, yhat, clow, chigh) {
       <p>
         \(\qquad   S_t \;=\; \alpha \;Y_t \;+\; (1-\alpha) S_{t-1}   \)<br>
         \(\qquad   \;=\; \alpha \; Y_t + (1- \alpha )\;( \alpha Y_{t-1} + (1- \alpha ) S_{t-2} )      \)<br>
-        \(\qquad   \;=\; \alpha Y_t + \alpha (1- \alpha ) Y_t-1 + (1- \alpha )^2 S_t-2     \)<br>
-        \(\qquad   \;=\; \alpha Y_t + \alpha (1- \alpha ) Y_t-1 + \alpha(1- \alpha )^2 Y_t-2 \;+\cdots\; + \alpha (1- \alpha )^{(t-1)} Y_1 +(1- \alpha )^t S_0        \)
+        \(\qquad   \;=\; \alpha Y_t + \alpha (1- \alpha ) Y_{t-1} + (1- \alpha )^2 S_{t-2}     \)<br>
+        \(\qquad   \;=\; \alpha Y_t + \alpha (1- \alpha ) Y_{t-1} + \alpha(1- \alpha )^2 Y_{t-2} \;+\cdots\; + \alpha (1- \alpha )^{(t-1)} Y_1 +(1- \alpha )^t S_0        \)
       <p>
         In other words, for the single exponential smoothing value \(S_t\), the most recent observation
         \(Y_t\) is given a weight \(\alpha\), and the next most recent observation is given \(\alpha(1-\alpha)\), 
@@ -1266,7 +1266,7 @@ function forecastTable(model, nobs, nforecast, yhat, clow, chigh) {
       <p>
         In terms of mean square error, the MSE of the 6-point single moving average model is 331.22, so it can be said that the exponential smoothing model has better fit.
       <p>
-        Sales for the next three months are the last moving average \(S_24\), and the 95% confidence interval for the forecast is as follows:
+        Sales for the next three months are the last moving average \(S_{24}\), and the 95% confidence interval for the forecast is as follows:
       <p>
         \(\qquad   {\hat Y}_{24+1} \;=\; {\hat Y}_{24+2} \;=\; {\hat Y}_{24+3} \;=\; S_{24} \;=\; 98.66       \)<br>
         \(\qquad   S_{T} \;±\; 1.96\; \sqrt { \frac{\alpha } {2- \alpha} } MSE          \)<br>

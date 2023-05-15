@@ -301,8 +301,8 @@
       larger ranks than \(M_0\) and the sum of the smaller ranks than \(M_0\). If two rank sums are similar,
       we conclude that the population median is equal to \(M_0\). This signed rank sum test is the most 
       widely used nonparametric method for testing the central location parameter of a population. 
-      This test takes into account the relative size of the sample data as well as the larger and smaller
-      than \(M_0\).
+      This test takes into account not only whether the sample data are larger or smaller than \(M_0\),
+      but also the relative size of the sample data from \(M_0\).
     </div>
 
     <p>
@@ -1174,9 +1174,9 @@ function showValueAlpha(newValue) {
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTable">
       If we denote the population median as \(M\), the signed rank sum test is to test whether the 
-      population median is \(M_0\) or greater than (or less than or not equal to) . However, if 
+      population median is \(M_0\) or greater than (or less than or not equal to) \(M_0\). However, if 
       the population distribution is symmetric about the mean, the signed rank sum test becomes to test 
-      about the population mean, because the population median and mean are the same. The basic 
+      about the population mean because the population median and mean are the same. The basic 
       statistical model is as follows: 
       $$
         X_i = M_0 + \epsilon_{i}, \quad i=1,2,...,n
@@ -1219,7 +1219,7 @@ function showValueAlpha(newValue) {
     <div class="mainTableYellow">
       <b>☞ If the observed value is the same as \(M_0\)?</b>
       <p>If any of the observed values has the same value as , they are not used in the test. 
-         In other words, reduce . 
+         In other words, reduce \(n\). 
     </div>
 
     <p>
@@ -1282,11 +1282,11 @@ function showValueAlpha(newValue) {
         </tr>
         <tr style="height:40px">
           <td class="tdLeft">2) \( \; H_0 : M = M_0 \)<br>\(\quad\,\, H_1 : M < M_0 \)</td>
-          <td class="tdLeft">If \( \frac{R_{+} - E(R_{+})}{\sqrt{V(R_{+}}}  < z_{1-&alpha;} \), then reject \( H_0 \) </td>
+          <td class="tdLeft">If \( \frac{R_{+} - E(R_{+})}{\sqrt{V(R_{+})}}  < z_{1-&alpha;} \), then reject \( H_0 \) </td>
         </tr>
         <tr style="height:40px">
           <td class="tdLeft">3) \( \; H_0 : M = M_0 \)<br>\(\quad\,\, H_1 : M \ne M_0 \)</td>
-          <td class="tdLeft">If \( \left | \frac{R_{+} - E(R_{+})}{\sqrt{V(R_{+}}} \right | > z_{&alpha;/2} \), then reject \( H_0 \) </td>
+          <td class="tdLeft">If \( \left | \frac{R_{+} - E(R_{+})}{\sqrt{V(R_{+})}} \right | > z_{&alpha;/2} \), then reject \( H_0 \) </td>
         </tr>
       </table>
     <p>

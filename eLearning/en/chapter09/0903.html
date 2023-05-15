@@ -485,7 +485,7 @@
         <p>
           \(\quad \small {SSA} = 12(61.3-{\overline y}_{\cdot \cdot \cdot})^2 + 12(61.3-{\overline y}_{\cdot \cdot \cdot})^2 + 12(54.8-{\overline y}_{\cdot \cdot \cdot})^2 \) = 342.39
         <p>
-        where the weight of 12 of each sum of squares is the number of data for each rice type. Since there are 
+        where the weight of 12 of each sum of squares is calculated by the number of data for each rice type. Since there are 
         3 rice types, the degrees of freedom of \(\small SSA\) is (3-1) and we call the sum of squares \(\small SSA\) divided
         by (3-1), \(\frac{SSA}{(3-1)}\), is the mean squares of factor A, \(\small MSA\).
         <p>       
@@ -501,7 +501,7 @@
         <p>
           \(\quad \small {SSB} = 9(67.4 - {\overline y}_{\cdot \cdot \cdot})^2 + 9(56.7 - {\overline y}_{\cdot \cdot \cdot} )^2 + 9(59.2 - {\overline y}_{\cdot \cdot \cdot})^2 + 9(53.1 - {\overline y}_{\cdot \cdot \cdot})^2  \) = 1002.89
         <p>
-        where the weight of 9 of each sum of squares is the number of data for each fertilizer type. 
+        where the weight of 9 of each sum of squares is calculated by the number of data for each fertilizer type. 
         Since there are 4 fertilizer types, the degrees of freedom of \(\small SSB\) is (4-1) and we call 
         the sum of squares \(\small SSB\) divided by (4-1), \(\frac{SSB}{(4-1)}\), is the mean squares of factor B,
         \(\small MSB\).
@@ -522,7 +522,7 @@
           \(\qquad\) \(\small + 3(64.0- {\overline y}_{3 \cdot \cdot} - {\overline y}_{\cdot 1 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2 + 3(65.3- {\overline y}_{3 \cdot \cdot} - {\overline y}_{\cdot 2 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2  + 3(48.3- {\overline y}_{3 \cdot \cdot} - {\overline y}_{\cdot 3 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2 \)<br>
           \(\qquad\) \(\small + 3(52.3- {\overline y}_{4 \cdot \cdot} - {\overline y}_{\cdot 1 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2 + 3(57.0- {\overline y}_{4 \cdot \cdot} - {\overline y}_{\cdot 2 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2 + 3(50.0- {\overline y}_{4 \cdot \cdot} -{\overline y}_{\cdot 3 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2  \)<br>
         <p>
-        where the weight of 3 of each sum of squares is the number of data for each cell of rice and fertilizer 
+        where the weight of 3 of each sum of squares is calculated by the number of data for each cell of rice and fertilizer 
         type. The degrees of freedom of \(\small SSAB\) is (3-1)(4-1) and we call the sum of squares \(\small SSAB\) divided
         by  (3-1)(4-1), \(\small \frac {SSAB}{(3-1)(4-1)}\) is the mean squares of interaction AB, \(\small MSAB\).
         <p>
@@ -1466,7 +1466,7 @@ function drawANOVA2(nnA,nnB) {
       Let's generalize the theory of the two-way analysis of variance discussed in the example above. 
       Let \(Y_{ijk}\) be the random variable representing the \(k^{th}\) observation at the \(i^{th}\)
       level of factor A, which has \(a\) number of levels, and \(j^{th}\) level of factor B, which has
-      \(b\)number of levels. A statistical model of the two-way analysis of variances is as follows:
+      \(b\) number of levels. A statistical model of the two-way analysis of variances is as follows:
         $$
           Y_{ijk} = \mu + \alpha_i + \beta_j + \gamma_{ij} + \epsilon_{ijk} , \quad i=1,2, ... ,a ; \;  j=1,2, ... , b ; \;  k=1,2, ... , r
         $$
