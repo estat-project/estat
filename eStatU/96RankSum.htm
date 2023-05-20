@@ -348,16 +348,6 @@ function drawBarGraph(title,sub1,sub2, nvalue, dataValue, dvalueP, ranksum, alph
               .style("font-size","9pt").style("stroke","red").style("text-anchor","start")
          }
          else if (h1Type == 2) {
-           x1 = margin.left +barMargin + (loc21-dataValue[0])*betweenbarWidth + barWidth/2;
-           x2 = x1;
-           bar.append("line").style("stroke","red").style("stroke-width","1px")
-              .attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-           bar.append("text").attr("x", x2).attr("y", y2+10).text(loc21)
-              .style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
-           bar.append("text").attr("x", x2-5).attr("y", y2-50).text(f4(sum21))
-              .style("font-size","9pt").style("stroke","red").style("text-anchor","end")
-         }
-         else {
            x1 = margin.left +barMargin + (loc32-dataValue[0])*betweenbarWidth + barWidth/2;
            x2 = x1;
            bar.append("line").style("stroke","red").style("stroke-width","1px")
@@ -366,6 +356,16 @@ function drawBarGraph(title,sub1,sub2, nvalue, dataValue, dvalueP, ranksum, alph
               .style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
            bar.append("text").attr("x", x2+5).attr("y", y2-50).text(f4(sum32))
               .style("font-size","9pt").style("stroke","red").style("text-anchor","start")
+         }
+         else {
+           x1 = margin.left +barMargin + (loc21-dataValue[0])*betweenbarWidth + barWidth/2;
+           x2 = x1;
+           bar.append("line").style("stroke","red").style("stroke-width","1px")
+              .attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
+           bar.append("text").attr("x", x2).attr("y", y2+10).text(loc21)
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","middle")
+           bar.append("text").attr("x", x2-5).attr("y", y2-50).text(f4(sum21))
+              .style("font-size","9pt").style("stroke","red").style("text-anchor","end")
          }
 
 }
