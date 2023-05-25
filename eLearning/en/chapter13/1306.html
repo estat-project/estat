@@ -455,29 +455,29 @@
              <br>
            </td> 
            <td class="tdCenter">
-             61.292<br>
-             64.915<br>
-             63.759<br>
-             58.700<br>
-             70.281<br>
-             70.324<br>
-             74.385<br>
-             79.593<br>
-             73.550<br>
-             77.898<br>
-             77.928<br>
-             84.567<br>
-             81.722<br>
-             84.389<br>
-             85.012<br>
-             92.527<br>
+             62.552<br>
+             65.502<br>
+             63.754<br>
+             56.840<br>
+             71.726<br>
+             70.961<br>
+             74.380<br>
+             77.071<br>
+             75.063<br>
+             78.603<br>
+             77.922<br>
+             81.888<br>
+             83.403<br>
+             85.153<br>
+             85.006<br>
+             89.595<br>
            </td> 
         </tr>
       </table>
       <p>
         [Table 13.6.2] shows the seasonal ratio by year and quarter. If the maximum and minimum values are removed for each quarter and the average is obtained (trimmed  average), it is the seasonal index in column 6. Since the sum of these values is 4.0197, the seasonal index in column is normalized as in column 7. 
       $$
-        {\hat S}_1 \;=\; 1.1991,\quad {\hat S}_2 \;=\; 0.9159,\quad {\hat S}_3 \;=\; 0.8472,\quad {\hat S}_4 \;=\; 1.0378
+        {\hat S}_1 \;=\; 1.199,\quad {\hat S}_2 \;=\; 0.916,\quad {\hat S}_3 \;=\; 0.847,\quad {\hat S}_4 \;=\; 1.038
       $$
       <p>
       <div class="textLeft">[Table 13.6.2] Seasonal Index</div>
@@ -524,16 +524,16 @@
              <br>
           </td> 
            <td class="tdCenter">
-             1.2050<br>
-             0.9204<br>
-             0.8514<br>
-             1.0429<br>
+             1.205<br>
+             0.920<br>
+             0.851<br>
+             1.043<br>
           </td> 
            <td class="tdCenter">
-             1.1991<br>
-             0.9159<br>
-             0.8472<br>
-             1.0378<br>
+             1.199<br>
+             0.916<br>
+             0.847<br>
+             1.038<br>
           </td> 
         </tr>
         <tr>
@@ -542,7 +542,7 @@
           <td></td>
           <td></td>
           <td></td>
-          <td>sum 4.0197</td>
+          <td>sum 4.019</td>
           <td></td>
         </tr>
       </table>
@@ -550,15 +550,15 @@
          Column 6 of [Table 13.6.1] shows the non-seasonal data \(D_t\) obtained by dividing the original 
          data by the seasonal index of each quarter. The linear regression line for this non-seasonal data is as follows (&lt;Figure 13.6.1&gt;).,
       $$
-         D_{t} \;=\;  61.2000 \;+\; 1.6088 \cdot t  
+         D_{t} \;=\;  59.335 \;+\; 1.839 \cdot t  
       $$
          Therefore, the forecast for the next one year is as follows.
       $$
         \begin{align}
-          & \text{Time 17 :} \quad{\hat Y}_{17} \;=\; (61.2000 \;+\; 1.6088 \times 17) \times 1.1991 \;=\; 108.354 \\    
-          & \text{Time 18 :} \quad{\hat Y}_{18} \;=\; (61.2000 \;+\; 1.6088 \times 18) \times 0.9159 \;=\; 83.332  \\
-          & \text{Time 19 :} \quad{\hat Y}_{19} \;=\; (61.2000 \;+\; 1.6088 \times 19) \times 0.8472 \;=\; 77.721  \\
-          & \text{Time 20 :} \quad{\hat Y}_{20} \;=\; (61.2000 \;+\; 1.6088 \times 20) \times 1.0378 \;=\; 93.853  \\
+          & \text{Time 17 :} \quad{\hat Y}_{17} \;=\; (59.335 \;+\; 1.839 \times 17) \times 1.199 \;=\; 108.627 \\    
+          & \text{Time 18 :} \quad{\hat Y}_{18} \;=\; (59.335 \;+\; 1.839 \times 18) \times 0.916 \;=\; 84.672  \\
+          & \text{Time 19 :} \quad{\hat Y}_{19} \;=\; (59.335 \;+\; 1.839 \times 19) \times 0.847 \;=\; 79.852  \\
+          & \text{Time 20 :} \quad{\hat Y}_{20} \;=\; (59.335 \;+\; 1.839 \times 20) \times 1.038 \;=\; 99.767  \\
         \end{align}
       $$
         &lt;Figure 13.6.2&gt; is a graph of seasonal forecasts.
