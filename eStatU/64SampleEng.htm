@@ -51,7 +51,7 @@
 
   <script>
 
-      var dot2 = d3.select("#chart")
+      var dot = d3.select("#chart")
 
       var totalHeight = 640;
       var svgWidth    = 600;
@@ -80,13 +80,13 @@
       var checkInterval = true;
 
       // Confidence Interval Initital Simulation ---------------------------------------------------------------
-      dot2.selectAll("*").remove();        
+      dot.selectAll("*").remove();        
       margin      = {top: 20, bottom: 100, left: 20, right: 20};;
       graphWidth  = svgWidth - margin.left - margin.right;
       graphHeight = svgHeight - margin.top - margin.bottom;
 
       title  = svgStrU[8][langNum]+" ~ N(0,1)  (N="+nobs.toString()+")";
-      dot2.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top).text(title);
+      dot.append("text").attr("class","title").attr("x",margin.left).attr("y",margin.top).text(title);
 
       normalGenerator(nobs, dataSet);       
       nint    = 400;
@@ -120,7 +120,7 @@
       d3.select("#intervalEst").on("click",function() {
         removeAllSample3();      
         str = svgStrU[19][langNum]+" "+confidenceLevel+" "+svgStrU[20][langNum]+" "+svgStrU[98][langNum];
-        dot2.append("text").attr("class","title").attr("x", margin.left)
+        dot.append("text").attr("class","title").attr("x", margin.left)
             .attr("y", svgHeight - margin.bottom/3 -10)
             .text(str)
 	sobs  = parseFloat(d3.select("#initEst").node().value);    // 표본크기 
@@ -128,13 +128,13 @@
         if (sobs < 20 ) sobs = 20;
         if (niter > 300) niter = 300;
         str = "n = "+sobs+", r = "+niter;
-        dot2.append("text").attr("class","title").attr("x", margin.left)
+        dot.append("text").attr("class","title").attr("x", margin.left)
             .attr("y", svgHeight - margin.bottom/3 + 10)
             .text(str)
         tx  = margin.left + graphWidth*(statP[1]-gxmin)/xrange; // population mean location
         ty  = svgHeight - margin.bottom/3;
         ty2 = totalHeight - 20;
-        dot2.append("line").attr("class","meanG").style("stroke","blue")
+        dot.append("line").attr("class","meanG").style("stroke","blue")
             .attr("x1",tx).attr("y1",ty).attr("x2",tx).attr("y2",ty2)
 
         var oneHeight = (totalHeight - svgHeight) / niter; 
@@ -167,7 +167,7 @@
           start = svgHeight - margin.bottom/3 + gg*oneHeight;
           if(niter < 11) {
             for (k=0; k<sobs; k++) {
-              dot2.append("circle")
+              dot.append("circle")
                  .attr("class","circleS")
                  .attr("cx", margin.left+graphWidth*(tdata[k]-gxmin)/xrange)
                  .attr("cy", margin.top + graphHeight - tdataY[k]*4)
@@ -203,7 +203,7 @@
         var accuracyPercent = 100*accuracy/niter;
         var str = svgStrU[51][langNum] + " = " + accuracyPercent+"%"+" ("+accuracy+"/"+niter+")";
 
-        dot2.append("text").attr("class","meanG")
+        dot.append("text").attr("class","meanG")
            .attr("x", margin.left)
            .attr("y", svgHeight)
            .text(str)

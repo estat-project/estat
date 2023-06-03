@@ -4330,7 +4330,7 @@ function drawDotSample(obs, tdata, tdataY, gxmin, gxmax, start) {
             .attr("cy", function(d,i){ return start+ margin.top + graphHeight - tdataY[i]*2*radius; } )
             .attr("fill","#0055FF").style("stroke","black")
        } else if (checkInterval) {
-         dot2.selectAll("circle")
+         dot.selectAll("circle")
             .data(tdata)
             .enter()
             .append("circle")
@@ -4344,8 +4344,24 @@ function drawDotSample(obs, tdata, tdataY, gxmin, gxmax, start) {
             .attr("cy", function(d,i){ return start+ margin.top + graphHeight - tdataY[i]*2*radius; } )
             .attr("fill","#0055FF").style("stroke","black")
        }
-}// x축 눈금 표시
+}
+// x축 눈금 표시
 function drawAxisSample(start, gxmin, gxmax) {
+        var xScale = d3.scaleLinear().domain([gxmin,gxmax]).range([0,graphWidth])
+        var ty = start + margin.top + graphHeight;
+      if (checkSampling) {
+        dot.append("g")
+           .attr("transform","translate("+margin.left+","+ty+")")
+           .call(d3.axisBottom(xScale))                  // 눈금을 표시할 함수 호출
+      }
+      else if (checkInterval) {
+        dot.append("g")
+           .attr("transform","translate("+margin.left+","+ty+")")
+           .call(d3.axisBottom(xScale))                  // 눈금을 표시할 함수 호출
+      }
+}
+// x축 눈금 표시
+function drawAxisSample2(start, gxmin, gxmax) {
         var xScale = d3.scaleLinear().domain([gxmin,gxmax]).range([0,graphWidth])
         var ty = start + margin.top + graphHeight;
       if (checkSampling) {
@@ -4812,38 +4828,38 @@ function drawInterval(nobs, avg, statP, gxmin, xrange, clevel, height, niter, st
         if (avg - temp > statP[1]) checkMu = false;
         if (avg + temp < statP[1]) checkMu = false;
         if (checkMu) {
-          dot2.append("circle").attr("class","meanG").attr("cx",avgx).attr("cy",ty).attr("r",2)
-              .style("stroke","green")
-          dot2.append("line")  .attr("class","meanG").attr("x1",stdmx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
-              .style("stroke","green")
-          dot2.append("line")  .attr("class","meanG").attr("x1",stdpx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
+          dot.append("circle").attr("class","meanG").attr("cx",avgx).attr("cy",ty).attr("r",2)
+             .style("stroke","green")
+          dot.append("line")  .attr("class","meanG").attr("x1",stdmx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
+             .style("stroke","green")
+          dot.append("line")  .attr("class","meanG").attr("x1",stdpx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
               .style("stroke","green")
         }
         else {
-          dot2.append("circle").attr("class","meanR").attr("cx",avgx).attr("cy",ty).attr("r",2)
-              .style("stroke","red")
-          dot2.append("line")  .attr("class","meanR").attr("x1",stdmx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
-              .style("stroke","red")
-          dot2.append("line")  .attr("class","meanR").attr("x1",stdpx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
-              .style("stroke","red")
+          dot.append("circle").attr("class","meanR").attr("cx",avgx).attr("cy",ty).attr("r",2)
+             .style("stroke","red")
+          dot.append("line")  .attr("class","meanR").attr("x1",stdmx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
+             .style("stroke","red")
+          dot.append("line")  .attr("class","meanR").attr("x1",stdpx).attr("y1",ty).attr("x2",avgx).attr("y2",ty)
+             .style("stroke","red")
         }
         if (niter < 11) {
-          if (checkMu) dot2.append("text").attr("class","meanG").attr("x", avgx-28).attr("y", ty + 15).text(svgStrU[22][langNum]+"="+f2(avg))
-                           .style("stroke","green")
-		           .style("font-family","sans-serif").style("font-size","9pt")
-          else dot2.append("text").attr("class","meanR").attr("x", avgx-28).attr("y", ty + 15).text(svgStrU[22][langNum]+"="+f2(avg))
-                   .style("stroke","red")
-		   .style("font-family","sans-serif").style("font-size","9pt")
+          if (checkMu) dot.append("text").attr("class","meanG").attr("x", avgx-28).attr("y", ty + 15).text(svgStrU[22][langNum]+"="+f2(avg))
+                          .style("stroke","green")
+		          .style("font-family","sans-serif").style("font-size","9pt")
+          else dot.append("text").attr("class","meanR").attr("x", avgx-28).attr("y", ty + 15).text(svgStrU[22][langNum]+"="+f2(avg))
+                  .style("stroke","red")
+		  .style("font-family","sans-serif").style("font-size","9pt")
         }
 }// 전체 구간추정 표본그림 제거
 function removeAllSample3() {
-	dot2.selectAll("circle.circleS").remove();
-	dot2.selectAll("circle.meanG").remove();
-	dot2.selectAll("circle.meanR").remove();
-	dot2.selectAll("text.meanG").remove();
-	dot2.selectAll("text.meanR").remove();
-	dot2.selectAll("line.meanG").remove();
-	dot2.selectAll("line.meanR").remove();
+	dot.selectAll("circle.circleS").remove();
+	dot.selectAll("circle.meanG").remove();
+	dot.selectAll("circle.meanR").remove();
+	dot.selectAll("text.meanG").remove();
+	dot.selectAll("text.meanR").remove();
+	dot.selectAll("line.meanG").remove();
+	dot.selectAll("line.meanR").remove();
 }// =============================================================================================================
 // Testing Hypothesis : mu
 // =============================================================================================================
