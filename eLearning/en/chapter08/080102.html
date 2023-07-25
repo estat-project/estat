@@ -409,7 +409,8 @@
           <td></td>
           <td class="tdCenter">
             Mean of \(d_i\) : \(\overline d = -3.5 \)<br>
-            Standard deviation of \(d_i\) : \(s_d = 3.16 \)
+            Variance of \(d_i\) : \(s_d^2 = 10 \)<br> 
+            Standard deviation of \(d_i\) : \(s_d = 3.162 \)
           </td>
         </tr>
       </table>  
@@ -417,11 +418,11 @@
       The test statistic is as follows: 
       $$ \small
         \begin{multline}
-        \shoveleft \frac{\overline d - D_0}{\frac{s_d}{\sqrt{n}}} = \frac{-3.5}{\frac{3.16}{\sqrt{8}}} \\
-        \shoveleft - t_{n-1; &alpha;} = - t_{8-1: 0.05} = - t_{7: 0.05} = -1.8946 \\
+        \shoveleft \frac{\overline d - D_0}{\frac{s_d}{\sqrt{n}}} = \frac{-3.5}{\frac{3.16}{\sqrt{8}}} = -3.130 \\
+        \shoveleft - t_{n-1; &alpha;} = - t_{8-1: 0.05} = - t_{7: 0.05} = -1.895 \\
         \end{multline}
       $$
-      Therefore, \(\small H_0\) is rejected and conclude that the training increased the typing speed. 
+      Therefore, \(\small H_0\) is rejected and we conclude that the training increased the typing speed. 
       <p>
         In 『eStatU』 menu, select [Testing Hypothesis: \(\mu_1 , \mu_2\)], select the alternative hypothesis 
         at [Hypothesis], check the 5% significance level, check ‘paired sample’ at [Test Type], 
@@ -510,7 +511,7 @@
                 <td><span data-msgid="Sample Mean">Sample Mean</span></td>
                 <td><span class="fontmath">x&#772;<sub>1</sub></span> = <input type="text" style="text-align:center;" value="275" size=6 id="xbar41"></td>
                 <td><span class="fontmath">x&#772;<sub>2</sub></span> = <input type="text" style="text-align:center;" value="269" size=6 id="xbar42"></td>
-                <td><span class="fontmath">x&#772;<sub>d</sub></span> = <input type="text" style="text-align:center;" size=6 id="avgDiff"></td>
+                <td><span class="fontmath">d&#772;</span> = <input type="text" style="text-align:center;" size=6 id="avgDiff"></td>
               </tr>
               <tr>
                 <td><span data-msgid="Sample Variance">Sample Variance</span></td>
@@ -612,7 +613,7 @@
       var tval3 = "t<sub>n<sub>d</sub> - 1 ; &alpha;/2</sub>";
       var intT1 = "( x&#772;<sub>1</sub> - x&#772;<sub>2</sub> ) &nbsp; &plusmn; &nbsp;[ D + t<sub>n<sub>1</sub> + n<sub>2</sub> - 2 ; &alpha;/2</sub> &nbsp; &radic; ( s<sub>p</sub><sup>2</sup> / n<sub>1</sub> + s<sub>p</sub><sup>2</sup> / n<sub>2</sub> ) ]";
       var intT2 = "( x&#772;<sub>1</sub> - x&#772;<sub>2</sub> ) &nbsp; &plusmn; &nbsp; [ D + t<sub>&phi; ; &alpha;/2</sub> &nbsp; &radic; ( s<sub>1</sub><sup>2</sup> / n<sub>1</sub> + s<sub>2</sub><sup>2</sup> / n<sub>2</sub> ) ]";
-      var intT3 = "( x&#772;<sub>d</sub> ) &plusmn; [ D + t<sub>n<sub>d</sub>-1 ; &alpha;/2</sub> &nbsp; (s<sub>d</sub> / &radic; n<sub>d</sub> )";
+      var intT3 = " d&#772; &plusmn; [ D + t<sub>n<sub>d</sub>-1 ; &alpha;/2</sub> &nbsp; (s<sub>d</sub> / &radic; n<sub>d</sub> )";
       var varT1 = "s<sub>p</sub><sup>2</sup> = [(n<sub>1</sub>-1) s<sub>1</sub><sup>2</sup> + (n<sub>2</sub>-1) s<sub>2</sub><sup>2</sup>] / (n<sub>1</sub> + n<sub>2</sub> - 2)";
       var varT2 = "&phi; = (s<sub>1</sub><sup>2</sup>/n<sub>1</sub> + s<sub>2</sub><sup>2</sup>/n<sub>2</sub>)<sup>2</sup> / [(s<sub>1</sub><sup>2</sup>/n<sub>1</sub>)<sup>2</sup>/(n<sub>1</sub>-1) + (s<sub>2</sub><sup>2</sup>/n<sub>2</sub>)<sup>2</sup>/(n<sub>2</sub>-1)   ]"; 
       var varT3 = "s<sub>d</sub> / &radic; n<sub>d</sub>";
@@ -654,7 +655,7 @@
 
       // H1 type
       var h1 = document.myForm0.type0;
-      var h1Type = 1; 
+      var h1Type = 3; // for init example : left tailed test
       h1[0].onclick = function() { h1Type = 1; if (checkExecute) testingHypothesisMu12(); }    // 양측검정
       h1[1].onclick = function() { h1Type = 2; if (checkExecute) testingHypothesisMu12(); }    // 우측검정
       h1[2].onclick = function() { h1Type = 3; if (checkExecute) testingHypothesisMu12(); }    // 좌측검정
@@ -863,8 +864,8 @@
           if (stat.n == 0) {
             nDiff   = parseFloat(d3.select("#nDiff").node().value);
             avgDiff = parseFloat(d3.select("#avgDiff").node().value);
-            stdDiff = parseFloat(d3.select("#varDiff").node().value);
-            if ( isNaN(nDiff) || isNaN(avgDiff) || isNaN(stdDiff) ) {
+            varDiff = parseFloat(d3.select("#varDiff").node().value);
+            if ( isNaN(nDiff) || isNaN(avgDiff) || isNaN(varDiff) ) {
               bar.selectAll("*").remove();
               bar.append("text").attr("x", 50).attr("y", 100).style("stroke","red")
                  .text("No data input for paired sample t-test.")
@@ -872,6 +873,7 @@
                  .text("종속표본 검정을 위한 데이터 입력이 없습니다.")
               return;
             }
+            stdDiff = Math.sqrt(varDiff);
           }
           else if ( nn41 != nn42 ){ // wrong input
             bar.selectAll("*").remove();
@@ -947,7 +949,7 @@ function testingHypothesisMu12() {
             document.getElementById("avgDiff").value = f3(avgDiff); 
             document.getElementById("varDiff").value = f3(varDiff); 
           }
-          document.getElementById("ansFormula").value = f3(stdDiff / nDiff);
+          document.getElementById("ansFormula").value = f3(stdDiff / Math.sqrt(nDiff));
           if (varDiff == 0) teststat = 0; 
           else {
               df = nDiff - 1;
