@@ -17,7 +17,6 @@ languageNumber = {
     'ko': 0,
     'en': 1,
     'ja': 2,
-    'zh': 10,
     'zhTW': 3,
     'fr': 4,
     'de': 5,
@@ -25,6 +24,7 @@ languageNumber = {
     'vi': 7,
     'id': 8,
     'mn': 9,
+    'zh': 10,
     'pt': 11,
     'gr': 12,
     'ro': 13,
@@ -55,36 +55,14 @@ function setLanguage(lang) {
         var $this = $(this);
         $this.html($.message[lang][$this.data('msgid')]);
     });
+//    graphTitle()
 };
-// 언어 컨트롤
-var lang = localStorage.getItem("lang");
-if (lang == null) lang = "en";
-if (lang == "ko") langNum = 0;
-else if (lang == "en") langNum = 1;
-else if (lang == "ja") langNum = 2;
-else if (lang == "zh") langNum = 10;
-else if (lang == "zhTW") langNum = 3;
-else if (lang == "fr") langNum = 4;
-else if (lang == "de") langNum = 5;
-else if (lang == "es") langNum = 6;
-else if (lang == "pt") langNum = 11;
-else if (lang == "vi") langNum = 7;
-else if (lang == "id") langNum = 8;
-else if (lang == "mn") langNum = 9;
-else if (lang == "pt") langNum = 11;
-else if (lang == "gr") langNum = 12;
-else if (lang == "ro") langNum = 13;
-else if (lang == "th") langNum = 14;
-else if (lang == "pl") langNum = 15;
-else if (lang == "az") langNum = 16;
-else if (lang == "uz") langNum = 17;
-else if (lang == "ru") langNum = 18;
-else if (lang == "tr") langNum = 19;
-// console.log("eStatU.js langNum="+langNum);
+
 $.message = {}
 // Korean
 $.message.ko = {
     "eStat : Stat Education SW": "eStat: 통계교육SW",
+    "Home": "홈",
     "Filename": "파일",
     "Selected Variables": "선택변량",
     "Cancel": "취소",
@@ -198,6 +176,7 @@ $.message.ko = {
     "eStatM MiddleStatEdu": "eStatM - 초/중 통계교육 SW",
     "MiddleStat": "초등/중학: 통계",
     "HighStat":   "고등: 확률 및 통계",
+    "UnivStat":   "통계 데이터과학",
     "ebookLink":  "전자책 링크",
     "Menu": "메뉴",
     "Binomial Experiment": "이항분포실험",
@@ -281,6 +260,8 @@ $.message.ko = {
     "Sample Mean": "표본평균",
     "Sample Variance": "표본분산",
     "Sample Proportion": "표본비율",
+    "sample range": "표본범위",
+    "control chart": "관리도",
     "if Z-test-1": "(Z 검정이면, 모분산 입력)",
     "if Z-test-2": "(Z 검정이면, z<sub>&alpha;/2 </sub> 이용)",
     "At least one pair": "적어도 한쌍 이상의 평균이 다름",
@@ -298,6 +279,7 @@ $.message.ko = {
     "Reference Site": "참고사이트",
     "Lot Size": "로트 개수",
     "Defect Size": "불량 개수",
+    "Defect Rate": "불량률",
     "If typed": "숫자 입력 후 [실행] 또는 [Enter] 클릭",
     "Stat/BoxPlot": "통계량/상자그림",
     "Mean": "평균",
@@ -516,12 +498,14 @@ $.message.ko = {
     "Distribution":      "확률분포",
 };  
 // Korean
-appStr[1][0] = "../eStatH/index.html";
-appStr[2][0] = "../eStatU/index.html";
-appStr[3][0] = "../eStatE/index.html";
-appStr[4][0] = "../eHelp/index.html";
+appStr[1][0] = "/estat/eStatH/index.html";
+appStr[2][0] = "/estat/eStatU/index.html";
+appStr[3][0] = "/estat/eStatE/index.html";
+appStr[4][0] = "/estat/eHelp/index.html";
 appStr[5][0] = "index_en.html";
-appStr[6][0] = "../eLearning/kr/index.html";
+appStr[6][0] = "/estat/eLearning/kr/eStatM/index.html";
+appStr[7][0] = "/estat/eLearning/kr/eStatH/index.html";
+appStr[8][0] = "/estat/eLearning/kr/eStatU/index.html";
 alertMsg[1][0] = "자료가 없습니다!";
 alertMsg[2][0] = "분석을 원하는 변량명을 클릭하고 아이콘 버튼을 누르거나 또는 변량선택 박스에서 변량을 선택하세요!";
 alertMsg[3][0] = "선택된 열에 결측치가 있습니다.";
@@ -570,7 +554,7 @@ alertMsg[50][0] = "구간시작과 구간너비에 숫자를 입력하세요."; 
 alertMsg[51][0] = "계급과 도수는 숫자이어야 하고 자료수가 동일해야 합니다.";  // 도수분포다각형
 alertMsg[52][0] = "계급과 도수에 문자는 허용이 안됩니다.";    // 도수분포다각형
 alertMsg[53][0] = "계급구간의 크기는 동일해야 합니다.";       // 도수분포다각형
-alertMsg[54][0] = "두 자료수는 동일해야 합니다.";
+alertMsg[54][0] = "각 변수의 자료수는 동일해야 합니다.";
 alertMsg[55][0] = "!!! 시트에 데이터가 없습니다.";
 alertMsg[56][0] = "!!! 변수가 선택되지 않았습니다.";
 alertMsg[57][0] = "!!! 구간시작과 구간너비를 입력하세요.";
@@ -855,6 +839,7 @@ svgStrU[134][0] = "블록";
 // English
 $.message.en = {
     "eStat : Stat Education SW": "eStat : Stat Education SW",
+    "Home": "Home",
     "Filename": "File",
     "Selected Variables": "SelectedVar",
     "Cancel": "Cancel",
@@ -970,6 +955,7 @@ $.message.en = {
     "eStatM MiddleStatEdu": "eStatM - Elementary / Middle School Statistics SW",
     "MiddleStat": "Elementary / Middle School",
     "HighStat":   "High School Statistics",
+    "UnivStat":   "Statistics and Data Science",
     "ebookLink":  "webBook Link",
     "Menu": "Menu",
     "Binomial Experiment": "Binomial Experiment",
@@ -1053,6 +1039,8 @@ $.message.en = {
     "Sample Mean": "Sample Mean",
     "Sample Variance": "Sample Variance",
     "Sample Proportion": "Sample Proportion",
+    "sample range": "Sample Range",
+    "control chart": "Control Chart",
     "if Z-test-1": "(if Z test, enter population variance &sigma;&#178;)",
     "if Z-test-2": "(if Z test, z<sub>&alpha;/2 </sub> is used.)",
     "At least one pair": "At least one pair of means is different",
@@ -1069,7 +1057,8 @@ $.message.en = {
     "Erase Point": "Erase Point",
     "Reference Site": "Reference Site",
     "Lot Size": "Lot Size",
-    "Defect Size": "Defect Size",
+    "Defect Size": "Defectives",
+    "Defect Rate": "Defective Rate",
     "If typed": "After typing number, click [Execute] or [Enter]",
     "Stat/BoxPlot": "Stat/BoxPlot",
     "Mean": "Mean",
@@ -1293,7 +1282,9 @@ appStr[2][1] = "../eStatU/index.html";
 appStr[3][1] = "../eStatE/index_en.html";
 appStr[4][1] = "../eHelp/index_en.html";
 appStr[5][1] = "index.html";
-appStr[6][1] = "../eLearning/en/index.html";
+appStr[6][1] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][1] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][1] = "/estat/eLearning/en/eStatU/index.html";
 alertMsg[1][1] = "One of the selected variables does not have data.";
 alertMsg[2][1] = "Select variables for analysis (click column name or select var at the selection box ) one by one. If two variables for raw data are selected, the first one is analysis(or Y) variable and the 2nd one is group (or X) variable. ";
 alertMsg[3][1] = "Missing data on the selected variable.";
@@ -1341,7 +1332,7 @@ alertMsg[50][1] = "Enter numbers in interval start or step.";
 alertMsg[51][1] = "Enter numbers / Number of rows should be the same!!   Try again.";
 alertMsg[52][1] = "Enter numbers in category and frequency.";
 alertMsg[53][1] = "Interval size is not the same !!   Try again.";
-alertMsg[54][1] = "X observation is not equal Y observation !!   Try again.";
+alertMsg[54][1] = "Observation of each variable should be the same !!   Try again.";
 alertMsg[55][1] = "!!! No data on sheet.";
 alertMsg[56][1] = "!!! No variable selected";
 alertMsg[57][1] = "!!! Enter Interval Start and Interval Width";
@@ -1625,6 +1616,7 @@ svgStrU[134][1] = "Block";
 // Japanese
 $.message.ja = {
     "eStat : Stat Education SW": "eStat: 統計教育SW",
+    "Home": "ホームページ",
     "Filename": "ファイル",
     "Selected Variables": "選択変数",
     "Cancel": "キャンセル",
@@ -1734,11 +1726,12 @@ $.message.ja = {
     "* Less than nine value labels allowed.": "* 9個以下の変数名を指定することができます.",
     "Save": "保存",
     "Exit": "閉じる",
-    "eStatU UnivStatEdu": "eStatU - 大学統計教育",
-    "eStatH HighStatEdu": "eStatH - 高 統計教育",
-    "eStatM MiddleStatEdu": "eStatM - 統計教育",
+    "eStatU UnivStatEdu":   "eStatU - 大学統計教育",
+    "eStatH HighStatEdu":   "eStatH - 高校統計教育",
+    "eStatM MiddleStatEdu": "eStatM - 中学統計教育",
     "MiddleStat": "中統計",
     "HighStat":   "高統計",
+    "UnivStat":   "統計データサイエンス",
     "ebookLink":  "電子書籍リンク (English)",
     "Menu": "メニュー",
     "Binomial Experiment": "二項分布シミュレーション",
@@ -1822,6 +1815,8 @@ $.message.ja = {
     "Sample Mean": "標本平均",
     "Sample Variance": "標本分散",
     "Sample Proportion": "標本比率",
+    "sample range": "標本範囲",
+    "control chart": "範囲管理図",
     "if Z-test-1": "(Z 検定の場合, 母分散を入力)",
     "if Z-test-2": "(Z 検定の場合, z<sub>&alpha;/2 </sub> 使用)",
     "At least one pair": "少なくとも一つのペアの平均が異なる",
@@ -1839,6 +1834,7 @@ $.message.ja = {
     "Reference Site": "参考サイト",
     "Lot Size": "ロットの数",
     "Defect Size": "不良品の数",
+    "Defect Rate": "不良率",
     "If typed": "番号を入力したら、[実行]/[入力]をクリック",
     "Stat/BoxPlot": "統計量/箱ひげ図",
     "Mean": "平均",
@@ -2061,7 +2057,9 @@ appStr[2][2] = "../eStatU/index.html";
 appStr[3][2] = "../eStatE/index_en.html";
 appStr[4][2] = "../eHelp/index_en.html";
 appStr[5][2] = "index.html";
-appStr[6][2] = "../eLearning/en/index.html";
+appStr[6][2] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][2] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][2] = "/estat/eLearning/en/eStatU/index.html";
 alertMsg[1][2] = "選択した変数の中に、欠損値が含まれています!";
 alertMsg[2][2] = "変数の番号をクリックし，シートから変数を選んでください. 変数が2つ以上の場合は，1番目の変数がグループ変数として指定されます. ";
 alertMsg[3][2] = "選択した列に欠損値があります.";
@@ -2394,6 +2392,7 @@ svgStrU[134][2] = "ブロック";
 // Chinese
 $.message.zhTW = {
     "eStat : Stat Education SW": "eStat: 統計教育軟體",
+    "Home": "首頁",
     "Filename": "檔名",
     "Selected Variables": "選擇變數",
     "Cancel": "取消",
@@ -2505,6 +2504,7 @@ $.message.zhTW = {
     "eStatM MiddleStatEdu": "eStatM - 初中學統計教育軟體",
     "MiddleStat": "中統計",
     "HighStat":   "高統計",
+    "UnivStat":   "Statistics and Data Science",
     "ebookLink":  "電子書連結 (English)",
     "Menu": "選單",
     "Binomial Experiment": "二項式分佈實驗",
@@ -2588,6 +2588,8 @@ $.message.zhTW = {
     "Sample Mean": "樣本平均",
     "Sample Variance": "樣本變異數",
     "Sample Proportion": "樣本比例",
+    "sample range": "樣本範圍",
+    "control chart": "控製圖",
     "if Z-test-1": "(Z 檢定, 母分散入力)",
     "if Z-test-2": "(Z 檢定, z<sub>&alpha;/2 </sub> 使用)",
     "At least one pair": "至少有一對平均數不相等",
@@ -2605,6 +2607,7 @@ $.message.zhTW = {
     "Reference Site": "参考站",
     "Lot Size": "批量數",
     "Defect Size": "不良品數",
+    "Defect Rate": "缺陷率",
     "If typed": "輸入數字後，單擊[執行]或[輸入]",
     "Stat/BoxPlot": "統計量/盒形圖",
     "Mean": "平均",
@@ -2827,8 +2830,9 @@ appStr[2][3] = "../eStatU/index.html";
 appStr[3][3] = "../eStatE/index_en.html";
 appStr[4][3] = "../eHelp/index_en.html";
 appStr[5][3] = "index.html";
-appStr[6][3] = "../eLearning/en/index.html";
-alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
+appStr[6][3] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][3] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][3] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[2][3] = "逐一選取變數進行分析(選按欄位名稱)。若是同時選取兩變數，則第一個視為群組變數。";
 alertMsg[3][3] = "所選的變數有缺失值。";
 alertMsg[4][3] = "若選取的變數觀察值不同，則無法進行分析。";
@@ -3159,6 +3163,7 @@ svgStrU[134][3] = "塊";
 // French
 $.message.fr = {
     "eStat : Stat Education SW": "eStat : Stat éducation SW",
+    "Home": "Page d'accueil",
     "Filename": "Fichier",
     "Selected Variables": "Var Sélectionnées",
     "Cancel": "Annuler",
@@ -3270,6 +3275,7 @@ $.message.fr = {
     "eStatM MiddleStatEdu": "eStatM - Primaire / Statistiques du collège SW",
     "MiddleStat": "Statistiques du collège",
     "HighStat":   "Statistiques du lycée",
+    "UnivStat":   "Statistics and Data Science",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Menu",
     "Binomial Experiment": "Essai binomialt",
@@ -3353,6 +3359,8 @@ $.message.fr = {
     "Sample Mean": "Moyenne de l'échantillon",
     "Sample Variance": "Variance de l'échantillon",
     "Sample Proportion": "Pourcentage de l'échantillon",
+    "sample range": "plage d'échantillon",
+    "control chart": "carte de contrôle",
     "if Z-test-1": "(if Z test, Pour le Z test, entrez la variance de la population &sigma;&#178;)",
     "if Z-test-2": "(if Z test, z<sub>&alpha;/2 </sub> utilisé.)",
     "At least one pair": "Au moins deux moyennes sont différentes ",
@@ -3370,6 +3378,7 @@ $.message.fr = {
     "Reference Site": "Site de référence",
     "Lot Size": "Taille du lot",
     "Defect Size": "Taille du défaute",
+    "Defect Rate": "taux de défauts",
     "If typed": "Après avoir tapé le numéro, cliquez [Exécuter] / [Entrée]",
     "Stat/BoxPlot": "Statistiques/Boîte à moustaches",
     "Mean": "Moyenne",
@@ -3593,7 +3602,9 @@ appStr[2][4] = "../eStatU/index.html";
 appStr[3][4] = "../eStatE/index_en.html";
 appStr[4][4] = "../eHelp/index_en.html";
 appStr[5][4] = "index.html";
-appStr[6][4] = "../eLearning/en/index.html";
+appStr[6][4] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][4] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][4] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][4] = "Une des variables sélectionnées ne contient pas de données.";
 alertMsg[2][4] = "Selectionnez une par une les variables à analyser en cliquant sur chaque nom de colonne. Pour deux variables, la premiere est la variable de groupe. ";
 alertMsg[3][4] = "Données manquantes dans la variable sélectionnée.";
@@ -3926,6 +3937,7 @@ svgStrU[134][4] = "Bloc";
 // German
 $.message.de = {
     "eStat : Stat Education SW": "eStat : Statistikausbildung SW",
+    "Home": "Startseite",
     "Filename": "Datei",
     "Selected Variables": "Wähle Variablen aus",
     "Cancel": "Entfernen",
@@ -4037,6 +4049,7 @@ $.message.de = {
     "eStatM MiddleStatEdu": "eStatM - Grundschule / Statistik Mittelschule SW",
     "MiddleStat": "Statistik Mittelschule",
     "HighStat":   "Statistik des Gymnasiums",
+    "UnivStat":   "Statistics and Data Science",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Menü",
     "Binomial Experiment": "Binomialexperiment",
@@ -4117,6 +4130,8 @@ $.message.de = {
     "Sample Mean": "Stichprobenmittelwert",
     "Sample Variance": "Stichprobenvarianz",
     "Sample Proportion": "Stichprobenanteil",
+    "sample range": "Beispielbereich",
+    "control chart": "Kontrolldiagramm",
     "if Z-test-1": "(Falls Z Test vorliegt, gib Varianz ein)",
     "if Z-test-2": "(Falls Z Test vorliegt, z<sub>&alpha;/2 </sub>)",
     "At least one pair": "mindestens ein Paar von Mittelwerten ist verschieden",
@@ -4134,6 +4149,7 @@ $.message.de = {
     "Reference Site": "Referenzseite",
     "Lot Size": "Losgröße",
     "Defect Size": "Defektzahl",
+    "Defect Rate": "Fehlerrate",
     "If typed": "Klicken Sie nach der Nummer auf [Ausführen] / [Eingeben]",
     "Stat/BoxPlot": "Statistik/BoxPlot",
     "Mean": "Mittelwert",
@@ -4357,7 +4373,9 @@ appStr[2][5] = "../eStatU/index.html";
 appStr[3][5] = "../eStatE/index_en.html";
 appStr[4][5] = "../eHelp/index_en.html";
 appStr[5][5] = "index.html";
-appStr[6][5] = "../eLearning/en/index.html";
+appStr[6][5] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][5] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][5] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][5] = "Zu einer der ausgewählten Variablen fehlen Daten.";
 alertMsg[2][5] = "Wähle Variablen durch Ankliken für die  Analyse aus.  If two variables, first one is group variable. ";
 alertMsg[3][5] = "Wähle Variablen durch Ankliken für die  Analyse aus.";
@@ -4689,6 +4707,7 @@ svgStrU[134][5] = "Block";
 // Spanish
 $.message.es = {
     "eStat : Stat Education SW": "eStat : Software para Educación Estadística",
+    "Home": "Página de inicio",
     "Filename": "Archivo",
     "Selected Variables": "Var seleccionadas",
     "Cancel": "Cancelar",
@@ -4800,6 +4819,7 @@ $.message.es = {
     "eStatM MiddleStatEdu": "eStatM - elemental / Estadísticas de la escuela intermedia SW",
     "MiddleStat": "Estadísticas de la escuela intermedia",
     "HighStat":   "Estadísticas de la escuela secundaria",
+    "UnivStat":   "Statistics and Data Science",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Menú",
     "Binomial Experiment": "Experimento Binomial",
@@ -4883,6 +4903,8 @@ $.message.es = {
     "Sample Mean": "Media muestral",
     "Sample Variance": "Varianza muestral",
     "Sample Proportion": "Proporción muestral",
+    "sample range": "Rango de muestra",
+    "control chart": "Tabla de control",
     "if Z-test-1": "(Si test Z entrar la varianza de la población &sigma;&#178;)",
     "if Z-test-2": "(Si test Z z<sub>&alpha;/2 </sub> )",
     "At least one pair": "Al menos un par de medias es diferente",
@@ -4900,6 +4922,7 @@ $.message.es = {
     "Reference Site": "Enlace de referencia",
     "Lot Size": "Tamaño del lote",
     "Defect Size": "Tamaño del defecto",
+    "Defect Rate": "tasa de defectos",
     "If typed": "Después de escribir el número, clic [Ejecutar] o [Entrar]",
     "Stat/BoxPlot": "Estadísticos/Diagrama de Box",
     "Mean": "Media",
@@ -5123,7 +5146,9 @@ appStr[2][6] = "../eStatU/index.html";
 appStr[3][6] = "../eStatE/index_en.html";
 appStr[4][6] = "../eHelp/index_en.html";
 appStr[5][6] = "index.html";
-appStr[6][6] = "../eLearning/en/index.html";
+appStr[6][6] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][6] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][6] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][6] = "Una de las variables seleccionadas no contiene datos";
 alertMsg[2][6] = "Seleccionar una a una las  variables para el análisis (clicando los nombres de las columnas). Si hay dos variables, la primera es la variable grupo";
 alertMsg[3][6] = "Datos faltantes en la variable seleccionada";
@@ -5455,6 +5480,7 @@ svgStrU[134][6] = "Bloquear";
 // Vietnamese
 $.message.vi = {
     "eStat : Stat Education SW": "eStat : Phần mềm thống kê giáo dục",
+    "Home": "Trang chủ",
     "Filename": "Tên tệp",
     "Selected Variables": "Biến đã chọn",
     "Cancel": "Thoát",
@@ -5566,6 +5592,7 @@ $.message.vi = {
     "eStatM MiddleStatEdu": "eStatM - tiểu học / Trường trung học thống kê SW",
     "MiddleStat": "Trường trung học thống kê",
     "HighStat":   "thống kê trường trung học",
+    "UnivStat":   "Statistics and Data Science",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Menu",
     "Binomial Experiment": "Thí nghiệm nhị thức",
@@ -5649,6 +5676,8 @@ $.message.vi = {
     "Sample Mean": "Trung bình mẫu",
     "Sample Variance": " Phương sai mẫu",
     "Sample Proportion": "Tỉ lệ mẫu",
+    "sample range": "Phạm vi mẫu",
+    "control chart": "Biểu đồ kiểm soát",
     "if Z-test-1": "(Nếu kiểm định Z, nhập phương sai tổng thể &sigma;&#178;)",
     "if Z-test-2": "(Nếu kiểm định Z, z<sub>&alpha;/2 </sub>.)",
     "At least one pair": "Có ít nhất một cặp trung bình khác nhau",
@@ -5666,6 +5695,7 @@ $.message.vi = {
     "Reference Site": "Tham khảo",
     "Lot Size": "Kích thước lô",
     "Defect Size": "Có vấn đề về cỡ mẫu",
+    "Defect Rate": "tỷ lệ lỗi",
     "If typed": "Sau khi nhập số, nhấp vào [Thực thi] / [Enter]",
     "Stat/BoxPlot": "Thống kê / Biểu đồ Box",
     "Mean": "Trung bình",
@@ -5885,7 +5915,9 @@ appStr[2][7] = "../eStatU/index.html";
 appStr[3][7] = "../eStatE/index_en.html";
 appStr[4][7] = "../eHelp/index_en.html";
 appStr[5][7] = "index.html";
-appStr[6][7] = "../eLearning/en/index.html";
+appStr[6][7] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][7] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][7] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][7] = "Đã chọn biến không chứa dữ liệu";
 alertMsg[2][7] = "Chọn từng biến để phân tích (click tên cột). Nếu chọn 2 biến, biến đầu tiên là biến định tính";
 alertMsg[3][7] = "Biến đã chọn thiếu số liệu";
@@ -6217,6 +6249,7 @@ svgStrU[134][7] = "Khối";
 // Indonesian
 $.message.id = {
     "eStat : Stat Education SW": "eStat : Stat Education SW",
+    "Home": "Halaman Beranda",
     "Filename": "File",
     "Selected Variables": "Variabel terpilih",
     "Cancel": "Batal",
@@ -6328,6 +6361,7 @@ $.message.id = {
     "eStatM MiddleStatEdu": "eStatM - Dasar / Statistik Sekolah Menengah SW",
     "MiddleStat": "Statistik Sekolah Menengah",
     "HighStat":   "Statistik SMA",
+    "UnivStat":   "Statistics and Data Science",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Menu",
     "Binomial Experiment": "Percobaan Binomial",
@@ -6411,6 +6445,8 @@ $.message.id = {
     "Sample Mean": "Rata-rata Sampel",
     "Sample Variance": "Varians Sampel",
     "Sample Proportion": "Proporsi Sampel",
+    "sample range": "Rentang Sampel",
+    "control chart": "Bagan Kendali",
     "if Z-test-1": "(if uji Z, Masukkan Varians Populasi &sigma;&#178;)",
     "if Z-test-2": "(if uji Z, z<sub>&alpha;/2 </sub> digunakan.)",
     "At least one pair": " Setidaknya Ada Satu Pasang Rata-rata yang Berbeda",
@@ -6428,6 +6464,7 @@ $.message.id = {
     "Reference Site": "Situs Referensi",
     "Lot Size": "Jumlah Lot",
     "Defect Size": "Jumlah Cacat",
+    "Defect Rate": "tingkat cacat",
     "If typed": "Setelah mengetik nomor, klik [Jalankan] / [Enter]",
     "Stat/BoxPlot": "Stat/Diagram Kotak Garis",
     "Mean": "Rata-rata",
@@ -6651,7 +6688,9 @@ appStr[2][8] = "../eStatU/index.html";
 appStr[3][8] = "../eStatE/index_en.html";
 appStr[4][8] = "../eHelp/index_en.html";
 appStr[5][8] = "index.html";
-appStr[6][8] = "../eLearning/en/index.html";
+appStr[6][8] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][8] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][8] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][8] = "Salah satu variabel yang dipilih tidak memiliki data.";
 alertMsg[2][8] = "Pilih variabel untuk analisis (klik nama kolom) satu per satu. Jika dua variabel, maka yang pertama adalah variabel grup. ";
 alertMsg[3][8] = "Data hilang pada variabel yang dipilih.";
@@ -6983,6 +7022,7 @@ svgStrU[134][8] = "Blok";
 // Mongolian
 $.message.mn = {
     "eStat : Stat Education SW": "eStat : Статистикийн боловсролын програм хангамж",
+    "Home": "Нүүр хуудас",
     "Filename": "Файл",
     "Selected Variables": "Сонгогдсон хувьсагч",
     "Cancel": "Цуцлах",
@@ -7094,6 +7134,7 @@ $.message.mn = {
     "eStatM MiddleStatEdu": "eStatM - Бага анги / Дунд сургуулийн статистик SW",
     "MiddleStat": "Дунд сургуулийн статистик",
     "HighStat":   "Ахлах сургуулийн статистик",
+    "UnivStat":   "Statistics and Data Science",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Цэс",
     "Binomial Experiment": "Бином туршилт",
@@ -7177,6 +7218,8 @@ $.message.mn = {
     "Sample Mean": "Жишээ дундаж утга",
     "Sample Variance": "Түүврийн вариаци",
     "Sample Proportion": "жишээ харьцаа",
+    "sample range": "Дээжийн хүрээ",
+    "control chart": "Хяналтын диаграм",
     "if Z-test-1": "(Хэрэв Z тест байвал хүн амын дундаж кватрат хазайлтыг оруул &sigma;&#178;)",
     "if Z-test-2": "(Хэрэв Z тест z<sub>&alpha;/2 </sub> ашиглагдсан.)",
     "At least one pair": "Хамгийн багадаа л гэхэд утгын нэг хос нь өөр өөр.",
@@ -7194,6 +7237,7 @@ $.message.mn = {
     "Reference Site": "Иш татсан цахим хуудас",
     "Lot Size": "Их хэмжээ",
     "Defect Size": "Алдаатай хэмжээ",
+    "Defect Rate": "согогийн түвшин",
     "If typed": "Дугаар оруулсны дараа [Гүйцэтгэх] / [Enter]",
     "Stat/BoxPlot": "Статистик/Шигтгээ зураг",
     "Mean": "Дундаж  утга",
@@ -7415,7 +7459,9 @@ appStr[2][9] = "../eStatU/index.html";
 appStr[3][9] = "../eStatE/index_en.html";
 appStr[4][9] = "../eHelp/index_en.html";
 appStr[5][9] = "index.html";
-appStr[6][9] = "../eLearning/en/index.html";
+appStr[6][9] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][9] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][9] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][9] = "Нэг сонгогдсон хувьсагч нь өгөгдөл байхгүй ";
 alertMsg[2][9] = "Судалгаа шинжилгээнд хувьсагчуудыг нэг нэгээр сонгох. Хэрэв эхнийх нь 2 хувьсагч бол групп хувьсагч болно.";
 alertMsg[3][9] = "Сонгогдсон хувьсагчаас өгөгдөл орхигдсон.";
@@ -7747,6 +7793,7 @@ svgStrU[134][9] = "Блок";
 // Chinese - Simplified
 $.message.zh = {
     "eStat : Stat Education SW": "eStat: 统计教育软件",
+    "Home": "主页",
     "Filename": "文件",
     "Selected Variables": "选择变量",
     "Cancel": "取消",
@@ -7858,6 +7905,7 @@ $.message.zh = {
     "eStatM MiddleStatEdu": "eStatM - 小学 / 中学统计教育软件",
     "MiddleStat": "中学统计",
     "HighStat":   "高中统计",
+    "UnivStat":   "Statistics and Data Science",
     "ebookLink":  "韩文电子书连结",
     "Menu": "选择",
     "Binomial Experiment": "二项式分布试验",
@@ -7941,6 +7989,8 @@ $.message.zh = {
     "Sample Mean": "样本均值",
     "Sample Variance": "样本方差",
     "Sample Proportion": "样本比例",
+    "sample range": "样本范围",
+    "control chart": "控制图",
     "if Z-test-1": "(Z 检验, 母分散入力)",
     "if Z-test-2": "(Z 检验, z<sub>&alpha;/2 </sub> 使用)",
     "At least one pair": "至少有一对平均数不相等",
@@ -7958,6 +8008,7 @@ $.message.zh = {
     "Reference Site": "参考站",
     "Lot Size": "Lot数",
     "Defect Size": "不良品数",
+    "Defect Rate": "缺陷率",
     "If typed": "输入数字后，单击[执行]或[输入]",
     "Stat/BoxPlot": "统计量/箱型图",
     "Mean": "均值",
@@ -8181,7 +8232,9 @@ appStr[2][10] = "../eStatU/index.html";
 appStr[3][10] = "../eStatE/index_en.html";
 appStr[4][10] = "../eHelp/index_en.html";
 appStr[5][10] = "index.html";
-appStr[6][10] = "../eLearning/en/index.html";
+appStr[6][10] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][10] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][10] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][10] = "所选的变量，其中之一没有包含资料。";
 alertMsg[2][10] = "逐一选取变量进行分析（选按栏位名称）。若是同事选取两个变量，则第一个视为群组变量。";
 alertMsg[3][10] = "所选的变量有缺失值。";
@@ -8488,6 +8541,7 @@ svgStrU[134][10] = "堵塞";
 // Portugese
 $.message.pt = {
     "eStat : Stat Education SW": "eStat : Educação Estatística SW",
+    "Home": "Pagina inicial",
     "Filename": "Arquivo",
     "Selected Variables": "Var Selecionadas",
     "Cancel": "Cancelar",
@@ -8602,6 +8656,7 @@ $.message.pt = {
     "eStatM MiddleStatEdu": "eStatM - Elementar / Estatísticas do ensino médio SW",
     "MiddleStat": "Estatísticas do ensino médio",
     "HighStat":   "Estatísticas do ensino médio",
+    "UnivStat":   "Statistics and Data Science",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Menu",
     "Binomial Experiment": "Experimento Binomial",
@@ -8685,6 +8740,8 @@ $.message.pt = {
     "Sample Mean": "Média Amostral",
     "Sample Variance": "Variância Amostral",
     "Sample Proportion": "Proporção Amostral",
+    "sample range": "Faixa de amostra",
+    "control chart": "Gráfico de controle",
     "if Z-test-1": "(se Teste Z, entre com a variância populacional)",
     "if Z-test-2": "(se Teste Z, z<sub>&alpha;/2 </sub> usado.)",
     "At least one pair": "Pelo menos um par de médias difere",
@@ -8702,6 +8759,7 @@ $.message.pt = {
     "Reference Site": "Local de referência",
     "Lot Size": "Tamanho do Lote",
     "Defect Size": "Número com defeitos",
+    "Defect Rate": "taxa de defeito",
     "If typed": "Após digitar o número, clique [Execute] / [Enter]",
     "Stat/BoxPlot": "Estatística/BoxPlot",
     "Mean": "Média",
@@ -8924,7 +8982,9 @@ appStr[2][11] = "../eStatU/index.html";
 appStr[3][11] = "../eStatE/index_en.html";
 appStr[4][11] = "../eHelp/index_en.html";
 appStr[5][11] = "index.html";
-appStr[6][11] = "../eLearning/en/index.html";
+appStr[6][11] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][11] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][11] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][11] = "Uma das variáveis selecionadas não contém observações.";
 alertMsg[2][11] = "Selecione as variáveis para a análise uma por uma (clique nos nomes das colunas). Se houverem duas variáveis, a primeira deve ser a de agrupamento.";
 alertMsg[3][11] = "Dados faltantes para variável selecionada.";
@@ -9257,6 +9317,7 @@ svgStrU[134][11] = "Bloco";
 // Greek
 $.message.gr = {
     "eStat : Stat Education SW": "eStat : Στατιστική Εκπαίδευση SW",
+    "Home": "Αρχική Σελίδα",
     "Filename": "Όνομα Φακέλου",
     "Selected Variables": "Επιλεγμένες Μεταβλητές",
     "Cancel": "Ακύρωση",
@@ -9371,6 +9432,7 @@ $.message.gr = {
     "eStatM MiddleStatEdu": "eStatM - Δημοτικό / Στατιστικά Γυμνασίου SW",
     "MiddleStat": "Στατιστικά Γυμνασίου",
     "HighStat":   "Στατιστικά Λυκείου",
+    "UnivStat":   "Statistics and Data Science",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Μενού",
     "Binomial Experiment": "Διωνυμικό Πείραμα",
@@ -9454,6 +9516,8 @@ $.message.gr = {
     "Sample Mean": "Δειγματικός Μέσος",
     "Sample Variance": "Δειγματική Διασπορά",
     "Sample Proportion": "Δειγματικό Ποσοστό",
+    "sample range": "Εύρος δειγμάτων",
+    "control chart": "Διάγραμμα ελέγχου",
     "if Z-test-1": "(αν Ζ-τεστ, καταχωρείστε την πλυθισμιακή διασπορά &sigma;&#178;)",
     "if Z-test-2": "(αν Ζ-τεστ, χρησιμοποιήστε z<sub>&alpha;/2 </sub>)",
     "At least one pair": "Τουλάχιστον ένα ζευγάρι μέσων να είναι διαφορετικοί",
@@ -9471,6 +9535,7 @@ $.message.gr = {
     "Reference Site": "Θέση Αναφοράς",
     "Lot Size": "Μέγεθος Παρτίδας",
     "Defect Size": "Μέγεθος Ελλατωμάτων",
+    "Defect Rate": "ποσοστό ελαττώματος",
     "If typed": "Αφού πληκτρολογήσετε τον αριθμό, [Εκτέλεση] ή [Εισαγωγή])",
     "Stat/BoxPlot": "Στατιστική/Θηκόγραμμα",
     "Mean": "Μέσος",
@@ -9693,7 +9758,9 @@ appStr[2][12] = "../eStatU/index.html";
 appStr[3][12] = "../eStatE/index_en.html";
 appStr[4][12] = "../eHelp/index_en.html";
 appStr[5][12] = "index.html";
-appStr[6][12] = "../eLearning/en/index.html";
+appStr[6][12] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][12] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][12] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][12] = "Μία από τις επιλεγμένες μεταβλητές δεν έχει δεδομένα.";
 alertMsg[2][12] = "Επιλέξτε μεταβλητές για ανάλυση (επιλέξτε ονόματα στηλών) μία προς μία. Αν έχετε δύο μεταβλητές θέστε τη μία ως ομάδα μεταβλητών.";
 alertMsg[3][12] = "Ελλιπείς δεδομένα στις επιλεγμένες μεταβλητές.";
@@ -10025,6 +10092,7 @@ svgStrU[134][12] = "ΟΙΚΟΔΟΜΙΚΟ ΤΕΤΡΑΓΩΝΟ";
 // Romanian
 $.message.ro = {
     "eStat : Stat Education SW": "eStat : Stat Educatie SW",
+    "Home": "Pagina principala",
     "Filename": "Nume Fișier",
     "Selected Variables": "Var Selectate",
     "Cancel": "Îinchidere",
@@ -10139,6 +10207,7 @@ $.message.ro = {
     "eStatM MiddleStatEdu": "eStatM - elementar / Statistica gimnaziului SW",
     "MiddleStat": "Statistica gimnaziului",
     "HighStat":   "Statistica liceului",
+    "UnivStat":   "Statistics and Data Science",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Meniu",
     "Binomial Experiment": "Experiment Binomial",
@@ -10222,6 +10291,8 @@ $.message.ro = {
     "Sample Mean": "Medie Sondaj",
     "Sample Variance": "Varianță Sondaj",
     "Sample Proportion": "Proporție Sondaj",
+    "sample range": "Interval de probă",
+    "control chart": "Grafic de control",
     "if Z-test-1": "(În cazul unui test Z, introduceți varianța populației &sigma;&#178;)",
     "if Z-test-2": "(În cazul unui test Z, z<sub>&alpha;/2 </sub> is used.)",
     "At least one pair": "Cel puțin o pereche de medii este diferită",
@@ -10239,6 +10310,7 @@ $.message.ro = {
     "Reference Site": "Site de Referință",
     "Lot Size": "Mărime Lot",
     "Defect Size": "Mărime Defect",
+    "Defect Rate": "rata defectelor",
     "If typed": "După introducerea numărului, clic [Execute] / [Enter]",
     "Stat/BoxPlot": "Stat/BoxPlot",
     "Mean": "Medie",
@@ -10462,7 +10534,9 @@ appStr[2][13] = "../eStatU/index.html";
 appStr[3][13] = "../eStatE/index_en.html";
 appStr[4][13] = "../eHelp/index_en.html";
 appStr[5][13] = "index.html";
-appStr[6][13] = "../eLearning/en/index.html";
+appStr[6][13] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][13] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][13] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][13] = "Una dintre variabilele selectate nu are date introduse.";
 alertMsg[2][13] = "Selectați variabilele pentru analiză(click pe numele coloanelor) una câte una. În cazul a două variabile, prima este considerată un grup de variabile.";
 alertMsg[3][13] = "Date lipsă în variabila selectată.";
@@ -10795,6 +10869,7 @@ svgStrU[134][13] = "Bloc";
 // Thai
 $.message.th = {
     "eStat : Stat Education SW": "eStat : ซอฟต์แวร์การศึกษาสถิติ",
+    "Home": "หน้าแรก",
     "Filename": "ชื่อไฟล์",
     "Selected Variables": "ตัวแปรที่เลือกไว้",
     "Cancel": "ยกเลิก",
@@ -10909,6 +10984,7 @@ $.message.th = {
     "eStatM MiddleStatEdu": "eStatM - ประถมศึกษา / สถิติมัธยมต้น SW",
     "MiddleStat": "สถิติมัธยมต้น",
     "HighStat":   "สถิติมัธยมปลาย",
+    "UnivStat":   "Statistics and Data Science",
     "ebookLink":  "webBook Link (English)",
     "Menu": "เมนู",
     "Binomial Experiment": "การทดลองทวินาม",
@@ -10992,6 +11068,8 @@ $.message.th = {
     "Sample Mean": "ค่าเฉลี่ยตัวอย่าง",
     "Sample Variance": "ความแปรปรวนตัวอย่าง",
     "Sample Proportion": "ค่าสัดส่วนตัวอย่าง",
+    "sample range": "ช่วงตัวอย่าง",
+    "control chart": "แผนภูมิการควบคุม",
     "if Z-test-1": "(สำหรับการทดสอบแซด ระบุส่วนเบี่ยงเบนมาตรฐาน &sigma;&#178;)",
     "if Z-test-2": "(สำหรับการทดสอบแซด ใช้  z<sub>&alpha;/2 </sub>)",
     "At least one pair": "ค่าเฉลี่ยอย่างน้อยหนึ่งคู่แตกต่างกัน",
@@ -11009,6 +11087,7 @@ $.message.th = {
     "Reference Site": "ตำแหน่งอ้างอิง",
     "Lot Size": "ขนาดการแบ่งส่วน",
     "Defect Size": "ขนาดความผิดพลาด",
+    "Defect Rate": "อัตราข้อบกพร่อง",
     "If typed": "หลังจากพิมพ์หมายเลขคลิก [ดำเนินการ] หรือ [Enter]",
     "Stat/BoxPlot": "สถิติ/แผนภาพกล่อง",
     "Mean": "ค่าเฉลี่ย",
@@ -11231,7 +11310,9 @@ appStr[2][14] = "../eStatU/index.html";
 appStr[3][14] = "../eStatE/index_en.html";
 appStr[4][14] = "../eHelp/index_en.html";
 appStr[5][14] = "index.html";
-appStr[6][14] = "../eLearning/en/index.html";
+appStr[6][14] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][14] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][14] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][14] = "หนึ่งในตัวแปรที่เลือกไว้ไม่มีข้อมูล";
 alertMsg[2][14] = "เลือกตัวแปรเพื่อนำมาวิเคราะห์ (คลิกที่ชื่อคอลัมน์) ทีละตัวแปร หากมีตัวแปรสองตัว ตัวแปรแรกเป็นตัวแปรกลุ่ม";
 alertMsg[3][14] = "ตัวแปรที่เลือกไว้มีข้อมูลสูญหาย";
@@ -11563,6 +11644,7 @@ svgStrU[134][14] = "กลุ่ม";
 // Polish
 $.message.pl = {
     "eStat : Stat Education SW": "eStat : Stat Edukacja SW",
+    "Home": "Strona główna",
     "Filename": "Nazwa pliku",
     "Selected Variables": "Wybrane zmienne",
     "Cancel": "Anuluj",
@@ -11570,18 +11652,19 @@ $.message.pl = {
     "Level": "Poziom",
     "ElementaryLevel": "podstawowy",
     "MiddleLevel": "średni",
-    "HighLevel": "Liceum",
+    "HighLevel": "wyższy",
     "UniversityLevel": "uniwersytecki",
-    "Example": "Example",
-    "New Sheets": "New Sheets",
-    "csv Open": "csv Otwórz",
-    "www Open": "www Otwórz",
-    "json Open": "json Otwórz",
-    "csv Save": "csv Zapisz",
-    "json Save": "json Zapisz",
+    "Example": "Przykład",
+    "New Sheets": "Nowy Arkusz",
+    "csv Open": " Otwórz csv",
+    "www Open": "Otwórz www ",
+    "json Open": " Otwórz json",
+    "csv Save": "Zapisz csv",
+    "json Save": " Zapisz json",
     "Print Sheet": "Drukuj arkusz",
     "Bar Graph": "Wykres słupkowy",
     "Pie Chart": "Wykres kołowy",
+    "Rainbow Chart": "Wykres tęczowy ",
     "Band Graph": "Wykres pasmowy",
     "Line": "liniowy",
     "Line Graph": "Wykres liniowy",
@@ -11591,7 +11674,7 @@ $.message.pl = {
     "maxStem": "** maksymalna liczba łodyg <= 30 **",
     "Box-Whisker Plot": "Wykres pudełkowy",
     "Scatterplot": "Wykres rozrzutu",
-    "ScatterplotMatrix": "Wykres rozrzutu Matrix",
+    "ScatterplotMatrix": "Macierz wykresów rozrzutu",
     "Frequency Table": "Tabela częstości",
     "Basic Statistics": "Statystyki opisowe",
     "Testing Hypothesis &mu;": "Hipoteza testowa &mu;",
@@ -11599,57 +11682,57 @@ $.message.pl = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Hipoteza testowa  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Hipoteza testowa &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Analiza wariancji",
-    "Middle School Stat Education": "Edukacja Statystyczna Gimnazjum",
-    "High School Stat Education": "Statystyka - wykształcenie w szkole średniej",
+    "Middle School Stat Education": "Edukacja Statystyczna Liceum",
+    "High School Stat Education": "Statystyka - wykształcenie w szkole wyższej",
     "University Stat Education": "Statystyka - edukacja poziom uniwersytecki",
-    "Elem Stat Graph Example": "Przykłady wykresów statystyki elementarnej",
+    "Elem Stat Graph Example": "Przykłady elementarnych wykresów statystycznych",
     "Learning eStat w Example": "eStat ?",
     "Vertical": "Pionowy",
     "Horizontal": "Poziomy",
-    "Vertical Separated Bar": "Wykres kolumnowy rozdzielony pionowy ",
+    "Vertical Separated Bar": "Wykres kolumnowy dla grup pionowy ",
     "Vertical Stacked Bar": "Wykres kolumnowy skumulowany pionowy ",
     "Vertical Ratio Bar": "Wykres kolumnowy 100% skumulowany pionowy ",
     "Vertical Side by Side Bar": "Wykres kolumnowy grupowany pionowy",
-    "Vertical Two Sided Bar": "Wykres kolumnowy dwu kierunkowy pionowy",
-    "Horizontal Separated Bar": "Wykres kolumnowy rozdzielony poziomy ",
+    "Vertical Two Sided Bar": "Wykres kolumnowy dwukierunkowy pionowy",
+    "Horizontal Separated Bar": "Wykres kolumnowy dla grup poziomy ",
     "Horizontal Stacked Bar": "Wykres kolumnowy skumulowany poziomy",
     "Horizontal Ratio Bar": "Wykres kolumnowy 100% skumulowany poziomy",
     "Horizontal Side by Side Bar": "Wykres kolumnowy grupowany poziomy",
-    "Horizontal Two Sided Bar": "Wykres kolumnowy dwu kierunkowy poziomy",
+    "Horizontal Two Sided Bar": "Wykres kolumnowy dwukierunkowy poziomy",
     "Doughnut Graph": "Wykres pierścieniowy",
     "Two Sided Stem & Leaf Plot": "Dwustronny wykres łodyga i liscie",
     "Graph Save": "Zapisz wykres",
     "Graph Print": "Drukuj wykresu",
     "Move to Table": "Przejdź do tabeli",
     "Edit Title": "Edytuj tytuł",
-    "Table Save": "TZapisz tabelę",
+    "Table Save": "Zapisz tabelę",
     "Table Print": "Drukuj tabelę",
-    "Frequency": "Częstotliwość",
+    "Frequency": "Częstość",
     "Sorting": "Sortowanie",
-    "SortData": "Sortowanie",
+    "SortData": "Posortowane dane",
     "Raw Data": "Surowe dane",
     "Descending": "Malejąco",
     "Ascending": "Rosnąco",
-    "Mean": "Śrdenia",
+    "Mean": "Średnia",
     "Std Deviation": "Odchylenie standardowe",
-    "MeanStd": "Śrdenia/Odchylenie standardowe",
-    "DotMeanStd": "Wykres punktowy - Śrdenia/Odchylenie standardowe",
+    "MeanStd": "Średnia/Odchylenie standardowe",
+    "DotMeanStd": "Wykres punktowy - Średnia/Odchylenie standardowe",
     "95CI": "95% Przedział ufności",
     "CorrelationAnalysis": "Analiza korelacji",
     "RegressionAnalysis": "Analiza regresji",
-    "RegressionAnalysis1": "Simple Linear Regression Analysis",
-    "RegressionAnalysis2": "Multiple Linear Regression Analysis",
+    "RegressionAnalysis1": "Liniowa analiza regresji",
+    "RegressionAnalysis2": "Wielowymiarowa liniowa analiza regresji",
     "ANOVA2": "Dwuczynnikowa analiza wariancji ",
     "Regression": "Regresja",
     "RegressionLine": "Linia regresji",
-    "RegressionBand": "przedział ufności",
-    "RegressionTable": "Analiza regresji",	
+    "RegressionBand": "Przedział ufności w analizie regresji",
+    "RegressionTable": "Analiza regresji",
     "Frequency Polygon": "Wielobok liczebnosci",
     "Execute New Interval": "Oblicz nowy przedział",
     "Interval Start": "Początek przedziału",
     "Interval Width": "Szerokość przedziału",
-    "t-test": "t test",
-    "Z-test": "Z test",
+    "t-test": "test t",
+    "Z-test": "test Z",
     "(if Z-test, enter &sigma;)": "(w przypadku testu Z, wprowadź &sigma;)",
     "Significance Level": "Poziom istotności",
     "Execute": "Wykonaj",
@@ -11658,7 +11741,7 @@ $.message.pl = {
     "&chi;<sup>2</sup> test": "&chi;&#178; test",
     "Variance Assumption": "Założenie o wariancji",
     "Variance": "wariancji",
-    "F test": "F test",
+    "F test": "test F",
     "At least one pair of means is different": "Co najmniej jedna para średnich jest inna",
     "Main Title": "Główny tytuł",
     "y title": "y tytuł",
@@ -11673,10 +11756,11 @@ $.message.pl = {
     "Save": "Zapisz",
     "Exit": "Wyjście",
     "eStatU UnivStatEdu": "eStatU - Statystyka - edukacja poziom uniwersytecki SW",
-    "eStatH HighStatEdu": "eStatH - Statystyka - wykształcenie w szkole średniej SW",
-    "eStatM MiddleStatEdu": "eStatM - Podstawowy / Statystyka Gimnazjum SW",
-    "MiddleStat": "Statystyka Gimnazjum",
-    "HighStat":   "Statystyki szkół średnich",
+    "eStatH HighStatEdu": "eStatH - Statystyka - edukacja w szkole wyższej",
+    "eStatM MiddleStatEdu": "eStatM -  Statystyka - edukacja w liceum",
+    "MiddleStat": "Statystyka podstawy",
+    "HighStat":   "Statystyka szkół wyższych",
+    "UnivStat":   "Statystyka i nauka o danych",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Menu",
     "Binomial Experiment": "Eksperyment dla rozkładu dwumianowego",
@@ -11692,9 +11776,9 @@ $.message.pl = {
     "Normal Experiment": "Eksperyment dla rozkładu normalnego",
     "Normal Distribution": "Rozkład normalny",
     "Normal Approx": "Aproksymacja rozkładu normalnego",
-    "t Distribution": "t Dystrybuanta",
-    "ChiSquare Distribution": "&chi;&#178; Dystrybuanta",
-    "F Distribution": "F Dystrybuanta",
+    "t Distribution": "Rozkład t",
+    "ChiSquare Distribution": "&chi;&#178; Rozkład",
+    "F Distribution": "Rozkład F",
     "Sampling": "Próbkowanie",
     "Population vs Sample": "Populacja vs próbka",
     "Population": "Populacja",
@@ -11707,12 +11791,12 @@ $.message.pl = {
     "Sample20": "Próbkowanie 20%",
     "Statistics/BoxPlot": "Statystyka/wykres pudełkowy",
     "StatisticalProb":     "Prawdopodobieństwo statystyczne",
-    "Law of Large Number": "Prawo wielkich liczby",
+    "Law of Large Number": "Prawo wielkich liczb",
     "Dist of Sample Means": "Rozkład średniej z próby",
-    "Sampling Distribution": "Dystrybucja próbek",
+    "Sampling Distribution": "Rozkład w próbie",
     "Sample Size": "Wielkość próby",
     "Confidence Interval": "Przedział ufności",
-    "Confidence Interval Simulation": "Przedział ufności Symulacja",
+    "Confidence Interval Simulation": "Przedział ufności - symulacja",
     "Simulation": "Symulacja",
     "Confidence Interval Mu": "Oszacowanie : &mu;",
     "Mu Confidence Interval": "Oszacowanie : &mu;",
@@ -11721,7 +11805,7 @@ $.message.pl = {
     "Estimation Accuracy": "Dokładność szacowania",
     "Repetition": "Powtórzenie",
     "Confidence Level": "Poziom ufności",
-    "Testing Hypothesis mu_titleAB": "Test dla średniej",
+    "Testing Hypothesis mu_titleAB": "Testowanie hipotezy dla średniej",
     "Testing Hypothesis mu_title": "Test dla średniej",
     "Testing Hypothesis sigma_title": "Test dla wariancji",
     "Testing Hypothesis P_title": "Test dla wskaźnika struktury",
@@ -11740,26 +11824,28 @@ $.message.pl = {
     "Testing Hypothesis ANOVA2": "2 Czynnik ANOVA",
     "SameSampleSize": "Rozmiar próbki każdej komórki powinien być taki sam.",
     "Testing Independence": "Test niezależności",
-    "CategoryD": "Kategoria",
-    "Category": "Kategoria",
+    "CategoryD": "Kategoria/grupa",
+    "Category": "Kategoria/grupa",
     "Correlation Coefficient": "Współczynnik korelacji",
-    "Regression Experiment": "Eksperymen regresyjny",
+    "Regression Experiment": "Eksperyment regresyjny",
     "Hypothesis": "Hipotezy",
     "Test Type": "Rodzaj testu",
-    "Z-test": "Z test",
-    "t-test": "t test",
+    "Z-test": "test Z",
+    "t-test": "test t",
     "Chi-test": "&chi;&#178; test",
-    "F-test": "F test",
+    "F-test": "test F",
     "Sampling Type": "Rodzaj próbkowania",
     "Independent Sample": "niezależna próbka",
     "Paired Sample": "sparowana próbka",
     "Sample Data": "Dane próbkowe",
-    "input either sample data": "Wprowadź dane z próby lub statystyki z próby w kolejnych polach za pomocą csv / bsv",
+    "input either sample data": "Wprowadź dane z próby lub statystyki z próby w kolejnych polach za pomocą BSV lub wprowadź statystyki z próby ",
     "input data": "Wprowadzanie danych",
     "Sample Statistics": "Statystyki z próby",
     "Sample Mean": "Średnia z próby",
     "Sample Variance": "Wariancja z próby",
-    "Sample Proportion": "Wskaźnik struktury z próby ",
+    "Sample Proportion": "Wskaźnik struktury w próbie ",
+    "sample range": "Zakres w próbie",
+    "control chart": "Wykres kontrolny",
     "if Z-test-1": "(w przypadku testu Z wprowadź wariancję populacji &sigma;&#178;)",
     "if Z-test-2": "(w przypadku testu Z, z<sub>&alpha;/2 </sub> używany.)",
     "At least one pair": "Co najmniej jedna para średnich jest inna",
@@ -11774,19 +11860,20 @@ $.message.pl = {
     "Erase All": "Wymaż wszystko",
     "Add Point": "Dodaj punkt",
     "Erase Point": "Wymaż punkt",
-    "Reference Site": "Strona referencyjna",
+    "Reference Site": "grupa kontrolna",
     "Lot Size": "Wielkość partii",
     "Defect Size": "Rozmiar defektu/wada/brak",
+    "Defect Rate": "Wadliwa ocena",
     "If typed": "Po wpisaniu numeru kliknij [Wykonaj] lub [Enter]",
     "Stat/BoxPlot": "Statystyka/wykres pudełkowy",
-    "Mean": "Śrdenia",
+    "Mean": "Średnia",
     "Std Dev": "Odchylenie standardowe",
-    "SimulationWarning": "(Current simulation should be finished before you start the next simulation)",
+    "SimulationWarning": "(Bieżąca symulacja powinna zostać zakończona przed rozpoczęciem następnej symulacji)",
     "OneGroup": "(jedna grupa)",
-    "AnalysisVar": "Zmienna analizy",
-    "AnalysisVar2": "Y Zmiennej",
+    "AnalysisVar": "Analizowana zmienna",
+    "AnalysisVar2": "Zmienna Y",
     "GroupVar": "Grupa",
-    "GroupVar2": "X Zmiennej",
+    "GroupVar2": "Zmienna X",
     "GroupVar3": "Czynnik1",
     "GroupVar4": "Czynnik2",
     "AnalysisVarMu12": "Zmienna analizy (or X1)",
@@ -11796,30 +11883,30 @@ $.message.pl = {
     "RegressionBand": "przedział ufności",
     "RegressionTable": "Analiza regresji",
     "RegressionResidual": "Wykres reszt",
-    "RegressionResidualLeverage": "Reszta : Siła wpływu",
-    "RegressionCook": "Odległość Cooka Wykres",
-    "RegressionQQ": "Reszta Wykres Q-Q",
+    "RegressionResidualLeverage": "Reszta vs Siła wpływu",
+    "RegressionCook": "Wykres odległości Cooka",
+    "RegressionQQ": "Wykres Q-Q reszt ",
     "HistogramNormal": "Histogram",
     "HistogramChisq": "Normalny Test",
     "HistogramNormalQQ": "Normalny Wykres Q-Q",
     "PopulationStd": "Odchylenie standardowe populacji",
     "Type1Error": "Błąd I rodzaju",
     "Type2Error": "Błąd II rodzaju",
-    "AnovaTable": "ANOVA Tabelę",
-    "AnovaMeanGraph": "Śrdenia Przedział ufności",
+    "AnovaTable": "Tabela ANOVA ",
+    "AnovaMeanGraph": "Średnia przedział ufności",
     "MultipleComparison": "Wielokrotne porównania",
     "ComparisonGraph": "Wykres porównawczy",
-    "AnovaResidual": "Standardized Wykres reszt",
-    "AnovaQQ": "Reszta Wykres Q-Q",
-    "TestingFit": "Test zgodności CHI2",
-    "FitTest0": "Obserwowane i teoretyczne rozkłady są takie same",
+    "AnovaResidual": " Wykres reszt",
+    "AnovaQQ": "Wykres Q-Q reszt",
+    "TestingFit": "Test zgodności ",
+    "FitTest0": "Rozkłady obserwowany i teoretyczny są takie same",
     "FitTest1": "Rozkłady obserwowany i teoretyczny są różne",
     "ObservedFreq": "Obserwowane częstości O",
     "ExpectedProb": "Oczekiwane prwdopodobieństwa p",
     "ExpectedFreq": "Oczekiwana częstość E(>5)",
     "InputFitData": "Wprowadź obserwację z lewej górnej komórki",
     "ExecuteTable": "Statystyka",
-    "MeanDotGraph": "Przedział ufności Graph",
+    "MeanDotGraph": "Przedział ufności wykres",
     "ScatterRegression": "Wykres rozrzutu",
     "Factor": "Czynnik",
     "Interaction": "Interakcja",
@@ -11828,29 +11915,29 @@ $.message.pl = {
     "eStatLecture": "eStat Wykład wprowadzający",
     "NonParametricMu12_title": "Test sumy rang Wilcoxona", 
     "NonParametricMu12": "Test sumy rang Wilcoxona : Location Parameter M<sub>1</sub>, M<sub>2</sub>", 
-    "WilcoxonTest": "Test sumy rang Wilcoxona",
+    "WilcoxonTest": "Test sumy rang ",
     "Sample Range": "Suma rang",
-    "DistributionTable": "Dystrybuanta Tabelę",
-    "SignedRankTestDist": "Wilcoxon znaków sumy rang Dystrybuanta",
-    "WilcoxonTestDist": "Wilcoxon sumy rang Dystrybuanta",
-    "KruskalTestDist": "Kruskal-Wallis H Dystrybuanta",
-    "FriedmanTestDist": "Friedman S Dystrybuanta",
-    "SignedRankTest": "Test znaków sumy rang Wilcoxon",
+    "DistributionTable": "Tabela rozkład ",
+    "SignedRankTestDist": "Rozkład Wilcoxona znaków sumy rang rozkład",
+    "WilcoxonTestDist": "Rozkład Wilcoxona sumy rang ",
+    "KruskalTestDist": "Rozkład H Kruskala-Wallisa",
+    "FriedmanTestDist": "Rozkład S Friedmana",
+    "SignedRankTest": "Test znaków sumy rang Wilcoxona",
     "SignTest": "Test znaków",
     "SignCount": "Liczba znaków",
-    "KruskalTest": "Kruskal-Wallis Test",
-    "KruskalTestANOVA": "Kruskal-Wallis Test",
+    "KruskalTest": "Test Kruskala-Wallisa",
+    "KruskalTestANOVA": "Test Kruskala-Wallisa",
     "Total": "Całkowity",
-    "FriedmanTest": "Friedman Test",
-    "FriedmanTestANOVA": "Friedman Test",
+    "FriedmanTest": "Test Friedmana",
+    "FriedmanTestANOVA": "Test Friedmana",
     "Block": "Blok",
-    "Treatment": "Leczenie",
+    "Treatment": "Interwencja",
     "At least one locations is different": "Co najmniej jedna para lokalizacji jest inna",
-    "SignCondition": "Jeśli n ≤ 100 Test dwumianowy,  n > 100 Aproksymacja rozkładu normalnego Test",
-    "WilcoxonSignCondition": "Jeśli n ≤ 20 Test sumy rang Wilcoxona,  n > 20 Aproksymacja rozkładu normalnego Test",
-    "WilcoxonRankCondition": "Jeśli n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Test sumy rang Wilcoxona,  n>25 Aproksymacja rozkładu normalnego Test",
-    "KruskalCondition": "Jeśli n ≤ 10 H Dystrybuanta Test,  else &chi;&#178; Aproksymacja test",
-    "VariableSelect":  "* Data Analysis : Load File >> Select Variables >>  Click Icon",
+    "SignCondition": "Jeśli n ≤ 100 Test dwumianowy,  n > 100 Aproksymacja test rozkładu normalnego",
+    "WilcoxonSignCondition": "Jeśli n ≤ 20 Test sumy rang Wilcoxona,  n > 20 Test rozkładu normalnego",
+    "WilcoxonRankCondition": "Jeśli n=n<sub>1</sub>+n<sub>2</sub> ≤ 25 Test sumy rang Wilcoxona,  n>25 Aproksymacja test rozkładu normalnego",
+    "KruskalCondition": "Jeśli n ≤ 10 Test rozkład H,  else &chi;&#178; test",
+    "VariableSelect":  "* Analiza Danych : Załaduj plik >> wybierz zmienne >>  Kliknij ikonę",
     "VariableSelect2": "* Variable Selection : Click var name or use RHS selection box ",
     "VariableSelect3": "Zmiennej wybór",
     "VariableSelect4": "Można wybrać większą liczbę Analiz.",
@@ -11858,23 +11945,23 @@ $.message.pl = {
     "SummaryData": "Dane podsumowujące ",
     "RawData": "Surowe dane",
     "MultiSelect": "",
-    "DataType": "(Wybierz zmienne, klikając nazwę var)",
+    "DataType": "(Wybierz zmienne, klikając nazwę zmiennej)",
     "by": "przez",
     "NameVar": "Nazwa zmiennej",
     "n_variance": "n-1 formuła",
-    "RandomNumber": "Liczba losowa",
+    "RandomNumber": "Generator liczb losowych",
     "RealNumber":     "Liczba rzeczywista",
     "IntegerNumber":  "Liczba całkowita",
     "NumberData":     "Liczba danych",
     "NumberDigit":    "Cyfra dziesiętna",
-    "NormalTable":    "Rozkład normalny Tabelę",
+    "NormalTable":    "Tabela Rozkład normalny",
     "Percentile":     "Tabela percentylowa",
     "PercentileValue": "Percentyl",
-    "StudentRangeDist": "HSD Zakres Studentyzowanej Dyst",
+    "StudentRangeDist": " Rozkład  HSD",
     "copy link": "Skopiuj link",
-    "WithoutReplacement": "bez zamiany",
-    "WithReplacement":    "Ekstrakcja renowacji",
-    "Replacement":     "Ekstrakcja renowacji",
+    "WithoutReplacement": "z wymianą",
+    "WithReplacement":    "bez zminany",
+    "Replacement":     "zamiana",
     "NonReplacement":  "bez zamiany",
     "WordCloud":       "Word Cloud (angielski)",
     "oneColor":        "kolor",
@@ -11883,26 +11970,26 @@ $.message.pl = {
     "Density":         "Gęstość",
     "MarginOfError":   "Margines błędu",
     "Permutation":     "Permutacja",
-    "PermutationSame": "Permutacja z tym samym",
-    "Combination":     "Połączenie",
-    "NumberOfCase":    "Liczba spraw",
-    "BinomialTheorem": "Dwumian newtona",
+    "PermutationSame": "Permutacja z powtórzeniami",
+    "Combination":     "Kombinacja",
+    "NumberOfCase":    "Liczba przypadków",
+    "BinomialTheorem": "Dwumian Newtona",
     "PascalTriangle":  "Trójkąt Pascala",
     "Character":       "Emoji",
-    "AdditionRule":      "Dodatkowa zasada prawdopodobieństwa",
+    "AdditionRule":      "Zasada dodawania prawdopodobieństwa",
     "MultiplicationRule":"Zasada mnożenia prawdopodobieństwa",
     "ConditionalProb":   "Warunkowe prawdopodobieństwo",
     "JointProb":         "Wspólne prawdopodobieństwo",
-    "DiscreteDist":      "Dystrybucja Dyskretna",
+    "DiscreteDist":      "Rozkład dyskretny",
     "Categorize":        "Kategoryzować",
     "Recode":            "Przekoduj",
-    "Compute":           "Obliczać",
+    "Compute":           "Oblicz",
     "SelectIf":          "Wybierz Jeśli",
     "InfoValueLabel":    "*** Wybierz zmienną, wprowadź nazwę zmiennej i/lub etykietę wartości.",
     "InfoSorting":       "*** Wybierz zmienną sortującą, wprowadź metodę sortowania do 3 zmiennych.",
     "InfoCategorize":    "*** Wybierz zmienną dla kategorii, wprowadź początek interwału i szerokość interwału.",
     "InfoRecode":        "*** Wybierz zmienną do zapisu, wprowadź nową wartość.",
-    "InfoRecode2":       "* Zezwól na rejestrację do 9 wartości.",
+    "InfoRecode2":       "* Zezwól na zapis do 9 wartości",
     "InfoCompute":       "*** Utwórz formułę obliczeniową za pomocą przycisków poniżej.",
     "InfoSelectIf":      "*** Wybierz maksymalnie 3 zmienne, wprowadź ich warunki.",
     "SortingVariable":   "Sortowanie Zmiennych",
@@ -11928,18 +12015,18 @@ $.message.pl = {
     "Weight":            "Waga",
     "PercentChange":     "Zmień procent",
     "WeightedIndex":     "Prosty indeks",
-    "BaseTime":          "Czas Bazowy",
+    "BaseTime":          "Czas bazowy",
     "LagTime":           "Czas opóźnienia",
     "Lag":               "Opóźnienie czasowe",
     "Forecasting":       "Prognozowanie",
     "SeasonalModel":     "Model sezonowy",
-    "HoltWinter":        "Model sezonowy Holt-Winters",
-    "Trend":             "Tendencja",
+    "HoltWinter":        "Model sezonowy Holta-Wintersa",
+    "Trend":             "Trend",
     "Seasonal":          "Sezonowy",
-    "Deseasonal":        "Seria pozasezonowa",
-    "Nseason":           "Czasy w sezonie",
+    "Deseasonal":        "Szereg  bez sezonowości",
+    "Nseason":           "Liczba podokresów",
     "Irregular":         "Nieregularny",
-    "TrendModel":        "Model trendu w sezonowości",
+    "TrendModel":        "Model trendu z sezonowością",
     "RegressionModel":   "Model regresji",
     "ForecastingPeriod": "Okres Prognozowany",
     "CreateTable":       "Tabela danych",
@@ -11962,12 +12049,12 @@ $.message.pl = {
     "SingleES":          "Pojedyncze wygładzanie wykładnicze",
     "DoubleMA":          "Podwójna średnia krocząca",
     "DoubleES":          "Podwójne wygładzanie wykładnicze",
-    "HoltLinear":        "Holt Expnential Smoothing",
-    "DeseasonIntercept": "Przechwytywanie pozasezonowe",
-    "DeseasonSlope":     "Niesezonowy stok",
+    "HoltLinear":        "Wygładzanie wykładnicze Holta",
+    "DeseasonIntercept": "przesunięcie bez sezonowości",
+    "DeseasonSlope":     "nachylenie bez sezonowości",
     "SeasonalIndex":     "Indeks sezonowy",
     "Diff":              "Różnica",
-    "DiffTime":          "Czas Różnic",
+    "DiffTime":          "Różnica Czasu",
     "AR":                "Model autoregresyjny",
     "ResultTable":       "Wynik regresji",
     "ForecastTable":     "Tabela Prognoz",
@@ -11976,22 +12063,22 @@ $.message.pl = {
     "AutoCorrTable":     "Tabela Autokorelacji",
     "DiffSeries":        "Seria Różnic",
     "RawSeries":         "Oryginalna seria czasowa",
-    "RBD":               "Randomized Block Design",
-    "Latin":             "Latin Square Design",
-    "Chapter01":         "Chapter 1&nbsp; Statistics and Data Science",
-    "Chapter02":         "Chapter 2&nbsp; Visualization of Qualitative Data",
-    "Chapter03":         "Chapter 3&nbsp; Visualization of Quantitative Data",
-    "Chapter04":         "Chapter 4&nbsp; Data Summary with Tables and Measure",
-    "Chapter05":         "Chapter 5&nbsp; Probability Distribution",
-    "Chapter06":         "Chapter 6&nbsp; Sampling Distributions and Estimation",
-    "Chapter07":         "Chapter 7&nbsp; Testing Hypothesis for Single Population Parameters",
-    "Chapter08":         "Chapter 8&nbsp; Testing Hypothesis for Two Population Parameters",
-    "Chapter09":         "Chapter 9&nbsp; Testing Hypothesis for Several Population Means",
-    "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
-    "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
-    "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
-    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
-    "Distribution":      "Distribution",
+    "RBD":               "Losowy eksperyment blokowy",
+    "Latin":             "Eksperyment Kwadraty Łacińskie ",
+    "Chapter01":         "Chapter 1&nbsp; Statystyka i nauka o danych",
+    "Chapter02":         "Chapter 2&nbsp; Wizualizacja danych jakościowych",
+    "Chapter03":         "Chapter 3&nbsp; Wizualizacja danych ilościowych",
+    "Chapter04":         "Chapter 4&nbsp; Podsumowanie danych z tabelami i miarą",
+    "Chapter05":         "Chapter 5&nbsp; Rozkład prawdopodobieństwa",
+    "Chapter06":         "Chapter 6&nbsp; Rozkłady próbkowania i estymacja",
+    "Chapter07":         "Chapter 7&nbsp; Testowanie hipotezy dla parametrów pojedynczej populacji",
+    "Chapter08":         "Chapter 8&nbsp; Testowanie hipotezy dla dwóch parametrów populacji",
+    "Chapter09":         "Chapter 9&nbsp; Testowanie hipotezy dla kilku średnich populacji",
+    "Chapter10":         "Chapter 10      Hipoteza testowania nieparametrycznego",
+    "Chapter11":         "Chapter 11      Testowanie hipotezy dla danych kategorycznych",
+    "Chapter12":         "Chapter 12      Analiza korelacji i regresji",
+    "Chapter13":         "Chapter 13      Analiza szeregów czasowych", 
+    "Distribution":     "Rozkład",
 
 };
 
@@ -12002,10 +12089,12 @@ appStr[3][15] = "../eStatE/index_en.html";
 appStr[4][15] = "../eHelp/index_en.html";
 appStr[5][15] = "index.html";
 appStr[6][15] = "../eLearning/en/index.html";
+appStr[7][15] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][15] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "Jedna z wybranych zmiennych nie zawiera danych.";
 alertMsg[1][15] = "Jedna z wybranych zmiennych nie zawiera danych.";
 alertMsg[2][15] = "Wybierz zmienne do analizy (klikając nazwy kolumn) jedną po drugiej. Jeśli dwie zmienne to pierwsza zmienna jest grupująca.";
 alertMsg[3][15] = "Brak danych dla wybranej zmiennej.";
-alertMsg[4][15] = "If the number of observations in each column are different, analysis is not allowed.";
+alertMsg[4][15] = "Jeżeli liczba obserwacji w każdej kolumnie jest inna, analiza jest niedozwolona.";
 alertMsg[5][15] = "Za dużo grup! Wykresy mogą się nakładać ze względu na rozmiar ekranu.";
 alertMsg[6][15] = "Jeśli zmienna analityczna w danych podsumowujących zawiera znak, analiza statystyczna lub tworzenie tabeli jest niedozwolone.";
 alertMsg[7][15] = "Jeśli dla surowych danych wybrano więcej niż trzy zmienne, analiza lub tworzenie tabeli nie jest możliwa.";
@@ -12040,7 +12129,7 @@ alertMsg[41][15] = "Ta hipoteza testowania jest dozwolona tylko dla dwóch zmien
 alertMsg[42][15] = "Edycja tytułu hipotezy testowania jest niedozwolona!";
 alertMsg[43][15] = "Prosta regresja liniowa dotyczy tylko jednej grupy";
 alertMsg[44][15] = "Enter 1st:Name, 2nd:latitude, 3rd:longitude, 4th:AnalysisVar(optional)";
-alertMsg[45][15] = "Cannot draw GIS graph if more than five variables.";
+alertMsg[45][15] = "Nie można narysować wykresu dla więcej niż 5 zmiennych.";
 alertMsg[46][15] = "Wybrano ten sam numer zmiennej.";
 alertMsg[47][15] = "Dane znaków w częstotliwości są niedozwolone !! Spróbuj ponownie.";
 alertMsg[48][15] = "Dane znakowe są niedozwolone !! Spróbuj ponownie.";
@@ -12099,7 +12188,7 @@ svgStr[30][15] = "Procent";
 svgStr[31][15] = "<h3>ela krzyżowa</h3>";
 svgStr[32][15] = "Zmienna kolumna";
 svgStr[33][15] = "Zmienna wiersza";
-svgStr[34][15] = "Śrdenia"
+svgStr[34][15] = "Średnia"
 svgStr[35][15] = "Odchylenie standardowe"
 svgStr[36][15] = "<h3> Histogram<br>Tabela częstości</h3>";
 svgStr[37][15] = "Nazwa grupy";
@@ -12122,8 +12211,8 @@ svgStr[53][15] = "Rozkład normalny<br>Oczekiwane prwdopodobieństwa<br>P([a<sub
 svgStr[54][15] = "Rozkład normalny<br>Oczekiwana częstość<br>(E<sub>i</sub>)";
 svgStr[55][15] = "Każdy interwał<br>&chi;&#178; wartość<br>(O<sub>i</sub>-E<sub>i</sub>)&#178; / E<sub>i</sub>";
 svgStr[56][15] = "Suma &chi;&#178; value";
-svgStr[57][15] = "Prawdopodobieństwo Histogram and Rozkład normalny";
-svgStr[58][15] = "Normalny Wykres Q-Q";
+svgStr[57][15] = "Histogram Prawdopodobieństwa  i Rozkład normalny";
+svgStr[58][15] = " Wykres Q-Q rozkład Normalny";
 svgStr[59][15] = "Kwantyl z rozkładu normalnego";
 svgStr[60][15] = "Współczynnik korelacji";
 svgStr[61][15] = "Współczynnik determinacji";
@@ -12147,11 +12236,11 @@ svgStr[78][15] = "Całkowity";
 svgStr[79][15] = "<h3>Analiza regresji</h3>";
 svgStr[80][15] = "Standaryzowane reszty Wykres Q-Q";
 svgStr[81][15] = "Standaryzowane reszty";
-svgStr[82][15] = "Kwantyl z rozkładu normalnego";
+svgStr[82][15] = "Kwantyl  rozkładu normalnego";
 svgStr[83][15] = "Wykres reszt";
 svgStr[84][15] = "wartość przewidywana ";
 svgStr[85][15] = "Dwuczynnikowa analiza wariancji ";
-svgStr[86][15] = "Przedział ufności Graph";
+svgStr[86][15] = "wykres Przedział ufności";
 svgStr[87][15] = "Reszta";
 svgStr[88][15] = "Dwuczynnikowa tabela średnich";
 svgStr[89][15] = "Wykres rozrzutu Matrix";
@@ -12159,26 +12248,26 @@ svgStr[90][15] = "Porównanie wielokrotne";
 svgStr[91][15] = "Statystyka";
 svgStr[92][15] = "Czynnik";
 svgStr[93][15] = "Poziom";
-svgStr[94][15] = "sparowana próbka Dane Wykres";
+svgStr[94][15] = "Wykres danych sparowanych dla prób";
 svgStr[95][15] = "Standaryzowane reszty vs Działka prognostyczna";
 svgStr[96][15] = "Standaryzowane reszty vs Siła wpływu Wykres";
-svgStr[97][15] = "Odległość Cooka Wykres";
+svgStr[97][15] = "Wykres odległości Cooka";
 svgStr[98][15] = "Odległość Cooka";
 svgStr[99][15] = "Kolejność danych";
 svgStr[100][15] = "Różnica średnich";
 svgStr[101][15] = "Test dla średniej";
-svgStr[102][15] = "Leczenie";
+svgStr[102][15] = "Interwencja";
 svgStr[103][15] = "Interakcja";
-svgStr[104][15] = "Wiersz Całkowity";
-svgStr[105][15] = "Kolumna Całkowity";
+svgStr[104][15] = "suma w wierszu ";
+svgStr[105][15] = "suma w kolumnie";
 svgStr[106][15] = "Współczynnik korelacji wielorakiej";
 svgStr[107][15] = "<h3>Analiza korelacji</h3>";
 svgStr[108][15] = "Macierz korelacji";
-svgStr[109][15] = "Czynnik A - Czynnik B Mean Graph";
+svgStr[109][15] = "Wykres średnich Czynnik A - Czynnik B";
 svgStr[110][15] = "Siła wpływu";
 svgStr[111][15] = "Geographic Information Graph";
 svgStr[112][15] = "Zakres";
-svgStr[113][15] = "Śrdenia - Odchylenie standardowe Wykres";
+svgStr[113][15] = " Wykres Średnia - Odchylenie standardowe";
 svgStr[114][15] = "Wariancja populacji";
 svgStr[115][15] = "Hipotezy";
 svgStr[116][15] = "Test";
@@ -12190,7 +12279,7 @@ svgStr[121][15] = "Kowariancja";
 svgStr[122][15] = "Trójkąt Pascala";
 svgStr[123][15] = "Wspólne prawdopodobieństwo";
 svgStr[124][15] = "Warunkowy";
-svgStr[125][15] = "Dystrybucja dyskretna";
+svgStr[125][15] = "rozkład dyskretny";
 svgStr[126][15] = "wiersz %";
 svgStr[127][15] = "kolumna %";
 svgStr[128][15] = "całkowity %";
@@ -12261,16 +12350,16 @@ svgStrU[62][15] = "Test zgodności CHI2 - Obserwowane częstości";
 svgStrU[63][15] = "Test sumy rang Wilcoxona";
 svgStrU[64][15] = "Test sumy rang Wilcoxona Table";
 svgStrU[65][15] = "Kruskal-Wallis Test";
-svgStrU[66][15] = "Kruskal-Wallis H Dystrybuanta";
-svgStrU[67][15] = "Kruskal-Wallis H Stat";
+svgStrU[66][15] = "Rozkład H Kruskala-Wallisa ";
+svgStrU[67][15] = "Test H Kruskala-Wallisa ";
 svgStrU[68][15] = "Test znaków sumy rang Wilcoxon";
 svgStrU[69][15] = "Test znaków";
-svgStrU[70][15] = "Friedman Test";
-svgStrU[71][15] = "Friedman S Stat";
-svgStrU[72][15] = "Friedman S Dystrybuanta";
+svgStrU[70][15] = "Test Friedmana ";
+svgStrU[71][15] = "Test S Friedmana";
+svgStrU[72][15] = "Rozkład S Friedmana ";
 svgStrU[73][15] = "t wartość (or Z)";
-svgStrU[74][15] = "ChiSq wartość";
-svgStrU[75][15] = "Próba Variance";
+svgStrU[74][15] = "wartość ChiSq ";
+svgStrU[75][15] = "Wariancja w próbie";
 svgStrU[76][15] = "Różnica średnich w próbach";
 svgStrU[77][15] = "Iloraz wariancji w próbach";
 svgStrU[78][15] = "Założenie o wariancji";
@@ -12289,17 +12378,17 @@ svgStrU[90][15] = "Suma rang";
 svgStrU[91][15] = "Longitude";
 svgStrU[92][15] = "Latitude";
 svgStrU[93][15] = "Co najmniej jedna para lokalizacji jest inna";
-svgStrU[94][15] = "Dystrybuanta Wilcoxona - sumy rang ";
+svgStrU[94][15] = "Rozkład Wilcoxona - sumy rang ";
 svgStrU[95][15] = "Sparowane zmienne";
 svgStrU[96][15] = "sparowana próbka";
 svgStrU[97][15] = "test niezależności";
 svgStrU[98][15] = "Symulacja";
 svgStrU[99][15] = "Liczba losowa";
 svgStrU[100][15] = "Rozkład normalny";
-svgStrU[101][15] = "t Dystrybuanta";
+svgStrU[101][15] = "Rozkład t ";
 svgStrU[102][15] = "&chi;&#178; Dystrybuanta";
-svgStrU[103][15] = "F Dystrybuanta";
-svgStrU[104][15] = "HSD Rang Dystrybuanta";
+svgStrU[103][15] = "Rozkład F ";
+svgStrU[104][15] = "Rozkład HSD Rang ";
 svgStrU[105][15] = "Pierwszy kwartyl";
 svgStrU[106][15] = "Trzeci kwartyl";
 svgStrU[107][15] = "Zakres międzykwartylowy";
@@ -12307,34 +12396,34 @@ svgStrU[108][15] = "Współczynnik zmienności";
 svgStrU[109][15] = "Skumulowana częstotliwość względna (%)";
 svgStrU[110][15] = "Maksymalna liczba całkowita o jednolitym rozkładzie";
 svgStrU[111][15] = "Przesuń punkt za pomocą myszy";
-svgStrU[112][15] = "Ekstrakcja renowacji";
-svgStrU[113][15] = "bez zamiany";
+svgStrU[112][15] = "z powtórzeniami ";
+svgStrU[113][15] = "bez powtórzeń";
 svgStrU[114][15] = "liniowy"; 
-svgStrU[115][15] = "Zmiana procentowa";
+svgStrU[115][15] = "indeks w próbie";
 svgStrU[116][15] = "Indeks prosty";
 svgStrU[117][15] = "Opóźnienie";
 svgStrU[118][15] = "Różnica";
 svgStrU[119][15] = "Autokorelacja";
-svgStrU[120][15] = "Dziennik";
+svgStrU[120][15] = "Log";
 svgStrU[121][15] = "Pierwiastek kwadratowy";
 svgStrU[122][15] = "Box-Cox";
-svgStrU[123][15] = "Czas podstawowy";
+svgStrU[123][15] = "Czas bazowy";
 svgStrU[124][15] = "Wyśrodkowana średnia ruchoma";
 svgStrU[125][15] = "Wygładzanie wykładnicze";
 svgStrU[126][15] = "Wyśrodkowana ruchoma mediana";
 svgStrU[127][15] = "Model";
 svgStrU[128][15] = "Średnia krocząca";
 svgStrU[129][15] = "Podwójna średnia krocząca";
-svgStrU[130][15] = "Wstrzymaj podwójne wygładzanie wykładnicze";
+svgStrU[130][15] = "Podwójne wygładzanie wykładnicze Holta";
 svgStrU[131][15] = "Indeks sezonowy";
-svgStrU[132][15] = "Model sezonowy multiplikatywny Holt-Winters";
+svgStrU[132][15] = "Model sezonowy multiplikatywny Holta-Wintersa";
 svgStrU[133][15] = "Seria pozasezonowa";
 svgStrU[134][15] = "Blok";
-
  
 // Azerbaijan
 $.message.az = {
     "eStat : Stat Education SW": "eStat : Stat Təhsil SW",
+    "Home": "Əsas Səhifə",
     "Filename": "Faylın adı",
     "Selected Variables": "Seçilmiş dəyişənlər",
     "Cancel": "Ləğv et",
@@ -12449,6 +12538,7 @@ $.message.az = {
     "eStatM MiddleStatEdu": "eStatM - Orta məktəb Statistikası SW",
     "MiddleStat": "Orta məktəb Statistikası",
     "HighStat":   "Yuxarı Sinif Statistikası",
+    "UnivStat":   "Statistics and Data Science",
     "ebookLink":  "webBook Link (English)",
     "Menu": "menyu",
     "Binomial Experiment": "Binomial Eksperiment",
@@ -12532,6 +12622,8 @@ $.message.az = {
     "Sample Mean": "Nümunə Ədədi Ortası",
     "Sample Variance": "Nümunə Dispersiyası",
     "Sample Proportion": "Nümunə Nisbəti",
+    "sample range": "Nümunə Aralığı",
+    "control chart": "Nəzarət qrafiki",
     "if Z-test-1": "(Z-testdirsə, populyasiya (ana kütlə) dispersiyasını daxil edin &sigma;&#178;)",
     "if Z-test-2": "(Z-testdirsə, z<sub>&alpha;/2 </sub> istifadə edilir)",
     "At least one pair": "Ədədi ortaların ən az bir cütü fərqlidir",
@@ -12549,6 +12641,7 @@ $.message.az = {
     "Reference Site": "İstinad Saytı",
     "Lot Size": "Lot Ölçüsü",
     "Defect Size": "Qüsur Ölçüsü",
+    "Defect Rate": "Qüsurlu Dərəcə",
     "If typed": "Rəqəmi yazdıqdan sonra [Execute] və ya [Enter] vurun",
     "Stat/BoxPlot": "Statistika/Qutu Qrafiki",
     "Mean": "Ədədi orta",
@@ -12772,7 +12865,9 @@ appStr[2][16] = "../eStatU/index.html";
 appStr[3][16] = "../eStatE/index_en.html";
 appStr[4][16] = "../eHelp/index_en.html";
 appStr[5][16] = "index.html";
-appStr[6][16] = "../eLearning/en/index.html";
+appStr[6][16] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][16] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][16] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][16] = "Seçilmiş dəyişənlərdən birində verilənlər yoxdur.";
 alertMsg[2][16] = "Təhlil üçün dəyişənləri bir-bir seçin (sütun adına klikləyin və ya seçim qutusunda dəyişəni seçin). Emal Edilməmiş Verilənlər üçün iki dəyişən seçilərsə, birincisi analiz (və ya Y) dəyişəni, ikincisi isə qrup (və ya X) dəyişənidir. ";
 alertMsg[3][16] = "Seçilmiş dəyişən haqqında verilənlərin çatışmazlığı.";
@@ -13104,6 +13199,7 @@ svgStrU[134][16] = "Blok";
 // Uzbekistan
 $.message.uz = {
     "eStat : Stat Education SW": "eStat : statistika ta'limi dasturi",
+    "Home": "Bosh sahifa",
     "Filename": "Fayl",
     "Selected Variables": "tanlangan o'zgauvchilar",
     "Cancel": "Bekor qilish",
@@ -13218,6 +13314,7 @@ $.message.uz = {
     "eStatM MiddleStatEdu": "eStatM - Boshlang'ich / O'rta maktab statistikasi SW",
     "MiddleStat": "O'rta maktab statistikasi",
     "HighStat":   "Oliy maktab statistikasi",
+    "UnivStat":   "Statistics and Data Science",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Menyu",
     "Binomial Experiment": "Binominal tajriba",
@@ -13301,6 +13398,10 @@ $.message.uz = {
     "Sample Mean": "namuna ortacha",
     "Sample Variance": "namuna o'zgarishi",
     "Sample Proportion": "namuna nisbati",
+    "sample range": "Namuna diapazoni",
+    "control chart": "Nazorat diagrammasi",
+    "sample range": "Sample Range",
+    "control chart": "Control Chart",
     "if Z-test-1": "(Agar z-test bolsa,&sigma;&#178; kiritingi )",
     "if Z-test-2": "(Agar z-test bolsa, z<sub>&alpha;/2 </sub> kiritingi.)",
     "At least one pair": "Hech bolmaganda bita juft vosita farq qiladi",
@@ -13318,6 +13419,7 @@ $.message.uz = {
     "Reference Site": "malumot sayti",
     "Lot Size": "Lot hajmi",
     "Defect Size": "Kamchilik olchami",
+    "Defect Rate": "Nosozlik darajasi",
     "If typed": "Raqamni terganingizdan so'ng, bosing [Bajarish] yoki [Kirish]",
     "Stat/BoxPlot": "Stat/Quti uchastkasi",
     "Mean": "anglatadi",
@@ -13541,7 +13643,9 @@ appStr[2][17] = "../eStatU/index.html";
 appStr[3][17] = "../eStatE/index_en.html";
 appStr[4][17] = "../eHelp/index_en.html";
 appStr[5][17] = "index.html";
-appStr[6][17] = "../eLearning/en/index.html";
+appStr[6][17] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][17] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][17] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][17] = "Tanlangan ozgaruvchilardan birida malumot yoq.";
 alertMsg[2][17] = "o'zgaruvchilarni bir ma bir tahlil qiling.ikkita o'zgaruvchisi birinchi b'olib guruh o'zgaruvchisidir.";
 alertMsg[3][17] = "tanlangan o'zgaruvchiga oid m'alumotlar yoq.";
@@ -13873,6 +13977,7 @@ svgStrU[134][17] = "Bloklash";
 // Russian
 $.message.ru = {
     "eStat : Stat Education SW": "eStat : Статистическое образование SW",
+    "Home": "Домашняя страница",
     "Filename": "файл",
     "Selected Variables": "Выбранные переменные",
     "Cancel": "Отмена",
@@ -13987,6 +14092,7 @@ $.message.ru = {
     "eStatM MiddleStatEdu": "eStatM - Элементарный / Статистика средней школы SW",
     "MiddleStat": "Статистика средней школы",
     "HighStat":   "Статистика средней школы",
+    "UnivStat":   "Statistics and Data Science",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Меню",
     "Binomial Experiment": "Биномиальный эксперимент",
@@ -14070,6 +14176,8 @@ $.message.ru = {
     "Sample Mean": "Среднее значение выборки",
     "Sample Variance": "Коэффициент вариации выборки",
     "Sample Proportion": "Пропорция выборки",
+    "sample range": "Диапазон выборки",
+    "control chart": "Контрольная диаграмма",
     "if Z-test-1": "(Если Z-тест, то введите дисперсию &sigma;&#178;)",
     "if Z-test-2": "(Если z-тест, то используйте z<sub>&alpha;/2 </sub>.)",
     "At least one pair": "Минимум одна пара средних отличается",
@@ -14087,6 +14195,7 @@ $.message.ru = {
     "Reference Site": "Справочный сайт",
     "Lot Size": "Размер лота",
     "Defect Size": "Размер дефекта",
+    "Defect Rate": "Дефектный процент",
     "If typed": "После ввода номера нажмите [Выполнить] или [Ввести]",
     "Stat/BoxPlot": "Статистика/Коробочный сюжет",
     "Mean": "Среднее значение",
@@ -14310,7 +14419,9 @@ appStr[2][18] = "../eStatU/index.html";
 appStr[3][18] = "../eStatE/index_en.html";
 appStr[4][18] = "../eHelp/index_en.html";
 appStr[5][18] = "index.html";
-appStr[6][18] = "../eLearning/en/index.html";
+appStr[6][18] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][18] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][18] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][18] = "В одном из выбранных переменных отсутствуют данные.";
 alertMsg[2][18] = "Выберите переменные для анализа (щелкнув названия столбцов) поочерёдно. Если имеются два переменных, то первая - это групповая переменная.";
 alertMsg[3][18] = "Отсутствуют данные по выбранной переменной.";
@@ -14642,6 +14753,7 @@ svgStrU[134][18] = "Блок";
 // Turkish
 $.message.tr = {
     "eStat : Stat Education SW": "eStat : Stat Eğitim SW",
+    "Home": "Ana Sayfa",
     "Filename": "Dosya",
     "Selected Variables": "Seçilmiş değişkenler",
     "Cancel": "Iptal",
@@ -14755,6 +14867,7 @@ $.message.tr = {
     "eStatM MiddleStatEdu": "eStatM - İlkokul / Ortaokul İstatistikleri",
     "MiddleStat": "Orta okul istatistiği",
     "HighStat":   "Lise istatistiği",
+    "UnivStat":   "Statistics and Data Science",
     "ebookLink":  "eKitab linki (İngilizce)",
     "Menu": "Menü",
     "Binomial Experiment": "Binom deneyi",
@@ -14838,6 +14951,8 @@ $.message.tr = {
     "Sample Mean": "Numumə ortalaması",
     "Sample Variance": "Numumə dispersiyası",
     "Sample Proportion": "Numumə oranı",
+    "sample range": "Örnek Aralığı",
+    "control chart": "Kontrol grafiği",
     "if Z-test-1": "(Z testi ise, popülasyon varyansını &sigma;&#178; girin)",
     "if Z-test-2": "(Z testi ise, z<sub>&alpha;/2 </sub> kullanılır.)",
     "At least one pair": "En az bir çift ortalama farklıdır",
@@ -14855,6 +14970,7 @@ $.message.tr = {
     "Reference Site": "Referans site",
     "Lot Size": "Alan ölçüsü",
     "Defect Size": "Hata boyutu",
+    "Defect Rate": "Kusurlu Oranı",
     "If typed": "Numarayı yazdıktan sonra [Yürüt] veya [Giriş]'e tıklayın",
     "Stat/BoxPlot": "Istatitik/Kutu grafiği",
     "Mean": "Ortalama",
@@ -15079,7 +15195,9 @@ appStr[2][19] = "../eStatU/index.html";
 appStr[3][19] = "../eStatE/index_en.html";
 appStr[4][19] = "../eHelp/index_en.html";
 appStr[5][19] = "index.html";
-appStr[6][19] = "../eLearning/en/index.html";
+appStr[6][19] = "/estat/eLearning/en/eStatM/index.html";
+appStr[7][19] = "/estat/eLearning/en/eStatH/index.html";
+appStr[8][19] = "/estat/eLearning/en/eStatU/index.html";alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[1][19] = "Seçilen değişkenlerden birinin verisi yok";
 alertMsg[2][19] = "Analiz için değişkenleri tek tek seçin (sütun adını tıklayın veya seçim kutusundaki var'ı seçin). Ham veriler için iki değişken seçilirse, ilki analiz(veya Y) değişkenidir ve 2. grup (veya X) değişkenidir.";
 alertMsg[3][19] = "Seçilen değişkende veri eksik.";
