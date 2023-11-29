@@ -3713,7 +3713,7 @@ d3.select("#estat").on("click", function() {
 })
 // eStaLecture 메뉴
 d3.select("#estatLecture").on("click", function() {
-    window.open(appStr[6][langNum]);
+    window.open(appStr[8][langNum]);
 })
 // language Button
 d3.select("#langBtn").on("click", function() {
