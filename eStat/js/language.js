@@ -58,13 +58,13 @@ function setLanguage(lang) {
     localStorage.setItem("lang", lang);
     $('[data-msgid]').each(function() {
         var $this = $(this);
-        $this.html($.message[lang][$this.data('msgid')]);
+        $this.html($message[lang][$this.data('msgid')]);
     });
 };
 
-$.message = {}
+$message = {}
 // Korean
-$.message.ko = {
+$message.ko = {
     "eStat : Stat Education SW": "eStat: 통계교육SW",
     "Home": "홈",
     "Filename": "파일",
@@ -841,7 +841,7 @@ svgStrU[134][0] = "블록";
 
 
 // English
-$.message.en = {
+$message.en = {
     "eStat : Stat Education SW": "eStat : Stat Education SW",
     "Home": "Home",
     "Filename": "File",
@@ -1618,7 +1618,7 @@ svgStrU[133][1] = "Deseasonal Series";
 svgStrU[134][1] = "Block";
 
 // Japanese
-$.message.ja = {
+$message.ja = {
     "eStat : Stat Education SW": "eStat: 統計教育SW",
     "Home": "ホームページ",
     "Filename": "ファイル",
@@ -2394,7 +2394,7 @@ svgStrU[134][2] = "ブロック";
 
 
 // Chinese
-$.message.zhTW = {
+$message.zhTW = {
     "eStat : Stat Education SW": "eStat: 統計教育軟體",
     "Home": "首頁",
     "Filename": "檔名",
@@ -3166,7 +3166,7 @@ svgStrU[133][3] = "非季節性時間序列";
 svgStrU[134][3] = "塊";
 
 // French
-$.message.fr = {
+$message.fr = {
     "eStat : Stat Education SW": "eStat : Stat éducation SW",
     "Home": "Page d'accueil",
     "Filename": "Fichier",
@@ -3941,7 +3941,7 @@ svgStrU[134][4] = "Bloc";
 
 
 // German
-$.message.de = {
+$message.de = {
     "eStat : Stat Education SW": "eStat : Statistikausbildung SW",
     "Home": "Startseite",
     "Filename": "Datei",
@@ -4711,7 +4711,7 @@ svgStrU[133][5] = "Seasonal Series";
 svgStrU[134][5] = "Block";
 
 // Spanish
-$.message.es = {
+$message.es = {
     "eStat : Stat Education SW": "eStat : Software para Educación Estadística",
     "Home": "Página de inicio",
     "Filename": "Archivo",
@@ -5484,7 +5484,7 @@ svgStrU[133][6] = "Serie estacional";
 svgStrU[134][6] = "Bloquear";
 
 // Vietnamese
-$.message.vi = {
+$message.vi = {
     "eStat : Stat Education SW": "eStat : Phần mềm thống kê giáo dục",
     "Home": "Trang chủ",
     "Filename": "Tên tệp",
@@ -6253,7 +6253,7 @@ svgStrU[133][7] = "Dòng Deseasonal";
 svgStrU[134][7] = "Khối";
 
 // Indonesian
-$.message.id = {
+$message.id = {
     "eStat : Stat Education SW": "eStat : Stat Education SW",
     "Home": "Halaman Beranda",
     "Filename": "File",
@@ -7026,7 +7026,7 @@ svgStrU[133][8] = "Seri Deseasonal";
 svgStrU[134][8] = "Blok";
 
 // Mongolian
-$.message.mn = {
+$message.mn = {
     "eStat : Stat Education SW": "eStat : Статистикийн боловсролын програм хангамж",
     "Home": "Нүүр хуудас",
     "Filename": "Файл",
@@ -7797,7 +7797,7 @@ svgStrU[133][9] = "Улиралгүй цуврал";
 svgStrU[134][9] = "Блок"; 
 
 // Chinese - Simplified
-$.message.zh = {
+$message.zh = {
     "eStat : Stat Education SW": "eStat: 统计教育软件",
     "Home": "主页",
     "Filename": "文件",
@@ -8545,7 +8545,7 @@ svgStrU[133][10] = "非季节性时间序列";
 svgStrU[134][10] = "堵塞";
 
 // Portugese
-$.message.pt = {
+$message.pt = {
     "eStat : Stat Education SW": "eStat : Educação Estatística SW",
     "Home": "Pagina inicial",
     "Filename": "Arquivo",
@@ -9321,7 +9321,7 @@ svgStrU[134][11] = "Bloco";
 
 
 // Greek
-$.message.gr = {
+$message.gr = {
     "eStat : Stat Education SW": "eStat : Στατιστική Εκπαίδευση SW",
     "Home": "Αρχική Σελίδα",
     "Filename": "Όνομα Φακέλου",
@@ -10096,7 +10096,7 @@ svgStrU[134][12] = "ΟΙΚΟΔΟΜΙΚΟ ΤΕΤΡΑΓΩΝΟ";
 
 
 // Romanian
-$.message.ro = {
+$message.ro = {
     "eStat : Stat Education SW": "eStat : Stat Educatie SW",
     "Home": "Pagina principala",
     "Filename": "Nume Fișier",
@@ -10873,7 +10873,7 @@ svgStrU[134][13] = "Bloc";
 
 
 // Thai
-$.message.th = {
+$message.th = {
     "eStat : Stat Education SW": "eStat : ซอฟต์แวร์การศึกษาสถิติ",
     "Home": "หน้าแรก",
     "Filename": "ชื่อไฟล์",
@@ -11648,7 +11648,7 @@ svgStrU[134][14] = "กลุ่ม";
 
 
 // Polish
-$.message.pl = {
+$message.pl = {
     "eStat : Stat Education SW": "eStat : Stat Edukacja SW",
     "Home": "Strona główna",
     "Filename": "Nazwa pliku",
@@ -12427,7 +12427,7 @@ svgStrU[133][15] = "Seria pozasezonowa";
 svgStrU[134][15] = "Blok";
  
 // Azerbaijan
-$.message.az = {
+$message.az = {
     "eStat : Stat Education SW": "eStat : Stat Təhsil SW",
     "Home": "Əsas Səhifə",
     "Filename": "Faylın adı",
@@ -13203,7 +13203,7 @@ svgStrU[133][16] = "Mövsümi Zaman Sırası";
 svgStrU[134][16] = "Blok";
 
 // Uzbekistan
-$.message.uz = {
+$message.uz = {
     "eStat : Stat Education SW": "eStat : statistika ta'limi dasturi",
     "Home": "Bosh sahifa",
     "Filename": "Fayl",
@@ -13981,7 +13981,7 @@ svgStrU[133][17] = "Mavsumiy seriya";
 svgStrU[134][17] = "Bloklash";
 
 // Russian
-$.message.ru = {
+$message.ru = {
     "eStat : Stat Education SW": "eStat : Статистическое образование SW",
     "Home": "Домашняя страница",
     "Filename": "файл",
@@ -14757,7 +14757,7 @@ svgStrU[134][18] = "Блок";
 
 
 // Turkish
-$.message.tr = {
+$message.tr = {
     "eStat : Stat Education SW": "eStat : Stat Eğitim SW",
     "Home": "Ana Sayfa",
     "Filename": "Dosya",

@@ -5161,7 +5161,7 @@ function setLanguage(lang) {
     localStorage.setItem("lang", lang);
     $('[data-msgid]').each(function() {
         var $this = $(this);
-        $this.html($.message[lang][$this.data('msgid')]);
+        $this.html($message[lang][$this.data('msgid')]);
     });
     graphTitle()
 }
