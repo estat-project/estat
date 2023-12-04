@@ -49,9 +49,15 @@
   	     }
 	 });
 	 </script>
-       <link rel="stylesheet" href="../../css/pandoc.css">
-       <script src="../../js/eBook.js"></script>
+       <link rel="stylesheet" href="/estat/eLearning/css/pandoc.css">
+       <script src="/estat/eLearning/js/eBook.js"></script>
+       <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="/estat/eStat/lib/convertSVG.js"></script>
        <script src="/estat/eStat/js/language.js" ></script>
+       <script src="/estat/eStat/js/eStatU.js"></script>
+
 </head>
 <body>
 
@@ -92,7 +98,8 @@
                 <li><a href="../chapter06/0605.html">6.5 Determination of the Sample Size  </a></li>
                 <li><a href="../chapter06/0605.html">&nbsp;&nbsp;6.5.1 Determination of the Sample Size to Estimate the Population Mean </a></li>
                 <li><a href="../chapter06/0605.html">&nbsp;&nbsp;6.5.2 Determination of the Sample Size to Estimate the Population Proportion</a></li> 
-                <li><a href="../chapter06/0606.html">6.6 Exercise</a></li>
+                <li><a href="../chapter06/0606.html">6.6 Application of Sampling Distribution: Quality Control Chart</a></li>
+                <li><a href="../chapter06/0607.html">6.7 Exercise</a></li>
 	  </ul>
     </li>
     <li><a class="navbar-brand" href="../../../eStat/index.html" target="_blank">eStat</a></li>
@@ -114,7 +121,6 @@
                 <li><a href="../chapter01/0102.html">1.2 Population and Sample</a></li>
                 <li><a href="../chapter01/0103.html">1.3 Variables and Data</a></li>
                 <li><a href="../chapter01/0104.html">1.4 Softwares for Statistical Analysis</a></li>
-                <li><a href="../chapter01/0105.html">1.5 Exercies</a></li>
 	      </ul>
 	    </li>
 	    <li><a href="../chapter02/index.html">Chapter 2</a>
@@ -127,7 +133,6 @@
                 <li><a href="../chapter02/0203.html">&nbsp;&nbsp;2.3.1 Raw Data of Categorical Variable</a></li>
                 <li><a href="../chapter02/0203.html">&nbsp;&nbsp;2.3.2 Raw Data of Categorical Variable with Group</a></li>
                 <li><a href="../chapter02/0204.html">2.4 Word Cloud</a></li>
-                <li><a href="../chapter02/0205.html">2.5 Exercise</a></li>
 	      </ul>
 	    </li>
 	    <li><a href="../chapter03/index.html">Chapter 3</a>
@@ -137,7 +142,6 @@
                 <li><a href="../chapter03/0302.html">&nbsp;&nbsp;3.2.1 Visualization of Quantitative Data without Group</a></li>
                 <li><a href="../chapter03/0302.html">&nbsp;&nbsp;3.2.2 Visualization of Quantitative Data with Group</a></li>
                 <li><a href="../chapter03/0303.html">3.3 Visualization of Two Quantitative Variables</a></li>
-                <li><a href="../chapter03/0304.html">3.4 Exercise</a></li>
 	      </ul>
 	    </li>
 	    <li><a href="../chapter04/index.html">Chapter 4</a>
@@ -151,7 +155,6 @@
                 <li><a href="../chapter04/040301.html">4.3 Summary Measures for Quantitative Variable</a></li>
                 <li><a href="../chapter04/040301.html">&nbsp;&nbsp;4.3.1 Measures of Central Tendency</a></li>
                 <li><a href="../chapter04/040302.html">&nbsp;&nbsp;4.3.2 Measures of Dispersion</a></li>
-                <li><a href="../chapter04/0404.html">4.4 Exercise</a></li>
 	      </ul>
 	    </li>
 	    <li><a href="../chapter05/index.html">Chapter 5</a>
@@ -166,7 +169,6 @@
                 <li><a href="../chapter05/0504.html">5.4 Continuous Random Variable</a></li>
 		<li><a href="../chapter05/050401.html">&nbsp;&nbsp;5.4.1 Normal Distribution</a></li>
 		<li><a href="../chapter05/050402.html">&nbsp;&nbsp;5.4.2 Exponential Distribution</a></li>
-                <li><a href="../chapter05/0505.html">5.5 Exercise</a></li>
 	      </ul>
 	    </li>
 	    <li><a href="../chapter06/index.html">Chapter 6</a>
@@ -184,7 +186,7 @@
                 <li><a href="../chapter06/0605.html">6.5 Determination of the Sample Size  </a></li>
                 <li><a href="../chapter06/0605.html">&nbsp;&nbsp;6.5.1 Determination of the Sample Size to Estimate the Population Mean </a></li>
                 <li><a href="../chapter06/0605.html">&nbsp;&nbsp;6.5.2 Determination of the Sample Size to Estimate the Population Proportion</a></li> 
-                <li><a href="../chapter06/0606.html">6.6 Exercise</a></li>
+                <li><a href="../chapter06/0606.html">6.6 Application of Sampling Distribution: Quality Control Chart</a></li>
 	      </ul>
 	    </li>
 	    <li><a href="../chapter07/index.html">Chapter 7</a>
@@ -195,7 +197,7 @@
                 <li><a href="../chapter07/0704.html">7.4 Testing Hypothesis with α and β simultaneously</a></li>
                 <li><a href="../chapter07/0704.html">&nbsp;&nbsp;7.4.1 Type 2 Error and Power of a Test</a></li>
                 <li><a href="../chapter07/0704.html">&nbsp;&nbsp;7.4.2 Testing Hypothesis with α and β</a></li>
-                <li><a href="../chapter07/0705.html">7.5 Exercise</a></li>
+                <li><a href="../chapter07/0705.html">7.5 Application of Testing Hypothesis: Sample Inspection</a></li>
 	      </ul>
 	    </li>
 	    <li><a href="../chapter08/index.html">Chapter 8</a>
@@ -205,7 +207,6 @@
                 <li><a href="../chapter08/080102.html">&nbsp;&nbsp;8.1.2 Paired Sample</a></li>
                 <li><a href="../chapter08/0802.html">8.2 Testing Hypothesis for Two Population Variances</a></li>
                 <li><a href="../chapter08/0803.html">8.3 Testing Hypothesis for Two Population Proportions</a></li>
-                <li><a href="../chapter08/0804.html">8.4 Exercise</a></li>
 	      </ul>
 	    </li>
 	    <li><a href="../chapter09/index.html">Chapter 9</a>
@@ -217,7 +218,6 @@
                 <li><a href="../chapter09/0902.html">&nbsp;&nbsp;9.2.1 Completely Randomized Design</a></li>
                 <li><a href="../chapter09/0902.html">&nbsp;&nbsp;9.2.2 Randomized Block Design</a></li>
                 <li><a href="../chapter09/0903.html">9.3 Analysis of Variance for Experiments of Two Factors</a></li>
-                <li><a href="../chapter09/0904.html">9.4 Exercise</a></li>
 	      </ul>
 	    </li>
 	    <li><a href="../chapter10/index.html">Chapter 10</a>
@@ -231,7 +231,6 @@
                 <li><a href="../chapter10/1003.html">10.3 Nonparametric Test for Location Parameters of Several Populations</a></li>
                 <li><a href="../chapter10/1003.html">&nbsp;&nbsp;10.3.1 Completely Randomized Design: Kruskal-Wallis Test</a></li>
                 <li><a href="../chapter10/100302.html">&nbsp;&nbsp;10.3.2 Randomized Block Design: Friedman Test</a></li>
-                <li><a href="../chapter10/1004.html">10.4 Exercise</a></li>
 	      </ul>
 	    </li>
 	    <li><a href="../chapter11/index.html">Chapter 11</a>
@@ -242,7 +241,6 @@
                 <li><a href="../chapter11/1102.html">11.2 Testing Hypothesis for Contingency Table</a></li>
                 <li><a href="../chapter11/1102.html">&nbsp;&nbsp;11.2.1 Independence Test</a></li>
                 <li><a href="../chapter11/110202.html">&nbsp;&nbsp;11.2.2 Homogeneity Test</a></li>
-                <li><a href="../chapter11/1103.html">11.3 Exercise</a></li>
 	      </ul>
 	    </li>
 	    <li><a href="../chapter12/index.html">Chapter 12</a>
@@ -250,7 +248,6 @@
                 <li><a href="../chapter12/1201.html">12.1 Correlation Analysis</a></li>
                 <li><a href="../chapter12/1202.html">12.2 Simple Linear Regression Analysis</a></li>
                 <li><a href="../chapter12/1203.html">12.3 Multiple Linear Regression Analysis</a></li>
-                <li><a href="../chapter12/1204.html">12.4 Exercise</a></li>
 	      </ul>
 	    </li>
 	    <li><a href="../chapter13/index.html">Chapter 13</a>
@@ -261,10 +258,8 @@
                 <li><a href="../chapter13/1304.html">13.4 Regression Model and Forecasting</a></li>
                 <li><a href="../chapter13/1305.html">13.5 Exponential Smoothing Model and Forecasting</a></li>
                 <li><a href="../chapter13/1306.html">13.6 Seasonal Model and Forecasting</a></li>
-                <li><a href="../chapter13/1307.html">13.7 Exercise</a></li>
 	      </ul>
 	    </li>
-
 	  </ul>
 	</li>
       </ul>
@@ -274,139 +269,816 @@
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-
   <!--***********************************************************************-->
   <h2>Chapter 6. Sampling Distribution and Estimation</h2> 
   <p>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <button type="button" style="width:160px" onclick="moveSection(70)">&#10094; &nbsp;&nbsp;<b>Previous</b></button>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(73)"><b>Chapter 7</b>&nbsp;&nbsp; &#10095;</button>
+      <button type="button" style="width:160px" onclick="moveSection(72)"><b>Next</b>&nbsp;&nbsp; &#10095;</button>
   <p>
-  <h3>6.6 Exercise</h3>
-
-   <div class="mainTablePink">
-
-    <p class="textL30M30"> 6.1  There are 70 workers in a factory. Ten persons will be selected by simple random sampling to investigate the production amount per week. Use the random number generator in  『eStatU』  for sampling.
-
-    <p class="textL30M30"> 6.2  List all cases in which three of the five people A, B, C, D are sampled with replacement.
-
-    <p class="textL30M30"> 6.3  A telephone response service produces a report of the call time at the end of each call. Nine reports were collected by simple random sampling and their sample mean of the call time was 1.2 minutes. If the population follows a normal distribution with a standard deviation of 0.6 minutes, find a 99% confidence interval of the population mean.
-
-    <p class="textL30M30"> 6.4  The quality manager of a large manufacturer wants to know the average weight of 5,500 raw materials. 250 samples were collected by simple random sampling and their sample mean is 65 kg. If the population standard deviation is 15 kg, find a 95% confidence interval for the unknown population mean.
-
-    <p class="textL30M30"> 6.5  A physical health researcher wants to measure the average amount of oxygen consumed after a standard exercise for men between the ages of 17 and 21. Studies show that the population variance is 0.0512. The result of a simple random sampling of 25 persons are as follows.
-    <p>
-    <div class="textLeft">
-      2.87 2.05 2.90 2.41 2.93 2.94 2.26 2.21 2.20 2.88<br> 
-      2.51 2.51 2.56 2.59 2.52 2.51 2.50 2.58 2.52 2.58<br>
-      2.44 2.48 2.43 2.46 2.46 (Liter/min)
-    </div>
-    <p class="textL30">
-      Obtain a 95% confidence interval of the population mean when oxygen consumption follows a normal distribution.
-
-    <p class="textL30M30"> 6.6  An industrial psychologist wants to know the average age of female workers in a particular population. The average age at which 60 samples from the population by simple random sampling was 23.67. Obtain a 99% confidence interval of the population mean when the population standard deviation is 15. 
-
-    <p class="textL30M30"> 6.7  In a study to determine whether a machine can use the flexible plastic hose, an engineer tries to estimate the average pressure the hose receives. The engineer measured the pressure nine times at intervals of 24 hours. The mean and standard deviation of the samples are 362, 45 respectively, and the pressure is approximately normal. Obtain a 99% confidence interval for the average pressure.
-
-    <p class="textL30M30"> 6.8  Sixteen radio stations were collected by simple random sampling to estimate the cost of radio broadcasting for 30 seconds of insertion advertisement. The sample mean is 15 million US$ and the sample variance is 8. Obtain a 95% confidence interval for the population mean when the advertising costs for all radio stations follow a normal distribution.
-
-    <p class="textL30M30"> 6.9  The tension of a thread used to make a piece of cloth is examined. Ten samples of this thread were collected by simple random sampling and tested for tension, and the sample variance is 4. What assumptions do you need for the interval estimation of the population variance? Find a 95% confidence interval of the population variance \(\sigma^2\). 
-
-    <p class="textL30M30"> 6.10 A production manager wants to know the time required to finish a specific work in the product process. A sample of 25 observations by simple random sampling was collected for analysis and the sample variance is 0.32.
-    <div class="textL50M30">
-      1) Obtain a 95% confidence interval of the population variance \(\sigma^2\).<br>
-    </div>
-    <div class="textL50M30">
-      2) Obtain a 99% confidence interval of the population variance \(\sigma^2\).<br>
-    </div>
-    <div class="textL50M30">
-      3) Obtain a 90% confidence interval of the population variance \(\sigma^2\).<br>
-    </div>
-    <div class="textL50M30">
-      4) What assumptions do you need to obtain a valid confidence interval?
-    </div>
-    <p class="textL30M30"> 6.11 An ecologist seeks to measure the amount of certain pollutants that contain 15 samples of water from the river where the factory area is located. If the amount of contaminants is normally distributed and \(\small \sum{(x_i - \overline x)}^2\) = 508.06, obtain a 95% confidence interval of the population variance.
-
-    <p class="textL30M30"> 6.12 The internal diameter of 12 ball bearings made in a manufacturing process was measured by simple random sampling as follows:  
-    <p>
-    <p class="textLeft"> 3.01, 3.05, 2.99, 2.99, 3.00, 3.02, 2.98, 2.99, 2.97, 2.97, 3.02, 3.01 
-    <p class="textL30">
-      If diameters follow a normal distribution, obtain a 99% confidence interval of the population variance.
-
-    <p class="textL30M30"> 6.13 A researcher wants to know office workers who change jobs due to the monotony of work. 400 samples are collected by simple random sampling from office workers who recently changed jobs. Of them, 200 said they changed jobs, because of the monotony of their jobs. Find a 95% confidence interval of the population proportion who have changed jobs, because they are monotonous.
-
-    <p class="textL30M30"> 6.14 A manager of a production company would like to know the ratio of workers who remember the safety management prints distributed to all workers last week. 300 workers collected by simple random sampling and a test was conducted to check whether they remembered the contents of the printed material. Seventy-five of those who took the exam passed it. Obtain a 95% confidence interval in the population proportion of workers who remember the safety management.
-
-    <p class="textL30M30"> 6.15 200 workers were selected to investigate the causes of worker’s turnover. Of the 200, 140 said they moved, because they could not reconcile with their superiors. For this reason, find a 95% confidence interval in the mobile rate for those who have transferred.
-
-    <p class="textL30M30"> 6.16 A manufacturer guarantees a defect rate of less than 5% for a customer company that regularly purchases the product. The customer company collected 200 of the purchased products by simple random sampling and inspected the samples to confirm the manufacturer's claims. If 19 defective products of the 200 samples were found, what would be the 95% confidence interval for the defect rate?
-
-    <p class="textL30M30"> 6.17 A candidate came from the Democratic Party in the mayoral election of a metropolitan city. Polls showed 152 out of 284 samples collected by simple random sampling support the candidate.
-    <div class="textL50M30">
-      1) Find a 95 percent confidence interval in the approval rating of the candidate.
-    </div>
-    <div class="textL50M30">
-      2) Find a 99 percent confidence interval in the approval rating of the candidate.
-    </div>
-    <div class="textL50M30">
-      3) To what extent do you think the election of the candidate of the party is certain?
-    </div>
-    <div class="textL50M30">
-      4) Explain whether the sampling method of the poll will affect the result of 3) above.
-    </div>
-    <p class="textL30M30"> 6.18 In question above, if 1,368 out of 2,556 samples collected by simple random sampling were found to support the candidate, answer the questions 1), 2), and 3) and compare the result.
-
-    <p class="textL30M30"> 6.19 The advertising manager of a company is trying to put the new product on a one-minute commercial for a TV Saturday evening program. He found from the TV station that the one-minute ad was priced as follows.
-
-    <p class="textLeft">Price = 6500 + 350,000\(\hat p\) (Unit: US$)
-
-    <div class="textL30">
-      where \(\hat p\) is an estimate of the nationwide ratings of the program. The station relies on a ratings
-      survey of the M service station, which has installed and operated devices at 1,500 homes nationwide. 
-      According to records from the M Station, 360 households watched the program last Saturday. 
-    </div>
-    <p>
-    <div class="textL50M30">
-      1)  What's the price of this one-minute commercial?
-    </div>
-    <div class="textL50M30">
-      2)  What would you decide if the advertising manager had decided to buy this commercial time only if he could believe that the actual viewing rate was 0.2 or higher with 95 percent confidence level?
-    </div>
-
-    <p class="textL30M30"> 6.20 In order to know the average strength of a plastic product produced by a company, how many experiments do you need to do to have the maximum allowable error bound within 20 (unit: psi) with a 99% confidence level? Previous experience suggests that the estimate for \(\sigma^2\) is 4900.
-
-    <p class="textL30M30"> 6.21 A company with 2,500 workers wants to estimate the average time it takes to commute. The surveyor wants to estimate that the maximum allowable error bound is less than 5 minutes at the 95% confidence level. If the estimate of the population variance obtained from the preliminary study was \(\sigma^2\) = 25, what size of the sample should be extracted?
-
-    <p class="textL30M30"> 6.22 The average IQ of an employee at a company is estimated to be within 5 points of the maximum allowable error bound at a 95% confidence level. Past experience shows that the IQ of this group follows a normal distribution with a variance of 100. How many samples should be taken?
-
-    <p class="textL30M30"> 6.23 When a university opens a lecture Saturday, it tries to estimate the percentage of students enrolled in the class as a 95 percent confidence interval. How many students should be surveyed to keep the maximum allowable error bound within 0.05?
-
-    <p class="textL30M30"> 6.24 Of all manufacturers, we would like to know the percentage of companies that require a doctor's diagnosis from workers when they are absent due to illness for more than three days. How many samples do you need to estimate the maximum allowable error bound within 0.05% at the 95% confidence level? 
-
-    <p class="textL30M30"> 6.25 I want to know what percentage of households in a region where at least one member of the family sees advertisements in newspapers. I want the maximum allowable error bound is 0.04 at the 95% confidence level. When a preliminary survey of 20 households found that at least 35 percent of the responding households saw an advertisement, what should the number of sample households be?
-
-    <p class="textL30M30"> 6.26 The consumer research group believes that TV tube life is normally distributed with two years of standard deviation. How many TV sets should be tested with 95% confidence level if the maximum allowable error bound is two years?  How many TV sets should be tested with 95% confidence level if the maximum allowable error bound is one year?
-
-    <p class="textL30M30"> 6.27 If you want to reduce the length of the confidence interval by half, should you double the size of the sample? Explain.
-
-    <p class="textL30M30"> 6.28 A school district had 100 samples by simple random sampling of the 5th grade elementary school students and took a math test with the sample mean of 74.3 and the sample standard deviation of 9.2.
-
-    <div class="textL50M30">
-      1) Find a 99% confidence interval in the average score of all fifth graders in this school district when they take the test.
-    </div>
-    <div class="textL50M30">
-      2) If this sample mean 74.3 is used as an estimate of the population mean of the math test for all fifth graders in this school district, what is the maximum size of the error bound at the 95% confidence level?
-    </div>
-    <p class="textL30M30"> 6.29 The average weight of 50 cans of peaches which are collected by simple random sampling is 16.1 grams and their standard deviation is 0.4 grams. If the sample mean of 16.1 grams is used as an estimate of the population mean weight of all peach cans, what is the probability that the estimated error bound is less than 0.1 grams?
-
-  </div>
+  <h3 id="0606">6.6  Application of Sampling Distribution: Quality Control Chart</h3>
   <p>
+  <h6>
+      <a href="./pdf/0606.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+    <!--
+      <a href="https://youtu.be/KmwDF6NGkBo" target="_blank"><u>[video]</u></a>
+    -->
+  </h6>
+  <p>
+
+    <div class="mainTable">
+         When producing a product in general, there is a variation in the quality characteristic values 
+         even if it is produced under the same working conditions. The causes of the variation can be divided 
+         into <b>chance causes</b> that can always occur in the production process and 
+         <b>assignable causes</b> that occur due to such as worker's carelessness, use of defective materials, 
+         abnormalities in production equipment, etc. If the quality characteristic value varies up to 
+         a certain limit around a specific value, it is regarded as a change due to chance causes and 
+         is tolerated. If it exceeds the limit, it is regarded as an explainable cause, and the cause 
+         is investigated and an action is taken to prevent the occurrence of defective products. 
+         If the quality level is monitored by controlling the process to prevent defectives as above, 
+         it is called a <b>statistical quality control</b>. One of the statistical tools widely used 
+         for this purpose is the control chart which was first introduced by W.A Shewart in 1924.
+      <p>
+         A <b>control chart</b> is a diagram to manage changes in quality characteristic values. 
+         As shown in &lt;Figure 6.6.1&gt;, there is an <b>upper control limit (UCL)</b> at the top, 
+         a <b>center line (CL)</b> in between, and a <b>lower control limit (LCL)</b> at the bottom. 
+         The characteristic value of an inspected sample in each time are plotted as a line graph. 
+         When the quality characteristic values do not exceed the control limit lines and are not related 
+         to each other, the process is said to be <b>under control</b>. If the quality characteristic value
+         is outside the control limits or, if the characteristic values are related each other 
+         even they are within the control limits, the process is said to be <b>out of control</b>. 
+      <p>
+         <img class="imgFig400300" src="/estat/eLearning/en/Figure/Fig060601.jpg">
+         <div class="figText">&lt;Figure 6.6.1&gt; Control chart with UCL, CL, LCL</div>
+      <p>
+         Control charts are divided into a <b>control chart by variable</b> and <b>control chart by attribute</b>.
+    </div>
+    <p>
+
+  <h4>6.6.1 Control Charts by Variable </h4>
+  <p>
+    <div class="mainTable">
+      A control chart by variable refers to a control chart when the quality characteristic value 
+      is a quantitative variable such as temperature, pressure, strength, weight, etc. 
+      The quantitative variable has the advantage of being able to obtain a lot of information about 
+      quality characteristics, but it has the disadvantage of requiring a lot of purchase and 
+      maintenance costs for measuring instruments, and requiring a lot of manpower and time for measurement.
+      There are many types of control charts for variable, but the <b>sample mean control chart</b> 
+      (\( \overline X \) chart) that uses the sampling distribution of sample means studied in this chapter 
+      and the <b>sample range control chart</b> (\(R\) chart) that manage dispersion are commonly used in
+      production process. These control charts requires the assumption that the quality characteristic values 
+      follow a normal distribution \(N(\mu, \sigma^2 )\). If the quality characteristic value is 
+      normally distributed, the distribution is completely determined by the mean \(\mu\) and
+      variance \(\sigma^2\). Therefore, if the sample mean and sample range are managed simultaneously, 
+      the distribution of the quality characteristic is managed.
+    </div>
+    <p>
+
+    <h4>Theoretical Background of \( \overline X \) Chart</h4>
+    <div class="mainTable">
+        The theoretical basis of the sample mean control chart (\( \overline X \) chart) is based on 
+        the sampling distribution theory of sample means studied in Section 6.2. If a population distribution
+        of quality characteristic values is a normal distribution with a mean of \(\mu\) and variance of 
+        \(\sigma^2\), that is \(N(\mu , \sigma^2 ) \) , 
+        the sampling distribution of all possible sample means of size \(n\)  follows a normal distribution 
+        with a mean of \(\mu\) and variance of \(\frac {\sigma^2}{n}\), that is \(N(\mu , \frac{\sigma^2}{n}) \). Therefore, according to the characteristics 
+        of the normal distribution, the interval
+      $$
+        [\mu - 3 \frac{\sigma}{\sqrt{n}},\quad \mu + 3 \frac{\sigma}{\sqrt{n}}]
+      $$
+        contains 99.74% of all possible sample means. The right limit of this interval is called the 
+        <b>upper control limit</b>(\(UCL_{\overline X}\)) of the \(\overline X\) chart, the left limit 
+        is called the <b>lower control limit</b> (\(LCL_{\overline X}\)), 
+        and \(\mu\) is called the center line (\(CL_{\overline X}\)) as following. 
+      $$
+        \begin{align}
+        UCL_{\overline X} &= \mu + 3 \frac{\sigma}{\sqrt{n}} \\
+        CL_{\overline X} &= \mu \\
+        LCL_{\overline X} &= \mu - 3 \frac{\sigma}{\sqrt{n}}
+        \end{align}
+      $$
+        Since the mean \(\mu\) and standard deviation \(\sigma\) of the quality characteristic values 
+        are not known, they are estimated using samples. In a production process that produces 
+        a large number of products, several samples of size \(n\) are selected, and the average of 
+        all sample means is used to estimate \(\mu\) and the sample variance or sample range is used 
+        to estimate \(\sigma\). Estimation of \(\sigma\) using the sample ranges are commonly used 
+        in quality control sites because the sample range is an easily understandable statistics to workers. 
+      <p>
+        Let \( {\overline X}_{1}, {\overline X}_{2}, ... , {\overline X}_{k} \) be the sample means
+        obtained by selecting \(k\) samples of size \(n\), and let \( \overline {\overline X} \) be 
+        the average of these sample means. Let \( {R}_{1}, {R}_{2}, ... , {R}_{k} \) be the 
+        sample range (maximum - minimum) of each sample, and let \(\overline R\) be the average 
+        of these ranges as following:
+      $$
+        \overline {\overline X} = \frac{\sum_{i=1}^{k} {\overline X}_{i} }{k} , \quad
+        {\overline R} = \frac{\sum_{i=1}^{k} {R}_{i} }{k}
+      $$
+        The mean \(\mu\) is estimated by using \( \overline {\overline X} \). Since the sample 
+        standard deviation \(s\) is not an unbiased estimator of the population standard deviation
+        \(\sigma\), \(\sigma\) is estimated by using the mean of the ranges \(\overline R\) and 
+        the coefficient \(d_2\) that depends on the number of samples, \(n\), as follows. 
+      $$
+        \hat \sigma = \frac {\overline R}{d_2}
+      $$
+        \(\hat \sigma\) is an unbiased estimator of the population standard deviation \(\sigma\). 
+       Here, \(d_2\) is a constant that depends on the number of samples, \(n\), and is shown in Table 6.6.1.
+
+      <p class="figText">Table 6.6.1 Constants which are used in control charts 
+      <table class="tableCenter"> 
+        <tr> 
+          <th class="thGrey">sample size<br> \(n\)</th>
+          <th class="thGrey">\(A_2\)</th>
+          <th class="thGrey">\(D_3\)</th>
+          <th class="thGrey">\(D_4\)</th>
+          <th class="thGrey">\(d_2\)</th>
+        </tr>
+        <tr>
+          <td class="tdCenter">2</td>
+          <td class="tdCenter">1.880</td>
+          <td class="tdCenter">0 </td>
+          <td class="tdCenter">3.267</td>
+          <td class="tdCenter">1.128</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">3</td>
+          <td class="tdCenter">1.023</td>
+          <td class="tdCenter">0</td>
+          <td class="tdCenter">2.574</td>
+          <td class="tdCenter">1.693</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">4</td>
+          <td class="tdCenter">0.729</td>
+          <td class="tdCenter">0</td>
+          <td class="tdCenter">2.282</td>
+          <td class="tdCenter">2.059</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">5</td>
+          <td class="tdCenter">0.577</td>
+          <td class="tdCenter">0</td>
+          <td class="tdCenter">2.114</td>
+          <td class="tdCenter">2.326</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">6</td>
+          <td class="tdCenter">0.483</td>
+          <td class="tdCenter">0</td>
+          <td class="tdCenter">2.004</td>
+          <td class="tdCenter">2.534</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">7</td>
+          <td class="tdCenter">0.419</td>
+          <td class="tdCenter">0.076</td>
+          <td class="tdCenter">1.924</td>
+          <td class="tdCenter">2.704</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">8</td>
+          <td class="tdCenter">0.373</td>
+          <td class="tdCenter">0.136</td>
+          <td class="tdCenter">1.864</td>
+          <td class="tdCenter">2.847</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">9</td>
+          <td class="tdCenter">0.337</td>
+          <td class="tdCenter">0.184</td>
+          <td class="tdCenter">1.816</td>
+          <td class="tdCenter">2.97</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">10</td>
+          <td class="tdCenter">0.308</td>
+          <td class="tdCenter">0.223</td>
+          <td class="tdCenter">1.777</td>
+          <td class="tdCenter">3.078</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">11</td>
+          <td class="tdCenter">0.285</td>
+          <td class="tdCenter">0.256</td>
+          <td class="tdCenter">1.774</td>
+          <td class="tdCenter">3.173</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">12</td>
+          <td class="tdCenter">0.266</td>
+          <td class="tdCenter">0.284</td>
+          <td class="tdCenter">1.716</td>
+          <td class="tdCenter">3.258</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">13</td>
+          <td class="tdCenter">0.249</td>
+          <td class="tdCenter">0.308</td>
+          <td class="tdCenter">1.692</td>
+          <td class="tdCenter">3.336</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">14</td>
+          <td class="tdCenter">0.235</td>
+          <td class="tdCenter">0.329</td>
+          <td class="tdCenter">1.671</td>
+          <td class="tdCenter">3.407</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">15</td>
+          <td class="tdCenter">0.223</td>
+          <td class="tdCenter">0.348</td>
+          <td class="tdCenter">1.652</td>
+          <td class="tdCenter">3.472</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">16</td>
+          <td class="tdCenter">0.212</td>
+          <td class="tdCenter">0.364</td>
+          <td class="tdCenter">1.636</td>
+          <td class="tdCenter">3.532</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">17</td>
+          <td class="tdCenter">0.203</td>
+          <td class="tdCenter">0.379</td>
+          <td class="tdCenter">1.621</td>
+          <td class="tdCenter">3.588</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">18</td>
+          <td class="tdCenter">0.194</td>
+          <td class="tdCenter">0.392</td>
+          <td class="tdCenter">1.608</td>
+          <td class="tdCenter">3.64</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">19</td>
+          <td class="tdCenter">0.187</td>
+          <td class="tdCenter">0.404</td>
+          <td class="tdCenter">1.596</td>
+          <td class="tdCenter">3.689</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">20</td>
+          <td class="tdCenter">0.18</td>
+          <td class="tdCenter">0.414</td>
+          <td class="tdCenter">1.586</td>
+          <td class="tdCenter">3.735</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">21</td>
+          <td class="tdCenter">0.173</td>
+          <td class="tdCenter">0.425</td>
+          <td class="tdCenter">1.575</td>
+          <td class="tdCenter">3.778</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">22</td>
+          <td class="tdCenter">0.167</td>
+          <td class="tdCenter">0.434</td>
+          <td class="tdCenter">1.566</td>
+          <td class="tdCenter">3.819</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">23</td>
+          <td class="tdCenter">0.162</td>
+          <td class="tdCenter">0.443</td>
+          <td class="tdCenter">1.557</td>
+          <td class="tdCenter">3.858</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">24</td>
+          <td class="tdCenter">0.157</td>
+          <td class="tdCenter">0.452</td>
+          <td class="tdCenter">1.548</td>
+          <td class="tdCenter">3.895</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">25</td>
+          <td class="tdCenter">0.153</td>
+          <td class="tdCenter">0.459</td>
+          <td class="tdCenter">1.541</td>
+          <td class="tdCenter">3.931</td>
+        </tr>
+      </table>
+      <p>
+         Therefore, the center line (\(CL_{\overline X}\)) and control limit lines of the 
+         \(\overline X\) chart using the estimated values of \(\mu\)  and \(\sigma\) are as follows.
+      $$
+        \begin{align}
+        UCL_{\overline X} &= \overline {\overline x} + 3 \frac{\overline R / d_2}{\sqrt{n}} \\
+        CL_{\overline X} &= \overline {\overline x} \\
+        LCL_{\overline X} &= \overline {\overline x} - 3 \frac{\overline R / d_2}{\sqrt{n}}
+        \end{align}
+      $$
+        Here, by setting \( \frac{ 3 / d_2 }{\sqrt{n}} \) as a new constant \(A_2\), 
+        the control limit lines can be written as follows. The constant \(A_2\) which depends on
+        \(n\) is also summarized in Table 6.6.1.
+      $$
+        \begin{align}
+        UCL_{\overline X} &= \overline {\overline x} + A_2 \overline R  \\
+        CL_{\overline X} &= \overline {\overline x} \\
+        LCL_{\overline X} &= \overline {\overline x} - A_2 \overline R 
+        \end{align}
+      $$
+    </div>
+    <p>
+    <h4>Theoretical Background of \( R\) Chart</h4>
+    <div class="mainTable">
+        When the population distribution of quality characteristic values is a normal distribution 
+        with a mean of \(\mu\) and variance of \(\sigma^2\), that is \(N(\mu, \sigma^2 )\), 
+        let the sample range of a sample of size \(n\) be the random variable \(R\). The distribution of 
+        a random variable \(W = \frac {R}{\sigma}\) which divides the sample range \(R\) by a constant
+        \(\sigma\) can be derived theoretically. Let \(d_3\) be the standard deviation of the random 
+        variable \(W\) which depends on \(n\). Since the sample range is \(R = W \sigma \), 
+        the standard deviation of \(R\) becomes  \(\sigma_R = d_3 \sigma \). Since we do not know \(\sigma\),
+        if we use the estimated value, \(\hat \sigma = \frac {\overline R}{d_2}\), the estimated 
+        standard deviation of \(R\) will be  \(\sigma_R = d_3 \hat \sigma = d_3 \frac {\overline R}{d_2}\).
+        Therefore, the center line and control limit lines of the \(R\) chart are as follows.
+      $$
+        \begin{align}
+        UCL_{\overline R} &= {\overline R} + 3 \hat {\sigma_R} = \overline R + 3 d_3 \frac{\overline R}{d_2} \\
+        CL_{\overline R}  &= {\overline R} \\
+        LCL_{\overline X} &= {\overline R} - 3 \hat {\sigma_R} = \overline R - 3 d_3 \frac{\overline R}{d_2} 
+        \end{align}
+      $$
+        To make calculations easier, if we let \(D_3 = 1 - 3 \frac{d_3}{d_2}\), 
+        \(D_4 = 1 + 3 \frac{d_3}{d_2}\), the center line and control limit lines of the \(R\) chart are
+        as follows. The constants \(D_3\) and \(D_4\) are also listed in Table 6.1.1.
+      $$
+        \begin{align}
+        UCL_{\overline R} &= {\overline R}  D_4 \\
+        CL_{\overline R}  &= {\overline R} \\
+        LCL_{\overline X} &= {\overline R} D_3 
+        \end{align}
+      $$
+    </div>
+    <p>
+    <h4>Steps to make \(\overline X\) and \(R\) Charts</h4>
+    <div class="mainTableYellow">
+         The procedure for creating \(\overline X\) and \(R\) Charts is as follows.
+      <p>
+      <div class="textL20M20">
+        <b>Step 1</b>. In a production process, collect a sample of size \(n\), measure the quality 
+           characteristic values, \(x_{11}, x_{12}, ... , x_{1n} \), and calculate the average
+           \({\overline x}_1\) and range \(R_1\) as follows. Typically, the sample size ranges from 5 to 20 depending on the production process.
+        $$
+          \overline {\overline x}_1 = \frac{\sum_{i=1}^{k} {\overline x}_{i} }{k} , \quad
+          {R_1} = max (x_{11}, x_{12}, ... , x_{1n}) - min ( x_{11}, x_{12}, ... , x_{1n} )
+        $$
+      </div>
+      <p>
+      <div class="textL20M20">
+        <b>Step 2</b>. Repeat Step 1 \(k\) times. In other words, collect a sample of size \(n\)
+           repeatedly \(k\) times and calculate their sample means 
+           \({\overline x}_{1}, {\overline x}_{2}, ... , {\overline x}_{k}\)
+           and sample ranges \(R_{1}, R_{2}, ... , R_{k}\) of each sample. The average of 
+           these sample means, \(\overline {\overline X}\), and the average of the sample ranges,
+           \(\overline R\), are calculated as follows. The sample size is usually between 20 and 30.
+        $$
+          \overline {\overline x} = \frac{\sum_{i=1}^{k} {\overline x}_{i} }{k} , \quad
+          {\overline R} = \frac{\sum_{i=1}^{k} {R}_{i} }{k}
+        $$
+      </div>
+      <p>
+      <div class="textL20M20">
+        <b>Step 3</b>. Calculate the control limit lines as follows.
+        <p>
+          \(\overline X\) Chart:
+          $$
+            \begin{align}
+            UCL_{\overline X} &= \overline {\overline x} + A_2 \overline R  \\
+            CL_{\overline X} &= \overline {\overline x} \\
+            LCL_{\overline X} &= \overline {\overline x} - A_2 \overline R 
+            \end{align}
+          $$	
+        <p>		    
+          \(R \) Chart:
+          $$
+            \begin{align}
+            UCL_{\overline R} &= {\overline R}  D_4 \\
+            CL_{\overline R}  &= {\overline R} \\
+            LCL_{\overline X} &= {\overline R} D_3 
+            \end{align}
+          $$
+      </div>
+      <p>
+      <div class="textL20M20">
+        <b>Step 4</b>. Draw \(CL\), \(UCL\), \(LCL\) of \(\overline X\) chart and \(R\) chart. 
+        Mark the sample mean \({\overline x}_ i\) and sample range \(R_i\) of each sample as a dot. If a point exceeds the control limit line,
+        mark it  clearly so that it can be easily distinguished.
+      </div>
+      <p>
+      <div class="textL20M20">
+        <b>Step 5</b>. After examining the \(\overline X\) chart and \(R\) chart, make a judgment whether 
+        the process is under control or not. If each sample mean and sample range do not exceed the control limits,
+        or there is no correlation in the arrangement of points (e.g., when consecutive points are above 
+        the center line and then again when consecutive points appear below the center line), 
+        the process is said in state which is under control. In this case, the prepared control charts 
+        should be used for the next process. If the process is in state which is out of control, 
+        the cause should be investigated and the control limit lines should be redrawn using the quality 
+        characteristic values which are under control.
+      </div>
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 6.6.1</b>
+         Table 6.6.2 shows that 4 bolt samples were selected every hour for 25 hours from a production plant 
+         that manufactures bolts with a diameter of 500mm. The deviation from the specification 500mm 
+         was investigated, and the sample average and sample range of each sample were calculated. 
+         Using these data, create \(\overline X\) chart and \(R\) chart, and determine 
+         whether the production process is under control or not.
+      <p class="figText">Table 6.6.2 four bolt samples were selected every hour for 25 hours from a production plant and measure the deviation from the specification 500mm
+      <table class="tableCenter"> 
+        <tr> 
+          <th class="thGrey">sample</th>
+          <th class="thGrey">\(x_1\)</th>
+          <th class="thGrey">\(x_2\)</th>
+          <th class="thGrey">\(x_3\)</th>
+          <th class="thGrey">\(x_4\)</th>
+          <th class="thGrey">\(\overline x\)</th>
+          <th class="thGrey">\(R\)</th>
+        </tr>
+        <tr><td class="tdCenter"> 1</td> <td class="tdCenter">  5</td> <td class="tdCenter">  0</td> <td class="tdCenter"> -2</td> <td class="tdCenter">  1</td> <td class="tdCenter"> 1.00</td> <td class="tdCenter"> 7</td></tr>
+        <tr><td class="tdCenter"> 2</td> <td class="tdCenter">  1</td> <td class="tdCenter"> -1</td> <td class="tdCenter">  7</td> <td class="tdCenter"> -4</td> <td class="tdCenter"> 0.75</td> <td class="tdCenter">11</td></tr>
+        <tr><td class="tdCenter"> 3</td> <td class="tdCenter">-14</td> <td class="tdCenter"> -1</td> <td class="tdCenter">  1</td> <td class="tdCenter"> -1</td> <td class="tdCenter">-3.75</td> <td class="tdCenter">15</td></tr>
+        <tr><td class="tdCenter"> 4</td> <td class="tdCenter"> -1</td> <td class="tdCenter">  5</td> <td class="tdCenter">  1</td> <td class="tdCenter"> -3</td> <td class="tdCenter"> 0.50</td> <td class="tdCenter"> 8</td></tr>
+        <tr><td class="tdCenter"> 5</td> <td class="tdCenter"> 11</td> <td class="tdCenter">  4</td> <td class="tdCenter">  9</td> <td class="tdCenter"> -3</td> <td class="tdCenter"> 5.25</td> <td class="tdCenter">14</td></tr>
+        <tr><td class="tdCenter"> 6</td> <td class="tdCenter"> -2</td> <td class="tdCenter">  4</td> <td class="tdCenter">  0</td> <td class="tdCenter"> -3</td> <td class="tdCenter">-0.25</td> <td class="tdCenter"> 7</td></tr>
+        <tr><td class="tdCenter"> 7</td> <td class="tdCenter"> -2</td> <td class="tdCenter">  0</td> <td class="tdCenter">  2</td> <td class="tdCenter">  0</td> <td class="tdCenter"> 0.00</td> <td class="tdCenter"> 4</td></tr>
+        <tr><td class="tdCenter"> 8</td> <td class="tdCenter">  3</td> <td class="tdCenter"> -6</td> <td class="tdCenter">  3</td> <td class="tdCenter"> -2</td> <td class="tdCenter">-0.50</td> <td class="tdCenter"> 9</td></tr>
+        <tr><td class="tdCenter"> 9</td> <td class="tdCenter">  5</td> <td class="tdCenter"> -7</td> <td class="tdCenter"> -3</td> <td class="tdCenter"> -4</td> <td class="tdCenter">-2.25</td> <td class="tdCenter">12</td></tr>
+        <tr><td class="tdCenter">10</td> <td class="tdCenter">  1</td> <td class="tdCenter"> -3</td> <td class="tdCenter">  2</td> <td class="tdCenter"> -7</td> <td class="tdCenter">-1.75</td> <td class="tdCenter"> 9</td></tr>
+        <tr><td class="tdCenter">11</td> <td class="tdCenter">-12</td> <td class="tdCenter">-12</td> <td class="tdCenter"> -5</td> <td class="tdCenter">  5</td> <td class="tdCenter">-6.00</td> <td class="tdCenter">17</td></tr>
+        <tr><td class="tdCenter">12</td> <td class="tdCenter"> -2</td> <td class="tdCenter">  3</td> <td class="tdCenter">  3</td> <td class="tdCenter"> -2</td> <td class="tdCenter"> 0.50</td> <td class="tdCenter"> 5</td></tr>
+        <tr><td class="tdCenter">13</td> <td class="tdCenter">  5</td> <td class="tdCenter">  8</td> <td class="tdCenter">  0</td> <td class="tdCenter">  0</td> <td class="tdCenter"> 3.25</td> <td class="tdCenter"> 8</td></tr>
+        <tr><td class="tdCenter">14</td> <td class="tdCenter"> -5</td> <td class="tdCenter">  3</td> <td class="tdCenter"> -5</td> <td class="tdCenter"> -7</td> <td class="tdCenter">-3.50</td> <td class="tdCenter">10</td></tr>
+        <tr><td class="tdCenter">15</td> <td class="tdCenter"> -3</td> <td class="tdCenter">  9</td> <td class="tdCenter"> -2</td> <td class="tdCenter">  2</td> <td class="tdCenter"> 1.50</td> <td class="tdCenter">12</td></tr>
+        <tr><td class="tdCenter">16</td> <td class="tdCenter">  3</td> <td class="tdCenter">  5</td> <td class="tdCenter"> -5</td> <td class="tdCenter"> 10</td> <td class="tdCenter"> 3.25</td> <td class="tdCenter">15</td></tr>
+        <tr><td class="tdCenter">17</td> <td class="tdCenter"> -2</td> <td class="tdCenter">  2</td> <td class="tdCenter">  0</td> <td class="tdCenter"> -7</td> <td class="tdCenter">-1.75</td> <td class="tdCenter"> 9</td></tr>
+        <tr><td class="tdCenter">18</td> <td class="tdCenter"> -3</td> <td class="tdCenter">  6</td> <td class="tdCenter">  0</td> <td class="tdCenter"> -3</td> <td class="tdCenter"> 0.00</td> <td class="tdCenter"> 9</td></tr>
+        <tr><td class="tdCenter">19</td> <td class="tdCenter">  0</td> <td class="tdCenter"> -2</td> <td class="tdCenter">  2</td> <td class="tdCenter">  7</td> <td class="tdCenter"> 1.75</td> <td class="tdCenter"> 9</td></tr>
+        <tr><td class="tdCenter">20</td> <td class="tdCenter"> -7</td> <td class="tdCenter">  6</td> <td class="tdCenter"> 13</td> <td class="tdCenter">  0</td> <td class="tdCenter"> 3.00</td> <td class="tdCenter">20</td></tr>
+        <tr><td class="tdCenter">21</td> <td class="tdCenter">  7</td> <td class="tdCenter">  4</td> <td class="tdCenter">  2</td> <td class="tdCenter">  3</td> <td class="tdCenter"> 4.00</td> <td class="tdCenter"> 5</td></tr>
+        <tr><td class="tdCenter">22</td> <td class="tdCenter">  2</td> <td class="tdCenter">  2</td> <td class="tdCenter">  1</td> <td class="tdCenter">  0</td> <td class="tdCenter"> 1.25</td> <td class="tdCenter"> 2</td></tr>
+        <tr><td class="tdCenter">23</td> <td class="tdCenter"> -3</td> <td class="tdCenter">  5</td> <td class="tdCenter">  0</td> <td class="tdCenter">  4</td> <td class="tdCenter"> 1.50</td> <td class="tdCenter"> 8</td></tr>
+        <tr><td class="tdCenter">24</td> <td class="tdCenter"> -3</td> <td class="tdCenter">  2</td> <td class="tdCenter">  0</td> <td class="tdCenter"> -5</td> <td class="tdCenter">-1.50</td> <td class="tdCenter"> 7</td></tr>
+        <tr><td class="tdCenter">25</td> <td class="tdCenter">  0</td> <td class="tdCenter">  1</td> <td class="tdCenter"> -2</td> <td class="tdCenter"> -3</td> <td class="tdCenter">-1.00</td> <td class="tdCenter"> 4</td></tr>
+      </table>
+      <p>
+      <b>Answer</b>
+      <p>
+         The average of 25 sample means and sample ranges are as follows.
+         $$
+           \begin{align}
+           \bar {\bar x} &= \frac { 1.0 + 0.75 + \dots  +(-1.0)} {25  } = \frac{ 5.25} {25 } = 0.21  \\
+           \bar{R} &= \frac{7+11+ \dots +4} {25} = \frac {236} {25} = 9.44
+           \end{align}
+         $$
+      <p>
+         Therefore the control limits of \(\overline X\) chart are as follows.
+         $$
+           \begin{align}
+           UCL_{\overline X} &= 0.21 + (0.729)\times(9.44) = 7.09 \\
+           LCL_{\overline X} &= 0.21 - (0.729)\times(9.44) = -6.67
+           \end{align}
+         $$
+      <p>
+         The control limits of \(R\) chart are as follows. 
+         $$
+           \begin{align}
+           UCL_{R} &= (2.282) \times (9.44) = 21.542 \\
+           LCL_{R} &= (0) \times (9.44) = 0
+           \end{align}
+         $$
+      <p>
+         In 『eStatU』, select the menu ‘Xbar – R Control Chart’ and enter data as in &lt;Figure 6.6.2&gt;, 
+         then click the [Execute] button to calculate \(\overline {\overline X}\), \(\overline R\), and control limits.
+      <p>
+         &lt;Figure 6.6.3&gt; shows \(\overline X\) chart and \(R\) chart using sample data for 25 hours. In both control charts. No data are outside the control limits and there is no notable correlation between the data, indicating that the production process is under control during this period. Therefore, these control limit lines can be used to manage the production process for the next period.
+      <p>
+      <!--------------*** html for Xbar-R Chart Mu ***---------------------------------------------->
+         <b><span data-msgid="Sample Mean"></span> \(\overline X\) - <span data-msgid="sample range"></span> \(R\) <span data-msgid="control chart"></span></b>
+      <p>
+         <iframe src="/estat/eLearning/en/example/060601/060601.html" width="750" height="700"> </iframe>
+         <div class="figText">&lt;Figure 6.6.3&gt; \(\overline X\) chart and \(R\) chart using sample data in Table 6.6.2</div>
+      <p>
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 6.6.2</b>
+         The results of continuing sampling for next 15 hours to investigate the bolt production process are shown in Table 6.6.3. Determine the control status of the production process by using the control limits created previously.
+      <p class="figText">Table 6.6.3 Results of continuing sampling for next 15 hours to investigate the bolt production process. It measures the deviation from the specification 500mm
+      <table class="tableCenter"> 
+        <tr> 
+          <th class="thGrey">sample</th>
+          <th class="thGrey">\(x_1\)</th>
+          <th class="thGrey">\(x_2\)</th>
+          <th class="thGrey">\(x_3\)</th>
+          <th class="thGrey">\(x_4\)</th>
+          <th class="thGrey">\(\overline x\)</th>
+          <th class="thGrey">\(R\)</th>
+        </tr>
+         <tr><td class="tdCenter">26</td> <td class="tdCenter">  2</td> <td class="tdCenter"> -5</td> <td class="tdCenter"> 10</td> <td class="tdCenter"> -1</td> <td class="tdCenter">   1.50</td> <td class="tdCenter">  15</td></tr>
+         <tr><td class="tdCenter">27</td> <td class="tdCenter">  2</td> <td class="tdCenter">  0</td> <td class="tdCenter"> 10</td> <td class="tdCenter"> 13</td> <td class="tdCenter">   6.25</td> <td class="tdCenter">  13</td></tr>
+         <tr><td class="tdCenter">28</td> <td class="tdCenter"> -5</td> <td class="tdCenter">  7</td> <td class="tdCenter">  1</td> <td class="tdCenter"> -1</td> <td class="tdCenter">   0.50</td> <td class="tdCenter">  12</td></tr>
+         <tr><td class="tdCenter">29</td> <td class="tdCenter">  9</td> <td class="tdCenter"> 18</td> <td class="tdCenter">  4</td> <td class="tdCenter">  1</td> <td class="tdCenter">   8.00</td> <td class="tdCenter">  17</td></tr>
+         <tr><td class="tdCenter">30</td> <td class="tdCenter">  4</td> <td class="tdCenter"> -5</td> <td class="tdCenter">  3</td> <td class="tdCenter">  1</td> <td class="tdCenter">   0.75</td> <td class="tdCenter">   9</td></tr>
+         <tr><td class="tdCenter">31</td> <td class="tdCenter">  1</td> <td class="tdCenter"> -5</td> <td class="tdCenter">  4</td> <td class="tdCenter"> -1</td> <td class="tdCenter">  -0.25</td> <td class="tdCenter">   9</td></tr>
+         <tr><td class="tdCenter">32</td> <td class="tdCenter">  5</td> <td class="tdCenter"> -1</td> <td class="tdCenter">  2</td> <td class="tdCenter"> -1</td> <td class="tdCenter">   1.25</td> <td class="tdCenter">   6</td></tr>
+         <tr><td class="tdCenter">33</td> <td class="tdCenter">  1</td> <td class="tdCenter"> -2</td> <td class="tdCenter">  1</td> <td class="tdCenter"> -1</td> <td class="tdCenter">  -0.25</td> <td class="tdCenter">   3</td></tr>
+         <tr><td class="tdCenter">34</td> <td class="tdCenter"> -6</td> <td class="tdCenter"> -1</td> <td class="tdCenter">  8</td> <td class="tdCenter"> -1</td> <td class="tdCenter">   0.00</td> <td class="tdCenter">  14</td></tr>
+         <tr><td class="tdCenter">35</td> <td class="tdCenter">-18</td> <td class="tdCenter">-14</td> <td class="tdCenter">-11</td> <td class="tdCenter">-16</td> <td class="tdCenter"> -14.75</td> <td class="tdCenter">   7</td></tr>
+         <tr><td class="tdCenter">36</td> <td class="tdCenter">  4</td> <td class="tdCenter"> -1</td> <td class="tdCenter">  5</td> <td class="tdCenter">  5</td> <td class="tdCenter">   3.25</td> <td class="tdCenter">   6</td></tr>
+         <tr><td class="tdCenter">37</td> <td class="tdCenter">  9</td> <td class="tdCenter"> -4</td> <td class="tdCenter"> -4</td> <td class="tdCenter">  0</td> <td class="tdCenter">   0.25</td> <td class="tdCenter">  13</td></tr>
+         <tr><td class="tdCenter">38</td> <td class="tdCenter">-34</td> <td class="tdCenter">  6</td> <td class="tdCenter">-26</td> <td class="tdCenter"> -1</td> <td class="tdCenter"> -13.75</td> <td class="tdCenter">  40</td></tr>
+         <tr><td class="tdCenter">39</td> <td class="tdCenter">  0</td> <td class="tdCenter"> 13</td> <td class="tdCenter">  1</td> <td class="tdCenter">  2</td> <td class="tdCenter">    4.0</td> <td class="tdCenter">  13</td></tr>
+         <tr><td class="tdCenter">40</td> <td class="tdCenter">  4</td> <td class="tdCenter"> -1</td> <td class="tdCenter"> -3</td> <td class="tdCenter">  2</td> <td class="tdCenter">    0.5</td> <td class="tdCenter">   7</td></tr>
+      </table>
+      <p>
+      <b>Answer</b>
+      <p>
+         If you click the [Erase Data] button in &lt;Figure 6.6.2&gt;, data are erased, but both control limits 
+         are not erased as in &lt;Figure 6.6.4&gt;. Enter data in Table 6.6.3 and click [Execute] button to see 
+         the control charts with new data.
+      <p>
+         &lt;Figure 6.6.5&gt; is \(\overline X\) chart and \(R\) chart using sample data from the 26th 
+         to the 40th. The same control limits obtained in the previous example are used here. 
+         The sample means at positions 29th, 35th, and 38th in \(\overline X\) chart are out of control, 
+         and the sample range at position 38th in \(R\) chart is out of control. Any explainable 
+         cause must be identified and an appropriate action should be taken. It is necessary to analyze what factors were effected when a point exceeded the control limit lines of the control chart and eliminate the cause. 
+      <p>
+      <!--------------*** html for Xbar-R Chart Mu ***---------------------------------------------->
+         <b><span data-msgid="Sample Mean"></span> \(\overline X\) - <span data-msgid="sample range"></span> \(R\) <span data-msgid="control chart"></span></b>
+      <p>
+         <iframe src="/estat/eLearning/en/example/060602/060602.html" width="750" height="700"> </iframe>
+         <div class="figText">&lt;Figure 6.6.5&gt; \(\overline X\) chart and \(R\) chart using 26th - 40th sample.</div>
+      <p>
+    </div>
+    <p>
+
+    <h4>6.6.2 Control Chart by Attribute</h4>
+    <p>
+    <div class="mainTable">
+       When managing the quality of a product, quality characteristics such as weight, length, 
+       and temperature cannot be measured sometimes and we can only judge whether the product ‘passes’ 
+       or ‘fails’. In this case, <b>control charts by attribute</b> are used. A control chart 
+       for the defective fraction rate (\(p\) chart) and a control chart for the number of defective items 
+       (\(C\) chart) are commonly used. \(p\) chart is explained only In this book. Please refer 
+       other references for \(C\) chart. .
+    </div>
+    <p>
+
+    <h4>Theoretical Background of \(p\) Chart</h4>
+    <p>
+    <div class="mainTable">
+       Assume that in one production process, the product is produced with the defective rate \(p\)
+       and maintained at a constant level. If we select a sample of size \(n\) from this production process,
+       the number of defective products included in the sample follows a binomial distribution 
+       as discussed in Chapter 5. In other words, if the defective rate of products in the process is \(p\),
+       and let the random variable X be ‘the number of defective products in the sample of size n’, 
+       the probability density function \(f(x)\) of X is as follows.
+       $$
+         f(x)= \frac{n!}{x!(n-x)!} p ^{x} (1-p) ^{n-x} \quad x=0,1, ... ,n
+       $$
+       The mean of X is E(X) = \(np\) and the variance of X is V(X) = \(np(1-p)\). Therefore, 
+       if the defective rate of the process is \(p\), the mean and variance of the defective rate of 
+       a sample, \(\hat p = \frac {X}{n}\), are  E(\(\hat p\)) = \(p\), 
+       Var(\(\hat p\)) = \(\frac{p(1-p)}{n}\). The distribution of the defective rate of a sample, \(\hat p\), 
+       follows approximately a normal distribution when the sample size, \(n\), is sufficiently large. 
+       In general, if the defective rate of the process, \(p\), is not a value very close to 0 or 1 
+       (usually  \(np\) > 5, \(n(1-p)\) > 5 is considered satisfactory), \(\hat p\) follows 
+       approximately a normal distribution \(N(p, \frac{p(1-p)}{n} )\). Therefore, the following 
+       interval includes approximately 99.74% of all possible sample defective rates due to the characteristics of the normal distribution.
+       $$
+         [p - 3 \sqrt {\frac{p(1-p)}{n}}, p + 3 \sqrt {\frac{p(1-p)}{n}} ]
+       $$
+       The right limit of this interval is called the upper control limit of the \(p\) chart (\(UCL_p\)),
+       the left limit of this interval is called the lower control limit (\(LCL_p\)), and \(p\) is called 
+       the center line (\(CL_p\)). However, since the defective rate of the population, \(p\), 
+       is not known, several samples are selected and the average rate of defective products 
+       included in all selected samples, \(\overline p\), is used as an estimator of \(p\) as follows. 
+       $$
+         \overline p = \frac {\text {number of defective products in all samples} } {\text {number of products in all samples}} 
+       $$
+       The center line and control limit lines of the \(p\) chart using this estimator \(\overline p\) are as follows.
+       $$
+         \begin{align}
+           UCL_{p} &= \overline p + 3 \sqrt {{\overline p}(1-{\overline p})/n } \\
+           CL_{p}  &= \overline p \\
+           LCL_{p} &= \overline p + 3 \sqrt {{\overline p}(1-{\overline p})/n } 
+         \end{align}
+       $$
+    </div>
+    <p>
+
+    <h4>Steps for \(p\) Chart</h4>
+    <div class="mainTableYellow">
+         The procedure for creating a \(p\) chart using the control limit lines of the  chart is as follows.
+      <p>
+      <div class="textL20M20">
+        <b>Step 1</b>. From the production process, select a sample of size \(n\), count the number of 
+           defective products, and calculate the defective rate of the sample. Usually, the sample size 
+           is set sufficiently so that the virtual defective rate of the process, \(p\), is \(np\) > 5, 
+           \(n(1-p)\) > 5.
+      </div>
+      <p>
+      <div class="textL20M20">
+        <b>Step 2</b>. Repeat Step 1 \(k\) times. In other words, samples of size \(n\) are 
+           continuously selected \(k\) times and the number of defective products included in each sample,
+           \(x_1 , x_2 , ... x_k\), is investigated, and the defective rate of each sample,
+           \({\hat p}_1 = x_1 /n ,\, {\hat p}_2 = x_2 /n ,\, ... \,, {\hat p}_k = x_k /n \), is calculated. 
+           The defective rate of the total selected products, \(\overline p\), is calculated as follows. 
+           The number of selected samples, \(k\), is usually between 20 and 30.
+        $$
+          {\overline p} = \frac{\sum_{i=1}^{k} {p}_{i} }{k} , 
+        $$
+      </div>
+      <p>
+      <div class="textL20M20">
+        <b>Step 3</b>. Calculate the control limit lines as follows.
+        <p>
+        $$
+         \begin{align}
+           UCL_{p} &= \overline p + 3 \sqrt {{\overline p}(1-{\overline p})/n } \\
+           CL_{p}  &= \overline p \\
+           LCL_{p} &= \overline p - 3 \sqrt {{\overline p}(1-{\overline p})/n } 
+         \end{align}
+        $$
+      </div>
+      <p>
+      <div class="textL20M20">
+        <b>Step 4</b>. Draw \(CL\), \(UCL\), \(LCL\) of \(p\) chart, and write the defective rate of each sample,
+           \({\hat p}_i\), in dots. Mark points that exceed the control 
+           limit lines so that they can be clearly distinguished.
+      </div>
+      <p>
+      <div class="textL20M20">
+        <b>Step 5</b>. After examining the \(p\) chart, determine whether the production process is under control or not. If the defective rate of each sample does not exceed the control limits and there is no correlation in the arrangement of points, the process is under control. If the process is under control, use the prepared control limits for the next process management. If the process is out of control, the cause should be investigated and the control limits should be recalculated using the defective rates which are under control. 
+      </div>
+    </div>
+    <p>
+ 
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 6.6.3</b>
+         At a production plant that manufactures plastic toy cars, 50 samples were selected every hour for 25 hours 
+         and the number of defective products was investigated as shown in Table 6.6.4. Determine whether 
+         the current production process is under control or not.
+
+      <p class="figText">Table 6.6.4 50 samples of toy cars were selected every hour for 25 hours and the number of defective products was investigated. 
+      <table class="tableCenter"> 
+         <tr> 
+           <th class="thGrey">sample</th>
+           <th class="thGrey">defectives</th>
+           <th class="thGrey">\(\overline p\)</th>
+         </tr>
+         <tr> <td class="tdCenter"> 1</td> <td class="tdCenter">12</td> <td class="tdCenter">0.24</td> </tr>
+         <tr> <td class="tdCenter"> 2</td> <td class="tdCenter">12</td> <td class="tdCenter">0.24</td> </tr>
+         <tr> <td class="tdCenter"> 3</td> <td class="tdCenter">22</td> <td class="tdCenter">0.44</td> </tr>
+         <tr> <td class="tdCenter"> 4</td> <td class="tdCenter">12</td> <td class="tdCenter">0.24</td> </tr>
+         <tr> <td class="tdCenter"> 5</td> <td class="tdCenter"> 6</td> <td class="tdCenter">0.12</td> </tr>
+         <tr> <td class="tdCenter"> 6</td> <td class="tdCenter">12</td> <td class="tdCenter">0.24</td> </tr>
+         <tr> <td class="tdCenter"> 7</td> <td class="tdCenter">13</td> <td class="tdCenter">0.26</td> </tr>
+         <tr> <td class="tdCenter"> 8</td> <td class="tdCenter">12</td> <td class="tdCenter">0.24</td> </tr>
+         <tr> <td class="tdCenter"> 9</td> <td class="tdCenter">13</td> <td class="tdCenter">0.26</td> </tr>
+         <tr> <td class="tdCenter">10</td> <td class="tdCenter"> 7</td> <td class="tdCenter">0.14</td> </tr>
+         <tr> <td class="tdCenter">11</td> <td class="tdCenter">10</td> <td class="tdCenter">0.20</td> </tr>
+         <tr> <td class="tdCenter">12</td> <td class="tdCenter"> 8</td> <td class="tdCenter">0.16</td> </tr>
+         <tr> <td class="tdCenter">13</td> <td class="tdCenter">13</td> <td class="tdCenter">0.26</td> </tr>
+         <tr> <td class="tdCenter">14</td> <td class="tdCenter"> 9</td> <td class="tdCenter">0.18</td> </tr>
+         <tr> <td class="tdCenter">15</td> <td class="tdCenter"> 9</td> <td class="tdCenter">0.18</td> </tr>
+         <tr> <td class="tdCenter">16</td> <td class="tdCenter">22</td> <td class="tdCenter">0.44</td> </tr>
+         <tr> <td class="tdCenter">17</td> <td class="tdCenter"> 3</td> <td class="tdCenter">0.06</td> </tr>
+         <tr> <td class="tdCenter">18</td> <td class="tdCenter">11</td> <td class="tdCenter">0.22</td> </tr>
+         <tr> <td class="tdCenter">19</td> <td class="tdCenter"> 9</td> <td class="tdCenter">0.18</td> </tr>
+         <tr> <td class="tdCenter">20</td> <td class="tdCenter"> 9</td> <td class="tdCenter">0.18</td> </tr>
+         <tr> <td class="tdCenter">21</td> <td class="tdCenter">11</td> <td class="tdCenter">0.22</td> </tr>
+         <tr> <td class="tdCenter">22</td> <td class="tdCenter">12</td> <td class="tdCenter">0.24</td> </tr>
+         <tr> <td class="tdCenter">23</td> <td class="tdCenter">10</td> <td class="tdCenter">0.20</td> </tr>
+         <tr> <td class="tdCenter">24</td> <td class="tdCenter">24</td> <td class="tdCenter">0.48</td> </tr>
+         <tr> <td class="tdCenter">25</td> <td class="tdCenter">10</td> <td class="tdCenter">0.20</td> </tr>      </table>
+      <p>
+      <b>Answer</b>
+      <p>
+         Average defective rates of total samples, \(\overline p\), is as follows. 
+      $$
+         \begin{align}
+         \overline p &= \frac {\text {number of defective products in all samples} } {\text {number of products in all samples}} \\
+                     &= \frac { 291}{50 \times  25 } = \frac  { 291} {1250 } = 0.2328 
+         \end{align}
+      $$
+         Control limits of \(p\) chart are as follows.  
+      $$
+         \begin{align}
+          3 \sqrt {{\overline p}(1-{\overline p})/n } &= 3 \sqrt \frac { (0.2328)(0.7672)} { 50 }  = 0.1793 \\
+           UCL_{p} &= 0.2328 + 0.1793 = 0.4121 \\
+           CL_{p}  &= 0.2328 \\
+           LCL_{p} &= 0.2328 - 0.1793 = 0.0535
+         \end{align}
+      $$
+         In 『eStatU』, select the menu ‘p Chart’ and enter data as in &lt;Figure 6.6.6&gt;, then click the 
+         [Execute] button to calculate \(\overline p\), and control limits. 
+      <p>
+         &lt;Figure 6.6.7&gt; is the \(p\) chart using the data of Table 6.6.4.
+         There are three points which are outside of the control limit lines in this control chart. Therefore, the process cannot be considered to be under control. In order to ensure that the process is under control, explainable causes must be found for points which are outside of contol limits. 
+      <p>
+      <!--------------*** html for p chart ***---------------------------------------------->
+         <b><span data-msgid="Defect Rate"></span> (p) <span data-msgid="control chart"></span></b>
+      <p>
+         <iframe src="/estat/eLearning/en/example/060603/060603.html" width="700" height="620"> </iframe>
+         <div class="figText">&lt;Figure 6.6.7&gt; \(p\) chart </div>
+      <p>
+         Let us assume that the following causes have been discovered for points that are outside of the control limits. In sample number 3, the defective rate increased due to the replacement of employees with employees from other departments due to diseases, in sample number 16, it was due to paralysis of the control function of the machine, and in sample number 24, it was due to the replacement of a new machine. From these observations, exclude samples which have explainable causes and the average defective rate based on the remaining samples is calculated as follows.
+      $$
+        {\overline {p}} = \frac {227} {1100} = 0.2027
+      $$
+         Control limits using the revised average defective rate are as follows. 
+      $$
+         \begin{align}
+         UCL_p &= 0.2027 + 3 \sqrt { (0.2027)(0.7973)/50} = 0.2027+0.1706 = 0.3733 \\
+          CL_p &= 0.2027 \\
+         LCL_p &= 0.2027 - 0.1706 = 0.0321
+         \end{align}
+      $$
+         &lt;Figure 6.6.8&gt; shows the data input after excluding three data which caused trouble.  
+         &lt;Figure 6.6.9&gt; is the modified \(p\) chart using new control limits after excluding points 
+         which caused trouble. None of the sample values are outside the modified control limits if the points which had an explainable cause was removed. These revised  chart with new center line and limit lines will now be used as the standard for the production process.
+      <p>
+      <!--------------*** html for p chart ***---------------------------------------------->
+         <b><span data-msgid="Defect Rate"></span> (p) <span data-msgid="control chart"></span></b>
+      <p>
+         <iframe src="/estat/eLearning/en/example/060604/060604.html" width="700" height="620"> </iframe>
+         <div class="figText">&lt;Figure 6.6.9&gt; Modified \(p\) chart after excluding three trouble data</div>
+      <p>
+    </div>
+    <p>
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 6.6.4</b>
+         In the above production process, 50 samples were selected every hour for the next 25 hours to investigate the number of defective products, and the results were as Table 6.6.5. Using the modified  chart created in Example 6.6.3, determine whether the production process is under control or not.
+      <p class="figText">Table 6.6.5 Fifty samples were selected every hour for the next 25 hours to investigate the number of defective products,
+      <table class="tableCenter"> 
+         <tr> 
+           <th class="thGrey">sample</th>
+           <th class="thGrey">defectives</th>
+           <th class="thGrey">\(\overline p\)</th>
+         </tr>
+         <tr> <td class="tdCenter">26</td> <td class="tdCenter">10</td> <td class="tdCenter">0.20</td> </tr>
+         <tr> <td class="tdCenter">27</td> <td class="tdCenter">19</td> <td class="tdCenter">0.38</td> </tr>
+         <tr> <td class="tdCenter">28</td> <td class="tdCenter"> 5</td> <td class="tdCenter">0.10</td> </tr>
+         <tr> <td class="tdCenter">29</td> <td class="tdCenter"> 8</td> <td class="tdCenter">0.16</td> </tr>
+         <tr> <td class="tdCenter">30</td> <td class="tdCenter">12</td> <td class="tdCenter">0.24</td> </tr>
+         <tr> <td class="tdCenter">31</td> <td class="tdCenter"> 9</td> <td class="tdCenter">0.18</td> </tr>
+         <tr> <td class="tdCenter">32</td> <td class="tdCenter">11</td> <td class="tdCenter">0.22</td> </tr>
+         <tr> <td class="tdCenter">33</td> <td class="tdCenter"> 8</td> <td class="tdCenter">0.16</td> </tr>
+         <tr> <td class="tdCenter">34</td> <td class="tdCenter"> 7</td> <td class="tdCenter">0.14</td> </tr>
+         <tr> <td class="tdCenter">35</td> <td class="tdCenter">11</td> <td class="tdCenter">0.22</td> </tr>
+         <tr> <td class="tdCenter">36</td> <td class="tdCenter">16</td> <td class="tdCenter">0.32</td> </tr>
+         <tr> <td class="tdCenter">37</td> <td class="tdCenter">11</td> <td class="tdCenter">0.22</td> </tr>
+         <tr> <td class="tdCenter">38</td> <td class="tdCenter"> 7</td> <td class="tdCenter">0.14</td> </tr>
+         <tr> <td class="tdCenter">39</td> <td class="tdCenter"> 8</td> <td class="tdCenter">0.16</td> </tr>
+         <tr> <td class="tdCenter">40</td> <td class="tdCenter"> 6</td> <td class="tdCenter">0.12</td> </tr>
+         <tr> <td class="tdCenter">41</td> <td class="tdCenter">13</td> <td class="tdCenter">0.26</td> </tr>
+         <tr> <td class="tdCenter">42</td> <td class="tdCenter">20</td> <td class="tdCenter">0.40</td> </tr>
+         <tr> <td class="tdCenter">43</td> <td class="tdCenter"> 9</td> <td class="tdCenter">0.18</td> </tr>
+         <tr> <td class="tdCenter">44</td> <td class="tdCenter"> 8</td> <td class="tdCenter">0.16</td> </tr>
+         <tr> <td class="tdCenter">45</td> <td class="tdCenter"> 5</td> <td class="tdCenter">0.10</td> </tr>
+         <tr> <td class="tdCenter">46</td> <td class="tdCenter">14</td> <td class="tdCenter">0.28</td> </tr>
+         <tr> <td class="tdCenter">47</td> <td class="tdCenter"> 1</td> <td class="tdCenter">0.02</td> </tr>
+         <tr> <td class="tdCenter">48</td> <td class="tdCenter"> 9</td> <td class="tdCenter">0.18</td> </tr>
+         <tr> <td class="tdCenter">49</td> <td class="tdCenter">11</td> <td class="tdCenter">0.22</td> </tr>
+         <tr> <td class="tdCenter">50</td> <td class="tdCenter">10</td> <td class="tdCenter">0.20</td> </tr>      <p>
+      </table>
+      <b>Answer</b>
+      <p>
+         If you click the [Erase Data] button in &lt;Figure 6.6.8&gt;, data are erased, but the control limits
+         are not erased as in &lt;Figure 6.6.10&gt; Enter data in Table 6.6.5 and click [Execute] button 
+         to see new continued charts.
+      <p>
+         &lt;Figure 6.6.11&gt; shows the defective rate for sample numbers 26 to 50 using the modified control limits in Example 6.6.3. It can be seen that two points are out of control limits, with two points exceeding the upper control limit and one point exceeding the lower control limit. It is necessary to look into whether there is a possible explanation for these points. In particular, points that are outside the lower control limit require more attention and investigation into the cause. This is because by investigating the cause, methods that can significantly reduce the defective rate in the production process can be researched.
+      <p>
+      <!--------------*** html for p chart ***---------------------------------------------->
+         <b><span data-msgid="Defect Rate"></span> (p) <span data-msgid="control chart"></span></b>
+      <p>
+         <iframe src="/estat/eLearning/en/example/060605/060605.html" width="700" height="620"> </iframe>
+         <div class="figText">&lt;Figure 6.6.11&gt; Modified \(p\) chart is used</div>
+      <p>
+    </div>
+    <p>
+    <!------------------------------------------------------------------------------------------------->
+
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <button type="button" style="width:160px" onclick="moveSection(70)">&#10094; &nbsp;&nbsp;<b>Previous</b></button>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(73)"><b>Chapter 7</b>&nbsp;&nbsp; &#10095;</button>
-  <p>
+      <button type="button" style="width:160px" onclick="moveSection(72)"><b>Next</b>&nbsp;&nbsp; &#10095;</button>
+    <p>
 
 </div>
 

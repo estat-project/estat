@@ -49,9 +49,14 @@
   	     }
 	 });
 	 </script>
-       <link rel="stylesheet" href="../../css/pandoc.css">
-       <script src="../../js/eBook.js"></script>
+       <link rel="stylesheet" href="/estat/eLearning/css/pandoc.css">
+       <script src="/estat/eLearning/js/eBook.js"></script>
+       <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="/estat/eStat/lib/convertSVG.js"></script>
        <script src="/estat/eStat/js/language.js" ></script>
+       <script src="/estat/eStat/js/eStatU.js"></script>
 </head>
 <body>
 
@@ -85,7 +90,8 @@
                 <li><a href="../chapter07/0704.html">7.4 Testing Hypothesis with α and β simultaneously</a></li>
                 <li><a href="../chapter07/0704.html">&nbsp;&nbsp;7.4.1 Type 2 Error and Power of a Test</a></li>
                 <li><a href="../chapter07/0704.html">&nbsp;&nbsp;7.4.2 Testing Hypothesis with α and β</a></li>
-                <li><a href="../chapter07/0705.html">7.5 Exercise</a></li>
+                <li><a href="../chapter07/0705.html">7.5 Application of Testing Hypothesis: Sample Inspection</a></li>
+                <li><a href="../chapter07/0706.html">7.6 Exercise</a></li>
 	  </ul>
     </li>
     <li><a class="navbar-brand" href="../../../eStat/index.html" target="_blank">eStat</a></li>
@@ -107,7 +113,6 @@
                 <li><a href="../chapter01/0102.html">1.2 Population and Sample</a></li>
                 <li><a href="../chapter01/0103.html">1.3 Variables and Data</a></li>
                 <li><a href="../chapter01/0104.html">1.4 Softwares for Statistical Analysis</a></li>
-                <li><a href="../chapter01/0105.html">1.5 Exercies</a></li>
 	      </ul>
 	    </li>
 	    <li><a href="../chapter02/index.html">Chapter 2</a>
@@ -120,7 +125,6 @@
                 <li><a href="../chapter02/0203.html">&nbsp;&nbsp;2.3.1 Raw Data of Categorical Variable</a></li>
                 <li><a href="../chapter02/0203.html">&nbsp;&nbsp;2.3.2 Raw Data of Categorical Variable with Group</a></li>
                 <li><a href="../chapter02/0204.html">2.4 Word Cloud</a></li>
-                <li><a href="../chapter02/0205.html">2.5 Exercise</a></li>
 	      </ul>
 	    </li>
 	    <li><a href="../chapter03/index.html">Chapter 3</a>
@@ -130,7 +134,6 @@
                 <li><a href="../chapter03/0302.html">&nbsp;&nbsp;3.2.1 Visualization of Quantitative Data without Group</a></li>
                 <li><a href="../chapter03/0302.html">&nbsp;&nbsp;3.2.2 Visualization of Quantitative Data with Group</a></li>
                 <li><a href="../chapter03/0303.html">3.3 Visualization of Two Quantitative Variables</a></li>
-                <li><a href="../chapter03/0304.html">3.4 Exercise</a></li>
 	      </ul>
 	    </li>
 	    <li><a href="../chapter04/index.html">Chapter 4</a>
@@ -144,7 +147,6 @@
                 <li><a href="../chapter04/040301.html">4.3 Summary Measures for Quantitative Variable</a></li>
                 <li><a href="../chapter04/040301.html">&nbsp;&nbsp;4.3.1 Measures of Central Tendency</a></li>
                 <li><a href="../chapter04/040302.html">&nbsp;&nbsp;4.3.2 Measures of Dispersion</a></li>
-                <li><a href="../chapter04/0404.html">4.4 Exercise</a></li>
 	      </ul>
 	    </li>
 	    <li><a href="../chapter05/index.html">Chapter 5</a>
@@ -159,7 +161,6 @@
                 <li><a href="../chapter05/0504.html">5.4 Continuous Random Variable</a></li>
 		<li><a href="../chapter05/050401.html">&nbsp;&nbsp;5.4.1 Normal Distribution</a></li>
 		<li><a href="../chapter05/050402.html">&nbsp;&nbsp;5.4.2 Exponential Distribution</a></li>
-                <li><a href="../chapter05/0505.html">5.5 Exercise</a></li>
 	      </ul>
 	    </li>
 	    <li><a href="../chapter06/index.html">Chapter 6</a>
@@ -177,7 +178,7 @@
                 <li><a href="../chapter06/0605.html">6.5 Determination of the Sample Size  </a></li>
                 <li><a href="../chapter06/0605.html">&nbsp;&nbsp;6.5.1 Determination of the Sample Size to Estimate the Population Mean </a></li>
                 <li><a href="../chapter06/0605.html">&nbsp;&nbsp;6.5.2 Determination of the Sample Size to Estimate the Population Proportion</a></li> 
-                <li><a href="../chapter06/0606.html">6.6 Exercise</a></li>
+                <li><a href="../chapter06/0606.html">6.6 Application of Sampling Distribution: Quality Control Chart</a></li>
 	      </ul>
 	    </li>
 	    <li><a href="../chapter07/index.html">Chapter 7</a>
@@ -188,7 +189,7 @@
                 <li><a href="../chapter07/0704.html">7.4 Testing Hypothesis with α and β simultaneously</a></li>
                 <li><a href="../chapter07/0704.html">&nbsp;&nbsp;7.4.1 Type 2 Error and Power of a Test</a></li>
                 <li><a href="../chapter07/0704.html">&nbsp;&nbsp;7.4.2 Testing Hypothesis with α and β</a></li>
-                <li><a href="../chapter07/0705.html">7.5 Exercise</a></li>
+                <li><a href="../chapter07/0705.html">7.5 Application of Testing Hypothesis: Sample Inspection</a></li>
 	      </ul>
 	    </li>
 	    <li><a href="../chapter08/index.html">Chapter 8</a>
@@ -198,7 +199,6 @@
                 <li><a href="../chapter08/080102.html">&nbsp;&nbsp;8.1.2 Paired Sample</a></li>
                 <li><a href="../chapter08/0802.html">8.2 Testing Hypothesis for Two Population Variances</a></li>
                 <li><a href="../chapter08/0803.html">8.3 Testing Hypothesis for Two Population Proportions</a></li>
-                <li><a href="../chapter08/0804.html">8.4 Exercise</a></li>
 	      </ul>
 	    </li>
 	    <li><a href="../chapter09/index.html">Chapter 9</a>
@@ -210,7 +210,6 @@
                 <li><a href="../chapter09/0902.html">&nbsp;&nbsp;9.2.1 Completely Randomized Design</a></li>
                 <li><a href="../chapter09/0902.html">&nbsp;&nbsp;9.2.2 Randomized Block Design</a></li>
                 <li><a href="../chapter09/0903.html">9.3 Analysis of Variance for Experiments of Two Factors</a></li>
-                <li><a href="../chapter09/0904.html">9.4 Exercise</a></li>
 	      </ul>
 	    </li>
 	    <li><a href="../chapter10/index.html">Chapter 10</a>
@@ -224,7 +223,6 @@
                 <li><a href="../chapter10/1003.html">10.3 Nonparametric Test for Location Parameters of Several Populations</a></li>
                 <li><a href="../chapter10/1003.html">&nbsp;&nbsp;10.3.1 Completely Randomized Design: Kruskal-Wallis Test</a></li>
                 <li><a href="../chapter10/100302.html">&nbsp;&nbsp;10.3.2 Randomized Block Design: Friedman Test</a></li>
-                <li><a href="../chapter10/1004.html">10.4 Exercise</a></li>
 	      </ul>
 	    </li>
 	    <li><a href="../chapter11/index.html">Chapter 11</a>
@@ -235,7 +233,6 @@
                 <li><a href="../chapter11/1102.html">11.2 Testing Hypothesis for Contingency Table</a></li>
                 <li><a href="../chapter11/1102.html">&nbsp;&nbsp;11.2.1 Independence Test</a></li>
                 <li><a href="../chapter11/110202.html">&nbsp;&nbsp;11.2.2 Homogeneity Test</a></li>
-                <li><a href="../chapter11/1103.html">11.3 Exercise</a></li>
 	      </ul>
 	    </li>
 	    <li><a href="../chapter12/index.html">Chapter 12</a>
@@ -243,7 +240,6 @@
                 <li><a href="../chapter12/1201.html">12.1 Correlation Analysis</a></li>
                 <li><a href="../chapter12/1202.html">12.2 Simple Linear Regression Analysis</a></li>
                 <li><a href="../chapter12/1203.html">12.3 Multiple Linear Regression Analysis</a></li>
-                <li><a href="../chapter12/1204.html">12.4 Exercise</a></li>
 	      </ul>
 	    </li>
 	    <li><a href="../chapter13/index.html">Chapter 13</a>
@@ -254,10 +250,8 @@
                 <li><a href="../chapter13/1304.html">13.4 Regression Model and Forecasting</a></li>
                 <li><a href="../chapter13/1305.html">13.5 Exponential Smoothing Model and Forecasting</a></li>
                 <li><a href="../chapter13/1306.html">13.6 Seasonal Model and Forecasting</a></li>
-                <li><a href="../chapter13/1307.html">13.7 Exercise</a></li>
 	      </ul>
 	    </li>
-
 	  </ul>
 	</li>
       </ul>
@@ -273,191 +267,175 @@
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <button type="button" style="width:160px" onclick="moveSection(77)">&#10094; &nbsp;&nbsp;<b>Previous</b></button>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(80)"><b>Chapter 8</b>&nbsp;&nbsp; &#10095;</button>
+      <button type="button" style="width:160px" onclick="moveSection(79)"><b>Next</b>&nbsp;&nbsp; &#10095;</button>
   <p>
-  <h3>7.5 Exercise </h3>
+  <h3 id="0705">7.5 Application of Testing Hypothesis: Sample Inspection</h3>
+  <p>
+
+  <h6>
+      <a href="./pdf/0705.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+<!---
+      <a href="https://youtu.be/3SDaVzGqPL0" target="_blank"><u>[video]</u></a>
+-->
+  </h6>
+
+  <p>
+
+  <div class="mainTable">
+       The testing hypothesis studied in this chapter can be applied to the quality control, especially 
+       in a sample inspection. The <b>sample inspection</b> refers to predicting the quality of the entire 
+       lot of products by selecting only a few samples because it is impossible or difficult to inspect 
+       the entire lot of products. The conclusion obtained from the sample inspection is to determine 
+       whether the lot is ‘acceptable’ as satisfactory quality or ‘rejected’. Therefore, It is also called 
+       an <b>acceptance sampling</b>.
     <p>
-    <div class="mainTablePink">
-      <div class="textL30M30">
-        7.1  Assume that the distribution of a population is a normal distribution with the standard deviation 
-           of 50. The sample mean of 25 samples randomly selected from the population is 70. Test the 
-           hypothesis \(\small H_0 : \mu = 100 , H_1 : \mu \ne 100 \)  with the significance level of 0.01 
-           and obtain the \(p\)-value.
-      </div>
-      <p>
-      <div class="textL30M30">
-        7.2  A bolt manufacturer claims that the average of bolt length is 4.5 cm, the standard deviation is 0.020 cm and it is normally distributed. When 16 samples were taken randomly, the sample mean was 4.512. Can you say that the actual average length of the bolt is different from that of the manufacturer’s claim? Assume that the significance level is 0.01.
-      </div>
-      <p>
-      <div class="textL30M30">
-        7.3  The amount of water needed in the process of producing a compound with distilled water added to any component in a fixed amount depends on the purity of the component. In the manufacturer's experience, the water requirement for a normal production is 6 liters and the standard deviation is 1 liter. A sample mean from samples of nine products was 7 liters. Can products be considered as a normal production at the significance level of 0.05?
-      </div>
-      <p>
-      <div class="textL30M30">
-        7.4  A psychologist is working on physically disabled workers. Based on the past experience, the psychologist believed that the average social (relationship) score of these disabled workers was greater than 80. Twenty employees were sampled from the score population to obtain the following result:
-      </div>
-      <p> 
-      <div class="textLeft">99, 69, 91, 97, 70, 99, 72, 74, 74, 76, </div>
-      <div class="textLeft">96, 97, 68, 71, 99, 78, 76, 78, 83, 66. </div>
-      <p>
-      <div class="textL30">
-        The psychologist wants to know if the average social score of the population is right. Assume that the population follows a normal distribution and its standard deviation is 10. Test with the significance level of 0.05.
-      </div>
-      <p>
-      <div class="textL30M30">
-      7.5  The following is the weights of the 10 employees randomly selected who are working in the shipping department of a wholesale food company.
-      </div>
-      <p>  
-        <div class="textLeft">154, 154, 186, 243, 159, 174, 183, 163, 192, 181  (unit pound) </div>
-      <p>
-      <div class="textL30">
-        Based on this data, can you say that the average weight of employees working in the shipping department is greater than 160 pound? Use the significance level of 5%.
-      </div>
-      <p>
-      <div class="textL30M30">
-        7.6  A company that makes tar on a roof wants an average of less than 3 percent of impurities. By sampling 30 barrels of tar, can this data suggest that the population mean is less than 3% when the proportion of impurities is as follows? Use the significance level of 5%.
-      </div>
-        <p> 
-        <div class="textLeft">3 3 1 1 0.5    2 2 4 5 4    5 3 1 3 1 </div>
-        <div class="textLeft">4 1 1 4 2      5 3 1 1 1    0.75 1.5 3 3 2 </div>
-        <p>
-      <div class="textL30M30">
-        7.7  In a large manufacturer, the manager of the company claims that the average adaptation score of all unskilled workers is greater than 60. In order to check this claim, 40 unskilled workers were randomly selected and their test scores of adaptation scores were as follows.
-      </div>
-        <p>      
-        <div class="textLeft">73 57 96 78 74 42 55 44 91 91  50 65 46 63 82 60 97 79 85 79 </div>
-        <div class="textLeft">92 50 42 46 86 81 81 83 64 76  40 57 78 66 84 96 94 70 70 81 </div>
-        <p>      
-        <div class="textL30">If the population variance is 280, test the hypothesis at the significance level of 0.05 
-          whether the manager's argument is correct. What is the \(p\)-value?
-        </div>
-        <p>
-      <div class="textL30M30">
-        7.8  Existing tires of a company have an average life span of 54,000 km and a standard deviation of 10,000 km. Two researchers conducted a performance test for new tires independently. The first researcher tested 25 tires and obtained an average life span of 48,000 km, while the second researcher tested 100 to get 50,000 km. Which test result gives more reliable statistical evidence that the average life span of a new tire is less than the existing one? Assume that the standard deviation has not changed.
-      </div>
-      <p>
-      <div class="textL30M30">
-        7.9  Suppose \(n\) = 100 and \(\sigma\) = 8.4 are given to test the hypothesis \(\small H_0 : \mu = 75.0 , H_1 : \mu \lt 75.0 \).
-      </div>
-        <p>
-        <div class="textL50M30">1) If the null hypothesis is rejected when the sample mean is less than 73.0, what is the probability of the type 1 error?
-        </div>
-        <div class="textL50M30">2) If we test the alternative hypothesis \(\small H_1 : \mu \gt 75 \)  and the decision rule is the same as above, what is the probability of the type 1 error?
-        </div>
-        <p>
-      <div class="textL30M30">
-        7.10 A random variable follows a normal distribution N(&mu;, 4). Test the hypothesis \(\small H_0 : \mu = 0 \) 
-           with the significance level of 0.10 if \(n\) = 25 and \(\small \overline x\) = 0.28. Does the 90% confidence interval include &mu; = 0?
-      </div>
-      <p>
-      <div class="textL30M30">
-        7.11 A sample of size 21 was randomly taken from a population that follows the normal distribution 
-           and its sample variance was 10. Test the null hypothesis \(\small H_0 : \sigma^2 \) = 15 and the alternative hypothesis \(\small H_1 : \sigma^2 \) ≠ 15 with the significance level of 0.05.
-      </div>
-      <p>
-      <div class="textL30M30">
-        7.12 If the variance of diameters of metal washer products is less than \( 0.000005^2\), then the production process is under control. 
-           31 samples were randomly selected from the assembly line and its variance is \( 0.000006^2\). According to this data, is the assembly process out of control with the significance level of 0.05? What assumptions do you need to get an answer?
-      </div>
-      <p>
-      <div class="textL30M30">
-        7.13 For a manufacturer to make a product, the variance of tensile strength of the synthetic fiber must be less than or equal to five. When 25 samples are randomly selected from the new shipment and the variance is seven. Does this data provide sufficient evidence for the manufacturer to reject the shipment? Assume the significance level of 0.05 and that the tensile strength of the fiber follows approximately a normal distribution.
-      </div>
-      <p>
-      <div class="textL30M30">
-        7.14 In a process of filling the container, the average weight is set to 8g and 
-           the variance of the weight shall be \(\sigma^2\) = 4g to satisfy the given tolerances. 
-           25 container samples were randomly selected and its standard deviation was 2.8g. 
-      </div>
-        <p>
-        <div class="textL50M30">
-        1) If the weight is assumed to follow a normal distribution, is the population variance greater than the prescribed value \(\sigma^2\)? 
-           Test at the significance level of 0.01.
-        </div>
-        <div class="textL50M30">
-        2) What is the range of sample variances that can not be rejected? Are these values symmetrical to the prescribed value of 2g? Why is that?
-        </div>
-      <p>
-      <div class="textL30M30">
-        7.15 A university wants to build a student parking lot. School authorities think more than 20 percent of students go to school by car. 250 students are randomly selected and 65 of them said that they go to school by car. Test at the significance level of 0.05 whether the school authorities' thinking is correct.
-      </div>
-      <p>
-      <div class="textL30M30">
-        7.16 The accountant of a company thinks that more than 20% of the statement of expenses includes at least one mistake. 400 statements of expenses were randomly selected and found at least one mistake in 100 statements. Test whether the accountant's belief is correct with the significance level of 0.05.
-      </div>
-      <p>
-      <div class="textL30M30">
-        7.17 A researcher met 200 office workers of a company who changed their job last year. Thirty of them stated that they changed their work, because they could not expect for promotion. Can you say that less than 20% of the employees were changed their job, because of their promotion? The significance level is 0.05.
-      </div>
-      <p>
-      <div class="textL30M30">
-        7.18 A statistician threw coins 24,000 times, with 12012 front and 11988 back. Does this data support the null hypothesis that there is 0.5 chance that the front face will appear? Test at the significance level of 0.05.
-      </div>
-      <p>
-      <div class="textL30M30">
-        7.19 A high school student made dice from wood. It doesn't look like a cube, so it's not one-sixth of a chance of six at the top. I rolled the dice 18,000 times and got 3,126 of six at the top. 
-      </div>
-        <p>
-        <div class="textL50M30">1) Determine whether these 3126 occurrences are statistically significant by obtaining the \(p-value\).
-        </div>
-        <div class="textL50M30">2) Since it is too much to demand that a hand-made dice have an exact one-sixth chance of producing six, we decided to allow the error of 0.01 chance to be a fair dice. Using the above sample experiment, obtain a confidence interval for the probability of a 6 and determine whether it is acceptable to be viewed as a fair dice (Note: It is difficult to distinguish between the statistical significance and the practical significance by relying solely on testing hypothesis.)
-        </div>
-        <p>
-      ** Obtain a power function for each of the following situations and draw a graph:
-      <p>
-      7.20  \(\small H_0 : \mu = 51 , H_1 : \mu < 51 , n = 25, \sigma = 3 , \alpha = 0.05 \).
-      <p>
-      7.21  \(\small H_0 : \mu = 516 , H_1 : \mu > 516 , n = 16, \sigma = 32 , \alpha = 0.05 \).
-      <p>
-      7.22  \(\small H_0 : \mu = 3 , H_1 : \mu \ne 3 , n = 100, \sigma = 1 , \alpha = 0.05 \).
-      <p>
-      7.23  \(\small H_0 : \mu = 4.25 , H_1 : \mu > 4.25 , n = 81, \sigma = 1.8 , \alpha = 0.01 \).
-      <p>
-      7.24 On question 7.21, find \(n, C\),  and the decision rule when  &beta; = 0.10 and  \(\mu_1\) =  520. 
-      <p>
-      7.25 On question 7.23, find \(n, C\),  and the decision rule when  &beta; = 0.05 and \(\mu_1\)  =  4.52. 
-      <p>
-      7.26 On question 7.23, find \(n, C\),  and the decision rule when  &beta; = 0.03 and \(\mu_1\)  =  5.
-      <p>
-      <div class="textL30M30">
-        7.27 The standard deviation of the resistance of a wire made by a factory is known to be 0.02 ohms. 
-           An electronics company has decided not to buy the wire if there is sufficient evidence that the 
-           average resistance of the wire is greater than 0.4 ohms. The company's management adheres to the policy 
-           of the significance level &alpha; = 0.05 and the sample size \(n\) = 100 in statistical tests.
-      </div>
-        <p>
-        <div class="textL50M30">1) Describe the proper null and alternative hypothesis.
-        </div>
-        <div class="textL50M30">2) Describe the type 1 and type 2 errors.
-        </div>
-        <div class="textL50M30">3) Obtain the rejection region of the test.
-        </div>
-        <div class="textL50M30">4) Draw the power function and operating characteristic curve.
-        </div>
-        <p>
-      <div class="textL30M30">
-        7.28 In order to test whether the coins were fair, the following decision criteria were established:
-      </div>
-        <div class="textL50M30">①  If the number of fronts when a coin thrown 100 times is in between 40 and 60, the null hypothesis is adopted. 
-        </div>
-        <div class="textL50M30">②  In other cases, the null hypothesis is rejected.
-        </div>
-        <p>
-        <div class="textL50M30">1) What is the null and alternative hypothesis?
-        </div>
-        <div class="textL50M30">2) What is the probability of the type 1 error in this test?
-        </div>
-        <div class="textL50M30">3) Mark the critical value of this test using the standard normal distribution.
-        </div>
-        <div class="textL50M30">4) Calculate the probability of the type 2 error when \(p\) = 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 and 0.9.
-        </div>
-      <p>
+       When the quality characteristics of each product selected from one lot can be measured in 
+       quantitative variable such as weight or length, the sample inspection is called an <b>acceptance sampling
+       by variable</b>. This sample inspection determines whether a lot is pass or fail based on the average
+       of the quality characteristic values of samples selected from the lot which is similar to a hypothesis
+       testing. If the quality of each product selected from the lot can only be measured as good or defective, 
+       the sample inspection is called an <b>acceptance sampling by attribute</b>. The acceptance sampling 
+       by variable is only explained in this book. Please refer other references for the acceptance sampling 
+       by attribute.
+    <p>
+       The acceptance sampling by variable can be divided into two cases: when the standard deviation \(\sigma\) of 
+       the quality characteristic value for the products in the lot is known, and when the standard deviation \(\sigma\)
+       is not known.
   </div>
+  <p>
+
+  <h4>7.5.1 Acceptance Sampling by Variable: Case of Known Lot \(\sigma\)</h4>
+     Assume that the quality characteristic values of all products are normally distributed and their 
+     standard deviation, \(\sigma\), is known. Assumption of the known \(\sigma\) is practically impossible,
+     but it means that we have sufficient prior knowledge about \(\sigma\) or we are able to make a 
+     relatively accurate estimate of \(\sigma\).
+  <p>
+     In acceptance sampling by variable, there is a case that only a minimum specification limit,
+     \(L\), of the quality characteristic value exists to determine whether the product is defective, a case 
+     that only a maximum specification limit, \(R\), exists or a case that both \(L\) and \(R\) exist. 
+     The following example shows the acceptance sampling by variable in case of the minimum specification limit
+     \(L\) only. 
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>Example 7.5.1</b> (Case of lower specification limit \(L\))
+      <p>Assume that the tension of the wire string produced by a steel company is normally distributed 
+         based on past experience and the variance is 30, that is, the standard deviation is 
+         \(\sigma = \sqrt{30} = 5.48 \). If the wire tension of one roll is less than 87, 
+         it cannot be used for the desired work and is judged as a defective product. That is, the lower 
+         specification limit is \(L\) = 87. Inspecting an entire lot containing many rolls of wire rope
+         is impossible because the products can be destroyed. Therefore, a sample of rolls is selected 
+         from the lot, and if the defective rate of the sample is estimated to be 1%, the lot is accepted,
+         and if the defective rate is estimated to be 5%, the lot is rejected.
+      <p>
+         What should be the sample size and decision criteria? However, note that the decision criteria 
+         should satisfy the producer risk probability of rejecting a good lot, \(\alpha\) = 1%, and 
+         the consumer risk probability of rejecting a bad lot, \(\beta\) = 10%.
+      <p>
+      <b>Answer</b>
+      <p>
+         Assume that the quality characteristic value is the random variable X which follows a normal 
+         distribution with the mean of \(\mu_0\) for an accepted lot and the variance of \(\sigma^2\) is 30. 
+         Since the lower specification limit is \(L\) = 87, the probability that the characteristic value
+         is less than 87 is 1% can be represented as P(X < 87) = 0.01. Using the standardization of 
+         the normal random variable X, \(Z\), it can also be written as follows. 
+      $$
+         P(Z < \frac {87 - \mu_0 } { \sqrt{30} } ) = 0.01
+      $$
+         Therefore, according to the standard normal distribution table, \(\frac {87 - \mu_0 } { \sqrt{30} } \)
+         should be –2.33. That is, \(\mu_0 = 87 + 2.33 \sqrt{30} = 99.7684 \) which is the population mean 
+         of an accepted lot.
+      <p>
+         In a similar way, the characteristic values of a rejected lot follows a normal distribution 
+         with the mean of \(\mu_1\) and the variance of 30. The probability that the characteristic value
+         is less than 87 is 5% can be represented as P(X < 87) = 0.05. Using the standardization of 
+         the normal random variable X, \(Z\), it can also be written as follows. 
+      $$
+         P(Z < \frac {87 - \mu_1 } { \sqrt{30} } ) = 0.05
+      $$ 
+         Therefore,  \(\frac {87 - \mu_1 } { \sqrt{30} } \) should be –1.645 and \(\mu_1\)= 96.0146 
+         which is the population mean of a rejected lot.
+      <p>
+         The problem of selecting a sample from a lot to decide whether accepting the lot or rejecting 
+         the lot is the same as the testing hypotheses about the two population means as follows.
+      $$
+         H_0 : \mu = 99.7684 , H_1 : \mu = 96.0146
+      $$
+         For this testing hypothesis, the sample size and decision criteria are determined by using 
+         the probability of type 1 error (rejecting a good lot: producer risk), \(\alpha\), and the 
+         probability of type 2 error (accepting a bad  lot: consumer risk), \(\beta\). (Refer to 
+         Section 7.4 ‘Hypothesis test with \(\alpha\) and \(\beta\) simultaneously’). 
+      <p>
+         This hypothesis test is based on the distribution of sample means in Chapter 5. If the population
+         is a normal distribution with a mean of 99.7684 and a variance of 30, the distribution of the 
+         sample mean of size \(n\) is \(N(99.7684, 30/n)\), and if the population is a normal distribution 
+         with a mean of 96.0146 and a variance of 30, the distribution of the sample mean is 
+         \(N(96.0146, 30/n)\). Therefore, the problem is to determine the decision criteria and the 
+         sample size based on the probability of rejecting a good lot as \(\alpha\) = 1% and the probability
+         of accepting a bad lot as \(\beta\) = 10%, as shown in &lt;Figure 7.5.1&gt;, based on 
+         the distribution of the sample mean. The goal is to find \(C\) and \(n\).
+      <p>
+         \(\alpha\) = 1% means that the probability that a sample mean \(\overline X\) is smaller 
+         than \(C\) in a normal distribution \(N(99.7684, 30/n)\) as shown in &lt;Figure 7.5.1&gt;, 
+         that is, \(P(\overline X < C) = 0.01\). Using the standardization of the normal random variable X,
+         it can also be written as follows. 
+      $$
+         P(Z < \frac {C - 99.7684} {\sqrt { \frac{30}{n}} } ) = 0.01
+      $$
+         Therefore, based on the standard normal distribution table, it satisfies the following equation. 
+      $$
+         \frac {C - 99.7684} {\sqrt { \frac{30}{n}} } = -2.33
+      $$
+         Similarly, \(\beta\) = 10% means that a sample mean \(\overline X\) is larger than \(C\) in a 
+         normal distribution \( N(96.0146, 30/n) \), that is, \(P(\overline X > C) = 0.10 \).  Using 
+         the standardization of the normal random variable X, it can also be written as follows.
+      $$
+         P(Z > \frac {C - 96.0146} {\sqrt { \frac{30}{n}} } ) = 0.10
+      $$
+         Therefore, based on the standard normal distribution table, it satisfies the following equation. 
+      $$
+         \frac {C - 96.0146} {\sqrt { \frac{30}{n}} } = 1.28
+      $$
+         If we solve the above two equations with respective to \(C\) and \(n\), the sample size is, 
+         \(n\) = 27.77, critical value is, \(C\) = 97.3457. Hence, the decision rule becomes as follows. 
+         Select a sample of size 28 and calculate its sample mean and 
+      $$
+         \text {‘If the sample mean} \overline X < 97.3457, \text {then reject the lot, else accept the lot.’}
+      $$
+      <!--- ************ html Testing for alpha and beta ******* ---->
+      <b>[<span data-msgid="Testing Hypothesis muAB">Testing Hypothesis : Population Mean &mu;</span></b>
+      <p>
+         <iframe src="/estat/eLearning/en/example/070501/070501.html" width="700" height="700"> </iframe>
+      <p>
+         <div class="figText">&lt;Figure 7.5.1&gt; Testing Hypothesis to determine  using  and  
+      <p>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <h4>7.5.2 Acceptance Sampling by Variable: Case of Unknown Lot \(\sigma\)</h4>
+        When the standard deviation of quality characteristic value of a lot, \(\sigma\), is not known, 
+        the sample inspection method is essentially the same as when \(\sigma\) is known, except that 
+        an estimate of \(\sigma\) is used. If the standard deviation \(\sigma\) is not known, samples 
+        are commonly inspected by using Part B in the <b>U.S. Department of Defense Military Standard 
+        Sampling Procedures and Tables for Inspection by Variables (MIL-STD-414)</b>. This table 
+        assumes that the quality characteristic values are normally distributed. There are four parts
+        as follows, and the inspection procedure is explained in each part.
+    <p>
+        Part A: General information regarding sample inspection.
+    <br>Part B: Sample inspection, standard deviation method when the standard deviation of the lot  is unknown
+    <br>Part C: Sample inspection, range method when the standard deviation of the lot  is unknown
+    <br>Part D: Sample inspection when the standard deviation of the lot  is known
+    <p>
+       There are five inspection levels of MIL-STD-414, I, II, III, IV, and V, depending on the price of the product or the time required for inspection. The general inspection level is IV. MIL-STD-414 specifies the sample size and the maximum allowable defective rate M of the sample for the lot to pass, given the lot size, quality acceptance level of the entire lot, and inspection level.
+    <p>
+       The detailed information of MIL-STD-414 is so extensive and it is omitted in this book. Anyone interested should refer to the references.
+    <p>
   <p>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <button type="button" style="width:160px" onclick="moveSection(77)">&#10094; &nbsp;&nbsp;<b>Previous</b></button>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(80)"><b>Chapter 8</b>&nbsp;&nbsp; &#10095;</button>
+      <button type="button" style="width:160px" onclick="moveSection(79)"><b>Next</b>&nbsp;&nbsp; &#10095;</button>
   <p>
 
 </div>

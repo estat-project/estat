@@ -559,16 +559,17 @@
     addrStrB[68]  = temp+"/chapter06/060401.html"; // +060401
     addrStrB[69]  = temp+"/chapter06/060402.html";
     addrStrB[70]  = temp+"/chapter06/0605.html"; // +060501
-    addrStrB[71]  = temp+"/chapter06/060502.html";
-    addrStrB[72]  = temp+"/chapter06/0606.html";
+    addrStrB[71]  = temp+"/chapter06/0606.html";
+    addrStrB[72]  = temp+"/chapter06/0607.html";
+
     // Chapter 7
     addrStrB[73]  = temp+"/chapter07/index.html";
     addrStrB[74]  = temp+"/chapter07/0701.html";
     addrStrB[75]  = temp+"/chapter07/0702.html";
     addrStrB[76]  = temp+"/chapter07/0703.html";
     addrStrB[77]  = temp+"/chapter07/0704.html"; // +070401
-    addrStrB[78]  = temp+"/chapter07/070402.html";
-    addrStrB[79]  = temp+"/chapter07/0705.html";
+    addrStrB[78]  = temp+"/chapter07/0705.html";
+    addrStrB[79]  = temp+"/chapter07/0706.html";
     // Chapter 8
     addrStrB[80]  = temp+"/chapter08/index.html";
     addrStrB[81]  = temp+"/chapter08/080101.html"; // +080101
