@@ -1411,19 +1411,19 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
 
         table.style.fontSize = "13px";
 //        table.style.cellPadding = "10";
-    
+   
         if (ngroup < 2) { // ngroup=1일때는 도수분포표
           ncol = 5;
           sum  = 0;
           for (j=0; j<ndvalue; j++) sum += dataSet[0][j];
 
           row = table.insertRow(0);
-          row.innerHTML = "<h3>Frequency Table</h3>";
+          row.innerHTML = svgStr[25][langNum]; //<h3>Frequency Table</h3>
           row.style.textAlign = "center";
 
           row  = table.insertRow(1);
           for (k=0; k<2; k++) cell[k] = row.insertCell(k)
-          cell[0].innerHTML = "Var Name";
+          cell[0].innerHTML = svgStr[26][langNum]; // Var Name
           cell[0].style.backgroundColor = "#eee";
           cell[0].style.textAlign = "center";
           cell[1].innerHTML = dvarName;
@@ -1435,11 +1435,11 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
             cell[k] = row.insertCell(k);
             cell[k].style.width ="100px";
           }
-          cell[0].innerHTML = "Number";
-          cell[1].innerHTML = "Var Value";
-          cell[2].innerHTML = "Value Label";
-          cell[3].innerHTML = "Frequency";
-          cell[4].innerHTML = "Percent(%)";   
+          cell[0].innerHTML = "id";
+          cell[1].innerHTML = svgStr[27][langNum]; // 변량값
+          cell[2].innerHTML = svgStr[28][langNum]; // 변량값명
+          cell[3].innerHTML = svgStr[29][langNum]; // 도수
+          cell[4].innerHTML = svgStr[30][langNum]; // 상대도수  
           for (k=0; k<ncol; k++) {
             cell[k].style.textAlign = "center";
             cell[k].style.backgroundColor = "#eee";
@@ -1464,7 +1464,7 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
 
           row = table.insertRow(ndvalue+3);
           for (k=0; k<ncol; k++) cell[k] = row.insertCell(k)
-          cell[2].innerHTML = "Sum";
+          cell[2].innerHTML = svgStr[23][langNum]; // Sum
           cell[3].innerHTML = sum;
           cell[4].innerHTML = "100.0";
           cell[2].style.backgroundColor = "#eee";
@@ -1477,7 +1477,7 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
         else { // ngroup>=2 일때는 교차표
 
           row = table.insertRow(0);
-          row.innerHTML = "<h3>Cross Table</h3>";
+          row.innerHTML = svgStr[31][langNum]; //<h3>Cross Table</h3>
           row.style.textAlign = "center";
  
           row  = table.insertRow(1);
@@ -1486,10 +1486,10 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
           cell[0].style.width ="110px";
 //          for (k=1; k<4; k++)  cell[k].style.width ="70px";
           
-          cell[0].innerHTML = "Analysis Var";
+          cell[0].innerHTML = svgStr[26][langNum]; // "Analysis Var"
           cell[0].style.backgroundColor = "#eee";
           cell[1].innerHTML = dvarName;
-          cell[2].innerHTML = "Group Var:";
+          cell[2].innerHTML = svgStr[21][langNum]; // "Group Var:"
           cell[2].style.backgroundColor = "#eee";
           cell[3].innerHTML = gvarName;
           for (k=0; k<4; k++) cell[k].style.textAlign = "center";
@@ -1497,9 +1497,9 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
           row  = table.insertRow(2);
           row.style.height ="40px";
           for (k=0; k<ndvalue+2; k++) cell[k] = row.insertCell(k)
-          cell[0].innerHTML = "Group | Analysis";
+//          cell[0].innerHTML = "Group | Analysis";
           for (k=1; k<ndvalue+1; k++) cell[k].innerHTML = dvalueLabel[k-1]; 
-          cell[ndvalue+1].innerHTML = "Sum";   
+          cell[ndvalue+1].innerHTML = svgStr[48][langNum]; //"Sum"  
           for (k=0; k<ndvalue+2; k++) {
             cell[k].style.width ="60px";
             cell[k].style.textAlign = "center";
@@ -1509,7 +1509,7 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
           for (g=0; g<ngroup; g++) {
             row = table.insertRow(g+3);
             for (k=0; k<ndvalue+2; k++) cell[k] = row.insertCell(k)          
-            cell[0].innerHTML = "Group "+(g+1).toString()+" ("+gvalueLabel[g]+")";
+            cell[0].innerHTML = svgStr[18][langNum]+(g+1).toString()+" ("+gvalueLabel[g]+")";
             cell[0].style.textAlign = "center";
             cell[0].style.backgroundColor = "#eee";
             sum = 0;
@@ -1526,7 +1526,7 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
 
           row = table.insertRow(ngroup+3);
           for (k=0; k<ndvalue+2; k++) cell[k] = row.insertCell(k)
-          cell[0].innerHTML = "Sum";
+          cell[0].innerHTML = svgStr[48][langNum]; //"Sum"
           cell[0].style.textAlign = "center";
  
           for (k=1; k<ndvalue+1; k++) {
@@ -1540,6 +1540,7 @@ function freqTable(numVar, tdvarNumber, ndvalue, dvarName, dataValue, dvalueLabe
           for (k=0; k<ndvalue+2; k++) cell[k].style.backgroundColor = "#eee";
 
         } // endof else
+
 }
 
 

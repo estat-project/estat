@@ -594,7 +594,7 @@ function drawHistGraph(ngroup, gxminH, xstep, dataSet, freq, gvalueLabel, dvalue
          .attr("y",margin.top + graphHeight + margin.bottom/2 + 10)
         .text(dvarName)
       // Y축 제목
-      str = "Frequency";
+      str = svgStr[16][langNum]; //"Frequency"
       hist.append("text")
           .attr("class","yTitle")
           .attr("x",margin.left/2-15)
@@ -819,20 +819,20 @@ function showHistTable(ngroup, nvalueH, freq, dataValueH, dvarName, gvarName,gva
         table.style.fontSize = "13px";
 
           row = table.insertRow(0);
-          row.innerHTML = ",<h3> 그룹 도수분포표</h3>";
+          row.innerHTML = svgStr[36][langNum]; // 그룹 도수분포표
           row.style.textAlign = "center";
  
           row = table.insertRow(1);
           row.style.height ="40px";
           for (j=0; j<nvalueH+2; j++) {
             cell[j] = row.insertCell(j);
-            cell[j].style.width ="70px";
+            cell[j].style.width = "70px";
           }
-          cell[0].style.width ="120px";
-          cell[0].innerHTML = "분석변량명";
+          cell[0].style.width = "120px";
+          cell[0].innerHTML = svgStr[26][langNum]; // 분석변량명
           cell[0].style.backgroundColor = "#eee";
           cell[1].innerHTML = dvarName;
-          cell[3].innerHTML = "그룹명";
+          cell[3].innerHTML = svgStr[21][langNum]; // 그룹명
           cell[3].style.backgroundColor = "#eee";
           cell[4].innerHTML = gvarName;
           for (j=0; j<nvalueH+2; j++) cell[j].style.textAlign = "center";
@@ -840,9 +840,9 @@ function showHistTable(ngroup, nvalueH, freq, dataValueH, dvarName, gvarName,gva
           row = table.insertRow(2);
           row.style.height ="40px";
           for (j=0; j<nvalueH+2; j++) cell[j] = row.insertCell(j)
-          cell[0].innerHTML = "그룹 | 분석변량";
+          cell[0].innerHTML = svgStr[27][langNum]; //분석변량값
           for (j=1; j<nvalueH+1; j++) cell[j].innerHTML = j.toString()+"<br> ["+f1(dataValueH[j-1])+", "+f1(dataValueH[j])+")";
-          cell[nvalueH+1].innerHTML = "합계";   
+          cell[nvalueH+1].innerHTML = svgStr[23][langNum]; // 합계   
           for (j=0; j<nvalueH+2; j++) {
             cell[j].style.textAlign = "center";
             cell[j].style.backgroundColor = "#eee";
@@ -852,7 +852,7 @@ function showHistTable(ngroup, nvalueH, freq, dataValueH, dvarName, gvarName,gva
           for (k=0; k<ngroup; k++) {
             row = table.insertRow(k+3);
             for (j=0; j<nvalueH+2; j++) cell[j] = row.insertCell(j)          
-            cell[0].innerHTML = "그룹 "+(k+1).toString()+" ("+gvalueLabel[k]+")";
+            cell[0].innerHTML = svgStr[18][langNum]+(k+1).toString()+" ("+gvalueLabel[k]+")";
             cell[0].style.textAlign = "center";
             cell[0].style.backgroundColor = "#eee";
             sum = 0;
@@ -869,7 +869,7 @@ function showHistTable(ngroup, nvalueH, freq, dataValueH, dvarName, gvarName,gva
 
           row = table.insertRow(ngroup+3);
           for (j=0; j<nvalueH+2; j++) cell[j] = row.insertCell(j)
-          cell[0].innerHTML = "합  계";
+          cell[0].innerHTML = svgStr[23][langNum]; // 합계
           cell[0].style.textAlign = "center";
           for (j=1; j<nvalueH+1; j++) {
             sum = 0;
@@ -1332,7 +1332,7 @@ function CountLeaf(nvalue, tobs, tdata, dataValue, dvalueFreq, stem, leaf) {
 
 // 기초통계량표 --------------------------------------------------------------------------------------------------
 function statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini, Q1, median, Q3, maxi, tstat) {
-        var table = document.getElementById("StatTable");
+        var table = document.getElementById("StatTable1");
         var row;
         var ncol = 7;
         var cell = new Array(7);
@@ -1341,7 +1341,7 @@ function statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini
  
           var header = table.createTHead();
           row = header.insertRow(0);
-          row.innerHTML = ",<h3>기초통계량</h3>";
+          row.innerHTML = svgStr[43][langNum];  // Descriptive Stat
           row.style.textAlign = "center";
  
           row  = table.insertRow(1);
@@ -1352,9 +1352,9 @@ function statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini
           }
           cell[0].style.width ="110px";
           cell[0].style.backgroundColor = "#eee";
-          cell[0].innerHTML = "분석변량명";
+          cell[0].innerHTML = svgStr[26][langNum]; //"분석변량명"
           cell[1].innerHTML = dvarName;
-          cell[3].innerHTML = "그룹명";
+          cell[3].innerHTML = svgStr[37][langNum]; //"그룹명"
           cell[3].style.backgroundColor = "#eee";
           cell[4].innerHTML = gvarName;
           for (j=0; j<ncol; j++) cell[j].style.textAlign = "center";
@@ -1362,13 +1362,13 @@ function statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini
           row  = table.insertRow(2);
           row.style.height ="40px";
           for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);
-          cell[0].innerHTML = "그룹 | 통계량";
-          cell[1].innerHTML = "자료수";  
-          cell[2].innerHTML = "mean";  
-          cell[3].innerHTML = "std dev";  
-          cell[4].innerHTML = "최솟값";  
-          cell[5].innerHTML = "중앙값";  
-          cell[6].innerHTML = "최댓값";  
+          cell[0].innerHTML = svgStr[43][langNum]; // 통계량
+          cell[1].innerHTML = svgStr[44][langNum]; // n 
+          cell[2].innerHTML = svgStr[34][langNum]; // avg
+          cell[3].innerHTML = svgStr[35][langNum]; // std 
+          cell[4].innerHTML = svgStr[45][langNum]; // 최솟값 
+          cell[5].innerHTML = svgStr[46][langNum]; // 중앙값
+          cell[6].innerHTML = svgStr[47][langNum]; // 최댓값
           for (j=0; j<ncol; j++) {
             cell[j].style.textAlign = "center";
             cell[j].style.backgroundColor = "#eee";
@@ -1377,7 +1377,7 @@ function statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini
           for (g=0; g<ngroup; g++) {
             row = table.insertRow(g+3);
             for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
-            cell[0].innerHTML = "그룹 "+(g+1).toString()+" ("+gvalueLabel[g]+")";
+            cell[0].innerHTML = svgStr[18][langNum]+(g+1).toString()+" ("+gvalueLabel[g]+")";
             cell[0].style.backgroundColor = "#eee";
             cell[1].innerHTML = nobs[g].toString();  
             cell[2].innerHTML = f2(avg[g]).toString();  
@@ -1391,7 +1391,7 @@ function statTable(ngroup, dvarName, gvarName, gvalueLabel, nobs, avg, std, mini
 
           row = table.insertRow(ngroup+3);
           for (j=0; j<ncol; j++) cell[j] = row.insertCell(j);          
-          cell[0].innerHTML = "전체";
+          cell[0].innerHTML = svgStr[23][langNum]; // "전체"
           cell[0].style.backgroundColor = "#eee";
           cell[1].innerHTML = tstat[0].toString(); 
           for (j=2; j<ncol; j++) cell[j].innerHTML = f2(tstat[j-1]).toString();  
