@@ -373,7 +373,8 @@ document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그�
 // 학습수준 컨트롤
 var levelNum = localStorage.getItem("level");
 if (levelNum == null) levelNum = "4";
-document.myForm1.type1.value = parseInt(levelNum);
+/*
+ document.myForm1.type1.value = parseInt(levelNum);
 if (levelNum == "1") { // 초등
     document.getElementById("tool-group-graph-numeric").style.display = "none"; // 연속형 그래프 감추기
     document.getElementById("bothstem2").style.display = "none"; // 양쪽형 줄기잎 감추기
@@ -415,7 +416,7 @@ if (levelNum == "1") { // 초등
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
 }
-
+*/
 // =================================================================
 // 시트 컨트롤
 // =================================================================
@@ -1295,6 +1296,7 @@ d3.select("#debugBtn").on("click", function() {
 // 버튼, 라디오버튼, 체크박스 클릭
 // =================================================================
 // 학습수준 버튼
+/*
 var rad1 = document.myForm1.type1;
 rad1[0].onclick = function() { // 초등
     localStorage.removeItem("level");
@@ -1352,6 +1354,7 @@ rad1[3].onclick = function() { // 대학
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
     document.getElementById("estat").style.display = "block"; // 예제학습 보이기
 }
+*/
 // 분리형 막대그래프 : 주메뉴
 d3.select("#separate1").on("click", function() {
     graphNum = 1;
@@ -3711,9 +3714,15 @@ d3.select("#estatE").on("click", function() {
 d3.select("#estat").on("click", function() {
     window.open(appStr[4][langNum]);
 })
+// eStat Home 메뉴
+d3.select("#home").on("click", function() {
+    window.open(appStr[0][langNum]);
+})
 // eStaLecture 메뉴
 d3.select("#estatLecture").on("click", function() {
-    window.open(appStr[8][langNum]);
+    if (levelNum == "2") {window.open(appStr[6][langNum]);}
+    else if (levelNum == "3") {window.open(appStr[7][langNum]);}
+    else {window.open(appStr[8][langNum]);}
 })
 // language Button
 d3.select("#langBtn").on("click", function() {

@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Xbar - R Chart</title>
+    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+    <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+    <script src="/estat/eStat/js/language.js" ></script>
+    <script src="/estat/eStat/js/eStatU.js"></script>
+    <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+    <script src="/estat/eStat/lib/convertSVG.js"></script>
+</head>
+
+<body>
+
+    <div class="title">
+      <b>&nbsp; <span data-msgid="Sample Mean"></span> \(\overline X\) - <span data-msgid="sample range"></span> \(R\) <span data-msgid="control chart"></span> </b>
+    </div>
+    <br>
+
+    <table class="data">
+	<tr>
+	  <td colspan="2"><b><span data-msgid="input data"></span></b></td>
+          <td><span style="color: red;" data-msgid="NumberData"> </span> <span style="color:red;">≤ 100<span> </td>
+	</tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><span data-msgid="Sample"></span> id</td>
+	  <td><input type="text" size=80 id="datax"></td>
+	</tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td style="text-align: center">x<sub>1</sub></td>
+	  <td><input type="text" size=80 id="data1"></td>
+	</tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td style="text-align: center">x<sub>2</sub></td>
+	  <td><input type="text" size=80 id="data2"></td>
+	</tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td style="text-align: center">x<sub>3</sub></td>
+	  <td><input type="text" size=80 id="data3"></td>
+	</tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td style="text-align: center">x<sub>4</sub></td>
+	  <td><input type="text" size=80 id="data4"></td>
+	</tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td style="text-align: center">x<sub>5</sub></td>
+	  <td><input type="text" size=80 id="data5"></td>
+	</tr>
+    </table>
+    <table>
+        <tr>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td style="text-align: right">\(\overline {\overline X}\)</td>
+          <td><input type="text" size=5 id="xbar" style="text-align: right"></td>
+          <td style="text-align: right">&nbsp;&nbsp;&nbsp;\(\overline R\)</td>
+          <td><input type="text" size=5 id="rbar" style="text-align: right"></td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td>UCL<sub>\(\overline X\)</sub></td>
+          <td><input type="text" size=5 id="xucl" style="text-align: right"></td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td>UCL<sub>\(R\)</sub></td>
+          <td><input type="text" size=5 id="rucl" style="text-align: right"></td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td><span data-msgid="Sample Size"></span> (n) </td>
+          <td><input type="text" size=5 id="nn" style="text-align: center"></td>
+          <td style="text-align: right">\(\hat \sigma\)</td>
+          <td><input type="text" size=5 id="sigmahat" style="text-align: right"></td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td>CL<sub>\(\overline X\)</sub></td>
+          <td><input type="text" size=5 id="xcl" style="text-align: right"></td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td>CL<sub>\(R\)</sub></td>
+          <td><input type="text" size=5 id="rcl" style="text-align: right"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span data-msgid="Repetition"></span> (k) </td>
+          <td><input type="text" size=5 id="kk" style="text-align: center"></td>
+          <td></td>
+          <td></td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td>LCL<sub>\(\overline X\)</sub></td>
+          <td><input type="text" size=5 id="xlcl" style="text-align: right"></td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td>LCL<sub>\(R\)</sub></td>
+          <td><input type="text" size=5 id="rlcl" style="text-align: right"></td>
+        </tr>
+    </table>
+    <br>
+         <div class="figText">[그림 6.15] 26 - 40번째의 표본자료 입력</div>
+    <br>
+    <button type="button" id="execute"  style="width:80px;"> <span data-msgid="Execute"></span></button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+    <p>
+    <svg id="chart" width="640" height="580"> </svg> 
+    <br>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+
+   <script src="/estat/eStatU/js/68XbarRChart.js"> </script>
+   <script>
+      // init data
+      document.getElementById("datax").value = "26,27,28,29,30,31,32,33,34,35,36,37,38,39,40";
+        stat    = simpletext("#datax");  
+        datax   = data;  
+        nobs[0] = stat.n;
+      document.getElementById("data1").value = "2,2,-5,9,4,1,5,1,-6,-18,4,9,-34,0,4";
+        stat    = simplestat("#data1");  
+        data1   = data;  
+        nobs[1] = stat.n;
+      document.getElementById("data2").value = "-5,0,7,18,-5,-5,-1,-2,-1,-14,-1,-4,6,13,-1";
+        stat    = simplestat("#data2");  
+        data2   = data;  
+        nobs[2] = stat.n;
+      document.getElementById("data3").value = "10,10,1,4,3,4,2,1,8,-11,5,-4,-26,1,-3";
+        stat    = simplestat("#data3");  
+        data3   = data;  
+        nobs[3] = stat.n;
+      document.getElementById("data4").value = "-1,13,-1,1,1,-1,-1,-1,-1,-16,5,0,-1,2,2";
+        stat    = simplestat("#data4");  
+        data4   = data;  
+        nobs[4] = stat.n;
+      document.getElementById("xucl").value = "7.092";
+      document.getElementById("xcl").value  = "0.210";
+      document.getElementById("xlcl").value = "-6.672";
+      document.getElementById("rucl").value = "21.542";
+      document.getElementById("rcl").value  = "9.440";
+      document.getElementById("rlcl").value = "0.000";
+   </script>
+
+</body>
+</html>

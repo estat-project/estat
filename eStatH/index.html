@@ -28,14 +28,14 @@
       <li><a href="../eStatU/40DiscreteDistribution.htm">&#8546; &nbsp;&nbsp; <span data-msgid="DiscreteDist">Discrete Distribution</span></a></li>
       <li><a href="../eStatU/41BinomialEng.htm">&#8546; &nbsp;&nbsp; <span data-msgid="Binomial Experiment">Binomial Experiment</span></a></li>
       <li><a href="../eStatU/42BinomialEng.htm">&#8546; &nbsp;&nbsp; <span data-msgid="Binomial Distribution">Binomial Distribution</span></a></li>
-      <li><a href="43LawOfLarge.htm">&#8546; &nbsp;&nbsp; <span data-msgid="Law of Large Number"></span></a></li>
+      <li><a href="../eStatU/43LawOfLarge.htm">&#8546; &nbsp;&nbsp; <span data-msgid="Law of Large Number"></span></a></li>
       <li><a href="../eStatU/50NormalComparison.htm">&#8546; &nbsp;&nbsp; <span data-msgid="Normal Distribution"></span> <span data-msgid="ComparisonGraph"></span></a></li>
       <li><a href="../eStatU/52NormalEng.htm">&#8546; &nbsp;&nbsp; <span data-msgid="Normal Distribution">Normal Distribution</span></a></li>
       <li><a href="../eStatU/11RandomNumber.htm">&#8547; &nbsp; <span data-msgid="RandomNumber">Random Number</span></a></li>
       <li><a href="../eStatU/61SampleEng.htm">&#8547; &nbsp; <span data-msgid="Population vs Sample">Population vs Sample</span></a></li>
       <li><a href="../eStatU/62SampleEng.htm">&#8547; &nbsp; <span data-msgid="Dist of Sample Means">Dist of Sample Means</span></a></li>
       <li><a href="../eStatU/64SampleEng.htm">&#8547; &nbsp; <span data-msgid="Confidence Interval Simulation">Confidence Interval</span></a></li>
-      <li><a href="65ConfidenceIntervalMu_H.htm">&#8547; &nbsp; <span data-msgid="Mu Confidence Interval">Confidence Interval</span></a></li>
+      <li><a href="../eStatU/65ConfidenceIntervalMu_H.htm">&#8547; &nbsp; <span data-msgid="Mu Confidence Interval">Confidence Interval</span></a></li>
     </ul>
   </div>
 
@@ -54,6 +54,8 @@
 
   <script>
       localStorage['myKey'] = "../eStatH/index.html";
+      var lang = localStorage.getItem("lang");
+      setLanguage(lang);
       var svg = d3.select("#ScatterPlot2"); 
       svg.selectAll("*").remove();  // 전화면 제거
       var svgWidth    = 350;

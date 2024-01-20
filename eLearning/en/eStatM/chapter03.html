@@ -10,12 +10,11 @@
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+  <link href="/estat/eStat/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="../../css/dashboard.css" rel="stylesheet">
+  <link href="/estat/eStat/css/dashboard.css" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -24,12 +23,22 @@
       <![endif]-->
        <style type="text/css">code{white-space: pre;}</style>
        <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
-       <script src="../../js/prism.js"></script>
-       <link rel="stylesheet" href="../../css/prism.css">
-       <script src="../../js/jquery.min.js"></script>    
+       <link rel="stylesheet" href="/estat/eStat/css/pandoc.css">
+       <link rel="stylesheet" href="/estat/eStat/css/prism.css">
+       <script src="/estat/eStat/lib/jquery/jquery.min.js"></script>   
+       <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="/estat/eStat/lib/convertSVG.js"></script>
+       <script src="/estat/eStat/js/prism.js"></script>
+       <script src="/estat/eStat/js/eBook.js"></script>
+       <script src="/estat/eStat/js/eStatU.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>
+       <script> setLanguage('en'); </script>
        <script type="text/javascript" id="MathJax-script" async
 	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
        </script>
+
        <script>
 	 $(document).ready(function() {
   	     toc = $("#sidebar > ul > li > ul");
@@ -48,80 +57,59 @@
   		 $(sections[i]).replaceWith(li);
   	     }
 	 });
-	 </script>
-       <link rel="stylesheet" href="../../css/pandoc.css">
-       <script src="../../js/eBook.js"></script>
-       <script src="../../../eStat/js/language.js" ></script>   
-       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
-       <script src="../../../eStat/lib/d3/d3.layout.cloud.js"></script>
-       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
-       <script src="../../../eStat/js/eStatU.js"></script>
-       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
-       <script src="../../../eStat/lib/convertSVG.js"></script>
+       </script>
+
 </head>
+
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <ul class="nav navbar-nav">
-    <li><a class="navbar-brand" href="../../../eStat/index.html" target="_blank">eStat</a></li>
-    <li><a class="navbar-brand" href="../../../eStatM/index.html" target="_blank">eStatM</a></li>
-  </ul>
-</nav>
-
+<!-- begin of left sidebar -->
 <div class="container-fluid">
-  <div class="row">
-    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
+<div class="row">
+<div id="sidebar" class="col-sm-2 col-md1 sidebar">
+  <ul>
+    <li> <a href="index.html"><b>Table of Chapters</b> </a> </li>
+    <li> <a href="chapter01.html"> 1. Statistics</a> </li>
+    <li> <a href="chapter02.html"> 2. Visualization of Qualitative Data</a> </li>
+    <li> <a href="chapter03.html"> 3. Visualization of Quantitative Data</a> </li>
       <ul>
-	<li><a href=""></a>
-	  <ul>
-            <li><a href="../eStatM/index.html">Table of Contents</a></li>
-            <li><a href="../eStatM/chapter01.html">1. Statistics</a></li>
-            <li><a href="../eStatM/chapter02.html">2. Visualization of Qualitative Data</a></li>
-            <li><a href="../eStatM/chapter03.html">3. Visualization of Qunatitative Data</a></li>
-            <li><a href="../eStatM/chapter04.html">4. Measure of Central Tendency and Dispersion</a></li>
-	  </ul>
-	</li>
+        <li><a href="#0301">3.1 Stem and Leaf Plot</a> </li>
+        <li><a href="#0302">3.2 Histogram – Frequency Table</a> </li>
+        <li><a href="#0303">3.3 Frequency Distribution Polygon – Relative Frequency</u></a> </li>
+        <li><a href="#0304">3.4 Scatterplot</a> </li>
+        <li><a href="#0305">3.5 Exercise</a> </li>
       </ul>
-    </div>
-  </div>
+    <li> <a href="chapter04.html"> 4. Measure of Central Tendency and Dispersion</a> </li>
+  </ul>
 </div>
+</div>
+</div>
+<!-- end of left sidebar -->
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
   <!--***********************************************************************-->
   <h1>Chapter 3. Visualization of Quantitative Data</h1> 
-  <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(142)">&#10094;&#10094; &nbsp;&nbsp;<b>Chapter 2</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(144)"><b>Chapter 4</b>&nbsp;&nbsp; &#10095;&#10095;</button>
-  <p>
-  <table>
-    <tr>
-      <td style="width:300px">
-        <h1>&nbsp; 🌿 📈</h1>
-        <h4>
-        <a href="#0301"><u>3.1 Stem and Leaf Plot</u></a> <p>
-        <a href="#0302"><u>3.2 Histogram – Frequency Table</u></a> <p>
-        <a href="#0303"><u>3.3 Frequency Distribution Polygon – Relative Frequency</u></a> <p>
-        <a href="#0304"><u>3.4 Scatterplot</u></a> <p>
-        <a href="../eStatM/chapter03.pdf" target="_blank"><u>[Chpater 3. pdf]</u></a>
-        </h4>
-      </td>
-      <td style="width:350px">
-        <h1></h1>
+  <h1>&nbsp; 🌿 📈</h1>
+    <b>
+      <ul>
+        <li><a href="#0301">3.1 Stem and Leaf Plot</a> </li>
+        <li><a href="#0302">3.2 Histogram – Frequency Table</a> </li>
+        <li><a href="#0303">3.3 Frequency Distribution Polygon – Relative Frequency</a> </li>
+        <li><a href="#0304">3.4 Scatterplot</a> </li>
+        <li><a href="#0305">3.5 Exercise</a> </li>
+      </ul>
+      <a href="./pdf/chapter03.pdf" target="_blank">[Chpater3.pdf]</a>
+    </b>
         <p>In the case of quantitative data, the following graphs are drawn and 
            analyzed.
-        <p>
+        <br>
            - Stem and leaf drawing <br>
            - Histogram <br>
-           - Frequency distribution polygon <br>
-        <p>
+           - Frequency distribution polygon 
+        <br>
            In the case of two quantitative variables, a scatter plot is used to 
            analyze their relation.
-      </td>
-    </tr>
-  </table>
 <!--
   <h6>
       <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
@@ -132,37 +120,25 @@
   <h3 id="0301">3.1  Stem and Leaf Plot</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ Think</h4>
              <b>Fine dust occurs frequently these days in Seoul and causes inconvenience
              to our daily life. The following dare are the fine dust concentration
              in Seoul in February, 2021. How many days in February were the fine dust  
              severe?</b>
-          <p>
-          <div class="textLeft">(Data 3.1)Fine dust concentration in Seoul, February 2021 (㎍/\(m^3\))<br>
+      <p>
+          <div class="textLeft">(Data 3.1) Fine dust concentration in Seoul, February 2021 (㎍/\(m^3\))<br>
           </div>
-          <table> 
+          <table style="width:700px"> 
             <tr> 
               <td>
                 39  18  20  22  16  44  59  18  16  23  
-                53  76  77  76  37  15  13  17  24  42  <br>
+                53  76  77  76  37  15  13  17  24  42  
                 46  30  18  25  34  24  11  14  
               </td>
             </tr>
           </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
+      <p>
+      <h4>💎 Explore</h4>
           <div class="textL20M20">
              <b> 1) There are 28 data on fine dust concentration, how can we easily 
                  express the overall distribution of data?</b>
@@ -171,9 +147,6 @@
              <b> 2) When the fine dust concentration exceeds 36 (㎍/), it is evaluated
                  as 'bad'. How many ‘bad’ days are in February?  </b>
           </div>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -189,8 +162,8 @@
          the same way.
       <p>
           <div class="textLeft">[Table 3.1] Fine dust concentration data organized on ten’s digit</div>
-          <table> 
-            <tr> <th class="thGrey">Ten's digit</th>       <th class="thGrey">Data</th>  </tr>
+          <table style="width:500px"> 
+            <tr> <th>Ten's digit</th>       <th>Data</th>  </tr>
             <tr> <td class="tdCenter">1</td>  <td>18 16 18 16 15 13 17 18 11 14</td>    </tr>
             <tr> <td class="tdCenter">2</td>  <td>20 22 23 24 25 24</td>    </tr>
             <tr> <td class="tdCenter">3</td>  <td>39 37 30 34</td>    </tr>
@@ -209,8 +182,8 @@
          number is called the ‘leaf’. 
       <p>
           <div class="textLeft">[Table 3.2] Fine dust concentration data in which the last digit of the data shown in each row is arranged in ascending order,</div>
-          <table> 
-            <tr> <th class="thGrey">Ten's digit</th>       <th class="thGrey">Data</th>  </tr>
+          <table style="width:500px"> 
+            <tr> <th>Ten's digit</th>       <th>Data</th>  </tr>
             <tr> <td class="tdCenter">1</td>  <td>1 3 4 5 6 6 7 8 8 8</td>    </tr>
             <tr> <td class="tdCenter">2</td>  <td>0 2 3 4 4 5 </td>    </tr>
             <tr> <td class="tdCenter">3</td>  <td>0 4 7 9</td>    </tr>
@@ -246,338 +219,8 @@
          in &lt;Figure 3.1&gt; appears.      
       <p>
 
-    <!---------------  eStatU  stem and leaf plot html ------------------------------------->
-    <button type="button" id="eraseStemData" style="width:140px;"><b>New Data</b></button>
-    <table>
-      <tr>
-        <td><b><span data-msgid="Main Title">Main Title</span></b></td>
-        <td><input type="text" size=70 id="mtitle"></td>
-      </tr>
-      <tr>
-        <td><b><span data-msgid="input data">Data Input</span></b></td>
-        <td><input type="text" size=90 id="data1"></td>
-      </tr>
-    </table>
-    <p>
-    <button type="button" id="execute" style="width:140px;">
-        <span data-msgid="Execute">Execute</span>
-    </button> 
-    &nbsp;<span style="color:red" data-msgid="maxStem">** max number of stems &le; 30 ** </span> 
-    <p>
-    <svg id="chart" width="750" height="540" style="border-style:solid;"> </svg>
-    <p> 
-    <button type="button" id="saveGraphU" style="width:140px;">
-	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
-    </button>
-    <!---------------  eStatU  stem and leaf plot script ------------------------------------->
-    <script>
-      setLanguage('en');
-      var chart = d3.select("#chart")
-      var svgWidth    = 750;
-      var svgHeight   = 560;  
-      var margin, graphWidth, graphHeight;
-      margin      = {top: 60, bottom: 20, left: 20, right: 20};
-      graphWidth  = svgWidth - margin.left - margin.right;
-      graphHeight = svgHeight - margin.top - margin.bottom;
-
-      var i, j, k, ith;
-      var x1, x2, y1, y2, cx, cy, ty;
-      var nint, step, buffer, nvalue; 
-      var nobsL, mini, maxi;
-      var maxrow = 100;
-      var data1 = new Array(maxrow);
-      var tdata = new Array(maxrow);
-      var mTitle;
-      var langNum = 1;
-
-    // basic statistics function ============================================
-    simplestat2 = function(dataid) {
-        data = d3.select(dataid)
-	         .node()
-	         .value
-	         .trim()
-	         .split(new RegExp("[ ]*[, \t][ ]*"))   // ['8', '8', '9']
-	         .map(parseFloat);                      // [8.0, 8.0, 9.0]
-	if(isNaN(data[0])) data = [];
-        n = data.length;
-        sum = 0;
-        sumsq = 0;
-        data.forEach(function(d) {
-          sum += d;
-          sumsq += d*d;
-        });
-        xbar = sum / n;
-        v = (sumsq - n*xbar*xbar) / (n-1);
-        s = Math.sqrt(v)
-        data.sort(function(a, b) { return a - b; });
-        mini  = data[0];
-        maxi  = data[n-1];
-        range = maxi - mini;
-        medi = medianCalc(n,data);
-        var tdata = new Array(n);
-        var ntemp; 
-        if (n%2 == 1) { // odd
-          ntemp = (n+1)/2;
-          for (i=0; i<ntemp; i++) tdata[i] = data[i];
-          q1 = medianCalc(ntemp,tdata)
-          for (i=ntemp-1; i<n; i++) tdata[i-ntemp+1] = data[i];
-          q3 = medianCalc(ntemp,tdata)
-        }
-        else {
-          ntemp = n/2;
-          for (i=0; i<ntemp; i++) tdata[i] = data[i];
-          q1 = medianCalc(ntemp,tdata)
-          for (i=ntemp; i<n; i++) tdata[i-ntemp] = data[i];
-          q3 = medianCalc(ntemp,tdata)
-        }
-        iqr = q3 - q1;
-        return {'n':n, 'xbar':xbar, 'var':v, 'std':s, 'mini':mini, 'q1':q1, 'medi':medi, 'q3':q3, 'maxi':maxi, 'range':range, 'iqr':iqr};
-      }
-      // median calculation
-      function medianCalc(n, data) {
-        if (n < 2) return;
-        if (n%2 == 1) { // odd
-          return data[(n+1)/2 -1];
-        }
-        else { // even
-          return ( data[n/2 -1] + data[(n+2)/2 -1] ) / 2.;
-        }
-   }
-
-      // Initial stem and leaf graph example
-      document.getElementById("mtitle").value = "Fine dust concentration in Seoul, February 2021 (㎍/m³)";   
-      document.getElementById("data1").value  = "39 18 20 22 16 44 59 18 16 23 53 76 77 76 37 15 13 17 24 42 46 30 18 25 34 24 11 14";
-      data1 = [39,18,20,22,16,44,59,18,16,23,53,76,77,76,37,15,13,17,24,42,46,30,18,25,34,24,11,14];
-      stat  = simplestat2("#data1");  
-      nobsL  = data1.length;
-      mini  = stat.mini;  
-      maxi  = stat.maxi;
-      data  = data1;
-
-      // data input control =====================================
-      d3.select("#data1").on("input", function() {
-        stat = simplestat2("#data1");  
-        nobsL  = stat.n;  
-        mini  = stat.mini;  
-        maxi  = stat.maxi;
-      });
-
-      updateData = function() {
-        document.getElementById("data1").value = ''; 
-      }
-
-      // erase Stem and Leaf Data and Graph
-      d3.select("#eraseStemData").on("click",function() {
-        chart.selectAll("*").remove();
-        document.getElementById("mtitle").value = "";
-        document.getElementById("data1").value = "";
-      })
-
-      // Draw Stem and Leaf Graph ======================================
-      d3.select("#execute").on("click",function() {
-        chart.selectAll("*").remove();
-        for (i=0; i<nobsL; i++) {
-            if (isNaN(data[i]) ) { //문자 데이터 체크
-              chart.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
-                   .text(alertMsg[48][langNum]).style("stroke","red").style("font-size","1em");
-              return;
-            }
-        }
-        mTitle = d3.select("#mtitle").node().value;   
-        for (i=0; i<nobsL; i++) tdata[i] = data[i];
-        drawStemLeaf(nobsL, mini, maxi, tdata);
-      })
-
-      // svg Graph Save
-      d3.select("#saveGraphU").on("click", function() {
-        var svg = d3.select("#chart");
-        var width  = svgWidth;
-        var height = svgHeight;
-        var svgString = getSVGString(svg.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
-
-
-  // 줄기잎그림 함수 -----------------------------------------------------------------------------
-  function drawStemLeaf(nobsL, mini, maxi, dataSet) {
-    var colr = ["#FF0000","#FF8000","#80FF00","#00FFFF","#BF00FF","#FF00FF","#0080FF","#00BFFF","#8000FF","#0000FF"];
-    var i, j, k, kk, digitMax, digitDeci, digit10, len, pos, temp, temp1, temp2, ty, x1, y1, x2, y2;
-    var tempstr;
-    var nvalue;
-    var lineSpace  = 15;
-    var tdata      = new Array(maxrow);
-    var stem       = new Array(maxrow);
-    var stemStr    = new Array(maxrow);
-    var leaf       = new Array(maxrow);
-    var dataValue  = new Array(maxrow);
-    var dvalueFreq = new Array(maxrow);
-
-    // 소수아래 자리수 계산
-    digitDeci = 0;
-    for (i = 0; i < nobsL; i++) {
-       temp = dataSet[i].toString();
-       pos = temp.indexOf(".");
-       if (pos < 0) len = 0;
-       else len = temp.length - pos - 1;
-       if (len > digitDeci) digitDeci = len;
-    }
-    if (digitDeci < 0) digitDeci = 0;
-    digit10 = 1;
-    if (digitDeci > 0) {
-        for (j = 0; j < digitDeci; j++) digit10 *= 10;
-    }
-
-    // Counting Stem 
-    temp1 = mini * digit10 - mini * digit10 % 10;
-    temp2 = maxi * digit10 - maxi * digit10 % 10;
-    nvalue = temp2 / 10 - temp1 / 10 + 2;
-
-    svgHeight = margin.top + margin.bottom + 40 + nvalue * lineSpace;
-    if (svgHeight < 560) svgHeight = 560;
-    graphHeight = svgHeight - margin.top - margin.bottom;
-    margin.left = 20;
-    margin.right = 20;
-    graphWidth = svgWidth - margin.left - margin.right;
-    document.getElementById("chart").style.height = svgHeight;
-
-    stem[0] = temp1;
-    for (j = 1; j < nvalue; j++) {
-        stem[j] = stem[j - 1] + 10;
-    }
-
-    for (j = 0; j < nvalue; j++) {
-        temp = stem[j].toFixed(0);
-        len = temp.length;
-        if (temp == 0) {
-            stemStr[j] = "0";
-        } else {
-            stemStr[j] = temp.substr(0, len - 1);
-        }
-        if (stemStr[j] == null) stemStr[j] = "0";
-        dvalueFreq[j] = 0;
-        leaf[j] = new Array(100);
-    }
-
-    ty = 20;
-    for (i = 0; i < nobsL; i++) {
-        tdata[i] = dataSet[i] * digit10;
-    }
-    // Determine Leaf
-    CountLeaf(nvalue, nobsL, tdata, dataValue, dvalueFreq, stem, leaf);
-    // 주제목
-    chart.append("text")
-        .attr("x", margin.left + graphWidth/2)
-        .attr("y", margin.top / 2 + 10)
-        .style("font-size", "20px")
-        .style("font-family", "sans-seirf")
-        .style("stroke", "black")
-        .style("text-anchor", "middle")
-        .text(mTitle)
-    chart.append("text").attr("class", "titleStem").attr("x", margin.left + 20).attr("y", margin.top + ty)
-         .text(svgStr[39][langNum]).style("stroke", myColor[0]);
-    temp = svgStr[40][langNum];
-    chart.append("text").attr("class", "titleStem").attr("x", margin.left + 90).attr("y", margin.top + ty)
-         .text(temp).style("stroke", myColor[0]);
-    chart.append("line").attr("x1", margin.left).attr("x2", margin.left + graphWidth)
-         .attr("y1", margin.top + 10 + ty).attr("y2", margin.top + 10 + ty).style("stroke", "black")
-
-    for (j = 0; j < nvalue - 1; j++) {
-            x1 = margin.left + 50;
-            y1 = ty + margin.top + 30 + j * lineSpace;
-            temp = stemStr[j];
-            if (digitDeci > 1) temp = (parseInt(stemStr[j]) / (digit10 / 10)).toFixed(digitDeci - 1);
-            chart.append("text").attr("class", "stem").attr("x", x1).attr("y", y1).text(temp).style("stroke", myColor[0]);
-            for (k = 1; k <= dvalueFreq[j]; k++) {
-                x2 = x1 + 40 + k * 16;
-                temp = leaf[j][k].toFixed(0);
-                chart.append("text")
-                    .attr("class", "leaf")
-                    .attr("x", x2)
-                    .attr("y", y1)
-                    .text(temp.toString())
-                    .transition() // 애니매이션 효과 지정
-                    .delay(function(d, i) {
-                        return i * 100;
-                    }) // 0.5초마다 그리도록 대기시간 설정
-                    .duration(2000) // 2초동안 애니매이션이 진행되도록 설정
-                    .style("stroke", colr[temp])
-            } // endfof k
-    } // endof j 
-
-    for (j = 0; j < nvalue - 1; j++) {
-            for (k = 1; k <= dvalueFreq[j]; k++) {
-                leaf[j][k] = 0;
-            }
-    } // endof j  
-  }
-  // Sorting freq in ascending order and determine leaf
-  function CountLeaf(nvalue, tobs, tdata, dataValue, dvalueFreq, stem, leaf) {
-    var i, j, k;
-    var dataA = new Array(tobs);
-    var dataY = new Array(tobs);
-
-    for (i = 0; i < tobs; i++) dataA[i] = tdata[i];
-    sortAscendM(tobs, dataA, dataValue, dvalueFreq, dataY);
-    for (j = 0; j < nvalue; j++) dvalueFreq[j] = 0;
-    for (i = 0; i < tobs; i++) {
-      if (dataA[i] < 0) {  // 음수
-          for (j = 0; j < nvalue; j++) {
-            if (dataA[i] < stem[j]) {
-                dvalueFreq[j]++;
-                leaf[j][dvalueFreq[j]] = -dataA[i] % 10;
-                break;
-            } 
-          } // endof i
-      }
-      else { // 양수
-          for (j = 0; j < nvalue; j++) {
-            if (dataA[i] < stem[j+1]) {
-                dvalueFreq[j]++;
-                leaf[j][dvalueFreq[j]] = dataA[i] % 10;
-                break;
-            } 
-          } // endof i
-      }
-    }
-  }
-  // Sorting in ascending and count each value frequency
-  function sortAscendM(dobs, dataA, dataValue, dvalueFreq, dataY) {
-    var i, j, temp;
-    var nvalue = 0;
-    for (i = 0; i < dobs - 1; i++) {
-        for (j = i; j < dobs; j++) {
-            if (dataA[i] > dataA[j]) {
-                temp = dataA[i];
-                dataA[i] = dataA[j];
-                dataA[j] = temp;
-            }
-        }
-    }
-    for (i = 0; i < dobs; i++) {
-        dvalueFreq[i] = 0;
-    }
-    dataValue[nvalue] = dataA[0];
-    dvalueFreq[nvalue] = 1;
-    nvalue = 0;
-    dataY[nvalue] = 1;
-    for (i = 1; i < dobs; i++) {
-        if (dataA[i] == dataA[i - 1]) {
-            dvalueFreq[nvalue]++;
-        } else {
-            nvalue++;
-            dataValue[nvalue] = dataA[i];
-            dvalueFreq[nvalue]++;
-        }
-        dataY[i] = dvalueFreq[nvalue];
-    }
-    nvalue++;
-    return nvalue;
-  }
-  </script>
-
+    <!----------***  eStatU  stem and leaf plot html ***--------------------->
+      <iframe class="example90" src="./example/0301.html"> </iframe>
       <div class="textLeft">&lt;Figure 3.1&gt; Stem and leaf plof of fine dust concentration data </div>
   </div>
   <!------------------------------------------------------------------------------------------------->
@@ -595,11 +238,11 @@
       <p>
           <div class="textLeft">(Data 3.2) Daily minimum temperature in Seoul in 
              February 2021(unit degree in Celsius)</div>
-          <table> 
+          <table style="width:700px"> 
             <tr> 
               <td>
                 -2.3 -8.2 -9.4 -7.4 -4.4   4.3  -2.6   5.4  -6.1 -1.5 
-                 1.3  0.6  1.0  6.4 -5.2  -7.0 -10.4 -10.6  -7.1  5.5 <br>
+                 1.3  0.6  1.0  6.4 -5.2  -7.0 -10.4 -10.6  -7.1  5.5 
                  4.7  0.4 -3.1 -3.0  0.7   0.5   4.3   3.2 
               </td>
             </tr>
@@ -607,44 +250,29 @@
       <p>Draw a stem and leaf plot for the daily minimum temperature.
       <p><b>Solution</b>
       <p>
-           <input class="qrBtn" type="image" src="../../QR/eStatU_07StemLeafPlot.svg" onclick="window.open(addrStr[143])">     
-      <table style="width:700px">
-        <tr>
-          <td>
-            <img src="../FigureM/Fig0302.png">
-            <div class="textLeft">&lt;Figure 3.2&gt; Stem and leaf plot of the daily minimum temperature data in Seoul</div>
-          </td>
-          <td></td>
-          <td>
-               Enter the daily minimum temperature data in 'Data input' as in &lt;Figure 3.2&gt; and the 
-               title you want in 'Main Title'.
-            <p>If you click the [Execute] button, a stem and leaf plot as shown 
-               in &lt;Figure 3.2&gt; appears.
-            <p>Temperature data have decimal points and negative numbers, so the 
-               stem and leaf plot used the last digit number as a leaf.
-          </td>
-        </tr>
-      </table>
+          Enter the daily minimum temperature data in 'Data input' as in &lt;Figure 3.2&gt; and the 
+          title you want in 'Main Title'.
+      <br>If you click the [Execute] button, a stem and leaf plot as shown 
+          in &lt;Figure 3.2&gt; appears.
+      <p>Temperature data have decimal points and negative numbers, so the 
+         stem and leaf plot used the last digit number as a leaf.
+      <p>
+         <iframe class="example90" src="./example/0302.html"> </iframe>
+         <div class="textLeft">&lt;Figure 3.2&gt; Stem and leaf plot of the daily minimum temperature data in Seoul</div>
      </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:700px">
-        <tr>
-          <td style="width:160px">
-            <h4>⏱ Exercise 3.1</h4> 
-            <input class="qrBtn" type="image" src="../../QR/eStatU_07StemLeafPlot.svg" onclick="window.open(addrStr[143])">     
-          </td>
-          <td>
+        <h4>⏱ Exercise 3.1</h4> 
           <p>
             The following is data on the length of bicycle-only roads by 25 
             administrative districts in Seoul as of 2019. Draw a stem and leaf plot
             using 『eStatM』 and analyze it. 
             <p>
             <div class="textLeft">(Data 3.3) Length of bicycle-only roads by 25 administrative districts in Seoul in 2019 (unit km) </div>
-            <table> 
+            <table style="width:700px"> 
               <tr> 
                 <td>
                   24 15 23 20 30 24  7  8  7 12 28 27 19 35 41 
@@ -652,30 +280,22 @@
                 </td>
               </tr>
             </table>
-         </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_07StemLeafPlot.svg" onclick="window.open(addrStr[143])">     
     </div>
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:700px">
-        <tr>
-          <td style="width:160px">
-            <h4>⏱ Exercise 3.2</h4> 
-            <input class="qrBtn" type="image" src="../../QR/eStatU_07StemLeafPlot.svg" onclick="window.open(addrStr[143])">     
-          </td>
-          <td>
-          <p>
+        <h4>⏱ Exercise 3.2</h4> 
+        <p>
            The following is data on the maximum wind speed of typhoons that passed 
            through Korea in 2020.<br>
            1) Draw a stem and leaf plot using 『eStatM』. <br>
            2) If the maximum wind speed of a typhoon is 54 m/sec or more, it is classified as a super strong typhoon. Count how many super typhoons have passed.
-            <p>
+        <p>
             <div class="textLeft">(Data 3.4) Maximum wind speed of typhoons that passed through Korea in 2020.(unit m/sec) <br>
             </div>
-            <table> 
+            <table style="width:700px"> 
               <tr> 
                 <td>
                   40 22 21 29 19 22 24 45 49 55 24 27 29 35 19 
@@ -683,9 +303,7 @@
                 </td>
               </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_07StemLeafPlot.svg" onclick="window.open(addrStr[143])">     
     </div>
     <p>
 
@@ -693,41 +311,26 @@
   <h3 id="0302">3.2 Histogram – Frequency Table</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ Think</h4>
           <b>The data on the weight of 2nd year middle school students is as follows: </b>
           <p>
             <div class="textLeft">(Data 3.5) Weight of middle school students (unit kg)</div>
-            <table> 
+            <table style="width:650px"> 
               <tr> 
                 <td>
-                  63  65  67  68  61  60  72  55  64  76  68  63  70  61  54 <br> 
+                  63  65  67  68  61  60  72  55  64  76  68  63  70  61  54  
                   63  66  53  58  70  62  62  57  58  59  53  58  58  62  61  
                 </td>
               </tr>
             </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
           <p>
+      <h4>💎 Explore</h4>
           <div class="textL20M20">
             <b> 1) If there are 30 data, how can we easily express the distribution of students' weight in a graph?</b>
           </div>
           <div class="textL20M20">
             <b> 2) How many students weigh between 70kg and 75kg? </b>
           </div>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -745,8 +348,8 @@
          in each interval. Stem and leaf plot can be useful for organizing these data.
       <p>
           <div class="textLeft">[Table 3.3] Weight of middle school students organized by intervals with 5kg width</div>
-          <table> 
-            <tr> <th class="thGrey">Weight (kg)</th> <th class="thGrey">Data</th> <th class="thGrey">Number of data</th>   </tr>
+          <table style="width:650px"> 
+            <tr> <th>Weight (kg)</th> <th>Data</th> <th>Number of data</th>   </tr>
             <tr> <td class="tdCenter">50 &le; ~ &lt;55</td>  <td>53 53 54</td>                   <td class="tdCenter"> 3</td> </tr>
             <tr> <td class="tdCenter">55 ~ 60</td>  <td>55 57 58 58 58 58 59</td>             <td class="tdCenter"> 7</td> </tr>
             <tr> <td class="tdCenter">60 ~ 65</td>  <td>60 61 61 61 62 62 62 63 63 63 64</td> <td class="tdCenter">11</td> </tr>
@@ -767,15 +370,15 @@
          <b>frequency</b>. [Table 3.4] is a frequency table of students' weight.
       <p>
           <div class="textLeft">[Table 3.4] Weight of middle school students organized by intervals with 5kg width</div>
-          <table> 
-            <tr> <th class="thGrey">Class</th> <th class="thGrey">Frequency</th>   </tr>
+          <table style="width:400px"> 
+            <tr> <th>Class</th> <th>Frequency</th>   </tr>
             <tr> <td class="tdCenter">50 &le; ~ &lt;55</td>  <td class="tdCenter"> 3</td> </tr>
             <tr> <td class="tdCenter">55 ~ 60</td>        <td class="tdCenter"> 7</td> </tr>
             <tr> <td class="tdCenter">60 ~ 65</td>        <td class="tdCenter">11</td> </tr>
             <tr> <td class="tdCenter">65 ~ 70</td>        <td class="tdCenter"> 5</td> </tr>
             <tr> <td class="tdCenter">70 ~ 75</td>        <td class="tdCenter"> 3</td> </tr>
             <tr> <td class="tdCenter">75 ~ 80</td>        <td class="tdCenter"> 1</td> </tr>
-            <tr> <th class="thGrey">Total</th>             <th class="tdCenter">30</th> </tr>
+            <tr> <th>Total</th>             <th class="tdCenter">30</th> </tr>
           </table>
 
       <p>As a value representing each class, the middle value of both ends of 
@@ -799,15 +402,15 @@
       <p>[Table 3.5] is a variation of the frequency table in which class values and relative frequencies are displayed. 
       <p>
           <div class="textLeft">[Table 3.5] Frequency table with class value and relative frequency</div>
-          <table> 
-            <tr> <th class="thGrey">Class(kg)</th> <th class="thGrey">Class value</th> <th class="thGrey">Frequency</th> <th class="thGrey">Relative frequency</th>   </tr>
+          <table style="width:600px"> 
+            <tr> <th>Class(kg)</th> <th>Class value</th> <th>Frequency</th> <th>Relative frequency</th>   </tr>
             <tr> <td class="tdCenter">50 &le; ~ &lt;55</td> <td class="tdCenter">52.5</td> <td class="tdCenter">0.10</td> <td class="tdCenter"> 3</td> </tr>
             <tr> <td class="tdCenter">55 ~ 60</td>       <td class="tdCenter">57.5</td> <td class="tdCenter">0.23</td> <td class="tdCenter"> 7</td> </tr>
             <tr> <td class="tdCenter">60 ~ 65</td>       <td class="tdCenter">62.5</td> <td class="tdCenter">0.37</td> <td class="tdCenter">11</td> </tr>
             <tr> <td class="tdCenter">65 ~ 70</td>       <td class="tdCenter">67.5</td> <td class="tdCenter">0.17</td> <td class="tdCenter"> 5</td> </tr>
             <tr> <td class="tdCenter">70 ~ 75</td>       <td class="tdCenter">72.5</td> <td class="tdCenter">0.10</td> <td class="tdCenter"> 3</td> </tr>
             <tr> <td class="tdCenter">75 ~ 80</td>       <td class="tdCenter">77.5</td> <td class="tdCenter">0.03</td> <td class="tdCenter"> 1</td> </tr>
-            <tr> <th class="thGrey">Total</th> <th></th> <th class="thGrey">30</th> <th class="thGrey">1.00</th>   </tr>
+            <tr> <th>Total</th> <th></th> <th>30</th> <th>1.00</th>   </tr>
           </table>
  
       <p>The above frequency table can be graphed in the following order, which is called a 
@@ -817,7 +420,7 @@
          ② Write the frequency on the vertical axis.<br>
          ③ In each class, draw a rectangle with the width of the class horizontally and the frequency vertically.
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0303.png">
+         <img class="imgFig600600" src="./Figure/Fig0303.png">
          <div class="textLeft">&lt;Figure 3.3&gt; Histogram of students’ weights data</div>
       <p>
          Classes in the frequency table can be made in various ways depending on the width 
@@ -826,12 +429,12 @@
          This frequency table is a  table to draw the stem and leaf plot which uses 10-digit numbers.
       <p>
           <div class="textLeft">[Table 3.6] Frequency table with 10kg class size</div>
-          <table> 
-            <tr> <th class="thGrey">Class (kg)</th> <th class="thGrey">Frequency</th>   </tr>
+          <table style="width:400px"> 
+            <tr> <th>Class (kg)</th> <th>Frequency</th>   </tr>
             <tr> <td class="tdCenter">50 &le; ~ &lt;55</td> <td class="tdCenter">10</td> </tr>
             <tr> <td class="tdCenter">60 ~ 66</td>       <td class="tdCenter">16</td> </tr>
             <tr> <td class="tdCenter">70 ~ 75</td>       <td class="tdCenter"> 4</td> </tr>
-            <tr> <th class="thGrey">Total</th> <th class="thGrey">30</th>   </tr>
+            <tr> <th>Total</th> <th>30</th>   </tr>
           </table>
       <p>
          When there are a lot of data, it is time-consuming and not easy to draw the frequency 
@@ -850,895 +453,21 @@
           the e-book) and enter the title you want in 'Main Title'.
       <p>Click the [Execute] button to draw a histogram as shown in &lt;Figure 3.5&gt;.
       <p>
-      <!-------- 05Histogram.htm   -------------------------------------------------------------->
-      <button type="button" id="eraseHistData" style="width:140px;"><b>New Data</b></button>
-      <table>
-        <tr>
-          <td><b><span data-msgid="Main Title">Main Title</span></b></td>
-          <td colspan="3"><input type="text" size=70 id="mTitleHist"></td>
-        </tr>
-        <tr>
-          <td><b><span data-msgid="y title">y title</span></b></td>
-          <td>&nbsp;<input type="text" size=15 id="yTitleHist"></td>
-          <td><b><span data-msgid="x title">x title</span></b></td>
-          <td>&nbsp;<input type="text" size=15 id="xTitleHist"></td>
-        </tr>
-      </table>
-      <table class="stat">
-        <tr>
-          <td><b><span data-msgid="input data">Data Input</span></b></td>
-          <td colspan="7"><input type="text" size=90 id="dataHist"></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td style="width:120px"><span data-msgid="NumberData">Data Size</span></td>
-          <td style="width:50px; text-align: center;"><span class="fontmath">n</span></td>
-          <td><input type="text" size=10 id="nn" style="text-align: right;"></td>
-          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-          <td style="width:140px"><span id="msgMin"></span></td>
-          <td style="width:50px text-align: center;"><span class="fontmath">min</span></td>
-          <td><input type="text" size=10 id="miniH" style="text-align: right;"></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><span data-msgid="Mean">Mean</span></td>
-          <td style="text-align:center;"><span class="fontmath">&mu;</span></td>
-          <td><input type="text" size=10 id="xbar" style="text-align: right;"></td>
-          <td></td>
-          <td><span id="msgMax"></span></td>
-          <td style="text-align:center;"><span class="fontmath">max</span></td>
-          <td><input type="text" size=10 id="maxiH" style="text-align: right;"></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><span id="msgMed"></span></td>
-          <td style="text-align:center;"><span class="fontmath">m</span></td>
-          <td><input type="text" size=10 id="medi" style="text-align: right;"></td>
-          <td></td>
-          <td><span id="msgRange"></span></td>
-          <td style="text-align:center;"><span class="fontmath">range</span></td>
-          <td><input type="text" size=10 id="range" style="text-align: right;"></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><span id="msgVariance">Variance</span></td>
-          <td style="text-align:center;"><span class="fontmath">&sigma;<sup>2</sup></span></td>
-          <td><input type="text" size=10 id="varS" style="text-align: right;"></td>
-          <td></td>
-          <td><span data-msgid="Std Deviation">Standard Deviation</span></td>
-          <td style="text-align:center;"><span class="fontmath">&sigma;</span></td>
-          <td><input type="text" size=10 id="stdS" style="text-align: right;"></td>
-        </tr>
-      </table>
-      <table style="width:750px;">
-        <tr>
-          <td><b><span data-msgid="Interval Start">Interval Start</span></b> = </td>
-          <td>&nbsp;<input type="text" size=6 id="start" style="text-align: right;"></td>
-          <td><span style="color:red">( &le; min )</span> &nbsp;&nbsp;</td>
-          <td><b><span data-msgid="Interval Width">Interval Width</span></b> = </td>
-          <td>&nbsp;<input type="text" size=6 id="xstep" style="text-align: right;"></td>
-          <td>&nbsp;&nbsp;</td>
-          <td><b><span data-msgid="Histogram">Histogram</span> <span data-msgid="oneColor">Color</span></b></td>
-          <td><input type="color" id="histColor" onclick="changeColor(10)" width="100px"></td>
-        </tr>
-      </table>    
+      <!--------*** 05Histogram html  ***-------------------------------------------------------------->
+         <iframe class="example" src="./example/0303.html"> </iframe>
+         <div class="textLeft">&lt;Figure 3.4&gt; Data input for a histogram</div>
       <p>
-            <div class="textLeft">&lt;Figure 3.4&gt; Data input for a histogram</div>
+         If you check ‘frequency’ in the options under the histogram, the frequency of each 
+         class is displayed on the histogram bar as shown in &lt;Figure 3.5&gr;.
       <p>
-      <form name="myForm2">
-        <button type="button" id="executeHist"  style="width:140px;">
-          <span data-msgid="Execute">Execute</span>
-        </button> 
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-        <span data-msgid="yAxis">Y</span> : 
-        <input type="radio" name = "type2" checked> <span data-msgid="Frequency">도수</span>      
-        <input type="radio" name = "type2"> <span data-msgid="RelativeFreq">%</span>   
-        <input type="radio" name = "type2"> <span data-msgid="Density">Density</span>   
-      </form>
-      <br>
-      <svg id="chartHist" width="750" height="540" style="border-style:solid;"> </svg>
-      <p>
-      <button type="button" id="saveGraphHist"  style="width:140px;">
-	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
-      </button>
-      &nbsp;&nbsp;&nbsp;
-      <label>&nbsp;<input type="checkbox" id="HistMean"> <span data-msgid="Mean"> Mean </span></label>
-      <label><input type="checkbox" id="HistFreq"> <span data-msgid="Frequency"> Frequency </span></label>
-      <label><input type="checkbox" id="HistLine"> <span data-msgid="Frequency Polygon"> Frequency Polygon </span></label> &nbsp
-      &nbsp;&nbsp;&nbsp;
-      <button type="button" id="HistTable"><span data-msgid="Frequency Table"> Frequency Table </span></button>
-      <div width="650" > 
-      <p>
-      <div id="screenTable">
-        <div id="loc">
-        </div>
-      </div>
-    </div>
-    <p>
-
-    <!-------- 05Histogram.script -------------------------------------------------------------->
-    <script>
-      setLanguage('en');
-      var chartHist = d3.select("#chartHist")
-      var marginHist, graphWidthHist, graphHeightHist;
-      marginHist = {top: 80, bottom: 80, left: 80, right: 60};
-      graphWidthHist  = svgWidth - marginHist.left - marginHist.right;
-      graphHeightHist = svgHeight - marginHist.top - marginHist.bottom;
-
-      var histColor = "#00FFFF";
-
-      var i, j, k, ith;
-      var x1, x2, y1, y2, cx, cy, ty;
-      var nint, step, buffer, nvalue; 
-      var nobsH, mean, varS, stdS, miniH, maxiH, start, xstep;
-      var nvalueH, gxminH, gxmaxH, gyminH, gymaxH, xgap, xwidth, Histogram;
-      var mTitleHist, yTitleHist, xTitleHist;
-      var rowMax = 100;
-      var dint = new Array(rowMax);
-      var freq = new Array(rowMax);
-      var dataHist = new Array(rowMax);
-
-      // Frequency or % check
-      var a = document.myForm2.type2;
-      var checkFreqPercentY = true;
-      var checkDensity = false
-      document.getElementById("yTitleHist").value   = svgStr[16][langNum];
-      yTitleHist = svgStr[16][langNum];
-      a[0].onclick = function() { 
-        checkFreqPercentY = true;  
-        checkDensity = false;
-        document.getElementById("yTitleHist").value = svgStr[16][langNum];
-        yTitleHist = svgStr[16][langNum];
-        drawHistogram(nobsH, start, xstep, dataH, dint, freq);
-      }  
-      a[1].onclick = function() { 
-        checkFreqPercentY = false; 
-        checkDensity = false;
-        document.getElementById("yTitleHist").value = svgStr[30][langNum];
-        yTitleHist = svgStr[30][langNum];
-        drawHistogram(nobsH, start, xstep, dataH, dint, freq);
-      } 
-      a[2].onclick = function() { 
-        checkFreqPercentY = false; 
-        checkDensity = true;
-        document.getElementById("yTitleHist").value = "";
-        yTitleHist = "";
-        drawHistogram(nobsH, start, xstep, dataH, dint, freq);
-      } 
-
-      document.getElementById("histColor").value    = histColor;
-      document.getElementById("msgMed").innerHTML   = svgStr[46][langNum]; 
-      document.getElementById("msgMin").innerHTML   = svgStr[45][langNum]; 
-      document.getElementById("msgMax").innerHTML   = svgStr[47][langNum]; 
-      document.getElementById("msgRange").innerHTML = svgStr[112][langNum]; 
-      document.getElementById("msgVariance").innerHTML = svgStr[117][langNum]; 
-
-      document.getElementById("yTitleHist").disabled = true;
-      document.getElementById("nn").disabled     = true;    
-      document.getElementById("xbar").disabled   = true; 
-      document.getElementById("medi").disabled   = true;   
-      document.getElementById("miniH").disabled  = true;  
-      document.getElementById("maxiH").disabled  = true;  
-      document.getElementById("range").disabled  = true; 
-      document.getElementById("varS").disabled   = true; 
-      document.getElementById("stdS").disabled   = true; 
-
-    // basic statistics function ============================================
-    simplestatH = function(dataid) {
-        dataH = d3.select(dataid)
-	         .node()
-	         .value
-	         .trim()
-	         .split(new RegExp("[ ]*[, \t][ ]*"))   // ['8', '8', '9']
-	         .map(parseFloat);                      // [8.0, 8.0, 9.0]
-	if(isNaN(dataH[0])) dataH = [];
-        n = dataH.length;
-        sum = 0;
-        sumsq = 0;
-        dataH.forEach(function(d) {
-          sum += d;
-          sumsq += d*d;
-        });
-        xbar = sum / n;
-        v = (sumsq - n*xbar*xbar) / (n-1);
-        s = Math.sqrt(v)
-        dataH.sort(function(a, b) { return a - b; });
-        mini  = dataH[0];
-        maxi  = dataH[n-1];
-        range = maxi - mini;
-        medi = medianCalc(n,dataH);
-        var tdata = new Array(n);
-        var ntemp; 
-        if (n%2 == 1) { // odd
-          ntemp = (n+1)/2;
-          for (i=0; i<ntemp; i++) tdata[i] = dataH[i];
-          q1 = medianCalc(ntemp,tdata)
-          for (i=ntemp-1; i<n; i++) tdata[i-ntemp+1] = dataH[i];
-          q3 = medianCalc(ntemp,tdata)
-        }
-        else {
-          ntemp = n/2;
-          for (i=0; i<ntemp; i++) tdata[i] = dataH[i];
-          q1 = medianCalc(ntemp,tdata)
-          for (i=ntemp; i<n; i++) tdata[i-ntemp] = dataH[i];
-          q3 = medianCalc(ntemp,tdata)
-        }
-        iqr = q3 - q1;
-        return {'n':n, 'xbar':xbar, 'var':v, 'std':s, 'mini':mini, 'q1':q1, 'medi':medi, 'q3':q3, 'maxi':maxi, 'range':range, 'iqr':iqr};
-      }
-      // median calculation
-      function medianCalc(n, dataH) {
-        if (n < 2) return;
-        if (n%2 == 1) { // odd
-          return dataH[(n+1)/2 -1];
-        }
-        else { // even
-          return ( dataH[n/2 -1] + dataH[(n+2)/2 -1] ) / 2.;
-        }
-   }
-
-
-      // Initial Histogram example
-        document.getElementById("mTitleHist").value = "Weight of Middle School Students (kg)";   
-        document.getElementById("xTitleHist").value = "weight";   
-        document.getElementById("dataHist").value  = "63 65 67 68 61 60 72 55 64 76 68 63 70 61 54 63 66 53 58 70 62 62 57 58 59 53 58 58 62 61";
-        dataHist = [63,65,67,68,61,60,72,55,64,76,68,63,70,61,54,63,66,53,58,70,62,62,57,58,59,53,58,58,62,61];
-        statHist  = simplestatH("#dataHist");  
-        nobsH  = dataHist.length;
-        miniH  = statHist.mini;  
-        maxiH  = statHist.maxi;
-        dataH  = dataHist;
-        document.getElementById("nn").value    = statHist.n;    
-        document.getElementById("xbar").value  = f2(statHist.xbar);
-        document.getElementById("medi").value  = f2(statHist.medi);  
-        document.getElementById("range").value = f2(statHist.range);  
-        document.getElementById("miniH").value  = f2(statHist.mini);  
-        document.getElementById("medi").value  = f2(statHist.medi);  
-        document.getElementById("maxiH").value  = f2(statHist.maxi);  
-        document.getElementById("varS").value  = f2(statHist.var);  
-        document.getElementById("stdS").value  = f2(statHist.std);  
-        document.getElementById("start").value = f0(50);  
-        document.getElementById("xstep").value = f0(5);  
-
-      // erase Hist data input =====================================
-      d3.select("#eraseHistData").on("click", function() {
-        chartHist.selectAll("*").remove();
-        document.getElementById("mTitleHist").value = ""; 
-        document.getElementById("yTitleHist").value = "";  
-        document.getElementById("xTitleHist").value = "";  
-        document.getElementById("dataHist").value   = "";    
-        document.getElementById("nn").value    = "";    
-        document.getElementById("xbar").value  = "";    
-        document.getElementById("medi").value  = "";     
-        document.getElementById("varS").value  = "";      
-        document.getElementById("miniH").value  = "";    
-        document.getElementById("maxiH").value  = "";     
-        document.getElementById("range").value = "";      
-        document.getElementById("stdS").value  = "";     
-        document.getElementById("start").value = "";
-        document.getElementById("xstep").value = "";
-        document.getElementById("HistMean").checked = false;
-        document.getElementById("HistFreq").checked = false;
-        document.getElementById("HistLine").checked = false;
-      });
-      // data input control =====================================
-      d3.select("#dataHist").on("input", function() {
-        statHist = simplestatH("#dataHist");  
-        document.getElementById("nn").value    = statHist.n;    
-        document.getElementById("xbar").value  = f2(statHist.xbar);
-        document.getElementById("medi").value  = f2(statHist.medi);  
-        document.getElementById("range").value = f2(statHist.range);  
-        document.getElementById("miniH").value  = f2(statHist.mini);  
-        document.getElementById("medi").value  = f2(statHist.medi);  
-        document.getElementById("maxiH").value  = f2(statHist.maxi);  
-        document.getElementById("varS").value  = f2(statHist.var);  
-        document.getElementById("stdS").value  = f2(statHist.std);  
-      });
-
-      updateData = function() {
-        document.getElementById("dataHist").value = ''; 
-      }
-
-      // Draw Histogram ======================================
-      d3.select("#executeHist").on("click",function() {
-        nobsH  = statHist.n;  
-        for (i=0; i<nobsH; i++) {
-            if (isNaN(dataH[i]) ) { //문자 데이터 체크
-              chartHist.append("text").attr("class","mean").attr("x", 250).attr("y", marginHist.top + 40)
-                   .text(alertMsg[48][langNum]).style("stroke","red").style("font-size","1em");
-              return;
-            }
-        }
-        mean  = statHist.xbar;  
-        miniH  = statHist.mini;  
-        maxiH  = statHist.maxi;    
-        start = d3.select("#start").node().value;
-        xstep = d3.select("#xstep").node().value;
-        histColor = document.getElementById("histColor").value;
-        // input check
-        if ( nobsH > 100) {
-           chartHist.append("text").attr("class","mean").attr("x", 250).attr("y", 100)
-                .text(alertMsg[49][langNum]).style("stroke","red").style("font-size", "1em")
-           return;
-        }
-        if ( start == "" || xstep == "" || isNaN(start) || isNaN(xstep) ) {
-           chartHist.append("text").attr("class","mean").attr("x", 250).attr("y", 100)
-                .text(alertMsg[50][langNum]).style("stroke","red").style("font-size", "1em")
-           return;
-        }
-        else {
-          start = parseFloat(start);
-          xstep = parseFloat(xstep);
-        }
-        mTitleHist = d3.select("#mTitleHist").node().value;
-        xTitleHist = d3.select("#xTitleHist").node().value;
-
-        if (start > miniH) start = miniH
-        var para = drawHistogram(nobsH, start, xstep, dataH, dint, freq);
-        Histogram = true;
-        nvalueH = para.a;
-        gxminH  = start;
-        gxmaxH  = para.b;
-        gyminH  = para.c;
-        gymaxH  = para.d;
-        xgap    = para.e;
-        xwidth  = para.f;
-      })
-
-      // 히스토그램 평균표시
-      d3.select("#HistMean").on("click", function() {
-        if (Histogram == false) return;
-        if (this.checked) {
-          checkHistMean = true;
-          showHistMean(mean, gxminH, gxmaxH, xgap, xwidth);
-        } else {
-          checkHistMean = false;
-          removeHistMean();
-        }
-      })
-      // 히스토그램 도수표시
-      d3.select("#HistFreq").on("click", function() {
-        if (Histogram == false) return;
-        if (this.checked) {
-          checkHistFreq = true;
-          showHistFreq(nvalueH, xstep, dint, freq, gxminH, gxmaxH, gyminH, gymaxH, xgap, xwidth);
-        } else {
-          checkHistFreq = false;
-          removeHistFreq();
-        }
-      })
-      // 히스토그램 꺽은선그래프 표시
-      d3.select("#HistLine").on("click", function() {
-        if (Histogram == false) return;
-        if (this.checked) {
-          checkHistLine = true;
-          showHistLine(nvalueH, xstep, dint, freq, gxminH, gxmaxH, gyminH, gymaxH, xgap, xwidth);
-        } else {
-          checkHistLine = false;
-          removeHistLine()
-        }
-      })
-      // 히스토그램 도수분포표 표시
-      d3.select("#HistTable").on("click", function() {;
-        if (Histogram == false) return;
-        showHistTable(nvalueH, dint, freq)
-      })
-
-      // svg Graph Save
-      d3.select("#saveGraphHist").on("click", function() {
-        var svg = d3.select("#chartHist");
-        var width  = svgWidth;
-        var height = svgHeight;
-        var svgString = getSVGString(svg.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
-  // Counting frequency of each histogram interval
-  function HistIntervalFreq(tobs, nvalueH, dataA, dataValueH, dvalueFreq) {
-    var i, j, k;
-    for (i = 0; i <= nvalueH ; i++) {
-        dvalueFreq[i] = 0;
-    }
-    for (i = 0; i < tobs; i++) {
-        k = 1;
-        for (j = k; j <= nvalueH; j++) {
-            if (dataA[i] < dataValueH[j]) {
-                dvalueFreq[j]++;
-                break;
-            } else {
-                k++;
-            }
-        } // endof j
-    } // endof i
-  }
-
-  // 히스토그램 그리기 함수 -----------------------------------------------------------------------------------------------
-  function drawHistogram(nobsH, gxminH, xstep, data, dataValueH, dvalueFreq) {
-    chartHist.selectAll("*").remove();
-    document.getElementById("HistMean").checked = false; 
-    document.getElementById("HistFreq").checked = false; 
-    document.getElementById("HistLine").checked = false; 
-    checkHistMean = false;
-    checkHistFreq = false;
-    checkHistLine = false;
-    var i, j, k;
-    var label, tempx, tempy, tempw, temph, xgap, xwidth;
-    var nvaluH, gxminH, gxmaxH, gxrangeH, gyminH, gymaxH, gyrangeH, freqmax;
-
-    var dataA = new Array(rowMax);
-//    var dataValueH = new Array(rowMax); // 각 구간값: 최대 구간의 수 =199개
-//    var dvalueFreq = new Array(rowMax); // 각 구간도수  
-
-    // 히스토그램 bins, 전체 데이터 최소 최대 계산
-    nvalueH = 0;
-    dataValueH[0] = gxminH;
-    while (dataValueH[nvalueH] <= maxiH) {
-        nvalueH++;
-        dataValueH[nvalueH] = dataValueH[nvalueH - 1] + xstep;
-    }
-    gxmaxH   = dataValueH[nvalueH];
-    gxrangeH = gxmaxH - gxminH;
-    xgap     = graphWidthHist / (nvalueH + 2); // 좌우갭
-    xwidth   = graphWidthHist - 2 * xgap; // 좌우 갭을 뺀 실제 x 너비
-
-    // 히스토그램 그리기
-    freqmax = 0;
-    HistIntervalFreq(nobsH, nvalueH, data, dataValueH, dvalueFreq);
-
-    for (j = 0; j <= nvalueH; j++) {
-        if (dvalueFreq[j] > freqmax) freqmax = dvalueFreq[j];
-    }
-    gyminH = 0;
-    gymaxH = freqmax + Math.floor(freqmax / 8 + 1);
-    gyrangeH = gymaxH - gyminH;
-
-    // 전체 제목
-    drawTitleHist(mTitleHist, yTitleHist, xTitleHist);
-    // 아래 축그리기
-    drawHistAxis(nvalueH, dataValueH, gxminH, gxmaxH, gyminH, gymaxH, graphWidthHist, graphHeightHist);
-    // 히스토그램
-    tempw = xwidth * xstep / gxrangeH; // 막대 너비
-    for (i = 1; i <= nvalueH; i++) {
-            tempx = marginHist.left + xgap + xwidth * (dataValueH[i - 1] - gxminH) / gxrangeH;
-            tempy = marginHist.top + graphHeightHist - graphHeightHist * (dvalueFreq[i] - gyminH) / gyrangeH;
-            temph = graphHeightHist * (dvalueFreq[i] - gyminH) / gyrangeH;
-            chartHist.append("rect")
-                .style("fill", histColor)
-                .attr("class", "bar")
-                .style("stroke", "black")
-                .style("stroke-width", "1px")
-                .attr("x", tempx)
-                .attr("width", tempw)
-                .attr("height", 0)
-                .attr("y", marginHist.top + graphHeightHist)
-                .transition() // 애니매이션 효과 지정
-                .delay(function(d, i) {
-                    return i * 250;
-                }) // 0.5초마다 그리도록 대기시간 설정
-                .duration(1000) // 2초동안 애니매이션이 진행되도록 설정
-                .attr("y", tempy)
-                .attr("height", temph)
-    } // endof i
-
-    return { a: nvalueH, b: gxmaxH, c: gyminH, d: gymaxH, e: xgap, f: xwidth };
-  }
-  // 히스토그램 y축, x축 그리기
-  function drawHistAxis(nvalueH, dataValueH, gxminH, gxmaxH, gyminH, gymaxH, graphWidthHist, graphHeightHist) {
-    var i, j, k;
-    var tx, ty, x1, x2, y1, y2, z1, z2, temp, yScale;
-    var gxrangeH = gxmaxH - gxminH;
-    var xgap     = graphWidthHist / (nvalueH + 2); // 좌우갭
-    var xwidth   = graphWidthHist - 2 * xgap; // 좌우 갭을 뺀 실제 x 너비
-    var ygrid    = new Array(rowMax);
-
-    // Y축 그리기
-    if (checkFreqPercentY) {
-      yScale = d3.scaleLinear().domain([gyminH, gymaxH]).range([graphHeightHist, 0]);
-    }
-    else {
-      if (!checkDensity) {
-        temp = gymaxH / nobsH;
-        yScale = d3.scaleLinear().domain([gyminH, temp]).range([graphHeightHist, 0]);
-      }
-      else {
-        temp = gymaxH / nobsH / xstep;
-        yScale = d3.scaleLinear().domain([gyminH, temp]).range([graphHeightHist, 0]);
-      }
-    }
-    
-    ygrid = yScale.ticks();
-    tx = marginHist.left;
-    ty = marginHist.top;
-    chartHist.append("g")
-         .attr("class", "axis")
-         .attr("transform", "translate(" + tx + ", " + ty + ") ")
-         .call(d3.axisLeft(yScale))
-    chartHist.append("line")
-         .attr("x1", marginHist.left + graphWidthHist)
-         .attr("x2", marginHist.left + graphWidthHist)
-         .attr("y1", marginHist.top)
-         .attr("y2", marginHist.top + graphHeightHist)
-         .style("stroke", "black")
-    // Y축 그리드
-    for (i = 1; i < ygrid.length; i++) {
-      ty = marginHist.top + yScale(ygrid[i]);
-      chartHist.append("line")
-           .attr("x1", marginHist.left)
-           .attr("x2", marginHist.left + graphWidthHist)
-           .attr("y1", ty)
-           .attr("y2", ty)
-           .style("stroke", "lightgrey")
-    }
-    // 히스토그램의 x축 선
-    tx = marginHist.left;
-    ty = marginHist.top;
-    chartHist.append("line")
-         .attr("x1", tx)
-         .attr("x2", marginHist.left + graphWidthHist)
-         .attr("y1", ty)
-         .attr("y2", ty)
-         .style("stroke", "black")
-    ty = marginHist.top + graphHeightHist;
-    chartHist.append("line")
-         .attr("x1", tx)
-         .attr("x2", marginHist.left + graphWidthHist)
-         .attr("y1", ty)
-         .attr("y2", ty)
-         .style("stroke", "black")
-    // 히스토그램의 x축 아래 tick, value 값선
-    y1 = marginHist.top + graphHeightHist;
-    y2 = y1 + 5;
-    for (i = 0; i <= nvalueH; i++) {
-        x1 = marginHist.left + xgap + xwidth * (dataValueH[i] - gxminH) / gxrangeH;
-        x2 = x1;
-        chartHist.append("line")
-            .attr("x1", x1)
-            .attr("x2", x2)
-            .attr("y1", y1)
-            .attr("y2", y2)
-            .style("stroke", "black")
-        // x 그리드
-        chartHist.append("line")
-            .attr("x1", x1)
-            .attr("x2", x2)
-            .attr("y1", y1)
-            .attr("y2", marginHist.top)
-            .style("stroke", "lightgrey")
-        chartHist.append("text")
-            .attr("class", "myaxis")
-            .style("text-anchor", "middle")
-            .style("font-family", "sans-serif")
-            .style("font-size", "0.7em")
-            .style("font-family", "sans-serif")
-            .style("stroke", "#0055FF")
-            .attr("x", x1)
-            .attr("y", y2 + 15)
-            .text(f2(dataValueH[i]))
-    }
-  }
-
-  // 그래프 제목 쓰기 함수
-  function drawTitleHist(mTitleHist, yTitleHist, xTitleHist) {
-    // 주제목
-    chartHist.append("text")
-        .attr("x", marginHist.left + graphWidthHist/2)
-        .attr("y", marginHist.top / 2 + 10)
-        .style("font-size", "1.8em")
-        .style("font-family", "sans-seirf")
-        .style("stroke", "black")
-        .style("text-anchor", "middle")
-        .text(mTitleHist)
-    // X축 제목
-    chartHist.append("text")
-            .style("font-size", "1em")
-            .style("font-family", "sans-seirf")
-            .style("stroke", "black")
-            .style("text-anchor", "middle")
-            .attr("x", marginHist.left + graphWidthHist / 2 + 10)
-            .attr("y", marginHist.top + graphHeightHist + marginHist.bottom*0.6 )
-            .text(xTitleHist)
-     // Y축 제목
-     var tx = marginHist.left - 20 ;
-     var ty = marginHist.top + 15;
-     chartHist.append("text")
-            .style("font-size", "1em")
-            .style("font-family", "sans-seirf")
-            .style("stroke", "black")
-            .style("text-anchor", "end")
-            .attr("x", tx)
-            .attr("y", ty)
-            .text(yTitleHist)
-            .attr("transform", "rotate(-90 30 100)")
-  }
-
-  // 히스토그램 평균 표시 함수
-  function showHistMean(avg, gxminH, gxmaxH, xgap, xwidth) {
-    var tempx, tempy;
-    var gxrangeH = gxmaxH - gxminH;
-
-    if (isNaN(avg)) return;
-    tempx = marginHist.left + xgap + xwidth * (avg - gxminH) / gxrangeH;
-    tempy = marginHist.top + 5;
-    chartHist.append("line")
-         .attr("class", "histmean")
-         .attr("x1", tempx)
-         .attr("y1", tempy + 30)
-         .attr("x2", tempx)
-         .attr("y2", tempy + graphHeightHist)
-    chartHist.append("text")
-         .attr("class", "histmean")
-         .style("stroke", "red")
-         .style("text-anchor", "middle")
-         .style("font-family", "sans-serif")
-         .style("font-size", "0.7em")
-         .attr("x", tempx)
-         .attr("y", tempy + graphHeightHist + 5)
-         .text(svgStr[34][langNum] + "=" + f2(avg))
-  }
-
-  // 히스토그램 평균표시 제거 함수
-  function removeHistMean() {
-    chartHist.selectAll("line.histmean").remove();
-    chartHist.selectAll("circle.histmean").remove();
-    chartHist.selectAll("text.histmean").remove();
-  }
-  
-  // 히스토그램 도수 표시 함수
-  function showHistFreq(nvalueH, xstep, dataValueH, freq, gxminH, gxmaxH, gyminH, gymaxH, xgap, xwidth) {
-    var x1, y1, temp;
-    var gxrangeH = gxmaxH - gxminH;
-    var gyrangeH = gymaxH - gyminH;
-
-    for (var i = 1; i <= nvalueH; i++) {
-        x1 = marginHist.left + xgap + xwidth * (dataValueH[i - 1] + xstep / 2 - gxminH) / gxrangeH;
-        y1 = marginHist.top + graphHeightHist - graphHeightHist * (freq[i] - gyminH) / gyrangeH;
-        if (checkFreqPercentY) temp = freq[i];
-        else temp = f2( freq[i] / nobsH );
-        chartHist.append("text")
-             .attr("class", "histfreq")
-             .style("stroke", "red")
-             .style("text-anchor", "middle")
-             .style("font-family", "sans-serif")
-             .style("font-size", "0.8em")
-             .attr("x", x1)
-             .attr("y", y1 - 4)
-             .text(temp)
-    }
-  }
-
-  // 히스토그램 도수 제거 함수
-  function removeHistFreq() {
-    chartHist.selectAll("text.histfreq").remove();
-  }
-
-
-  // 히스토그램 도수분포다각형 표시 함수
-  function showHistLine(nvalueH, xstep, dataValueH, freq, gxminH, gxmaxH, gyminH, gymaxH, xgap, xwidth) {
-    var i, k;
-    var gxrangeH = gxmaxH - gxminH;
-    var gyrangeH = gymaxH - gyminH;
-    // left gap part
-        x1 = marginHist.left + xgap + xwidth * (dataValueH[0] - xstep / 2 - gxminH) / gxrangeH;
-        y1 = marginHist.top  + graphHeightHist;
-        x2 = marginHist.left + xgap + xwidth * (dataValueH[0] + xstep / 2 - gxminH) / gxrangeH;
-        y2 = marginHist.top  + graphHeightHist - graphHeightHist * (freq[1] - gyminH) / gyrangeH;
-        chartHist.append("circle")
-             .attr("class", "histline")
-             .style("stroke", "red")
-             .style("stroke-width", "2px")
-             .attr("cx", x1)
-             .attr("cy", y1)
-             .attr("r", 3)
-        chartHist.append("line")
-             .attr("class", "histline")
-             .style("stroke", "red")
-             .style("stroke-width", "2px")
-             .attr("x1", x1)
-             .attr("x2", x2)
-             .attr("y1", y1)
-             .attr("y2", y2)
-        chartHist.append("circle")
-             .attr("class", "histline")
-             .style("stroke", "red")
-             .style("stroke-width", "2px")
-             .attr("cx", x2)
-             .attr("cy", y2)
-             .attr("r", 3)
-    // main polygon
-    for (i = 1; i < nvalueH; i++) {
-        x1 = marginHist.left + xgap + xwidth * (dataValueH[i - 1] + xstep / 2 - gxminH) / gxrangeH;
-        y1 = marginHist.top  + graphHeightHist - graphHeightHist * (freq[i] - gyminH) / gyrangeH;
-        x2 = marginHist.left + xgap + xwidth * (dataValueH[i] + xstep / 2 - gxminH) / gxrangeH;
-        y2 = marginHist.top  + graphHeightHist - graphHeightHist * (freq[i + 1] - gyminH) / gyrangeH;
-        chartHist.append("circle")
-             .attr("class", "histline")
-             .style("stroke", "red")
-             .style("stroke-width", "2px")
-             .attr("cx", x1)
-             .attr("cy", y1)
-             .attr("r", 3)
-        chartHist.append("line")
-             .attr("class", "histline")
-             .style("stroke", "red")
-             .style("stroke-width", "2px")
-             .attr("x1", x1)
-             .attr("x2", x2)
-             .attr("y1", y1)
-             .attr("y2", y2)
-        chartHist.append("circle")
-             .attr("class", "histline")
-             .style("stroke", "red")
-             .style("stroke-width", "2px")
-             .attr("cx", x2)
-             .attr("cy", y2)
-             .attr("r", 3)
-    }
-    // right gap part
-        x1 = marginHist.left + xgap + xwidth * (dataValueH[nvalueH - 1] + xstep / 2 - gxminH) / gxrangeH;
-        y1 = marginHist.top  + graphHeightHist - graphHeightHist * (freq[nvalueH] - gyminH) / gyrangeH;
-        x2 = marginHist.left + xgap + xwidth * (dataValueH[nvalueH] + xstep / 2 - gxminH) / gxrangeH;
-        y2 = marginHist.top  + graphHeightHist;
-        chartHist.append("circle")
-             .attr("class", "histline")
-             .style("stroke", "red")
-             .style("stroke-width", "2px")
-             .attr("cx", x1)
-             .attr("cy", y1)
-             .attr("r", 3)
-        chartHist.append("line")
-             .attr("class", "histline")
-             .style("stroke", "red")
-             .style("stroke-width", "2px")
-             .attr("x1", x1)
-             .attr("x2", x2)
-             .attr("y1", y1)
-             .attr("y2", y2)
-        chartHist.append("circle")
-             .attr("class", "histline")
-             .style("stroke", "red")
-             .style("stroke-width", "2px")
-             .attr("cx", x2)
-             .attr("cy", y2)
-             .attr("r", 3)
-  }
-
-  // 히스토그램 도수분포다각형 제거
-  function removeHistLine() {
-    chartHist.selectAll("line.histline").remove();
-    chartHist.selectAll("circle.histline").remove();
-  }
-
-  // 히스토그램 도수분포표 
-  function showHistTable(nvalueH, dataValueH, freq) {
-    var screenTable = document.getElementById("screenTable");
-    var table = document.createElement('table');
-    loc.appendChild(table);
-
-    var i, j, k, totsum, avgH, temp, row;
-    var cell = new Array(5);
-    var ncol = 4;
-
-    totsum = 0;
-    for (i = 0; i < nvalueH; i++) {
-       totsum += freq[i+1];
-    }
-
-    table.style.fontSize = "13px";
-    k = 0;
-    row = table.insertRow(k);
-    row.style.height = "35px";
-    for (j = 0; j < 1; j++) {
-        cell[j] = row.insertCell(j);
-        cell[j].style.backgroundColor = "#eee";
-        cell[j].style.textAlign = "center";
-        cell[j].style.border = "1px solid black";
-    }
-    cell[0].style.width = "200px";
-    cell[0].innerHTML = svgStr[36][langNum];  //  Histogram Frequency Table
-
-    k++;
-    row = table.insertRow(k);
-    row.style.height = "30px";
-    for (j = 0; j < ncol; j++) {
-        cell[j] = row.insertCell(j);
-        cell[j].style.textAlign = "center";
-        cell[j].style.backgroundColor = "#eee";
-        cell[j].style.border = "1px solid black";
-    }
-    cell[0].innerHTML = svgStr[38][langNum] ; // 계급구간
-    cell[1].innerHTML = svgStr[118][langNum]; // 계급값
-    cell[2].innerHTML = svgStr[16][langNum];  // 도수
-    cell[3].innerHTML = svgStr[30][langNum];  // 상대도수
-
-    avgH = 0;
-    for (i = 0; i < nvalueH; i++) {
-        k++;
-        row = table.insertRow(k);
-        row.style.height = "30px";
-        for (j = 0; j < ncol; j++) {
-          cell[j] = row.insertCell(j);
-          cell[j].style.width = "110px";
-          cell[j].style.textAlign = "right";
-          cell[j].style.border = "1px solid black";
-        }
-        cell[0].innerHTML =  f2(dataValueH[i]) + " &le; x &lt; " + f2(dataValueH[i + 1]);
-        cell[0].style.backgroundColor = "#eee";
-        cell[0].style.textAlign = "center";
-        temp  = (dataValueH[i]+dataValueH[i + 1])/2;
-        avgH += temp * freq[i+1];
-        cell[1].innerHTML = f2(temp) ;
-        cell[2].innerHTML = freq[i + 1].toString();
-        cell[3].innerHTML = f2(freq[i + 1] / totsum);
-    }
-    avgH = avgH / totsum; // 도수분포에 의한 평균
-    // 합계 출력
-    k++;
-    row = table.insertRow(k);
-    row.style.height = "30px";
-    for (j = 0; j < ncol; j++) {
-        cell[j] = row.insertCell(j);
-        cell[j].style.textAlign = "right";
-        cell[j].style.backgroundColor = "#eee";
-        cell[j].style.border = "1px solid black";
-    }
-    cell[0].style.textAlign = "center";
-    cell[0].innerHTML = svgStr[23][langNum];  //합계 
-    cell[2].innerHTML = totsum;
-    cell[3].innerHTML = f2(1);
-    // 도수분포 평균 출력
-    k++;
-    row = table.insertRow(k);
-    row.style.height = "30px";
-    for (j = 0; j < 2; j++) {
-        cell[j] = row.insertCell(j);
-        cell[j].style.textAlign = "right";
-        cell[j].style.backgroundColor = "#eee";
-        cell[j].style.border = "1px solid black";
-    }
-    cell[0].style.textAlign = "center";
-    cell[0].innerHTML = svgStr[118][langNum] +" " + svgStr[34][langNum];  // 계급값 평균 
-    cell[1].innerHTML = f2(avgH);
-
-    // 다음 표와의 공백을 위한 것
-    k++;
-    row = table.insertRow(k);
-    row.style.height = "20px";
-  }
-
-  // Change Color
-  function changeColor(){
-     histColor = document.getElementById("histColor").value ;
-  }
-
-  </script>
-
-
-    <!------------------------------------------------------------------------------------------------->
-      <p>
-      <table>
-        <tr>
-          <td>
-            <p>If you check ‘frequency’ in the options under the histogram, the frequency of each 
-            class is displayed on the histogram bar as shown in &lt;Figure 3.5&gr;.
-          </td>
-          <td>
-            <img src="../FigureM/Fig0305.png">
+            <img src="./Figure/Fig0305.png">
             <div class="textLeft">&lt;Figure 3.5&gt; Histogram with class frequency</div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p>If you click the ‘Frequency Table’ button in the options under the histogram, 
-            the frequency table of the histogram is displayed as shown in &lt;Figure 3.6&gt;.
-          </td>
-          <td>
-            <img src="../FigureM/Fig0306.png">
+      <p>
+         If you click the ‘Frequency Table’ button in the options under the histogram, 
+         the frequency table of the histogram is displayed as shown in &lt;Figure 3.6&gt;.
+      <p>
+            <img class="figure" src="./Figure/Fig0306.png">
             <div class="textLeft">&lt;Figure 3.6&gt; Frequency table of the hisogram</div>
-          </td>
-        </tr>
-      </table>
     </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
@@ -1754,7 +483,7 @@
       <p>
           <div class="textLeft">(Data 3.2) Daily minimum temperature in Seoul in 
              February 2021(unit degree in Celsius)</div>
-          <table> 
+          <table style="width:650px"> 
             <tr> 
               <td>
                 -2.3 -8.2 -9.4 -7.4 -4.4   4.3  -2.6   5.4  -6.1 -1.5 
@@ -1765,101 +494,70 @@
           </table>
       <p><b>Solution</b>
       <p> 
-         <input class="qrBtn" type="image" src="../../QR/eStatU_08Histogram.svg" onclick="window.open(addrStr[144])">     
-      <table>
-        <tr>
-          <td style="width:350px">
                If you enter the daily minimum temperature data in 'Data input' (you can copy 
                and paste the data from the e-book), as shown in &lt;Figure 3.7&gt;, system shows
                that the number of data is 28 immediately, the minimum value is -10.6 degrees, and 
                the maximum value is 6.4 degrees. You can use this information to determine the 
                interval start and interval width. Here, the interval start is set to -15 and 
                the interval width is set to 5 degrees.
-          </td>
-          <td>
-            <img src="../FigureM/Fig0307.png">
-            <div class="textLeft">&lt;Figure 3.7&gt; Temperature data input for a histogram</div>
-          </td>
-        </tr>
-        <tr>
-          <td>
+      <p> 
                Enter the desired title and click the [Execute] button to display the histogram 
                as shown in &lt;Figure 3.8&gt;.
-          </td>
-          <td>
-            <img src="../FigureM/Fig0308.png">
+      <p> 
+         <iframe class="example" src="./example/0304.html"> </iframe>
+         <div class="textLeft">&lt;Figure 3.7&gt; Temperature data input for a histogram</div>
+      <p> 
+            <img src="./Figure/Fig0308.png">
             <div class="textLeft">&lt;Figure 3.8&gt; Histogram of daily minimum temperature in Seoul</div>
-          </td>
-        </tr>
-        <tr>
-          <td>
+      <p> 
             If you click the ‘Frequency Table’ button in the options under the histogram, 
             the frequency table of the histogram is displayed as shown in &lt;Figure 3.9&gt;.
-          </td>
-          <td>
-            <img src="../FigureM/Fig0309.png">
+      <p> 
+            <img class="figure" src="./Figure/Fig0309.png">
             <div class="textLeft">&lt;Figure 3.9&gt; Frequency table of the histogram</div>
-          </td>
-      </table>
     </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ Exercise 3.3</h4> <p>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_08Histogram.svg" onclick="window.open(addrStr[144])">     
-          </td>
-          <td>
-          <p>
+        <h4>⏱ Exercise 3.3</h4> <p>
+        <p>
             The following is data on the length of bicycle-only roads by 25 administrative districts in Seoul as of 2019 ([Exercise 3.1]). 
             Create and analyze histogram and frequency tables using 『eStatM』.
-            <p>
+        <p>
             <div class="textLeft">(Data 3.3) Length of bicycle-only roads by 25 administrative districts in Seoul (unit km) <br>
             </div>
-            <table> 
+            <table style="width:600px"> 
               <tr> 
                 <td>
-                  24 15 23 20 30 24  7  8  7 12 28 27 19 35 41 <br>
+                  24 15 23 20 30 24  7  8  7 12 28 27 19 35 41 
                   42 11  8 37 13 20 29 53 93 42
                 </td>
               </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_08Histogram.svg" onclick="window.open(addrStr[144])">     
     </div>
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ Exercise 3.4</h4> <p>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_08Histogram.svg" onclick="window.open(addrStr[144])">     
-          </td>
-          <td>
-          <p>
+        <h4>⏱ Exercise 3.4</h4> <p>
+        <p>
             The following is data on the maximum wind speed of typhoons that passed through Korea in 2020 ([Exercise 3.2]). 
             Create and analyze histogram and frequency table using 『eStatM』.
-            <p>
+        <p>
             <div class="textLeft">(Data 3.4) Maximum wind speed of typhoons that passed through Korea in 2020. (unit m/sec) 
             </div>
-            <table> 
+            <table style="width:600px"> 
               <tr> 
                 <td>
-                  40 22 21 29 19 22 24 45 49 55 24 27 29 35 19 <br>
+                  40 22 21 29 19 22 24 45 49 55 24 27 29 35 19 
                   24 35 40 56 24 21 43 18 <br>
                 </td>
               </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_08Histogram.svg" onclick="window.open(addrStr[144])">     
     </div>
     <p>
 
@@ -1867,34 +565,23 @@
   <h3 id="0303">3.3  Frequency Distribution Polygon – Relative Frequency</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ Think</h4>
           <b>The frequency table surveying the weights of the 2nd and 3rd grader students at a middle school is as follows: </b>
           <p>
           <div class="textLeft">[Table 3.7] Frequency table surveying the weights of the 2nd and 3rd grader students at a middle school. </div>
-          <table> 
-            <tr> <th class="thGrey">Class(kg)</th> <th class="thGrey">2nd Grader</th> <th class="thGrey">3rd Grader</th>   </tr>
+          <p>
+          <table style="width:400px"> 
+            <tr> <th>Class(kg)</th> <th>2nd Grader</th> <th>3rd Grader</th>   </tr>
             <tr> <td class="tdCenter">50&le; ~ &lt;55</td> <td class="tdCenter"> 3</td> <td class="tdCenter"> 2</td> </tr>
             <tr> <td class="tdCenter">55 ~ 60</td>       <td class="tdCenter"> 7</td> <td class="tdCenter"> 6</td> </tr>
             <tr> <td class="tdCenter">60 ~ 65</td>       <td class="tdCenter">11</td> <td class="tdCenter">12</td> </tr>
             <tr> <td class="tdCenter">65 ~ 70</td>       <td class="tdCenter"> 5</td> <td class="tdCenter">13</td> </tr>
             <tr> <td class="tdCenter">70 ~ 75</td>       <td class="tdCenter"> 3</td> <td class="tdCenter"> 6</td> </tr>
             <tr> <td class="tdCenter">75 ~ 80</td>       <td class="tdCenter"> 1</td> <td class="tdCenter"> 3</td> </tr>
-            <tr> <th class="thGrey">Total</th> <th class="thGrey">30</th> <th class="thGrey">40</th>   </tr>
+            <tr> <th>Total</th> <th>30</th> <th>40</th>   </tr>
           </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
+         <p>
+      <h4>💎 Explore</h4>
           <div class="textL20M20">
             <b> 1) The number of 2nd grader students is 30 and the number of 3rd grader students is 40. 
                    How can we compare the distribution of weight between 2nd and 3rd graders? </b>
@@ -1903,9 +590,6 @@
             <b> 2) Where is the interval where the weight of 3rd grader students is relatively larger 
                    than the 2nd grader students? </b>
           </div>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -1916,17 +600,18 @@
          can be calculated for comparison.
       <p>
           <div class="textLeft">[Table 3.8] Frequency table with relative frequency surveying the weights of the 2nd and 3rd grader students at a middle school.</div>
-          <table> 
-            <tr> <th class="thGrey">Class(kg)</th> <th class="thGrey">2nd Grader</th> <th class="thGrey">3rd Grader</th> <th class="thGrey">2학년 상대도수</th> <th class="thGrey">3학년 상대도수</th>  </tr>
+
+          <table style="width:700px"> 
+            <tr> <th>Class(kg)</th> <th>2nd Grader</th> <th>3rd Grader</th> <th>2nd Grader Relative Frequency</th> <th>3rd Grader Relative Frequency</th>  </tr>
             <tr> <td class="tdCenter">50&le; ~ &lt;55</td> <td class="tdCenter"> 3</td> <td class="tdCenter"> 2</td> <td class="tdCenter">0.097</td> <td class="tdCenter">0.050</td> </tr>
             <tr> <td class="tdCenter">55 ~ 60</td>       <td class="tdCenter"> 7</td> <td class="tdCenter"> 6</td> <td class="tdCenter">0.226</td> <td class="tdCenter">0.100</td> </tr>
             <tr> <td class="tdCenter">60 ~ 65</td>       <td class="tdCenter">11</td> <td class="tdCenter">12</td> <td class="tdCenter">0.355</td> <td class="tdCenter">0.300</td> </tr>
             <tr> <td class="tdCenter">65 ~ 70</td>       <td class="tdCenter"> 5</td> <td class="tdCenter">13</td> <td class="tdCenter">0.194</td> <td class="tdCenter">0.325</td> </tr>
             <tr> <td class="tdCenter">70 ~ 75</td>       <td class="tdCenter"> 3</td> <td class="tdCenter"> 6</td> <td class="tdCenter">0.097</td> <td class="tdCenter">0.150</td> </tr>
             <tr> <td class="tdCenter">75 ~ 80</td>       <td class="tdCenter"> 1</td> <td class="tdCenter"> 3</td> <td class="tdCenter">0.032</td> <td class="tdCenter">0.075</td> </tr>
-            <tr> <th class="thGrey">Total</th> <th class="thGrey">30</th> <th class="thGrey">40</th> <th class="thGrey">1.000</th> <th class="thGrey">1.000</th>  </tr>
+            <tr> <th>Total</th> <th>30</th> <th>40</th> <th>1.000</th> <th>1.000</th>  </tr>
           </table>
-      <p>
+          <p>
          Looking at this table, it can be seen that the relative frequency of the 3rd grader students
          is higher than that of the 2nd grader students in the case of classes ‘65 ∼ 70’, ‘70 ∼ 75’, and ‘75 ∼ 80’.
       <p>
@@ -1954,13 +639,13 @@
          &lt;Figure 3.10&gt; is a histogram and frequency distribution polygon using the relative frequency
          by class of the weights of the second graders in [Table 3.7].
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0310.png">
+         <img class="imgFig600600" src="./Figure/Fig0310.png">
          <div class="textLeft">&lt;Figure 3.10&gt; Histogram and frequency distribution polygon using the relative frequency of each class interval</div>
       <p>
          &lt;Figure 3.11&gt; compares the frequency distribution polygons using the relative frequencies
          for each class of 2nd and 3rd grader students.
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0311.png">
+         <img class="imgFig600600" src="./Figure/Fig0311.png">
          <div class="textLeft">&lt;Figure 3.11&gt; Frequency distribution polygons using the relative frequencies for each class of 2nd and 3rd grader students</div>
       <p>
          When there are a lot of data, it is time-consuming and not easy to draw the frequency
@@ -1983,950 +668,11 @@
          Click the [Execute] button to draw a frequency distribution polygon 
          for the weights of 2nd and 3rd grader students as shown in &lt;Figure 3.11&gt;.
       <p>
-      <!------------- html for Freq Polygon ----------------------------------------------->
-      <button type="button" id="eraseRelFreq" style="width:140px;"><b>New Data</b></button>
-      <p>
-      <table>
-        <tr>
-          <td colspan="2" style="text-align: right;"><b><span data-msgid="Main Title">Main Title</span></b>&nbsp;</td>
-          <td colspan="3"><input type="text" size=63 id="mtitleRelFreq"></td>
-        </tr>
-	<tr>
-          <td>&nbsp;</td>
-          <td style="text-align: right;"><b><span data-msgid="y title">y title</span></b>&nbsp;</td>
-          <td><input type="text" size=10 id="ytitleRelFreq"></td>
-          <td style="text-align: right;"><b><span data-msgid="x title">x title</span></b>&nbsp;</td>
-          <td><input type="text" size=10 id="xtitleRelFreq"></td>
- 	</tr>
-      </table>  
-      <table class="data">
-      <tbody>
-	<tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td colspan="2"><b><span data-msgid="Histogram">Histogram</span> <span data-msgid="oneColor">Color</span></b></td>
-          <td style="text-align: center;"><input type="color" id="data02" onclick="changeColor()" style="width:80%"></td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td style="text-align: center;"><input type="color" id="data04" onclick="changeColor()" style="width:80%"></td>
-          <td>&nbsp;</td>
-          <td style="text-align: center;"><input type="color" id="data05" onclick="changeColor()" style="width:80%"></td>
- 	</tr>
-	<tr>
-          <td>&nbsp;</td>
-	  <td colspan="3" style="text-align: center;"><b><span data-msgid="Category">Category</span></b></td>
-          <td>&nbsp;</td>
-	  <td style="text-align: center;"><input type="text" size="9" id="freq1"></td>
-          <td>&nbsp;</td>
-	  <td style="text-align: center;"><input type="text" size="9" id="freq2"></td>
-          <td>&nbsp;</td>
-	  <td style="text-align: center;"><b><span data-msgid="RelativeFreq"></span>Rel Freq1</b></td>
-          <td>&nbsp;</td>
-	  <td style="text-align: center;"><b><span data-msgid="RelativeFreq"></span>Rel Freq2</b></td>
-	</tr>
-	<tr>
-          <td> 1</td>
-	  <td><input type="text" size="5" id="data10" style="text-align: right;"></td>
-          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;&nbsp;</td>
-          <td><input type="text" size="5" id="data11" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data12" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data13" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data14" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data15" style="text-align: right;"></td>
-	</tr>
-	<tr>
-          <td> 2</td>
-	  <td><input type="text" size="5" id="data20" style="text-align: right;"></td>
-          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;</td>
-          <td><input type="text" size="5" id="data21" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data22" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data23" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data24" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data25" style="text-align: right;"></td>
-	</tr>
-	<tr>
-          <td> 3</td>
-	  <td><input type="text" size="5" id="data30" style="text-align: right;"></td>
-          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;</td>
-          <td><input type="text" size="5" id="data31" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data32" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data33" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data34" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data35" style="text-align: right;"></td>
-	</tr>
-	<tr>
-          <td> 4</td>
-	  <td><input type="text" size="5" id="data40" style="text-align: right;"></td>
-          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;</td>
-          <td><input type="text" size="5" id="data41" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data42" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data43" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data44" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data45" style="text-align: right;"></td>
-	</tr>
-	<tr>
-          <td> 5</td>
-	  <td><input type="text" size="5" id="data50" style="text-align: right;"></td>
-          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;</td>
-          <td><input type="text" size="5" id="data51" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data52" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data53" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data54" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data55" style="text-align: right;"></td>
-	</tr>
-	<tr>
-          <td> 6</td>
-	  <td><input type="text" size="5" id="data60" style="text-align: right;"></td>
-          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;</td>
-          <td><input type="text" size="5" id="data61" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data62" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data63" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data64" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data65" style="text-align: right;"></td>
-	</tr>
-	<tr>
-          <td> 7</td>
-	  <td><input type="text" size="5" id="data70" style="text-align: right;"></td>
-          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;</td>
-          <td><input type="text" size="5" id="data71" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data72" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data73" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data74" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data75" style="text-align: right;"></td>
-	</tr>
-	<tr>
-          <td> 8</td>
-	  <td><input type="text" size="5" id="data80" style="text-align: right;"></td>
-          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;</td>
-          <td><input type="text" size="5" id="data81" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data82" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data83" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data84" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data85" style="text-align: right;"></td>
-	</tr>
-	<tr>
-          <td> 9</td>
-	  <td><input type="text" size="5" id="data90" style="text-align: right;"></td>
-          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;</td>
-          <td><input type="text" size="5" id="data91" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data92" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data93" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data94" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data95" style="text-align: right;"></td>
-	</tr>
-	<tr>
-          <td> </td>
-          <td> </td>
-          <td> </td>
-	  <td style="text-align: right;"><span data-msgid="Total">Sum</span> </td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data102" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data103" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data104" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data105" style="text-align: right;"></td>
-	</tr>
-        <tr>
-          <td> </td>
-          <td> </td>
-          <td> </td>
-	  <td style="text-align: right;"><span data-msgid="Mean">Mean</span> </td>
-          <td> </td>
-	  <td><input type="text" size="9" id="data112" style="text-align: right;"></td>
-          <td> </td>
-	  <td><input type="text" size="9" id="data113" style="text-align: right;"></td>
-        </tr>
-        <tr>
-          <td> </td>
-          <td> </td>
-          <td> </td>
-	  <td style="text-align: right;"><span data-msgid="Variance">Variance</span> </td>
-          <td> </td>
-	  <td><input type="text" size="9" id="data122" style="text-align: right;"></td>
-          <td> </td>
-	  <td><input type="text" size="9" id="data123" style="text-align: right;"></td>
-        </tr>
-        <tr>
-          <td> </td>
-          <td> </td>
-          <td> </td>
-	  <td style="text-align: right;"><span data-msgid="Std Deviation">Std. Deviation</span> </td>
-          <td> </td>
-	  <td><input type="text" size="9" id="data132" style="text-align: right;"></td>
-          <td> </td>
-	  <td><input type="text" size="9" id="data133" style="text-align: right;"></td>
-        </tr>
-      </tbody>
-      </table>
-      <div class="textLeft">&lt;Figure 3.12&gt; Data input of the weights of the 2nd grader</div>
-      <p>
-      <button type="button" id="executeRelFreq"  style="width:140px;"><span data-msgid="Execute">Execute</span></button> 
-      <p>
-      <svg id="chartRel" width="750" height="540" style="border-style:solid;"> </svg>
-      <p>
-      <button type="button" id="saveGraphRel"  style="width:140px;">
-	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
-      </button>
-      <p>
+      <!------------- html for Rel Freq Polygon ----------------------------------------------->
+         <iframe class="example120" src="./example/0305.html"> </iframe>
          <div class="textLeft">&lt;Figure 3.13&gt; Frequency distribution polygons using the relative frequencies of the 2nd grader and 3rd grader</div>
     </div>
     <p>
-    <!---- Relative Frequencey script -------------------------------------------------------------->
-    <script>
-      var chartRel = d3.select("#chartRel")
-      marginRel      = {top: 80, bottom: 80, left: 90, right: 90};
-      graphWidthRel  = svgWidth - marginRel.left - marginRel.right;
-      graphHeightRel = svgHeight - marginRel.top - marginRel.bottom;
-
-      var colr = ["#FF0000","#FF8000","#FFFF00","#00FF00","#00FFFF","#0080FF","#0000FF","#8000FF","#FF00FF","#0000FF"];
-      var rowMax = 100;
-      var dint  = new Array(rowMax);
-      var catg1 = new Array(rowMax);
-      var catg2 = new Array(rowMax);
-      var catgm = new Array(rowMax);
-      var freq1 = new Array(rowMax);
-      var freq2 = new Array(rowMax);
-      var perc1 = new Array(rowMax);
-      var perc2 = new Array(rowMax);
-      var ncolr = new Array(10);
-      var maxcol = 4;
-      var nrow = new Array(maxcol);
-      var i, j, k, ith;
-      var x1, x2, y1, y2, cx, cy, tx, ty;
-      var sum1, sum2, mean1, mean2, vari1, vari2, stdv1, stdv2, start, xstep, temp;
-      var nvalueH, gxminH, gxmaxH, gyminH, gymaxH, xgap, xwidth, Histogram;
-      var mTitleRelFreq, yTitleRelFreq, xTitleRelFreq;
-      var freq1Name, freq2Name;
-
-      document.getElementById("data11").disabled = true;
-      document.getElementById("data21").disabled = true;
-      document.getElementById("data31").disabled = true;
-      document.getElementById("data41").disabled = true;
-      document.getElementById("data51").disabled = true;
-      document.getElementById("data61").disabled = true;
-      document.getElementById("data71").disabled = true;
-      document.getElementById("data81").disabled = true;
-      document.getElementById("data91").disabled = true;
-      document.getElementById("data14").disabled = true;
-      document.getElementById("data24").disabled = true;
-      document.getElementById("data34").disabled = true;
-      document.getElementById("data44").disabled = true;
-      document.getElementById("data54").disabled = true;
-      document.getElementById("data64").disabled = true;
-      document.getElementById("data74").disabled = true;
-      document.getElementById("data84").disabled = true;
-      document.getElementById("data94").disabled = true;
-      document.getElementById("data15").disabled = true;
-      document.getElementById("data25").disabled = true;
-      document.getElementById("data35").disabled = true;
-      document.getElementById("data45").disabled = true;
-      document.getElementById("data55").disabled = true;
-      document.getElementById("data65").disabled = true;
-      document.getElementById("data75").disabled = true;
-      document.getElementById("data85").disabled = true;
-      document.getElementById("data95").disabled = true;
-      document.getElementById("data102").disabled = true;
-      document.getElementById("data103").disabled = true;
-      document.getElementById("data104").disabled = true;
-      document.getElementById("data105").disabled = true;
-      document.getElementById("data112").disabled = true;
-      document.getElementById("data113").disabled = true;
-      document.getElementById("data122").disabled = true;
-      document.getElementById("data123").disabled = true;
-      document.getElementById("data132").disabled = true;
-      document.getElementById("data133").disabled = true;
-
-      // init Example of Rel Freq 
-        document.getElementById("mtitleRelFreq").value = "Weights of the 2nd and 3rd grader";
-        document.getElementById("ytitleRelFreq").value = svgStr[30][langNum];
-        document.getElementById("xtitleRelFreq").value = "Weight";
-        document.getElementById("data02").value = colr[2]; // Yellow
-        document.getElementById("data04").value = colr[0]; // red
-        document.getElementById("data05").value = colr[6]; // blue
-        document.getElementById("freq1").value  = "2nd Grader";
-        document.getElementById("freq2").value  = "3rd Grader";
-        document.getElementById("data10").value = "50";
-        document.getElementById("data20").value = "55";
-        document.getElementById("data30").value = "60";
-        document.getElementById("data40").value = "65";
-        document.getElementById("data50").value = "70";
-        document.getElementById("data60").value = "75";
-        document.getElementById("data12").value = "3";
-        document.getElementById("data22").value = "7";
-        document.getElementById("data32").value = "11";
-        document.getElementById("data42").value = "5";
-        document.getElementById("data52").value = "3";
-        document.getElementById("data62").value = "1";
-        document.getElementById("data13").value = "2";
-        document.getElementById("data23").value = "6";
-        document.getElementById("data33").value = "12";
-        document.getElementById("data43").value = "13";
-        document.getElementById("data53").value = "6";
-        document.getElementById("data63").value = "3";
-
-      // erase Hist data input =====================================
-      d3.select("#eraseRelFreq").on("click", function() {
-        eraseRelFreq()
-      });
-
-      // Draw Relative Histogram ======================================
-      d3.select("#executeRelFreq").on("click",function() {
-        initializeRelFreq();
-        if ( wrongInput ) return;
-        drawHistogramRel(nvalueH, dint, perc1, perc2);
-      })
-
-      // svg Graph Save
-      d3.select("#saveGraphRel").on("click", function() {
-        var svg = d3.select("#chartRel");
-        var width  = svgWidth;
-        var height = svgHeight;
-        var svgString = getSVGString(svg.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
-
-  // Erase data 
-  function eraseRelFreq() {
-        chartRel.selectAll("*").remove();
-        // title
-        document.getElementById("mtitleRelFreq").value = "";
-        document.getElementById("ytitleRelFreq").value = "";
-        document.getElementById("xtitleRelFreq").value = "";
-        // color
-        document.getElementById("data02").value = colr[2]; 
-        document.getElementById("data04").value = colr[0];
-        document.getElementById("data05").value = colr[6]; 
-        document.getElementById("data02").value = colr[2]; // Yellow
-        document.getElementById("data04").value = colr[0]; // red
-        document.getElementById("data05").value = colr[6]; // blue
-        document.getElementById("ytitleRelFreq").value = svgStr[30][langNum];
-        document.getElementById("freq1").value  = svgStr[16][langNum]+ " 1";
-        document.getElementById("freq2").value  = svgStr[16][langNum]+ " 2";
-        // category
-        document.getElementById("data10").value = "";
-        document.getElementById("data20").value = "";
-        document.getElementById("data30").value = "";
-        document.getElementById("data40").value = "";
-        document.getElementById("data50").value = "";
-        document.getElementById("data60").value = "";
-        document.getElementById("data70").value = "";
-        document.getElementById("data80").value = "";
-        document.getElementById("data90").value = "";
-        document.getElementById("data11").value = "";
-        document.getElementById("data21").value = "";
-        document.getElementById("data31").value = "";
-        document.getElementById("data41").value = "";
-        document.getElementById("data51").value = "";
-        document.getElementById("data61").value = "";
-        document.getElementById("data71").value = "";
-        document.getElementById("data81").value = "";
-        document.getElementById("data91").value = "";
-        // freq data
-        document.getElementById("data12").value  = "";
-        document.getElementById("data22").value  = "";
-        document.getElementById("data32").value  = "";
-        document.getElementById("data42").value  = "";
-        document.getElementById("data52").value  = "";
-        document.getElementById("data62").value  = "";
-        document.getElementById("data72").value  = "";
-        document.getElementById("data82").value  = "";
-        document.getElementById("data92").value  = "";
-        document.getElementById("data102").value = "";
-        document.getElementById("data112").value = "";
-        document.getElementById("data122").value = "";
-        document.getElementById("data122").value = "";
-        document.getElementById("data132").value = "";
-        document.getElementById("data13").value  = "";
-        document.getElementById("data23").value  = "";
-        document.getElementById("data33").value  = "";
-        document.getElementById("data43").value  = "";
-        document.getElementById("data53").value  = "";
-        document.getElementById("data63").value  = "";
-        document.getElementById("data73").value  = "";
-        document.getElementById("data83").value  = "";
-        document.getElementById("data93").value  = "";
-        document.getElementById("data103").value = "";
-        document.getElementById("data113").value = "";
-        document.getElementById("data123").value = "";
-        document.getElementById("data133").value = "";
-        // clean up relative frequency
-        document.getElementById("data14").value = ""; 
-        document.getElementById("data24").value = ""; 
-        document.getElementById("data34").value = ""; 
-        document.getElementById("data44").value = ""; 
-        document.getElementById("data54").value = ""; 
-        document.getElementById("data64").value = ""; 
-        document.getElementById("data74").value = ""; 
-        document.getElementById("data84").value = ""; 
-        document.getElementById("data94").value = ""; 
-        document.getElementById("data104").value = "";
-        document.getElementById("data15").value = ""; 
-        document.getElementById("data25").value = ""; 
-        document.getElementById("data35").value = ""; 
-        document.getElementById("data45").value = ""; 
-        document.getElementById("data55").value = ""; 
-        document.getElementById("data65").value = ""; 
-        document.getElementById("data75").value = ""; 
-        document.getElementById("data85").value = ""; 
-        document.getElementById("data95").value = ""; 
-        document.getElementById("data105").value = "";
-  }
-  // intitalize histogram
-  function initializeRelFreq() {
-        chartRel.selectAll("*").remove();
-        // title
-        mTitleRelFreq = d3.select("#mtitleRelFreq").node().value;
-        yTitleRelFreq = d3.select("#ytitleRelFreq").node().value;
-        xTitleRelFreq = d3.select("#xtitleRelFreq").node().value;
-        if (yTitleRelFreq == "") yTitleRelFreq = svgStr[30][langNum];
-        // color
-        ncolr[2] = document.getElementById("data02").value; 
-        ncolr[0] = document.getElementById("data04").value;
-        ncolr[6] = document.getElementById("data05").value; 
-
-        // category
-        catg1[0] = d3.select("#data10").node().value;
-        catg1[1] = d3.select("#data20").node().value;
-        catg1[2] = d3.select("#data30").node().value;
-        catg1[3] = d3.select("#data40").node().value;
-        catg1[4] = d3.select("#data50").node().value;
-        catg1[5] = d3.select("#data60").node().value;
-        catg1[6] = d3.select("#data70").node().value;
-        catg1[7] = d3.select("#data80").node().value;
-        catg1[8] = d3.select("#data90").node().value;
-        // freq data
-        freq1Name= document.getElementById("freq1").value; 
-        freq2Name= document.getElementById("freq2").value; 
-        freq1[1] = parseFloat(d3.select("#data12").node().value);
-        freq1[2] = parseFloat(d3.select("#data22").node().value);
-        freq1[3] = parseFloat(d3.select("#data32").node().value);
-        freq1[4] = parseFloat(d3.select("#data42").node().value);
-        freq1[5] = parseFloat(d3.select("#data52").node().value);
-        freq1[6] = parseFloat(d3.select("#data62").node().value);
-        freq1[7] = parseFloat(d3.select("#data72").node().value);
-        freq1[8] = parseFloat(d3.select("#data82").node().value);
-        freq1[9] = parseFloat(d3.select("#data92").node().value);
-        freq2[1] = parseFloat(d3.select("#data13").node().value);
-        freq2[2] = parseFloat(d3.select("#data23").node().value);
-        freq2[3] = parseFloat(d3.select("#data33").node().value);
-        freq2[4] = parseFloat(d3.select("#data43").node().value);
-        freq2[5] = parseFloat(d3.select("#data53").node().value);
-        freq2[6] = parseFloat(d3.select("#data63").node().value);
-        freq2[7] = parseFloat(d3.select("#data73").node().value);
-        freq2[8] = parseFloat(d3.select("#data83").node().value);
-        freq2[9] = parseFloat(d3.select("#data93").node().value);
-        // clean up relative frequency
-        document.getElementById("data14").value = ""; 
-        document.getElementById("data24").value = ""; 
-        document.getElementById("data34").value = ""; 
-        document.getElementById("data44").value = ""; 
-        document.getElementById("data54").value = ""; 
-        document.getElementById("data64").value = ""; 
-        document.getElementById("data74").value = ""; 
-        document.getElementById("data84").value = ""; 
-        document.getElementById("data94").value = ""; 
-        document.getElementById("data15").value = ""; 
-        document.getElementById("data25").value = ""; 
-        document.getElementById("data35").value = ""; 
-        document.getElementById("data45").value = ""; 
-        document.getElementById("data55").value = ""; 
-        document.getElementById("data65").value = ""; 
-        document.getElementById("data75").value = ""; 
-        document.getElementById("data85").value = ""; 
-        document.getElementById("data95").value = ""; 
-        // get new color
-        colr[2] = d3.select("#data02").node().value;
-        colr[0] = d3.select("#data04").node().value;
-        colr[6] = d3.select("#data05").node().value;
-
-        // 입력한 행의 수 카운트
-        nrow[0] = 0;
-        for (i=0; i<rowMax; i++) {
-          if ( isNaN(catg1[i]) || catg1[i] == "" ) break;
-          else nrow[0]++;
-        }
-        // freq1 행의 수 카운트
-        nrow[2] = 0;
-        for (i=1; i<rowMax; i++) {
-          if ( isNaN(freq1[i]) || freq1[i] == "" ) break;
-          else nrow[2]++;
-        }
-        // freq2 행의 수 카운트
-        nrow[3] = 0;
-        for (i=1; i<rowMax; i++) {
-          if ( isNaN(freq2[i]) || freq2[i] == "" ) break;
-          else nrow[3]++;
-        }
-        nvalueH = nrow[0];  
-        // 입력행이 하나 이상인지 체크
-        tx = marginRel.left+100;
-        ty = marginRel.top;
-        if (nvalueH < 2 ) {
-          chartRel.append("text").attr("class","mea1n").attr("x", tx).attr("y", ty)
-               .text(alertMsg[46][langNum]).style("stroke","red").style("font-size", "1em")
-          wrongInput = true;
-          return;
-        }
-        // catg과 freq1 입력행의 수가 다른지 체크 
-        if (nvalueH != nrow[2]) {
-          chartRel.append("text").attr("class","mea1n").attr("x", tx).attr("y", ty)
-               .text(alertMsg[51][langNum]).style("stroke","red").style("font-size", "1em")
-          wrongInput = true;
-          return;
-        }
-        // catg와 freq2 입력행의 수가 다른지 체크 
-        if (nrow[3] > 0) {
-          if (nvalueH != nrow[3] ) {
-            chartRel.append("text").attr("class","mea1n").attr("x", tx).attr("y", ty)
-                 .text(alertMsg[51][langNum]).style("stroke","red").style("font-size", "1em")
-            wrongInput = true;
-            return;
-          }
-        }
-        // catg1, freq2에 문자 빈칸 있나 체크
-        for (i=0; i<nvalueH; i++) {
-            if (isNaN(catg1[i]) || isNaN(freq1[i+1]) ) {
-              chartRel.append("text").attr("class","mean").attr("x", tx).attr("y", ty)
-                   .text(alertMsg[52][langNum]).style("stroke","red").style("font-size", "1em")
-              wrongInput = true;
-              return;
-            }
-        }
-        // freq2에 문자 빈칸 있나 체크
-        if (nrow[3] > 0) {  
-          for (i=0; i<nvalueH; i++) {
-            if ( isNaN(freq2[i+1]) ) {
-              chartRel.append("text").attr("class","mean").attr("x", tx).attr("y", ty)
-                   .text(alertMsg[52][langNum]).style("stroke","red").style("font-size", "1em")
-              wrongInput = true;
-              return;
-            }
-          }
-        }
-        // catg1의 interval size가 같은지 
-        xstep = parseFloat(catg1[1]) - parseFloat(catg1[0]);
-        if (nrow[0] > 2) {
-          for (i=2; i<nvalueH; i++) {
-            temp = parseFloat(catg1[i]) - parseFloat(catg1[i-1]);
-            if (temp != xstep ) {
-              chartRel.append("text").attr("class","mean").attr("x", tx).attr("y", ty)
-                   .text(alertMsg[53][langNum]).style("stroke","red").style("font-size", "1em")
-              wrongInput = true;
-              return;
-            }
-          }
-        }
-        wrongInput = false;
-        // Right Interval Calculation
-        xstep = parseFloat(catg1[1]) - parseFloat(catg1[0]);
-        dint[0] = parseFloat(catg1[0]);
-        for (i = 0; i < nvalueH; i++) {
-          catg2[i]   = parseFloat(catg1[i]) + xstep; 
-          catgm[i]   = (parseFloat(catg1[i]) + parseFloat(catg2[i])) / 2;
-          dint[i+1]  = catg2[i];
-        } 
-        if( catg1[0] != "" ) document.getElementById("data11").value = f2(catg2[0]);
-        if( catg1[1] != "" ) document.getElementById("data21").value = f2(catg2[1]);
-        if( catg1[2] != "" ) document.getElementById("data31").value = f2(catg2[2]);
-        if( catg1[3] != "" ) document.getElementById("data41").value = f2(catg2[3]);
-        if( catg1[4] != "" ) document.getElementById("data51").value = f2(catg2[4]);
-        if( catg1[5] != "" ) document.getElementById("data61").value = f2(catg2[5]);
-        if( catg1[6] != "" ) document.getElementById("data71").value = f2(catg2[6]);
-        if( catg1[7] != "" ) document.getElementById("data81").value = f2(catg2[7]);
-        if( catg1[8] != "" ) document.getElementById("data91").value = f2(catg2[8]);
-        // Mean, Std Dev, Relative Frequency Calculation
-        sum1 = 0;
-        sum2 = 0;
-        mean1 = 0;
-        mean2 = 0;      
-        for (i = 0; i < nvalueH; i++) {
-            sum1  += freq1[i+1];
-            mean1 += catgm[i] * freq1[i+1];
-            if (nrow[3] > 0) {
-              sum2  += freq2[i+1];
-              mean2 += catgm[i] * freq2[i+1]; 
-            }
-        }
-        mean1 = mean1 / sum1;
-        if (nrow[3] > 0) mean2 = mean2 / sum2;
-        vari1 = 0;
-        vari2 = 0;      
-        for (i = 0; i < nvalueH; i++) {
-            vari1 += (catgm[i] - mean1) * (catgm[i] - mean1) * freq1[i+1];
-            if (nrow[3] > 0) {
-              vari2 += (catgm[i] - mean2) * (catgm[i] - mean2) * freq2[i+1]; 
-            }
-        }
-        vari1 = vari1 / sum1;
-        stdv1 = Math.sqrt(vari1);
-        if (nrow[3] > 0) {
-          vari2 = vari2 / sum2;
-          stdv2 = Math.sqrt(vari2);
-        }
-        for (i = 0; i < nvalueH; i++) {
-            perc1[i+1] = freq1[i+1] / sum1;
-            if (nrow[3] > 0) perc2[i+1] = freq2[i+1] / sum2;
-        } 
-        if( !isNaN(perc1[1]) ) document.getElementById("data14").value = f3(perc1[1]);
-        if( !isNaN(perc2[1]) ) document.getElementById("data15").value = f3(perc2[1]);
-        if( !isNaN(perc1[2]) ) document.getElementById("data24").value = f3(perc1[2]);
-        if( !isNaN(perc2[2]) ) document.getElementById("data25").value = f3(perc2[2]);
-        if( !isNaN(perc1[3]) ) document.getElementById("data34").value = f3(perc1[3]);
-        if( !isNaN(perc2[3]) ) document.getElementById("data35").value = f3(perc2[3]);
-        if( !isNaN(perc1[4]) ) document.getElementById("data44").value = f3(perc1[4]);
-        if( !isNaN(perc2[4]) ) document.getElementById("data45").value = f3(perc2[4]);
-        if( !isNaN(perc1[5]) ) document.getElementById("data54").value = f3(perc1[5]);
-        if( !isNaN(perc2[5]) ) document.getElementById("data55").value = f3(perc2[5]);
-        if( !isNaN(perc1[6]) ) document.getElementById("data64").value = f3(perc1[6]);
-        if( !isNaN(perc2[6]) ) document.getElementById("data65").value = f3(perc2[6]);
-        if( !isNaN(perc1[7]) ) document.getElementById("data74").value = f3(perc1[7]);
-        if( !isNaN(perc2[7]) ) document.getElementById("data75").value = f3(perc2[7]);
-        if( !isNaN(perc1[8]) ) document.getElementById("data84").value = f3(perc1[8]);
-        if( !isNaN(perc2[8]) ) document.getElementById("data85").value = f3(perc2[8]);
-        if( !isNaN(perc1[9]) ) document.getElementById("data94").value = f3(perc1[9]);
-        if( !isNaN(perc2[9]) ) document.getElementById("data95").value = f3(perc2[9]);
-        // write total
-        document.getElementById("data102").value = sum1;
-        document.getElementById("data104").value = f3(1);
-        document.getElementById("data112").value = f2(mean1);
-        document.getElementById("data122").value = f2(vari1);
-        document.getElementById("data132").value = f2(stdv1);
-        if (nrow[3] > 0) {
-          document.getElementById("data103").value = sum2;
-          document.getElementById("data105").value = f3(1);
-          document.getElementById("data113").value = f2(mean2);
-          document.getElementById("data123").value = f2(vari2);
-          document.getElementById("data133").value = f2(stdv2);
-        }
-  }
-
-  // 히스토그램 그리기 함수 -----------------------------------------------------------------------------------------------
-  function drawHistogramRel(nvalueH, dataValueH, dvalueFreq1, dvalueFreq2) {
-    var i, j, k, str, cx, cy;
-    var label, tempx, tempy, tempw, temph, xgap, xwidth, xstep, color1, colr2;
-    var nvaluH, gxminH, gxmaxH, gxrangeH, gyminH, gymaxH, gyrangeH, freqmax;
-
-    // 히스토그램 bins, 전체 데이터 최소 최대 계산
-    gxminH   = dataValueH[0];
-    gxmaxH   = dataValueH[nvalueH];
-    gxrangeH = gxmaxH - gxminH;
-    xgap     = graphWidthRel / (nvalueH + 2); // 좌우갭
-    xwidth   = graphWidthRel - 2 * xgap; // 좌우 갭을 뺀 실제 x 너비
-    xstep    = dataValueH[1] - dataValueH[0]; // Assume equal interval length
-    // 히스토그램 그리기
-    freqmax = 0;
-    for (j = 0; j <= nvalueH; j++) {
-        if (dvalueFreq1[j] > freqmax) freqmax = dvalueFreq1[j];
-        if (nrow[3] > 0) {
-          if (dvalueFreq2[j] > freqmax) freqmax = dvalueFreq2[j];
-        }
-    }
-    gyminH = 0;
-    gymaxH = freqmax * 1.2;  // Y축 버퍼
-    gyrangeH = gymaxH - gyminH;
-
-    // 전체 제목
-    drawTitleRel(mTitleRelFreq, yTitleRelFreq, xTitleRelFreq);
-    // 아래 축그리기
-    drawHistRelAxis(nvalueH, dataValueH, gxminH, gxmaxH, gyminH, gymaxH, graphWidthRel, graphHeightRel);   
-    // 히스토그램 freq1[]
-    tempw = xwidth * xstep / gxrangeH; // 막대 너비
-    for (i = 1; i <= nvalueH; i++) {
-            tempx = marginRel.left + xgap + xwidth * (dataValueH[i - 1] - gxminH) / gxrangeH;
-            tempy = marginRel.top + graphHeightRel - graphHeightRel * (dvalueFreq1[i] - gyminH) / gyrangeH;
-            temph = graphHeightRel * (dvalueFreq1[i] - gyminH) / gyrangeH;
-            chartRel.append("rect")
-                .style("fill", colr[2])
-                .attr("class", "bar")
-                .style("stroke", "lightgrey")
-                .style("stroke-width", "1px")
-                .attr("x", tempx)
-                .attr("width", tempw)
-                .attr("height", 0)
-                .attr("y", marginRel.top + graphHeightRel)
-                .transition() // 애니매이션 효과 지정
-                .delay(function(d, i) {
-                    return i * 250;
-                }) // 0.5초마다 그리도록 대기시간 설정
-                .duration(1000) // 2초동안 애니매이션이 진행되도록 설정
-                .attr("y", tempy)
-                .attr("height", temph)
-    } // endof i
-    color1 = colr[0];
-    showHistLineRel(nvalueH, xstep, dataValueH, dvalueFreq1, gxminH, gxmaxH, gyminH, gymaxH, xgap, xwidth, color1);
-
-    if (nrow[3] > 0) {
-      color2 = colr[6];
-      // 레이블
-      cx = marginRel.left + graphWidthRel + 10;
-      cy = marginRel.top + 30;
-      chartRel.append("circle").attr("class", "histline").style("fill", color1)
-             .attr("cx", cx).attr("cy", cy).attr("r", 3)
-      chartRel.append("text").attr("x", cx+10).attr("y", cy+7)
-           .style("font-size", "0.8em").style("font-family", "sans-seirf").style("stroke", color1).style("text-anchor", "begin")
-           .text(freq1Name)
-      cy += 30;
-      chartRel.append("circle").attr("class", "histline").style("fill", color2)
-             .attr("cx", cx).attr("cy", cy).attr("r", 3)
-      chartRel.append("text").attr("x", cx+10).attr("y", cy+7)
-           .style("font-size", "0.8em").style("font-family", "sans-seirf").style("stroke", color2).style("text-anchor", "begin")
-           .text(freq2Name)
-      // freq2 상대도수다각형
-      showHistLineRel(nvalueH, xstep, dataValueH, dvalueFreq2, gxminH, gxmaxH, gyminH, gymaxH, xgap, xwidth, color2);
-    }
-  }
-  // 히스토그램 y축, x축 그리기
-  function drawHistRelAxis(nvalueH, dataValueH, gxminH, gxmaxH, gyminH, gymaxH, graphWidthRel, graphHeightRel) {
-    var i, j, k;
-    var tx, ty, x1, x2, y1, y2, z1, z2;
-    var gxrangeH = gxmaxH - gxminH;
-    var xgap     = graphWidthRel / (nvalueH + 2); // 좌우갭
-    var xwidth   = graphWidthRel - 2 * xgap; // 좌우 갭을 뺀 실제 x 너비
-    var ygrid    = new Array(rowMax);
-
-    // Y축 그리기
-    var yScale = d3.scaleLinear().domain([gyminH, gymaxH]).range([graphHeightRel, 0]);
-    ygrid = yScale.ticks();
-    tx = marginRel.left;
-    ty = marginRel.top;
-    chartRel.append("g")
-         .attr("class", "axis")
-         .attr("transform", "translate(" + tx + ", " + ty + ") ")
-         .call(d3.axisLeft(yScale))
-    chartRel.append("line")
-         .attr("x1", marginRel.left + graphWidthRel)
-         .attr("x2", marginRel.left + graphWidthRel)
-         .attr("y1", marginRel.top)
-         .attr("y2", marginRel.top + graphHeightRel)
-         .style("stroke", "black")
-    // Y축 그리드
-    for (i = 1; i < ygrid.length; i++) {
-      ty = marginRel.top + yScale(ygrid[i]);
-      chartRel.append("line")
-           .attr("x1", marginRel.left)
-           .attr("x2", marginRel.left + graphWidthRel)
-           .attr("y1", ty)
-           .attr("y2", ty)
-           .style("stroke", "lightgrey")
-    }
-    // 히스토그램의 x축 선
-    tx = marginRel.left;
-    ty = marginRel.top;
-    chartRel.append("line")
-         .attr("x1", tx)
-         .attr("x2", marginRel.left + graphWidthRel)
-         .attr("y1", ty)
-         .attr("y2", ty)
-         .style("stroke", "black")
-    ty = marginRel.top + graphHeightRel;
-    chartRel.append("line")
-         .attr("x1", tx)
-         .attr("x2", marginRel.left + graphWidthRel)
-         .attr("y1", ty)
-         .attr("y2", ty)
-         .style("stroke", "black")
-    // 히스토그램의 x축 아래 tick, value 값선
-    y1 = marginRel.top + graphHeightRel;
-    y2 = y1 + 5;
-    for (i = 0; i <= nvalueH; i++) {
-        x1 = marginRel.left + xgap + xwidth * (dataValueH[i] - gxminH) / gxrangeH;
-        x2 = x1;
-        chartRel.append("line")
-            .attr("x1", x1)
-            .attr("x2", x2)
-            .attr("y1", y1)
-            .attr("y2", y2)
-            .style("stroke", "black")
-        // x 그리드
-        chartRel.append("line")
-            .attr("x1", x1)
-            .attr("x2", x2)
-            .attr("y1", y1)
-            .attr("y2", marginRel.top)
-            .style("stroke", "lightgrey")
-        chartRel.append("text")
-            .attr("class", "myaxis")
-            .style("text-anchor", "middle")
-            .style("font-family", "sans-serif")
-            .style("font-size", "0.7em")
-            .style("font-family", "sans-serif")
-            .style("stroke", "#0055FF")
-            .attr("x", x1)
-            .attr("y", y2 + 15)
-            .text(f2(dataValueH[i]))
-    }
-  }
-
-  // 그래프 제목 쓰기 함수
-  function drawTitleRel(mTitle, yTitle, xTitle) {
-    // 주제목
-    chartRel.append("text")
-        .attr("x", marginRel.left + graphWidthRel/2)
-        .attr("y", marginRel.top / 2 + 10)
-        .style("font-size", "1.8em")
-        .style("font-family", "sans-seirf")
-        .style("stroke", "black")
-        .style("text-anchor", "middle")
-        .text(mTitle)
-    // X축 제목
-    chartRel.append("text")
-            .style("font-size", "1em")
-            .style("font-family", "sans-seirf")
-            .style("stroke", "black")
-            .style("text-anchor", "middle")
-            .attr("x", marginRel.left + graphWidthRel / 2)
-            .attr("y", marginRel.top + graphHeightRel + marginRel.bottom * 0.6)
-            .text(xTitle)
-     // Y축 제목
-     var tx = marginRel.left / 2 - 30;
-     var ty = marginRel.top + 15;
-     chartRel.append("text")
-            .style("font-size", "1em")
-            .style("font-family", "sans-seirf")
-            .style("stroke", "black")
-            .style("text-anchor", "end")
-            .attr("x", tx)
-            .attr("y", ty)
-            .text(yTitle)
-            .attr("transform", "rotate(-90 30 100)")
-  }
-
-
-  // 히스토그램 도수분포다각형 표시 함수
-  function showHistLineRel(nvalueH, xstep, dataValueH, freq, gxminH, gxmaxH, gyminH, gymaxH, xgap, xwidth, colStr) {
-    var i, k;
-    var gxrangeH = gxmaxH - gxminH;
-    var gyrangeH = gymaxH - gyminH;
-        // left gap part
-        x1 = marginRel.left + xgap + xwidth * (dataValueH[0] - xstep / 2 - gxminH) / gxrangeH;
-        y1 = marginRel.top  + graphHeightRel;
-        x2 = marginRel.left + xgap + xwidth * (dataValueH[0] + xstep / 2 - gxminH) / gxrangeH;
-        y2 = marginRel.top  + graphHeightRel - graphHeightRel * (freq[1] - gyminH) / gyrangeH;
-        chartRel.append("circle")
-             .attr("class", "histline")
-             .style("stroke", colStr)
-             .style("stroke-width", "2px")
-             .attr("cx", x1)
-             .attr("cy", y1)
-             .attr("r", 3)
-        chartRel.append("line")
-             .attr("class", "histline")
-             .style("stroke", colStr)
-             .style("stroke-width", "2px")
-             .attr("x1", x1)
-             .attr("x2", x2)
-             .attr("y1", y1)
-             .attr("y2", y2)
-        str = f3(freq[1]);
-        chartRel.append("circle")
-             .attr("class", "histline")
-             .style("stroke", colStr)
-             .style("stroke-width", "2px")
-             .attr("cx", x2)
-             .attr("cy", y2)
-             .attr("r", 3)
-             .append("title")
-             .text(str)
-    // main polygon
-    for (i = 1; i < nvalueH; i++) {
-        x1 = x2;
-        y1 = y2;
-        x2 = marginRel.left + xgap + xwidth * (dataValueH[i] + xstep / 2 - gxminH) / gxrangeH;
-        y2 = marginRel.top  + graphHeightRel - graphHeightRel * (freq[i + 1] - gyminH) / gyrangeH;
-        str = f3(freq[i+1]);
-        chartRel.append("line")
-             .attr("class", "histline")
-             .style("stroke", colStr)
-             .style("stroke-width", "2px")
-             .attr("x1", x1)
-             .attr("x2", x2)
-             .attr("y1", y1)
-             .attr("y2", y2)
-        chartRel.append("circle")
-             .attr("class", "histline")
-             .style("stroke", colStr)
-             .style("stroke-width", "2px")
-             .attr("cx", x2)
-             .attr("cy", y2)
-             .attr("r", 3)
-             .append("title")
-             .text(str)
-    }
-        // right gap part
-        x1 = x2;
-        y1 = y2;
-        x2 = marginRel.left + xgap + xwidth * (dataValueH[nvalueH] + xstep / 2 - gxminH) / gxrangeH;
-        y2 = marginRel.top  + graphHeightRel;
-        chartRel.append("line")
-             .attr("class", "histline")
-             .style("stroke", colStr)
-             .style("stroke-width", "2px")
-             .attr("x1", x1)
-             .attr("x2", x2)
-             .attr("y1", y1)
-             .attr("y2", y2)
-        chartRel.append("circle")
-             .attr("class", "histline")
-             .style("stroke", colStr)
-             .style("stroke-width", "2px")
-             .attr("cx", x2)
-             .attr("cy", y2)
-             .attr("r", 3)
-  }
-
-    // Change Color
-    function changeColor(){
-      colr[2] = d3.select("#data02").node().value;
-      colr[0] = d3.select("#data04").node().value;
-      colr[6] = d3.select("#data05").node().value;
-    }
-
-
-    </script>
-
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
@@ -2934,23 +680,18 @@
          The following table shows Korea's male and female populations by age group in 2021. Use 『eStatM』 to draw and compare the frequency distribution polygons for each gender. 
       <p>
           <div class="textLeft">[Table 3.8] Korea's male and female populations by age group in 2021 (unit: 10,000)</div>
-          <table> 
-            <tr> <th class="thGrey">Class(kg)</th> <th class="thGrey">Male</th> <th class="thGrey">Female</th> </tr>
+          <table style="width:400px"> 
+            <tr> <th>Class(kg)</th> <th>Male</th> <th>Female</th> </tr>
             <tr> <td class="tdCenter">0&le; ~ &lt;20</td> <td class="tdCenter">437</td> <td class="tdCenter">411</td> </tr>
             <tr> <td class="tdCenter">20 ~ 40</td>      <td class="tdCenter">737</td> <td class="tdCenter">659</td> </tr>
             <tr> <td class="tdCenter">40 ~ 60</td>      <td class="tdCenter">851</td> <td class="tdCenter">827</td> </tr>
             <tr> <td class="tdCenter">60 ~ 80</td>      <td class="tdCenter">504</td> <td class="tdCenter">557</td> </tr>
             <tr> <td class="tdCenter">80 ~ 100</td>     <td class="tdCenter"> 67</td> <td class="tdCenter">132</td> </tr>
-            <tr> <th class="thGrey">Total</th> <th class="thGrey">2596</th> <th class="thGrey">2586</th>   </tr>
+            <tr> <th>Total</th> <th>2596</th> <th>2586</th>   </tr>
           </table>
      <p><b>Solution</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_09RelativeFrequency.svg" onclick="window.open(addrStr[145])">     
-          </td>
-          <td>
-            <p>Using the QR on the left, select 'Frequency Distribution Polygon 
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_09RelativeFrequency.svg" onclick="window.open(addrStr[145])">     
+            <p>Using the QR, select 'Frequency Distribution Polygon 
                - Relative Frequency' from the 『eStatM』 menu, then a window like 
                &lt;Figure 3.14&gt; appears.
             <p>After entering the desired title, input the left value of the class 
@@ -2960,7 +701,7 @@
         </tr>
       </table>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0314.png">
+         <img class="figure" src="./Figure/Fig0314.png">
          <div class="textLeft">&lt;Figure 3.14&gt; Male and female population data input for frequency distribution polygons</div>
       <p>
          If you click the [Execute] button, a frequency distribution polygon for 
@@ -2968,7 +709,7 @@
          that the population of male is higher than that of female until the age of 60, 
          but that the population of female over the age of 60 is larger than that of male.
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0315.png">
+         <img class="figure70" src="./Figure/Fig0315.png">
          <div class="textLeft">&lt;Figure 3.15&gt; Frequency distribution polygons of male and female populations in Korea </div>
       <p>
     </div>
@@ -2977,62 +718,46 @@
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ Exercise 3.5</h4> <p>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_09RelativeFrequency.svg" onclick="window.open(addrStr[145])">     
-          </td>
-          <td>
-          <p>
+        <h4>⏱ Exercise 3.5</h4> 
+        <p>
             The following table is a survey of the ages of male and female teachers
             in a middle school. Draw a frequency distribution polygon using 『eStatM』 and compare them.
             <p>
             <div class="textLeft">[Table 3.9] Frequency table of the ages of male and female teachers<br>
             </div>
-            <table> 
-              <tr> <th class="thGrey">Class</th> <th class="thGrey">Male</th> <th class="thGrey">Female</th> </tr>
+            <table style="width:400px"> 
+              <tr> <th>Class</th> <th>Male</th> <th>Female</th> </tr>
               <tr> <td class="tdCenter">20&le; ~ &lt;30</td> <td class="tdCenter">3</td> <td class="tdCenter">2</td> </tr>
               <tr> <td class="tdCenter">30 ~ 40</td>       <td class="tdCenter">4</td> <td class="tdCenter">6</td> </tr>
               <tr> <td class="tdCenter">40 ~ 50</td>       <td class="tdCenter">4</td> <td class="tdCenter">4</td> </tr>
               <tr> <td class="tdCenter">50 ~ 60</td>       <td class="tdCenter">2</td> <td class="tdCenter">3</td> </tr>
               <tr> <td class="tdCenter">60 ~ 70</td>       <td class="tdCenter">0</td> <td class="tdCenter">2</td> </tr>
-              <tr> <th class="thGrey">Total</th> <th class="thGrey">13</th> <th class="thGrey">17</th>   </tr>
+              <tr> <th>Total</th> <th>13</th> <th>17</th>   </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_09RelativeFrequency.svg" onclick="window.open(addrStr[145])">     
     </div>
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ Exercise 3.6</h4> <p>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_09RelativeFrequency.svg" onclick="window.open(addrStr[145])">     
-          </td>
-          <td>
-          <p>
+        <h4>⏱ Exercise 3.6</h4> 
+        <p>
             The following table compares the academic achievement test scores of 
             the middle school A and middle school B. Draw a frequency distribution
             polygon using 『eStatM』 and compare them.
             <p>
             <div class="textLeft">[Table 3.10] Frequency table to compare the academic achievement test scores of middle school A and middle school B<br>
             </div>
-            <table> 
-              <tr> <th class="thGrey">Class</th> <th class="thGrey">Male</th> <th class="thGrey">Female</th> </tr>
+            <table style="width:400px"> 
+              <tr> <th>Class</th> <th>Male</th> <th>Female</th> </tr>
               <tr> <td class="tdCenter">50&le; ~ &lt;60</td> <td class="tdCenter"> 2</td> <td class="tdCenter"> 2</td> </tr>
               <tr> <td class="tdCenter">60 ~ 70</td>       <td class="tdCenter"> 5</td> <td class="tdCenter"> 8</td> </tr>
               <tr> <td class="tdCenter">70 ~ 80</td>       <td class="tdCenter">20</td> <td class="tdCenter">25</td> </tr>
               <tr> <td class="tdCenter">80 ~ 90</td>       <td class="tdCenter">23</td> <td class="tdCenter">10</td> </tr>
               <tr> <td class="tdCenter">90 ~ 100</td>      <td class="tdCenter">10</td> <td class="tdCenter"> 5</td> </tr>
-              <tr> <th class="thGrey">Total</th> <th class="thGrey">60</th> <th class="thGrey">50</th>   </tr>
+              <tr> <th>Total</th> <th>60</th> <th>50</th>   </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_09RelativeFrequency.svg" onclick="window.open(addrStr[145])">     
     </div>
     <p>
     <!-------------------------------------------------------------------------->
@@ -3042,34 +767,18 @@
   <h3 id="0304">3.4 Scatterplot</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ Think</h4>
           <b>The height and weight of 7 male middle school students were investigated as follows: </b>
           <p>
             <div class="textLeft">(Data 3.5) Height and weight of 7 male middle school students</div>
-            <table> 
-              <tr> <th></th> <th class="thGrey">1</th> <th class="thGrey">2</th> <th class="thGrey">3</th> <th class="thGrey">4</th> <th class="thGrey">5</th> <th class="thGrey">6</th> <th class="thGrey">7</th> </tr>
-              <tr> <th class="thGrey">Height (cm)</th> <td class="tdCenter">162</td> <td class="tdCenter">164</td> <td class="tdCenter">170</td> <td class="tdCenter">158</td> <td class="tdCenter">175</td> <td class="tdCenter">168</td> <td class="tdCenter">172</td> </tr>
-              <tr> <th class="thGrey">Weight (kg)</th> <td class="tdCenter">54</td> <td class="tdCenter">60</td> <td class="tdCenter">64</td> <td class="tdCenter">52</td> <td class="tdCenter">65</td> <td class="tdCenter">60</td> <td class="tdCenter">67</td> </tr>
+            <table style="width:600px"> 
+              <tr> <th></th> <th>1</th> <th>2</th> <th>3</th> <th>4</th> <th>5</th> <th>6</th> <th>7</th> </tr>
+              <tr> <th>Height (cm)</th> <td class="tdCenter">162</td> <td class="tdCenter">164</td> <td class="tdCenter">170</td> <td class="tdCenter">158</td> <td class="tdCenter">175</td> <td class="tdCenter">168</td> <td class="tdCenter">172</td> </tr>
+              <tr> <th>Weight (kg)</th> <td class="tdCenter">54</td> <td class="tdCenter">60</td> <td class="tdCenter">64</td> <td class="tdCenter">52</td> <td class="tdCenter">65</td> <td class="tdCenter">60</td> <td class="tdCenter">67</td> </tr>
             </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 Explore</h4>
           <b>-  Is there a graph that shows the relation between height and weight?<br>
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -3081,7 +790,7 @@
          the y-axis. That is, (Data 4.2) is represented such as in &lt;Figure 3.16&gt; as 
          ordered pairs (162, 54), (164, 60), ... (172, 67).
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0316.png">
+         <img class="imgFig600600" src="./Figure/Fig0316.png">
          <div class="textLeft">&lt;Figure 3.16&gt;  Scatter plot of the height and weight of 7 middle school students</div>
       <p>
          If you look at &lt;Figure 3.16&gt;, it can be seen that as the height increases, 
@@ -3099,10 +808,10 @@
             the positive correlation is weak.
       </p>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0317.png">
+         <img class="figure" src="./Figure/Fig0317.png">
          <div class="textLeft">&lt;Figure 3.17&gt; Strong positve correlation</div>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0318.png">
+         <img class="figure" src="./Figure/Fig0318.png">
          <div class="textLeft">&lt;Figure 3.18&gt; Weak positve correlation</div>
       <p class="textL20M20 ">
          2) <b>Negative Correlation</b> – When the value of y tends to decrease 
@@ -3114,17 +823,17 @@
             correlation is weak.
       </p>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0319.png">
+         <img class="figure" src="./Figure/Fig0319.png">
          <div class="textLeft">&lt;Figure 3.19&gt; Strong negative correlation</div>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0320.png">
+         <img class="figure" src="./Figure/Fig0320.png">
          <div class="textLeft">&lt;Figure 3.20&gt; Weak negative correlation</div>
       <p class="textL20M20 ">
          3) <b>No Correlation</b> – When the tendency of the value of y to increase 
             or decrease is not clear as the value of x increases, there is no correlation between the two variables.
       </p>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0321.png">
+         <img class="figure" src="./Figure/Fig0321.png">
          <div class="textLeft">&lt;Figure 3.21&gt; No correlation</div>
       <p>
   </div>
@@ -3147,548 +856,34 @@
          that explains the relationship between height and weight is drawn. 
          Regression line will be discussed at a university level.  
       <p>
-      <!---------- scatter plot html ---------------------------------------------------------> 
-      <button type="button" id="eraseScatter" style="width:140px;"><b>New Data</b></button>
-      <table class="data">
-        <tr>
-          <td style="text-align: right;"><b><span data-msgid="Main Title">Main Title</span></b>&nbsp;</td>
-          <td colspan="3"><input type="text" size=65 id="mtitleScatter"></td>
-        </tr>
-	<tr>
-          <td style="text-align: right;"><b><span data-msgid="y title">y title</span></b>&nbsp;</td>
-          <td><input type="text" size=20 id="ytitleScatter"></td>
-          <td style="text-align: right;"><b><span data-msgid="x title">x title</span></b>&nbsp;</td>
-          <td><input type="text" size=20 id="xtitleScatter"></td>
- 	</tr>
-	<tr>
-	  <td style="text-align: right;"><b>X <span data-msgid="input data"> data</span></b></td>
-	  <td colspan="3"><input type="text" size=85 id="datax"></td>
-	</tr>
-	<tr>
-	  <td style="text-align: right;"><b>Y <span data-msgid="input data"> data</span></b></td>
-	  <td colspan="3"><input type="text" size=85 id="datay"></td>
-	</tr>
-      </table>
-      <table>
-	<tr>
-	  <td><span data-msgid="NumberData">Number of Data</span></td>         
-	  <td style="text-align: center;"><span class="fontmath">n<sub>x</sub></span></td>
-	  <td><input type="text" class="textarea" size=6 id="nn41"></td>
-	  <td> </td>
-	  <td style="text-align: center;"><span class="fontmath">n<sub>y</sub></span></td>
-	  <td><input type="text" class="textarea" size=6 id="nn42"></td>        
-	</tr>
-	<tr>
-	  <td><span data-msgid="Mean">Mean</span></td>
-	  <td style="text-align: center;"><span class="fontmath">&mu;<sub>x</sub></span></td>
-	  <td><input type="text" class="textarea" size=6 id="xbar41"></td>
-	  <td> </td>
-	  <td style="text-align: center;"><span class="fontmath">&mu;<sub>y</sub></span></td>
-	  <td><input type="text" class="textarea" size=6 id="xbar42"></td>
-	</tr>
-	<tr>
-          <td><span id="msgVariance">Variance</span></td>
-	  <td style="text-align: center;"><span class="fontmath">&sigma;<sub>x</sub><sup>2</sup></span></td>
-	  <td><input type="text" class="textarea" size=6 id="var41"></td>
-	  <td> </td>
-	  <td style="text-align: center;"><span class="fontmath">&sigma;<sub>y</sub><sup>2</sup></span></td>
-	  <td><input type="text" class="textarea" size=6 id="var42"></td>
-	  <td> </td>
-          <td><span id="msgCovariance">Covariance</span></td>
-	  <td style="text-align: center;"><span class="fontmath">&sigma;<sub>xy</sub></span></td>
-	  <td><input type="text" class="textarea" size=6 id="var43"></td>
-	</tr>
-	<tr>
-          <td><span data-msgid="Std Deviation">Std. Deviation</span></td>
-	  <td style="text-align: center;"><span class="fontmath">&sigma;<sub>x</sub></span></td>
-	  <td><input type="text" class="textarea" size=6 id="std41"></td>
-	  <td> </td>
-	  <td style="text-align: center;"><span class="fontmath">&sigma;<sub>y</sub></span></td>
-	  <td><input type="text" class="textarea" size=6 id="std42"></td>
-	  <td> </td>
-          <td><span id="msgCorr">Correlation</span></td>
-	  <td style="text-align: center;"><span class="fontmath">&rho;</span></td>
-	  <td><input type="text" class="textarea" size=6 id="std43"></td>
-	</tr>
-      </table>
-      <div class="textLeft">&lt;Figure 3.22&gt; Height and weight data input for a scatter plot </div>
-      <p>
-      <button type="button" id="executeScatter" >
-        <span data-msgid="Execute">Execute</span>
-      </button>
-      <p>
-      <svg id="chartScatter" width="750" height="540" style="border-style:solid;"> </svg> 
-      <p>
-      <button type="button" id="saveGraphScatter" >
-	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
-      </button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <label>
-        <input type="checkbox" id="regress2"> 
-        <span data-msgid="Regression Line">Regression Line </span>
-      </label> 
+      <!----------*** scatter plot html ***-----------------------------> 
+         <iframe class="example110" src="./example/0306.html"> </iframe>
+         <div class="textLeft">&lt;Figure 3.22&gt; Height and weight data input for a scatter plot </div>
     </div>
     <p>
-    <!------script for Scatter Plot --------------------------------------------------------------->
-  <script>
-      var chartScatter = d3.select("#chartScatter"); 
-      var i, r;
-      var marginScatter = {top: 80, bottom: 80, left: 80, right: 80};
-      var buffer      = 40;
-      var graphWidthScatter  = svgWidth - marginScatter.left - marginScatter.right;
-      var graphHeightScatter = svgHeight - marginScatter.top - marginScatter.bottom;
-      var checkTitle  = true;
-      var mtitleScatter, ytitleScatter, xtitleScatter, xobs, yobs, tobs;
-      var fontsize = "1em";
-      var stat      = new Array(30);
-      var rowmax    = 200;
-      var xdata     = new Array(rowmax);
-      var ydata     = new Array(rowmax);
-      document.getElementById("nn41").disabled    = true;    
-      document.getElementById("nn42").disabled    = true;    
-      document.getElementById("xbar41").disabled  = true;    
-      document.getElementById("xbar42").disabled  = true;    
-      document.getElementById("var41").disabled   = true;       
-      document.getElementById("var42").disabled   = true;       
-      document.getElementById("var43").disabled   = true;       
-      document.getElementById("std41").disabled   = true;       
-      document.getElementById("std42").disabled   = true;       
-      document.getElementById("std43").disabled   = true;       
-      document.getElementById("msgVariance").innerHTML = svgStr[117][langNum]; 
-      document.getElementById("msgCovariance").innerHTML = svgStr[121][langNum]; 
-      document.getElementById("msgCorr").innerHTML = svgStr[60][langNum]; 
-
-      // init example
-      document.getElementById("mtitleScatter").value = "Height and weight of 7 middle school students";
-      document.getElementById("ytitleScatter").value = "Weight";
-      document.getElementById("xtitleScatter").value = "Height";
-      document.getElementById("datax").value = "162,164,170,158,175,168,172";
-      document.getElementById("datay").value = "54,60,64,52,65,60,67";
-      xdata = [162,164,170,158,175,168,172];
-      ydata = [54,60,64,52,65,60,67];
-      xobs  = xdata.length;
-      yobs  = ydata.length; 
-
-      // input data control ===================================================
-      d3.select("#datax").on("input", function() {
-        stat = simplestat("#datax");  
-        xdata = data;  
-        xobs = stat.n;
-      });
-
-      d3.select("#datay").on("input", function() {
-        stat = simplestat("#datay");  
-        ydata = data; 
-        yobs = stat.n;
-      });
-
-      updateData = function() {
-        document.getElementById("datax").value = '';
-        document.getElementById("datay").value = '';    
-      }
-
-      // erase scatter plot
-      d3.select("#eraseScatter").on("click", function(){  
-        chartScatter.selectAll("*").remove();
-        // title
-        document.getElementById("mtitleScatter").value = "";
-        document.getElementById("ytitleScatter").value = "";
-        document.getElementById("xtitleScatter").value = "";
-        // data
-        document.getElementById("datax").value = '';
-        document.getElementById("datay").value = '';    
-        // stat
-        document.getElementById("nn41").value    = "";    
-        document.getElementById("nn42").value    = "";    
-        document.getElementById("xbar41").value  = "";    
-        document.getElementById("xbar42").value  = "";    
-        document.getElementById("var41").value   = "";       
-        document.getElementById("var42").value   = "";       
-        document.getElementById("var43").value   = "";       
-        document.getElementById("std41").value   = "";       
-        document.getElementById("std42").value   = "";       
-        document.getElementById("std43").value   = "";       
-      })
-      // execute scatter plot
-      d3.select("#executeScatter").on("click", function(){  
-          chartScatter.selectAll("*").remove();  // 전화면 제거
-          document.getElementById("regress2").checked = false;
-          // 입력행이 같은지 체크
-          if (xobs != yobs ) {
-            chartScatter.append("text").attr("class","mean").attr("x", 250).attr("y", marginScatter.top + 40)
-               .text(alertMsg[54][langNum]).style("stroke","red").style("font-size","1em");
-            return;
-          }
-          tobs = xobs;
-          // 입력 도수에 숫자 문자 빈칸 있나 체크
-          for (i=0; i<tobs; i++) {
-            if (isNaN(xdata[i]) || isNaN(ydata[i]) ) {
-              chartScatter.append("text").attr("class","mean").attr("x", 250).attr("y", marginScatter.top + 40)
-                 .text(alertMsg[48][langNum]).style("stroke","red").style("font-size","1em");
-              return;
-            }
-          }
-          // title
-          mtitleScatter = d3.select("#mtitleScatter").node().value;
-          ytitleScatter = d3.select("#ytitleScatter").node().value;
-          xtitleScatter = d3.select("#xtitleScatter").node().value;
-          // 통계량
-          basicScatterStat(tobs, xdata, ydata, stat);
-          document.getElementById("nn41").value   = tobs;    
-          document.getElementById("nn42").value   = tobs;    
-          document.getElementById("xbar41").value = f2(stat[1]);
-          document.getElementById("xbar42").value = f2(stat[11]);
-          document.getElementById("var41").value  = f2(stat[17]); 
-          document.getElementById("var42").value  = f2(stat[18]);    
-          document.getElementById("var43").value  = f2(stat[19]);    
-          document.getElementById("std41").value  = f2(stat[2]); 
-          document.getElementById("std42").value  = f2(stat[12]);    
-          document.getElementById("std43").value  = f2(stat[9]);    
-          showScatterPlot(tobs, xdata, ydata, stat[5], stat[6], stat[15], stat[16], graphWidthScatter, graphHeightScatter, checkTitle);
-      })
-
-      // 회귀선 그리기
-      d3.select("#regress2").on("click",function() {
-          if(this.checked) {
-            showRegression2(stat[7], stat[8], stat[9], stat[10], stat[5], stat[6], stat[15], stat[16], checkTitle);
-          } else {
-	    removeRegression2();
-          }
-      })
-      // svg Graph Save
-      d3.select("#saveGraphScatter").on("click", function() {
-        var svg = d3.select("#chartScatter");
-        var width = svgWidth;
-        var height = svgHeight;
-        var svgString = getSVGString(chartScatter.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
-
-// Two variable Basic Statistics
-function basicScatterStat(nobs, xdata, ydata, stat) {
-        var tempx, tempy;
-        var xsum = 0;
-        var ysum = 0;
-        for (i=0; i<nobs; i++) {
-          xsum += xdata[i];
-          ysum += ydata[i];
-        }
-        var xavg = xsum / nobs;
-        var yavg = ysum / nobs;
-        var sxx = 0;
-        var sxy = 0;
-        var syy = 0;
-        for (i=0; i<nobs; i++) {
-          tempx = xdata[i] - xavg;
-          tempy = ydata[i] - yavg;
-          sxx += tempx*tempx;
-          syy += tempy*tempy;
-          sxy += tempx*tempy; 
-        }
-        var xvar = sxx / nobs;
-        var xstd = Math.sqrt(xvar);
-        var yvar = syy / nobs;
-        var ystd = Math.sqrt(yvar);
-        var beta    = sxy / sxx;
-        var alpha   = yavg - beta*xavg;
-        var cov     = sxy / nobs;
-        var corr    = sxy / Math.sqrt(sxx * syy);
-        var rsquare = corr * corr;
-        var xmin = xdata[0];
-        var xmax = xdata[0];
-        var ymin = ydata[0];
-        var ymax = ydata[0];
-        for (i=1; i<nobs; i++) {
-          if (xmin > xdata[i]) xmin = xdata[i];
-          if (xmax < xdata[i]) xmax = xdata[i];
-          if (ymin > ydata[i]) ymin = ydata[i];
-          if (ymax < ydata[i]) ymax = ydata[i];
-        } 
-        // 그래프 화면 정의 
-        var xgap    = (xmax - xmin) / 5;
-        var ygap    = (ymax - ymin) / 5;
-        var gxmin   = xmin - xgap;
-        var gxmax   = xmax + xgap;
-        var gymin   = ymin - ygap;
-        var gymax   = ymax + ygap;
-        var gxrange = gxmax - gxmin;
-        var gyrange = gymax - gymin;
-        // save statistic
-        stat[0]  = nobs;
-        stat[1]  = xavg;    stat[11] = yavg;
-        stat[2]  = xstd;    stat[12] = ystd;
-        stat[3]  = xmin;    stat[13] = ymin;
-        stat[4]  = xmax;    stat[14] = ymax;
-        stat[5]  = gxmin;   stat[15] = gymin
-        stat[6]  = gxmax;   stat[16] = gymax;
-        stat[7]  = alpha;   stat[17] = xvar;
-        stat[8]  = beta;    stat[18] = yvar;
-        stat[9]  = corr;    stat[19] = cov;
-        stat[10] = rsquare;    
-}
-// 산점도 그리기 함수 -------------------------------------------------------------
-function showScatterPlot(nobs, xdata, ydata, gxmin, gxmax, gymin, gymax, graphWidthScatter, graphHeightScatter, checkTitle) {
-     var gxrange = gxmax - gxmin;
-     var gyrange = gymax - gymin;
-     var xgrid    = new Array(nobs);
-     var ygrid    = new Array(nobs);
-
-     var i, tx, ty;
-         // 주제목
-         chartScatter.append("text")
-            .attr("x", marginScatter.left + graphWidthScatter/2)
-            .attr("y", marginScatter.top / 2 + 10)
-            .style("font-size", "1.8em")
-            .style("font-family", "sans-seirf")
-            .style("stroke", "black")
-            .style("text-anchor", "middle")
-            .text(mtitleScatter)
-         // X축 제목
-         chartScatter.append("text")
-            .style("font-size", fontsize)
-            .style("font-family", "sans-seirf")
-            .style("stroke", "black")
-            .style("text-anchor", "middle")
-            .attr("x", marginScatter.left + graphWidthScatter / 2)
-            .attr("y", marginScatter.top + graphHeightScatter + marginScatter.bottom / 2 + 5)
-            .text(xtitleScatter)
-         // Y축 제목
-         tx = marginScatter.left / 2 - 30;
-         ty = marginScatter.top + 15;
-         chartScatter.append("text")
-            .style("font-size", fontsize)
-            .style("font-family", "sans-seirf")
-            .style("stroke", "black")
-            .style("text-anchor", "end")
-            .attr("x", tx)
-            .attr("y", ty)
-            .text(ytitleScatter)
-            .attr("transform", "rotate(-90 30 100)")
-
-        // x축 그리기
-        var xScale = d3.scaleLinear().domain([gxmin,gxmax]).range([0,graphWidthScatter])
-        xgrid = xScale.ticks();
-        // x축 그리드
-        for (i = 1; i < xgrid.length; i++) {
-          tx = marginScatter.left + xScale(xgrid[i]);
-          chartScatter.append("line")
-           .attr("x1", tx)
-           .attr("x2", tx)
-           .attr("y1", marginScatter.top)
-           .attr("y2", marginScatter.top + graphHeightScatter)
-           .style("stroke", "lightgrey")
-        }
-        ty = marginScatter.top + graphHeightScatter;
-        chartScatter.append("g")
-             .attr("transform","translate("+marginScatter.left+","+ty+")")
-	     .attr("class", "main axis date")
-             .call(d3.axisBottom(xScale)) 
-        chartScatter.append("g")
-             .attr("transform","translate("+marginScatter.left+","+marginScatter.top+")")
-	     .attr("class", "main axis date")
-             .call(d3.axisTop(xScale)) 
-        // y축 그리기
-        var yScale = d3.scaleLinear().domain([gymin,gymax]).range([graphHeightScatter, 0])
-        ygrid = yScale.ticks();
-        // Y축 그리드
-        for (i = 1; i < ygrid.length; i++) {
-          ty = marginScatter.top + yScale(ygrid[i]);
-          chartScatter.append("line")
-           .attr("x1", marginScatter.left)
-           .attr("x2", marginScatter.left + graphWidthScatter)
-           .attr("y1", ty)
-           .attr("y2", ty)
-           .style("stroke", "lightgrey")
-        }
-        ty = marginScatter.top;
-        chartScatter.append("g")
-             .attr("transform","translate("+marginScatter.left+","+ty+")")
-	     .attr("class", "main axis date")
-             .call(d3.axisLeft(yScale)) 
-        var tx = marginScatter.left + graphWidthScatter;
-        chartScatter.append("g")
-             .attr("transform","translate("+tx+","+ty+")")
-	     .attr("class", "main axis date")
-             .call(d3.axisRight(yScale)) 
-        // 산점도 점 그리기
-        chartScatter.selectAll("circle")
-             .data(xdata)
-             .enter()
-             .append("circle")
-             .attr("cx", function(d,i){ return marginScatter.left + graphWidthScatter*Math.random() })
-             .attr("cy", marginScatter.top + 20)
-             .transition()                           // 애니매이션 효과 지정
-             .delay(function(d,i) {return i*50;})   // 0.5초마다 그리도록 대기시간 설정
-             .duration(500) 
-             .attr("cx", function(d,i){ return marginScatter.left+graphWidthScatter*(d-gxmin)/gxrange;})
-             .attr("cy", function(d,i){ return marginScatter.top+graphHeightScatter-graphHeightScatter*(ydata[i]-gymin)/gyrange;})         
-             .attr("r", 5)
-             .attr("class","circle")
-             .style("fill",function(d,i){return myColor[i] })
-}
-
-// 회귀선 그리기 함수
-function showRegression2(alpha, beta, corr, rsquare, gxmin, gxmax, gymin, gymax, checkTitle) {
-        var gxrange = gxmax - gxmin;
-        var gyrange = gymax - gymin;
-        var x1  = marginScatter.left + graphWidthScatter*(stat[3]-gxmin)/gxrange;
-        var y1  = marginScatter.top  + graphHeightScatter - graphHeightScatter*((alpha+beta*stat[3])-gymin)/gyrange;
-        var x2  = marginScatter.left + graphWidthScatter*(stat[4]-gxmin)/gxrange;
-        var y2  = marginScatter.top  + graphHeightScatter - graphHeightScatter*((alpha+beta*stat[4])-gymin)/gyrange;
-        chartScatter.append("line").attr("class","reglabel2")
-                .attr("x1",x1)
-                .attr("y1",y1)
-                .attr("x2",x2)
-                .attr("y2",y2)
-                .style("stroke","green") 
-     if(checkTitle) {   
-        chartScatter.append("text").attr("class","reglabel2")
-                .attr("x", marginScatter.left + 20)
-                .attr("y", marginScatter.top +  20)
-                .text(svgStrU[31][langNum]+" :  y = ("+f2(alpha)+") + ("+f2(beta)+ ") x")
-      
-        chartScatter.append("text").attr("class","reglabel2").attr("x", marginScatter.left + 80).attr("y", marginScatter.top +  40)
-                .text("ρ = "+f2(corr))
-/* for university
-        chartScatter.append("text").attr("class","reglabel2").attr("x", marginScatter.left + 80).attr("y", marginScatter.top +  40)
-                .text("r = "+f2(corr)+" r\u00B2 = "+f2(rsquare))
-*/
-     }
-}// Remove Regression Line of Simulation
-function removeRegression2() {
-	 chartScatter.selectAll("line.reglabel2").remove();
-         chartScatter.selectAll("text.reglabel2").remove();
-}
-  </script>
-
-
-
-
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ Exercise 3.7</h4> <p>
-            <input class="qrBtn" type="image" src="../../QR/eStatM_30ScatterPlotH.svg" onclick="window.open(addrStr[157])">     
-          </td>
-          <td>
-          <p>
+        <h4>⏱ Exercise 3.7</h4> <p>
+        <p>
             The following are data on the weekly study hours and test scores of 10 
             middle school students. Draw a scatterplot using 『eStatM』 and see 
             what kind of correlation there is.
             <p>
             <div class="textLeft">(Data 3.6) Weekly study hours and test score of 10 students</div>
-            <table> 
-              <tr> <th class="thGrey"></th> <th class="thGrey">1</th> <th class="thGrey">2</th> <th class="thGrey">3</th> <th class="thGrey">4</th> <th class="thGrey">5</th> <th class="thGrey">6</th> <th class="thGrey">7</th> <th class="thGrey">8</th> <th class="thGrey">9</th> <th class="thGrey">10</th> </tr>
-              <tr> <th class="thGrey">Study hours</th> <td class="tdCenter">10</td> <td class="tdCenter">25</td> <td class="tdCenter">15</td> <td class="tdCenter">16</td> <td class="tdCenter">20</td> <td class="tdCenter">5</td> <td class="tdCenter">18</td> <td class="tdCenter">21</td> <td class="tdCenter">12</td> <td class="tdCenter">20</td> </tr>
-              <tr> <th class="thGrey">Test score</th> <td class="tdCenter">75</td> <td class="tdCenter">95</td> <td class="tdCenter">82</td> <td class="tdCenter">85</td> <td class="tdCenter">97</td> <td class="tdCenter">65</td> <td class="tdCenter">87</td> <td class="tdCenter">88</td> <td class="tdCenter">76</td> <td class="tdCenter">90</td> </tr>
+            <table style="width:600px"> 
+              <tr> <th></th> <th>1</th> <th>2</th> <th>3</th> <th>4</th> <th>5</th> <th>6</th> <th>7</th> <th>8</th> <th>9</th> <th>10</th> </tr>
+              <tr> <th>Study hours</th> <td class="tdCenter">10</td> <td class="tdCenter">25</td> <td class="tdCenter">15</td> <td class="tdCenter">16</td> <td class="tdCenter">20</td> <td class="tdCenter">5</td> <td class="tdCenter">18</td> <td class="tdCenter">21</td> <td class="tdCenter">12</td> <td class="tdCenter">20</td> </tr>
+              <tr> <th>Test score</th> <td class="tdCenter">75</td> <td class="tdCenter">95</td> <td class="tdCenter">82</td> <td class="tdCenter">85</td> <td class="tdCenter">97</td> <td class="tdCenter">65</td> <td class="tdCenter">87</td> <td class="tdCenter">88</td> <td class="tdCenter">76</td> <td class="tdCenter">90</td> </tr>
             </table>
           </td>
-        </tr>
-      </table>
-    </div>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_30ScatterPlotH.svg" onclick="window.open(addrStr[157])">   
+    </div>  
     <p>
     <!-------------------------------------------------------------------------->
 
-  <div class="mainTablePink">
-    <h4> Exercise </h4>
-    <p style="color:blue">*** Select an answer and click [SUBMIT] button.
-
-  <h6 class="textL30M30">3.1 Which of the following graphs is used for analyzing quantitative data?  </h6>
-  <form name="Q1">
-    <label><input type="radio" name="item" value="1"> bar graph</label><br>
-    <label><input type="radio" name="item" value="2"> histogram</label><br>
-    <label><input type="radio" name="item" value="3"> pie graph</label><br>
-    <label><input type="radio" name="item" value="4"> band graph</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(23,1,Q1)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ1">
-  </form>
-
-  <h6 class="textL30M30">3.2 Which of the following graphs is not used for analyzing quantitative data? </h6>
-  <form name="Q2">
-    <label><input type="radio" name="item" value="1"> stem and leaf plot</label><br>
-    <label><input type="radio" name="item" value="2"> histogram</label><br>
-    <label><input type="radio" name="item" value="3"> pie graph</label><br>
-    <label><input type="radio" name="item" value="4"> dot graph</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(23,2,Q2)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ2">
-  </form>
-
-  <h6 class="textL30M30">3.3 Which graph displays data with the last digit of the quantitative data as the leaf and the leading part as the stem? </h6>
-  <form name="Q3">
-    <label><input type="radio" name="item" value="1"> dot graph</label><br>
-    <label><input type="radio" name="item" value="2"> histogram</label><br>
-    <label><input type="radio" name="item" value="3"> scatterplot</label><br>
-    <label><input type="radio" name="item" value="4"> stem and leaf plot</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(23,3,Q3)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ3">
-  </form>
-
-  <h6 class="textL30M30">3.4 Which graph displays data of two quantitative variables?</h6>
-  <form name="Q4">
-    <label><input type="radio" name="item" value="1"> dot graph</label><br>
-    <label><input type="radio" name="item" value="2"> histogram</label><br>
-    <label><input type="radio" name="item" value="3"> scatterplot</label><br>
-    <label><input type="radio" name="item" value="4"> stem and leaf plot</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(23,4,Q4)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ4">
-  </form>
-
-  <h6 class="textL30M30">3.5 Which of the following two variables has a negative correlation? </h6>
-  <form name="Q5">
-    <label><input type="radio" name="item" value="1"> climbing height and temperature</label><br>
-    <label><input type="radio" name="item" value="2"> weight and height</label><br>
-    <label><input type="radio" name="item" value="3"> summer temperature and ice cream sales</label><br>
-    <label><input type="radio" name="item" value="4"> father’s height and son’s height</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(23,5,Q5)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ5">
-  </form>
-
-  </div>
-
-  <script>
-    for (var i=0; i < ans[23][0]; i++) document.getElementById(ansID[i+1]).disabled = true;
-  </script>
-  <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(142)">&#10094;&#10094; &nbsp;&nbsp;<b>Chapter 2</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(144)"><b>Chapter 4</b>&nbsp;&nbsp; &#10095;&#10095;</button>
+    <h3 id="0305">3.5 Exercise</h3>
+    <iframe class="exercise" src="./exercise/exercise03.html" width="750" height="700" ></iframe>
 </div>
-    
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
-    <script>
-        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
-        
-        /* ajust the height when click the toc
-           the code is from https://github.com/twbs/bootstrap/issues/1768
-        */
-        var shiftWindow = function() { scrollBy(0, -50) };
-        window.addEventListener("hashchange", shiftWindow);
-        function load() { if (window.location.hash) shiftWindow(); }
-        
-        /*add Bootstrap styles to tables*/
-        var tables = document.getElementsByTagName("table");
-        for(var i = 0; i < tables.length; ++i){
-            tables[i].className += "table table-bordered table-hover";
-        }
-    </script>
 
 </body>
 </html>

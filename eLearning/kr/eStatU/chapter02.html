@@ -8,14 +8,13 @@
 
   <title>2장</title>
 
-  <!-- Bootstrap core CSS -->
+   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+  <link href="/estat/eStat/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="../../css/dashboard.css" rel="stylesheet">
+  <link href="/estat/eStat/css/dashboard.css" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -24,12 +23,22 @@
       <![endif]-->
        <style type="text/css">code{white-space: pre;}</style>
        <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
-       <script src="../../js/prism.js"></script>
-       <link rel="stylesheet" href="../../css/prism.css">
-       <script src="../../js/jquery.min.js"></script>    
+       <link rel="stylesheet" href="/estat/eStat/css/pandoc.css">
+       <link rel="stylesheet" href="/estat/eStat/css/prism.css">
+       <script src="/estat/eStat/lib/jquery/jquery.min.js"></script>   
+       <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="/estat/eStat/lib/convertSVG.js"></script>
+       <script src="/estat/eStat/js/prism.js"></script>
+       <script src="/estat/eStat/js/eBook.js"></script>
+       <script src="/estat/eStat/js/eStatU.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>
+       <script> setLanguage('ko'); </script>
        <script type="text/javascript" id="MathJax-script" async
 	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
        </script>
+
        <script>
 	 $(document).ready(function() {
   	     toc = $("#sidebar > ul > li > ul");
@@ -48,85 +57,67 @@
   		 $(sections[i]).replaceWith(li);
   	     }
 	 });
-	 </script>
-       <link rel="stylesheet" href="../../css/pandoc.css">
-       <script src="../../js/eBook.js"></script>
-       <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       </script>
+      
 </head>
+
 <body>
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <ul class="nav navbar-nav">
-    <li><a href="../../../eStat/index.html"  target="_blank">eStat</a></li>
-    <li><a href="../../../eStatU/index.html" target="_blank">eStatU</a></li>
-    <li><a href="../../Distribution/index.html" target="_blank">확률분포</a></li>
-  </ul>
-</nav>
-
+  
+<!-- begin of left sidebar -->
 <div class="container-fluid">
-  <div class="row">
-    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
-      <ul>
-	<li><a href=""></a>
-	  <ul>
-            <li><a href="index.html">차  례</a></li>
-            <li><a href="chapter01.html">1장 통계 데이터과학</a></li>
-            <li><a href="chapter02.html">2장 질적 데이터 시각화</a></li>
-            <li><a href="chapter03.html">3장 양적 데이터 시각화</a></li>
-            <li><a href="chapter04.html">4장 표/측도 데이터 정리</a></li>
-            <li><a href="chapter05.html">5장 확률, 확률분포함수</a></li>
-            <li><a href="chapter06.html">6장 표집분포와 추정</a></li>
-            <li><a href="chapter07.html">7장 한 모집단 모수 검정</a></li>
-            <li><a href="chapter08.html">8장 두 모집단 모수 검정</a></li>
-            <li><a href="chapter09.html">9장 여러 모평균의 검정</a></li>
-            <li><a href="chapter10.html">10장 비모수적 가설검정</a></li>
-            <li><a href="chapter11.html">11장 범주형 데이터 검정</a></li>
-            <li><a href="chapter12.html">12장 상관 및 회귀분석</a></li>
-            <li><a href="chapter13.html">13장 시계열분석</a></li>
-	  </ul>
-	</li>
-      </ul>
-    </div>
-  </div>
+<div class="row">
+<div id="sidebar" class="col-sm-2 col-md1 sidebar">
+  <ul>
+    <li> <a href="index.html"><b>차례</b> </a> </li>
+    <li> <a href="chapter01.html"> <span data-msgid="Chapter01"> </span></a> </li>
+    <li> <a href="chapter02.html"> <span data-msgid="Chapter02"> </span></a> </li>
+	      <ul>
+                <li><a href="#0201">&nbsp; 2.1 범주형 데이터의 그래프</a></li>
+                <li><a href="#0202">&nbsp; 2.2 꺽은선그래프</a></li>
+                <li><a href="#0203">&nbsp; 2.3 단어구름</a></li>
+                <li><a href="#0204">&nbsp; 2.4 연습문제</a></li> 
+	      </ul>
+    <li> <a href="chapter03.html"> <span data-msgid="Chapter03"> </span></a> </li>
+    <li> <a href="chapter04.html"> <span data-msgid="Chapter04"> </span></a> </li>
+    <li> <a href="chapter05.html"> <span data-msgid="Chapter05"> </span></a> </li>
+    <li> <a href="chapter06.html"> <span data-msgid="Chapter06"> </span></a> </li>
+    <li> <a href="chapter07.html"> <span data-msgid="Chapter07"> </span></a> </li>
+    <li> <a href="chapter08.html"> <span data-msgid="Chapter08"> </span></a> </li>
+    <li> <a href="chapter09.html"> <span data-msgid="Chapter09"> </span></a> </li>
+    <li> <a href="chapter10.html"> <span data-msgid="Chapter10"> </span></a> </li>
+    <li> <a href="chapter11.html"> <span data-msgid="Chapter11"> </span></a> </li>
+    <li> <a href="chapter12.html"> <span data-msgid="Chapter12"> </span></a> </li>
+    <li> <a href="chapter13.html"> <span data-msgid="Chapter13"> </span></a> </li>
+  </ul>
 </div>
+</div>
+</div>
+<!-- end of left sidebar -->
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
   <!--***********************************************************************-->
   <h1>2장 질적 데이터 시각화</h1> 
+  <h1>&nbsp; 📊 🍕 🌈 ⛅</h1>        
+  <b>
+	      <ul>
+                <li><a href="#0201">&nbsp; 2.1 범주형 데이터의 그래프</a></li>
+                <li><a href="#0202">&nbsp; 2.2 꺽은선그래프</a></li>
+                <li><a href="#0203">&nbsp; 2.3 단어구름</a></li>
+                <li><a href="#0204">&nbsp; 2.4 연습문제</a></li> 
+	      </ul>
+                <a href="./pdf/chapter02.pdf" target="_blank">[2장 pdf]</a>
+  </b>
   <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(161)">&#10094;&#10094; &nbsp;&nbsp;<b>1장</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(163)"><b>3장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
-  <p>
-  <table>
-    <tr>
-      <td style="width:300px">
-        <h1>&nbsp; 📊 🍕 🌈 ⛅</h1>        
-        <h4>
-        <a href="#0201"><u>2.1 범주형 데이터의 그래프</u></a> <p>
-        <a href="#0202"><u>2.2 꺽은선그래프</u></a> <p>
-        <a href="#0203"><u>2.3 단어구름</u></a> <p>
-        <a href="chapter02.pdf" target="_blank"><u>[2장 pdf]</u></a> 
-        </h4>
-      </td>
-      <td>
-        <h1></h1>
-        <p>- 범주형 자료인 경우에 막대그래프, 원그래프, 띠그래프를 그려 분석한다.
-        <p>- 시간에 따라 측정된 자료는 꺽은선그래프를 그려 분석한다.
-        <p>- 단어로 이루어진 문자 형태의 자료는 단어구름을 그려 분석한다. 
-      </td>
-    </tr>
-  </table>
+        - 범주형 자료인 경우에 막대그래프, 원그래프, 띠그래프를 그려 분석한다.<br>
+        - 시간에 따라 측정된 자료는 꺽은선그래프를 그려 분석한다.<br>
+        - 단어로 이루어진 문자 형태의 자료는 단어구름을 그려 분석한다. <br>
 <!--
   <h6>
       <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
   </h6>
 -->
   <p>
-
   <h3 id="0201">2.1  범주형 데이터의 그래프</h3>
   <p>
   <div class="mainTable">
@@ -134,20 +125,20 @@
       <p><b>막대그래프</b>는 각 범주별 자료의 도수를 직사각형 막대의 높이로 나타낸 것이다. 범주형 자료라는 것을
          강조하기 위하여 막대사이의 간격을 띄어 놓는다. 
       <p>
-         <img src="../FigureU/Fig0201.png">
+         <img src="./Figure/Fig0201.png">
          <div class="textLeft">[그림 2.1] 좋아하는 운동의 막대그래프</div>
       <p>
          <b>원그래프</b>는 각 범주의 도수가 전체 자료에서 차지하는 비율을 원조각으로 나누어 표시한 그래프이다. 
          비율의 비교를 잘 할 수 있도록 시계 방향으로 가장 큰 범주의 원조각부터 순서대로 차례로 그린다. 
       <p>
-         <img src="../FigureU/Fig0202.png">
+         <img src="./Figure/Fig0202.png">
          <div class="textLeft">[그림 2.2] 좋아하는 운동의 원그래프</div>
       <p>
          <b>띠그래프</b>는 원그래프의 변형 형태로 각 범주의 도수가 전체 자료 중에서 차지하는 비율을 
          사각형 조각으로 나누어 표시한 그래프이다. 범주의 값이 가장 큰 순서부터 정렬할 수도 있으나 원그래프와 
          구별하기 위하여 자료의 범주 순서대로 사각형 조각을 그린다.
       <p>
-         <img src="../FigureU/Fig0203.png">
+         <img src="./Figure/Fig0203.png">
          <div class="textLeft">[그림 2.3] 좋아하는 운동의 띠그래프</div>
   </div>
   <p>
@@ -155,10 +146,7 @@
   <h4>원시 데이터의 그래프</h4>
   <p>
   <div class="mainTableGrey">
-    <table>
-      <tr>
-        <td colspan="2">
-          <p><h5>🎲 예 2.1</h5>
+      <h5>🎲 예 2.1</h5>
           표 2.1과 같은 원시데이터를 『eStat』를 이용하여 막대, 원, 띠그래프를 그려보자. 
           <p>
           <div class="figText">표 2.1  성별 원시 데이터</div>
@@ -174,53 +162,42 @@
             <tr> <td class="tdCenter">여</td> </tr>
             <tr> <td class="tdCenter">남</td> </tr>
           </table>
-        </td>
-      </tr>
-      <tr>
-        <td style="width:100px">
-          <h5>풀이</h5>
-           <input class="qrBtn" type="image" src="../../QR/eStat.svg" onclick="window.open(addrStr[0])">
-        </td>
-        <td>
-          <p>
+      <h5>풀이</h5>
           표 2.1과 같은 원시데이터를 『eStat』 시트의 V1열에 입력을 하고, 변량명을 '변량편집'을 이용하여 '성별'을 [그림 2.4]와 같이 입력한다.  
           <p>
-             <img class="figure50" src="../FigureU/Fig0204.png">
+          <div class="QRFigure">
+             <input class="qrBtn" type="image" src="/estat/eStat/qr/eStat.svg" onclick="window.open(addrStr[0])">
+             <img class="figure50" src="./Figure/Fig0204.png">
              <div class="textLeft">[그림 2.4] 원시 데이터의 입력 </div>
+          </div>
           <p>
           마우스로 변량명 '성별'을 클릭하면 선택변량 박스에 첫 번째 변량의 선택을 의미하는 'V1'이 나타나고 기본적으로 선택된 수직형 막대그래프가 [그림 2.5]와 같이 그려진다. 즉 원시 데이터의 남학생 수 6명과 여학생수 4명을 시스템이 세어서 내부적으로 도수분포표를 만든 후 막대그래프를 그린 것이다.  
           <p>
-             <img class="figure90" src="../FigureU/Fig0205.png">
+             <img class="figure70" src="./Figure/Fig0205.png">
              <div class="textLeft">[그림 2.5] 성별 막대그래프</div>
           <p>
           현재 성별 변량이 선택된 상태에서 원그래프 아이콘과 띠그래프 아이콘을 클릭하면 다음 그래프가 나타난다.
           <p>
-             <img class="figure90" class="figure70" src="../FigureU/Fig0206.png">
+             <img class="figure70" class="figure70" src="./Figure/Fig0206.png">
              <div class="textLeft">[그림 2.6] 성별 원그래프</div>
           <p> 
-             <img class="figure90" class="figure70" src="../FigureU/Fig0207.png">
+             <img class="figure70" class="figure70" src="./Figure/Fig0207.png">
              <div class="textLeft">[그림 2.7] 성별 띠그래프</div>
           <p>
-       </td>
-      </tr>
-    </table>
   </div>
   <p>
   <!----------------------------------->
   <h4>그룹 있는 원시 데이터의 그래프</h4>
   <p>
   <div class="mainTableGrey">
-    <table>
-      <tr>
-        <td colspan="2">
-          <p><h5>🎲 예 2.2</h5>
+      <h5>🎲 예 2.2</h5>
             표 2.2과 같이 성별(1:남자, 2:여자)과 함께 결혼여부(1:미혼, 2:결혼, 3:기타)를 
             조사하였다. 『eStat』를 이용하여 남자 여자별로 막대그래프, 원그래프, 띠그래프, 
             그려 두 그룹의 특징을 비교하여 보자. 
           <p>
           <div class="figText">표 2.2 성별 결혼여부 조사 </div>
           <table style="width:400px"> 
-            <tr> <th class="thGrey">  성별 </th>  <th class="thGrey">결혼여부</th>  </tr>
+            <tr> <th>  성별 </th>  <th>결혼여부</th>  </tr>
             <tr> <td class="tdCenter">1</td>  <td class="tdCenter">1</td>    </tr>
             <tr> <td class="tdCenter">2</td>  <td class="tdCenter">2</td>    </tr>
             <tr> <td class="tdCenter">1</td>  <td class="tdCenter">1</td>    </tr>
@@ -233,65 +210,57 @@
             <tr> <td class="tdCenter">2</td>  <td class="tdCenter">1</td>    </tr>
           </table>
           <p>
-        </td>
-      </tr>
-      <tr>
-        <td style="width:100px">
-          <h5>풀이</h5>
-          <input class="qrBtn" type="image" src="../../QR/EX020302.svg" onclick="window.open(addrStr[13])">
-        </td>
-        <td>
-          <p>
+      <h5>풀이</h5>
          『eStat』 시스템에서 시트에 성별과 결혼여부 데이터를 [그림 2.8]과 같이 입력하고 '변량편집'을 이용하여  변량명 '성별'을 입력하고, 변량값 1과 2에 대한 변량값명 '남자'와 '여자'를 입력한다. 같은 방법으로 변량명 '결혼여부'를 입력하고 변량값 1, 2, 3에 대한 변량값명 '미혼', '기혼', '기타'를 입력한다. 이와 같이 변량값명에 대한 편집을 한 데이터는 JSON 형식으로 저장(아이콘  클릭)하여야 정보를 잃어버리지 않게 된다. 다시 불러올 때도 JSON 형식으로 불러오는 아이콘 을 클릭하여야 한다. 
           <p> 
-             <img src="../FigureU/Fig0208.png">
+          <div class="QRFigure">
+             <input class="qrBtn" type="image" src="/estat/eStat/qr/EX020302.svg" onclick="window.open(addrStr[13])">
+             <img class="figure" src="./Figure/Fig0208.png">
              <div class="textLeft">[그림 2.8] 성별과 결혼여부 데이터의 입력</div>
+          </div>
           <p>
           마우스로 '결혼여부'와 '성별' 변량명을 차례로 클릭하면 [그림 2.9]와 같은 남녀별 결혼여부의 막대그래프가 같은 화면에 그려진다. 여기서 '성별'이 그룹변량이 된다.
           <p> 
-             <img class="figure90" src="../FigureU/Fig0209.png">
+             <img class="figure70" src="./Figure/Fig0209.png">
              <div class="textLeft">[그림 2.9] 결혼여부에 대한 성별 막대그래프</div>
           <p>
           이와 같이 그룹이 있는 막대그래프는 다른 변형 형태가 가능하다. 주 아이콘 밑에 있는 부 아이콘 리스트를 이용하여 10가지의 막대그래프를 그릴 수 있다. [그림 2.10]에서 [그림 2.13]은 각각 수직형 막대그래프의 '쌓는형', '비율형', '나란형', '양쪽형' 이고 [그림 2.14]에서 [그림 2.18]은 수평형 막대그래프의 '분리형', '쌓는형', '비율형', '나란형', '양쪽형' 이다.  
           <p> 
-             <img class="figure90" src="../FigureU/Fig0210.png">
+             <img class="figure70" src="./Figure/Fig0210.png">
              <div class="textLeft">[그림 2.10] 성별 결혼여부의 쌓는형 수직 막대그래프</div>
           <p>
-             <img class="figure90" src="../FigureU/Fig0211.png">
+             <img class="figure70" src="./Figure/Fig0211.png">
              <div class="textLeft">[그림 2.11] 성별 결혼여부의 비율형 수직 막대그래프</div>
           <p>
-             <img class="figure90" src="../FigureU/Fig0212.png">
+             <img class="figure70" src="./Figure/Fig0212.png">
              <div class="textLeft">[그림 2.12] 성별 결혼여부의 나란형 수직 막대그래프</div>
           <p>
-             <img class="figure90" src="../FigureU/Fig0213.png">
+             <img class="figure70" src="./Figure/Fig0213.png">
              <div class="textLeft">[그림 2.13] 성별 결혼여부의 양쪽형 수직 막대그래프</div>
           <p>
-             <img class="figure90" src="../FigureU/Fig0214.png">
+             <img class="figure70" src="./Figure/Fig0214.png">
              <div class="textLeft">[그림 2.14] 성별 결혼여부의 분리형 수평 막대그래프 </div>
           <p>
-             <im class="figure90"g src="../FigureU/Fig0215.png">
+             <im class="figure70"g src="./Figure/Fig0215.png">
              <div class="textLeft">[그림 2.15] 성별 결혼여부의 쌓는형 수평 막대그래프 </div>
           <p>
-             <img class="figure90" src="../FigureU/Fig0216.png">
+             <img class="figure70" src="./Figure/Fig0216.png">
              <div class="textLeft">[그림 2.16] 성별 결혼여부의 비율형 수평 막대그래프 </div>
           <p>
-             <img class="figure90" src="../FigureU/Fig0217.png">
+             <img class="figure70" src="./Figure/Fig0217.png">
              <div class="textLeft">[그림 2.17] 성별 결혼여부의 나란형 수평 막대그래프 </div>
           <p>
-             <img class="figure90" src="../FigureU/Fig0218.png">
+             <img class="figure70" src="./Figure/Fig0218.png">
              <div class="textLeft">[그림 2.18] 성별 결혼여부의 양쪽형 수평 막대그래프 </div>
           <p>
           『eStat』에서 원그래프와 띠그래프 아이콘을 클릭하면 남녀별 원그래프([그림 2.19]), 띠그래프([그림 2.20])이 나타난다. 각 그룹에서 어느 범주의 값이 전체 데이터 중에서 차지하는 비율이 많은지 쉽게 관찰할 수 있다. 
           <p>
-             <img class="figure90" src="../FigureU/Fig0219.png">
+             <img class="figure70" src="./Figure/Fig0219.png">
              <div class="textLeft">[그림 2.19] 성별 결혼여부의 양쪽형 원그래프 </div>
           <p>
-             <img class="figure90" src="../FigureU/Fig0220.png">
+             <img class="figure70" src="./Figure/Fig0220.png">
              <div class="textLeft">[그림 2.20] 성별 결혼여부의 양쪽형 띠그래프 </div>
           <p>
-       </td>
-      </tr>
-    </table>
   </div>
   <p>
   <!----------------------------->
@@ -307,19 +276,16 @@
   </div>
   <p>
   <div class="mainTableGrey">
-    <table>
-      <tr>
-        <td colspan="2">
-          <p><h5>🎲 예 2.3</h5>
+      <h5>🎲 예 2.3</h5>
            2015년 우리나라의 연령대별 남녀 인구가 표 2.3과 같다. 『eStat』를 이용하여 남녀별 연령대 인구의
           막대그래프, 원그래프, 띠그래프를 그려 그 특징을 알아보자. 
           <p>
           <div class="textLeft">표 2.3  2015년 연령구간별 남녀별 인구수 (출처: 통계청, 단위: 만명)</div> 
-          <table style="width:600px"> 
+          <table style="width:500px"> 
              <tr> 
-               <th class="thGrey">연령 구간</th>
-               <th class="thGrey">2015 남자</th>
-               <th class="thGrey">2015 여자</th>
+               <th>연령 구간</th>
+               <th>2015 남자</th>
+               <th>2015 여자</th>
              </tr>
              <tr>
                <td class="tdCenter">00 - 04</td>
@@ -412,69 +378,61 @@
                <td class="tdCenter">39</td>
              </tr>
            </table>
-         </td>
-      </tr>
-      <tr>
-        <td style="width:100px">
-          <h5>풀이</h5>
-          <input class="qrBtn" type="image" src="../../QR/EX020204.svg" onclick="window.open(addrStr[10])">
-        </td>
-        <td>
-          <p>
+      <h5>풀이</h5>
           표 2.3의 데이터를 『eStat』 시트의 V1, V2, V3 열에 입력하고 변량명을 '연령구간', '남자', '여자'로 입력한다.
           이 데이터는 [Ex] 아이콘 > 01Korean > 023요약_2015남녀별인구.csv로 불러올 수도 있다. 
           [그림 2.21]과 같이 차례로 V1, V2, V3 변량을 선택하면 [그림 2.22]와 같은 막대그래프가 그려진다.
           <p>
-             <img src="../FigureU/Fig0221.png">
+          <div class="QRFigure">
+             <input class="qrBtn" type="image" src="/estat/eStat/qr/EX020204.svg" onclick="window.open(addrStr[10])">
+             <img class="figure50" src="./Figure/Fig0221.png">
              <div class="textLeft">[그림 2.21] 분석변량 선택박스 </div>
+          </div>
           <p>
-             <img class="figure90" src="../FigureU/Fig0222.png">
+             <img class="figure70" src="./Figure/Fig0222.png">
              <div class="textLeft">[그림 2.22] 연령구간별 남녀 인구의 분리형 세로 막대그래프  </div>
           <p>
           이와 같이 그룹이 있는 막대그래프는 다른 변형 형태가 가능하다. 주 아이콘 밑에 있는 부 아이콘울 이용하여 
           10가지의 막대그래프를 그릴 수 있다. 수직형 막대그래프의 '쌓는형'([그림 2.23]), '비율형'([그림 2.24]), '나란형'([그림 2.25]), '양쪽형'([그림 2.26])이고, 수평형 막대그래프로서 '분리형'([그림 2.27]), '쌓는형'([그림 2.28]), '비율형'([그림 2.29]), '나란형'([그림 2.30]), '양쪽형'([그림 2.31]) 이다.  
           <p>
-             <img class="figure90" src="../FigureU/Fig0223.png">
+             <img class="figure70" src="./Figure/Fig0223.png">
              <div class="textLeft">[그림 2.23] 연령구간별 남녀 인구의 쌓는형 세로 막대그래프  </div>
           <p>
-             <img class="figure90" src="../FigureU/Fig0224.png">
+             <img class="figure70" src="./Figure/Fig0224.png">
              <div class="textLeft">[그림 2.24] 연령구간별 남녀 인구의 비율형 세로 막대그래프  </div>
           <p>
-             <img class="figure90" src="../FigureU/Fig0225.png">
+             <img class="figure70" src="./Figure/Fig0225.png">
              <div class="textLeft">[그림 2.25] 연령구간별 남녀 인구의 나란형 세로 막대그래프  </div>
           <p>
-             <img class="figure90" src="../FigureU/Fig0226.png">
+             <img class="figure70" src="./Figure/Fig0226.png">
              <div class="textLeft">[그림 2.26] 연령구간별 남녀 인구의 양쪽형 세로 막대그래프  </div>
           <p>
-             <img class="figure90" src="../FigureU/Fig0227.png">
+             <img class="figure70" src="./Figure/Fig0227.png">
              <div class="textLeft">[그림 2.27] 연령구간별 남녀 인구의 분리형 수평 막대그래프  </div>
           <p>
-             <img class="figure90" src="../FigureU/Fig0228.png">
+             <img class="figure70" src="./Figure/Fig0228.png">
              <div class="textLeft">[그림 2.28] 연령구간별 남녀 인구의 쌓는형 수평 막대그래프  </div>
           <p>
-             <img class="figure90" src="../FigureU/Fig0229.png">
+             <img class="figure70" src="./Figure/Fig0229.png">
              <div class="textLeft">[그림 2.29] 연령구간별 남녀 인구의 비율형 수평 막대그래프  </div>
           <p>
-             <img class="figure90" src="../FigureU/Fig0230.png">
+             <img class="figure70" src="./Figure/Fig0230.png">
              <div class="textLeft">[그림 2.30] 연령구간별 남녀 인구의 나란형 수평 막대그래프  </div>
           <p>
-             <img class="figure90" src="../FigureU/Fig0231.png">
+             <img class="figure70" src="./Figure/Fig0231.png">
              <div class="textLeft">[그림 2.31] 연령구간별 남녀 인구의 양쪽형 수평 막대그래프  </div>
           <p>
           [그림 2.31]의 양쪽형 수평 막대그래프는 연령대별 남녀별 인구 피라미드라고 부른다. 현재 우리나라는 항아리 형태의 연령별 인구 구조를 가지고 있다. 즉, 현재 40세에서 50세의 장년층의 인구가 많고 노령 인구가 향후 점점 증가하며, 출생아의 수는 점차로 줄어든다. 경제 생활인구가 줄어들며 노년층의 건강, 보험 문제가 향후 예견된다. 
           <p>
           『eStat』에서 원그래프와 띠그래프 아이콘을 클릭하면 남녀별 원그래프([그림 2.32]), 띠그래프([그림 2.33])가 나타난다. 
           <p>
-             <img class="figure90" src="../FigureU/Fig0232.png">
+             <img class="figure70" src="./Figure/Fig0232.png">
              <div class="textLeft">[그림 2.32] 남녀 그룹별 원그래프  </div>
           <p>
-             <img class="figure90" src="../FigureU/Fig0233.png">
+             <img class="figure70" src="./Figure/Fig0233.png">
              <div class="textLeft">[그림 2.33] 남녀 그룹별 띠그래프  </div>
           <p>
           그룹이 있을 경우 원이나 띠그래프를 그려보면 그룹별 각 범주의 값의 차이를 비교할 수 있다. 꺾은선그래프를 선택하면 각 그룹별 꺾은선이 한 그래프에 나타나게 된다. 두 개의 그룹을 같은 스케일에서 비교할 수 있다. 이와 같이 그룹이 있는 경우 각각의 그래프는 데이터가 가지는 특성을 서로 다른 형태로 관찰할 수 있기 때문에 여러 가지 그래프를 모두 그려 관찰하는 것이 좋다. 
-       </td>
-      </tr>
-    </table>
   </div>
   <p>
   <!------------------------------------------->
@@ -486,51 +444,39 @@
   </div>
   <p>
   <div class="mainTableGrey">
-    <table>
-      <tr>
-        <td colspan="2">
-          <p><h5>🎲 예 2.4</h5>
+      <h5>🎲 예 2.4</h5>
           초등학교 한 학급 학생 20명을 대상으로 좋아하는 운동을 조사한 도수분포표가 표 2.4와 같다. 
           『eStatU』을 이용하여 막대 , 원, 띠그래프를 그려보자. 
           <p>
           <div class="textLeft">표 2.4 초등학생의 좋아하는 과목의 도수분포표   </div>
           <table style="width:400px"> 
-            <tr> <th class="thGrey">운동</th>  <th class="thGrey">학생수</th>  </tr>
+            <tr> <th>운동</th>  <th>학생수</th>  </tr>
             <tr> <td class="tdCenter">축구</td>  <td class="tdCenter">8</td> </tr>
             <tr> <td class="tdCenter">농구</td>  <td class="tdCenter">4</td> </tr>
             <tr> <td class="tdCenter">야구</td>  <td class="tdCenter">5</td> </tr>
             <tr> <td class="tdCenter">테니스</td> <td class="tdCenter">2</td> </tr>
             <tr> <td class="tdCenter">골프</td>  <td class="tdCenter">1</td> </tr>
           </table>
-          <p>
-        </td>
-      </tr>
-      <tr>
-        <td style="width:100px">
-          <h5>풀이</h5>
-          <input class="qrBtn" type="image" src="../../QR/eStatU_01BarChart.svg" onclick="window.open(addrStr[141])">
-        </td>
-        <td>
-          <p>
+      <h5>풀이</h5>
          『eStatU』 메뉴에서 '막대그래프 – 원그래프 – 띠그래프'를 선택하면 [그림 2.34]와 같은 자료 입력창이 나타난다. '범주'와 '도수'를 입력하고 '주 제목', '세로축 제목', '가로축 제목' 원하는 제목을 입력한다. [막대그래프] 버튼을 클릭하면 [그림 2.35]와 같은 막대그래프가 나타난다. 원하는 범주의 색을 선택하여 다시 [막대그래프를] 그릴 수도 있다. 제일 오른쪽에 각 범주별 아이콘을 선택하고 그래프 아래의 '이모티콘'을 체크하여 막대의 이모티콘을 나나캘 수도 있다. 
           <p>
-             <img src="../FigureU/Fig0234.png">
+          <div class="QRFigure">
+             <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_01BarChart.svg" onclick="window.open(addrStr[141])">
+             <img class="figure50" src="./Figure/Fig0234.png">
              <div class="textLeft">[그림 2.34] 『eStatU』 좋아하는 운동의 자료 입력  </div>
+          </div>
           <p>
-             <img class="figure90" src="../FigureU/Fig0235.png">
+             <img class="figure70" src="./Figure/Fig0235.png">
              <div class="textLeft">[그림 2.35] 『eStatU』 좋아하는 운동의 막대그래프  </div>
           <p>
           [원그래프] 버튼을 클릭하면 [그림 2.36]의 원그래프가 나타나고, [띠그래프] 버튼을 글릭하면 [그림 2.37]의 띠그래프가 나타난다. 
           <p>
-             <img class="figure90" src="../FigureU/Fig0236.png">
+             <img class="figure70" src="./Figure/Fig0236.png">
              <div class="textLeft">[그림 2.36] 『eStatU』 좋아하는 운동의 원그래프  </div>
           <p>
-             <img class="figure90" src="../FigureU/Fig0237.png">
+             <img class="figure70" src="./Figure/Fig0237.png">
              <div class="textLeft">[그림 2.37] 『eStatU』 좋아하는 운동의 띠그래프  </div>
           <p>
-       </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -544,16 +490,13 @@
   </div>
   <p>
   <div class="mainTableGrey">
-    <table>
-      <tr>
-        <td colspan="2">
-          <p><h5>🎲 예 2.5</h5>
+      <h5>🎲 예 2.5</h5>
           1925년부터 2019년까지 대략 5년 간격으로 조사한 우리나라의 인구가 다음 표와 같다. 『eStat』
           를 이용하여 꺽은선그래프를 그려보자. 
           <p>
             <div class="textLeft">표 2.5 우리나라의 인구 (통계청)  </div>
             <table style="width:400px"> 
-              <tr> <th class="thGrey">연도</th> <th class="thGrey">인구수</th>  </tr>
+              <tr> <th>연도</th> <th>인구수</th>  </tr>
               <tr> <td class="tdCenter">1925</td>      <td class="tdCenter">1902</td>   </tr>
               <tr> <td class="tdCenter">1930</td>      <td class="tdCenter">2044</td>   </tr>
               <tr> <td class="tdCenter">1935</td>      <td class="tdCenter">2221</td>   </tr>
@@ -575,78 +518,50 @@
               <tr> <td class="tdCenter">2015</td>      <td class="tdCenter">5106</td>   </tr>
               <tr> <td class="tdCenter">2019</td>      <td class="tdCenter">5178</td>   </tr>
             </table>
-        </td>
-      </tr>
-      <tr>
-        <td style="width:100px">
-          <h5>풀이</h5>
-        </td>
-        <td>
-          <p>
+      <h5>풀이</h5>
           이 데이터를 『eStat』의 변수 1과 변수2에 입력하고 변량명을 연도와 인구수로 한다. 
           꺽은선그래프 아이콘 을 클릭한 후 X변량을 '연도' Y변량을 '인구수'로 선택하면 [그림 2.38]과 같은 꺽은선 그래프가 그려진다. 
           <p>
-             <img class="figure90" src="../FigureU/Fig0238.png">
+             <img class="figure90" src="./Figure/Fig0238.png">
              <div class="textLeft">[그림 2.38] 우리나라 인구의 꺽은선그래프  </div>
           <p>
           우리나라의 인구수에 대한 꺽은선그래프를 관찰하면 1925년부터 1944년까지 증가하다가 태평양전쟁과 
           한국전쟁의 여파로 1949년과 1954년에 많이 감소되었음을 알 수 있다. 그 이후 50년대 후반 베이비붐 기간에 
           계속 인구가 많이 증가하다가 1990년 이후 증가추세가 완만하여지고 2015년 이후에 이 추세는 더욱 완만하여 지고 있다. 
           <p>
-        </td>
-      </tr>
-      <tr>
-        <td style="width:100px">
-           <input class="qrBtn" type="image" src="../../QR/eStatU_02LineGraph.svg" onclick="window.open(addrStr[125])">
-        </td>
-        <td>
+          <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_02LineGraph.svg" onclick="window.open(addrStr[125])">
           <p>
           자료수가 적을 경우에는 『eStatU』를 이용할 수 있다. 『eStatU』 주메뉴에서 '꺽은선그래프'를 선택하여 나타나는 [그림 2.39] 화면에
           주제목, 세로축 제목, 가로축 제목을 입력하고 '꺽은선1'과 'X'에 데이타를 입력한후 [실행] 버튼을 누르면 같은 꺽은선그래프가 나타난다.
           <p>
-             <img class="figure90" src="../FigureU/Fig0239.png">
+             <img class="figure90" src="./Figure/Fig0239.png">
              <div class="textLeft">[그림 2.39] 『eStatU』 꺽은선그래프 자료입력 </div>
           <p>
-       </td>
-      </tr>
-    </table>
   </div>
-
 
   <p>
   <div class="mainTableGrey">
-    <table>
-      <tr>
-        <td colspan="2">
-          <p><h5>🎲 예 2.6</h5>
+      <h5>🎲 예 2.6</h5>
           『eStat』은 여러 개의 시계열 자료에 대한 꺽은선 그래프를 그릴 수 있다. 1973년 이후 우리나라의 
           봄, 여름, 가을, 겨울 그리고 연 평균기온이 [Ex] ⇨ 01Korean ⇨ 024요약_계절별온도.csv 에 저장되어 
           있다. 꺾은선그래프를 이용하여 온도변화의 특징을 알아보자. 
           <p>
-        </td>
-      </tr>
-      <tr>
-        <td style="width:100px">
-          <h5>풀이</h5>
-           <input class="qrBtn" type="image" src="../../QR/PR020205.svg" onclick="window.open(addrStr[44])">
-        </td>
-        <td>
-          <p>
+      <h5>풀이</h5>
          『eStat』 시스템에서 [Ex] ⇨ 01Korean ⇨ 024요약_계절별온도.csv 파일을 불러오면 [그림 2.40]과 같다.
           <p>
-             <img src="../FigureU/Fig0240.png">
+          <div class="QRFigure">
+             <input class="qrBtn" type="image" src="/estat/eStat/qr/PR020205.svg" onclick="window.open(addrStr[44])">
+             <img src="./Figure/Fig0240.png">
              <div class="textLeft">[그림 2.40] 우리나라의 계절별 온도 데이터 </div>
+          </div>
           <p>
           꺾은선그래프 아이콘 을 클릭하고, 마우스로 '연도', '봄', '여름', '가을', '겨울'의 변량명을 차례로 누르면 [그림 2.41]과 같은 사계절 온도의 꺾은선그래프가 그려진다. 
           <p>
-             <img class="figure90" src="../FigureU/Fig0241.png">
+             <img class="figure90" src="./Figure/Fig0241.png">
              <div class="textLeft">[그림 2.41] 우리나라의 계절별 온도 꺽은선그래프 </div>
           <p>
           그래프를 살펴보면 우리나라의 평균 기온이 점차로 올라가고 있음을 알 수 있다. 특히 겨울의 최근 몇 년 평균 기온이 과거와는 다르게 많이 올라갔음을 관찰할 수 있다. 이러한 연도별 데이터의 경우에는 꺾은선그래프가 데이터의 변화를 관찰하기 쉽다. 하지만 막대그래프도 사용될 수 있다. 
           <p>
-       </td>
-      </tr>
-    </table>
   </div>
 
 <!---------------------------------------------------------------------------------->
@@ -662,10 +577,7 @@
   <p>
   <p>
   <div class="mainTableGrey">
-    <table>
-      <tr>
-        <td colspan="2">
-          <p><h5>🎲 예 2.7</h5>
+      <h5>🎲 예 2.7</h5>
           표 2.6은 4차 산업혁명에 대한 위키백과의 설명이다. 『eStatU』을 이용하여 이 설명에 대한
           단어구름을 그려보자. 
           <p>
@@ -680,113 +592,24 @@
                   "제4차 산업 혁명 마스터 하기"는 스위스 Davos-Klosters에서 열린 세계 경제 포럼 연례회의 (World Economic Forum Annual Meeting 2016)의 주제였다.
                 </td>
             </table>
-          <p> 
-        </td>
-      </tr>
-      <tr>
-        <td style="width:100px">
-          <h5>풀이</h5>
-           <input class="qrBtn" type="image" src="../../QR/eStatU_05WordCloud.svg" onclick="window.open(addrStr[124])">
-        </td>
-        <td>
-          <p>
+      <h5>풀이</h5>
          『eStatU』 메뉴에서 '단어구름'을 선택하면 [그림 2.42]와 같은 자료 입력창이 나타난다. 
           여기에 표 2.6의 문장을 복사한 후 [실행] 버튼을 클릭하면 [그림 2.43]과 같은 단어 구름이 나타난다.
           <p>
-             <img src="../FigureU/Fig0242.png">
-             <div class="textLeft">[그림 2.42] 단어구름을 위한 자료입력 </div>
+          <b>[단어구름]</b>
           <p>
-             <img class="figure90" src="../FigureU/Fig0243.png">
+             <iframe class="example" src="./example/020401.html"> </iframe>
              <div class="textLeft">[그림 2.43] 4차 산업혁명 설명에 대한 단어 구름 </div>
           <p>
           단어구름은 가장 두드러진 단어를 빠르게 인식하여 상대적인 중요도를 결정하는 데 유용하다. 예를 들면 정치 연설의 중요한 주제를 시각화 하든지, 소셜 미디어 소프트웨어에서 한 단어와 관련된 항목의 하이퍼링크를 결정하는 도구로 사용할 수 있다. 
           <p>
-       </td>
-      </tr>
-    </table>
   </div>
   <p>
 
+  <h3 id="0204">2.4  연습문제</h3>
+  <iframe class="exercise" class="exercise" src="./exercise/exercise02.html"></iframe>
 
-  <div class="mainTablePink">
-    <h4> 연습문제 </h4>
-    <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
-
-  <h6 class="textL30M30">2.1  다음과 같이 자료를 정리하여 만든 표를 무엇이라 부르는가?</h6>
-           <table class="width:600px;"> 
-              <tr> <th class="thGrey">성별</th> <th class="thGrey">학생수</th>  </tr>
-              <tr> <td class="tdCenter">남</td>      <td class="tdCenter">6</td>   </tr>
-              <tr> <td class="tdCenter">여</td>      <td class="tdCenter">4</td>   </tr>
-            </table>
-  <form name="Q1">
-    <label><input type="radio" name="item" value="1"> 학생표</label><br>
-    <label><input type="radio" name="item" value="2"> 도수분포표</label><br>
-    <label><input type="radio" name="item" value="3"> 정리표</label><br>
-    <label><input type="radio" name="item" value="4"> 성적표</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(22,1,Q1)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ1">
-  </form>
-
-  <h6 class="textL30M30">2.2 다음 중 질적 자료 분석에 사용되는 그래프는? </h6>
-  <form name="Q2">
-    <label><input type="radio" name="item" value="1"> 막대그래프</label><br>
-    <label><input type="radio" name="item" value="2"> 히스토그램</label><br>
-    <label><input type="radio" name="item" value="3"> 줄기와 잎 그림</label><br>
-    <label><input type="radio" name="item" value="4"> 산점도</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(22,2,Q2)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ2">
-  </form>
-
-  <h6 class="textL30M30">2.3 다음 중 질적 자료 분석에 사용되는 그래프가 아닌 것은?  </h6>
-  <form name="Q3">
-    <label><input type="radio" name="item" value="1"> 막대그래프</label><br>
-    <label><input type="radio" name="item" value="2"> 히스토그램</label><br>
-    <label><input type="radio" name="item" value="3"> 원그래프</label><br>
-    <label><input type="radio" name="item" value="4"> 띠그래프</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(22,3,Q3)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ3">
-  </form>
-
-  </div>
-
-  <script>
-    for (var i=0; i < ans[22][0]; i++) document.getElementById(ansID[i+1]).disabled = true;
-  </script>
-  <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(161)">&#10094;&#10094; &nbsp;&nbsp;<b>1장</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(163)"><b>3장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
- </div>
-    
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
-    <script>
-        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
-        
-        /* ajust the height when click the toc
-           the code is from https://github.com/twbs/bootstrap/issues/1768
-        */
-        var shiftWindow = function() { scrollBy(0, -50) };
-        window.addEventListener("hashchange", shiftWindow);
-        function load() { if (window.location.hash) shiftWindow(); }
-        
-        /*add Bootstrap styles to tables*/
-        var tables = document.getElementsByTagName("table");
-        for(var i = 0; i < tables.length; ++i){
-            tables[i].className += "table table-bordered table-hover";
-        }
-    </script>
-
+</div>
 </body>
 </html>
 

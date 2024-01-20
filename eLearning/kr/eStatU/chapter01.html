@@ -10,12 +10,11 @@
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+  <link href="/estat/eStat/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="../../css/dashboard.css" rel="stylesheet">
+  <link href="/estat/eStat/css/dashboard.css" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -24,12 +23,22 @@
       <![endif]-->
        <style type="text/css">code{white-space: pre;}</style>
        <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
-       <script src="../../js/prism.js"></script>
-       <link rel="stylesheet" href="../../css/prism.css">
-       <script src="../../js/jquery.min.js"></script>    
+       <link rel="stylesheet" href="/estat/eStat/css/pandoc.css">
+       <link rel="stylesheet" href="/estat/eStat/css/prism.css">
+       <script src="/estat/eStat/lib/jquery/jquery.min.js"></script>   
+       <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="/estat/eStat/lib/convertSVG.js"></script>
+       <script src="/estat/eStat/js/prism.js"></script>
+       <script src="/estat/eStat/js/eBook.js"></script>
+       <script src="/estat/eStat/js/eStatU.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>
+       <script> setLanguage('ko'); </script>
        <script type="text/javascript" id="MathJax-script" async
 	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
        </script>
+
        <script>
 	 $(document).ready(function() {
   	     toc = $("#sidebar > ul > li > ul");
@@ -48,86 +57,70 @@
   		 $(sections[i]).replaceWith(li);
   	     }
 	 });
-	 </script>
-       <link rel="stylesheet" href="../../css/pandoc.css">
-       <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       </script>
+      
 </head>
+
 <body>
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <ul class="nav navbar-nav">
-    <li><a href="../../../eStat/index.html"  target="_blank">eStat</a></li>
-    <li><a href="../../../eStatU/index.html" target="_blank">eStatU</a></li>
-    <li><a href="../../Distribution/index.html" target="_blank">확률분포</a></li>
-  </ul>
-</nav>
-
+  
+<!-- begin of left sidebar -->
 <div class="container-fluid">
-  <div class="row">
-    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
-      <ul>
-	<li><a href=""></a>
-	  <ul>
-            <li><a href="index.html">차  례</a></li>
-            <li><a href="chapter01.html">1장 통계 데이터과학</a></li>
-            <li><a href="chapter02.html">2장 질적 데이터 시각화</a></li>
-            <li><a href="chapter03.html">3장 양적 데이터 시각화</a></li>
-            <li><a href="chapter04.html">4장 표/측도 데이터 정리</a></li>
-            <li><a href="chapter05.html">5장 확률, 확률분포함수</a></li>
-            <li><a href="chapter06.html">6장 표집분포와 추정</a></li>
-            <li><a href="chapter07.html">7장 한 모집단 모수 검정</a></li>
-            <li><a href="chapter08.html">8장 두 모집단 모수 검정</a></li>
-            <li><a href="chapter09.html">9장 여러 모평균의 검정</a></li>
-            <li><a href="chapter10.html">10장 비모수적 가설검정</a></li>
-            <li><a href="chapter11.html">11장 범주형 데이터 검정</a></li>
-            <li><a href="chapter12.html">12장 상관 및 회귀분석</a></li>
-            <li><a href="chapter13.html">13장 시계열분석</a></li>
-	  </ul>
-	</li>
-      </ul>
-    </div>
-  </div>
+<div class="row">
+<div id="sidebar" class="col-sm-2 col-md1 sidebar">
+  <ul>
+    <li> <a href="index.html"><b>차례</b> </a> </li>
+    <li> <a href="chapter01.html"> <span data-msgid="Chapter01"> </span></a> </li>
+	      <ul>
+                <li><a href="#0101">&nbsp; 1.1 통계학과 데이터과학</a></li>
+                <li><a href="#0102">&nbsp; 1.2 데이터의 구분</a></li>
+                <li><a href="#0103">&nbsp; 1.3 『eStat』 소프트웨어</a></li>
+                <li><a href="#0104">&nbsp; 1.4 연습문제</a></li> 
+	      </ul>
+    <li> <a href="chapter02.html"> <span data-msgid="Chapter02"> </span></a> </li>
+    <li> <a href="chapter03.html"> <span data-msgid="Chapter03"> </span></a> </li>
+    <li> <a href="chapter04.html"> <span data-msgid="Chapter04"> </span></a> </li>
+    <li> <a href="chapter05.html"> <span data-msgid="Chapter05"> </span></a> </li>
+    <li> <a href="chapter06.html"> <span data-msgid="Chapter06"> </span></a> </li>
+    <li> <a href="chapter07.html"> <span data-msgid="Chapter07"> </span></a> </li>
+    <li> <a href="chapter08.html"> <span data-msgid="Chapter08"> </span></a> </li>
+    <li> <a href="chapter09.html"> <span data-msgid="Chapter09"> </span></a> </li>
+    <li> <a href="chapter10.html"> <span data-msgid="Chapter10"> </span></a> </li>
+    <li> <a href="chapter11.html"> <span data-msgid="Chapter11"> </span></a> </li>
+    <li> <a href="chapter12.html"> <span data-msgid="Chapter12"> </span></a> </li>
+    <li> <a href="chapter13.html"> <span data-msgid="Chapter13"> </span></a> </li>
+  </ul>
 </div>
+</div>
+</div>
+<!-- end of left sidebar -->
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
   <!--***********************************************************************-->
   <h1>1장 통계 데이터과학</h1> 
+  <h1>&nbsp; 🎲 🎯 💻 📱</h1>\
+  <b>
+	      <ul>
+                <li><a href="#0101">&nbsp; 1.1 통계학과 데이터과학</a></li>
+                <li><a href="#0102">&nbsp; 1.2 데이터의 구분</a></li>
+                <li><a href="#0103">&nbsp; 1.3 『eStat』 소프트웨어</a></li>
+                <li><a href="#0104">&nbsp; 1.4 연습문제</a></li> 
+	      </ul>
+                <a href="./pdf/chapter01.pdf" target="_blank">[1장 pdf]</a>
+  </b>
   <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(160)"> &#10094;&#10094; &nbsp;&nbsp;<b>목차</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(162)"><b>2장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
-  <p>
-  <table>
-    <tr>
-      <td style="width:300px">
-        <h1>&nbsp; 🎲 🎯 💻 📱</h1>
-        <h4>
-        <a href="#0101"><u>1.1 통계학과 데이터과학</u></a> <p>
-        <a href="#0102"><u>1.2 데이터의 구분</u></a> <p>
-        <a href="#0103"><u>1.3 『eStat』 소프트웨어</u></a> <p>
-        <a href="chapter01.pdf" target="_blank"><u>[1장 pdf]</u></a>
-        </h4>
-      </td>
-      <td style="width:350px">
-        <h1></h1>
-        <p>- 통계학이 무엇인지 살펴보고 데이터과학과 어떠한 연관이 있는지 알아본다.
-        <p>- 데이터를 질적 데이터와 양적 데이터로 구분한다. 원시 데이터와 도수분포 데이터로 구분한다. 
-             양적 데이터는 다시 이산형 데이터와 연속형 데이터롤 구분한다.
-        <p>- 『eStat』 소프트웨어가 무엇인지 살펴본다.
+        - 통계학이 무엇인지 살펴보고 데이터과학과 어떠한 연관이 있는지 알아본다.<br>
+        - 데이터를 질적 데이터와 양적 데이터로 구분한다. 원시 데이터와 도수분포 데이터로 구분한다. <br>
+             양적 데이터는 다시 이산형 데이터와 연속형 데이터롤 구분한다.<br>
+        - 『eStat』 소프트웨어가 무엇인지 살펴본다.<br>
         
 <!--
         <h4>
           <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
         </h6>
 -->      
-      </td>
-    </tr>
-  </table>
-  <p>
 
+  <p>
   <h3 id="0101">1.1 통계학과 데이터과학</h3>
   <p>
 
@@ -231,13 +224,18 @@
           <td></td>
           <td class="tdLeft">12장 상관 및 회귀분석</td>
         </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td class="tdLeft">13장 시계열분석</td>
+        </tr>
       </table>
     <p>
     2장은 막대, 원, 띠, 꺾은선 그래프 등의 범주형 데이터 시각화를 다룬다. 3장은 히스토그램, 줄기와 잎 그림, 산점도 등의 연속형 데이터 시각화를 다룬다. 4장은 표/측도를 이용한 데이터 정리를 소개한다. 
     <p>
     5장은 데이터에 대한 확률분포 모형을 소개하고, 6장은 표본과 모집단의 관계에 대해서 살펴보고 표본통계량에 대한 분포와 이를 바탕으로 모집단 모수에 대한 추정을 설명한다. 
     <p>
-    7장에서 9장까지는 연속형 변량에 대한 모수적 가설검정을 설명하고, 10장에서는 연속형 변량의 비모수적 가설검정, 11장은 범주형 변량에 대한 가설검정을 설명한다. 12장은 두 변량에 대한 상관 및 회귀분석을 설명한다. 
+    7장에서 9장까지는 연속형 변량에 대한 모수적 가설검정을 설명하고, 10장에서는 연속형 변량의 비모수적 가설검정, 11장은 범주형 변량에 대한 가설검정을 설명한다. 12장은 두 변량에 대한 상관 및 회귀분석을 설명하고 13장은 시계열의 예측 방법을 설명한다. 
   </div>
 <!---------------------------------------------------------------------------------------->
   <h3 id="0102">1.2 데이터의 구분</h3>
@@ -263,10 +261,10 @@
     '남' 또는 '여'와 같은 값을 <b>변량값</b>(variable value)이라 부른다. 
     <p>
       <div class="textLeft">표 1.2 성별을 조사하여 엑셀에 정리한 원시 데이터 </div>
-      <table style="width:500px"> 
+      <table style="width:400px"> 
         <tr> 
-          <th class="thGrey" style="width:100px">번호</th>
-          <th class="thGrey">성별</th>
+          <th style="width:100px">번호</th>
+          <th>성별</th>
         </tr>
         <tr>
           <td class="tdCenter">1</td>
@@ -314,10 +312,10 @@
     엑셀에서는 이러한 도수분포 데이터를 이용하여 그래프를 그린다. 
     <p>
       <div class="textLeft">[표 1.3] 한 학급의 성별의 빈돗수를 요약한 도수분포 데이터</div>
-      <table style="width:500px"> 
+      <table style="width:400px"> 
         <tr> 
-          <th class="thGrey">성별</th>
-          <th class="thGrey">학생수</th>
+          <th>성별</th>
+          <th>학생수</th>
         </tr>
         <tr> <td class="tdCenter">남</td> <td class="tdCenter">6</td> </tr>
         <tr> <td class="tdCenter">여</td> <td class="tdCenter">4</td> </tr>
@@ -340,124 +338,28 @@
     <p>
     『eStat』은 통계패키지와 같이 데이터 처리가 가능하며, 『eStatU』에는 통계학 이론에 대한 이해를 돕기 위한 다양한 시뮬레이션 모듈을 포함하고 있다. 이항분포와 정규분포가 무엇인지 보여주는 시뮬레이션, 대수의 법칙, 중심극한정리, 구간추정의 의미를 보여주는 시뮬레이션, 회귀분석의 이상값의 영향을 관찰할 수 있는 시뮬레이션 등이다. [그림 1.1]은 『eStatU』의 메뉴이다.
     <p>
-      <table style="width:700px">
-        <tr>
-          <td style="width:100px">
-            <input class="qrBtn" type="image" src="../../QR/eStatU.svg" onclick="window.open(addrStr[2])">
-            <div class="textLeft">『eStatU』</div>
-          </td>
-          <td>
-           <img src="../FigureU/Fig0104.png">
+         <div class="QRFigure">
+           <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU.svg" onclick="window.open(addrStr[2])">
+           <img class="figure70" src="./Figure/Fig0104.png">
            <div class="textLeft">&lt;그림 1.1&gt; 『eStatU』 메뉴</div>
-          </td>
-        </tr>
-      </table>
+         </div>
     <p>
     『eStat』은 각급 교과서에 있는 많은 예를 포함하고 있으며, 웹 기반이어서 사용자들은 언제 어디서나 PC, 태블릿, 또는 스마트폰으로 이용할 수 있다. 『eStat』은 무료로 서비스하고 있고 다국적 언어를 지원하며 현재 한국어, 영어, 일본어, 중국어, 불어, 독어, 스페인어, 베트남어, 인도네시아 등 20개 언어로 번역되어 전 세계에서 사용하고 있다. 
     <p>
     『eStat』에 대한 기본 운영 및 데이터 조작은 다음 링크를 참조하라. 
-    <table style="width:700px">
-      <tr>
-        <td style="width:150px">
+    <p>
            <b>『eStat』 기본 운용 및 데이터 조작</b><br>
-           <input class="qrBtn" type="image" src="../../QR/KReStatBasicOperation.svg" onclick="window.open(addrStr[170])">
-        </td>
-        <td>
-           <p>
-           <a href="../eStatBasicOperation.html" target="_blank">www.estat.me/estat/eLearning/kr/eStatBasicOperation.html</a>
-        </td>
-      </tr>
-    </table> 
+         <div class="QRFigure">
+           <input class="qrBtn" type="image" src="/estat/eStat/qr/KReStatBasicOperation.svg" onclick="window.open(addrStr[170])">
+           <a href="eStatBasicOperation.html" target="_blank">www.estat.me/estat/eLearning/kr/eStatU/eStatBasicOperation.html</a>
+         </div>
   </div>
   <p>
 
-  <div class="mainTablePink">
-    <h4> 연습문제 </h4>
-    <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
-
-  <h6 class="textL30M30">1.1  다음 중 통계에 대한 설명으로 맞는 것은?</h6>
-  <form name="Q1">
-    <label><input type="radio" name="item" value="1"> 날씨에 대한 변화를 연구</label><br>
-    <label><input type="radio" name="item" value="2"> 자료를 수집 정리하여 분석</label><br>
-    <label><input type="radio" name="item" value="3"> 화학 반응을 연구</label><br>
-    <label><input type="radio" name="item" value="4"> 전자제품 생산 연구</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(21,1,Q1)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ1">
-  </form>
-
-  <h6 class="textL30M30">1.2 다음 중 잘적 자료는? </h6>
-  <form name="Q2">
-    <label><input type="radio" name="item" value="1"> 신장</label><br>
-    <label><input type="radio" name="item" value="2"> 체중</label><br>
-    <label><input type="radio" name="item" value="3"> 교육정도</label><br>
-    <label><input type="radio" name="item" value="4"> 나이</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(21,2,Q2)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ2">
-  </form>
-
-  <h6 class="textL30M30">1.3 다음 중 양적 자료는? </h6>
-  <form name="Q3">
-    <label><input type="radio" name="item" value="1"> 성별</label><br>
-    <label><input type="radio" name="item" value="2"> 교육정도</label><br>
-    <label><input type="radio" name="item" value="3"> 결혼여부</label><br>
-    <label><input type="radio" name="item" value="4"> 나이</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(21,3,Q3)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ3">
-  </form>
-
-  <h6 class="textL30M30">1.4 다음 중 통계패키지가 아닌 것은? </h6>
-  <form name="Q4">
-    <label><input type="radio" name="item" value="1"> SPSS</label><br>
-    <label><input type="radio" name="item" value="2"> SAS</label><br>
-    <label><input type="radio" name="item" value="3"> eStat</label><br>
-    <label><input type="radio" name="item" value="4"> Word</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(21,4,Q4)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ4">
-  </form>
-
-
-  </div>
-
-  <script>
-    for (var i=0; i < ans[21][0]; i++) document.getElementById(ansID[i+1]).disabled = true;
-  </script>
-  <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(160)">&#10094;&#10094; &nbsp;&nbsp;<b>목차</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(162)"><b>2장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
+  <h3 id="0104">1.4 연습문제</h3>
+  <iframe class="exercise" src="./exercise/exercise01.html"></iframe>
 
 </div>
-    
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
-    <script>
-        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
-        
-        /* ajust the height when click the toc
-           the code is from https://github.com/twbs/bootstrap/issues/1768
-        */
-        var shiftWindow = function() { scrollBy(0, -50) };
-        window.addEventListener("hashchange", shiftWindow);
-        function load() { if (window.location.hash) shiftWindow(); }
-        
-        /*add Bootstrap styles to tables*/
-        var tables = document.getElementsByTagName("table");
-        for(var i = 0; i < tables.length; ++i){
-            tables[i].className += "table table-bordered table-hover";
-        }
-    </script>
-
 </body>
 </html>
 

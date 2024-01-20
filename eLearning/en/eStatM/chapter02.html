@@ -10,12 +10,11 @@
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+  <link href="/estat/eStat/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="../../css/dashboard.css" rel="stylesheet">
+  <link href="/estat/eStat/css/dashboard.css" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -24,12 +23,22 @@
       <![endif]-->
        <style type="text/css">code{white-space: pre;}</style>
        <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
-       <script src="../../js/prism.js"></script>
-       <link rel="stylesheet" href="../../css/prism.css">
-       <script src="../../js/jquery.min.js"></script>    
+       <link rel="stylesheet" href="/estat/eStat/css/pandoc.css">
+       <link rel="stylesheet" href="/estat/eStat/css/prism.css">
+       <script src="/estat/eStat/lib/jquery/jquery.min.js"></script>   
+       <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="/estat/eStat/lib/convertSVG.js"></script>
+       <script src="/estat/eStat/js/prism.js"></script>
+       <script src="/estat/eStat/js/eBook.js"></script>
+       <script src="/estat/eStat/js/eStatU.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>
+       <script> setLanguage('en'); </script>
        <script type="text/javascript" id="MathJax-script" async
 	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
        </script>
+
        <script>
 	 $(document).ready(function() {
   	     toc = $("#sidebar > ul > li > ul");
@@ -48,75 +57,55 @@
   		 $(sections[i]).replaceWith(li);
   	     }
 	 });
-	 </script>
-       <link rel="stylesheet" href="../../css/pandoc.css">
-       <script src="../../js/eBook.js"></script>
-       <script src="../../../eStat/js/language.js" ></script>   
-       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
-       <script src="../../../eStat/lib/d3/d3.layout.cloud.js"></script>
-       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
-       <script src="../../../eStat/js/eStatU.js"></script>
-       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
-       <script src="../../../eStat/lib/convertSVG.js"></script>
-</head>
-<body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <ul class="nav navbar-nav">
-    <li><a class="navbar-brand" href="../../../eStat/index.html" target="_blank">eStat</a></li>
-    <li><a class="navbar-brand" href="../../../eStatM/index.html" target="_blank">eStatM</a></li>
-  </ul>
-</nav>
+       </script>
 
+</head>
+
+<body>
+
+<!-- begin of left sidebar -->
 <div class="container-fluid">
-  <div class="row">
-    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
+<div class="row">
+<div id="sidebar" class="col-sm-2 col-md1 sidebar">
+  <ul>
+    <li> <a href="index.html"><b>Table of Chapters</b> </a> </li>
+    <li> <a href="chapter01.html"> 1. Statistics</a> </li>
+    <li> <a href="chapter02.html"> 2. Visualization of Qualitative Data</a> </li>
       <ul>
-	<li><a href=""></a>
-	  <ul>
-            <li><a href="../eStatM/index.html">Table of Contents</a></li>
-            <li><a href="../eStatM/chapter01.html">1. Statistics</a></li>
-            <li><a href="../eStatM/chapter02.html">2. Visualization of Qualitative Data</a></li>
-            <li><a href="../eStatM/chapter03.html">3. Visualization of Qunatitative Data</a></li>
-            <li><a href="../eStatM/chapter04.html">4. Measure of Central Tendency and Dispersion</a></li>
-	  </ul>
-	</li>
+        <li><a href="#0201">2.1 Bar/ Pie/ Rainbow/ Band Graph</a> </li>
+        <li><a href="#0202">2.2 Line Graph</a> </li>
+        <li><a href="#0203">2.3 Word Cloud</a> </li>
+        <li><a href="#0204">2.4 Exercise</a> </li>
       </ul>
-    </div>
-  </div>
+    <li> <a href="chapter03.html"> 3. Visualization of Quantitative Data</a> </li>
+    <li> <a href="chapter04.html"> 4. Measure of Central Tendency and Dispersion</a> </li>
+  </ul>
 </div>
+</div>
+</div>
+<!-- end of left sidebar -->
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
   <!--***********************************************************************-->
   <h1>Chapter 2. Visualization of Qualitative Data</h1> 
-  <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(141)">&#10094;&#10094; &nbsp;&nbsp;<b>Chapter 1</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(143)"><b>Chapter 3</b>&nbsp;&nbsp; &#10095;&#10095;</button>
-  <p>
-  <table>
-    <tr>
-      <td style="width:420px">
-        <h1>&nbsp; 📊 🍕 🌈 ⛅</h1>        
-        <h4>
-        <a href="#0201"><u>2.1 Bar/ Pie/ Rainbow/ Band Graph</u></a> <p>
-        <a href="#0202"><u>2.2 Line Graph</u></a> <p>
-        <a href="#0203"><u>2.3 Word Cloud</u></a> <p>
-        <a href="../eStatM/chapter02.pdf" target="_blank"><u>[Chapter 2. pdf]</u></a> 
-        </h4>
-      </td>
-      <td>
+  <h1>&nbsp; 📊 🍕 🌈 ⛅</h1>        
+    <b>
+      <ul>
+        <li><a href="#0201">2.1 Bar/ Pie/ Rainbow/ Band Graph</a> </li>
+        <li><a href="#0202">2.2 Line Graph</a> </li>
+        <li><a href="#0203">2.3 Word Cloud</a> </li>
+        <li><a href="#0204">2.4 Exercise</a> </li>
+      </ul>
+      <a href="./pdf/chapter02.pdf" target="_blank">[Chapter2.pdf]</a> 
+    </b>
         <p>In the case of categorical data, the following graphs are drawn and analyzed.
-        <p> - bar graph 
+        <br> - bar graph 
         <br> - pie graph
         <br> - rainbow graph
         <br> - band graph
         <br> - line graph
         <p>The data in the form of words are analyzed by drawing a word cloud.
-      </td>
-    </tr>
-  </table>
 <!--
   <h6>
       <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
@@ -127,37 +116,22 @@
   <h3 id="0201">2.1  Bar/ Pie/ Rainbow/ Band Graph</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ Think</h4>
           <b>The frequency table that surveyed 20 students in an elementary school class 
              for their favorite sports is as follows:</b>
           <p>
           <div class="textLeft">[Table 2.1] Frequency table of favorite sports</div>
-          <table> 
-            <tr> <th class="thGrey">Sports</th> <th class="thGrey">Number of students</th> </tr>
+          <table style="width:400px"> 
+            <tr> <th>Sports</th> <th>Number of students</th> </tr>
             <tr> <td class="tdCenter">Soccer</td> <td class="tdCenter">8</td>    </tr>
             <tr> <td class="tdCenter">Basketball</td> <td class="tdCenter">4</td>    </tr>
             <tr> <td class="tdCenter">Baseball</td> <td class="tdCenter">5</td>    </tr>
             <tr> <td class="tdCenter">Volleyball</td> <td class="tdCenter">2</td>    </tr>
             <tr> <td class="tdCenter">Golf</td> <td class="tdCenter">1</td>    </tr>
           </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
           <p>
+      <h4>💎 Explore</h4>
           <b>What are some graphs that can be easily observed what a favorite sport is like? </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -175,18 +149,18 @@
          of a rectangular bar. Spacing between the bars is used to emphasize that 
          it is categorical data such as in &lt;Figure 2.1&gt;.
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0201.png">
+         <img class="figure" src="./Figure/Fig0201.png">
          <div class="textLeft">&lt;Figure 2.1&gt; Bar graph for favorite sports</div>
       <p>
          A <b>pie graph</b> is a graph in which the frequency of each category in the 
          whole data is divided into pie slices. For better comparison of proportions, draw the circle pieces in the order of the largest category in a clockwise direction.
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0202.png">
+         <img class="figure" src="./Figure/Fig0202.png">
          <div class="textLeft">&lt;Figure 2.2&gt; Pie graph for favorite sports</div>
       <p>
          A <b>rainbow graph</b> is a modified form of a pie graph and is a graph in which the frequency of each category is divided into raibow pieces and displayed in the total data. 
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0203.png">
+         <img class="figure" src="./Figure/Fig0203.png">
          <div class="textLeft">&lt;Figure 2.3&gt; Rainbow graph for favorite sports</div>
       <p>
          A <b>band graph</b> is a modified form of a pie graph, and is a graph in which the 
@@ -195,7 +169,7 @@
          value of the category, but to distinguish it from the pie graph, the 
          rectangle pieces are drawn in the order of the categories of the data.
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0204.png">
+         <img class="figure" src="./Figure/Fig0204.png">
          <div class="textLeft">&lt;Figure 2.4&gt; Band graph for favorite sports</div>
   </div>
   <p>
@@ -213,264 +187,25 @@
                category. If you select the Emoji icon for each category on the far right and check
                ‘Emoji’ under the graph, a bar graph like &lt;Figure 2.6&gt; appears.
       <p>
-      <!-------------  Bar/Pie/Rainbow/Band html -------------------------------------------------------------->
-      <button type="button" id="eraseBarData" style="width:140px;"><b>New Data</b></button>
-      <table>
-        <tr>
-          <td style="text-align: right;"><b><span data-msgid="Main Title">Main Title</span></b>&nbsp;</td>
-          <td colspan="3"><input type="text" size=63 id="mtitle"></td>
-        </tr>
-	<tr>
-          <td style="text-align: right;"><b><span data-msgid="y title">y title</span></b>&nbsp;</td>
-          <td><input type="text" size=20 id="ytitle"></td>
-          <td style="text-align: right;"><b><span data-msgid="x title">x title</span></b>&nbsp;</td>
-          <td><input type="text" size=20 id="xtitle"></td>
- 	</tr>
-      </table> 
-
-      <table>
-      <tbody>
-	<tr>
-          <td>&nbsp;</td>
-	  <td style="text-align: center;"><b><span data-msgid="CategoryD">Category</span></b></td>
-	  <td style="text-align: center;"><b><span data-msgid="Frequency">Frequency</span></b></td>
-	  <td style="text-align: center;"><b><span data-msgid="RelativeFreq">Relative Freq.</span> %<b></td>
-	  <td style="text-align: center;"><b><span data-msgid="oneColor">Color</span><b></td>
-	  <td style="text-align: center;"><b><span data-msgid="Character">Emoji</span><b></td>
-	</tr>
-	<tr>
-          <td>1&nbsp;</td>
-	  <td><input type="text" size=15 id="data11"></td>
-	  <td><input type="text" size=15 id="data12" style="text-align: right;"></td>
-	  <td><input type="text" size=15 id="data13" style="text-align: right;"></td>
-          <td><input type="color" id="data14" onclick="changeColor(1)" style="width:120px;"></td>
-          <td>
-             <select id="data15" onchange="changeIcon(1)">
-               <option>👨</option> <option>👩</option> <option>⚽</option> <option>🏀</option> <option>⚾</option>
-               <option>🏐</option> <option>🏌</option> <option>🎾</option> <option>🖥</option> <option>📲</option> 
-               <option>📚</option> <option>💰</option> <option>🛩</option> <option>🚢</option> <option>🏠</option> 
-               <option>🌭</option> <option>🥕</option> <option>🥬</option> <option>🥦</option> <option>🍆</option> 
-               <option>🥒</option> <option>🌽</option> <option>🍓</option> <option>🍎</option> <option>🍌</option> 
-               <option>🍇</option> <option>🍊</option> <option>🍅</option> <option>🍉</option> <option>🍍</option>
-               <option>🖍</option> <option>🎹</option> <option>👗</option> <option>👑</option> <option>💎</option>
-               <option>🎮</option> <option>🎈</option> <option>🌟</option> <option>🌈</option> <option>⭐</option>
-               <option>☀</option> <option>⌛</option> <option>⏱</option> <option>🚲</option> <option>🎡</option> 
-               <option>🏰</option> <option>🪐</option> <option>🌿</option> <option>🧡</option> <option>🚲</option>
-             </select>
-          </td>
-	</tr>
-	<tr>
-          <td> 2</td>
-	  <td><input type="text" size=15 id="data21"></td>
-	  <td><input type="text" size=15 id="data22" style="text-align: right;"></td>
-	  <td><input type="text" size=15 id="data23" style="text-align: right;"></td>
-          <td><input type="color" id="data24" onclick="changeColor(2)" style="width:120px;"></td>
-          <td>
-            <select id="data25" onchange="changeIcon(2)">
-               <option>👨</option> <option>👩</option> <option>⚽</option> <option>🏀</option> <option>⚾</option>
-               <option>🏐</option> <option>🏌</option> <option>🎾</option> <option>🖥</option> <option>📲</option> 
-               <option>📚</option> <option>💰</option> <option>🛩</option> <option>🚢</option> <option>🏠</option> 
-               <option>🌭</option> <option>🥕</option> <option>🥬</option> <option>🥦</option> <option>🍆</option> 
-               <option>🥒</option> <option>🌽</option> <option>🍓</option> <option>🍎</option> <option>🍌</option> 
-               <option>🍇</option> <option>🍊</option> <option>🍅</option> <option>🍉</option> <option>🍍</option>
-               <option>🖍</option> <option>🎹</option> <option>👗</option> <option>👑</option> <option>💎</option>
-               <option>🎮</option> <option>🎈</option> <option>🌟</option> <option>🌈</option> <option>⭐</option>
-               <option>☀</option> <option>⌛</option> <option>⏱</option> <option>🚲</option> <option>🎡</option> 
-               <option>🏰</option> <option>🪐</option> <option>🌿</option> <option>🧡</option> <option>🚲</option>
-             </select>
-          </td>
-	</tr>
-	<tr>
-          <td> 3</td>
-	  <td><input type="text" size=15 id="data31"></td>
-	  <td><input type="text" size=15 id="data32" style="text-align: right;"></td>
-	  <td><input type="text" size=15 id="data33" style="text-align: right;"></td>
-          <td><input type="color" id="data34" onclick="changeColor(3)" style="width:120px;"></td>
-          <td>
-            <select id="data35" onchange="changeIcon(3)">
-               <option>👨</option> <option>👩</option> <option>⚽</option> <option>🏀</option> <option>⚾</option>
-               <option>🏐</option> <option>🏌</option> <option>🎾</option> <option>🖥</option> <option>📲</option> 
-               <option>📚</option> <option>💰</option> <option>🛩</option> <option>🚢</option> <option>🏠</option> 
-               <option>🌭</option> <option>🥕</option> <option>🥬</option> <option>🥦</option> <option>🍆</option> 
-               <option>🥒</option> <option>🌽</option> <option>🍓</option> <option>🍎</option> <option>🍌</option> 
-               <option>🍇</option> <option>🍊</option> <option>🍅</option> <option>🍉</option> <option>🍍</option>
-               <option>🖍</option> <option>🎹</option> <option>👗</option> <option>👑</option> <option>💎</option>
-               <option>🎮</option> <option>🎈</option> <option>🌟</option> <option>🌈</option> <option>⭐</option>
-               <option>☀</option> <option>⌛</option> <option>⏱</option> <option>🚲</option> <option>🎡</option> 
-               <option>🏰</option> <option>🪐</option> <option>🌿</option> <option>🧡</option> <option>🚲</option>
-            </select>
-          </td>
-	</tr>
-	<tr>
-          <td> 4 </td>
-	  <td><input type="text" size=15 id="data41"></td>
-	  <td><input type="text" size=15 id="data42" style="text-align: right;"></td>
-	  <td><input type="text" size=15 id="data43" style="text-align: right;"></td>
-          <td><input type="color" id="data44" onclick="changeColor(4)" style="width:120px;"></td>
-          <td>
-            <select id="data45" onchange="changeIcon(4)">
-               <option>👨</option> <option>👩</option> <option>⚽</option> <option>🏀</option> <option>⚾</option>
-               <option>🏐</option> <option>🏌</option> <option>🎾</option> <option>🖥</option> <option>📲</option> 
-               <option>📚</option> <option>💰</option> <option>🛩</option> <option>🚢</option> <option>🏠</option> 
-               <option>🌭</option> <option>🥕</option> <option>🥬</option> <option>🥦</option> <option>🍆</option> 
-               <option>🥒</option> <option>🌽</option> <option>🍓</option> <option>🍎</option> <option>🍌</option> 
-               <option>🍇</option> <option>🍊</option> <option>🍅</option> <option>🍉</option> <option>🍍</option>
-               <option>🖍</option> <option>🎹</option> <option>👗</option> <option>👑</option> <option>💎</option>
-               <option>🎮</option> <option>🎈</option> <option>🌟</option> <option>🌈</option> <option>⭐</option>
-               <option>☀</option> <option>⌛</option> <option>⏱</option> <option>🚲</option> <option>🎡</option> 
-               <option>🏰</option> <option>🪐</option> <option>🌿</option> <option>🧡</option> <option>🚲</option>
-            </select>
-          </td>
-	</tr>
-	<tr>
-          <td> 5</td>
-	  <td><input type="text" size=15 id="data51"></td>
-	  <td><input type="text" size=15 id="data52" style="text-align: right;"></td>
-	  <td><input type="text" size=15 id="data53" style="text-align: right;"></td>
-          <td><input type="color" id="data54" onclick="changeColor(5)" style="width:120px;"></td>
-          <td>
-            <select id="data55" onchange="changeIcon(5)">
-               <option>👨</option> <option>👩</option> <option>⚽</option> <option>🏀</option> <option>⚾</option>
-               <option>🏐</option> <option>🏌</option> <option>🎾</option> <option>🖥</option> <option>📲</option> 
-               <option>📚</option> <option>💰</option> <option>🛩</option> <option>🚢</option> <option>🏠</option> 
-               <option>🌭</option> <option>🥕</option> <option>🥬</option> <option>🥦</option> <option>🍆</option> 
-               <option>🥒</option> <option>🌽</option> <option>🍓</option> <option>🍎</option> <option>🍌</option> 
-               <option>🍇</option> <option>🍊</option> <option>🍅</option> <option>🍉</option> <option>🍍</option>
-               <option>🖍</option> <option>🎹</option> <option>👗</option> <option>👑</option> <option>💎</option>
-               <option>🎮</option> <option>🎈</option> <option>🌟</option> <option>🌈</option> <option>⭐</option>
-               <option>☀</option> <option>⌛</option> <option>⏱</option> <option>🚲</option> <option>🎡</option> 
-               <option>🏰</option> <option>🪐</option> <option>🌿</option> <option>🧡</option> <option>🚲</option>
-            </select>
-          </td>
-	</tr>
-	<tr>
-          <td> 6</td>
-	  <td><input type="text" size=15 id="data61"></td>
-	  <td><input type="text" size=15 id="data62" style="text-align: right;"></td>
-	  <td><input type="text" size=15 id="data63" style="text-align: right;"></td>
-          <td><input type="color" id="data64" onclick="changeColor(6)" style="width:120px;"></td>
-          <td>
-            <select id="data65" onchange="changeIcon(6)">
-               <option>👨</option> <option>👩</option> <option>⚽</option> <option>🏀</option> <option>⚾</option>
-               <option>🏐</option> <option>🏌</option> <option>🎾</option> <option>🖥</option> <option>📲</option> 
-               <option>📚</option> <option>💰</option> <option>🛩</option> <option>🚢</option> <option>🏠</option> 
-               <option>🌭</option> <option>🥕</option> <option>🥬</option> <option>🥦</option> <option>🍆</option> 
-               <option>🥒</option> <option>🌽</option> <option>🍓</option> <option>🍎</option> <option>🍌</option> 
-               <option>🍇</option> <option>🍊</option> <option>🍅</option> <option>🍉</option> <option>🍍</option>
-               <option>🖍</option> <option>🎹</option> <option>👗</option> <option>👑</option> <option>💎</option>
-               <option>🎮</option> <option>🎈</option> <option>🌟</option> <option>🌈</option> <option>⭐</option>
-               <option>☀</option> <option>⌛</option> <option>⏱</option> <option>🚲</option> <option>🎡</option> 
-               <option>🏰</option> <option>🪐</option> <option>🌿</option> <option>🧡</option> <option>🚲</option>
-            </select>
-          </td>
-	</tr>
-	<tr>
-          <td> 7</td>
-	  <td><input type="text" size=15 id="data71"></td>
-	  <td><input type="text" size=15 id="data72" style="text-align: right;"></td>
-	  <td><input type="text" size=15 id="data73" style="text-align: right;"></td>
-          <td><input type="color" id="data74" onclick="changeColor(7)" style="width:120px;"></td>
-          <td>
-            <select id="data75" onchange="changeIcon(7)">
-               <option>👨</option> <option>👩</option> <option>⚽</option> <option>🏀</option> <option>⚾</option>
-               <option>🏐</option> <option>🏌</option> <option>🎾</option> <option>🖥</option> <option>📲</option> 
-               <option>📚</option> <option>💰</option> <option>🛩</option> <option>🚢</option> <option>🏠</option> 
-               <option>🌭</option> <option>🥕</option> <option>🥬</option> <option>🥦</option> <option>🍆</option> 
-               <option>🥒</option> <option>🌽</option> <option>🍓</option> <option>🍎</option> <option>🍌</option> 
-               <option>🍇</option> <option>🍊</option> <option>🍅</option> <option>🍉</option> <option>🍍</option>
-               <option>🖍</option> <option>🎹</option> <option>👗</option> <option>👑</option> <option>💎</option>
-               <option>🎮</option> <option>🎈</option> <option>🌟</option> <option>🌈</option> <option>⭐</option>
-               <option>☀</option> <option>⌛</option> <option>⏱</option> <option>🚲</option> <option>🎡</option> 
-               <option>🏰</option> <option>🪐</option> <option>🌿</option> <option>🧡</option> <option>🚲</option>
-             </select>
-          </td>
-	</tr>
-	<tr>
-          <td> 8</td>
-	  <td><input type="text" size=15 id="data81"></td>
-	  <td><input type="text" size=15 id="data82" style="text-align: right;"></td>
-	  <td><input type="text" size=15 id="data83" style="text-align: right;"></td>
-          <td><input type="color" id="data84" onclick="changeColor(8)" style="width:120px;"></td>
-          <td>
-            <select id="data85" onchange="changeIcon(8)">
-               <option>👨</option> <option>👩</option> <option>⚽</option> <option>🏀</option> <option>⚾</option>
-               <option>🏐</option> <option>🏌</option> <option>🎾</option> <option>🖥</option> <option>📲</option> 
-               <option>📚</option> <option>💰</option> <option>🛩</option> <option>🚢</option> <option>🏠</option> 
-               <option>🌭</option> <option>🥕</option> <option>🥬</option> <option>🥦</option> <option>🍆</option> 
-               <option>🥒</option> <option>🌽</option> <option>🍓</option> <option>🍎</option> <option>🍌</option> 
-               <option>🍇</option> <option>🍊</option> <option>🍅</option> <option>🍉</option> <option>🍍</option>
-               <option>🖍</option> <option>🎹</option> <option>👗</option> <option>👑</option> <option>💎</option>
-               <option>🎮</option> <option>🎈</option> <option>🌟</option> <option>🌈</option> <option>⭐</option>
-               <option>☀</option> <option>⌛</option> <option>⏱</option> <option>🚲</option> <option>🎡</option> 
-               <option>🏰</option> <option>🪐</option> <option>🌿</option> <option>🧡</option> <option>🚲</option>
-            </select>
-          </td>
-	</tr>
-	<tr>
-          <td> 9</td>
-	  <td><input type="text" size=15 id="data91"></td>
-	  <td><input type="text" size=15 id="data92" style="text-align: right;"></td>
-	  <td><input type="text" size=15 id="data93" style="text-align: right;"></td>
-          <td><input type="color" id="data94" onclick="changeColor(9)" style="width:120px;"></td>
-          <td>
-            <select id="data95" onchange="changeIcon(9)">
-               <option>👨</option> <option>👩</option> <option>⚽</option> <option>🏀</option> <option>⚾</option>
-               <option>🏐</option> <option>🏌</option> <option>🎾</option> <option>🖥</option> <option>📲</option> 
-               <option>📚</option> <option>💰</option> <option>🛩</option> <option>🚢</option> <option>🏠</option> 
-               <option>🌭</option> <option>🥕</option> <option>🥬</option> <option>🥦</option> <option>🍆</option> 
-               <option>🥒</option> <option>🌽</option> <option>🍓</option> <option>🍎</option> <option>🍌</option> 
-               <option>🍇</option> <option>🍊</option> <option>🍅</option> <option>🍉</option> <option>🍍</option>
-               <option>🖍</option> <option>🎹</option> <option>👗</option> <option>👑</option> <option>💎</option>
-               <option>🎮</option> <option>🎈</option> <option>🌟</option> <option>🌈</option> <option>⭐</option>
-               <option>☀</option> <option>⌛</option> <option>⏱</option> <option>🚲</option> <option>🎡</option> 
-               <option>🏰</option> <option>🪐</option> <option>🌿</option> <option>🧡</option> <option>🚲</option>
-            </select>
-          </td>
-	</tr>
-	<tr>
-          <td> </td>
-	  <td style="text-align: right;"><span data-msgid="Total">Sum</span> </td>
-	  <td><input type="text" size=15 id="data102" style="text-align: right;"></td>
-	  <td><input type="text" size=15 id="data103" style="text-align: right;"></td>
-          <td><button type="button" id="defaultColor" style="width:120px;">&nbsp; <b><span data-msgid="defaultColor">Default Color</span></b></button></td>
-	</tr>
-      </tbody>
-      </table>
-      <div class="textLeft">&lt;Figure 2.5&gt; Data input and Bar graph for favorite sports data</div>
+      <!-------------***  Bar/Pie/Rainbow/Band html ***----------------------->
+         <iframe class="example110" src="./example/0201.html"> </iframe>
+         <div class="textLeft">&lt;Figure 2.5&gt; Data input and Bar graph for favorite sports data</div>
       <p>
-      &nbsp;&nbsp;   <button type="button" id="executeBar" style="width:140px;">    <b><span data-msgid="Bar Graph">Bar Graph</span></b></button>
-      &nbsp;&nbsp;   <button type="button" id="executePie" style="width:140px;" >   <b><span data-msgid="Pie Chart">Pie graph</span></b></button> 
-      &nbsp;&nbsp;   <button type="button" id="executeRainbow" style="width:140px;"><b><span data-msgid="Rainbow Chart">Rainbow graph</span></b></button>
-      &nbsp;&nbsp;   <button type="button" id="executeBand" style="width:140px;">   <b><span data-msgid="Band Graph">Band Graph</span></b></button>
-      <p>
-      <svg id="chart" width="750" height="540" style="border-style:solid;"> </svg> 
-      <form action="#" name="myForm2" class="option-group">
-        <button type="button" id="saveGraphU" >
-	  <span data-msgid="Graph Save">Graph Save</span>
-        </button>&nbsp;&nbsp;
-        <label>&nbsp;&nbsp;<input type="checkbox" id="showicon"><span data-msgid="Character"> Emoji</span></label>
-        <label>&nbsp;&nbsp;<input type="checkbox" id="showfreq"><span data-msgid="Frequency"> Frequency</span></label>
-        &nbsp;&nbsp;&nbsp;(<span data-msgid="Sorting">Sorting</span>)&nbsp;
-        <input type="radio" name = "type2" value="1" id="raw" checked><span data-msgid="Raw Data">  Raw</span> &nbsp;
-        <input type="radio" name = "type2" value="2" id="descend">    <span data-msgid="Descending"> Descending</span> &nbsp;
-        <input type="radio" name = "type2" value="3" id="ascend">     <span data-msgid="Ascending"> Ascending</span>
-      </form>
-      <p>
-         <img class="imgFig600600" src="../FigureM/Fig0206.png">
+         <img class="figure" src="./Figure/Fig0206.png">
          <div class="textLeft">&lt;Figure 2.6&gt; Bar graph with Emoji icons for each category </div>
       <p>
          In a similar way, if you check 'Frequency the frequency can be displayed on the bar as shown in &lt;Figure 2.7&gt;.
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0207.png">
+         <img class="figure" src="./Figure/Fig0207.png">
          <div class="textLeft">&lt;Figure 2.7&gt; Bar graph with frequencies </div>
       <p>
          By using the (Soring) option under the graph, you can sort the bars in descending
          or ascending order of frequency as in &lt;Figure 2.8&gt; or &lt;Figure 2.9&gt;.
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0208.png">
+         <img class="figure" src="./Figure/Fig0208.png">
          <div class="textLeft">&lt;Figure 2.8&gt; Bar graph in descending order of frequencies</div>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0209.png">
+         <img class="figure" src="./Figure/Fig0209.png">
          <div class="textLeft">&lt;Figure 2.9&gt; Bar graph in ascending order of frequencies </div>
       <p>
         Click the [Pie Graph] button to display a pie graph as in &lt;Figure 2.2&gt;. 
@@ -482,917 +217,14 @@
     <!------------------------------------------------------------------------------------------------->
     <p>
 
-  <!-------------  Bar/Pie/Rainbow/Band script -------------------------------------------------------------->
-  <script>
-      setLanguage('en');
-      var chart = d3.select("#chart");
-      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
-      margin = {top:90, bottom:50, left:90, right:80};
-      svgWidth    = 750;
-      svgHeight   = 540;
-      graphWidth  = svgWidth - margin.left - margin.right;
-      graphHeight = svgHeight - margin.top - margin.bottom;
-
-      var i, j, k, nobs, nrow, num, ndvalue; 
-      var gxmin, gxmax, gymin, gymax, temp, freqMax;
-      var mTitle, yTitle, xTitle;
-      var checkIcon = false;
-      var checkFreq = false;
-      var checkInput = false;
-      var catgMax = 9;
-      var fontsize = "1em";
-      var strPath;
-      var colr = ["#FF0000","#FF8000","#FFFF00","#32CD32","#00FFFF","#BF00FF","#FF00FF","#0080FF","#00BFFF"];
-      var catg  = new Array(catgMax);
-      var freq  = new Array(catgMax);
-      var perc  = new Array(catgMax);
-      var dcolr = new Array(catgMax);
-      var ncolr = new Array(catgMax);
-      var dicon = ["👨","👩","⚽","🏀","⚾","🏐","🏌","🎾","🖥","📲",
-                   "📚","💰","🛩","🚢","🏠","🌭","🥕","🥬","🥦","🍆",
-                   "🥒","🌽","🍓","🍎","🍌","🍇","🍊","🍅","🍉","🍍",
-                   "🖍","🎹","👗","👑","💎","🎮","🎈","🌟","🌈","⭐",
-                   "☀","⌛","⏱","🚲","🎡","🏰","🪐","🌿","🧡","🚲"];
-      var nicon = new Array(catgMax);
-      for (i=1; i<catgMax; i++) nicon[i] = 0;
-
-      var dvalueLabel = new Array(catgMax);
-      var dataSet     = new Array(catgMax);
-      var indexA      = new Array(catgMax);
-      var indexD      = new Array(catgMax);
-
-      document.getElementById("data13").disabled = true;
-      document.getElementById("data23").disabled = true;
-      document.getElementById("data33").disabled = true;
-      document.getElementById("data43").disabled = true;
-      document.getElementById("data53").disabled = true;
-      document.getElementById("data63").disabled = true;
-      document.getElementById("data73").disabled = true;
-      document.getElementById("data83").disabled = true;
-      document.getElementById("data93").disabled = true;
-      document.getElementById("data102").disabled = true;
-      document.getElementById("data103").disabled = true;
-      defaultColor();
-      document.getElementById("ytitle").value = svgStr[16][langNum];
-
-      initBarExample();
-
-      // default Color 버튼 클릭
-      d3.select("#defaultColor").on("click", function() {
-        defaultColor();
-      })
-      function defaultColor () {
-        document.getElementById("data14").value = colr[0];
-        document.getElementById("data24").value = colr[1];
-        document.getElementById("data34").value = colr[2];
-        document.getElementById("data44").value = colr[3];
-        document.getElementById("data54").value = colr[4];
-        document.getElementById("data64").value = colr[5];
-        document.getElementById("data74").value = colr[6];
-        document.getElementById("data84").value = colr[7];
-        document.getElementById("data94").value = colr[8];
-       }
-      // Erase Bar Data ======================================
-      d3.select("#eraseBarData").on("click",function() {
-        document.getElementById("showicon").disabled = false;
-        document.getElementById("showfreq").disabled = false;
-        document.getElementById("raw").disabled      = false;
-        document.getElementById("raw").checked       = true;
-        document.getElementById("descend").disabled  = false;
-        document.getElementById("ascend").disabled   = false;
-        chart.selectAll("*").remove();
-        // title
-        document.getElementById("mtitle").value = "";
-        document.getElementById("ytitle").value = "";
-        document.getElementById("xtitle").value = "";
-        // category
-        document.getElementById("data11").value = "";
-        document.getElementById("data21").value = "";
-        document.getElementById("data31").value = "";
-        document.getElementById("data41").value = "";
-        document.getElementById("data51").value = "";
-        document.getElementById("data61").value = "";
-        document.getElementById("data71").value = "";
-        document.getElementById("data81").value = "";
-        document.getElementById("data91").value = "";
-        // freq data
-        document.getElementById("data12").value = "";
-        document.getElementById("data22").value = "";
-        document.getElementById("data32").value = "";
-        document.getElementById("data42").value = "";
-        document.getElementById("data52").value = "";
-        document.getElementById("data62").value = "";
-        document.getElementById("data72").value = "";
-        document.getElementById("data82").value = "";
-        document.getElementById("data92").value = "";
-        // relative freq data
-        document.getElementById("data13").value = "";
-        document.getElementById("data23").value = "";
-        document.getElementById("data33").value = "";
-        document.getElementById("data43").value = "";
-        document.getElementById("data53").value = "";
-        document.getElementById("data63").value = "";
-        document.getElementById("data73").value = "";
-        document.getElementById("data83").value = "";
-        document.getElementById("data93").value = "";
-        document.getElementById("data102").value = "";
-        document.getElementById("data103").value = "";
-        // initial icon
-        document.getElementById("data15").selectedIndex = 0;
-        document.getElementById("data25").selectedIndex = 0;
-        document.getElementById("data35").selectedIndex = 0;
-        document.getElementById("data45").selectedIndex = 0;
-        document.getElementById("data55").selectedIndex = 0;
-        document.getElementById("data65").selectedIndex = 0;
-        document.getElementById("data75").selectedIndex = 0;
-        document.getElementById("data85").selectedIndex = 0;
-        document.getElementById("data95").selectedIndex = 0;
-        defaultColor();
-      })
-      // Draw Bar Graph ======================================
-      d3.select("#executeBar").on("click",function() {
-        document.getElementById("showicon").disabled = false;
-        document.getElementById("showfreq").disabled = false;
-        document.getElementById("raw").disabled      = false;
-        document.getElementById("raw").checked       = true;
-        document.getElementById("descend").disabled  = false;
-        document.getElementById("ascend").disabled   = false;
-        initialize();
-        if (checkInput) return;
-        drawBarGraph(nrow, dataSet, dvalueLabel, dcolr, freqMax, checkFreq);
-      })
-      // Draw Pie Chart ======================================
-      d3.select("#executePie").on("click",function() {
-        document.getElementById("showicon").disabled = true;
-        document.getElementById("showfreq").disabled = true;
-        document.getElementById("raw").disabled      = true;
-        document.getElementById("descend").disabled  = true;
-        document.getElementById("ascend").disabled   = true;
-        initialize();
-        if (checkInput) return;
-        drawPieChart(nrow, perc, catg, freqMax);
-      })
-      // Draw Rainbow Chart ======================================
-      d3.select("#executeRainbow").on("click",function() {
-        document.getElementById("showicon").disabled = true;
-        document.getElementById("showfreq").disabled = true;
-        document.getElementById("raw").disabled      = true;
-        document.getElementById("descend").disabled  = true;
-        document.getElementById("ascend").disabled   = true;
-        initialize();
-        if (checkInput) return;
-        drawRainbowChart(nrow, freq, catg, freqMax);
-      })
-      // Draw Band Graph ======================================
-      d3.select("#executeBand").on("click",function() {
-        document.getElementById("showicon").disabled = true;
-        document.getElementById("showfreq").disabled = true;
-        document.getElementById("raw").disabled      = true;
-        document.getElementById("descend").disabled  = true;
-        document.getElementById("ascend").disabled   = true;
-        initialize();
-        if (checkInput) return;
-        drawBandGraph(nrow, freq, catg, freqMax);
-      })
-      // 초기 예제
-      function initBarExample() {
-        document.getElementById("mtitle").value = "Favorite Sport";
-        document.getElementById("ytitle").value = "Frequency";
-        document.getElementById("xtitle").value = "Sports";
-        document.getElementById("data11").value = "Soccer";
-        document.getElementById("data21").value = "Basketball";
-        document.getElementById("data31").value = "Baseball";
-        document.getElementById("data41").value = "Volleyball";
-        document.getElementById("data51").value = "Golf";
-        document.getElementById("data12").value = 8;
-        document.getElementById("data22").value = 4;
-        document.getElementById("data32").value = 5;
-        document.getElementById("data42").value = 2;
-        document.getElementById("data52").value = 1;
-        document.getElementById("data15").selectedIndex = 2;
-        document.getElementById("data25").selectedIndex = 3;
-        document.getElementById("data35").selectedIndex = 4;
-        document.getElementById("data45").selectedIndex = 5;
-        document.getElementById("data55").selectedIndex = 6;
-      }
-      // 초기 작업
-      function initialize() {
-        chart.selectAll("*").remove();
-        // title
-        mTitle = d3.select("#mtitle").node().value;
-        yTitle = d3.select("#ytitle").node().value;
-        xTitle = d3.select("#xtitle").node().value;
-        if (yTitle == "") yTitle = svgStr[16][langNum];
-        // category
-        catg[0] = d3.select("#data11").node().value;
-        catg[1] = d3.select("#data21").node().value;
-        catg[2] = d3.select("#data31").node().value;
-        catg[3] = d3.select("#data41").node().value;
-        catg[4] = d3.select("#data51").node().value;
-        catg[5] = d3.select("#data61").node().value;
-        catg[6] = d3.select("#data71").node().value;
-        catg[7] = d3.select("#data81").node().value;
-        catg[8] = d3.select("#data91").node().value;
-        // freq data
-        freq[0] = parseFloat(d3.select("#data12").node().value);
-        freq[1] = parseFloat(d3.select("#data22").node().value);
-        freq[2] = parseFloat(d3.select("#data32").node().value);
-        freq[3] = parseFloat(d3.select("#data42").node().value);
-        freq[4] = parseFloat(d3.select("#data52").node().value);
-        freq[5] = parseFloat(d3.select("#data62").node().value);
-        freq[6] = parseFloat(d3.select("#data72").node().value);
-        freq[7] = parseFloat(d3.select("#data82").node().value);
-        freq[8] = parseFloat(d3.select("#data92").node().value);
-        // get new color
-        ncolr[0] = d3.select("#data14").node().value;
-        ncolr[1] = d3.select("#data24").node().value;
-        ncolr[2] = d3.select("#data34").node().value;
-        ncolr[3] = d3.select("#data44").node().value;
-        ncolr[4] = d3.select("#data54").node().value;
-        ncolr[5] = d3.select("#data64").node().value;
-        ncolr[6] = d3.select("#data74").node().value;
-        ncolr[7] = d3.select("#data84").node().value;
-        ncolr[8] = d3.select("#data94").node().value;
-        // get new icon
-        nicon[0] = document.getElementById("data15").selectedIndex;
-        nicon[1] = document.getElementById("data25").selectedIndex;
-        nicon[2] = document.getElementById("data35").selectedIndex;
-        nicon[3] = document.getElementById("data45").selectedIndex;
-        nicon[4] = document.getElementById("data55").selectedIndex;
-        nicon[5] = document.getElementById("data65").selectedIndex;
-        nicon[6] = document.getElementById("data75").selectedIndex;
-        nicon[7] = document.getElementById("data85").selectedIndex;
-        nicon[8] = document.getElementById("data95").selectedIndex;
-
-        // 도수 입력한 행의 수 카운트
-        nrow = 0;
-        for (i=0; i<catgMax; i++) { // 입력 행의 수
-            if (!isNaN(freq[i]) ) nrow = i+1;
-        }
-        // 입력행이 하나 이상인지 체크
-        if (nrow < 2 ) {
-          checkInput = true;
-          chart.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
-             .text(alertMsg[46][langNum]).style("stroke","red").style("font-size",fontsize);
-          return;
-        }
-        for (i=0; i<nrow; i++) {
-            if (isNaN(freq[i]) ) { //문자 데이터 체크
-              checkInput = true;
-              chart.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
-                   .text(alertMsg[47][langNum]).style("stroke","red").style("font-size",fontsize);
-              return;
-            }
-        }
-        checkInput = false;
-        // 입력값 합계, 최대도수 계산
-        ntot = 0;
-        freqMax = 0;
-        for (i=0; i<nrow; i++) { 
-            ntot += freq[i];
-            if (freq[i] > freqMax) freqMax = freq[i];
-            dvalueLabel[i-1] = catg[i]
-        }
-        // 상대도수 계산
-        for (i=0; i<nrow; i++) { 
-            perc[i] = 100 * freq[i] / ntot;
-            temp = "data"+(i+1).toString()+"3";
-            document.getElementById(temp).value = f1(perc[i]);
-        }
-        // 원자료 복사
-        for (i=0; i<nrow; i++) {
-          dataSet[i]     = freq[i];
-          dvalueLabel[i] = catg[i];
-          dcolr[i]       = ncolr[i];
-        }
-        // Sort index
-        sortIndex(nrow, freq, indexA, indexD)
-        document.getElementById("data102").value = ntot;
-        document.getElementById("data103").value = f1(100);
-      }
-      // 막대그래프 이모티표시 버튼 클릭
-      d3.select("#showicon").on("click", function() {
-        if (this.checked) {
-            checkIcon = true;
-            drawBarGraph(nrow, dataSet, dvalueLabel, dcolr, freqMax, checkFreq);
-        } else {
-            checkIcon = false;
-            removeIcon();
-        }
-      })
-      // 막대그래프 도수표시 버튼 클릭
-      d3.select("#showfreq").on("click", function() {
-        if (this.checked) {
-            checkFreq = true;
-            drawBarGraph(nrow, dataSet, dvalueLabel, dcolr, freqMax, checkFreq);
-        } else {
-            checkFreq = false;
-            removeFreq();
-        }
-      })      // 그룹이 없을 경우 막대그래프 내림차순, 올림차순 버튼
-      var rad2 = document.myForm2.type2;
-      rad2[0].onclick = function() { // 원자료
-        chart.selectAll("*").remove();
-        for (i=0; i<nrow; i++) {
-          dataSet[i]     = freq[i];
-          dvalueLabel[i] = catg[i];
-          dcolr[i]       = ncolr[i];
-        }
-        drawBarGraph(nrow, dataSet, dvalueLabel, dcolr, freqMax, checkFreq);
-      }
-      rad2[1].onclick = function() { // 내림차순
-        chart.selectAll("*").remove();
-        for (i=0; i<nrow; i++) {
-          dataSet[i]     = freq[indexD[i]];
-          dvalueLabel[i] = catg[indexD[i]];
-          dcolr[i]       = ncolr[indexD[i]];
-        }
-        drawBarGraph(nrow, dataSet, dvalueLabel, dcolr, freqMax, checkFreq);
-      }
-      rad2[2].onclick = function() { // 올림차순
-        chart.selectAll("*").remove();
-        for (i=0; i<nrow; i++) {
-          dataSet[i]     = freq[indexA[i]];
-          dvalueLabel[i] = catg[indexA[i]];
-          dcolr[i]       = ncolr[indexA[i]];
-        }
-        drawBarGraph(nrow, dataSet, dvalueLabel, dcolr, freqMax, checkFreq);
-      }
-
-      // svg Graph Save
-      d3.select("#saveGraphU").on("click", function() {
-        var svg = d3.select("#chart");
-        var width = svgWidth;
-        var height = svgHeight;
-        var svgString = getSVGString(svg.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
- 
-  // Change Color
-  function changeColor(num){
-      var strid;
-      switch (num) {
-        case 1: strid = "data14"; break;
-        case 2: strid = "data24"; break;
-        case 3: strid = "data34"; break;
-        case 4: strid = "data44"; break;
-        case 5: strid = "data54"; break;
-        case 6: strid = "data64"; break;
-        case 7: strid = "data74"; break;
-        case 8: strid = "data84"; break;
-        case 9: strid = "data94"; break;
-      }
-      ncolr[num-1] = document.getElementById(strid).value ;
-  }
-  // Change Icon
-  function changeIcon(num){
-      var strid;
-      switch (num) {
-        case 1: strid = "data15"; break;
-        case 2: strid = "data25"; break;
-        case 3: strid = "data35"; break;
-        case 4: strid = "data45"; break;
-        case 5: strid = "data55"; break;
-        case 6: strid = "data65"; break;
-        case 7: strid = "data75"; break;
-        case 8: strid = "data85"; break;
-        case 9: strid = "data95"; break;
-      }
-      nicon[num-1] = document.getElementById(strid).selectedIndex;
-  }
-  // Draw Bar Graph
-  function drawBarGraph(ndvalue, dataSet, dvalueLabel, dcolr, freqMax, checkFreq) {
-    var i, j, str, tx, ty;
-    var betweenbarWidth = graphWidth / ndvalue; // 막대와 막대 사이의 너비
-    var barWidth = betweenbarWidth * 0.6; // 막대의 너비
-    var gapWidth = betweenbarWidth * 0.2;
-    var ybuffer  = graphHeight * 0.1;
-    var yheight  = graphHeight * 0.8;
-    var freqRatioV = yheight / freqMax; // 그래프 영역과 데이터 영역의 비율
-    var iconsize = barWidth / 2;
-    drawTitle(mTitle, yTitle, xTitle);
-    drawLabel(ndvalue, dvalueLabel, betweenbarWidth, barWidth, gapWidth);
-    drawAxis(freqMax, graphHeight);
-
-    // x축 위 선
-    y1 = margin.top;
-    chart.append("line")
-         .attr("class", "line")
-         .attr("x1", margin.left)
-         .attr("x2", margin.left + graphWidth)
-         .attr("y1", y1)
-         .attr("y2", y1)
-         .style("stroke", "black")
-    // x축 선
-    y1 = margin.top + graphHeight;
-    chart.append("line")
-         .attr("class", "line")
-         .attr("x1", margin.left)
-         .attr("x2", margin.left + graphWidth)
-         .attr("y1", y1)
-         .attr("y2", y1)
-         .style("stroke", "black")
-    // 막대
-    for (j=0; j<ndvalue; j++) {
-      chart.append("rect")
-           .attr("class", "bar")
-           .style("fill", dcolr[j])
-           .attr("height", 0)
-           .attr("width", barWidth)
-           .attr("x", margin.left + gapWidth + j * betweenbarWidth)
-           .attr("y", margin.top + graphHeight)
-           .transition() // 애니매이션 효과 지정
-           .delay(function(d, i) {return i * 500;}) // 0.5초마다 그리도록 대기시간 설정
-           .duration(2000) // 2초동안 애니매이션이 진행되도록 설정
-           .attr("y", margin.top + graphHeight - dataSet[j] * freqRatioV)
-           .attr("height", dataSet[j] * freqRatioV);
-    }
-
-    if (checkFreq) {
-        showFreq(ndvalue, dataSet, freqMax, freqRatioV, gapWidth, barWidth, betweenbarWidth);
-    }
-    // icon 그리기
-    if (checkIcon) {
-      for (j = 0; j < ndvalue; j++) {
-        chart.append("text")
-             .attr("class", "iconfont")
-             .style("font-size", iconsize)
-             .style("stroke", dcolr[i])
-             .attr("x", margin.left + gapWidth + barWidth / 4 + j * betweenbarWidth)
-             .attr("y", margin.top + graphHeight - dataSet[j] * freqRatioV - 10)
-             .text(dicon[nicon[j]]);
-      }
-    }
-
-  }
-
-  // 분리형 막대그래프 도수 쓰기 함수
-  function showFreq(ndvalue, dataSet, freqMax, freqRatioV, gapWidth, barWidth, betweenbarWidth) {
-    for (var j = 0; j < ndvalue; j++) {
-      if (dataSet[i] == 0) continue;
-      chart.append("text")
-           .style("text-anchor", "middle")
-           .style("font-size", "0.8em")
-           .attr("x", margin.left + gapWidth + barWidth / 2 + j * betweenbarWidth)
-           .attr("y", margin.top + graphHeight - dataSet[j] * freqRatioV + 15)
-           .text(dataSet[j]);
-    }
-  }
-
-  // 아이콘 제거 함수
-  function removeIcon() {
-    chart.selectAll("text.iconfont").remove();
-  }
-  // 막대그래프 도수 제거 함수
-  function removeFreq() {
-    chart.selectAll("text.freqfont").remove();
-  }
-
-  // Sorting and find index
-  function sortIndex(dobs, data, indexA, indexD) {
-    var i, j, temp, tempi;
-    var tdata = new Array(dobs);
-    // Ascending index
-    for (i = 0; i < dobs; i++) {
-      tdata[i]  = data[i];
-      indexA[i] = i;
-    }
-    for (i = 0; i < dobs - 1; i++) {
-        for (j = i; j < dobs; j++) {
-            if (tdata[i] > tdata[j]) {
-                temp      = tdata[i];
-                tempi     = indexA[i];
-                tdata[i]  = tdata[j];
-                indexA[i] = indexA[j];
-                tdata[j]  = temp;
-                indexA[j] = tempi;
-            }
-        }
-    }
-    // Descending index
-    for (i = 0; i < dobs; i++) {
-      tdata[i]  = data[i];
-      indexD[i] = i;
-    }
-    for (i = 0; i < dobs - 1; i++) {
-        for (j = i; j < dobs; j++) {
-            if (tdata[i] < tdata[j]) {
-                temp      = tdata[i];
-                tempi     = indexD[i];
-                tdata[i]  = tdata[j];
-                indexD[i] = indexD[j];
-                tdata[j]  = temp;
-                indexD[j] = tempi;
-            }
-        }
-    }
-  }
-  // 그래프 제목 쓰기 함수
-  function drawTitle(mTitle, yTitle, xTitle) {
-    // 주제목
-    chart.append("text")
-        .attr("x", margin.left + graphWidth/2)
-        .attr("y", margin.top / 2 + 10)
-        .style("font-size", "1.8em")
-        .style("font-family", "sans-seirf")
-        .style("stroke", "black")
-        .style("text-anchor", "middle")
-        .text(mTitle)
-    // X축 제목
-    chart.append("text")
-            .style("font-size", fontsize)
-            .style("font-family", "sans-seirf")
-            .style("stroke", "black")
-            .style("text-anchor", "middle")
-            .attr("x", margin.left + graphWidth / 2)
-            .attr("y", margin.top + graphHeight + margin.bottom / 2 + 15)
-            .text(xTitle)
-     // Y축 제목
-     var tx = margin.left / 2 - 30;
-     var ty = margin.top + 15;
-     chart.append("text")
-            .style("font-size", fontsize)
-            .style("font-family", "sans-seirf")
-            .style("stroke", "black")
-            .style("text-anchor", "end")
-            .attr("x", tx)
-            .attr("y", ty)
-            .text(yTitle)
-            .attr("transform", "rotate(-90 30 100)")
-  }
-  // 변량값명 쓰기 함수
-  function drawLabel(ndvalue, label, betweenbarWidth, barWidth, gapWidth) {
-    var i, j, k, x1, y1, tx, ty, str, strAnchor;
-    var angle;
-    ty = margin.top + graphHeight;
-    angle = 0;
-    str = "middle";
-    y1 = ty + 20;
- 
-    for (j = 0; j < ndvalue; j++) {
-      tx = margin.left + gapWidth + barWidth / 2 + j * betweenbarWidth;
-      x1 = margin.left + gapWidth + barWidth / 2 + j * betweenbarWidth;
-      chart.append("line") // tick
-                    .attr("x1", tx)
-                    .attr("x2", tx)
-                    .attr("y1", ty)
-                    .attr("y2", ty + 5)
-                    .style("stroke", "black")
-                    .style("stroke-width", "0.5")
-      chart.append("text")
-                    .style("text-anchor", str)
-                    .style("font-family", "sans-serif")
-                    .style("font-size", fontsize)
-                    .attr("x", x1)
-                    .attr("y", y1)
-                    .attr("transform", "rotate(" + angle + "," + x1 + "," + y1 + ")  ")
-                    .text(label[j])
-    }
-  }
-
-  // 막대그래프 축 그리기
-  function drawAxis(freqMax, height) {
-    var tx, ty;
-    var xScale, yScale;
-    var ygrid    = new Array(catgMax);
-
-    yScale = d3.scaleLinear().domain([0, freqMax/0.8]).range([height, 0]);
-    ygrid = yScale.ticks();
-    tx = margin.left;
-    ty = margin.top;
-    chart.append("g")
-         .attr("transform", "translate(" + tx + "," + ty + ")")
-         .call(d3.axisLeft(yScale)) // 눈금을 표시할 함수 호출
-    // Y축 그리드
-    for (i = 1; i < ygrid.length; i++) {
-      ty = margin.top + yScale(ygrid[i]);
-      chart.append("line")
-           .attr("x1", margin.left)
-           .attr("x2", margin.left + graphWidth)
-           .attr("y1", ty)
-           .attr("y2", ty)
-           .style("stroke", "lightgrey")
-    }
-    chart.append("line").attr("class", "line")
-                    .attr("x1", margin.left)
-                    .attr("x2", margin.left)
-                    .attr("y1", margin.top)
-                    .attr("y2", margin.top + graphHeight)
-                    .style("stroke", "black")
-    chart.append("line").attr("class", "line")
-                    .attr("x1", margin.left + graphWidth)
-                    .attr("x2", margin.left + graphWidth)
-                    .attr("y1", margin.top)
-                    .attr("y2", margin.top + graphHeight)
-                    .style("stroke", "black")
-
-     //   tx = margin.left + graphWidth;
-     //   chart.append("g")
-     //        .attr("transform","translate("+tx+","+ty+")")
-     //        .call(d3.axisRight(yScale))             // 눈금을 표시할 함수 호출
-  }
-
-
-  // 원그래프 함수 --------------------------------------------------------------
-  function drawPieChart(ndvalue, datafreq, dvalueLabel, freqMax) {
-    var i, j, tx, ty, str;
-    var radiusIn, radiusOut;
-    radiusIn = 0;
-    radiusOut = graphHeight / 2;
-    var tdata = new Array(ndvalue);
-    for (i=0; i<ndvalue; i++) tdata[i] = 100*datafreq[i];    
-
-    var pie = d3.pie();
-    var arc = d3.arc().innerRadius(radiusIn).outerRadius(radiusOut);
-    // 주제목
-    chart.append("text")
-        .attr("x", margin.left + graphWidth/2)
-        .attr("y", margin.top / 2 + 10)
-        .style("font-size", "1.8em")
-        .style("font-family", "sans-seirf")
-        .style("stroke", "black")
-        .style("text-anchor", "middle")
-        .text(mTitle)
-    tx = margin.left + graphWidth / 2;
-    ty = margin.top + graphHeight / 2;
-    var piechart = chart.append("g")
-            .attr("class", "piechart")
-    var pieSlice = piechart.selectAll("g")
-            .data(pie(tdata))
-            .enter()
-            .append("g")
-            .attr("transform", "translate(" + tx + "," + ty + ")")
-    pieSlice.append("path")
-            .attr("class", "pie")
-            .attr("d", arc)
-            .style("fill", function(d, i) {
-                return ncolr[i];
-            })
-            .transition()
-            .delay(function(d, i) {
-                return i * 200;
-            })
-            .duration(1000)
-            //  .easeLinear(0.5)
-            .attrTween("d", function(d, i) {
-                var interpolate = d3.interpolate({
-                    startAngle: d.startAngle,
-                    endAngle: d.startAngle
-                }, {
-                    startAngle: d.startAngle,
-                    endAngle: d.endAngle
-                });
-                return function(t) {
-                    return arc(interpolate(t));
-                }
-            })
-    pieSlice.append("text")
-            .style("font-size", "1.1em")
-            .style("font-family", "sans-seirf")
-            .style("stroke", "black")
-            .style("text-anchor", "middle")
-            .attr("transform", function(d, i) {
-                return "translate(" + arc.centroid(d) + ")";
-            })
-            .text(function(d, i) {
-                return dvalueLabel[i] + ": " + f1(d.value)+"%";
-            })
-  }
-
-  // 무지개그래프 함수
-  function drawRainbowChart(ndvalue, datafreq, dvalueLabel, freqMax) {
-    var i, j, k, sum, tx, ty, tr, str;
-    var tratio     = new Array(ndvalue);
-    var bandWidth  = new Array(ndvalue);
-    var bandX      = new Array(ndvalue);
-    var oneLine    = 30; // pixel
-    var bandHeight = graphHeight * 0.75;
-    // 전체 그래프 영역 지우기 1px 문제
-    chart.append("rect")
-             .attr("x", margin.left)
-             .attr("y", margin.top)
-             .attr("width", graphWidth) // 최초 막대의 너비를 0 px 로 지정
-             .attr("height", graphHeight)
-             .style("fill", "white")
-    // 주제목
-    chart.append("text")
-         .attr("x", margin.left + graphWidth/2)
-         .attr("y", margin.top / 2 + 10)
-         .style("font-size", "1.8em")
-         .style("font-family", "sans-seirf")
-         .style("stroke", "black")
-         .style("text-anchor", "middle")
-         .text(mTitle)
-
-    sum = 0;
-    for (i = 0; i < ndvalue; i++) {
-            sum += datafreq[i];
-    }
-    for (i = 0; i < ndvalue; i++) {
-            tratio[i] = 100 * datafreq[i] / sum;
-            bandWidth[i] = Math.floor(0.5 + graphWidth * datafreq[i] / sum);
-    }
-    bandX[0] = 10;
-    for (i = 1; i < ndvalue; i++) {
-            bandX[i] = bandX[i - 1] + bandWidth[i - 1];
-    }
-    ty = margin.top + 10; 
-    t2 = ty + bandHeight + oneLine;
-    chart.append("text")
-         .attr("x", margin.left)
-         .attr("y", t2)
-         .text(svgStr[119][langNum])
-         .style("font-size", fontsize)
-         .style("font-family", "sans-seirf")
-         .style("text-anchor", "end")
-         .style("stroke", "black")
-    chart.append("text")
-         .attr("x", margin.left)
-         .attr("y", t2 + oneLine)
-         .text(svgStr[16][langNum])
-         .style("font-size", fontsize)
-         .style("font-family", "sans-seirf")
-         .style("text-anchor", "end")
-         .style("stroke", "black")
-    chart.append("text")
-         .attr("x", margin.left)
-         .attr("y", t2 + 2*oneLine)
-         .text(svgStr[17][langNum])
-         .style("font-size", fontsize)
-         .style("font-family", "sans-seirf")
-         .style("text-anchor", "end")
-         .style("stroke", "black")
-    // draw rainbow
-    tx = margin.left + graphWidth / 2;
-    ty = margin.top + bandHeight ;
-    k  = svgHeight - ty;
-    for (j = 0; j < ndvalue; j++) {
-        tr = (graphWidth - bandX[j]) / 2; 
-        chart.append("circle")
-             .attr("cx", tx)
-             .attr("cy", ty)
-             .attr("r",  0)
-             .transition() // 애니매이션 효과 지정
-                .delay(function(d, i) {
-                     return i * 500;
-                 }) // 0.5초마다 그리도록 대기시간 설정
-                .duration(2000) // 2초동안 애니매이션이 진행되도록 설정
-             .attr("r",  tr)
-             .style("fill", ncolr[j])
-    }
-    // 아래 반원 지우기
-    chart.append("rect")
-             .attr("x", margin.left)
-             .attr("y", ty)
-             .attr("width", graphWidth) // 최초 막대의 너비를 0 px 로 지정
-             .attr("height", k)
-             .style("fill", "white")
-    // 도수 쓰기
-    for (j = 0; j < ndvalue; j++) {
-        tx = bandX[j] + bandWidth[j] / 2;
-        str = dvalueLabel[j];
-        chart.append("text")
-             .attr("x", tx)
-             .attr("y", t2)
-             .text(dvalueLabel[j])
-             .style("font-size", fontsize)
-             .style("font-family", "sans-seirf")
-             .style("text-anchor", "middle")
-             .style("stroke", ncolr[j])
-        chart.append("text")
-             .attr("x", tx)
-             .attr("y", t2 + oneLine)
-             .text(datafreq[j])
-             .style("font-size", fontsize)
-             .style("font-family", "sans-seirf")
-             .style("text-anchor", "middle")
-             .style("stroke","black")
-        chart.append("text")
-             .attr("x", tx)
-             .attr("y", t2 + 2*oneLine)
-             .text(f1(tratio[j]) + "%")
-             .style("font-size", "1em")
-             .style("font-family", "sans-seirf")
-             .style("text-anchor", "middle")
-             .style("stroke", "black")
-    }
-
-  }
-  // 띠그래프 함수
-  function drawBandGraph(ndvalue, datafreq, dvalueLabel, freqMax) {
-    var i, j, k, sum, tx, ty, t2, str;
-    var tratio     = new Array(ndvalue);
-    var bandWidth  = new Array(ndvalue);
-    var bandX      = new Array(ndvalue);
-    var oneLine    = 30; // pixel
-    var bandHeight = graphHeight * 0.75;
-
-    // 주제목
-    chart.append("text")
-         .attr("x", margin.left + graphWidth/2)
-         .attr("y", margin.top / 2 + 10)
-         .style("font-size", "1.8em")
-         .style("font-family", "sans-seirf")
-         .style("stroke", "black")
-         .style("text-anchor", "middle")
-         .text(mTitle)
-
-    sum = 0;
-    for (i = 0; i < ndvalue; i++) {
-            sum += datafreq[i];
-    }
-    for (i = 0; i < ndvalue; i++) {
-            tratio[i] = 100 * datafreq[i] / sum;
-            bandWidth[i] = Math.floor(0.5 + graphWidth * datafreq[i] / sum);
-    }
-    bandX[0] = margin.left+5;
-    for (i = 1; i < ndvalue; i++) {
-            bandX[i] = bandX[i - 1] + bandWidth[i - 1];
-    }
-
-    ty = margin.top + 10; 
-    t2 = ty + bandHeight + oneLine;
-    chart.append("text")
-         .attr("x", margin.left)
-         .attr("y", t2)
-         .text(svgStr[119][langNum])
-         .style("font-size", fontsize)
-         .style("font-family", "sans-seirf")
-         .style("text-anchor", "end")
-         .style("stroke", "black")
-    chart.append("text")
-         .attr("x", margin.left)
-         .attr("y", t2 + oneLine)
-         .text(svgStr[16][langNum])
-         .style("font-size", fontsize)
-         .style("font-family", "sans-seirf")
-         .style("text-anchor", "end")
-         .style("stroke", "black")
-    chart.append("text")
-         .attr("x", margin.left)
-         .attr("y", t2 + 2*oneLine)
-         .text(svgStr[17][langNum])
-         .style("font-size", fontsize)
-         .style("font-family", "sans-seirf")
-         .style("text-anchor", "end")
-         .style("stroke", "black")
-    for (j = 0; j < ndvalue; j++) {
-        tx = bandX[j] + bandWidth[j] / 2;
-        str = dvalueLabel[j];
-        chart.append("rect")
-                .attr("x", bandX[j])
-                .attr("y", ty)
-                .attr("width", "0px") // 최초 막대의 너비를 0 px 로 지정
-                .transition() // 애니매이션 효과 지정
-                .delay(function(d, i) {
-                     return i * 500;
-                 }) // 0.5초마다 그리도록 대기시간 설정
-                .duration(2000) // 2초동안 애니매이션이 진행되도록 설정
-                .attr("width", bandWidth[j])
-                .attr("height", bandHeight)
-                .style("fill", ncolr[j])
-        chart.append("text")
-             .attr("x", tx)
-             .attr("y", t2)
-             .text(dvalueLabel[j])
-             .style("font-size", fontsize)
-             .style("font-family", "sans-seirf")
-             .style("text-anchor", "middle")
-             .style("stroke", "black")
-        chart.append("text")
-             .attr("x", tx)
-             .attr("y", t2 + oneLine)
-             .text(datafreq[j])
-             .style("font-size", fontsize)
-             .style("font-family", "sans-seirf")
-             .style("text-anchor", "middle")
-             .style("stroke", "black")
-        chart.append("text")
-             .attr("x", tx)
-             .attr("y", t2 + 2*oneLine)
-             .text(f1(tratio[j]) + "%")
-             .style("font-size", "1em")
-             .style("font-family", "sans-seirf")
-             .style("text-anchor", "middle")
-             .style("stroke", "black")
-    } // endof j
-
-  }
-
-  </script>
-
-
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
       <p><h4>🎲 Practice 2.2</h4>
          The fruits that elementary school students liked were as follows: 
           <p>
           <div class="textLeft">[Table 2.2] Fruits that students liked</div>
-          <table> 
-            <tr> <th class="thGrey">Fruits</th>       <th class="thGrey">Number of students</th>  </tr>
+          <table style="width:400px"> 
+            <tr> <th>Fruits</th>       <th>Number of students</th>  </tr>
             <tr> <td class="tdCenter">Strawberry</td> <td class="tdCenter">15</td>    </tr>
             <tr> <td class="tdCenter">Apple</td>      <td class="tdCenter">10</td>    </tr>
             <tr> <td class="tdCenter">Banana</td>     <td class="tdCenter">25</td>    </tr>
@@ -1405,24 +237,18 @@
       <p>Draw Bar graph, Pie chart, Rainbow chart and Line graph using 『eStat』.
       <p><b>Solution</b>
       <br>
-      <input class="qrBtn" type="image" src="../../QR/eStatU_01BarChart.svg" onclick="window.open(addrStr[141])">     
-      <table style="width:650px">
-        <tr>
-          <td style="width:400px">
-            <img class="imgFig600600" src="../FigureM/Fig0210.png">
-            <div class="textLeft">&lt;Figure 2.10&gt; Data input for favorite fruits </div>
-          </td>
-          <td>
                Enter the desired title for 'Main Title', 'y title', and 'x title' and 
                enter 'Category' and 'Frequency' in &lt;Figure 2.10&gt;. Select each fruit imoji icon on the far right.
             <p>Click the [Bar Graph] button and when the graph appears, check the 'Emoji' 
                below the graph. You can also draw the bar graph again by selecting 
                the color of the desired category.
-          </td>
-        </tr>
-      </table>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_01BarChart.svg" onclick="window.open(addrStr[141])">     
+            <img class="figure" src="./Figure/Fig0210.png">
+            <div class="textLeft">&lt;Figure 2.10&gt; Data input for favorite fruits </div>
+         </div>
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0211.png">
+         <img class="figure" src="./Figure/Fig0211.png">
          <div class="textLeft">&lt;Figure 2.11&gt; Bar graph for favorite fruits with imoji</div>
       <p>
          Click the [Pie Chart], [Rainbow Chart] and [Band Graph] button to display pie chart, rainbow chart, 
@@ -1433,20 +259,14 @@
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td style="width:180px">
-            <h4>⏱ Exercise 2.1</h4> <p>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_01BarChart.svg" onclick="window.open(addrStr[141])">     
-          </td>
-          <td>
-          <p>
+        <h4>⏱ Exercise 2.1</h4> 
+        <p>
             According to the United Nations 2018 estimates, World largest  10 cities 
             (mixture of city, metropolitan and urban area) are as follows: 
             <p>
             <div class="textLeft">[Table 2.3] World largest  10 cities (mixture of city, metropolitan and urban area) </div>
-            <table> 
-              <tr> <th class="thGrey">City</th> <th class="thGrey">인구수</th>  </tr>
+            <table style="width:400px">  
+              <tr> <th>City</th> <th>Population</th>  </tr>
               <tr> <td class="tdCenter">Tokyo (Japan)</td> <td class="tdCenter">37.4</td>   </tr>
               <tr> <td class="tdCenter">Delhi (India)</td> <td class="tdCenter">28.5</td>   </tr>
               <tr> <td class="tdCenter">Seoul (Korea)</td> <td class="tdCenter">25.7</td>   </tr>
@@ -1458,29 +278,22 @@
               <tr> <td class="tdCenter">Beijing (China)</td> <td class="tdCenter">19.6</td>   </tr>
               <tr> <td class="tdCenter">Dhaka (Bangladesh)</td> <td class="tdCenter">19.6</td>   </tr>
             </table>
-          </td>
-        </tr>
-      </table>
       <p>Draw a bar graph, pie graph, rainbow graph and band graph to find out the characteristics.
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_01BarChart.svg" onclick="window.open(addrStr[141])">     
+      <p>
     </div>
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td style="width:180px">
-            <h4>⏱ Exercise 2.2</h4> <p>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_01BarChart.svg" onclick="window.open(addrStr[141])">     
-          </td>
-          <td>
-          <p>
+        <h4>⏱ Exercise 2.2</h4> 
+        <p>
             A summary of the survey of prospective jobs of elementary school students 
             is as follows: 
             <p>
             <div class="textLeft">[Table 2.4] Prospective jobs of elementary school students</div>
-            <table> 
-              <tr> <th class="thGrey">Job</th> <th class="thGrey">Number of students</th>  </tr>
+            <table style="width:400px">
+              <tr> <th>Job</th> <th>Number of students</th>  </tr>
               <tr> <td class="tdCenter">Movie-star</td>      <td class="tdCenter">45</td>   </tr>
               <tr> <td class="tdCenter">Docort</td>          <td class="tdCenter">30</td>   </tr>
               <tr> <td class="tdCenter">Teacher/Professor</td>  <td class="tdCenter">60</td>   </tr>
@@ -1489,10 +302,9 @@
               <tr> <td class="tdCenter">Sportsman</td>       <td class="tdCenter">43</td>   </tr>
               <tr> <td class="tdCenter">Police</td>          <td class="tdCenter">26</td>   </tr>
             </table>
-          </td>
-        </tr>
-      </table>
       <p>Draw a bar graph, a pie graph, rainbow graph and band graph to identify the characteristics.  
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_01BarChart.svg" onclick="window.open(addrStr[141])">     
+      <p>
     </div>
     <p>
 
@@ -1500,17 +312,12 @@
   <h3 id="0202">2.2 Line Graph</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
+      <h4>⭐ Think</h4>
           <b>The following table shows the population of Korea, surveyed at approximately five-year intervals from 1925 to 2019.</b>
-          <p>
+      <p>
             <div class="textLeft">[Table 2.5] Population of Korea </div>
-            <table> 
-              <tr> <th class="thGrey">Year</th> <th class="thGrey">Population (unit 10,000)</th>  </tr>
+            <table style="width:400px"> 
+              <tr> <th>Year</th> <th>Population (unit 10,000)</th>  </tr>
               <tr> <td class="tdCenter">1925</td>      <td class="tdCenter">1902</td>   </tr>
               <tr> <td class="tdCenter">1930</td>      <td class="tdCenter">2044</td>   </tr>
               <tr> <td class="tdCenter">1935</td>      <td class="tdCenter">2221</td>   </tr>
@@ -1532,19 +339,9 @@
               <tr> <td class="tdCenter">2015</td>      <td class="tdCenter">5106</td>   </tr>
               <tr> <td class="tdCenter">2019</td>      <td class="tdCenter">5178</td>   </tr>
             </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 Explore</h4>
           <b>What kind of graph can easily observe the data measured over time?
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -1556,7 +353,7 @@
          with a line. It is similar to a bar graph, but the change in data over time can be 
          observed.
       <p>
-           <img class="imgFig600600" src="../FigureM/Fig0212.png">
+           <img class="figure" src="./Figure/Fig0212.png">
            <div class="textLeft">&lt;Figure 2.12&gt; Line graph of Korea’s population</div>
       <p>
          Observing the line graph of Korea's population, it can be seen that it was increased
@@ -1576,571 +373,12 @@
       <p>If you click the [Execute] button, a line graph as shown in &lt;Figure 2.12&gt; appears. 
          You can also draw a line graph again by selecting the color of each line variable.
       <p>
-      <!-------------   Line Graph html------------------------------------------------------------------------>
-      <button type="button" id="eraseLineData" style="width:140px;"><b>New Data</b></button>
-      <table>
-        <tr>
-          <td style="text-align: right;"><b><span data-msgid="Main Title">Main Title</span></b>&nbsp;</td>
-          <td colspan="3"><input type="text" size=62 id="mtitleLine"></td>
-        </tr>
-	<tr>
-          <td style="text-align: right;"><b><span data-msgid="y title">y title</span></b>&nbsp;</td>
-          <td><input type="text" size=20 id="ytitleLine"></td>
-          <td style="text-align: right;"><b><span data-msgid="x title">x title</span></b>&nbsp;</td>
-          <td><input type="text" size=20 id="xtitleLine"></td>
- 	</tr>
-      </table>
-
-      <table class="data">
-	<tr>
-	  <td><b><span data-msgid="input data">Data input</span></b></td>
-          <td><span style="color: red;" data-msgid="NumberData">&nbsp; * Number of data </span> <span style="color:red;">≤ 100<span> </td>
-          <td>Data Name</td>
-          <td>Color</td>
-	</tr>
-	<tr>
-	  <td>Data Series 1&nbsp;</td>
-	  <td><input type="text" size=65 id="data1"></td>
-	  <td><input type="text" size=4 id="line1" style="width:80px;" value="Series1"></td>
-          <td><input type="color" id="colr1" onclick="changeColorLine(1)" style="width:40px;"></td>
-	</tr>
-	<tr>
-	  <td>Data Series 2</td>
-	  <td><input type="text" size=65 id="data2"></td>
-	  <td><input type="text" size=4 id="line2" style="width:80px;" value="Series2"></td>
-          <td><input type="color" id="colr2" onclick="changeColorLine(2)" style="width:40px;"></td>
-	</tr>
-	<tr>
-	  <td>Data Series 3</td>
-	  <td><input type="text" size=65 id="data3"></td>
-	  <td><input type="text" size=4 id="line3" style="width:80px;" value="Series3"></td>
-          <td><input type="color" id="colr3" onclick="changeColorLine(3)" style="width:40px;"></td>
-	</tr>
-	<tr>
-	  <td>Data Series 4</td>
-	  <td><input type="text" size=65 id="data4"></td>
-	  <td><input type="text" size=4 id="line4" style="width:80px;" value="Series4"></td>
-          <td><input type="color" id="colr4" onclick="changeColorLine(4)" style="width:40px;"></td>
-	</tr>
-	<tr>
-	  <td>X Series</td>
-	  <td><input type="text" size=65 id="datax"></td>
-	</tr>
-      </table>
-      <div class="textLeft">&lt;Figure 2.13&gt; Data input for Line Graph</div>
+      <!-------------***   Line Graph html  ***----------------------------->
+         <iframe class="example" src="./example/0202.html"> </iframe>
+         <div class="textLeft">&lt;Figure 2.13&gt; Data input for Line Graph and result</div>
       <p>
-      <button type="button" id="executeLine"  style="width:140px;"> <span data-msgid="Execute">Execute</span></button>
-      <p>
-      <svg id="chartLine" width="750" height="540" style="border-style:solid;"> </svg> 
-      <p>
-      <button type="button" id="saveGraphLine" >
-	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
-      </button>
     </div>
     <p>
-    <!-------------   Line Graph script ----------------------------------------------------------------------->
-    <script>
-      var chartLine = d3.select("#chartLine");
-      var i, j, k, nrow, num; 
-      var gxmin, gxmax, gymin, gymax, temp, freqMin, freqMax;
-      var mTitleLine, yTitleLine, xTitleLine;
-      var checkInput = false;
-      var rowMax = 201;
-      var fontsize = "1em";
-      var colrLine = ["#32CD32", "#FF0000","#FF8000","#0080FF"];
-      var nline = 4;
-      var ncolrLine = new Array(nline);
-      var nobs  = new Array(nline);
-      var vname = new Array(nline);
-      var data1 = new Array(rowMax);
-      var data2 = new Array(rowMax);
-      var data3 = new Array(rowMax);
-      var data4 = new Array(rowMax);
-      var datax = new Array(rowMax);
-      document.getElementById("colr1").value = colrLine[0];
-      document.getElementById("colr2").value = colrLine[1];
-      document.getElementById("colr3").value = colrLine[2];
-      document.getElementById("colr4").value = colrLine[3];
-      // init example
-      document.getElementById("mtitleLine").value = "Population of Korea";
-      document.getElementById("ytitleLine").value = "Frequency";
-      document.getElementById("xtitleLine").value = "Year";
-      document.getElementById("line1").value = "Population";
-      document.getElementById("data1").value = "1902,2044,2221,2355,2512,2017,2150,2499,2916,3144,3468,3741,4042,4339,4455,4599,4704,4799,5106,5178";
-      document.getElementById("datax").value = "1925,1930,1935,1940,1944,1949,1955,1960,1966,1970,1975,1980,1985,1990,1995,2000,2005,2010,2015,2019";
-      data1 = [1902,2044,2221,2355,2512,2017,2150,2499,2916,3144,3468,3741,4042,4339,4455,4599,4704,4799,5106,5178];
-      datax = [1925,1930,1935,1940,1944,1949,1955,1960,1966,1970,1975,1980,1985,1990,1995,2000,2005,2010,2015,2019];
-      nobs[1] = data1.length;
-      nobs[0] = datax.length; 
-
-      // input data control ===================================================
-      d3.select("#data1").on("input", function() {
-        stat    = simplestat("#data1");  
-        data1   = data;  
-        nobs[1] = stat.n;
-      });
-      d3.select("#data2").on("input", function() {
-        stat    = simplestat("#data2");  
-        data2   = data;  
-        nobs[2] = stat.n;
-      });
-      d3.select("#data3").on("input", function() {
-        stat    = simplestat("#data3");  
-        data3   = data;  
-        nobs[3] = stat.n;
-      });
-      d3.select("#data4").on("input", function() {
-        stat    = simplestat("#data4");  
-        data4   = data;  
-        nobs[4] = stat.n;
-      });
-      d3.select("#datax").on("input", function() {
-        stat    = simpletext("#datax");  
-        datax   = data;  
-        nobs[0] = stat.n;
-      });
-      // basic text input function ============================================
-      simpletext = function(dataid) {
-        data = d3.select(dataid)
-	         .node()
-	         .value
-	         .trim()
-	         .split(new RegExp("[ ]*[, \t][ ]*"))   // ['8', '8', '9']
-        n = data.length;
-        return {'n' : n};
-      }
-      // update data
-      updateData = function() {
-        document.getElementById("data1").value = '';
-        document.getElementById("data2").value = '';    
-        document.getElementById("data3").value = '';    
-        document.getElementById("data4").value = '';    
-        document.getElementById("datax").value = '';    
-      }
-      // erase Line Data and Graph
-      d3.select("#eraseLineData").on("click",function() {
-        chartLine.selectAll("*").remove();
-        // title
-        document.getElementById("mtitleLine").value = "";
-        document.getElementById("ytitleLine").value = "";
-        document.getElementById("xtitleLine").value = "";
-        // category
-        document.getElementById("data1").value = "";
-        document.getElementById("data2").value = "";
-        document.getElementById("data3").value = "";
-        document.getElementById("data4").value = "";
-        document.getElementById("datax").value = "";    
-        // line name
-        document.getElementById("line1").value = "";
-        document.getElementById("line2").value = "";
-        document.getElementById("line3").value = "";
-        document.getElementById("line4").value = "";
-        // default color
-        document.getElementById("colr1").value = colrLine[0];
-        document.getElementById("colr2").value = colrLine[1];
-        document.getElementById("colr3").value = colrLine[2];
-        document.getElementById("colr4").value = colrLine[3];
-      })
-      // Draw Line Graph ======================================
-      d3.select("#executeLine").on("click",function() {
-        // 자료수가 100개 이하인지 체크
-        if (nobs[0] > 100) {
-            chartLine.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
-               .text(alertMsg[49][langNum]).style("stroke","red").style("font-size","1em");
-            return;
-        }       
-        // 입력행이 같은지 체크
-        if (nobs[0] != nobs[1] ) {
-            chartLine.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
-               .text(alertMsg[54][langNum]).style("stroke","red").style("font-size","1em");
-            return;
-        }
-        if (nobs[2] > 0) {
-          if (nobs[0] != nobs[2] ) {
-            chartLine.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
-               .text(alertMsg[54][langNum]).style("stroke","red").style("font-size","1em");
-            return;
-          }
-        }
-        if (nobs[3] > 0) {
-          if (nobs[0] != nobs[3] ) {
-            chartLine.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
-               .text(alertMsg[54][langNum]).style("stroke","red").style("font-size","1em");
-            return;
-          }
-        }
-        if (nobs[4] > 0) {
-          if (nobs[0] != nobs[4] ) {
-            chartLine.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
-               .text(alertMsg[54][langNum]).style("stroke","red").style("font-size","1em");
-            return;
-          }
-        }
-        nrow = nobs[0];
-        // 입력 도수에 숫자 문자 빈칸 있나 체크
-        for (i=0; i<nrow; i++) {
-            if (isNaN(data1[i]) ) {
-              chartLine.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
-                 .text(alertMsg[48][langNum]).style("stroke","red").style("font-size","1em");
-              return;
-            }
-        }
-        if (nobs[2] > 0) {
-          for (i=0; i<nrow; i++) {
-            if (isNaN(isNaN(data2[i]) ) ) {
-              chartLine.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
-                 .text(alertMsg[48][langNum]).style("stroke","red").style("font-size","1em");
-              return;
-            }
-          }
-        }
-        if (nobs[3] > 0) {
-          for (i=0; i<nrow; i++) {
-            if (isNaN(isNaN(data3[i]) ) ) {
-              chartLine.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
-                 .text(alertMsg[48][langNum]).style("stroke","red").style("font-size","1em");
-              return;
-            }
-          }
-        }
-        if (nobs[4] > 0) {
-          for (i=0; i<nrow; i++) {
-            if (isNaN(isNaN(data4[i]) ) ) {
-              chartLine.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
-                 .text(alertMsg[48][langNum]).style("stroke","red").style("font-size","1em");
-              return;
-            }
-          }
-        }
-        initializeLine();
-        drawLineGraph();
-      })
-
-      // 초기 작업
-      function initializeLine() {
-        chartLine.selectAll("*").remove();
-        // title
-        mTitleLine = d3.select("#mtitleLine").node().value;
-        yTitleLine = d3.select("#ytitleLine").node().value;
-        xTitleLine = d3.select("#xtitleLine").node().value;
-        // get var name
-        vname[0] = d3.select("#line1").node().value;
-        vname[1] = d3.select("#line2").node().value;
-        vname[2] = d3.select("#line3").node().value;
-        vname[3] = d3.select("#line4").node().value;
-        for (i=0; i<nline; i++) { 
-          if (vname[i] == svgStr[64][langNum]) vname[i] = svgStrU[114][langNum]+(i+1).toString();
-        }
-        // get new color
-        ncolrLine[0] = d3.select("#colr1").node().value;
-        ncolrLine[1] = d3.select("#colr2").node().value;
-        ncolrLine[2] = d3.select("#colr3").node().value;
-        ncolrLine[3] = d3.select("#colr4").node().value;
-        // 입력값 최대도수 계산
-        freqMin = data1[0];
-        freqMax = data1[0];
-        for (i=1; i<nrow; i++) { 
-            if (data1[i] > freqMax) freqMax = data1[i];
-            if (data1[i] < freqMin) freqMin = data1[i];
-        }
-        if (nobs[2] > 0) {
-          for (i=0; i<nrow; i++) { 
-            if (data2[i] > freqMax) freqMax = data2[i];
-            if (data2[i] < freqMin) freqMin = data2[i];
-          }
-        }
-        if (nobs[3] > 0) {
-          for (i=0; i<nrow; i++) { 
-            if (data3[i] > freqMax) freqMax = data3[i];
-            if (data3[i] < freqMin) freqMin = data3[i];
-          }
-        }
-        if (nobs[4] > 0) {
-          for (i=0; i<nrow; i++) { 
-            if (data4[i] > freqMax) freqMax = data4[i];
-            if (data4[i] < freqMin) freqMin = data4[i];
-          }
-        }
-      }
-
-      // svg Graph Save
-      d3.select("#saveGraphLine").on("click", function() {
-        var svg = d3.select("#chartLine");
-        var width = svgWidth;
-        var height = svgHeight;
-        var svgString = getSVGString(svg.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
- 
-  // Change Color
-  function changeColorLine(num){
-      var strid;
-      switch (num) {
-        case 1: strid = "colr1"; break;
-        case 2: strid = "colr2"; break;
-        case 3: strid = "colr3"; break;
-        case 4: strid = "colr4"; break;
-      }
-      ncolrLine[num-1] = document.getElementById(strid).value ;
-  }
-
-  // Draw Line Graph
-  function drawLineGraph() {
-    var i, j, str, x1, y1, x2, y2, tx, ty, cx, cy;
-    var betweenbarWidth = graphWidth / nrow; // 막대와 막대 사이의 너비
-    var barWidth = betweenbarWidth; // 막대의 너비
-    var gapWidth = betweenbarWidth * 0.5;
-    var tbuffer  = (freqMax - freqMin) * 0.1;
-    freqMax = freqMax + tbuffer;
-    freqMin = freqMin - tbuffer;
-    var freqRatioV = graphHeight / (freqMax - freqMin); // 그래프 영역과 데이터 영역의 비율
-
-    drawTitleLine(mTitleLine, yTitleLine, xTitleLine);
-    drawLabelLine(nrow, datax, betweenbarWidth, barWidth, gapWidth);
-    drawAxisLine(freqMax, graphHeight);
-
-    // x축 위 선
-    y1 = margin.top;
-    chartLine.append("line")
-         .attr("class", "line")
-         .attr("x1", margin.left)
-         .attr("x2", margin.left + graphWidth)
-         .attr("y1", y1)
-         .attr("y2", y1)
-         .style("stroke", "black")
-    // x축 선
-    y1 = margin.top + graphHeight;
-    chartLine.append("line")
-         .attr("class", "line")
-         .attr("x1", margin.left)
-         .attr("x2", margin.left + graphWidth)
-         .attr("y1", y1)
-         .attr("y2", y1)
-         .style("stroke", "black")
-
-    // line 1
-      x1 = margin.left + gapWidth;
-      y1 = margin.top + graphHeight - (data1[0] - freqMin) * freqRatioV;
-      chartLine.append("circle").attr("class", "line")
-           .attr("cx", x1).attr("cy", y1).attr("r","4")
-           .style("stroke", ncolrLine[0])
-      for (i=1; i<nrow; i++) {
-        x2 = margin.left + gapWidth + i*betweenbarWidth;
-        y2 = margin.top + graphHeight - (data1[i] - freqMin) * freqRatioV;
-        chartLine.append("line").attr("class", "line")
-             .attr("x1", x1).attr("x2", x2).attr("y1", y1).attr("y2", y2)
-             .style("stroke", ncolrLine[0])
-        chartLine.append("circle").attr("class", "line")
-             .attr("cx", x2).attr("cy", y2).attr("r","4")
-             .style("stroke", ncolrLine[0])
-        x1 = x2;
-        y1 = y2;
-      }
-      // 레이블
-      cx = margin.left + graphWidth + 10;
-      cy = margin.top + 30;
-      chartLine.append("circle").style("fill", ncolrLine[0]).style("stroke-width", "2px")
-             .attr("cx", cx).attr("cy", cy).attr("r", 3)
-      chartLine.append("text").attr("x", cx+10).attr("y", cy+7)
-           .style("font-size", "0.8em").style("font-family", "sans-seirf").style("stroke", ncolrLine[0]).style("text-anchor", "begin")
-           .text(vname[0])
-    // line 2
-    if (nobs[2] > 0) {
-      x1 = margin.left + gapWidth;
-      y1 = margin.top + graphHeight - (data2[0] - freqMin) * freqRatioV;
-      chartLine.append("circle").attr("class", "line")
-           .attr("cx", x1).attr("cy", y1).attr("r","4")
-           .style("stroke", ncolrLine[1])
-      for (i=1; i<nrow; i++) {
-        x2 = margin.left + gapWidth + i*betweenbarWidth;
-        y2 = margin.top + graphHeight - (data2[i] - freqMin) * freqRatioV;
-        chartLine.append("line").attr("class", "line")
-             .attr("x1", x1).attr("x2", x2).attr("y1", y1).attr("y2", y2)
-             .style("stroke", ncolrLine[1])
-        chartLine.append("circle").attr("class", "line")
-             .attr("cx", x2).attr("cy", y2).attr("r","4")
-             .style("stroke", ncolrLine[1])
-        x1 = x2;
-        y1 = y2;
-      }
-      // 레이블
-      cx = margin.left + graphWidth + 10;
-      cy += 20;
-      chartLine.append("circle").style("fill", ncolrLine[1]).style("stroke-width", "2px")
-             .attr("cx", cx).attr("cy", cy).attr("r", 3)
-      chartLine.append("text").attr("x", cx+10).attr("y", cy+7)
-           .style("font-size", "0.8em").style("font-family", "sans-seirf").style("stroke", ncolrLine[1]).style("text-anchor", "begin")
-           .text(vname[1])
-    }
-    // line 3
-    if (nobs[3] > 0) {
-      x1 = margin.left + gapWidth;
-      y1 = margin.top + graphHeight - (data3[0] - freqMin) * freqRatioV;
-      chartLine.append("circle").attr("class", "line")
-           .attr("cx", x1).attr("cy", y1).attr("r","4")
-           .style("stroke", ncolrLine[2])
-      for (i=1; i<nrow; i++) {
-        x2 = margin.left + gapWidth + i*betweenbarWidth;
-        y2 = margin.top + graphHeight - (data3[i] - freqMin) * freqRatioV;
-        chartLine.append("line").attr("class", "line")
-             .attr("x1", x1).attr("x2", x2).attr("y1", y1).attr("y2", y2)
-             .style("stroke", ncolrLine[2])
-        chartLine.append("circle").attr("class", "line")
-             .attr("cx", x2).attr("cy", y2).attr("r","4")
-             .style("stroke", ncolrLine[2])
-        x1 = x2;
-        y1 = y2;
-      }
-      // 레이블
-      cx = margin.left + graphWidth + 10;
-      cy += 20;
-      chartLine.append("circle").style("fill", ncolrLine[2]).style("stroke-width", "2px")
-             .attr("cx", cx).attr("cy", cy).attr("r", 3)
-      chartLine.append("text").attr("x", cx+10).attr("y", cy+7)
-           .style("font-size", "0.8em").style("font-family", "sans-seirf").style("stroke", ncolrLine[2]).style("text-anchor", "begin")
-           .text(vname[2])
-    }
-    // line 4
-    if (nobs[4] > 0) {
-      x1 = margin.left + gapWidth;
-      y1 = margin.top + graphHeight - (data4[0] - freqMin) * freqRatioV;
-      chartLine.append("circle").attr("class", "line")
-           .attr("cx", x1).attr("cy", y1).attr("r","4")
-           .style("stroke", ncolrLine[3])
-      for (i=1; i<nrow; i++) {
-        x2 = margin.left + gapWidth + i*betweenbarWidth;
-        y2 = margin.top + graphHeight - (data4[i] - freqMin) * freqRatioV;
-        chartLine.append("line").attr("class", "line")
-             .attr("x1", x1).attr("x2", x2).attr("y1", y1).attr("y2", y2)
-             .style("stroke", ncolrLine[3])
-        chartLine.append("circle").attr("class", "line")
-             .attr("cx", x2).attr("cy", y2).attr("r","4")
-             .style("stroke", ncolrLine[3])
-        x1 = x2;
-        y1 = y2;
-      }
-      // 레이블
-      cx = margin.left + graphWidth + 10;
-      cy += 20;
-      chartLine.append("circle").style("fill", ncolrLine[3]).style("stroke-width", "2px")
-             .attr("cx", cx).attr("cy", cy).attr("r", 3)
-      chartLine.append("text").attr("x", cx+10).attr("y", cy+7)
-           .style("font-size", "0.8em").style("font-family", "sans-seirf").style("stroke", ncolrLine[3]).style("text-anchor", "begin")
-           .text(vname[3])
-    }
-  }
-
-  // 그래프 제목 쓰기 함수
-  function drawTitleLine(mTitle, yTitle, xTitle) {
-    // 주제목
-    chartLine.append("text")
-        .attr("x", margin.left + graphWidth/2)
-        .attr("y", margin.top / 2 + 10)
-        .style("font-size", "1.8em")
-        .style("font-family", "sans-seirf")
-        .style("stroke", "black")
-        .style("text-anchor", "middle")
-        .text(mTitle)
-    // X축 제목
-    chartLine.append("text")
-            .style("font-size", fontsize)
-            .style("font-family", "sans-seirf")
-            .style("stroke", "black")
-            .style("text-anchor", "middle")
-            .attr("x", margin.left + graphWidth / 2)
-            .attr("y", margin.top + graphHeight + margin.bottom / 2 + 15)
-            .text(xTitle)
-     // Y축 제목
-     var tx = margin.left / 2 - 30;
-     var ty = margin.top + 15;
-     chartLine.append("text")
-            .style("font-size", fontsize)
-            .style("font-family", "sans-seirf")
-            .style("stroke", "black")
-            .style("text-anchor", "end")
-            .attr("x", tx)
-            .attr("y", ty)
-            .text(yTitle)
-            .attr("transform", "rotate(-90 30 100)")
-  }
-  // 변량값명 쓰기 함수
-  function drawLabelLine(ndvalue, label, betweenbarWidth, barWidth, gapWidth) {
-    var i, j, k, x1, y1, tx, ty, str, strAnchor;
-    var angle;
-
-    ty = margin.top + graphHeight;
-    if (ndvalue < 21) angle = 0;
-    else if (ndvalue < 51) angle = 45;
-    else angle = 90;
-    str = "middle";
-    y1 = ty + 20;
- 
-    for (j = 0; j < ndvalue; j++) {
-      if ((ndvalue > 20) && (ndvalue <= 40) && (j%2 != 0)) continue;
-      if ((ndvalue > 40) && (ndvalue <= 60) && (j%3 != 0)) continue;
-      if ((ndvalue > 60) && (ndvalue <= 80) && (j%4 != 0)) continue;
-      if ((ndvalue > 90) && (ndvalue <= 100) && (j%5 != 0)) continue;
-      x1 = margin.left + gapWidth + j * betweenbarWidth;
-      chartLine.append("line") // tick
-                    .attr("x1", x1)
-                    .attr("x2", x1)
-                    .attr("y1", ty)
-                    .attr("y2", ty + 5)
-                    .style("stroke", "black")
-                    .style("stroke-width", "0.5")
-      chartLine.append("text")
-                    .style("text-anchor", str)
-                    .style("font-family", "sans-serif")
-                    .style("font-size", "0.8em")
-                    .attr("x", x1)
-                    .attr("y", y1)
-                    .attr("transform", "rotate(" + angle + "," + x1 + "," + y1 + ")  ")
-                    .text(label[j])
-    }
-  }
-
-  // Line그래프 축 그리기
-  function drawAxisLine(freqMax, height) {
-    var tx, ty;
-    var xScale, yScale;
-    var ygrid    = new Array(rowMax);
-
-    yScale = d3.scaleLinear().domain([freqMin, freqMax]).range([graphHeight, 0]);
-    ygrid = yScale.ticks();
-    tx = margin.left;
-    ty = margin.top;
-    chartLine.append("g")
-         .attr("transform", "translate(" + tx + "," + ty + ")")
-         .call(d3.axisLeft(yScale)) // 눈금을 표시할 함수 호출
-    // Y축 그리드
-    for (i = 1; i < ygrid.length; i++) {
-      ty = margin.top + yScale(ygrid[i]);
-      chartLine.append("line")
-           .attr("x1", margin.left)
-           .attr("x2", margin.left + graphWidth)
-           .attr("y1", ty)
-           .attr("y2", ty)
-           .style("stroke", "lightgrey")
-    }
-    chartLine.append("line").attr("class", "line")
-                    .attr("x1", margin.left)
-                    .attr("x2", margin.left)
-                    .attr("y1", margin.top)
-                    .attr("y2", margin.top + graphHeight)
-                    .style("stroke", "black")
-    chartLine.append("line").attr("class", "line")
-                    .attr("x1", margin.left + graphWidth)
-                    .attr("x2", margin.left + graphWidth)
-                    .attr("y1", margin.top)
-                    .attr("y2", margin.top + graphHeight)
-                    .style("stroke", "black")
-
-  }
-
-  </script>
 
   <div class="mainTable">
       <p>When there are multiple variables observed at the same time, the line graph 
@@ -2155,8 +393,8 @@
         Summer, Fall, and Winter season in Korea such as in [Table 2.6] on one graph.
       <p>
             <div class="textLeft">[Table 2.6] Average temperature of each season in Korea (unit: degree in Celsius)   </div>
-            <table> 
-              <tr> <th class="thGrey">Year</th> <th class="thGrey">Spring</th> <th class="thGrey">Summer</th> <th class="thGrey">Fall</th> <th class="thGrey">Winter</th>  </tr>
+            <table style="width:500px"> 
+              <tr> <th>Year</th> <th>Spring</th> <th>Summer</th> <th>Fall</th> <th>Winter</th>  </tr>
               <tr> <td class="tdCenter">1973</td> <td class="tdCenter">11.6</td> <td class="tdCenter">24.5</td> <td class="tdCenter">12.9</td> <td class="tdCenter">-1.4</td> </tr>
               <tr> <td class="tdCenter">1974</td> <td class="tdCenter">10.8</td> <td class="tdCenter">22.4</td> <td class="tdCenter">13.0</td> <td class="tdCenter">-0.1</td> </tr>
               <tr> <td class="tdCenter">1975</td> <td class="tdCenter">11.2</td> <td class="tdCenter">23.9</td> <td class="tdCenter">15.5</td> <td class="tdCenter"> 0.3</td> </tr>
@@ -2200,26 +438,14 @@
 
       <p><b>Solution</b>
       <p>
-      <input class="qrBtn" type="image" src="../../QR/eStatU_02LineGraph.svg" onclick="window.open(addrStr[168])">     
-      <table style="width:650px">
-        <tr>
-          <td style="width:400px">
-            <img src="../FigureM/Fig0214.png">
-            <div class="textLeft">&lt;Figure 2.14&gt; Data input of average temperature by season for a line graph</div>
-          </td>
-          <td></td>
-          <td>
-               Enter the 'main title', 'y title', and 'x title' as shown in &lt;Figure 2.14&gt;, 
-               and enter the Spring, Summer, Fall, and Winter temperatures from 'Line 1' to 'Line 4'.Enter each variable name as Spring, Summer, Fall, Winter, and enter year data in 'X'.
-            <p>If you click the [Execute] button, a line graph as shown in 
-               &lt;Figure 2.15&gt; appears. You can also draw a line graph again by 
-               selecting the color of each line.
-          </td>
-        </tr>
-      </table>
+          Enter the 'main title', 'y title', and 'x title' as shown in &lt;Figure 2.14&gt;, 
+          and enter the Spring, Summer, Fall, and Winter temperatures from 'Line 1' to 'Line 4'.Enter each variable name as Spring, Summer, Fall, Winter, and enter year data in 'X'.
+      <br>If you click the [Execute] button, a line graph as shown in 
+          &lt;Figure 2.15&gt; appears. You can also draw a line graph again by 
+          selecting the color of each line.
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0215.png">
-         <div class="textLeft">&lt;Figure 2.15&gt; Line graph of average temperature by season in Korea</div>
+         <iframe class="example" src="./example/0203.html"> </iframe>
+         <div class="textLeft">&lt;Figure 2.15&gt; Data input of average temperature by season and its line graph</div>
       <p>
          Looking at the line graph of the average temperature by season, it can be seen 
          that the average temperature is gradually increasing, especially in Winter.
@@ -2229,21 +455,15 @@
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td style="width:180px">
-            <h4>⏱ Exercise 2.3</h4> <p>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_02LineGraph.svg" onclick="window.open(addrStr[168])">     
-          </td>
-          <td>
-            <p>
+        <h4>⏱ Exercise 2.3</h4> 
+        <p>
               The following table shows the average life expectancy of Koreans surveyed 
               every 10 years from 1970 to 2020. Draw a line graph to find out 
               the characteristics.
-            <p>
+        <p>
             <div class="textLeft">[Table 2.7] Average life expectancy of Koreans </div>
-            <table> 
-              <tr> <th class="thGrey">Year</th> <th class="thGrey">Average life expentancy</th>  </tr>
+            <table style="width:400px"> 
+              <tr> <th>Year</th> <th>Average life expentancy</th>  </tr>
               <tr> <td class="tdCenter">1970</td>      <td class="tdCenter">62.3</td>   </tr>
               <tr> <td class="tdCenter">1980</td>      <td class="tdCenter">66.1</td>   </tr>
               <tr> <td class="tdCenter">1990</td>      <td class="tdCenter">71.7</td>   </tr>
@@ -2251,27 +471,21 @@
               <tr> <td class="tdCenter">2010</td>      <td class="tdCenter">80.2</td>   </tr>
               <tr> <td class="tdCenter">2020</td>      <td class="tdCenter">81.3</td>   </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_02LineGraph.svg" onclick="window.open(addrStr[168])">     
+            <p>
     </div>
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td style="width:180px">
-            <h4>⏱ Exercise 2.4</h4> <p>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_02LineGraph.svg" onclick="window.open(addrStr[168])">     
-          </td>
-          <td>
+        <h4>⏱ Exercise 2.4</h4>
+        <p>
             The table below shows the amount of imports and exports of Korea from 2001 to 2020. Draw a line graph 
             to find out the characteristics.
             <p>
             <div class="textLeft">[Table 2.8] Amount of imports and exports of Korea (unit: billion dollars)  </div>
-            <table> 
-              <tr> <th class="thGrey">Year</th> <th class="thGrey">Export</th> <th class="thGrey">Import</th> </tr>
+            <table style="width:400px"> 
+              <tr> <th>Year</th> <th>Export</th> <th>Import</th> </tr>
               <tr> <td class="tdCenter">2001</td> <td class="tdCenter">1504</td> <td class="tdCenter">1411</td> </tr>
               <tr> <td class="tdCenter">2002</td> <td class="tdCenter">1625</td> <td class="tdCenter">1521</td> </tr>
               <tr> <td class="tdCenter">2003</td> <td class="tdCenter">1938</td> <td class="tdCenter">1788</td> </tr>
@@ -2293,9 +507,7 @@
               <tr> <td class="tdCenter">2019</td> <td class="tdCenter">5422</td> <td class="tdCenter">5033</td> </tr>
               <tr> <td class="tdCenter">2020</td> <td class="tdCenter">5125</td> <td class="tdCenter">4676</td> </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_02LineGraph.svg" onclick="window.open(addrStr[168])">     
     </div>
     <p>
     <!-------------------------------------------------------------------------->
@@ -2305,40 +517,18 @@
   <h3 id="0203">2.3 Word Cloud</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ Think</h4>
           <b>The following is Wikipedia's explanation of the 4th industrial revolution.</b>
           <p>
             <div class="textLeft">[Table 2.9] Wikipedia's explanation of the 4th industrial revolution.</div>
-            <table> 
-              <tr> 
-                <td>
                   The Fourth Industrial Revolution (4IR or Industry 4.0) is the ongoing 
                   automation of traditional manufacturing and industrial practices, 
                   using modern smart technology. Large-scale machine-to-machine communication 
                   (M2M) and the internet of things (IoT) are integrated for increased automation,
                   improved communication and self-monitoring, and production of smart machines
                   that can analyze and diagnose issues without the need for human intervention.[1]
-                </td>
-              <tr>
-            </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
           <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
           <b>What words are important to explain the 4th industrial revolution? </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -2349,7 +539,7 @@
          inclination, or color. &gt;Figure 2.16&gr; is a word cloud for the explanation of 
          the 4th industrial revolution above.
       <p>
-           <img class="imgFig600600" src="../FigureM/Fig0216.png">
+           <img class="figure" src="./Figure/Fig0216.png">
            <div class="textLeft">&lt;Figure 2.16&gt; Word cloud for Wikipedia’s explation of the 4th industrial revolution</div>
       <p>
          The word cloud is useful for quickly recognizing the most prominent words in 
@@ -2374,142 +564,22 @@
           After copying the sentences in [Table 2.9] for data input as shown in t&lt;Figure 2.17&gt;, click the [Execute] button, 
           and a word cloud as shown in &lt;Figure 2.16&gt; appears.
 
-      <!--------Word cloud html ------------------------------------------------------------------------->
+      <!--------*** Word cloud html ***------------------------------------->
       <p> 
-      <button type="button" id="eraseWordData" style="width:140px;"><b>New Data</b></button>
-      <p>
-      <textarea id="textarea" name="textarea" rows="10" cols="80"></textarea>  
-      <div class="textLeft">&lt;Figure 2.17&gt; Data input for word cloud</div>
-      <br> 
-      <button type="button" id="executeWord" style="width:140px;">
-        <span data-msgid="Execute">Execute</span>
-      </button> 
-      <p>
-      <svg id="chartWord" width="750" height="540" style="border-style:solid;"> </svg> 
-      <p> 
-      <button type="button" id="saveGraphWord" style="width:140px;">
-	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
-      </button>
+         <iframe class="example" src="./example/0204.html"> </iframe>
+         <div class="textLeft">&lt;Figure 2.17&gt; Data input for word cloud</div>
       <p>
   </div>
-    <!------------------------------------------------------------------------------------------------->
-    <p>
-    <!--------Word cloud script ------------------------------------------------------------------------->
-    <script>
-      document.getElementById("textarea").value = "The Fourth Industrial Revolution (4IR or Industry 4.0) is the ongoing automation of traditional manufacturing and industrial practices, using modern smart technology. Large-scale machine-to-machine communication (M2M) and the internet of things (IoT) are integrated for increased automation, improved communication and self-monitoring, and production of smart machines that can analyze and diagnose issues without the need for human intervention.[1]"; 
-      var svg = d3.select("#chartWord");
-
-      // erase Word Data
-      d3.select("#eraseWordData").on("click",function() {
-        svg.selectAll("*").remove();
-        // title
-        document.getElementById("textarea").value = "";
-      })
-      // execute Word Cloud
-      d3.select("#executeWord").on("click", function() {
-        $("#chartWord").empty();
-        text_string = $("#textarea").val();
-        drawWordCloud(text_string); 
-      });
-
-      // svg Graph Save
-      d3.select("#saveGraphWord").on("click", function() {
-        var width  = svgWidth;
-        var height = svgHeight;
-        var svgString = getSVGString(svg.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
-
-      function drawWordCloud(text_string){
-        var common = "poop,i,me,my,myself,we,us,our,ours,ourselves,you,your,yours,yourself,yourselves,he,him,his,himself,she,her,hers,herself,it,its,itself,they,them,their,theirs,themselves,what,which,who,whom,whose,this,that,these,those,am,is,are,was,were,be,been,being,have,has,had,having,do,does,did,doing,will,would,should,can,could,ought,i'm,you're,he's,she's,it's,we're,they're,i've,you've,we've,they've,i'd,you'd,he'd,she'd,we'd,they'd,i'll,you'll,he'll,she'll,we'll,they'll,isn't,aren't,wasn't,weren't,hasn't,haven't,hadn't,doesn't,don't,didn't,won't,wouldn't,shan't,shouldn't,can't,cannot,couldn't,mustn't,let's,that's,who's,what's,here's,there's,when's,where's,why's,how's,a,an,the,and,but,if,or,because,as,until,while,of,at,by,for,with,about,against,between,into,through,during,before,after,above,below,to,from,up,upon,down,in,out,on,off,over,under,again,further,then,once,here,there,when,where,why,how,all,any,both,each,few,more,most,other,some,such,no,nor,not,only,own,same,so,than,too,very,say,says,said,shall";
-
-        var word_count = {};
-
-        var words = text_string.split(/[ '\-\(\)\*":;\[\]|{},.!?]+/);
-          if (words.length == 1){
-            word_count[words[0]] = 1;
-          } else {
-            words.forEach(function(word){
-              var word = word.toLowerCase();
-              if (word != "" && common.indexOf(word)==-1 && word.length>1){
-                if (word_count[word]){
-                  word_count[word]++;
-                } else {
-                  word_count[word] = 1;
-                }
-              }
-            })
-          }
-
-        var svg_location = "#chartWord";
-        var width = svgWidth; // $(document).width();
-        var height = svgHeight; // $(document).height();
-
-        var fill = d3.schemeCategory20;
-
-        var word_entries = d3.entries(word_count);
-
-        var xScale = d3.scaleLinear()
-           .domain([0, d3.max(word_entries, function(d) {
-              return d.value;
-            })
-           ])
-           .range([10,100]);
-
-        d3.layout.cloud().size([width, height])
-          .timeInterval(20)
-          .words(word_entries)
-          .fontSize(function(d) { return xScale(+d.value); })
-          .text(function(d) { return d.key; })
-          .rotate(function() { return ~~(Math.random() * 2) * 90; })
-          .font("Impact")
-          .on("end", draw)
-          .start();
-
-        function draw(words) {
-          d3.select(svg_location).append("svg")
-              .attr("width", width)
-              .attr("height", height)
-            .append("g")
-              .attr("transform", "translate(" + [width >> 1, height >> 1] + ")")
-            .selectAll("text")
-              .data(words)
-            .enter().append("text")
-              .style("font-size", function(d) { return xScale(d.value) + "px"; })
-              .style("font-family", "Impact")
-              .style("fill", function(d, i) { return fill[i]; })
-              .attr("text-anchor", "middle")
-              .attr("transform", function(d) {
-                return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
-              })
-              .text(function(d) { return d.key; });
-        }
-
-        d3.layout.cloud().stop();
-      }
-    </script>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td style="width:180px">
-            <h4>⏱ Exercise 2.5</h4> <p>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_05WordCloud.svg" onclick="window.open(addrStr[142])">     
-          </td>
-          <td>
-            <p>
+        <h4>⏱ Exercise 2.5</h4> 
+        <p>
               The following are excerpts from US President John F. Kennedy's inaugural address. 
               Create a word cloud for this inaugural address and analyze the key words.
-            <p>
+        <p>
             <div class="textLeft">[Table 2.11] Inaugral address of US President John F. Kennedy</div>
-            <table> 
-              <tr> 
-                <td>
-                  In the long history of the world, only a few generations have been granted 
+                      In the long history of the world, only a few generations have been granted 
                   the role of defending freedom in its hour of maximum danger. I do not shrink 
                   from this responsibility--I welcome it. I do not believe that any of us would
                   exchange places with any other people or any other generation. The energy, 
@@ -2518,98 +588,15 @@
                   And so, my fellow Americans: ask not what your country can do for you--ask 
                   what you can do for your country. My fellow citizens of the world: ask not 
                   what America will do for you, but what together we can do for the freedom of man.
-                </td>
-              <tr>
-            </table>
-          </td>
-        </tr>
-      </table>
+        <p>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_05WordCloud.svg" onclick="window.open(addrStr[142])">     
+            <p>
     </div>
     <p>
 
-  <div class="mainTablePink">
-    <h4> Exercise </h4>
-    <p style="color:blue">*** Select an answer and click [SUBMIT] button.
-
-  <h6 class="textL30M30">2.1 What is the name of the table by organizing the data as follows? </h6>
-           <table> 
-              <tr> <th class="thGrey">Gender</th> <th class="thGrey">Number of students</th>  </tr>
-              <tr> <td class="tdCenter">Male</td>      <td class="tdCenter">6</td>   </tr>
-              <tr> <td class="tdCenter">Female</td>      <td class="tdCenter">4</td>   </tr>
-            </table>
-  <form name="Q1">
-    <label><input type="radio" name="item" value="1"> student table</label><br>
-    <label><input type="radio" name="item" value="2"> frequency table</label><br>
-    <label><input type="radio" name="item" value="3"> organizing table</label><br>
-    <label><input type="radio" name="item" value="4"> transcript표</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(22,1,Q1)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ1">
-  </form>
-
-  <h6 class="textL30M30">2.2 Which of the following graphs is used for visualizing qualitative data?</h6>
-  <form name="Q2">
-    <label><input type="radio" name="item" value="1"> bar graph</label><br>
-    <label><input type="radio" name="item" value="2"> histogram</label><br>
-    <label><input type="radio" name="item" value="3"> stem and leaf plot</label><br>
-    <label><input type="radio" name="item" value="4"> scatter plot</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(22,2,Q2)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ2">
-  </form>
-
-  <h6 class="textL30M30">2.3 Which of the following graphs is not used for visualizing qualitative data?   </h6>
-  <form name="Q3">
-    <label><input type="radio" name="item" value="1"> bar graph</label><br>
-    <label><input type="radio" name="item" value="2"> histogram</label><br>
-    <label><input type="radio" name="item" value="3"> pie graph</label><br>
-    <label><input type="radio" name="item" value="4"> band graph</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(22,3,Q3)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ3">
-  </form>
-
-  </div>
-
-  <script>
-    for (var i=0; i < ans[22][0]; i++) document.getElementById(ansID[i+1]).disabled = true;
-  </script>
-
-  <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(141)">&#10094;&#10094; &nbsp;&nbsp;<b>Chapter 1</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(143)"><b>Chapter 3</b>&nbsp;&nbsp; &#10095;&#10095;</button>
- </div>
-
-
-
-
-    
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
-    <script>
-        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
-        
-        /* ajust the height when click the toc
-           the code is from https://github.com/twbs/bootstrap/issues/1768
-        */
-        var shiftWindow = function() { scrollBy(0, -50) };
-        window.addEventListener("hashchange", shiftWindow);
-        function load() { if (window.location.hash) shiftWindow(); }
-        
-        /*add Bootstrap styles to tables*/
-        var tables = document.getElementsByTagName("table");
-        for(var i = 0; i < tables.length; ++i){
-            tables[i].className += "table table-bordered table-hover";
-        }
-    </script>
+    <h3 id="0204">2.4 Exercise</h3>
+    <iframe class="exercise" src="./exercise/exercise02.html" width="750" height="700" ></iframe>
+</div>
 
 </body>
 </html>

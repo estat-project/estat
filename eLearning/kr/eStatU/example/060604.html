@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>p Chart</title>
+    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+    <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+    <script src="/estat/eStat/js/language.js" ></script>
+    <script src="/estat/eStat/js/eStatU.js"></script>
+    <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+    <script src="/estat/eStat/lib/convertSVG.js"></script>
+</head>
+
+<body>
+
+    <div class="title">
+      <b>&nbsp;<span data-msgid="Defect Rate"></span> (p) <span data-msgid="control chart"></span> </b>
+    </div>
+    <br>
+
+    <table class="data">
+	<tr>
+	  <td colspan="2"><b><span data-msgid="input data"></span></b></td>
+          <td><span style="color: red;" data-msgid="NumberData"> </span> <span style="color:red;">≤ 100<span> </td>
+	</tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><span data-msgid="Sample"></span> id</td>
+	  <td><input type="text" size=80 id="datax"></td>
+	</tr>
+	<tr>
+          <td> &nbsp; &nbsp;</td>
+	  <td><span data-msgid="Defect Size"></span></td>
+	  <td><input type="text" size=80 id="data1"></td>
+	</tr>
+    </table>
+    <table>
+        <tr>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td><span data-msgid="Sample Size"></span> \(n\) </td>
+          <td><input type="text" size=5 id="nn" style="text-align: center"></td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td><span data-msgid="Repetition"></span> \(k\) </td>
+          <td><input type="text" size=5 id="kk" style="text-align: center"></td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td style="text-align: right">\(\overline p\)</td>
+          <td><input type="text" size=5 id="xbar" style="text-align: right"></td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td style="text-align: right">UCL<sub>\(p\)</sub></td>
+          <td><input type="text" size=5 id="xucl" style="text-align: right"></td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td style="text-align: right">CL<sub>\(p\)</sub></td>
+          <td><input type="text" size=5 id="xcl" style="text-align: right"></td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td style="text-align: right">LCL<sub>\(p\)</sub></td>
+          <td><input type="text" size=5 id="xlcl" style="text-align: right"></td>
+        </tr>
+    </table>
+    <br>
+         <div class="figText">[그림 6.19] 세 개의 이상상태 데이터를 제거한 데이터 입력</div>
+    <br>
+    <button type="button" id="execute"  style="width:80px;"> <span data-msgid="Execute"></span></button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
+    <p>
+    <svg id="chart" width="640" height="300"> </svg> 
+    <br>
+    <button type="button" id="saveGraphU" >
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+    </button>
+
+   <script src="/estat/eStatU/js/69pChart.js"> </script>
+   <script>
+      // init data
+      document.getElementById("datax").value = "1,2,4,5,6,7,8,9,10,11,12,13,14,15,17,18,19,20,21,22,23,25";
+        stat    = simpletext("#datax");  
+        datax   = data;  
+        nobs[0] = stat.n;
+      document.getElementById("data1").value = "12,12,12,6,12,13,12,13,7,10,8,13,9,9,3,11,9,9,11,12,10,10";
+        stat    = simplestat("#data1");  
+        data1   = data;  
+        nobs[1] = stat.n;
+      document.getElementById("nn").value = "50";
+   </script>
+
+</body>
+</html>

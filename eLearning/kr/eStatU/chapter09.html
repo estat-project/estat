@@ -10,12 +10,11 @@
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+  <link href="/estat/eStat/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="../../css/dashboard.css" rel="stylesheet">
+  <link href="/estat/eStat/css/dashboard.css" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -24,12 +23,22 @@
       <![endif]-->
        <style type="text/css">code{white-space: pre;}</style>
        <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
-       <script src="../../js/prism.js"></script>
-       <link rel="stylesheet" href="../../css/prism.css">
-       <script src="../../js/jquery.min.js"></script>    
+       <link rel="stylesheet" href="/estat/eStat/css/pandoc.css">
+       <link rel="stylesheet" href="/estat/eStat/css/prism.css">
+       <script src="/estat/eStat/lib/jquery/jquery.min.js"></script>   
+       <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="/estat/eStat/lib/convertSVG.js"></script>
+       <script src="/estat/eStat/js/prism.js"></script>
+       <script src="/estat/eStat/js/eBook.js"></script>
+       <script src="/estat/eStat/js/eStatU.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>
+       <script> setLanguage('ko'); </script>
        <script type="text/javascript" id="MathJax-script" async
 	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
        </script>
+
        <script>
 	 $(document).ready(function() {
   	     toc = $("#sidebar > ul > li > ul");
@@ -48,77 +57,61 @@
   		 $(sections[i]).replaceWith(li);
   	     }
 	 });
-	 </script>
-       <link rel="stylesheet" href="../../css/pandoc.css">
-       <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       </script>
+      
 </head>
+
 <body>
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <ul class="nav navbar-nav">
-    <li><a href="../../../eStat/index.html"  target="_blank">eStat</a></li>
-    <li><a href="../../../eStatU/index.html" target="_blank">eStatU</a></li>
-    <li><a href="../../Distribution/index.html" target="_blank">확률분포</a></li>
-  </ul>
-</nav>
-
+  
+<!-- begin of left sidebar -->
 <div class="container-fluid">
-  <div class="row">
-    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
-      <ul>
-	<li><a href=""></a>
-	  <ul>
-            <li><a href="index.html">차  례</a></li>
-            <li><a href="chapter01.html">1장 통계 데이터과학</a></li>
-            <li><a href="chapter02.html">2장 질적 데이터 시각화</a></li>
-            <li><a href="chapter03.html">3장 양적 데이터 시각화</a></li>
-            <li><a href="chapter04.html">4장 표/측도 데이터 정리</a></li>
-            <li><a href="chapter05.html">5장 확률, 확률분포함수</a></li>
-            <li><a href="chapter06.html">6장 표집분포와 추정</a></li>
-            <li><a href="chapter07.html">7장 한 모집단 모수 검정</a></li>
-            <li><a href="chapter08.html">8장 두 모집단 모수 검정</a></li>
-            <li><a href="chapter09.html">9장 여러 모평균의 검정</a></li>
-            <li><a href="chapter10.html">10장 비모수적 가설검정</a></li>
-            <li><a href="chapter11.html">11장 범주형 데이터 검정</a></li>
-            <li><a href="chapter12.html">12장 상관 및 회귀분석</a></li>
-            <li><a href="chapter13.html">13장 시계열분석</a></li>
-	  </ul>
-	</li>
-      </ul>
-    </div>
-  </div>
+<div class="row">
+<div id="sidebar" class="col-sm-2 col-md1 sidebar">
+  <ul>
+    <li> <a href="index.html"><b>차례</b> </a> </li>
+    <li> <a href="chapter01.html"> <span data-msgid="Chapter01"> </span></a> </li>
+    <li> <a href="chapter02.html"> <span data-msgid="Chapter02"> </span></a> </li>
+    <li> <a href="chapter03.html"> <span data-msgid="Chapter03"> </span></a> </li>
+    <li> <a href="chapter04.html"> <span data-msgid="Chapter04"> </span></a> </li>
+    <li> <a href="chapter05.html"> <span data-msgid="Chapter05"> </span></a> </li>
+    <li> <a href="chapter06.html"> <span data-msgid="Chapter06"> </span></a> </li>
+    <li> <a href="chapter07.html"> <span data-msgid="Chapter07"> </span></a> </li>
+    <li> <a href="chapter08.html"> <span data-msgid="Chapter08"> </span></a> </li>
+    <li> <a href="chapter09.html"> <span data-msgid="Chapter09"> </span></a> </li>
+	      <ul>
+                <li><a href="#0901">&nbsp; 9.1  한 인자 분산분석</a></li>
+                <li><a href="#0902">&nbsp; 9.2  표본추출을 위한 실험계획</a></li>
+                <li><a href="#0903">&nbsp; 9.3  두 인자 분산분석</a></li>
+                <li><a href="#0904">&nbsp; 9.4 연습문제</a></li> 
+	      </ul>
+    <li> <a href="chapter10.html"> <span data-msgid="Chapter10"> </span></a> </li>
+    <li> <a href="chapter11.html"> <span data-msgid="Chapter11"> </span></a> </li>
+    <li> <a href="chapter12.html"> <span data-msgid="Chapter12"> </span></a> </li>
+    <li> <a href="chapter13.html"> <span data-msgid="Chapter13"> </span></a> </li>
+  </ul>
 </div>
+</div>
+</div>
+<!-- end of left sidebar -->
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
   <!--***********************************************************************-->
   <h1>9장 여러 모평균의 가설검정</h1> 
+  <b>
+	      <ul>
+                <li><a href="#0901">&nbsp; 9.1  한 인자 분산분석</a></li>
+                <li><a href="#0902">&nbsp; 9.2  표본추출을 위한 실험계획</a></li>
+                <li><a href="#0903">&nbsp; 9.3  두 인자 분산분석</a></li>
+                <li><a href="#0904">&nbsp; 9.4 연습문제</a></li> 
+	      </ul>
+                <a href="./pdf/chapter09.pdf" target="_blank">[9장 pdf]</a>
+  </b>
   <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(168)"> &#10094;&#10094; &nbsp;&nbsp;<b>8장</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(170)"><b>10장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
-  <p>
-  <table>
-    <tr>
-      <td style="width:230px">
-        <h4>
-        <a href="#0901"><u>9.1  한 인자 분산분석</u></a> <p>
-        <a href="#0902"><u>9.2  표본추출을 위한 실험계획</u></a> <p>
-        <a href="#0903"><u>9.3  두 인자 분산분석</u></a> <p>
-        <a href="chapter09.pdf" target="_blank"><u>[9장 pdf]</u></a>
-        </h4>
-      </td>
-      <td style="width:350px">
-        <p>이 장에서는 두 모집단 모수를 비교하는 가설검정에 대하여 설명한다.
-        <p> - 두 모평균 가설검정 : <br>
-              &nbsp;&nbsp;&nbsp;독립표본인 경우와 대응비교인 경우
-        <p>- 두 모분산 가설검정
-        <p>- 두 모비율 가설검정
-      </td>
-    </tr>
-  </table>
+        이 장에서는 여러 모집단 모수를 비교하는 가설검정에 대하여 설명한다.
+        - 한 인자 여러 모평균 가설검정  <br>
+        - 한 인자 여러 모평균 가설검정을 실험의 계획 : 완전임의배치법, 확률화블록계획법<br>
+        - 두 인자 여러 모평균 가설검정<br>
 <!--
   <h6>
       <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
@@ -260,10 +253,7 @@
   <p>
 
   <div class="mainTableGrey">
-    <table>
-      <tr>
-        <td colspan="2">
-          <p><h5>🎲 예 9.1</h5>
+      <h5>🎲 예 9.1</h5>
           어느 대학교에서 학년별 영어 실력을 비교하기 위하여 각 학년에서 무작위로 표본을 추출하여 같은 영어 시험을 보게 
           한 결과 표 9.3의 자료를 얻었다. 우측 열은 각 학년별 평균을 계산한 것이다. 각 학년별 영어 점수의 각 학년별 영어 점수의 평균이 같은지 5％ 유의수준으로 『eStatU』를 이용하여 가설검정 하자. 
           <p>
@@ -322,73 +312,53 @@
            </tr>
           </table>
           <p class="textLeft">[Ex] ⇨ eBook ⇨ EX090101_EnglishScoreByGrade.csv. 
-      </td>
-     </tr>
-     <tr>
-          <td style="width:100px">
-            <h5>풀이</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStatU900_TestANOVA.svg" onclick="window.open(addrStr[109])">
-          </td>
-          <td>
-            <p>
+      <p>
+      <h5>풀이</h5>
             『eStatU』에서 ‘가설검정 : 분산분석’을 선택하면 [그림 9.1]과 같은 화면이 나타난다. 여기에서 유의수준을 선택하고, 표본자료를 입력하고 [실행] 버튼을 누르면 [그림 9.2]와 같이 각 학년 모평균에 대한 가설검정 결과가 나타난다.
-            <p>
-            <img src="../FigureU/Fig0901.png">
-            <div class="textLeft">[그림 9.1] 『eStatU』를 이용한 분산분석 데이터 입력</div>
-            <p>
-            <img src="../FigureU/Fig0902.png">
-            <div class="textLeft">[그림 9.2] 『eStatU』를 이용한 분산분석 결과 </div>
-            <p>
-          </td>
-        </tr>
-      </table>
+      <p>
+      <!---   ************ html for ANOVA ************  ---->
+      <p>
+      <b>[<span data-msgid="Testing Hypothesis ANOVA">Testing Hypothesis : 3+ Population Means (ANOVA)</span>]</b>
+      <p>
+      <iframe class="example" src="./example/090101.html"> </iframe>
+      <div class="textLeft">[그림 9.2] 『eStatU』를 이용한 분산분석 결과 </div>
+      <p>
   </div>
   <p>
      『eStat』을 이용하여 분산분석을 할 수 있다.
   <p>
   <div class="mainTableGrey">
-      <table>
-        <tr>
-          <td colspan="2">
-            <p><h5>🎲 예 9.2</h5>
+        <h5>🎲 예 9.2</h5>
             [예 9.1]을 『eStat』을 이용하여 분산분석 하자. 
-          </td>
-        </tr>
-        <tr>
-          <td style="width:100px">
-            <h5>풀이</h5>
-            <input class="qrBtn" type="image" src="../../QR/EX090101.svg" onclick="window.open(addrStr[27])">
-          </td>
-          <td>
-            <p>
+        <h5>풀이</h5>
             『eStat』에서 시트에 [그림 9.3] 같이 데이터를 입력하고 변량명을 ‘학년’과 ‘영어점수’로 설정한다. 
             『eStat』 주메뉴의 분산분석 아이콘을 클릭하여 나타나는 변량선택박스에서 ‘분석변량’을 영어점수, ‘by 그룹’을 학년으로 선택하면 [그림 9.4]와 같이 학년별 영어점수의 점그래프와 95% 신뢰구간이 표시된다.
             <p>
-            <img src="../FigureU/Fig0903.png">
+         <div>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/EX090101.svg" onclick="window.open(addrStr[27])">
+            <img src="./Figure/Fig0903.png">
             <div class="textLeft">[그림 9.3] 데이터 입력 </div>
+         </div>
             <p>
-            <img src="../FigureU/Fig0904.png">
+            <img src="./Figure/Fig0904.png">
             <div class="textLeft">[그림 9.4] 영어성적 자료의 점그래프와 평균의 95% 신뢰구간 그래프</div>
             <p>
             데이터의 정규성 여부를 검토하기 위해서는 이 그래프 밑의 선택사항([그림 9.5])에서 ‘히스토그램’ 버튼을 누르면 [그림 9.6]과 같이 히스토그램과 정규분포가 같이 그려진다.
             <p>
-            <img src="../FigureU/Fig0905.png">
+            <img src="./Figure/Fig0905.png">
             <div class="textLeft">[그림 9.5] 분산분석 선택사항</div>
             <p>
-            <img src="../FigureU/Fig0906.png">
+            <img src="./Figure/Fig0906.png">
             <div class="textLeft">[그림 9.6] 각 학년별 히스토그램과 정규분포 그림</div>
             <p>
             [그림 9.5]의 분산분석 선택사항에서 유의수준 5%와 신뢰수준 95%를 선택하고 [ANOVA F 검정] 버튼을 누르면 [그림 9.7]과 같이 F분포에서 검정통계량의 위치를 보여주는 그래프가 나타나고, 결과창에는 [그림 9.8]과 같은 각 학년별 평균 및 신뢰구간 표와 검정결과가 나타난다.
             <p>
-            <img src="../FigureU/Fig0907.png">
+            <img src="./Figure/Fig0907.png">
             <div class="textLeft">[그림 9.7] 『eStat』의 ANOVA F 검정 그래프</div>
             <p>
-            <img src="../FigureU/Fig0908.png">
+            <img src="./Figure/Fig0908.png">
             <div class="textLeft">[그림 9.8] 『eStat』의 기초통계량과 분산분석표  </div>
             <p>
-          </td>
-        </tr>
-      </table>
   </div>
   <p>
   <div class="mainTable">
@@ -415,35 +385,23 @@
       모수 \(k\)와 자유도 \(n-k\)를 갖는 <b>표준화범위분포</b>(studentized range distribution)의 우측 100 \(\alpha\)%
       백분위수로 『eStatU』에 ‘HSD 표준화범위분포’에 수록되어 있다([그림 9.9]). 
       <p>
-            <img src="../FigureU/Fig0909.png">
+            <img src="./Figure/Fig0909.png">
             <div class="textLeft">[그림 9.9] 『eStatU』HSD 분포표 </div>
       <p>
   </div>
   <p>
   <div class="mainTableGrey">
-      <table>
-        <tr>
-          <td colspan="2">
-            <p><h5>🎲 예 9.3</h5>
+        <h5>🎲 예 9.3</h5>
             [예 9.1] 학년별 영어 성적자료에 대한 분산분석에서는 귀무가설을 기각하여 각 학년의 영어평균성적이 모두 같은 것은 아니라는 결론을 얻었다. 이제 차이가 어느 학년간에 존재하는지를 유의수준 5％로 각 학년간의 평균을 『eStat』을 이용하여 다중비교하여 보자. 
-            <p>
-          </td>
-        </tr>
-        <tr>
-          <td style="width:100px">
-            <h5>풀이</h5>
-            <input class="qrBtn" type="image" src="../../QR/EX090101.svg" onclick="window.open(addrStr[27])">
-          </td>
-          <td>
-            <p>
+        <h5>풀이</h5>
             [그림 9.5]의 분산분석 선택사항 창에서 ‘다중비교’를 선택하면 [그림 9.10]과 같은 Tukey의  다중비교 결과를 보여준다. 『eStat』에서는 표본평균 조합에 대한 평균차와 95% HSD 값을 보여준다. 이어서 표본평균들의 크기 순서대로 각 수준을 행과 열에 나열하여 두 수준들의 조합에 대해 검정 결과가 유의수준 5％로 유의하면 * 표시를 하고, 유의수준 1%로 유의하면 ** 표시, 유의하지 않으면 빈칸으로 남겨둔다.
             <p>
-            <img src="../FigureU/Fig0910.png">
+         <div>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/EX090101.svg" onclick="window.open(addrStr[27])">
+            <img src="./Figure/Fig0910.png">
             <div class="textLeft">[그림 9.10] 『eStat』에서 일원분산분석 다중비교 HSD검정 결과표</div>
+         </div>
             <p>
-          </td>
-        </tr>
-      </table>
   </div>
   <p>
   <div class="mainTable">
@@ -460,29 +418,18 @@
   </div>
   <p>
   <div class="mainTableGrey">
-      <table>
-        <tr>
-          <td colspan="2">
-            <p><h5>🎲 예 9.4</h5>
+        <h5>🎲 예 9.4</h5>
             [예 9.1]의 학년별 영어성적 비교에 대한 잔차분석을 하여 보자.
             <p>
-          </td>
-        </tr>
-        <tr>
-          <td style="width:100px">
-            <h5>풀이</h5>
-            <input class="qrBtn" type="image" src="../../QR/EX090101.svg" onclick="window.open(addrStr[27])">
-          </td>
-          <td>
-            <p>
+        <h5>풀이</h5>
             [그림 9.5]의 분산분석 선택사항 창에서 ‘잔차와 예측값 산점도’를 클릭하면 [그림 9.11]과 같은 잔차 대 예측치의 산점도가 나타난다. 이 산점도에서는 잔차들이 0을 중심으로 특이한 경향을 보이지 않고 랜덤하게 나타나면 각 가정이 타당함을 의미한다. 이 산점도에서는 특이한 경향이 나타나지 않는다.
             <p>
-            <img src="../FigureU/Fig0911.png">
+         <div>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/EX090101.svg" onclick="window.open(addrStr[27])">
+            <img src="./Figure/Fig0911.png">
             <div class="textLeft">[그림 9.11]  영어성적 예에 대한 잔차분석</div>
+         </div>
             <p>
-          </td>
-        </tr>
-      </table>
   </div>
 
 
@@ -628,10 +575,7 @@
   </div>
   <p>
   <div class="mainTableGrey">
-      <table>
-        <tr>
-          <td colspan="2">
-            <p><h5>🎲 예 9.5</h5>
+        <h5>🎲 예 9.5</h5>
              표 9.7은 세 종류의 자동차(A, B, C)를 다섯 명의 운전자가 측정한 연비 데이터([표 9.3]_를 회사와 운전자에 따라서 정리해 적은 것이다. 
             <p>
             <div class="textLeft">표 9.7  세 회사 자동차의 연비</div>
@@ -653,38 +597,33 @@
               2) 이 데이터가 확률화블록계획법에 의해 측정되었다고 가정할 때 『eStat』을 이용하여 세 회사 자동차의 연비가 같은지에 대한 분산분석을 하라.[예 9.1]을 『eStat』을 이용하여 분산분석 하자. 
             </div>
             <p>
-          </td>
-        </tr>
-        <tr>
-          <td style="width:100px">
-            <h5>풀이</h5>
-            <input class="qrBtn" type="image" src="../../QR/EX090201.svg" onclick="window.open(addrStr[28])">
-          </td>
-          <td>
-            <p>
+        <h5>풀이</h5>
              1) 『eStat』에서 [그림 9.12]와 같이 데이터 입력을 하고 분산분석 아이콘을 클릭하여 나타나는 변량선택창에서 ‘분석변량’을 연비, ‘by 그룹’을 자동차로 선택하면 [그림 9.13]과 같은 각 자동차별 평균-신뢰구간 그래프가 나타난다. 
             <p>
-            <img src="../FigureU/Fig0912.png">
+         <div>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/EX090201.svg" onclick="window.open(addrStr[28])">
+            <img src="./Figure/Fig0912.png">
             <div class="textLeft">[그림 9.12] 확률화블록계획법 분산분석을 위한 『eStat』데이터 입력</div>
+         </div>
             <p>
-            <img src="../FigureU/Fig0913.png">
+            <img src="./Figure/Fig0913.png">
             <div class="textLeft">[그림 9.13] 각 자동차별 평균-신뢰구간 그래프</div>
             <p>
             그래프 밑의 선택사항에서 ‘ANOVA F 검정’ 버튼을 클릭하면 [그림 9.14]의 분산분석 그래프와 [그림 9.15]와 같은 분산분석표가
             나타난다. 분산분석의 결과는 각 회사 자동차간에 연비의 차가 없다는 것이다. [그림 9.16]의 다중비교 결과도 마찬가지이다.
             <p>
-            <img src="../FigureU/Fig0914.png">
+            <img src="./Figure/Fig0914.png">
             <div class="textLeft">[그림 9.14] 각 자동차별 연비에 대한 분산분석</div>
             <p>
-            <img src="../FigureU/Fig0915.png">
+            <img src="./Figure/Fig0915.png">
             <div class="textLeft">[그림 9.15] 각 자동차별 연비에 대한 분산분석</div>
             <p>
-            <img src="../FigureU/Fig0916.png">
+            <img src="./Figure/Fig0916.png">
             <div class="textLeft">[그림 9.16] 각 자동차별 연비에 대한 다중비교 </div>
             <p>
             2) 이 데이터가 확률화블록계획법으로 추출되었다면 오차제곱합에서 블록제곱합을 분리하여야 한다. 『eStat』의 변량선택창에서 ‘by 그룹’에 운전자를 추가하면 [그림 9.17]과 같은 각 자동차 종류에 대해 운전자별 연비를 볼 수 있는 산점도가 나타난다. 이 산점도를 보면 운전자별 연비가 많이 차이가 있음을 볼 수 있다.
             <p>
-            <img src="../FigureU/Fig0917.png">
+            <img src="./Figure/Fig0917.png">
             <div class="textLeft">[그림 9.17] 자동차와 운전자에 대한 연비 산점도</div>
             <p>
             그래프 밑의 선택사항에서 [ANOVA F 검정] 버튼을 클릭하면 [그림 9.18]과 같은 평균표와 [그림 9.19]와 같은 분산분석표가 
@@ -696,10 +635,10 @@
             43.447로 \(\small F_{2,8,0.05}\) = 4.46 보다 크므로 \(\small H_0\)를 유의수준 0.05하에서 기각할 수 있다. 
             결론적으로, 오차항에서 블록의 변동을 제거함으로써 각 제품 간의 유의한 차이를 찾아낼 수 있다.
             <p>
-            <img src="../FigureU/Fig0918.png">
+            <img src="./Figure/Fig0918.png">
             <div class="textLeft">[그림 9.18] 각 수준별 평균 (표준편차는 계산이 불가하여 NaN 표시)</div>
             <p>
-            <img src="../FigureU/Fig0919.png">
+            <img src="./Figure/Fig0919.png">
             <div class="textLeft">[그림 9.19] 확률화블록계획법에 대한 분산분석표</div>
             <p>
             평균값으로 보면 A 회사의 자동차가 연비가 가장 좋다고 할 수 있다. 다른 회사 자동차와의 차이를 더 자세히 알아보기 위해 앞 절의 다중비교방법을 적용하여보자. 이 예에서는 각 수준에서의 반복수가 같으므로 모든 평균비교에 하나의 HSD값을 사용할 수 있다. 즉,
@@ -708,22 +647,16 @@
             <p>
             따라서 각 평균값의 차이(4.04, 1.40, 2.64)가 기준값 1.257보다 모두 크므로 세 회사 자동차 간에 모두 유의한 연비의 차이가 있다고 할 수 있다.
             <p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU900_TestANOVA_RBD.svg" onclick="window.open(addrStr[172])">
-          </td>
-          <td>
             『eStatU』를 이용하여 확률화블록계획 데이터를 분석할 수도 있다. 메뉴에서 ’가설검정 : 분산분석 : 확률화블록계획’을 선택하여
             다음과 같이 데이터를 입력한 후 [실행] 버튼을 클릭하면 [그림 9.17]과 같은 블록별 선그림과 분산분석표가 나타난다. 
-            <p>
-                  <img class="imgFig600400" src="../FigureU/Fig0920.png">
-                  <div class="figText">[그림 9.20] 『eStatU』확률화블록계획 데이터 입력</div>
-          </td>
-        </tr>
         <p>
-      </table>
+        <!---   ************ html for ANOVA - RBD ************  ---->
+        <p>
+        <b>[<span data-msgid="Testing Hypothesis ANOVA"></span> - <span data-msgid="RBD"></span>]</b>
+        <p>
+        <iframe class="example110" src="./example/090201.html"> </iframe>
+        <div class="figText">[그림 9.20] 『eStatU』확률화블록계획 데이터 입력</div>
+        <p>
   </div>
   <p>
 
@@ -899,44 +832,31 @@
     <p>
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
-      <b>[예 9.6]</b> 표 9.12는 네 종류의 차 (A, B, C, D) 에 대하여 4명의 운전자와 네 가지 도로형태에 대한 라틴방격 실험을 하여 연비 데이터를 얻은 것이다. 
-      『eStatU』를 이용하여 네 종류 차의 연비가 다른지 분산분석을 하라. 
+        <h5>🎲 예 9.6</h5>
+            표 9.12는 네 종류의 차 (A, B, C, D) 에 대하여 4명의 운전자와 네 가지 도로형태에 대한 라틴방격 실험을 하여 연비 데이터를 얻은 것이다. 
+           『eStatU』를 이용하여 네 종류 차의 연비가 다른지 분산분석을 하라. 
+           <p>
+           <div class="textLeft">표 9.12  네 종류의 차 (A, B, C, D)에 대하여 4명의 운전자와 네 가지 도로형태에 대한 라틴방격 실험을 한 연비 데이터 (\(km/h\))</div>
+           <table style="width:700px"> 
+             <tr> 
+               <th style="width:120px"></th> <th>열 1 (도로 1)</th> <th>열 2 (도로 2)</th> <th>열 3 (도로 3)</th> <th>열 4 (도로 4)</th> </th>
+             </tr>
+             <tr> <td class="tdCenter">행 1 (운전자 1)</td>  <td class="tdCenter">A (22)</td> <td class="tdCenter">B (16)</td> <td class="tdCenter">C (19)</td> <td class="tdCenter">D (21)</td> </tr>
+             <tr> <td class="tdCenter">행 2 (운전자 2)</td>  <td class="tdCenter">B (24)</td> <td class="tdCenter">C (16)</td> <td class="tdCenter">D (12)</td> <td class="tdCenter">A (15)</td> </tr>
+             <tr> <td class="tdCenter">행 3 (운전자 3)</td>  <td class="tdCenter">C (17)</td> <td class="tdCenter">D (21)</td> <td class="tdCenter">A (20)</td> <td class="tdCenter">B (15)</td> </tr>
+             <tr> <td class="tdCenter">행 4 (운전자 4)</td>  <td class="tdCenter">D (18)</td> <td class="tdCenter">A (18)</td> <td class="tdCenter">B (23)</td> <td class="tdCenter">C (22)</td> </tr>
+          </table>
+      <h5>풀이</h5>
+         『eStatU』- ‘가설검정 ANOVA – 라틴방격법’, 을 선택한 후 처리수 r = 4를 선택한 후 [그림 9.21]과 같이 데이터를 입력한다. 
+          <p>
+          [실행] 버튼을 클릭하면 처리 수준별 점그래프와 평균선이 [그림 9.22]와 같이 나타나고 그 아래 [그림 9.23]과 같은 분산분석표가 나타난다. 분산분석 결과 차종류에 대한 연비차이는 없다.  
+          <p>
+      <!---   ************ html for ANOVA Latin ************  ---->
       <p>
-        <div class="textLeft">표 9.12  네 종류의 차 (A, B, C, D)에 대하여 4명의 운전자와 네 가지 도로형태에 대한 라틴방격 실험을 한 연비 데이터 (\(km/h\))</div>
-      <table style="width:700px"> 
-         <tr> 
-           <th style="width:120px"></th> <th>열 1 (도로 1)</th> <th>열 2 (도로 2)</th> <th>열 3 (도로 3)</th> <th>열 4 (도로 4)</th> </th>
-         </tr>
-         <tr> <td class="tdCenter">행 1 (운전자 1)</td>  <td class="tdCenter">A (22)</td> <td class="tdCenter">B (16)</td> <td class="tdCenter">C (19)</td> <td class="tdCenter">D (21)</td> </tr>
-         <tr> <td class="tdCenter">행 2 (운전자 2)</td>  <td class="tdCenter">B (24)</td> <td class="tdCenter">C (16)</td> <td class="tdCenter">D (12)</td> <td class="tdCenter">A (15)</td> </tr>
-         <tr> <td class="tdCenter">행 3 (운전자 3)</td>  <td class="tdCenter">C (17)</td> <td class="tdCenter">D (21)</td> <td class="tdCenter">A (20)</td> <td class="tdCenter">B (15)</td> </tr>
-         <tr> <td class="tdCenter">행 4 (운전자 4)</td>  <td class="tdCenter">D (18)</td> <td class="tdCenter">A (18)</td> <td class="tdCenter">B (23)</td> <td class="tdCenter">C (22)</td> </tr>
-      </table>
+      <b>[<span data-msgid="Testing Hypothesis ANOVA"></span> - <span data-msgid="Latin"></span>]</b>
       <p>
-      <b>풀이</b>
+         <iframe class="example120" src="./example/090202.html"> </iframe>
       <p>
-       『eStatU』- ‘가설검정 ANOVA – 라틴방격법’, 을 선택한 후 처리수 r = 4를 선택한 후 [그림 9.21]과 같이 데이터를 입력한다. 
-        <p>
-        <table class="width:650px">
-          <tr>
-            <td>
-              <input class="qrBtn" type="image" src="../../QR/eStatU900_TestANOVA_Latin.svg" onclick="window.open(addrStr[173])">
-            </td>
-            <td>
-              <img class="imgFig600400" src="../FigureU/Fig0921.png">
-              <div class="figText">[그림 9.21] 『eStatU』 라틴방격법의 데이터 입력</div>
-            </td>
-          </tr>
-        </table>
-        <p>
-        [실행] 버튼을 클릭하면 처리 수준별 점그래프와 평균선이 [그림 9.22]와 같이 나타나고 그 아래 [그림 9.23]과 같은 분산분석표가 나타난다. 분산분석 결과 차종류에 대한 연비차이는 없다.  
-        <p>
-          <img class="imgFig600400" src="../FigureU/Fig0922.png">
-          <div class="figText">[그림 9.22] 라틴방격법 데이터의 자동차별 점그림과 평균그래프 </div>
-        <p>
-          <img class="imgFig600400" src="../FigureU/Fig0923.png">
-          <div class="figText">[그림 9.23] 라틴방격법 분산분석표 </div>
-        <p>
     </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
@@ -1077,12 +997,9 @@
   </div>
   <p>
   <div class="mainTableGrey">
-      <table style="width:600px; margin-left:2em;"> 
-        <tr>
-          <td colspan="2">
-            <p><h5>🎲 예 9.6</h5>
+        <h5>🎲 예 9.7</h5>
              네 가지 종류의 비료와 세 가지 벼품종에 대한 쌀 수확량을 조사하기 위하여 한 농업 시험장에서 각 수준에 대한 3회 반복 실험을 한 자료가 표 9.14와 같다
-            <p>
+        <p>
             <div class="textLeft">표 9.14  비료와 벼품종에 따른 수확량 (단위 kg)</div>
             <table style="width:500px"> 
                <tr> 
@@ -1131,21 +1048,12 @@
             <div class="textL20M20">
               4) 『eStat』을 이용하여 이원분산분석 검정 결과를 확인하라.
             </div>       
-            <p>
-          </td>
-        </tr>
-        <tr>
-          <td style="width:100px">
-            <h5>풀이</h5>
-            <input class="qrBtn" type="image" src="../../QR/EX090301.svg" onclick="window.open(addrStr[29])">
-          </td>
-          <td>
-            <p>
+        <h5>풀이</h5>
             1) 편의상 비료를 인자A, 벼를 인자B라고 하고 주효과 및 교호작용을 알아보기 위하여 각 수준별 조합에 대한 평균 쌀 수확량을
             계산하면 표 9.15와 같다. 실험 자료를 \(y_{ijk}\)로 표시하였을 때 각각의 비료와 벼에 대한 평균 기호 표시
             \({\overline y}_{ij\cdot}\), \({\overline y}_{\cdot j \cdot}\), \({\overline y}_{i \cdot \cdot}\), 
             \({\overline y}_{\cdot \cdot \cdot}\)에 주의하라.
-            <p>
+        <p>
             <div class="textLeft">표 9.15  각각의 벼와 비료에 대한 평균 수확량</div>
             <table style="width:500px"> 
                <tr> 
@@ -1191,95 +1099,98 @@
                  <th class="tdCenter">\(\overline y_{\cdot\cdot\cdot}\) = 59.1</th>
                </tr>
             </table>
-            <p>
+        <p>
             2) 『eStat』을 이용하여 이원분산분석용 산점도를 그리려면 먼저 자료를 [그림 9.24]와 같이 변량1은 비료, 변량2는 벼품종, 변량3은 수확량을 입력한다. 
-            <p>
-            <img src="../FigureU/Fig0924.png">
+        <p>
+          <div>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/EX090301.svg" onclick="window.open(addrStr[29])">
+            <img src="./Figure/Fig0924.png">
             <div class="textLeft">[그림 9.24] 비료와 벼품종별 수확량 데이터 입력</div>
-            <p>
+          </div>
+        <p>
             주메뉴의 분산분석 아이콘을 클릭하여 나타나는 변량선택박스에서 ‘분석변량’을 수확량, ‘by 그룹’ 변량을 벼품종과 비료를 차례로 선택하면 [그림 9.25]과 같은 벼품종별 쌀의 수확량에 대한 산점도가 나타난다. 그리고 각 수준별 조합의 평균을 비료별로 꺾은선으로 연결하면서 색으로 표시하여 준다. 이 그래프에서 벼품종 1은 사용하는 비료에 관계없이 벼품종 3보다 항상 수확량이 많다는 것을 보여준다. 벼품종 2는 사용하는 비료의 종류에 따라 수확량의 변화가 심하며(즉, 교호작용이 있다), 비료의 종류 1을 사용하면 대체로 벼의 품종에 관계없이 높은 수확량을 얻을 수 있다는 것을 알 수 있다. 
-            <p>
-            <img src="../FigureU/Fig0925.png">
+        <p>
+            <img src="./Figure/Fig0925.png">
             <div class="textLeft">[그림 9.25]  비료와 벼품종별 평균 수확량의 그래프 </div>
-            <p>
+        <p>
             3) 인자 A, 즉, 벼의 주효과를 검정하는 것은 다음 귀무가설을 검정하는 것이다.
             <div class="textL20">
               \(\quad \small H_0\) : 세 가지 벼품종에 대한 평균수확량은 같다.
             </div>
-            <p>
+        <p>
             이 귀무가설이 기각되면 ‘벼의 주효과가 있다’라고 말한다. 벼의 주효과를 검정하기 위해서는 일원분산분석에서와 같이 각각의 벼품종에 대한 평균에서 전체평균까지의 거리제곱합을 이용한다. 
-            <p>
+        <p>
               \(\quad \small {SSA} = 12(61.3-{\overline y}_{\cdot \cdot \cdot})^2 + 12(61.3-{\overline y}_{\cdot \cdot \cdot})^2 + 12(54.8-{\overline y}_{\cdot \cdot \cdot})^2 \) = 342.39
-            <p>
+        <p>
             여기서 가중치 12는 각각의 벼에 대한 실험 자료의 개수를 의미한다.
-            <p>
+        <p>
             인자 B, 즉, 비료의 주효과를 검정하는 것은 다음 귀무가설을 검정하는 것이다.
-            <p>
+        <p>
               \(\quad \small H_0\) : 네 종류 비료의 평균수확량은 같다.
-            <p>
+        <p>
             이 귀무가설이 기각되면 ‘비료의 주효과가 있다’라고 말한다. 비료의 주효과를 검정하기 위해서는 각각의 비료에 대한 평균에서 전체평균까지의 거리제곱합을 이용한다. 
-            <p>
+        <p>
               \(\quad \small {SSB} = 9(67.4 - {\overline y}_{\cdot \cdot \cdot})^2 + 9(56.7 - {\overline y}_{\cdot \cdot \cdot} )^2 + 9(59.2 - {\overline y}_{\cdot \cdot \cdot})^2 + 9(53.1 - {\overline y}_{\cdot \cdot \cdot})^2  \) = 1002.89
-            <p>
+        <p>
             여기서 가중치 9는 각각의 비료에 대한 실험 자료의 개수를 의미한다.
-            <p>
+        <p>
             벼와 비료의 교호작용 효과(인자 AB라고 표현함)를 검정하는 것은 다음 귀무가설을 검정하는 것이다.
-            <p>
+        <p>
               \(\quad \small H_0\) : 벼와 비료 사이에는 교호작용이 없다
-            <p>
+        <p>
             이 귀무가설이 기각되면 ‘벼와 비료 사이에는 교호작용 효과가 있다’라고 말한다. 이 검정을 위해서는 각각의 벼와 비료에 대한 평균에서 벼의 평균과 비료의 평균을 뺀 후 전체평균을 더한 거리제곱합을 이용한다. 
-            <p>
+        <p>
               \(\quad\)  \(\small {SSAB} = 3(66.7- {\overline y}_{1 \cdot \cdot} - {\overline y}_{\cdot 1 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2 + 3(72.3- {\overline y}_{1 \cdot \cdot} -{\overline y}_{\cdot 2 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2  + 3(63.3- {\overline y}_{1 \cdot \cdot} - {\overline y}_{\cdot 3 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2 \) <br>
               \(\qquad\) \(\small + 3(62.0- {\overline y}_{2 \cdot \cdot} - {\overline y}_{\cdot 1 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2 + 3(50.7- {\overline y}_{2 \cdot \cdot} - {\overline y}_{\cdot 2 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2 + 3(57.3- {\overline y}_{2 \cdot \cdot} -{\overline y}_{\cdot 3 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2  \)<br>
               \(\qquad\) \(\small + 3(64.0- {\overline y}_{3 \cdot \cdot} - {\overline y}_{\cdot 1 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2 + 3(65.3- {\overline y}_{3 \cdot \cdot} - {\overline y}_{\cdot 2 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2  + 3(48.3- {\overline y}_{3 \cdot \cdot} - {\overline y}_{\cdot 3 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2 \)<br>
               \(\qquad\) \(\small + 3(52.3- {\overline y}_{4 \cdot \cdot} - {\overline y}_{\cdot 1 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2 + 3(57.0- {\overline y}_{4 \cdot \cdot} - {\overline y}_{\cdot 2 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2 + 3(50.0- {\overline y}_{4 \cdot \cdot} -{\overline y}_{\cdot 3 \cdot} +{\overline y}_{\cdot \cdot \cdot})^2  \)<br>
-            <p>
+        <p>
             이러한 제곱합을 이용하여 각각의 효과를 바로 검정할 수는 없고 오차제곱합(error sum of squares; SSE)을 이용하여 
             수정을 하는데 이를 구하기 위해서는 먼저 각각의 자료에서 전체평균까지의 거리의 합인 총제곱합(total sum of squares; SST)을 구한다.
-            <p>
+        <p>
               \(\quad \small {SST} =  ( 64 -{\overline y}_{\cdot \cdot \cdot})^2 + ( 66 -{\overline y}_{\cdot \cdot \cdot})^2 + ( 70 -{\overline y}_{\cdot \cdot \cdot})^2 + \cdots +
                ( 53 -{\overline y}_{\cdot \cdot \cdot})^2 + ( 59 -{\overline y}_{\cdot \cdot \cdot})^2  + ( 38 -{\overline y}_{\cdot \cdot \cdot})^2 = 3267.56 \)
-            <p>
+        <p>
             수학적으로 이 총제곱합은 다른 제곱합들의 합이 됨을 증명할 수 있다.
-            <p>
+        <p>
               \(\quad \small {SST} = SSA + SSB + SSAB + SSE \)
-            <p>
+        <p>
             따라서 오차제곱합은 다음과 같다.
-            <p>
+        <p>
               \(\quad \small {SSE} = SST - (SSA + SSB + SSAB) \)
-            <p>
+        <p>
             만일 각각의 벼나 비료에 대한 수확량이 정규분포를 따르고 또 분산이 같다고 가정할 수 있다면 이들 제곱합을 자유도로 나눈 통계량은
             F 분포를 따른다. 따라서 주효과와 교호작용효과는 F 분포를 이용하여 검정할 수 있는데 교호작용효과를 분리할 경우 이것을 
             먼저 검정한다. 유의수준 5％로 검정한 결과는 다음과 같다.
-            <p>
+        <p>
             ① 벼품종과 비료에 대한 교호작용효과의 검정
-           <p>
+        <p>
              \(\qquad \small F_0 = \frac {MSAB}{MSE} = \frac { \frac{SSAB}{(3-1)(4-1)} } {\frac {SSE}{24}} \) = 1.77 <br>
              \(\qquad \small F_{6,24; 0.05} \) = 2.51
-           <p>
-           따라서 교호작용이 있다고 할 수 없고 [그림 9.25]의 평균수확량의 그림에 나타난 교호작용효과는 무시할 수 있을 정도로 작거나, 
-           다른 오차에 기인한 우연한 것일 수 있다고 해석할 수 있다. 『eStat』를 이용하여 \(\small F_0\)에 대한 p-값을 구하면 0.1488 이다. 
-           <p>
-           ② 벼품종(A 인자)에 대한 주효과의 검정
-           <p>
+        <p>
+            따라서 교호작용이 있다고 할 수 없고 [그림 9.25]의 평균수확량의 그림에 나타난 교호작용효과는 무시할 수 있을 정도로 작거나, 
+            다른 오차에 기인한 우연한 것일 수 있다고 해석할 수 있다. 『eStat』를 이용하여 \(\small F_0\)에 대한 p-값을 구하면 0.1488 이다. 
+        <p>
+            ② 벼품종(A 인자)에 대한 주효과의 검정
+        <p>
              \(\qquad \small F_0 = \frac {MSA}{MSE} = \frac { \frac{SSA}{(3-1)} } {\frac {SSE}{24}}  \) = 3.08 <br>
              \(\qquad \small F_{2,24; 0.05} \) = 3.40
-           <p>
-           따라서 벼품종에 따라 평균수확량이 같다는 귀무가설은 기각하지 못한다. 즉, 벼의 종류에 따라 수확량의 차이가 있다는 충분한 
-           증거가 없다. 『eStat』를 이용하여 \(\small F_0\) = 3.08에 대한 p-값을 구하면 0.0644이다.
-           <p>
-           ③ 비료(B 인자)에 대한 주효과의 검정
-           <p>
+        <p>
+            따라서 벼품종에 따라 평균수확량이 같다는 귀무가설은 기각하지 못한다. 즉, 벼의 종류에 따라 수확량의 차이가 있다는 충분한 
+            증거가 없다. 『eStat』를 이용하여 \(\small F_0\) = 3.08에 대한 p-값을 구하면 0.0644이다.
+        <p>
+            ③ 비료(B 인자)에 대한 주효과의 검정
+        <p>
              \(\qquad \small F_0 = \frac {MSB}{MSE} = \frac { \frac{SSB}{(4-1)} } {\frac {SSE}{24}} \) = 6.02 <br>
              \(\qquad \small F_{3,24; 0.05} \) = 3.01
-           <p>
-           따라서 비료의 종류에 따라 평균수확량이 같다는 귀무가설은 기각된다. 즉, 사용한 비료의 종류에 따라 수확량의 차이가 있다. 
-           1)의 검정에서 교호작용효과는 없다고 가정할 수 있으므로 우리는 평균값의 산점도에서 알 수 있듯이 비료종류 1의 사용이 
-           평균적으로 높은 수확량을 준다는 결론을 내릴 수 있다. 『eStat』를 이용하여 \(\small F_0\) = 6.02에 대한 p-값을 
-           구하면 0.0033이다.
-           <p>
+        <p>
+            따라서 비료의 종류에 따라 평균수확량이 같다는 귀무가설은 기각된다. 즉, 사용한 비료의 종류에 따라 수확량의 차이가 있다. 
+            1)의 검정에서 교호작용효과는 없다고 가정할 수 있으므로 우리는 평균값의 산점도에서 알 수 있듯이 비료종류 1의 사용이 
+            평균적으로 높은 수확량을 준다는 결론을 내릴 수 있다. 『eStat』를 이용하여 \(\small F_0\) = 6.02에 대한 p-값을 
+            구하면 0.0033이다.
+        <p>
            표 9.16은 이 자료에 대한 이원분산분석 결과이다. 
-           <p>
+        <p>
              <div class="textLeft">표 9.16 비료와 벼품종에 따른 수확량의 이원분산분석표 </div>
              <table style="width:600px"> 
                 <tr> 
@@ -1331,204 +1242,29 @@
                   <th class="tdCenter"></th>
                 </tr>
              </table>
-           <p>
-           4) [그림 9.25] 밑의 이원분산분석 선택사항에서 ‘ANOVA F 검정’ 버튼을 누르면 결과저장창에 각 수준별 조합에 대한 2차원 평균/표준편차표([그림 9.26])와 이원분산분석표([그림 9.27])이  나타난다. 
-           <p>
-             <img src="../FigureU/Fig0926.png">
+        <p>
+            4) [그림 9.25] 밑의 이원분산분석 선택사항에서 ‘ANOVA F 검정’ 버튼을 누르면 결과저장창에 각 수준별 조합에 대한 2차원 평균/표준편차표([그림 9.26])와 이원분산분석표([그림 9.27])이  나타난다. 
+        <p>
+             <img src="./Figure/Fig0926.png">
              <div class="textLeft">[그림 9.26] 각 수준 조합에 대한 평균/표준편차표</div>
-           <p>
-             <img src="../FigureU/Fig0927.png">
+        <p>
+             <img src="./Figure/Fig0927.png">
              <div class="textLeft">[그림 9.27] 이원분산분석 결과표</div>
-           <p>
-          </td>
-        </tr>
-      </table>
+        <p>
+           다음과 같은『eStatU』 모듈을 이용하여 이원분산분석을 할 수도 있다.
+        <p>
+        <!---   ************ html for two factors ANOVA ************  ---->
+        <p>
+        <b>[<span data-msgid="Testing Hypothesis ANOVA2"></span>]</b>
+        <iframe class="example" src="./example/090301.html"> </iframe>
+        <p>
   </div>
   <p>
-   <div class="mainTablePink">
-    <h4> 연습문제 </h4>
-    <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
-
-    <h6 class="textL30M30">9.1 분산분석법을 처음 발표한 사람은? </h6> 
-    <form name="Q1">
-      <label><input type="radio" name="item" value="1"> Laspeyres</label><br>
-      <label><input type="radio" name="item" value="2"> Paasche</label><br>
-      <label><input type="radio" name="item" value="3"> Fisher</label><br>
-      <label><input type="radio" name="item" value="4"> Edgeworth</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(9,1,Q1)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ1">
-    </form>
-
-    <h6 class="textL30M30">9.2 분산분석의 약자는 무엇인가? </h6>
-    <form name="Q2">
-      <label><input type="radio" name="item" value="1"> ANOVA</label><br>
-      <label><input type="radio" name="item" value="2"> t검정</label><br>
-      <label><input type="radio" name="item" value="3"> F검정</label><br>
-      <label><input type="radio" name="item" value="4"> 카이제곱검정</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(9,2,Q2)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ2">
-    </form>
-
-    <h6 class="textL30M30">9.3  분산분석을 이용하는 분야가 아닌 것은? <h6>
-    <form name="Q3">
-      <label><input type="radio" name="item" value="1"> 시장조사	</label><br>
-      <label><input type="radio" name="item" value="2"> 품질관리	</label><br>
-      <label><input type="radio" name="item" value="3"> 경제예측</label><br>
-      <label><input type="radio" name="item" value="4"> 의학실험</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(9,3,Q3)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ3">
-    </form>
-
-    <h6 class="textL30M30">9.4  분산분석에서 사용하는 표본통계량의 분포는?  </h6>
-    <form name="Q4">
-      <label><input type="radio" name="item" value="1"> t 분포</label><br>
-      <label><input type="radio" name="item" value="2"> F 분포</label><br>
-      <label><input type="radio" name="item" value="3"> 카이제곱분포</label><br>
-      <label><input type="radio" name="item" value="4"> 정규분포</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(9,4,Q4)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ4">
-    </form>
-
-    <h6 class="textL30M30">9.5  일원분산분석을 하는 과정을 맞게 나열한 것은? </h6>
-      <div class="textLeft">a. 총변동, 급간변동, 급내변동을 구한다.</div>
-      <div class="textLeft">b. 가설을 설정한다.</div>
-      <div class="textLeft">c. 가설을 검정한다.</div>
-      <div class="textLeft">d. 분산분석표에서 분산비를 구한다.</div>
-      <div class="textLeft">e. F 분포표에서 값을 찾는다.</div>
-      <p>
-    <form name="Q5">
-      <label><input type="radio" name="item" value="1"> a → b → c → d → e</label><br>
-      <label><input type="radio" name="item" value="2"> b → d → e → a → c</label><br>
-      <label><input type="radio" name="item" value="3"> b → a → d → e → c</label><br>
-      <label><input type="radio" name="item" value="4"> b → e → d → a → c</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(9,5,Q5)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ5">
-    </form>
-  
-    <h6 class="textL30M30">9.6  총변동(SST), 급간변동(SSB), 급내변동(SSE) 사이의 관계는? </h6>
-    <form name="Q6">
-      <label><input type="radio" name="item" value="1"> SST = SSB + SSE</label><br>
-      <label><input type="radio" name="item" value="2"> SST = SSB - SSE</label><br>
-      <label><input type="radio" name="item" value="3"> SST = SSE - SSB</label><br>
-      <label><input type="radio" name="item" value="4"> SST = SSB * SSE</label><br>
-     <p>
-      <input type="button" value="제출" onClick="radio(9,6,Q6)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ6">
-    </form>
-  
-    <h6 class="textL30M30">9.7  \(F_{4,30: 0.05} = 2.87\) 이고, 관찰된  분산비가 6.90일 때, 유의수준 5％로 
-      가설을 검정하면 유의적인 차이는 어떻게 되는가? 
-    </h6>
-    <form name="Q7">
-      <label><input type="radio" name="item" value="1"> 유의적인 차이가 있다.</label><br>
-      <label><input type="radio" name="item" value="2"> 유의적인 차이가 없다.</label><br>
-      <label><input type="radio" name="item" value="3"> 매우 유사하다.</label><br>
-      <label><input type="radio" name="item" value="4"> 알 수 없다.</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(9,7,Q7)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ7">
-    </form>
-  
-    <h6 class="textL30M30">9.8  분산분석표에 나타나는 내용이 아닌 것은? </h6>
-    <form name="Q8">
-      <label><input type="radio" name="item" value="1"> 제곱합</label><br>
-      <label><input type="radio" name="item" value="2"> F 값</label><br>
-      <label><input type="radio" name="item" value="3"> 자유도</label><br>
-      <label><input type="radio" name="item" value="4"> 표준편차</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(9,8,Q8)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ8">
-    </form>
-
-    <h6 class="textL30M30">9.9 실험계획법에서 관측값에 영향을 주는 변량을 무엇이라고 하는가? </h6>
-    <form name="Q9">
-      <label><input type="radio" name="item" value="1"> 원인요소</label><br>
-      <label><input type="radio" name="item" value="2"> 독립변량</label><br>
-      <label><input type="radio" name="item" value="3"> 종속변량</label><br>
-      <label><input type="radio" name="item" value="4"> 인자</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(9,9,Q9)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ9">
-    </form>
-
-    <h6 class="textL30M30">9.10 세 종류의 자동차 연비를 비교하기 위하여 3명의 운전자가 나누어서 측정하고자 한다. 
-      연비는 운전자의 영향을 받을 수 있다. 이때 운전자와 같은 요인을 무어라 부르는가?   </h6>
-    <form name="Q10">
-      <label><input type="radio" name="item" value="1"> 블록변량</label><br>
-      <label><input type="radio" name="item" value="2"> 독립변량</label><br>
-      <label><input type="radio" name="item" value="3"> 종속변량</label><br>
-      <label><input type="radio" name="item" value="4"> 인자</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(9,10,Q10)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ10">
-    </form>
-    
-    <h6 class="textL30M30">9.11 세 종류의 자동차 연비를 측정할 때 운전자의 영향을 줄이기 위해 사용되는 실험계획법은? </h6>
-    <form name="Q11">
-      <label><input type="radio" name="item" value="1"> 완전확률화계획법</label><br>
-      <label><input type="radio" name="item" value="2"> 라틴제곱법</label><br>
-      <label><input type="radio" name="item" value="3"> 이원분산분석</label><br>
-      <label><input type="radio" name="item" value="4"> 확률화블록계획법</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(9,11,Q11)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ11">
-    </form>
-
-    <h6 class="textL30M30">9.12 인자 A의 효과가 인자 B의 수준에 따라 다르게 나타나는 것을 무엇이라고 부르는가? </h6>
-    <form name="Q12">
-      <label><input type="radio" name="item" value="1"> 인자 A의 주효과</label><br>
-      <label><input type="radio" name="item" value="2"> 인자 B의 주효과</label><br>
-      <label><input type="radio" name="item" value="3"> 이원분산분석</label><br>
-      <label><input type="radio" name="item" value="4"> 교호작용효과</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(9,12,Q12)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ12">
-    </form>
-
-  </div>
-
-  <script>
-    for (var i=1; i < ans[9][0]+1; i++) document.getElementById(ansID[i]).disabled = true;
-  </script>
+  <h3 id="0904">9.4  연습문제</h3>
+  <iframe class="exercise" src="./exercise/exercise09.html"></iframe>
   <p>
-
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(168)"> &#10094;&#10094; &nbsp;&nbsp;<b>8장</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(170)"><b>10장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
 
 </div>
-    
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
-    <script>
-        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
-        
-        /* ajust the height when click the toc
-           the code is from https://github.com/twbs/bootstrap/issues/1768
-        */
-        var shiftWindow = function() { scrollBy(0, -50) };
-        window.addEventListener("hashchange", shiftWindow);
-        function load() { if (window.location.hash) shiftWindow(); }
-        
-        /*add Bootstrap styles to tables*/
-        var tables = document.getElementsByTagName("table");
-        for(var i = 0; i < tables.length; ++i){
-            tables[i].className += "table table-bordered table-hover";
-        }
-    </script>
-
 </body>
 </html>
 

@@ -10,12 +10,11 @@
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+  <link href="/estat/eStat/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="../../css/dashboard.css" rel="stylesheet">
+  <link href="/estat/eStat/css/dashboard.css" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -24,12 +23,22 @@
       <![endif]-->
        <style type="text/css">code{white-space: pre;}</style>
        <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
-       <script src="../../js/prism.js"></script>
-       <link rel="stylesheet" href="../../css/prism.css">
-       <script src="../../js/jquery.min.js"></script>    
+       <link rel="stylesheet" href="/estat/eStat/css/pandoc.css">
+       <link rel="stylesheet" href="/estat/eStat/css/prism.css">
+       <script src="/estat/eStat/lib/jquery/jquery.min.js"></script>   
+       <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="/estat/eStat/lib/convertSVG.js"></script>
+       <script src="/estat/eStat/js/prism.js"></script>
+       <script src="/estat/eStat/js/eBook.js"></script>
+       <script src="/estat/eStat/js/eStatU.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>
+       <script> setLanguage('en'); </script>
        <script type="text/javascript" id="MathJax-script" async
 	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
        </script>
+
        <script>
 	 $(document).ready(function() {
   	     toc = $("#sidebar > ul > li > ul");
@@ -48,73 +57,52 @@
   		 $(sections[i]).replaceWith(li);
   	     }
 	 });
-	 </script>
-       <link rel="stylesheet" href="../../css/pandoc.css">
-       <link rel="stylesheet" href="../eStat/css/eStatU.css">
-       <script src="../../js/eBook.js"></script>
-       <script src="../../../eStat/js/language.js" ></script>   
-       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
-       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
-       <script src="../../../eStat/js/eStatU.js"></script>
-       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
-       <script src="../../../eStat/lib/convertSVG.js"></script>
+       </script>
+
 </head>
+
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <ul class="nav navbar-nav">
-    <li><a class="navbar-brand" href="../../../eStat/index.html" target="_blank">eStat</a></li>
-    <li><a class="navbar-brand" href="../../../eStatH/index.html" target="_blank">eStatH</a></li>
-  </ul>
-</nav>
-
+<!-- begin of left sidebar -->
 <div class="container-fluid">
-  <div class="row">
-    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
+<div class="row">
+<div id="sidebar" class="col-sm-2 col-md1 sidebar">
+  <ul>
+    <li> <a href="index.html"><b>Table of Chapters</b> </a> </li>
+    <li> <a href="chapter01.html"> 1. Number of Cases</a> </li>
+    <li> <a href="chapter02.html"> 2. Probability</a> </li>
+    <li> <a href="chapter03.html"> 3. Random Variable and Probability Distribution</a> </li>
       <ul>
-	<li><a href=""></a>
-	  <ul>
-            <li><a href="../eStatH/index.html">Table of Contents</a></li>
-            <li><a href="../eStatH/chapter01.html">1. Number of Cases</a></li>
-            <li><a href="../eStatH/chapter02.html">2. Probability</a></li>
-            <li><a href="../eStatH/chapter03.html">3. Random Variable and Probability Distribution</a></li>
-            <li><a href="../eStatH/chapter04.html">4. Estimation</a></li>
-	  </ul>
-	</li>
+        <li><a href="#0301">3.1  Random Variable</u></a> </li>
+        <li><a href="#0302">3.2  Probability Distribution of Discrete Random Variable</a> </li>
+        <li><a href="#0303">3.3  Probability Distribution of Continuous Random Variable</a> </li>
+        <li><a href="#0304">3.4  Binomial Distribution</a> </li>
+        <li><a href="#0305">3.5  Normal Distribution</a> </li>
+        <li><a href="#0306">3.6  Exercise</a> </li>
       </ul>
-    </div>
-  </div>
+    <li> <a href="chapter04.html"> 4. Estimation</a> </li>
+  </ul>
 </div>
+</div>
+</div>
+<!-- end of left sidebar -->
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
   <!--***********************************************************************-->
   <h1>Chapter 3. Random Variable and Probability Distribution</h1> 
-  <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(152)">&#10094;&#10094; &nbsp;&nbsp;<b>Chapter 2</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(154)"><b>Chapter 4</b>&nbsp;&nbsp; &#10095;&#10095;</button>
-  <p>
-  <table>
-    <tr>
-      <td style="width:300px">
-        <h1>&nbsp; 🎯 🎲 🎰 🎮</h1>        
-        <h4>
-        <a href="#0301"><u>3.1  Random Variable</u></a> <p>
-        <a href="#0302"><u>3.2  Probability Distribution of Discrete Random Variable</u></a> <p>
-        <a href="#0303"><u>3.3  Probability Distribution of Continuous Random Variable</u></a> <p>
-        <a href="#0304"><u>3.4  Binomial Distribution</u></a> <p>
-        <a href="#0305"><u>3.5  Normal Distribution</u></a> <p>
-        <a href="../eStatH/chapter03.pdf" target="_blank"><u>[Chapter 3 pdf]</u></a>
-        </h4>
-      </td>
-      <td style="width:350px">
-        <h1></h1>
-        <p>Probability calculation for certain types of events is widely used in our daily lives. Let's discuss what is a random variable and how to calculate the probability of binomial distribution and normal distribution which are particularly commonly used.
-      </td>
-    </tr>
-  </table>
+  <h1>&nbsp; 🎯 🎲 🎰 🎮</h1>        
+    <b>
+      <ul>
+        <li><a href="#0301">3.1  Random Variable</u></a> </li>
+        <li><a href="#0302">3.2  Probability Distribution of Discrete Random Variable</a> </li>
+        <li><a href="#0303">3.3  Probability Distribution of Continuous Random Variable</a> </li>
+        <li><a href="#0304">3.4  Binomial Distribution</a> </li>
+        <li><a href="#0305">3.5  Normal Distribution</a> </li>
+        <li><a href="#0306">3.6  Exercise</a> </li>
+      </ul>
+      <a href="./pdf/chapter03.pdf" target="_blank">[Chapter3.pdf]</a>
+    </b>
+    <p>Probability calculation for certain types of events is widely used in our daily lives. Let's discuss what is a random variable and how to calculate the probability of binomial distribution and normal distribution which are particularly commonly used.
 <!--
   <h6>
       <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
@@ -125,28 +113,13 @@
   <h3 id="0301">3.1 Random Variable </h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ Think</h4>
           <b>The sample space that can appear by tossing a coin twice is as follows: 
              <div class="textLeft"> \(S\) = {TT, TH, HT, HH}
              </div>
           </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>Which probabilities of various events in the sample space is used a lot in real problem?
-        </td>
-      </tr>
-    </table>
+      <h4>💎 Explore</h4>
+          Which probabilities of various events in the sample space is used a lot in real problem?
   </div>
   <p>
 
@@ -228,22 +201,13 @@
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td style="width:160px">
-            <h4>⏱ Practice 3.1</h4> <p>
-          </td>
-          <td>
-            <p>
+        <h4>⏱ Practice 3.1</h4> <p>
                In the next experiments, distinguish whether the random variable \(X\) is a discrete random variable or a continuous random variable.
             <p>
                1) Number of typhoons \(X\) passing through Korea in a year<br>
                2) Annual precipitation \(X\) in Seoul<br>
                3) The number of goals\(X\)  in a soccer game<br>
                4) Height \(X\) of the first-year male high school students
-         </td>
-        </tr>
-      </table>
     </div>
     <p>
 
@@ -251,29 +215,13 @@
   <h3 id="0302">3.2  Probability Distribution of Discrete Random Variable</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ Think</h4>
           <b>When a coin is tossed twice, if \(X\) is the number of heads, the possible values of 
              \(X\) is 0, 1, and 2. 
           </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 Explore</h4>
             If we arrange all the probabilities for the possible numbers 0, 1, and 2 of \(X\)
             in a table, what does it look like?
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -313,7 +261,7 @@
          probabilities that \(X\) has a certain value \(x\), \(P(X=x)\), as shown in this table. 
          The above probability distribution can be expressed graphically as in &lt;Figure 3.1&gt;.
       <p>
-         <img class="imgFig600600" src="../FigureH/Fig0301.png">
+         <img class="figure" src="./Figure/Fig0301.png">
          <div class="textLeft">&lt;Figure 3.1&gt; robability distribution of a discrete random variable </div>
       <p>
          In general, if a discrete random variable \(X\) can have values \(x_1 , x_2 , \cdots , x_n\)
@@ -411,477 +359,39 @@
       <p>
          2) \(P(1 \le X \le 2) = P(X=1) + P(X=2) = \frac{6}{10} + \frac{1}{10} = \frac{7}{10}\)
       <p>
-      <!----- html for Discrete Distribution --------------------------------------------------->
+      <!-----*** html for Discrete Distribution ***----------------------->
       <b>[<span data-msgid="DiscreteDist">Discrete Distribution</span>]</b>
       <p>
             If you select 'Discrete Distribution' from 『eStatH』 menu, data input window such as 
             in &lt;Figure 3.2&gt; appears. Enter the data here as shown in the figure and click 
             [Execute] button to display the probability distribution graph as shown in &lt;Figure 3.3&gt;. 
       <p>
-      <button type="button" id="eraseDiscrete" style="width:100px;"><b>New Data</b></button>
-      <table style="width: 700px;">
-	<tr>
-          <td></td>
-          <td style="text-align: center;">x<sub>1</sub></td>
-          <td style="text-align: center;">x<sub>2</sub></td>
-          <td style="text-align: center;">x<sub>3</sub></td>
-          <td style="text-align: center;">x<sub>4</sub></td>
-          <td style="text-align: center;">x<sub>5</sub></td>
-          <td style="text-align: center;">x<sub>6</sub></td>
-          <td style="text-align: center;">x<sub>7</sub></td>
-          <td style="text-align: center;">x<sub>8</sub></td>
-          <td style="text-align: center;">x<sub>9</sub></td>
-	</tr>
-        <tr>
-	  <td><b>X</b></td>
-	  <td><input type="text" size=2 id="data11" style="text-align: center;"></td>
-	  <td><input type="text" size=2 id="data12" style="text-align: center;"></td>
-	  <td><input type="text" size=2 id="data13" style="text-align: center;"></td>
-	  <td><input type="text" size=2 id="data14" style="text-align: center;"></td>
-	  <td><input type="text" size=2 id="data15" style="text-align: center;"></td>
-	  <td><input type="text" size=2 id="data16" style="text-align: center;"></td>
-	  <td><input type="text" size=2 id="data17" style="text-align: center;"></td>
-	  <td><input type="text" size=2 id="data18" style="text-align: center;"></td>
-	  <td><input type="text" size=2 id="data19" style="text-align: center;"></td>
-	  <td style="text-align: center;"><span data-msgid="Total">Sum</span> </td>
-        </tr>
-	<tr>
-	  <td><b>P( X = x<sub>i</sub> )</b></td>
-	  <td><input type="text" size=2 id="data21" style="text-align: center;"></td>
-	  <td><input type="text" size=2 id="data22" style="text-align: center;"></td>
-	  <td><input type="text" size=2 id="data23" style="text-align: center;"></td>
-	  <td><input type="text" size=2 id="data24" style="text-align: center;"></td>
-	  <td><input type="text" size=2 id="data25" style="text-align: center;"></td>
-	  <td><input type="text" size=2 id="data26" style="text-align: center;"></td>
-	  <td><input type="text" size=2 id="data27" style="text-align: center;"></td>
-	  <td><input type="text" size=2 id="data28" style="text-align: center;"></td>
-	  <td><input type="text" size=2 id="data29" style="text-align: center;"></td>
-	  <td><input type="text" size=2 id="ptot"   style="text-align: center;"></td>
-	</tr>
-      </table>
-      <div class="figText">&lt;Figure 3.2&gt; Data input for a discrete distribution</div>
-      <p>
-      <button type="button" id="execute"  style="width:100px;"><b><span data-msgid="Execute">Execute</span></b></button>
-      <p>
-      <table style="width:700px">
-        <tr>
-          <td style="width:60px"></td>
-          <td style="color:blue;"><span data-msgid="Mean">Mean</span> E(X) = </td> 
-          <td><input type="text" size=3 id="mean" style="text-align: center;"></td>
-          <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-          <td style="color:blue;"><span data-msgid="Variance">Variance</span> V(X) = </td> 
-          <td><input type="text" size=3 id="vari" style="text-align: center;"></td>
-          <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-          <td style="color:blue;"><span data-msgid="Std Dev">Standard Deviation</span> σ(X) = </td> 
-          <td><input type="text" size=3 id="stdv" style="text-align: center;"></td>
-        </tr>
-      </table>
-      <svg id="chart" width="640" height="620" style="border-style:solid;"> </svg>
-      <p>
-      <button type="button" id="saveGraphDiscrete" >
-	<b><span class="tooltiptext" data-msgid="Graph Save">Graph Save</span></b>
-      </button>
-       <p>
-              <div class="textLeft">&lt;Figure 3.3&gt; Graph of a discrete distribution using 『eStatH』</div>
+          <iframe class="example" src="./example/030201.html"> </iframe>
+          <div class="textLeft">&lt;Figure 3.3&gt; Graph of a discrete distribution using 『eStatH』</div>
       <p>
     </div>
     <p>
-    <!-------Script for Discrete Distribution ----------------------------------------------------------------------->
-  <script>
-      setLanguage('en');
-      var chart = d3.select("#chart");
-      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
-      margin = {top:90, bottom:100, left:60, right:30};
-      svgWidth    = 640;
-      svgHeight   = 620;
-      graphWidth  = svgWidth - margin.left - margin.right;
-      graphHeight = svgHeight - margin.top - margin.bottom;
-
-      var i, j, k, nobs, nrow, nrow2, num, ndvalue; 
-      var ptot, mean, vari, stdv;
-      var gxmin, gxmax, gymin, gymax, temp, freqMax;
-      var mTitle, yTitle, xTitle;
-      var checkFreq = false;
-      var checkInput = false;
-      var rowMax = 9;
-      var fontsize = "1em";
-      var strPath;
-      var colr = ["#FF0000","#FF8000","#FFFF00","#80FF00","#00FFFF","#BF00FF","#FF00FF","#0080FF","#00BFFF","#8000FF"];
-      var catg  = new Array(rowMax);
-      var freq  = new Array(rowMax);
-      document.getElementById("ptot").disabled  = true;
-      document.getElementById("mean").disabled = true;
-      document.getElementById("vari").disabled = true;
-      document.getElementById("stdv").disabled = true;
-      // init example
-      document.getElementById("data11").value = 0;
-      document.getElementById("data12").value = 1;
-      document.getElementById("data13").value = 2;
-      document.getElementById("data21").value = 0.3;
-      document.getElementById("data22").value = 0.6;
-      document.getElementById("data23").value = 0.1;
-
-      // erase Data and Graph
-      d3.select("#eraseDiscrete").on("click",function() {
-        chart.selectAll("*").remove();
-        document.getElementById("data11").value = "";
-        document.getElementById("data12").value = "";
-        document.getElementById("data13").value = "";
-        document.getElementById("data14").value = "";
-        document.getElementById("data15").value = "";
-        document.getElementById("data16").value = "";
-        document.getElementById("data17").value = "";
-        document.getElementById("data18").value = "";
-        document.getElementById("data19").value = "";
-        document.getElementById("data21").value = "";
-        document.getElementById("data22").value = "";
-        document.getElementById("data23").value = "";
-        document.getElementById("data24").value = "";
-        document.getElementById("data25").value = "";
-        document.getElementById("data26").value = "";
-        document.getElementById("data27").value = "";
-        document.getElementById("data28").value = "";
-        document.getElementById("data29").value = "";
-        document.getElementById("mean").value   = "";
-        document.getElementById("vari").value   = "";
-        document.getElementById("stdv").value   = "";
-      })
-      // Draw Bar Graph ======================================
-      d3.select("#execute").on("click",function() {
-        initialize();
-        if (checkInput) return;
-        drawBarGraph(nrow, freq, catg, freqMax, checkFreq);
-      })
-
-      // 초기 작업
-      function initialize() {
-        chart.selectAll("*").remove();
-        // category
-        catg[0] = parseFloat(d3.select("#data11").node().value);
-        catg[1] = parseFloat(d3.select("#data12").node().value);
-        catg[2] = parseFloat(d3.select("#data13").node().value);
-        catg[3] = parseFloat(d3.select("#data14").node().value);
-        catg[4] = parseFloat(d3.select("#data15").node().value);
-        catg[5] = parseFloat(d3.select("#data16").node().value);
-        catg[6] = parseFloat(d3.select("#data17").node().value);
-        catg[7] = parseFloat(d3.select("#data18").node().value);
-        catg[8] = parseFloat(d3.select("#data19").node().value);
-        // freq data
-        freq[0] = parseFloat(d3.select("#data21").node().value);
-        freq[1] = parseFloat(d3.select("#data22").node().value);
-        freq[2] = parseFloat(d3.select("#data23").node().value);
-        freq[3] = parseFloat(d3.select("#data24").node().value);
-        freq[4] = parseFloat(d3.select("#data25").node().value);
-        freq[5] = parseFloat(d3.select("#data26").node().value);
-        freq[6] = parseFloat(d3.select("#data27").node().value);
-        freq[7] = parseFloat(d3.select("#data28").node().value);
-        freq[8] = parseFloat(d3.select("#data29").node().value);
-
-        // 도수 입력한 행의 수 카운트
-        nrow = 0;
-        for (i=0; i<rowMax; i++) { // 입력 행의 수
-            if (!isNaN(catg[i]) ) nrow = i+1;
-        }
-        nrow2 = 0;
-        for (i=0; i<rowMax; i++) { // 입력 행의 수
-            if (!isNaN(freq[i]) ) nrow2 = i+1;
-        }
-        // 입력행이 하나 이상인지 체크
-        if (nrow < 2 ) {
-          checkInput = true;
-          chart.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
-             .text(alertMsg[46][langNum]).style("stroke","red").style("font-size",fontsize);
-          return;
-        }
-        // 자료수가 동일한지 체크
-        if (nrow != nrow2 ) {
-          checkInput = true;
-          chart.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
-             .text(alertMsg[54][langNum]).style("stroke","red").style("font-size",fontsize);
-          return;
-        }
-        //문자 데이터 체크
-        for (i=0; i<nrow; i++) {
-            if ( isNaN(catg[i]) || isNaN(freq[i]) ) { 
-              checkInput = true;
-              chart.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
-                   .text(alertMsg[47][langNum]).style("stroke","red").style("font-size",fontsize);
-              return;
-            }
-        }
-        // probability 체크
-        ptot = 0;
-        for (i=0; i<nrow; i++) {
-            if ( freq[i] < 0 || freq[i] > 1 ) { 
-              checkInput = true;
-              chart.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
-                   .text("???  0 < P( X = xᵢ ) < 1").style("stroke","red").style("font-size",fontsize);
-              return;
-            }
-            ptot += freq[i];
-        }
-        // 확률의 합 체크
-        if ( ptot < 0.99 || ptot > 1.01 ) { 
-              checkInput = true;
-              chart.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
-                   .text("???  ∑ P( X = xᵢ ) = 1").style("stroke","red").style("font-size",fontsize);
-              return;
-        }
-        checkInput = false;
-        // 입력값 합계, 최대도수 계산
-        ptot = 0;
-        mean = 0;
-        vari = 0;
-        freqMax = 0;
-        for (i=0; i<nrow; i++) { 
-            catg[i] = parseFloat(catg[i]);
-            ptot += freq[i];
-            mean += catg[i] * freq[i];
-            vari += catg[i] * catg[i] * freq[i];
-            if (freq[i] > freqMax) freqMax = freq[i];
-        }
-        vari = vari - mean*mean;
-        stdv = Math.sqrt(vari);
-        document.getElementById("ptot").value = f3(ptot);
-        document.getElementById("mean").value = f3(mean);
-        document.getElementById("vari").value = f3(vari);
-        document.getElementById("stdv").value = f3(stdv);
-      }
-
-      // 막대그래프 도수표시 버튼 클릭
-      d3.select("#showfreq").on("click", function() {
-        if (this.checked) {
-            checkFreq = true;
-            drawBarGraph(nrow, dataSet, dvalueLabel, dcolr, freqMax, checkFreq);
-        } else {
-            checkFreq = false;
-            removeFreq();
-        }
-      }) 
-
-      // svg Graph Save
-      d3.select("#saveGraphDiscrete").on("click", function() {
-        var svg = d3.select("#chart");
-        var width = svgWidth;
-        var height = svgHeight;
-        var svgString = getSVGString(svg.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
- 
-  // Draw Bar Graph
-  function drawBarGraph(ndvalue, dataSet, dvalueLabel, freqMax, checkFreq) {
-    var i, j, str, tx, ty, x1, y1;
-    var betweenbarWidth = graphWidth / ndvalue; // 막대와 막대 사이의 너비
-    var barWidth = betweenbarWidth * 0.6; // 막대의 너비
-    var gapWidth = betweenbarWidth * 0.2;
-    var ybuffer  = graphHeight * 0.1;
-    var yheight  = graphHeight * 0.8;
-    var freqRatioV = yheight / freqMax; // 그래프 영역과 데이터 영역의 비율
-
-    // 주제목
-    chart.append("text")
-        .attr("x", margin.left + graphWidth/2)
-        .attr("y", margin.top / 2 + 10)
-        .style("font-size", "1.5em")
-        .style("font-family", "sans-seirf")
-        .style("stroke", "black")
-        .style("text-anchor", "middle")
-        .text(svgStr[125][langNum])
-    drawLabel(ndvalue, dvalueLabel, betweenbarWidth, barWidth, gapWidth);
-    drawAxis(freqMax, graphHeight);
-
-    // x축 위 선
-    y1 = margin.top;
-    chart.append("line")
-         .attr("class", "line")
-         .attr("x1", margin.left)
-         .attr("x2", margin.left + graphWidth)
-         .attr("y1", y1)
-         .attr("y2", y1)
-         .style("stroke", "black")
-    // x축 선
-    y1 = margin.top + graphHeight;
-    chart.append("line")
-         .attr("class", "line")
-         .attr("x1", margin.left)
-         .attr("x2", margin.left + graphWidth)
-         .attr("y1", y1)
-         .attr("y2", y1)
-         .style("stroke", "black")
-    // 막대
-    for (j=0; j<ndvalue; j++) {
-      chart.append("rect")
-           .attr("class", "bar")
-           .style("fill", colr[4])
-           .attr("height", 0)
-           .attr("width", barWidth)
-           .attr("x", margin.left + gapWidth + j * betweenbarWidth)
-           .attr("y", margin.top + graphHeight)
-           .transition() // 애니매이션 효과 지정
-           .delay(function(d, i) {return i * 500;}) // 0.5초마다 그리도록 대기시간 설정
-           .duration(2000) // 2초동안 애니매이션이 진행되도록 설정
-           .attr("y", margin.top + graphHeight - dataSet[j] * freqRatioV)
-           .attr("height", dataSet[j] * freqRatioV);
-    }
-
-    showFreq(ndvalue, dataSet, freqMax, freqRatioV, gapWidth, barWidth, betweenbarWidth);
-    // mean 
-    var str;
-    str = "E(X) = " + f3(mean) + "\u00A0\u00A0\u00A0\u00A0\u00A0  V(X) = " + f3(vari) + "\u00A0\u00A0\u00A0\u00A0\u00A0  σ(X) = " + f3(stdv); 
-    x1 = margin.left + graphWidth/2;
-    y1 = margin.top + graphHeight + margin.bottom/2 + 10;
-    chart.append("text")
-         .style("text-anchor", "middle")
-         .style("font-family", "sans-serif")
-         .style("font-size", "1em")
-         .style("stroke", "red")
-         .attr("x", x1)
-         .attr("y", y1)
-         .text(str)
-  }
-
-  // 분리형 막대그래프 도수 쓰기 함수
-  function showFreq(ndvalue, dataSet, freqMax, freqRatioV, gapWidth, barWidth, betweenbarWidth) {
-    for (var j = 0; j < ndvalue; j++) {
-      if (dataSet[i] == 0) continue;
-      chart.append("text")
-           .style("text-anchor", "middle")
-           .style("font-size", "0.8em")
-           .style("stroke", "blue")
-           .attr("x", margin.left + gapWidth + barWidth / 2 + j * betweenbarWidth)
-           .attr("y", margin.top + graphHeight - dataSet[j] * freqRatioV + 15)
-           .text(dataSet[j]);
-    }
-  }
-
-  // 막대그래프 도수 제거 함수
-  function removeFreq() {
-    chart.selectAll("text.freqfont").remove();
-  }
-
-
-  // 변량값명 쓰기 함수
-  function drawLabel(ndvalue, label, betweenbarWidth, barWidth, gapWidth) {
-    var i, j, k, x1, y1, tx, ty, str, strAnchor;
-    var angle;
-
-    ty = margin.top + graphHeight;
-    angle = 0;
-    y1 = ty + 25;
- 
-    for (j = 0; j < ndvalue; j++) {
-      tx = margin.left + gapWidth + barWidth / 2 + j * betweenbarWidth;
-      x1 = margin.left + gapWidth + barWidth / 2 + j * betweenbarWidth;
-      chart.append("line") // tick
-                    .attr("x1", tx)
-                    .attr("x2", tx)
-                    .attr("y1", ty)
-                    .attr("y2", ty + 7)
-                    .style("stroke", "black")
-                    .style("stroke-width", "0.8")
-      chart.append("text")
-           .style("text-anchor", "middle")
-           .style("font-family", "sans-serif")
-           .style("font-size", "1em")
-           .style("stroke", "black")
-           .attr("x", x1)
-           .attr("y", y1)
-           .attr("transform", "rotate(" + angle + "," + x1 + "," + y1 + ")  ")
-           .text(label[j])
-    }
-  }
-
-  // 막대그래프 축 그리기
-  function drawAxis(freqMax, height) {
-    var tx, ty;
-    var xScale, yScale;
-    var ygrid    = new Array(rowMax);
-
-    yScale = d3.scaleLinear().domain([0, freqMax/0.8]).range([height, 0]);
-    ygrid = yScale.ticks();
-    tx = margin.left;
-    ty = margin.top;
-    chart.append("g")
-         .attr("transform", "translate(" + tx + "," + ty + ")")
-         .call(d3.axisLeft(yScale)) // 눈금을 표시할 함수 호출
-    // Y축 그리드
-    for (i = 1; i < ygrid.length; i++) {
-      ty = margin.top + yScale(ygrid[i]);
-      chart.append("line")
-           .attr("x1", margin.left)
-           .attr("x2", margin.left + graphWidth)
-           .attr("y1", ty)
-           .attr("y2", ty)
-           .style("stroke", "lightgrey")
-    }
-    chart.append("line").attr("class", "line")
-                    .attr("x1", margin.left)
-                    .attr("x2", margin.left)
-                    .attr("y1", margin.top)
-                    .attr("y2", margin.top + graphHeight)
-                    .style("stroke", "black")
-    chart.append("line").attr("class", "line")
-                    .attr("x1", margin.left + graphWidth)
-                    .attr("x2", margin.left + graphWidth)
-                    .attr("y1", margin.top)
-                    .attr("y2", margin.top + graphHeight)
-                    .style("stroke", "black")
-
-     //   tx = margin.left + graphWidth;
-     //   chart.append("g")
-     //        .attr("transform","translate("+tx+","+ty+")")
-     //        .call(d3.axisRight(yScale))             // 눈금을 표시할 함수 호출
-  }
-
-
-  </script>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td style="width:160px">
-            <h4>⏱ Practice 3.2</h4> <p>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_40DiscreteDistribution.svg" onclick="window.open(addrStr[163])">
-          </td>
-          <td>
-            <p>
+        <h4>⏱ Practice 3.2</h4> <p>
             Let a random variable \(X\) be the number of heads when a coin is tossed three times. 
             Find the probability distribution of \(X\) and draw a graph. 
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_40DiscreteDistribution.svg" onclick="window.open(addrStr[163])">
     </div>
     <p>
 
   <!------------------------------------------------------------------------------------------------->
   <h4>A. Mean and standard deviation of a discrete random variable</h4>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
+      <h4>⭐ Think</h4>
           <b>If \(X\) = 'the number of heads' when a coin tossed twice, \(X\) can have values
              0, 1, and 2 and their probabilities are \(\frac{1}{4}, \frac{2}{4}\) and \( \frac{1}{4}\) respectively.  
           </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
+      <h4>💎 Explore</h4>
           <b>1) What would be a good representative value of \(X\)? <br>
              2) What would be a good measure of dispersion for possible values of \(X\)?
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
   <div class="mainTable">
@@ -1025,17 +535,8 @@
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:160px">
-            <h5>⏱ Practice 3.3</h5>
-          </td>
-          <td>
-            <p>
+        <h5>⏱ Practice 3.3</h5>
             When a coin is tossed three times, find the probability distribution by setting the random variable as the number of heads. Find the mean, variance, and standard deviation of this probability distribution.
-          </td>
-        </tr>
-      </table>
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -1124,45 +625,26 @@
          \(\sigma(X) = \sqrt{2.916} = 1.708\)
       </div>
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_40DiscreteDistribution.svg" onclick="window.open(addrStr[163])">
-          </td>
-          <td>
-            <p>
-            If you select 'Discrete Distribution' from 『eStatH』 menu and enter data as shown
-            in &lt;Figure 3.4&gt;, the graph as shown in &lt;Figure 3.5&gt; and the mean, 
-            variance and standard deviation appear. A slightly different value originated 
-            from the computing error for the number of decimal places.
-            <p>
-            <img class="imgFig600600" src="../FigureH/Fig0304.png">
-            <div class="figText">&lt;Figure 3.4&gt; Data input for a discrete distribution </div>
-            <p>
-            <img class="figure90" src="../FigureH/Fig0305.png">
-            <div class="figText">&lt;Figure 3.5&gt; Discrete distribution with mean, variance and standard deviation </div>
-          </td>
-        </tr>
-      </table>
+         If you select 'Discrete Distribution' from 『eStatH』 menu and enter data as shown
+         in &lt;Figure 3.4&gt;, the graph as shown in &lt;Figure 3.5&gt; and the mean, 
+         variance and standard deviation appear. A slightly different value originated 
+         from the computing error for the number of decimal places.
+      <p>
+      <!-----*** html for Discrete Distribution ***----------------------->
+      <b>[<span data-msgid="DiscreteDist">Discrete Distribution</span>]</b>
+      <p>
+         <iframe class="example" src="./example/030202.html"> </iframe>
+         <div class="figText">&lt;Figure 3.5&gt; Discrete distribution with mean, variance and standard deviation </div>
+      <p>
   </div>
-  <!------------------------------------------------------------------------------------------------->
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:160px">
-            <h5>⏱ Practice 3.4</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_40DiscreteDistribution.svg" onclick="window.open(addrStr[163])">
-          </td>
-          <td>
-            <p>
+        <h5>⏱ Practice 3.4</h5>
             When a coin is tossed three times, find the probability distribution by setting 
             the random variable \(X\) as the number of heads. Use 『eStatH』 to find the mean, 
             variance, standard deviation and the graph of this probability distribution.
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_40DiscreteDistribution.svg" onclick="window.open(addrStr[163])">
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -1171,22 +653,11 @@
   <!------------------------------------------------------------------------------------------------->
   <h4>B. Mean and standard deviation of  \(a X + b\)</h4>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:120px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
+      <h4>⭐ Think</h4>
           <b>When a coin tossed twice, the random variable \(X\) = 'number of heads' can 
              have values 0, 1, 2 and their probabilities are \(\frac{1}{4}, \frac{2}{4}, \frac{1}{4}\)  respectively.  
           </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
+      <h4>💎 Explore</h4>
           <b>
              <div class="textL20M20">
                1) If 100 dollars is paid for each head, how much value can be expected in this game and how is the variance of the prize money?
@@ -1195,9 +666,6 @@
                2) If 50 dollars is basically paid and 100 dollars is paid for each head, how much value can be expected in this game and how is the variance of the prize money?
              </div>
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
   <div class="mainTable">
@@ -1373,13 +841,7 @@
   <h3 id="0303">3.3 Probability Distribution of Continuous Random Variable</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ Think</h4>
           <b>The delivery time to the house by ordering a pizza at a shop were examined 30 times is as follows: </b>
           <p>
           <div class="textLeft">[Data 3.1] Pizza delivery time to the house (unit: minute)</div>
@@ -1391,14 +853,7 @@
               </td>
             </tr>
           </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 Explore</h4>
           <div class="textL20M20">
             <b> 1) What is the probability that the pizza will be delivered between 10 and 20 minutes?</b>
           </div>
@@ -1408,9 +863,6 @@
           <div class="textL20M20">
             <b> 3) How to obtain the probability that pizza is delivered to a more detailed time interval? </b>
           </div>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -1418,17 +870,14 @@
       <p>
          Using 『Histogram – Frequency Table』 of 『eStatH』, the histogram of pizza delivery time is as &lt;Figure 3.6&gt; if the class interval starts at 0 and the interval size is 10 minutes. It can be seen that the probability that the pizza is delivered between 10 and 20 minutes is 0.47.
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_08Histogram.svg" onclick="window.open(addrStr[144])">     
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/Fig0306.png">
+         <div>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_08Histogram.svg" onclick="window.open(addrStr[144])">     
+            <img class="figure" src="./Figure/Fig0306.png">
             <div class="textLeft">&lt;Figure 3.6&gt; Histogram of the pizza delivery times – interval size is 10 minutes</div>
+         </div>
             <p>
             <div class="textLeft">[Table 3.1] Frequency table of the pizza delivery times – interval size is 10 minutes</div>
-            <table> 
+            <table style="width:600px"> 
               <tr>
                <th class="thGrey" style="width:200px">Class</th>
                <th class="thGrey">Frequency</th>
@@ -1440,21 +889,12 @@
               <tr> <td class="tdCenter">30.00 ≤ x < 40.00</td> <td class="tdCenter"> 2</td> <td class="tdCenter">0.07</td> </tr>
               <tr> <th class="thGrey">Total</th> <th class="thGrey">30</th> <th class="thGrey">1.00</th>  </tr>
             </table>
-          </td>
-        </tr>
-      </table>
       <p>
          If the interval of the histogram starts at 5 and the interval size is 5 minutes, 
          the histogram becomes as &lt;Figure 3.7&gt;. It can be seen that the probability in which 
          the pizza will be delivered between 15 and 20 minutes is 0.30.
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_08Histogram.svg" onclick="window.open(addrStr[144])">     
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/Fig0307.png">
+            <img class="figure" src="./Figure/Fig0307.png">
             <div class="textLeft">&lt;Figure 3.7&gt; Histogram of the pizza delivery times – interval size is 5 minutes</div>
             <p>
             <div class="textLeft">[Table 3.2] Frequency table of the pizza delivery times – interval size is 5 minutes</div>
@@ -1473,16 +913,13 @@
               <tr> <td class="tdCenter">35.00 ≤ x < 40.00</td> <td class="tdCenter"> 1</td> <td class="tdCenter">0.03</td> </tr>
               <tr> <th class="thGrey">Total</th> <th class="thGrey">30</th> <th class="thGrey">1.00</th>  </tr>
             </table>
-          </td>
-        </tr>
-      </table>
       <p>
          In order to obtain the probability of a more detailed interval, a more detailed histogram 
          such as &lt;Figure 3.8&gt; and its frequency table are required as shown below. However, 
          for such a histogram, more data must be collected, and it is cumbersome to redraw the 
          histogram every time to calculate the desired probability.
       <p>
-         <img class="imgFig600600" src="../FigureH/Fig0308.png">
+         <img class="figure" src="./Figure/Fig0308.png">
          <div class="textLeft">&lt;Figure 3.8&gt; Histogram with detailed interval</div>
       <p>
          There are many continuous data around us as the histogram above in which many data are 
@@ -1492,7 +929,7 @@
          This function has the same shape as in &lt;Figure 3.9&gt; and is called the 
          <b>normal distribution function</b>. It is explained in detail in Section 3.5.
       <p>
-         <img class="imgFig600600" src="../FigureH/Fig0309.png">
+         <img class="figure" src="./Figure/Fig0309.png">
          <div class="textLeft">&lt;Figure 3.9&gt; Normal distribution function</div>
       <p>
          If the probability distribution function of a continuous random variable can be 
@@ -1529,7 +966,7 @@
               \(P( a \le X \le b) = \int_a ^b f(x)dx \)
             </div>
       <p>
-            <img class="imgFig600600" src="../FigureH/Fig0310.png">
+            <img class="figure" src="./Figure/Fig0310.png">
             <div class="textLeft">&lt;Figure 3.10&gt; The probability that a continuous random variable \(X\) is in the interval \([a,b]\)</div>
   </div>
   <p>
@@ -1557,48 +994,31 @@
          &lt;Figure 3.11&gt;, so the calculation of the probability (area) is 
          (20-15) × (1/20) = 0.25. 
       <p>
-         <img class="imgFig600600" src="../FigureH/Fig0311.png">
+         <img class="figure" src="./Figure/Fig0311.png">
          <div class="textLeft">&lt;Figure 3.11&gt; Calculation of \(P(15 \le X \le 20)\) in Uniform(10,30)</div>
     </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td style="width:160px">
-            <h4>⏱ Practice 3.5</h4> <p>
-          </td>
-          <td>
-            <p>
+        <h4>⏱ Practice 3.5</h4> <p>
                If the probability distribution function of a continuous random variable \(X\) is 
                 \(f(x) = 2x, (0 \le x \le 1)\), find the followings. 
             <p>
             1) \(P(0 \le X \le \frac{1}{4})\)<br>
             2) \(P(\frac{1}{4} \le X \le 1)\)
-          </td>
-        </tr>
-      </table>
     </div>
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td style="width:160px">
-            <h4>⏱ Practice 3.6</h4> <p>
-          </td>
-          <td>
+        <h4>⏱ Practice 3.6</h4> <p>
             If the probability distribution function of a continuous random variable \(X\) is
             \(f(x) = ax, (0 \le x \le 2)\), find the followings. (\(a\) is a constant)
             <p>
             1) constant \(a\) <br>
             2) \(P(0 \le X \le \frac{1}{4})\)<br>
             3) \(P(\frac{1}{4} \le X \le 1)\)
-          </td>
-        </tr>
-      </table>
     </div>
     <p>
     <!-------------------------------------------------------------------------->
@@ -1607,28 +1027,12 @@
   <h3 id="0304">3.4  Binomial Distribution</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ Think</h4>
           <b>It is said that the defect rate of products produced in one factory is 0.1. 
              Consider a random variable which is the number of defective products when three products are inspected.
           </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 Explore</h4>
           What is the probability distribution function of the random variable  \(X\)?
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -1691,406 +1095,13 @@
   </div>
   <div class="mainTableGrey">
       <p>
-      <!------------ html for Binomial Experiment --------------------------------------------------->       
+      <!------------*** html for Binomial Experiment ***------------------->       
       <b>[<span data-msgid="Binomial Experiment">Binomial Experiment</span>]</b>
       <p>
-      <svg id="chartBS" width="640" height="620" style="border-style:solid;"> </svg>  
-      <br>
-      <table style="width:650px;">
-        <tr>
-          <td><button type="button" id="executeBinomial" style="width:100px"><b><span data-msgid="Execute">Execute</span></b></button></td>
-          <td></td>
-          <td style=width:100px;">n = <input type="text" class="textarea" value="2" size=3 id="nn" style="text-align:center"></td>
-          <td><sup><small> 1 </small></sup> </td>
-          <td style=width:100px;"><input type="range" min="1" max="10" value="2" id="range1Binomial" onchange="showValueBinomial1(this.value)"/></td>
-          <td><sup><small> 10 </small></sup></td>
-          <td style=width:100px;">p = <input type="text" class="textarea" value="0.5" size=3 id="pp" style="text-align:center"></td>
-          <td><sup><small> 0 </small></sup></td>
-          <td style="width:100px;"><input type="range" min="0" max="100" value="50" id="range2Binomial" onchange="showValueBinomial2(this.value)"/></td>
-          <td><sup><small> 1</small></sup></td>
-        </tr>
-        <tr>
-          <td><button type="button" id="saveGraphBS" style="width:100px"><b><span class="tooltiptext" data-msgid="Graph Save">Graph Save</span></b></button></td>
-          <td></td>
-          <td colspan="3"><label><input type="checkbox" value="freq" id=freqBinomial> <span data-msgid="Show Probability">show probability</span></label></td>
-        </tr>
-      </table>
-      <p>
-            <div class="figText">&lt;Figure 3.12&gt; Simulation of binomial distribution using 『eStatH』</div>
+      <iframe class="example80" src="./example/030401.html"> </iframe>
+      <div class="figText">&lt;Figure 3.12&gt; Simulation of binomial distribution using 『eStatH』</div>
   </div>
   <p>
-      <!------------ script for Binomial Experiment --------------------------------------------------->       
-  <script type="text/javascript">
-      function showValueBinomial1(newValue) {document.getElementById("nn").value  = newValue;}
-      function showValueBinomial2(newValue) {document.getElementById("pp").value  = newValue / 100;  }
-      function showValueBinomial3(newValue) {document.getElementById("nn2").value = newValue;}
-      function showValueBinomial4(newValue) {document.getElementById("pp2").value = newValue / 100;  }
-  </script>
-
-  <script>
-      setLanguage('en');
-      var chartBS = d3.select("#chartBS");
- 
-      // 이항분포 시뮬레이션 초기화면 셋팅
-      var i, j, k, sum, temp, info;
-      var nn, pp, nn2, pp2, avg,  std, savg, sstd;
-      var xmin, xmax, ymin, ymax, gxminBS, gxmaxBS, gxrangeBS, gyminBS, gymaxBS, gyrangeBS;
-      var nobsBS;
-      var rectSize     = 10;
-      var radiusSize   = 4;
-      var nvalueMax    = 31;
-      var rectSizeDiv2 = rectSize / 2;
-      var checkFreq    = false;
-      var checkFreq2   = false;
-      var checkFreq3   = false;
-
-      var svgWidthBS, svgHeightBS, graphWidthBS, graphHeightBS;
-      var marginBS   = {top: 50, bottom: 80, left: 40, right: 40};
-
-      var binomialP1 = new Array(nvalueMax);
-      var binomialP2 = new Array(nvalueMax);
-      var tdataY     = new Array(nvalueMax);
-      var txS        = new Array(nvalueMax);
-      var tyS         = new Array(nvalueMax);
-      var valueLabel = new Array(nvalueMax);
-
-      for (i=0; i<nvalueMax; i++) {
-          txS[i] = new Array(nvalueMax);
-          tyS[i] = new Array(nvalueMax);
-      }
-   
-      // svg 파라미터
-      svgWidthBS    = 640;
-      svgHeightBS   = 320;
-      graphWidthBS  = svgWidthBS - marginBS.left - marginBS.right;
-      graphHeightBS = svgHeightBS - marginBS.top - marginBS.bottom;
-     
-      nobsBS = 100;
-      nn = 2;
-      pp = 0.5;
-      nvalue = nn + 1;
-
-      title  = svgStrU[1][langNum]+" n = "+nn.toString()+", p = "+f2(pp);
-      chartBS.append("text").attr("class","title").attr("x", marginBS.left).attr("y", marginBS.top/2).text(title)
-      avg  = nn * pp;
-      std  = Math.sqrt(nn*pp*(1-pp));
-      title  = svgStrU[3][langNum]+" = "+f2(avg).toString()+", "+svgStrU[4][langNum]+" = "+f2(std).toString();
-      chartBS.append("text").attr("class","title").attr("x", marginBS.left+graphWidthBS -200).attr("y", marginBS.top/2 ).text(title)
-
-      // 확률  계산
-      for (i=0; i<nvalue; i++) binomialP1[i] = binomial_pdf(i, nn, pp, info);
-			  
-      // Draw 이항분포 Triangle and Simulation
-      BinomialTriangle(nvalue, pp, txS, tyS);
-//      BinomialSimulation(nobsBS,nvalue,tdataY);
-
-			  
-      // 시뮬레이션 실행버튼 클릭
-      d3.select("#executeBinomial").on("click",function() {
-        chartBS.selectAll("*").remove();
-        removeBinomialFreqS();
-        checkFreq = false;
-        document.getElementById("freqBinomial").checked = false;
- 
-        nn = parseFloat(d3.select("#nn").node().value);    // 크기 n
-        pp = parseFloat(d3.select("#pp").node().value);    // 성공확률 p
-        if (nn < 1 )   nn = 1;
-        if (nn > 10)   nn = 10;
-        if (pp < 0.001) pp = 0.001;
-        if (pp > 0.999) pp = 0.999;
-        document.getElementById("range1Binomial").value  = nn;
-        document.getElementById("range2Binomial").value  = 100*pp;
-        nvalue = nn + 1;
-
-        title  = svgStrU[1][langNum]+" n = "+nn.toString()+", p = "+f2(pp);
-        chartBS.append("text").attr("class","title").attr("x", marginBS.left).attr("y", marginBS.top/2).text(title)
-        avg  = nn * pp;
-        std  = Math.sqrt(nn*pp*(1-pp));
-        title  = svgStrU[3][langNum]+" = "+f2(avg).toString()+", "+svgStrU[4][langNum]+" = "+f2(std).toString();
-        chartBS.append("text").attr("class","title").attr("x", marginBS.left+graphWidthBS -200).attr("y", marginBS.top/2 ).text(title)
-
-        // 확률  계산
-        for (i=0; i<nvalue; i++) binomialP1[i] = binomial_pdf(i, nn, pp, info);
-
-        // Draw 이항분포 Triangle and Simulation
-        BinomialTriangle(nvalue, pp, txS, tyS);
-	BinomialSimulation(nobsBS,nvalue,tdataY);
-        if (checkFreq) showBinomialFreq(nvalue, binomialP1, tdataY, txS);
-      })
-
-       // 확률표시 버튼 클릭
-      d3.select("#freqBinomial").on("click",function() {
-        if(this.checked) {
-          checkFreq = true;
-          showBinomialFreq(nvalue, binomialP1, tdataY, txS);
-        } else {
-          checkFreq = false;
-	  removeBinomialFreqS();
-        }
-      })
-      // svg Graph Save
-      d3.select("#saveGraphBS").on("click", function() {
-        var svg = d3.select("#chartBS");
-        var width = svgWidthBS;
-        var height = 600;
-        var svgString = getSVGString(svg.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
-// Binomial Triangle 그리기 함수 ==================================================================
-function BinomialTriangle(nvalue, pp, txS, tyS) {
-        var i, j, k, t1, t2, x1, x2;
-        var oneHeight = graphHeightBS / (nvalue+1);
-        var oneWidth  = graphWidthBS / (2*nn + 1);
-        // 하늘 사각형
-        t1 = marginBS.left + graphWidthBS/2;
-        t2 = marginBS.top/2+15;
-        chartBS.append("rect")
-           .attr("x", t1 - rectSize)
-           .attr("y", t2 - rectSize)
-           .attr("width",  2*rectSize)
-           .attr("height", 2*rectSize)
-           .style("stroke","black").attr("stroke-width","1px").attr("fill","#0055FF")
-        chartBS.append("line")
-           .attr("x1", t1)
-           .attr("y1", t2+rectSize)
-           .attr("x2", t1)
-           .attr("y2", t2+3*rectSize+oneHeight-15)
-           .attr("stroke-width","2px").style("stroke","#0055FF")
-        // 각 사각형 좌표 계산      
-        for (i=0; i<nvalue; i++) {
-          txS[i][0] = marginBS.left + graphWidthBS/2 - rectSizeDiv2- i*oneWidth;
-          tyS[i][0] = marginBS.top + (i+1)*oneHeight;
-          if (i != nvalue-1) {
-            chartBS.append("rect")
-               .attr("x", txS[i][0] )
-               .attr("y", tyS[i][0])
-               .attr("width",  rectSize)
-               .attr("height", rectSize)
-               .style("stroke","black").attr("stroke-width","1px").attr("fill","#0055FF")
-          }
-          for (k=1; k<=i; k++) {
-            txS[i][k] = txS[i][k-1] + 2*oneWidth; 
-            tyS[i][k] = tyS[i][0];
-            if (i != nvalue-1) {
-              chartBS.append("rect")
-                 .attr("x", txS[i][k] )
-                 .attr("y", tyS[i][k])
-                 .attr("width",  rectSize)
-                 .attr("height", rectSize)
-                 .style("stroke","black").attr("stroke-width","1px").attr("fill","#0055FF")
-            }
-          } // endof k
-        } // endof i
-	  
-        // 마지막 라인은 점수 합계용
-        for (j=0; j<nvalue; j++) {
-          t1 = txS[nvalue-1][j] + rectSizeDiv2;
-          t2 = tyS[nvalue-1][j] + rectSize + 6;
-          chartBS.append("circle").attr("cx",t1).attr("cy",t2).attr("r",rectSize)
-             .style("stroke","#0055FF").attr("stroke-width","2px").attr("fill","none")
-          chartBS.append("text").attr("x",t1).attr("y",t2+5).text(j)
-             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
-        }        
-        // 사각형 연결 line
-        for (i=0; i<nvalue-1; i++) {
-          for (j=0; j<=i; j++) {
-            x1 = txS[i][j] + rectSizeDiv2;
-            y1 = tyS[i][j] + rectSizeDiv2;
-            for (k=j; k<=j+1; k++) {
-              x2 = txS[i+1][k] + rectSizeDiv2;
-              y2 = tyS[i+1][k] + rectSizeDiv2;
-              if (k==j && pp < 0.5) chartBS.append("line").attr("x1", x1).attr("y1", y1).attr("x2", x2).attr("y2", y2)
-                                       .attr("stoke-width","2px").style("stroke","#0055FF")
-              else                  chartBS.append("line").attr("x1", x1).attr("y1", y1).attr("x2", x2).attr("y2", y2)
-                                       .attr("stroke-width","1px").style("stroke","#0055FF")
-              if (k==j+1 && pp < 0.5) chartBS.append("line").attr("x1", x1).attr("y1", y1).attr("x2", x2).attr("y2", y2)
-                                         .attr("stroke-width","1px").style("stroke","#0055FF")
-              else                    chartBS.append("line").attr("x1", x1).attr("y1", y1).attr("x2", x2).attr("y2", y2)
-                                         .attr("stroke-width","2px").style("stroke","#0055FF")
-              t1 = (x1 + x2) / 2;
-              t2 = (y1 + y2) / 2;
-              if (k==j) chartBS.append("text").attr("x", t1).attr("y", t2).text("0")
-                           .style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
-              else      chartBS.append("text").attr("x", t1).attr("y", t2).text("1")
-                           .style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
-            } // endof k
-          } // endof j
-        } // endof i
-        
-      
-} // endof BinomialTriangle()
-      
-// 이항분포 시뮬레이션
-async function BinomialSimulation(nobsBS,nvalue,tdataY) {
-         var i, j, k, g;
-         var x0, y0, x1, y1, x2, y2, t1, t2;
-         var sum;
-         //  점그래프 X축
-         y1 = 2*svgHeightBS - marginBS.bottom + 8; 
-         chartBS.append("line")
-            .attr("x1", marginBS.left)
-            .attr("y1", y1)
-            .attr("x2", marginBS.left+graphWidthBS)
-            .attr("y2", y1)
-            .style("stroke","black").attr("stroke-width","2px")
-         for (j=0; j<nvalue; j++) {
-           x1 = txS[nvalue-1][j]+rectSizeDiv2;
-           chartBS.append("text")
-              .attr("x", x1)
-              .attr("y", y1+15)
-              .text(j)
-              .style("font-family","sans-serif").style("font-size","8pt").style("stroke","red").style("text-anchor","middle")
-         } // endof j
-  
-          // 점 애니메이션 시작
-    for (i=0; i<nvalue; i++) tdataY[i] = 0; // Count frequency
-    
-    // nobsBS 개수만큼 점 만들고 궤적 그리기
-    $("#executeBinomial").prop("disabled", true);
-    for (g=0; g<nobsBS; g++) {
-	    await BinomialSimulationOneBall();
-          
-    }
-    $("#executeBinomial").prop("disabled", false);
-    
-    var str = svgStrU[2][langNum]+"="+nobsBS;
-          chartBS.append("text")
-             .attr("x", marginBS.left+20)
-             .attr("y", svgHeightBS-marginBS.bottom/2)
-             .text(str)
-             .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")        
-}
-// endof BinomialSimulation Function
-async function BinomialSimulationOneBall() {
-    var animationDurationTime = 300;   // miliseconds
-    var x0, y0, x1, y1, x2, y2, t1, t2;
-    sum = 0;
-    t1 = marginBS.left + graphWidthBS/2;            // 하늘 좌표
-    t2 = marginBS.top/2;
-    x0 = txS[0][0] + rectSizeDiv2;
-    y0 = tyS[0][0] + rectSizeDiv2;
-    var cir = chartBS.append("circle").style("stroke","black").attr("fill","red") 
-    var currentPath = chartBS.append("line")
-        .attr("stroke-width","3px").style("stroke","red")
-    cir.attr("cx", t1)
-        .attr("cy", t2)
-        .attr("r", 10)
-        .transition()                           // 애니매이션 효과 지정
-        .delay(1000)   // 0.5초마다 그리도록 대기시간 설정
-        .duration(1000)                         // 1초동안 애니매이션이 진행되도록 설정
-        .attr("cx", x2)
-        .attr("cy", y2)
-    for (i=0; i<nvalue-1; i++) {
-	await new Promise(resolve => setTimeout(resolve, animationDurationTime/nvalue));
-        if (i==0) j=0;
-        x1 = txS[i][j] + rectSizeDiv2;
-        y1 = tyS[i][j] + rectSizeDiv2;
-        if (Math.random() < 1-pp) { k = j }  // (1-p) 확률로 왼쪽으로 가면 0점
-        else { k = j+1 ; sum++;};            // p 확률로 오른쪽으로 가면 1점 
-        x2 = txS[i+1][k] + rectSizeDiv2;
-	y2 = tyS[i+1][k] + rectSizeDiv2;
-        cir.transition()
-	//                   .delay(10)
-            .duration(100)
-            .attr("cx", x1)
-            .attr("cy", y1)
-            .transition()                           // 애니매이션 효과 지정
-            .attr("cx", x2)
-	    .attr("cy", y2);
-	//                currentPath.attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2);
-	j = k;
-    } // endof i
-    // 각 데이터의 점그림
-    x1 = x2;
-    y1 = y2;
-    x2 = x1;
-    tdataY[sum] ++;
-    if (tdataY[sum] < 36) {
-        y2 = 2*svgHeightBS - marginBS.bottom - (tdataY[sum]-1)*2*radiusSize;
-    }
-    else if (tdataY[sum] < 71) {
-        x2 = x2 + radiusSize*2;
-        y2 = 2*svgHeightBS - marginBS.bottom - (tdataY[sum]-35-1)*2*radiusSize;
-    }
-    else {
-        x2 = x2 + radiusSize*4;
-        y2 = 2*svgHeightBS - marginBS.bottom - (tdataY[sum]-70-1)*2*radiusSize;
-    }
-    cir.transition()                           // 애니매이션 효과 지정
-        .delay(animationDurationTime)                   // .delay((nn+1)*g)
-        .duration(1000)                         // 1초동안 애니매이션이 진행되도록 설정
-        .style("fill",myColor[sum])
-        .attr("r", radiusSize)
-        .attr("cx", x2)
-        .attr("cy", y2);
-}// endof BinomialSimulationOneBall Function
-// 실험된 이항분포 각 값의 확률 표시
-function showBinomialFreq(nvalue, binomialP1, tdataY, txS) {
-        var i, j, temp;
-        var xmin, xmax, gxminBS, gxmaxBS, ymin, ymax;
-        var savg, sstd;
-  
-        // 실험된 확률
-        for (var j=0; j<nvalue; j++) {
-          if (tdataY[j] < 36) y2 = 2*svgHeightBS - marginBS.bottom - (tdataY[j])*2*radiusSize;
-          else                y2 = 2*svgHeightBS - marginBS.bottom - (35)*2*radiusSize;
-          chartBS.append("text")
-             .attr("class","mean9")
-             .attr("x", txS[nvalue-1][j]+rectSizeDiv2)
-             .attr("y", y2 - 3)
-             .text(f3(tdataY[j]/nobsBS))
-        } // endof j
-    
-        // 이론확률
-        y1 = 2*svgHeightBS - marginBS.bottom + 13; 
-        chartBS.append("text").attr("class","scorefont").style("text-anchor","middle")
-           .attr("x", txS[nvalue-1][0])
-           .attr("y", y1+25)
-           .text("Actual Prob:")
-        for (j=0; j<nvalue; j++) {
-          x1 = txS[nvalue-1][j]+rectSizeDiv2;
-          chartBS.append("text").style("text-anchor","middle")
-             .attr("class","scorefont")
-             .attr("x", x1)
-             .attr("y", y1+40)
-             .text(f3(binomialP1[j]))
-        } // endof j
-        xmin = 0;
-        xmax = nvalue;
-        gxminBS = xmin - 1;
-        gxmaxBS = xmax + 1;
-        ymin = 0;
-        ymax = 1;
-        savg = 0;
-        for (i=0; i<nvalue; i++) {
-          if(tdataY[i]>ymax) ymax = tdataY[i];
-          savg += i*tdataY[i];
-        }
-        savg /= nobsBS;
-        sstd = 0;
-        for (i=0; i<nvalue; i++) {
-          temp = (i - savg);
-          sstd += temp * temp * tdataY[i];
-        }
-        sstd = Math.sqrt(sstd/nobsBS); 
-       
-        // 이항분포 그래프
-        var str = svgStrU[3][langNum]+" = "+savg+", "+svgStrU[4][langNum]+" = "+f2(sstd);
-        chartBS.append("text").attr("class","mean9")
-           .attr("x", marginBS.left + graphWidthBS/2)
-           .attr("y", y1+25).text(str);
-//           .attr("y", 2*svgHeightBS - marginBS.bottom/3 -2).text(str);
-}
-// 실험된 이항분포 각 값의 확률 제거
-function removeBinomialFreqS() {
-        chartBS.selectAll("text.mean9").remove();
-        chartBS.selectAll("text.scorefont").remove();  
-}
-
-  </script>
 
   <div class="mainTable">
          What these examples have in common is that there are two possible outcomes of one trial
@@ -2141,18 +1152,12 @@ function removeBinomialFreqS() {
       $$
          The following is a graph of the binomial distribution for various values of \(n\) and \(p\).
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU420_Binomial.svg" onclick="window.open(addrStr[149])">
-          </td>
-          <td>
-            <p>
-            <img class="imgFig600600" src="../FigureH/Fig0313.png">
+         <div>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU420_Binomial.svg" onclick="window.open(addrStr[149])">
+            <img class="figure" src="./Figure/Fig0313.png">
             <div class="figText">&lt;Figure 3.13&gt; Binomial distribution for various values of \(n\) and \(p\).</div>
-          </td>
-        </tr>
-      </table>
+         </div>
+      <p>
    </div>
   <p>
   <div class="mainTableYellow">
@@ -2238,485 +1243,34 @@ function removeBinomialFreqS() {
             2) Select 'Binomial Distribution' from the menu of 『eStatH』 and enter  \(n\)= 4,  \(p\)= 0.6. 
             If you click [Execute] button, a binomial distribution graph such as &lt;Figure 3.14&gt;
             appears.
-       <!-----------  html for Binomial Distribution -------------------------------->
-       <p>
-       <p>
-          <b>[<span data-msgid="Binomial Distribution">Binomial Distribution</span>]</b> 
-       <p>
-       <table style="width:650px">
-         <tr>
-           <td style="width:100px"><button type="button" id="execute2Binomial" style="width:100px"><b><span data-msgid="Execute">Execute</span></b></button></td>
-           <td></td>
-           <td style="width:110px">n = <input type="number" min="1" max="100" value="4" size=2 id="nn2" style="text-align:center"></td>
-           <td><sup><small> 1 </small></sup></td>
-           <td style="width:80px"><input type="range" min="1" max="100" value="4" style="width:100px" id="range3Binomial" onchange="showValueBinomial3(this.value, valueLabel, binomialP2)"/> </td>
-           <td><sup><small>100</small></sup></td>
-           <td style="width:90px">p = <input type="text" value="0.6" size=2 id="pp2" style="text-align:center"></td>
-           <td><sup><small> 0 </small></sup></td>
-           <td style="width:80px"><input type="range" min="1" max="99" value="60" style="width:100px" id="range4Binomial" onchange="showValueBinomial4(this.value, valueLabel, binomialP2)"/></td>
-           <td><sup><small> 1 </small></sup></td>
-         </tr>
-       </table>
-       <svg id="chartBP" width="640" height="400"  style="border-style:solid;"> 
-       <br>
-       <table style="width:500px">
-         <tr>
-           <td></td>
-           <td colspan="3"><label><input type="checkbox" value="freq2" id="freq2BinomialP"> <span data-msgid="Show Probability">Show Probability<span></label></td>
-           <td colspan="3"><label><input type="checkbox" value="freq3" id="freq3BinomialP"> <span data-msgid="Normal Approx">Normal Approx<span></label>  (n>=10)</td>
-         </tr>
-       </table>
-       <div class="textLeft">&lt;그림 3.14&gt;  \(n\)= 4,  \(p\)= 0.6인 이항분포 그래프</div>
-       <p>
-       <table  style="width:500px">
-         <tr>
-           <td style="width:180px"><span data-msgid="Probability"></span>계산</td>
-           <td>
-              P( <input type="number" min="0" max="10" size=3 id="a1B" class="inputNumber60" />
-              &nbsp;  &le; &nbsp;  X &nbsp; &le; &nbsp; 
-              <input type="number" min="1" max="10" size=3 id="b1B" class="inputNumber60" onKeyUp="calculateC1()"/> )
-           </td>
-           <td>=</td>
-           <td><input type="text" size=3 class="inputNumber60" id="c1B"/></td>
-         </tr>
-         <tr>
-           <td></td>
-           <td>
-            P( X &nbsp; &le; &nbsp; 
-            <input type="number" min="1" max="10" size=3 id="b2B" class="inputNumber60" onKeyUp="calculateC2()" /> )
-           </td>
-           <td>=</td>
-           <td><input type="text" size=3 class="inputNumber60"  id="c2B"/></td>
-         </tr>
-         <tr>
-           <td></td>
-           <td>
-              P( X &nbsp; &ge; &nbsp; 
-              <input type="number" min="1" max="10" size=3 id="a3B" class="inputNumber60" onKeyUp="calculateC3()" /> )
-           </td>
-           <td>=</td>
-           <td><input type="text" size=3 class="inputNumber60" id="c3B"/></td>
-         </tr>
-       </table>
-       <table style="width:500px">
-         <tr>
-           <td style="width:120px"><button type="button" id="saveGraphBP" style="width:100px"><b><span class="tooltiptext" data-msgid="Graph Save">Graph Save</span></b></button></td>
-           <td></td>
-           <td style="width:170px"><button type="button" id="execute3Binomial" style="width:150px"><b><span data-msgid="Binomial Prob Table">Binomial Prob Table</span></b></button> </td>
-           <td></td>
-           <td style="width:120px"><button type="button" id="saveTable" style="width:100px"><b><span class="tooltiptext" data-msgid="Table Save">Table Save</span></b></button></td>
-           <td></td>
-         </tr>
-       </table>
-       <p>
-       <div id="screenTable" >
-         <div id="loc">
-         </div>
-       </div>
-       <p>
-       <div class="textLeft">&lt;Figure 3.15&gt; Binomial probability table</div>
-       <p>
-       <table style="width:500px">
-         <tr>
-           <td><b>[<span data-msgid="Reference Site">Reference</span>]</b></td>
-           <td><a href="https://en.wikipedia.org/wiki/Binomial_distribution" target="_blank" >Wikipedia</a></td>
-           <td><a href="http://mathworld.wolfram.com/BinomialDistribution.html" target="_blank" >Wolfram</a></td>
-           <td><a href="https://stattrek.com/probability-distributions/binomial.aspx" target="_blank" >StatTrek</a></td>
-         </tr>
-       </table>
-       <p>
+      <p>
+      <!--------***  html for Binomial Distribution ***---------------------->
+      <b>[<span data-msgid="Binomial Distribution">Binomial Distribution</span>]</b> 
+      <p>
+      <iframe class="example70" src="./example/030402.html"> </iframe>
+      <div class="textLeft">&lt;Figure 3.15&gt; Binomial probability table</div>
+      <p>
             There are sliding bars of \(n\) and \(p\) and a probability calculation box under 
             the graph, so put the desired value and press the [Enter] key to calculate the value.
-       <p>
+      <p>
             To the right of the graph, a table of binomial distributions is shown. In addition to 
             \(P(X = x)\), this table shows the cumulative probabilities \(P(X \le x)\) and 
             \(P(X \ge x)\) to facilitate various probability calculations. If you select a new 
             \(n\) and \(p\) and click [Execute] button, new binomial distribution table for this 
             value is added below.
-       <p>
+      <p>
     </div>
     <p>
-    <!------Script for Binomial Distribution ------------------------------------------------------------------>
-  <script>
-      setLanguage('en');
-      var chartBP = d3.select("#chartBP");
-
-      // 이항분포 시뮬레이션 초기화면 셋팅
-      var i, j, k, sum, temp, info;
-      var nn2, pp2, avg,  std, savg, sstd;
-      var xmin, xmax, ymin, ymax, gxminBP, gxmaxBP, gxrangeBP, gyminBP, gymaxBP, gyrangeBP;
-      var nobs;
-      var nvalueMax  = 31;
-      var binomialP2 = new Array(nvalueMax);
-      var valueLabel = new Array(nvalueMax);
-
-      var checkFreq2   = false;
-      var checkFreq3   = false;
-      var marginBP      = {top: 50, bottom: 60, left: 40, right: 40};
-      var svgWidthBP    = 640;
-      var svgHeightBP   = 400;
-      var graphWidthBP  = svgWidthBP - marginBP.left - marginBP.right;
-      var graphHeightBP = svgHeightBP - marginBP.top - marginBP.bottom;
-      var a1B, b1B, c1B, b2B, c2B, a3B, c3B;
-      document.getElementById("c1B").disabled = true;
-      document.getElementById("c2B").disabled = true;
-      document.getElementById("c3B").disabled = true;
-
-      nn2 = parseFloat(d3.select("#nn2").node().value);    // 크기 n
-      pp2 = parseFloat(d3.select("#pp2").node().value);    // 성공확률 p
-      nvalue2 = nn2 + 1;
-      xmin      = 0;
-      xmax      = nvalue2;
-      ymin      = 0;
-      if ( nn2 > 9 && pp2 >= 0.1 && pp2 <= 0.9) ymax = 0.3;
-      else ymax = 0.8;
-
-      drawBinomialPrpbGraph(nn2, pp2, binomialP2, xmin, xmax, ymin, ymax, valueLabel);
-//      binomialTable(nn2, pp2, binomialP2);
-
-      // 이항분포 실행버튼 클릭 =================================================================================
-      d3.select("#execute2Binomial").on("click",function() {
-        chartBP.selectAll("*").remove();
-        document.getElementById("freq2BinomialP").checked = false;
-        document.getElementById("freq3BinomialP").checked = false;
-        checkFreq2 = false;
-        checkFreq3 = false;
-        removeBinomialFreqP();
-        removeBinomialNormalP();
-
-        nn2 = parseFloat(d3.select("#nn2").node().value);    // 크기 n
-        pp2 = parseFloat(d3.select("#pp2").node().value);    // 성공확률 p
-        if (nn2 < 1 )   nn2 = 1;
-        if (nn2 > 100)  nn2 = 100;
-        if (pp2 < 0.01) pp2 = 0.01;
-        if (pp2 > 0.99) pp2 = 0.99;
-        document.getElementById("a1B").max = nn2-1;
-        document.getElementById("b1B").max = nn2;
-        document.getElementById("b2B").max = nn2;
-        document.getElementById("a3B").max = nn2;
-        clearInputValueB();
-        // slider control
-        document.getElementById("range3Binomial").value  = nn2;
-        document.getElementById("range4Binomial").value  = 100*pp2;
-
-        nvalue2 = nn2+1;
-        drawBinomialPrpbGraph(nn2, pp2, binomialP2, xmin, xmax, ymin, ymax, valueLabel);
-//        binomialTable(nn2, pp2, binomialP2);
-
-        if (checkFreq2) showBinomialFreq2(nvalue2, binomialP2, xmin, xmax, ymin, ymax);
-        if (checkFreq3 && nvalue2 > 9) showBinomialNormal(nn2, pp2, xmin, xmax, ymin, ymax);
-      })
-
-      // 이항분포 확률표시 버튼 클릭
-      d3.select("#freq2BinomialP").on("click",function() {
-        if(this.checked) {
-          checkFreq2  = true;
-          nn2 = parseFloat(d3.select("#nn2").node().value);    // 크기 n
-          pp2 = parseFloat(d3.select("#pp2").node().value);    // 성공확률 p
-          xmin      = 0;
-          xmax      = nvalue2;
-          ymin      = 0;
-          if ( nn2 > 9 && pp2 >= 0.1 && pp2 <= 0.9) ymax = 0.3;
-          else ymax = 0.8;
-          // 확률및 통계량 계산
-          for (var i=0; i<nvalue2; i++) {
-            binomialP2[i] = binomial_pdf(i, nn2, pp2, info)
-          }
-          showBinomialFreqP(nn2+1, binomialP2, xmin, xmax, ymin, ymax);
-        } else {
-          checkFreq2 = false;
-	  removeBinomialFreqP();
-        }
-      })
-
-      // 정규분포근사 버튼 클릭
-      d3.select("#freq3BinomialP").on("click",function() {
-        if(this.checked) {
-          checkFreq3 = true;
-          nn2 = parseFloat(d3.select("#nn2").node().value);    // 크기 n
-          pp2 = parseFloat(d3.select("#pp2").node().value);    // 성공확률 p
-          xmin      = 0;
-          xmax      = nvalue2;
-          ymin      = 0;
-          if ( nn2 > 9 && pp2 >= 0.1 && pp2 <= 0.9) ymax = 0.3;
-          else ymax = 0.8;
-          if (nn2 > 9) showBinomialNormalP(nn2, pp2, xmin, xmax, ymin, ymax);
-        } else {
-          checkFreq3 = false;
-	  removeBinomialNormalP();
-        }
-      })
-
-      // svg Graph Save
-      d3.select("#saveGraphBP").on("click", function() {
-        var svg = d3.select("#chartBP");
-        var width = svgWidthBP;
-        var height = svgHeightBP;
-        var svgString = getSVGString(svg.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
-      // 이항분포표 버튼 클릭
-      d3.select("#execute3Binomial").on("click",function() {
-          nn2 = parseFloat(d3.select("#nn2").node().value);    // 크기 n
-          pp2 = parseFloat(d3.select("#pp2").node().value);    // 성공확률 p
-          binomialTable(nn2, pp2, binomialP2);
-      })
-      // save Table
-      d3.select("#saveTable").on("click", function() {
-        head = '<html><head><meta charset="UTF-8"></head><body>';
-        tail = '</body></html>';
-        saveAs(new Blob([head + d3.select("#screenTable").html() + tail]), "eStatULog.html");
-      });
-
-    // calculate C1
-    function calculateC1() {
-          a1B = parseInt(d3.select("#a1B").node().value); 
-          b1B = parseInt(d3.select("#b1B").node().value);
-          if ( a1B > b1B ) {
-            c1B = 0;
-          }
-          else {
-            c1B = 0;
-            for (i = a1B; i < b1B+1; i++) c1B += binomialP2[i]; 
-          }
-          document.getElementById("c1B").value = f4(c1B);
-    }
-    // calculate C2
-    function calculateC2() {
-          b2B = parseInt(d3.select("#b2B").node().value);
-          c2B = 0;
-          for (i = 0; i < b2B+1; i++) c2B += binomialP2[i]; 
-          document.getElementById("c2B").value = f4(c2B);
-    }
-    // calculate C3
-    function calculateC3() {
-          a3B = parseInt(d3.select("#a3B").node().value); 
-          c3B = 0;
-          for (i = a3B; i < nn2+1; i++) c3B += binomialP2[i]; 
-          document.getElementById("c3B").value = f4(c3B);
-    }
-
-function clearInputValueB() {
-        document.getElementById("a1B").value = "";
-        document.getElementById("b1B").value = "";
-        document.getElementById("c1B").value = "";
-        document.getElementById("b2B").value = "";
-        document.getElementById("c2B").value = "";
-        document.getElementById("a3B").value = "";
-        document.getElementById("c3B").value = "";
-}
-// 이항분포 막대그래프 함수 --------------------------------------------------
-function drawBinomialPrpbGraph(nn2, pp2, binomialP2, xmin, xmax, ymin, ymax, label) {
-         var info;
-         var nvalue2   = nn2 + 1;
-         var xmin      = 0;
-         var xmax      = nvalue2;
-         var ymin      = 0;
-         var ymax      = 0.4;
-         if ( nn2 > 9 && pp2 >= 0.1 && pp2 <= 0.9) ymax = 0.3;
-         else ymax = 0.8;
-         var gyminBP     = ymin;
-         var gymaxBP     = ymax + ymax/5;  
-         var yRatio    = graphHeightBP / gymaxBP;          // 그래프 영역과 데이터 영역의 비율
-         var betweenbarWidth = graphWidthBP / nvalue2;   // 막대와 막대 사이의 너비
-         var barWidth  = betweenbarWidth * 2 / 3;    // 막대의 너비
-         var barMargin = (betweenbarWidth / 3) / 2; // 왼쪽 마진
-         var title  = svgStrU[1][langNum]+" n = "+nn2.toString()+", p = "+f3(pp2);
-         chartBP.append("text").attr("x", marginBP.left).attr("y", marginBP.top/2).text(title)
-            .style("font-size","13pt").style("stroke","blue").style("text-anchor","start")
-         var avg  = nn2 * pp2;
-         var std  = Math.sqrt(nn2*pp2*(1-pp2));
-         var str = svgStrU[3][langNum]+" = "+f3(avg)+",  "+svgStrU[4][langNum]+" = "+f3(std);
-         chartBP.append("text")
-            .attr("x", marginBP.left + graphWidthBP/2)
-            .attr("y", svgHeightBP - marginBP.bottom/3).text(str)
-            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
-         // 확률및 통계량 계산
-         for (var i=0; i<nvalue2; i++) {
-           label[i] = i;
-           binomialP2[i] = binomial_pdf(i, nn2, pp2, info)
-         }
-         drawBinomialAxisP(gyminBP, gymaxBP);
-         drawBinomialLabelP(nvalue2, label, betweenbarWidth);
-         for (var k=0; k<nvalue2; k++) {
-         chartBP.append("rect")
-            .style("fill",function(d,i) {return myColor[0];})
-            .attr("height",0)
-            .attr("width",barWidth)
-            .attr("x", marginBP.left +barMargin + k*betweenbarWidth)
-            .attr("y",svgHeightBP - marginBP.bottom)
-            .transition()                           // 애니매이션 효과 지정
-            .delay(function(d,i) {return i*100;})   // 0.5초마다 그리도록 대기시간 설정
-            .duration(1000)                         // 2초동안 애니매이션이 진행되도록 설정
-            .attr("y", svgHeightBP - marginBP.bottom - binomialP2[k]*yRatio)
-            .attr("height", binomialP2[k]*yRatio)
-         }
-}
-// 이항분포함수 변수값명 쓰기 함수--------------------------------------------------------------------
-function drawBinomialLabelP(nvalue2, label, betweenbarWidth) { 
-        var x1 = marginBP.left;
-        var y1 = svgHeightBP - marginBP.bottom; 
-        var barWidth = betweenbarWidth * 2 / 3;  // 막대의 너비
-        var barMargin = (betweenbarWidth / 3) / 2; // 왼쪽 마진
-        var temp = betweenbarWidth/3;
-        var angle, str, tx, ty;
-
-    
-        for (var k=0; k<nvalue2; k++) {
-          tx = marginBP.left + barMargin + barWidth/2 + k*betweenbarWidth;
-          ty = y1+20;
-          if (nvalue2 < 10)     {angle = 0;  str = "middle";  }
-          else if(nvalue2 < 30) {angle = 30; str = "start"; tx = tx-3;}
-          else                  {angle = 90; str = "start"; tx = tx-3;}
-          if (nvalue2 < 30) {
-             chartBP.append("text")
-             .attr("class","barname")
-             .attr("x",tx)
-             .attr("y",ty)
-             .attr("transform","rotate("+angle+","+tx+","+ty+")  ")
-             .text(label[k])
-             .style("font-family","sans-serif").style("font-size","8pt").style("text-anchor","middle")
-          } 
-          else if (nvalue2 < 60) {
-             if  (k%2 == 1) {
-               chartBP.append("text")
-                  .attr("class","barname")
-                  .attr("x",tx)
-                  .attr("y",ty)
-                  .attr("transform","rotate("+angle+","+tx+","+ty+")  ")
-                  .text(label[k])
-                  .style("font-family","sans-serif").style("font-size","8pt").style("text-anchor","middle")
-            }
-          } 
-          else if (nvalue2 < 90) {
-             if  (k%3 == 1) {
-               chartBP.append("text")
-                  .attr("class","barname")
-                  .attr("x",tx)
-                  .attr("y",ty)
-                  .attr("transform","rotate("+angle+","+tx+","+ty+")  ")
-                  .text(label[k])
-                  .style("font-family","sans-serif").style("font-size","8pt").style("text-anchor","middle")
-            }
-          }
-          else if (nvalue2 < 120) {
-             if  (k%4 == 1) {
-               chartBP.append("text")
-                  .attr("class","barname")
-                  .attr("x",tx)
-                  .attr("y",ty)
-                  .attr("transform","rotate("+angle+","+tx+","+ty+")  ")
-                  .text(label[k])
-                  .style("font-family","sans-serif").style("font-size","8pt").style("text-anchor","middle")
-            }
-          }
-          else  {
-             if  (k%5 == 1) {
-               chartBP.append("text")
-                  .attr("class","barname")
-                  .attr("x",tx)
-                  .attr("y",ty)
-                  .attr("transform","rotate("+angle+","+tx+","+ty+")  ")
-                  .text(label[k])
-                  .style("font-family","sans-serif").style("font-size","8pt").style("text-anchor","middle")
-            }
-          }
-          
-        } // endof k
-}
-// 이항분포 축
-function drawBinomialAxisP(gyminBP, gymaxBP) {
-        // y축
-        var yScale = d3.scaleLinear().domain([gymaxBP,0]).range([0,graphHeightBP])
-        chartBP.append("g")
-          .attr("transform","translate("+marginBP.left+","+marginBP.top+")")
-          .call(d3.axisLeft(yScale))                  // 눈금을 표시할 함수 호출
-        // x축
-        var x1 = marginBP.left;
-        var y1 = marginBP.top + graphHeightBP; 
-        chartBP.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x1+graphWidthBP).attr("y2",y1).style("stroke","black");
-}
-// 이항분포 확률표시 함수
-function showBinomialFreqP(nvalue2, binomialP2, xmin, xmax, ymin, ymax) {
-        var gymaxBP      = ymax + ymax/5;  
-        var yRatio     = graphHeightBP / gymaxBP;      // 그래프 영역과 데이터 영역의 비율
-        var betweenbarWidth = graphWidthBP / nvalue2;   // 막대와 막대 사이의 너비
-        var barWidth  = betweenbarWidth * 2 / 3;   // 막대의 너비
-        var barMargin = (betweenbarWidth / 3) / 2; // 왼쪽 마진
-        for (var k=0; k<nvalue2; k++) {
-          chartBP.append("text")
-             .attr("class","freqfont2").style("text-anchor","middle")
-             .attr("x",marginBP.left + barMargin + barWidth/2 + k*betweenbarWidth)
-             .attr("y",svgHeightBP - marginBP.bottom - binomialP2[k]*yRatio - 5)
-             .text(f3(binomialP2[k]))
-        }
-}// 도수 제거 함수
-function removeBinomialFreqP() {
-	 chartBP.selectAll("text.freqfont2").remove();
-}
-// 이항-정규분포 근사 함수
-function showBinomialNormalP(nn2, pp2, xmin, xmax, ymin, ymax) {
-        var avg  = nn2 * pp2;
-        var std  = Math.sqrt(nn2*pp2*(1-pp2));
-        var gxminBP      = 0;
-        var gxmaxBP      = nn2+1;
-        var gxrangeBP    = gxmaxBP - gxminBP;
-        var gyminBP      = ymin;
-        var gymaxBP      = ymax + ymax/5; 
-        var gyrangeBP    = gymaxBP - gyminBP; 
-        var betweenbarWidth = graphWidthBP / (nn2+1);   // 막대와 막대 사이의 너비
-        var barWidth  = betweenbarWidth * 2 / 3;   // 막대의 너비
-        var barMargin = (betweenbarWidth / 3) / 2; // 왼쪽 마진
-        var graphWidth2 = graphWidthBP * 6 * std / gxrangeBP;
-         var x = [];
-         var y = [];
-         var step = (gxmaxBP - gxminBP)/graphWidth2;
-         x[0] = avg - 3*std;
-         y[0] = normal_pdf( avg, std, x[0] );
-         x1   = marginBP.left + barMargin + barWidth/2 + graphWidthBP*(x[0]-gxminBP)/gxrangeBP;
-         y1   = marginBP.top + graphHeightBP - graphHeightBP*(y[0]-gyminBP)/gyrangeBP;
-         for (var k=1; k<=graphWidth2; k++) {
-           x[k] = x[k-1] + step;
-           if (x[k] > avg + 3*std) break;
-           y[k] = normal_pdf( avg, std, x[k] );
-           x2   = marginBP.left + barMargin + barWidth/2 + graphWidthBP*(x[k]-gxminBP)/gxrangeBP;
-           y2   = marginBP.top + graphHeightBP - graphHeightBP*(y[k]-gyminBP)/gyrangeBP;
-           chartBP.append("line").attr("class","lineNormal").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-              .attr("stroke-width","2px").style("stroke","red")
-           x1   = x2;
-           y1   = y2;    
-
-//           document.write(k+" "+x[k]+" "+y[k]+"<br>")
-         }
-}
-// 이항-정규분포 제거 함수
-function removeBinomialNormalP() {
-	 chartBP.selectAll("line.lineNormal").remove();
-}
-
-  </script>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td style="width:160px">
-            <h4>⏱ Practice 3.7</h4> <p>
-            <input class="qrBtn" type="image" src="../../QR/eStatU420_Binomial.svg" onclick="window.open(addrStr[149])">
-          </td>
-          <td>
-            <p>
+        <h4>⏱ Practice 3.7</h4> <p>
                The defect rate of an electronic component produced in one factory is 5%. Use 『eStatH』to find the following probabilities when there is a box containing 50 of these components.
             <p>
                1) What's the probability that there is no defective product? <br>
                2) What is the probability that there are 1, 2 or 3 defective products?<br>
                3) What is the probability of having more than three (≥) defective products?
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU420_Binomial.svg" onclick="window.open(addrStr[149])">
     </div>
     <p>
 
@@ -2836,18 +1390,12 @@ function removeBinomialNormalP() {
          \(\sigma(X) = \sqrt{1.6} = 1.265\) 
       </div>
       <p>
-      <table style="width:750px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU420_Binomial.svg" onclick="window.open(addrStr[149])">
-          </td>
-          <td>
-            <p>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU420_Binomial.svg" onclick="window.open(addrStr[149])">
             Select 'Binomial Distribution' in the menu of 『eStatH』 and select \(n\) = 10, \(p\) = 0.2. 
             If you click [Execute] button, the graph as in &lt;Figure 3.16&gt; appears. 
             You can check the probability of 1) if you check the 'probability' here. 
            <p>
-           <img class="imgFig600600" src="../FigureH/Fig0316.png">
+           <img class="figure" src="./Figure/Fig0316.png">
            <div class="textLeft">&lt;Figure 3.16&gt; Binomial distribution with \(n\)= 10,  \(p\)= 0.2</div>
            <p>
            You can check the answer of 2) \(P(X ≥ 2)\) = 0.6242 from the binomial table on the 
@@ -2872,31 +1420,19 @@ function removeBinomialNormalP() {
               <tr> <td class="tdCenter">9</td>  <td class="tdCenter">0.0000</td> <td class="tdCenter">1.0000</td> <td class="tdCenter">0.0000</td> </tr>
               <tr> <td class="tdCenter">10</td> <td class="tdCenter">0.0000</td> <td class="tdCenter">1.0000</td> <td class="tdCenter">0.0000</td> </tr>
             </table>
-          </td>
-        </tr>
-      </table>
   </div>
   <!------------------------------------------------------------------------------------------------->
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:160px">
-            <h5>⏱ Practice 3.8</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStatU420_Binomial.svg" onclick="window.open(addrStr[149])">
-          </td>
-          <td>
-            <p>
+        <h5>⏱ Practice 3.8</h5>
                In a presidential election, the approval rating of a particular candidate was 40%. In order to establish an election strategy, we will meet 20 voters this morning to see if they support the particular candidate. 
                Calculate the following probabilities directly and check them using 『eStatH』. Assume that no person abstained.
             <p>
                1) What is the probability that 8 out of 20 will support the particular candidate? <br>
                2) What is the probability that 5 or more (≥) and 12 or less (≤) will support?<br>
                3) On average, how many people will support the candidate? What's the standard deviation?
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU420_Binomial.svg" onclick="window.open(addrStr[149])">
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -2913,32 +1449,16 @@ function removeBinomialNormalP() {
   <!------------------------------------------------------------------------------------------------->
   <h4>B. Law of large number</h4>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ Think</h4>
           <b>Consider an experiment which rolls a dice \(n\) times in which the mathematical 
              probability of each side is \(\frac{1}{6}\). If \(X\) is a random variable 
              which counts the number of single dot on the upper side, \(X\) follows the 
              binomial distribution \(B(n, \frac{1}{6})\). 
           </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 Explore</h4>
           <b>When you roll a dice \(n\) times, let's compare the relative frequency 
              \(\frac{X}{n}\) with the mathematical probability \(\frac{1}{6}\).
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
   <div class="mainTable">
@@ -2966,10 +1486,6 @@ function removeBinomialNormalP() {
          If the number of rolls \(n\) is 10, 20, 50, 100, then the above formula becomes 
          as follows and its probability can be calculated using  \(B(n, \frac{1}{6})\)  in 『eStatH』.
       <p>
-      <table>
-        <tr>
-          <td style="width:400px">
-            <p>
             <div class="textLeft">
                \(n = 10\)<p>
                \(P \left [ 10( \frac{1}{6} - 0.1 ) < X < 10( \frac{1}{6} + 0.1 ) \right] \)<br>
@@ -2977,18 +1493,9 @@ function removeBinomialNormalP() {
                \(= P(X=1) + P(X=2) \) <br>
                \(= 0.6137 \)
             </div>
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/Fig0317.png">
+            <img class="figure" src="./Figure/Fig0317.png">
             <div class="textLeft">&lt;Figure 3.17&gt;  『eStatH』 \(B(10,0.1667)\)</div>
-          </td>
-        </tr>
-      </table>
       <p>
-      <table>
-        <tr>
-          <td style="width:400px">
-            <p>
             <div class="textLeft">
                \(n = 20\)<p>
                \(P \left [ 20( \frac{1}{6} - 0.1 ) < X < 20( \frac{1}{6} + 0.1 ) \right] \)<br>
@@ -2996,18 +1503,9 @@ function removeBinomialNormalP() {
                \(= P(X=2)+P(X=3)+ P(X=4)+P(X=5) \)  <br>
                \(= 0.7677 \)
             </div>
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/Fig0318.png">
+            <img class="figure" src="./Figure/Fig0318.png">
             <div class="textLeft">&lt;Figure 3.18&gt;  『eStatH』 \(B(20,0.1667)\)</div>
-          </td>
-        </tr>
-      </table>
       <p>
-      <table>
-        <tr>
-          <td style="width:400px">
-            <p>
             <div class="textLeft">
                \(n = 50\)<p>
                \(P \left [ 50( \frac{1}{6} - 0.1 ) < X < 50( \frac{1}{6} + 0.1 ) \right] \)<br>
@@ -3015,18 +1513,9 @@ function removeBinomialNormalP() {
                \(= P(X=4) + P(X=5) + \cdots + P(X=13) \) <br>
                \(= 0.9454 \)
             </div>
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/Fig0319.png">
+            <img class="figure" src="./Figure/Fig0319.png">
             <div class="textLeft">&lt;Figure 3.19&gt;  『eStatH』 \(B(50,0.1667)\)</div>
-          </td>
-        </tr>
-      </table>
       <p>
-      <table>
-        <tr>
-          <td style="width:400px">
-            <p>
             <div class="textLeft">
                \(n = 100\)<p>
                \(P \left [ 100( \frac{1}{6} - 0.1 ) < X < 100( \frac{1}{6} + 0.1 ) \right] \)<br>
@@ -3034,13 +1523,8 @@ function removeBinomialNormalP() {
                \(= P(X=7) + P(X=8) + \cdots + P(X=26) \) <br>
                \(= 0.9925 \)
             </div>
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/Fig0320.png">
+            <img class="figure" src="./Figure/Fig0320.png">
             <div class="textLeft">&lt;Figure 3.20&gt;  『eStatH』 \(B(100,0.1667)\)</div>
-          </td>
-        </tr>
-      </table>
       <p>
          As you noticed here, the probability \( P ( \left | \frac{X}{n} - \frac{1}{6} \right | < 0.1 )\)
          is close to 1 as \(n\) increases. 
@@ -3066,259 +1550,25 @@ function removeBinomialNormalP() {
          is close to 1 when \(\epsilon\) = 0.05 if \(n\)  is increasing up to 1000 by using 『eStatH』.
          You can change \(p\) and \(\epsilon\) using the slide bars. 
       <p>
-      <!-------------- html for Law of Large Number -------------------------------------------------->
-      <b>[<span data-msgid="Law of Large Number"></span>]</b>
-      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      \(X \; \) : <span data-msgid="Binomial Distribution"></span> \(B(n,p)\)&nbsp;&nbsp;&nbsp;
-      \( \quad P(\; \left| \frac{X}{n} - p \right | \,<\, \epsilon ) \;🠖\; 1 \) 
-       <table style="width:650px">
-         <tr>
-           <td style="width:100px"><button type="button" id="executeLaw"><span data-msgid="Execute">Execute</span></button></td>
-           <td>p = <input type="text" value="0.50" size=2 id="ppLaw" class="inputNumber60"></td>
-           <td><sup><small> 0 </small></sup> </td>
-           <td style="width:80px"><input type="range" min="1" max="99" value="50" style="width:80px" id="rangeP" onchange="showValueP(this.value)"/></td>
-           <td><sup><small> 1 </small></sup></td>
-           <td></td>
-           <td>ε = <input type="text" value="0.05" size=4 id="epsi" class="inputNumber60"></td>
-           <td><sup><small>0.01</small></sup></td>
-           <td style="width:80px"><input type="range" min="1" max="10" value="5" style="width:80px" id="rangeE" onchange="showValueE(this.value)"/></td>
-           <td><sup><small>0.10</small></sup></td>
-         </tr>
-       </table>
-       <svg id="chartLaw" width="640" height="400" style="border-style:solid;"> </svg>
-       <p>
-       <button type="button" id="saveGraphLaw" >
-         <span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
-       </button>
-       <div class="textLeft">&lt;Figure 3.21&gt;Simulation experiment of law of large number using 『eStatH』</div>
+      <!--------***  html for Law of Large Number ***---------------------->
+      <iframe class="example70" src="./example/030403.html"> </iframe>
+      <div class="textLeft">&lt;Figure 3.21&gt;Simulation experiment of law of large number using 『eStatH』</div>
+      <p>
   </div>
   <p>
-  <!---  Script for Law of Large Number --------------------------------------------------------------->
-  <script type="text/javascript">
-      function showValueP(newValue) {document.getElementById("ppLaw").value = f2(newValue/100); initialize();}
-      function showValueE(newValue) {document.getElementById("epsi").value = f2(newValue/100);  initialize();}
-  </script>
-
-  <script>
-      setLanguage('en');
-      var chartLaw = d3.select("#chartLaw")
-      var colr = ["#FF0000","#FF8000","#FFFF00","#80FF00","#00FFFF","#BF00FF","#FF00FF","#0080FF","#00BFFF","#8000FF"];
-      var svgWidthLaw    = 640;
-      var svgHeightLaw   = 400;  
-      var marginLaw      = {top: 50, bottom: 50, left: 50, right: 30};
-      var graphWidthLaw  = svgWidthLaw - marginLaw.left - marginLaw.right;
-      var graphHeightLaw = svgHeightLaw - marginLaw.top - marginLaw.bottom;
-      var mTitle, yTitle, xTitle;
-      mTitle = "";
-      yTitle = "";
-      xTitle = "n";
-      var i, j, k; 
-      var nnLaw, ppLaw, epsi, nint, step, buffer, nvalue; 
-      var maxN      = 1000;
-      var ngap      = 4;
-      var ninterval = maxN / ngap;
-      var maxrow    = ninterval + 1;
-      var statP     = new Array(maxrow);
-      var gxminLaw, gxmaxLaw, gyminLaw, gymaxLaw, gxrangeLaw, gyrangeLaw;
-      gxminLaw = 0;
-      gxmaxLaw = maxN;
-      gyminLaw = 0;
-      gymaxLaw = 1;
-      gxrangeLaw = gxmaxLaw - gxminLaw;
-      gyrangeLaw = gymaxLaw - gyminLaw;
-      initialize()
-
-      // 대수의 법칙 버튼 클릭
-      d3.select("#executeLaw").on("click",function() {
-        initializeLaw();
-      }) 
-      // svg Graph Save
-      d3.select("#saveGraphLaw").on("click", function() {
-        var svg = d3.select("#chartLaw");
-        var width = svgWidthLaw;
-        var height = 600;
-        var svgString = getSVGString(svg.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
-    // initialize
-    function initializeLaw(){
-        chartLaw.selectAll("*").remove();  
-        ppLaw   = parseFloat(d3.select("#ppLaw").node().value);       
-        epsi = parseFloat(d3.select("#epsi").node().value);  
-        mTitle = "P( | (X/n) - p | < ε )" + "\u2800\u2800 p = "+f4(ppLaw) + ",\u2800 ε = "+ f2(epsi);   
-        // slider control
-        document.getElementById("rangeP").value  = 100 * ppLaw;
-        document.getElementById("rangeE").value  = 100 * epsi;
-        lawLargeBinomial();
-    }
-    // 대수의 법칙 함수
-    function lawLargeBinomial() {
-        var i, k, avg, std, temp, left, right, info;
-        var x1, x2, y1, y2;
-        var yheight = graphHeightLaw;
-        var xgap    = graphWidthLaw / ninterval;
-
-        // Calculate binomial probability
-        for (i = 1; i < ninterval+1; i++) {
-          nnLaw = ngap * i;
-          left  = nnLaw * (ppLaw - epsi);
-          right = nnLaw * (ppLaw + epsi);
-          if (nnLaw < 1000) { // Binomial
-            left  = Math.trunc(left) ;
-            right = Math.trunc(right);
-            statP[i] = binomial_cdf( right, nnLaw, ppLaw, info ) - binomial_cdf( left, nnLaw, ppLaw, info )
-          }
-          else { // Normal approx
-            avg = nnLaw * ppLaw;
-            std = Math.sqrt( nnLaw * ppLaw * (1-ppLaw));
-            left  = (left - avg) / std;
-            right = (right - avg) / std;
-            statP[i] = stdnormal_cdf(right) - stdnormal_cdf(left);
-          }
-        }
-        // draw axis
-        drawAxisLaw();
-        drawTitleLaw(mTitle, yTitle, xTitle);
-        // probability graph 
-        x1 = marginLaw.left + ngap;
-        y1 = marginLaw.top + graphHeightLaw - yheight * (statP[1] - gyminLaw) / gyrangeLaw;
-        for (i = 2; i < ninterval+1; i++) {
-          x2 = x1 + xgap;
-          y2 = marginLaw.top + graphHeightLaw - yheight * (statP[i] - gyminLaw) / gyrangeLaw;
-          chartLaw.append("line")
-               .attr("class", "line")
-               .attr("x1", x1)
-               .attr("x2", x2)
-               .attr("y1", y1)
-               .attr("y2", y2)
-               .style("stroke", colr[0])
-               .style("stroke-width", "3")
-          x1 = x2;
-          y1 = y2;
-        }
-    }
-function drawAxisLaw() {
-        // x축 선
-        y1 = marginLaw.top + graphHeightLaw;
-        chartLaw.append("line")
-         .attr("class", "line")
-         .attr("x1", marginLaw.left)
-         .attr("x2", marginLaw.left + graphWidthLaw)
-         .attr("y1", y1)
-         .attr("y2", y1)
-         .style("stroke", "black")
-
-        // x축 그리기
-        var xScale = d3.scaleLinear().domain([gxminLaw,gxmaxLaw]).range([0,graphWidthLaw])
-        xgrid = xScale.ticks();
-        // x축 그리드
-        for (i = 1; i < xgrid.length; i++) {
-          tx = marginLaw.left + xScale(xgrid[i]);
-          chartLaw.append("line")
-           .attr("x1", tx)
-           .attr("x2", tx)
-           .attr("y1", marginLaw.top)
-           .attr("y2", marginLaw.top + graphHeightLaw)
-           .style("stroke", "lightgrey")
-        }
-        ty = marginLaw.top + graphHeightLaw;
-        chartLaw.append("g")
-             .attr("transform","translate("+marginLaw.left+","+ty+")")
-	     .attr("class", "main axis date")
-             .call(d3.axisBottom(xScale)) 
-
-        // y축 그리기
-        var yScale = d3.scaleLinear().domain([gyminLaw,gymaxLaw]).range([graphHeightLaw, 0])
-        ygrid = yScale.ticks();
-        // Y축 그리드
-        for (i = 1; i < ygrid.length; i++) {
-          ty = marginLaw.top + yScale(ygrid[i]);
-          chartLaw.append("line")
-           .attr("x1", marginLaw.left)
-           .attr("x2", marginLaw.left + graphWidthLaw)
-           .attr("y1", ty)
-           .attr("y2", ty)
-           .style("stroke", "lightgrey")
-        }
-        ty = marginLaw.top;
-        chartLaw.append("g")
-             .attr("transform","translate("+marginLaw.left+","+ty+")")
-	     .attr("class", "main axis date")
-             .call(d3.axisLeft(yScale)) 
-}
-// 그래프 제목 쓰기 함수
-function drawTitleLaw(mTitle, yTitle, xTitle) { 
-  // 주제목
-  if (mTitle != "") {
-    chartLaw.append("text")
-         .attr("x", marginLaw.left + graphWidthLaw/2)
-         .attr("y", marginLaw.top / 2 + 10)
-         .style("font-size", "1.3em")
-         .style("font-family", "sans-seirf")
-         .style("stroke", "black")
-         .style("text-anchor", "middle")
-         .text(mTitle)
-  }
-  // X축 제목
-  if (xTitle != "") {
-    chartLaw.append("text")
-            .style("font-size", "1em")
-            .style("font-family", "sans-seirf")
-            .style("stroke", "black")
-            .style("text-anchor", "middle")
-            .attr("x", marginLaw.left + graphWidthLaw / 2)
-            .attr("y", marginLaw.top + graphHeightLaw + marginLaw.bottom / 2 + 15)
-            .text(xTitle)
-  }
-  // Y축 제목
-  if (yTitle != "") {
-     var tx = marginLaw.left / 2 - 30;
-     var ty = marginLaw.top + 15;
-     chartLaw.append("text")
-            .style("font-size", "1em")
-            .style("font-family", "sans-seirf")
-            .style("stroke", "black")
-            .style("text-anchor", "end")
-            .attr("x", tx)
-            .attr("y", ty)
-            .text(yTitle)
-            .attr("transform", "rotate(-90 30 100)")
-  }
-}
-
-  </script>
  
 <!-------------------------------------------------------------------------------->
   <h3 id="0305">3.5  Normal Distribution</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ Think</h4>
           <b>The histogram of delivery times to the house investigated randomly when pizza is ordered are as follows:  </b>
           <p>
-            <img class="imgFig600600" src="../FigureH/Fig0322.png">
+            <img class="figure" src="./Figure/Fig0322.png">
             <div class="textLeft">&lt;Figure 3.22&gt; Histogram using many data of pizza delivery time</div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 Explore</h4>
           1) What are the characteristics of this histogram?<br>
           2) What is the mathematical function that can describe this histogram?
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -3331,20 +1581,12 @@ function drawTitleLaw(mTitle, yTitle, xTitle) {
          Gauss (1777-1855). This function is called the <b>normal distribution function</b> 
          or the <b>Gaussian distribution function</b>, and the equation and graph are as follows:
       <p>
-      <table style="width:700px">
-        <tr>
-          <td style="width:300px">
             $$
               f(x) = \frac{1}{\sqrt{ 2\pi} \sigma } e^{ \left[ - \frac{(x-\mu)^2}{2 \sigma^2} \right]} \qquad  - ∞ < x < ∞ 
             $$
             where \(\mu\) is a constant, \(\sigma\) is a positive constant, \(e\) is the irrational number as 
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/Fig0323.png">
+            <img class="figure" src="./Figure/Fig0323.png">
             <div class="textLeft">&lt;Figure 3.23&gt; Probability distribution function of the normal distribution </div>
-          </td>
-        </tr>
-      </table>
       <p>
          The mean and standard deviation of the normal distribution are \(\mu\) and \(\sigma\) 
          respectively. If a random variable \(X\) follows the normal distribution with the mean
@@ -3360,99 +1602,18 @@ function drawTitleLaw(mTitle, yTitle, xTitle) {
          distribution becomes sharp. This is because the total area under the normal distribution 
          function must be 1.
       <p>
-      <!------------- html for Normal Comparison --------------------------------------------------->
+      <!-------------*** html for Normal Comparison ***---------------------------------->
       <b>[<span data-msgid="Normal Distribution"></span> <span data-msgid="ComparisonGraph"></span>]</b> 
       <p>
-      <button type="button" id="executeNC" >
-        <span data-msgid="Execute">Execute</span>
-      </button>
-      <p>
-      <svg id="chartNC" width="640" height="400" style="border-style:solid;"> </svg>
-      <p>
-      <table style="width:600px">
-        <tr>
-          <td style="width:20px"><span style="color:#FF0000"><b>N (</b></span></td>
-          <td colspan="3"><input type="number" size="2" id="a1NC" value="0" style="color:#FF0000; text-align:center;">
-          <td style="width:10px"> , </td>
-          <td colspan="3"><input type="number" size="2" id="b1NC" value="1" style="color:#FF0000; text-align:center;">²</td>
-          <td style="width:10px"><span style="color:#FF0000"><b>)</b></span></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td style="width:10px"><sup><small> -10 </small></sup></td> 
-          <td style="width:80px"><input type="range" min="0" max="100" value="50" id="range11" class="slideR" onchange="show11(this.value)"></td>  
-          <td style="width:10px"><sup><small>10</small></sup></td> 
-          <td></td>
-          <td style="width:10px"><sup><small> 0.1 </small></sup></td> 
-          <td style="width:80px"><input type="range" min="1" max="100" value="10" id="range12" class="slideR"onchange="show12(this.value)"></td>  
-          <td style="width:10px"><sup><small>10</small></sup></td>
-        </tr>
-        <tr>
-          <td style="width:20px"><span style="color:LimeGreen"><b>N (</b></span></td>
-          <td colspan="3"><input type="number" size="2" id="a2NC" value="-2" style="color:LimeGreen; text-align:center;"></td>
-          <td style="width:10px"> , </td> 
-          <td colspan="3"><input type="number" size="2" id="b2NC" value="0.5" style="color:LimeGreen; text-align:center;">²</td>
-          <td style="width:10px"><span style="color:LimeGreen"><b>)</b></span></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td style="width:10px"><sup><small> -10 </small></sup></td> 
-          <td style="width:80px"><input type="range" min="0" max="100" value="40" id="range21" class="slideG" onchange="show21(this.value)"/></td>  
-          <td style="width:10px"><sup><small>10</small></sup></td> 
-          <td></td>
-          <td style="width:10px"><sup><small> 0.1 </small></sup></td> 
-          <td style="width:80px"><input type="range" min="1" max="100" value="5" id="range22" class="slideG" onchange="show22(this.value)"/></td>  
-          <td style="width:10px"><sup><small>10</small></sup></td> 
-        </tr>
-        <tr>
-          <td style="width:20px"><span style="color:#8000FF"><b>N (</b></span></td>
-          <td colspan="3"><input type="number" size="2" id="a3NC" value="2" style="color:#8000FF; text-align:center;"></td>
-          <td style="width:10px"> , </td>
-          <td colspan="3"><input type="number" size="2" id="b3NC" value="3" style="color:#8000FF; text-align:center;">²</td>
-          <td style="width:10px"><span style="color:#8000FF"><b>)</b></span></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td style="width:10px"><sup><small> -10 </small></sup></td> 
-          <td style="width:80px"><input type="range" min="0" max="100" value="60" id="range31" class="slideB" onchange="show31(this.value)"/></td>  
-          <td style="width:10px"><sup><small>10</small></sup> , </td>
-          <td></td>
-          <td style="width:10px"><sup><small> 0.1 </small></sup></td> 
-          <td style="width:80px"><input type="range" min="1" max="100" value="30" id="range32" class="slideB" onchange="show32(this.value)"/> </td> 
-          <td style="width:10px"><sup><small>10</small></sup></td> 
-        </tr>
-      </table>
-
-      <table style="width:600px">
-         <tr>
-           <td><button type="button" id="saveGraphNC" ><span class="tooltiptext" data-msgid="Graph Save">Graph Save</span></button></td>
-           <td></td>
-           <td><b>[<span data-msgid="Reference Site">Reference</span>]</b></td>
-           <td><a href="https://en.wikipedia.org/wiki/Normal_distribution" target="_blank" >Wikipedia </a></td>
-           <td><a href="http://mathworld.wolfram.com/NormalDistribution.html" target="_blank" >Wolfram </a></td>
-           <td><a href="http://stattrek.com/probability-distributions/normal.aspx" target="_blank" >StatTrek </a></td>
-           <td><a href="https://www.khanacademy.org/math/statistics-probability/modeling-distributions-of-data/normal-distributions-library/v/introduction-to-the-normal-distribution" target="_blank" >KhanAcademy </a></td>
-         </tr>
-      </table>
-      
-      <div class="textLeft">&lt;Figure 3.24&gt; Comparison of three graphs of normal distribution,  \(N(-2, 0.5^2 )\), \(N(0, 1)\), \(N(2, 2^2 )\)</div>
-
+         <iframe class="example70" src="./example/030501.html"> </iframe>
+         <div class="textLeft">&lt;Figure 3.24&gt; Comparison of three graphs of normal distribution,  \(N(-2, 0.5^2 )\), \(N(0, 1)\), \(N(2, 2^2 )\)</div>
       <p>
          &lt;Figure 3.25&gt; is the graph of three-normal distributions \(N(-3, 1)\), \(N(0, 1)\) and  \(N(3, 1)\) 
          in which the mean is different from each other and the variance is all 1. If the mean 
          is different, the graph of the same shape is moved horizontally.
       <p>
-      <table style="width:700px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_50NormalComparison.svg" onclick="window.open(addrStr[167])">
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/Fig0325.png">
+            <img class="figure" src="./Figure/Fig0325.png">
             <div class="textLeft">&lt;Figure 3.25&gt; Comparison of three graphs of normal distribution,  \(N(-3, 1)\), \(N(0, 1)\), \(N(3, 1)\)</div>
-          </td>
-        </tr>
-      </table>
       <p>
          &lt;Figure 3.26&gt; is the graph of three-normal distributions \(N(0, 0.5^2 )\), \(N(0, 1)\) and \(N(0, 3^2 )\) 
          in which all means are zero and variances are different. It can be observed that 
@@ -3460,343 +1621,11 @@ function drawTitleLaw(mTitle, yTitle, xTitle) {
          becomes flat as the variance increases, and the normal distribution becomes sharp 
          as the variance decreases.
       <p>
-      <table style="width:700px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_50NormalComparison.svg" onclick="window.open(addrStr[167])">
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/Fig0326.png">
+            <img class="figure" src="./Figure/Fig0326.png">
             <div class="textLeft">&lt;Figure 3.26&gt; Comparison of three graphs of normal distribution,  \(N(0, 0.5^2 )\), \(N(0, 1)\), \(N(0, 3^2 )\)</div>
-          </td>
-        </tr>
-      </table>
       <p>
   </div>
   <p>
-      <!------------- script for Normal Comparison --------------------------------------------------->
-  <script>
-      setLanguage('en');
-      var chartNC = d3.select("#chartNC");
-      var colr = ["#FF0000","#FF8000","#FFFF00","#32CD32","#00FFFF","#BF00FF","#FF00FF","#0080FF","#00BFFF","#8000FF"];
-      var i, j, x, temp, info;
-      var avg1, avg2, avg3, std1, std2, std3;
-      var left1, left2, left3, right1, right2, right3, delta;
-      var xmin, xmax, ymin, ymax, gxminNC, gxmaxNC, gxrangeNC, gyminNC, gymaxNC, gyrangeNC;
-//      var nobs;
-      var nvalueNC  = 300;
-      var normalP1 = new Array(nvalueNC);
-      var normalP2 = new Array(nvalueNC);
-      var normalP3 = new Array(nvalueNC);
-
-      var svgWidthNC    = 640;
-      var svgHeightNC   = 400;
-      var marginNC      = {top: 20, bottom: 50, left: 50, right: 30};
-      var graphWidthNC  = svgWidthNC - marginNC.left - marginNC.right;
-      var graphHeightNC = svgHeightNC - marginNC.top - marginNC.bottom;
-      var mTitle = "";
-      var yTitle = "";
-      var xTitle = "x";
-      var ninterval   = graphWidthNC / 4;
-
-      initializeNC();
-
-      // Normal 실행버튼 클릭 =================================================================================
-      d3.select("#executeNC").on("click",function() {
-        initializeNC()
-      })
-
-      // svg Graph Save
-      d3.select("#saveGraphNC").on("click", function() {
-        var svg = d3.select("#chartNC");
-        var width = svgWidthNC;
-        var height = svgHeightNC;
-        var svgString = getSVGString(svg.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
- 
-    function show11(newValue) {
-        document.getElementById("a1NC").value = -10 + newValue/5;
-        initializeNC();
-    }
-    function show12(newValue) {
-        document.getElementById("b1NC").value = newValue/10;
-        initializeNC();
-    }
-    function show21(newValue) {
-        document.getElementById("a2NC").value = -10 + newValue/5;
-        initializeNC();
-    }
-    function show22(newValue) {
-        document.getElementById("b2NC").value = newValue/10;
-        initializeNC();
-    }
-    function show31(newValue) {
-        document.getElementById("a3NC").value = -10 + newValue/5;
-        initializeNC();
-    }
-    function show32(newValue) {
-        document.getElementById("b3NC").value = newValue/10;
-        initializeNC();
-    }
-
-    // initializeNC and draw normal function
-    function initializeNC() {
-      avg1 = parseFloat(d3.select("#a1NC").node().value);
-      avg2 = parseFloat(d3.select("#a2NC").node().value);
-      avg3 = parseFloat(d3.select("#a3NC").node().value);
-      std1 = parseFloat(d3.select("#b1NC").node().value);
-      std2 = parseFloat(d3.select("#b2NC").node().value);
-      std3 = parseFloat(d3.select("#b3NC").node().value);
-        if (avg1 < -10) avg1 = -10;
-        if (avg1 > 10)  avg1 = 10
-        if (std1 < 0.1) std1 = 0.1;
-        if (std1 > 10)  std1 = 10;
-        if (avg2 < -10) avg2 = -10;
-        if (avg2 > 10)  avg2 = 10
-        if (std2 < 0.1) std2 = 0.1;
-        if (std2 > 10)  std2 = 10;
-        if (avg3 < -10) avg3 = -10;
-        if (avg3 > 10)  avg3 = 10
-        if (std3 < 0.1) std3 = 0.1;
-        if (std3 > 10)  std3 = 10;
-        document.getElementById("a1NC").value = f2(avg1);
-        document.getElementById("b1NC").value = f2(std1);     
-        document.getElementById("a2NC").value = f2(avg2);
-        document.getElementById("b2NC").value = f2(std2);       
-        document.getElementById("a3NC").value = f2(avg3);
-        document.getElementById("b3NC").value = f2(std3);            
-        // slider control
-        document.getElementById("range11").value = (avg1+10)*5;
-        document.getElementById("range12").value = std1*10;
-        document.getElementById("range21").value = (avg2+10)*5;
-        document.getElementById("range22").value = std2 * 10;
-        document.getElementById("range31").value = (avg3+10)*5;
-        document.getElementById("range32").value = std3 * 10;
-
-      // calculate gxmin, gxmax
-      left1  = avg1 - 4*std1; 
-      left2  = avg2 - 4*std2; 
-      left3  = avg3 - 4*std3; 
-      right1 = avg1 + 4*std1; 
-      right2 = avg2 + 4*std2; 
-      right3 = avg3 + 4*std3; 
-      if (left1 < left2) gxminNC = left1;
-      else gxminNC = left2;
-      if (gxminNC > left3) gxminNC = left3;
-      if (right1 < right2) gxmaxNC = right2;
-      else gxmaxNC = right1;
-      if (gxmaxNC < right3) gxmaxNC = right3;
-      gxrangeNC = gxmaxNC - gxminNC;
-      delta   = gxrangeNC / ninterval;
-      gyminNC   = 0;
-      gymaxNC   = 0;
-      for (i = 0; i < ninterval+1; i++) {
-        x = gxminNC + i*delta;
-        normalP1[i] = normal_pdf(avg1, std1, x)
-        normalP2[i] = normal_pdf(avg2, std2, x)
-        normalP3[i] = normal_pdf(avg3, std3, x)
-        if (gymaxNC < normalP1[i]) gymaxNC = normalP1[i]
-        if (gymaxNC < normalP2[i]) gymaxNC = normalP2[i]
-        if (gymaxNC < normalP3[i]) gymaxNC = normalP3[i]
-      }
-      gyrangeNC = gymaxNC - gyminNC;
-      drawNormalGraphNC(avg1, std1, avg2, std2, avg3, std3);
-    }
-
-  // Draw Normal Graph
-  function drawNormalGraphNC(avg1, std1, avg2, std2, avg3, std3) {
-    var i, j, str, tx, ty;
-    var ybuffer  = graphHeightNC * 0.1;
-    var yheight  = graphHeightNC * 0.8;
-    chartNC.selectAll("*").remove();
-
-    // draw axis
-    drawAxisNC();
-    drawTitleNC(mTitle, yTitle, xTitle);
-
-    // normal graph 1
-    x1 = marginNC.left;
-    y1 = marginNC.top + graphHeightNC - yheight * (normalP1[0] - gyminNC) / gyrangeNC;
-    for (i=1; i<ninterval+1; i++) {
-      x2 = x1 + 4;
-      y2 = marginNC.top + graphHeightNC - yheight * (normalP1[i] - gyminNC) / gyrangeNC;
-      chartNC.append("line")
-           .attr("class", "line")
-           .attr("x1", x1)
-           .attr("x2", x2)
-           .attr("y1", y1)
-           .attr("y2", y2)
-           .style("stroke", colr[0])
-           .style("stroke-width", "3")
-      x1 = x2;
-      y1 = y2;
-    }
-    x1   = marginNC.left + graphWidthNC * (avg1 - gxminNC) / gxrangeNC;
-    temp = normal_pdf(avg1, std1, avg1);
-    y1   = marginNC.top + graphHeightNC - yheight * (temp - gyminNC) / gyrangeNC - 10;
-    str  = "N(" + f2(avg1) + ", " + f2(std1) + "²)";
-    chartNC.append("text")
-         .attr("x", x1)
-         .attr("y", y1)
-         .style("font-size", "1em")
-         .style("font-family", "sans-seirf")
-         .style("stroke", colr[0])
-         .style("text-anchor", "middle")
-         .text(str)
-    // normal graph 2
-    x1 = marginNC.left;
-    y1 = marginNC.top + graphHeightNC - yheight * (normalP2[0] - gyminNC) / gyrangeNC;
-    for (i=1; i<ninterval+1; i++) {
-      x2 = x1 + 4;
-      y2 = marginNC.top + graphHeightNC - yheight * (normalP2[i] - gyminNC) / gyrangeNC;
-      chartNC.append("line")
-           .attr("class", "line")
-           .attr("x1", x1)
-           .attr("x2", x2)
-           .attr("y1", y1)
-           .attr("y2", y2)
-           .style("stroke", "LimeGreen")
-           .style("stroke-width", "3")
-      x1 = x2;
-      y1 = y2;
-    }
-    x1   = marginNC.left + graphWidthNC * (avg2 - gxminNC) / gxrangeNC;
-    temp = normal_pdf(avg2, std2, avg2);
-    y1   = marginNC.top + graphHeightNC - yheight * (temp - gyminNC) / gyrangeNC - 10;
-    str  = "N(" + f2(avg2) + ", " + f2(std2) + "²)";
-    chartNC.append("text")
-         .attr("x", x1)
-         .attr("y", y1)
-         .style("font-size", "1em")
-         .style("font-family", "sans-seirf")
-         .style("stroke", "LimeGreen")
-         .style("text-anchor", "middle")
-         .text(str)
-    // normal graph 3
-    x1 = marginNC.left;
-    y1 = marginNC.top + graphHeightNC - yheight * (normalP3[0] - gyminNC) / gyrangeNC;
-    for (i=1; i<ninterval+1; i++) {
-      x2 = x1 + 4;
-      y2 = marginNC.top + graphHeightNC - yheight * (normalP3[i] - gyminNC) / gyrangeNC;
-      chartNC.append("line")
-           .attr("class", "line")
-           .attr("x1", x1)
-           .attr("x2", x2)
-           .attr("y1", y1)
-           .attr("y2", y2)
-           .style("stroke", "DeepSkyBlue")
-           .style("stroke-width", "3")
-      x1 = x2;
-      y1 = y2;
-    }
-    x1   = marginNC.left + graphWidthNC * (avg3 - gxminNC) / gxrangeNC;
-    temp = normal_pdf(avg3, std3, avg3);
-    y1   = marginNC.top + graphHeightNC - yheight * (temp - gyminNC) / gyrangeNC - 10;
-    str  = "N(" + f2(avg3) + ", " + f2(std3) + "²)";
-    chartNC.append("text")
-         .attr("x", x1)
-         .attr("y", y1)
-         .style("font-size", "1em")
-         .style("font-family", "sans-seirf")
-         .style("stroke", "DeepSkyBlue")
-         .style("text-anchor", "middle")
-         .text(str)
-  }
-
-function drawAxisNC() {
-        // x축 선
-        y1 = marginNC.top + graphHeightNC;
-        chartNC.append("line")
-         .attr("class", "line")
-         .attr("x1", marginNC.left)
-         .attr("x2", marginNC.left + graphWidthNC)
-         .attr("y1", y1)
-         .attr("y2", y1)
-         .style("stroke", "black")
-
-        // x축 그리기
-        var xScale = d3.scaleLinear().domain([gxminNC,gxmaxNC]).range([0,graphWidthNC])
-        xgrid = xScale.ticks();
-        // x축 그리드
-        for (i = 1; i < xgrid.length; i++) {
-          tx = marginNC.left + xScale(xgrid[i]);
-          chartNC.append("line")
-           .attr("x1", tx)
-           .attr("x2", tx)
-           .attr("y1", marginNC.top)
-           .attr("y2", marginNC.top + graphHeightNC)
-           .style("stroke", "lightgrey")
-        }
-        ty = marginNC.top + graphHeightNC;
-        chartNC.append("g")
-             .attr("transform","translate("+marginNC.left+","+ty+")")
-	     .attr("class", "main axis date")
-             .call(d3.axisBottom(xScale)) 
-
-        // y축 그리기
-        var yScale = d3.scaleLinear().domain([gyminNC,gymaxNC]).range([graphHeightNC, 0])
-        ygrid = yScale.ticks();
-        // Y축 그리드
-        for (i = 1; i < ygrid.length; i++) {
-          ty = marginNC.top + yScale(ygrid[i]);
-          chartNC.append("line")
-           .attr("x1", marginNC.left)
-           .attr("x2", marginNC.left + graphWidthNC)
-           .attr("y1", ty)
-           .attr("y2", ty)
-           .style("stroke", "lightgrey")
-        }
-        ty = marginNC.top;
-        chartNC.append("g")
-             .attr("transform","translate("+marginNC.left+","+ty+")")
-	     .attr("class", "main axis date")
-             .call(d3.axisLeft(yScale)) 
-}
-// 그래프 제목 쓰기 함수
-function drawTitleNC(mTitle, yTitle, xTitle) { 
-  // 주제목
-  if (mTitle != "") {
-    chartNC.append("text")
-         .attr("x", marginNC.left + graphWidthNC/2)
-         .attr("y", marginNC.top / 2 + 10)
-         .style("font-size", "1.3em")
-         .style("font-family", "sans-seirf")
-         .style("stroke", "black")
-         .style("text-anchor", "middle")
-         .text(mTitle)
-  }
-  // X축 제목
-  if (xTitle != "") {
-    chartNC.append("text")
-            .style("font-size", "1em")
-            .style("font-family", "sans-seirf")
-            .style("stroke", "black")
-            .style("text-anchor", "middle")
-            .attr("x", marginNC.left + graphWidthNC / 2)
-            .attr("y", marginNC.top + graphHeightNC + marginNC.bottom / 2 + 15)
-            .text(xTitle)
-  }
-  // Y축 제목
-  if (yTitle != "") {
-     var tx = marginNC.left / 2 - 30;
-     var ty = marginNC.top + 15;
-     chartNC.append("text")
-            .style("font-size", "1em")
-            .style("font-family", "sans-seirf")
-            .style("stroke", "black")
-            .style("text-anchor", "end")
-            .attr("x", tx)
-            .attr("y", ty)
-            .text(yTitle)
-            .attr("transform", "rotate(-90 30 100)")
-  }
-}
-
-  </script>
 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableYellow">
@@ -3842,7 +1671,7 @@ function drawTitleNC(mTitle, yTitle, xTitle) {
          \(P(a \le X \le b)\), when \(X\) follows the normal distribution \(N(\mu, \sigma^2 )\)
          is the area of the function \(f(x)\) enclosed between the x-axis and interval \([a, b]\)
       <p>
-            <img class="imgFig600600" src="../FigureH/Fig0327.png">
+            <img class="figure" src="./Figure/Fig0327.png">
             <div class="textLeft">&lt;Figure 3.27&gt; Probability  \(P(a \le X \le b)\) of the normal distribution</div>
       <p>
          Mathematically, this area should be obtained as the following definite integral, but it is only possible to use a computer because the function  is impossible to integrate.
@@ -3882,7 +1711,7 @@ function drawTitleNC(mTitle, yTitle, xTitle) {
          using 『eStatH』.
       <p>
             <div class="textLeft">[Table 3.3] Cumulated probability of standard normal distribution in 『eStatH』 </div>
-            <img class="imgFig600600" src="../FigureH/Table0304.png">
+            <img class="figure" src="./Figure/Table0304.png">
       <p>
          In 『eStatH』, it is easy to calculate the probability for the interval \([a, b]\)
          of any normal distribution, \(P(a \le X \le b)\), and the percentile \(x\)
@@ -3892,608 +1721,20 @@ function drawTitleNC(mTitle, yTitle, xTitle) {
   <p>
   <div class="mainTableGrey">
       <p>
-      <!--------   html for Normal Distribution ------------------------------------------------------>
+      <!--------*** html for Normal Distribution ***-------------------------->
       <b>[<span data-msgid="Normal Distribution">Normal Distribution</span>]</b> 
       <p>
-      <span data-msgid="Mean">Mean</span>&nbsp; 
-      &mu;=    <input type="text" class="textarea" value="0" size=6 id="mu" style="text-align:center;" onfocus="focus0()" onKeyUp="changeRangeMuSigma()"/> &nbsp; 
-      <span data-msgid="Std Dev">Std Dev</span>&nbsp;
-      &sigma;= <input type="text" class="textarea" value="1" size=6 id="sigma" style="text-align:center;" onfocus="focus0()" onKeyUp="changeRangeMuSigma()"/> 
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <span style="color:red;" data-msgid="If typed"></span> 
-      <p>
-      <svg id="chartND" width="640" height="400" style="border-style:solid;"> </svg>
-    <form name="myForm"> 
-      <table class="stat">
-      <tbody>
-        <tr>
-          <td>
-            <button type="button" id="executeND">
-              <span data-msgid="Execute">Execute</span>
-            </button>
-          </td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>
-            <button type="button" id="saveGraphND"> 
-              <span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td style="width:100px;"><span data-msgid="Probability"></span></td>
-          <td>
-            <label> 
-            <input type="radio" name = "type1" value="1" checked>&nbsp; 
-            P( <input type="text" style="text-align:center;" value="-1.960" size=6  id="a" onfocus="focus1()" onKeyUp="executeClick()"/>
-            &nbsp;  &le; &nbsp;  X &nbsp; &le; &nbsp; 
-            <input type="text" style="text-align:center;" value="1.960" size=6 id="b" onfocus="focus1()" onKeyUp="executeClick()"/> )
-            </label>
-          </td>
-          <td>&nbsp; = &nbsp;</td>
-          <td><input type="text" style="text-align:center;" value="0.9500" size=5 id="c"/></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>
-            <label>
-            <input type="radio" name = "type1" value="2">&nbsp; 
-            P( X &nbsp; &le; &nbsp; 
-            <input type="text" style="text-align:center;" value="-1.645" size=6 id="b2" onfocus="focus2()" onKeyUp="executeClick()" /> )
-            </label>
-          </td>
-          <td>&nbsp; = &nbsp;</td>
-          <td><input type="text" style="text-align:center;" value="0.0500"  size=5 id="c2"/></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>
-            <label>
-              <input type="radio" name = "type1" value="3">&nbsp;
-              P( &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; X &nbsp; &ge; &nbsp; 
-              <input type="text" style="text-align:center;" value="1.645" size=6 id="a3" onfocus="focus3()" onKeyUp="executeClick()" /> )
-            </label>
-          </td>
-          <td>&nbsp; = &nbsp;</td>
-          <td><input type="text" style="text-align:center;" value="0.0500"  size=5 id="c3"/></td>
-        </tr>
-        <tr>
-          <td><span data-msgid="PercentileValue">Percentile</span></td>
-          <td>
-            <label>
-              <input type="radio" name = "type1" value="4">&nbsp;   
-              P( <input type="text" style="text-align:center;" value="-1.960" size=6 id="f"> &nbsp;  &le; &nbsp; X &nbsp; &le; &nbsp; 
-              <input type="text" style="text-align:center;"  value="1.960"  size=6 id="g"/> )
-            </label>
-          </td>
-          <td>&nbsp; = &nbsp;</td>
-          <td>
-              <input type="text" style="text-align:center;" value="0.9500" size=5 id="h" onfocus="focus4()" onKeyUp="executeClick()" /> 
-          </td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>
-            <label> 
-              <input type="radio" name = "type1" value="5">&nbsp; 
-              P( X &nbsp; &le; &nbsp; 
-              <input type="text" style="text-align:center;" value="-1.645" size=6  id="d"/> ) 
-            </label>
-          </td>
-          <td>&nbsp; = &nbsp;</td>
-          <td>
-            <input type="text" style="text-align:center;" value="0.0500" size=5 id="e" onfocus="focus5()" onKeyUp="executeClick()" /> 
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>
-            <label> 
-              <input type="radio" name = "type1" value="6">&nbsp;
-              P( &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; X &nbsp; &ge; &nbsp; 
-              <input type="text" style="text-align:center;" value="1.645" size=6  id="a6"/> ) 
-            </label>
-          </td>
-          <td>&nbsp; = &nbsp;</td>
-          <td>
-            <input type="text" style="text-align:center;" value="0.0500" size=5 id="c6" onfocus="focus6()" onKeyUp="executeClick()" />
-          </td>
-          <td></td>
-        </tr>
-      </tbody>
-      </table>
-      <p>
-      &nbsp; <b>[<span data-msgid="Reference Site">Reference Site</span>]</b> 
-      <a href="https://en.wikipedia.org/wiki/Normal_distribution" target="_blank" >Wikipedia </a> &nbsp; 
-      <a href="http://mathworld.wolfram.com/NormalDistribution.html" target="_blank" >Wolfram </a> &nbsp; 
-      <a href="http://stattrek.com/probability-distributions/normal.aspx" target="_blank" >StatTrek </a> &nbsp; 
-      <a href="https://www.khanacademy.org/math/statistics-probability/modeling-distributions-of-data/normal-distributions-library/v/introduction-to-the-normal-distribution" target="_blank" >KhanAcademy </a> &nbsp; 
-      <p>
-
-    </form>
-
-            <div class="textLeft">&lt;Figure 3.28&gt; Normal probability calculation using 『eStatH』</div>
-
+         <iframe class="example90" src="./example/030502.html"> </iframe>
+         <div class="textLeft">&lt;Figure 3.28&gt; Normal probability calculation using 『eStatH』</div>
       <p>
          In 『eStatH』, the probability of an interval can be calculated from \(\mu - 4 \sigma\) to \(\mu + 4 \sigma\). 
          The probability which is less than \(\mu - 4\sigma\) or greater than \(\mu + 4\sigma\)
          is 0.0000. [Table 3.4] is the percentile table of the standard normal distribution of 『eStatH』.
       <p>
-            <div class="textLeft">[Table 3.4] Percentile of standard normal distribution in 『eStatH』</div>
-            <img class="imgFig600600" src="../FigureH/Table0304.png">
+         <div class="textLeft">[Table 3.4] Percentile of standard normal distribution in 『eStatH』</div>
+         <img class="figure" src="./Figure/Table0304.png">
   </div>
   <p>
-      <!--------   script for Normal Distribution ------------------------------------------------------>
-  <script>
-      setLanguage('en');
-      var chartND = d3.select("#chartND");
-      var marginND, graphWidthND, graphHeightND;
-      var svgWidthND, svgHeightND, graphWidthND, graphHeightND;
-      svgWidthND   = 640;
-      svgHeightND  = 400;
-      marginND  = {top: 50, bottom: 50, left: 50, right: 40};
-      graphWidthND   = svgWidthND - marginND.left - marginND.right;
-      graphHeightND  = svgHeightND - marginND.top - marginND.bottom;
-
-      var nobs, avg, std, min, Q1, median, Q3, max, freqMaxP;
-      var gxminND, gxmaxND, gyminND, gymaxND, gxrangeND, gyrangeND, info;
-      var stat = new Array(30);
-      var title;
-      var mu, sigma;
-      var a, b, c, b2, c2, a3, c3, f, g, h, d, e, a6, c6;
-      var checkParameter = false;
-      var checkExecute = false
-
-      document.getElementById("c").disabled  = true; 
-      document.getElementById("c2").disabled = true; 
-      document.getElementById("c3").disabled = true; 
-      document.getElementById("f").disabled  = true; 
-      document.getElementById("g").disabled  = true; 
-      document.getElementById("d").disabled  = true; 
-      document.getElementById("a6").disabled = true; 
-
-      // 초기 정규분포 (-1,1) 확률 그리기
-      mu    = 0;
-      sigma = 1;
-      a     = -1.96;
-      b     = 1.96;
-      c     = stdnormal_cdf(b) - stdnormal_cdf(a);
-      gxminND   = mu - 4*sigma;
-      gxmaxND   = mu + 4*sigma;
-      gxrangeND = gxmaxND - gxminND;
-      drawNormalGraphND(mu, sigma, a, b, c);
-
-      // 정규분포 확률 ------------------------------------------------------------------------------------
-      var rad = document.myForm.type1;
-      var radioType = 1;
-      rad[0].onclick = function() {     // P(a< Z < b) = c
-          radioType = 1;  
-          chartND.selectAll("*").remove();
-          a = parseFloat(d3.select("#a").node().value); 
-          if ( (a-mu)/sigma < -4 ) a = mu - 4*sigma;   
-          b = parseFloat(d3.select("#b").node().value);
-          if ( (b-mu)/sigma > 4 ) b = mu + 4*sigma;
-          if ( a > b ) c = 0;
-          else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
-          d3.select("#a").node().value = f3(a)
-          d3.select("#b").node().value = f3(b)
-          d3.select("#c").node().value = f4(c);
-          drawNormalGraphND(mu, sigma, a, b, c);
-      }
-      rad[1].onclick = function() {     // P( Z < b) = c
-          radioType = 2;  
-          chartND.selectAll("*").remove();
-          a = mu - 4*sigma;   
-          b = parseFloat(d3.select("#b2").node().value);
-          if ( b > mu + 4*sigma ) b = mu + 4*sigma;
-          if ( a > b ) c = 0;
-          else c = stdnormal_cdf((b-mu)/sigma);
-          d3.select("#b2").node().value = f3(b)
-          d3.select("#c2").node().value = f4(c);
-          drawNormalGraphND(mu, sigma, a, b, c);
-      }
-      rad[2].onclick = function() {     // P( Z > b) = c
-          radioType = 3;  
-          chartND.selectAll("*").remove();
-          a = parseFloat(d3.select("#a3").node().value); 
-          if ( a < mu - 4*sigma ) a = mu - 4*sigma;   
-          b = mu + 4*sigma;
-          if ( a > b ) c = 0;
-          else c = 1 - stdnormal_cdf((a-mu)/sigma);
-          d3.select("#a3").node().value = f3(a)
-          d3.select("#c3").node().value = f4(c);
-          drawNormalGraphND(mu, sigma, a, b, c);
-      }
-      rad[3].onclick = function() {     // P(f < Z < g) = h
-          radioType = 4;
-          chartND.selectAll("*").remove();
-          h = parseFloat(d3.select("#h").node().value); 
-          if (h > 0.9999) h = 0.9999;
-          if (h < 0.0001) h = 0.0001;
-          f = mu - sigma*stdnormal_inv(1-(1-h)/2, info);
-          g = mu + sigma*stdnormal_inv(1-(1-h)/2, info);
-          d3.select("#f").node().value = f3(f);
-          d3.select("#g").node().value = f3(g);
-          d3.select("#h").node().value = f4(h);
-          drawNormalGraphND(mu, sigma, f, g, h); 
-      }    
-      rad[4].onclick = function() {     // P(Z < d) = e
-          radioType = 5;
-          chartND.selectAll("*").remove();
-          e     = parseFloat(d3.select("#e").node().value); 
-          if (e > 0.9999) e = 0.9999;
-          if (e < 0.0001) e = 0.0001;
-          a = mu - 4*sigma;
-          d = mu + sigma*stdnormal_inv(e, info);
-          d3.select("#d").node().value = f3(d);
-          d3.select("#e").node().value = f4(e);
-          drawNormalGraphND(mu, sigma, a, d, e);
-      }
-      rad[5].onclick = function() {     // P( Z > b) = c
-          radioType = 6;  
-          chartND.selectAll("*").remove();
-          h = parseFloat(d3.select("#c6").node().value); 
-          if (h > 0.9999) h = 0.9999;
-          if (h < 0.0001) h = 0.0001;
-          f = mu + sigma*stdnormal_inv(1-h, info);
-          g = mu + 4*sigma;
-          d3.select("#a6").node().value = f3(f);
-          d3.select("#c6").node().value = f4(h);
-          drawNormalGraphND(mu, sigma, f, g, h); 
-      }
-
-      // 확률계산 실행버튼 클릭
-      d3.select("#executeND").on("click",function() {
-        checkExecute = true;
-        if (checkParameter == true) changeRangeMuSigma(); 
-
-        chartND.selectAll("*").remove();
- 
-        mu    = parseFloat(d3.select("#mu").node().value); 
-        sigma = parseFloat(d3.select("#sigma").node().value); 
-        if (sigma < 0.0001) {
-          sigma = 0.0001;
-          d3.select("#sigma").node().value = f4(sigma);
-        }
-        a  = document.getElementById("a").value; 
-        b  = document.getElementById("b").value;
-        b2 = document.getElementById("b2").value;
-        a3 = document.getElementById("a3").value; 
-        e  = document.getElementById("e").value; 
-        h  = document.getElementById("h").value;
-        if (isNaN(a) || isNaN(b) || isNaN(b2) || isNaN(a3)) {
-          alert("Enter number!");
-          showValueNormal1()
-          return;
-        }
-        if (isNaN(e) || isNaN(h)) {
-          alert("Enter number between 0 and 1!");
-          showValueNormal1()
-          return;
-        }
-
-        if (radioType == 1) { // P( a < Z < b) = c
-          chartND.selectAll("text.mean").remove();
-          chartND.selectAll("line.lineb").remove();
-          a = parseFloat(d3.select("#a").node().value); 
-          if ( (a-mu)/sigma < -4 ) a = mu - 4*sigma;   
-          b = parseFloat(d3.select("#b").node().value);
-          if ( (b-mu)/sigma > 4 ) b = mu + 4*sigma;
-          if ( a > b ) c = 0;
-          else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
-          d3.select("#a").node().value = f3(a)
-          d3.select("#b").node().value = f3(b)
-          d3.select("#c").node().value = f4(c);
-          drawNormalGraphND(mu, sigma, a, b, c);
-        } 
-        else if (radioType == 2) {     // P( Z < b) = c
-          chartND.selectAll("text.mean").remove();
-          chartND.selectAll("line.lineb").remove();
-          a = gxminND;   
-          b = parseFloat(d3.select("#b2").node().value);
-          if ( (b-mu)/sigma > 4 ) b = mu + 4*sigma;
-          if ( a > b ) c = 0;
-          else c = stdnormal_cdf((b-mu)/sigma);
-          d3.select("#b2").node().value = f3(b)
-          d3.select("#c2").node().value = f4(c);
-          drawNormalGraphND(mu, sigma, a, b, c);
-        }
-        else if (radioType == 3) {     // P( Z > b) = c
-          chartND.selectAll("text.mean").remove();
-          chartND.selectAll("line.lineb").remove();
-          a = parseFloat(d3.select("#a3").node().value); 
-          if ( (a-mu)/sigma < -4 ) a = mu - 4*sigma;   
-          b = gxmaxND;
-          if ( a > b ) c = 0;
-          else c = 1 - stdnormal_cdf((a-mu)/sigma);
-          d3.select("#a3").node().value = f3(a)
-          d3.select("#c3").node().value = f4(c);
-          drawNormalGraphND(mu, sigma, a, b, c);
-        }
-        else if (radioType == 4) {
-          chartND.selectAll("text.mean").remove();
-          chartND.selectAll("line.lineb").remove();
-          h = parseFloat(d3.select("#h").node().value); 
-          if (h > 0.9999) h = 0.9999;
-          if (h < 0.0001) h = 0.0001;
-//          document.getElementById("range4N").value  = f0(h*1000);
-          f = mu - sigma*stdnormal_inv(1-(1-h)/2, info);
-          g = mu + sigma*stdnormal_inv(1-(1-h)/2, info);
-          d3.select("#f").node().value = f3(f);
-          d3.select("#g").node().value = f3(g);
-          d3.select("#h").node().value = f4(h);
-          drawNormalGraphND(mu, sigma, f, g, h); 
-        }
-        else if (radioType == 5) {
-          chartND.selectAll("text.mean").remove();
-          chartND.selectAll("line.lineb").remove();
-          e = parseFloat(d3.select("#e").node().value); 
-          if (e > 0.9999) e = 0.9999;
-          if (e < 0.0001) e = 0.0001;
-//          document.getElementById("range3N").value  = f0(e*1000);
-          a = gxminND;
-          d = mu + sigma*stdnormal_inv(e, info);
-          d3.select("#d").node().value = f3(d);
-          d3.select("#e").node().value = f4(e);
-          drawNormalGraphND(mu, sigma, a, d, e);
-        }
-        else if (radioType == 6) {
-          chartND.selectAll("text.mean").remove();
-          chartND.selectAll("line.lineb").remove();
-          h = parseFloat(d3.select("#c6").node().value); 
-          if (h > 0.9999) h = 0.9999;
-          if (h < 0.0001) h = 0.0001;
-          f = mu + sigma*stdnormal_inv(1-h, info);
-          g = mu + 4*sigma;
-          d3.select("#a6").node().value = f3(f);
-          d3.select("#c6").node().value = f4(h);
-          drawNormalGraphND(mu, sigma, f, g, h); 
-        }
-      })
-
-      // svg Graph Save
-      d3.select("#saveGraphND").on("click", function() {
-        var svg = d3.select("#chart");
-        var width = svgWidth;
-        var height = svgHeight;
-        var svgString = getSVGString(svg.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
-      // save Table
-      d3.select("#saveTable").on("click", function() {
-        head = '<html><head><meta charset="UTF-8"></head><body>';
-        tail = '</body></html>';
-        saveAs(new Blob([head + d3.select("#screenTable").html() + tail]), "eStatULog.html");
-      });
-
-    function changeRangeMuSigma(){
-       if (checkExecute == false && event.keyCode != 13) return;
-       var muStr    = d3.select("#mu").node().value;
-       var sigmaStr = d3.select("#sigma").node().value;
-       mu    = parseFloat(muStr); 
-       sigma = parseFloat(sigmaStr); 
-       if (isNaN(mu) || isNaN(sigma)) {
-          alert("Enter number!");
-          return;
-       }
-       if (sigma < 0) {
-         alert("Enter positive number!");
-         return;
-       }
-       showValueNormal0();
-       checkExecute = false;
-    }
-
-  // Draw Normal Graph
-function drawNormalGraphND(mu, sigma, a, b, prob) {
-         var x1, y1, x2, y2
-         var title;
-//	 var title  = "N("+mu+","+sigma+") "+svgStrU[24][langNum];
-         if (sigma == 1) title  = "N("+mu+","+sigma+")";
-         else title  = "N("+mu+","+sigma+"\u00B2)";
-         chartND.append("text").attr("class","title").attr("x", marginND.left).attr("y", marginND.top*0.7).text(title) 
-         gxminND   = mu - 4*sigma;
-         gxmaxND   = mu + 4*sigma;
-         gxrangeND = gxmaxND - gxminND;
-         gyminND   = 0;
-         var ymax    = 1/(sigma*Math.sqrt(2*Math.PI));
-         gymaxND   = ymax + ymax/5; 
-         gyrangeND = gymaxND - gyminND;
-         drawAxisNormal(gxminND, gxmaxND, gyminND, gymaxND);
-         
-         var x = [];
-         var y = [];
-         var step = (gxmaxND - gxminND)/graphWidthND;
-         x[0] = gxminND;
-         y[0] = normal_pdf(mu, sigma, x[0] );
-         x1   = marginND.left + graphWidthND*(x[0]-gxminND)/gxrangeND;
-         y1   = marginND.top + graphHeightND - graphHeightND*(y[0]-gyminND)/gyrangeND;
-         for (var k=1; k<=graphWidthND; k++) {
-           x[k] = x[k-1] + step;
-           y[k] = normal_pdf(mu, sigma, x[k] );
-           x2   = marginND.left + graphWidthND*(x[k]-gxminND)/gxrangeND;
-           y2   = marginND.top + graphHeightND - graphHeightND*(y[k]-gyminND)/gyrangeND;
-           chartND.append("line").attr("x1",x1).attr("y1",y1).attr("x2",x2).attr("y2",y2)
-              .style("stroke","black").attr("stroke-width","2px");
-           x1   = x2;
-           y1   = y2;    
-         }
-         var tempx, tempy;
-         var tempx = a;
-         do { 
-           tempy = normal_pdf(mu, sigma, tempx );
-           x1   = marginND.left + graphWidthND*(tempx-gxminND)/gxrangeND;
-           x2   = x1;
-           y1   = marginND.top  + graphHeightND;
-           y2   = marginND.top  + graphHeightND - graphHeightND*(tempy-gyminND)/gyrangeND + 1;
-           chartND.append("line")
-              .attr("x1",x1)
-              .attr("y1",y1)
-              .attr("x2",x2)
-              .attr("y2",y2)
-              .attr("stroke-width","2px").style("stroke","#0055FF")
-           tempx += step;        
-         } while( tempx <= b ) 
-         // a, b, prob 표시
-         chartND.append("text")
-            .attr("x", marginND.left + graphWidthND*(a-gxminND)/gxrangeND)
-            .attr("y", svgHeightND - marginND.bottom/3)
-            .text(f3(a))
-            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
-         chartND.append("text")
-            .attr("x", marginND.left + graphWidthND*(b-gxminND)/gxrangeND)
-            .attr("y", svgHeightND - marginND.bottom/3)
-            .text(f3(b))
-            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","#0055FF").style("text-anchor","middle")
-          x1 = marginND.left + graphWidthND*(b-gxminND)/gxrangeND + 20;
-//         if (radioType == 2) x1 = marginND.left + graphWidthND*((-2+b)/2-gxminND)/gxrangeND;
-         y1 = svgHeightND - marginND.bottom - graphHeightND/10+10;
-         chartND.append("text")
-            .attr("x", x1)
-            .attr("y", y1)
-            .text(f4(prob))
-            .style("font-family","sans-serif").style("font-size","9pt").style("stroke","green").style("text-anchor","middle")
-}    
-// 축 그리기
-function drawAxisNormal(gxminND, gxmaxND, gyminND, gymaxND) {
-        var xScale = d3.scaleLinear().domain([gxminND,gxmaxND]).range([0,graphWidthND]);
-        var yScale = d3.scaleLinear().domain([gymaxND,0]).range([0,graphHeightND]);
-        var ty =  marginND.top + graphHeightND;
-        d3.select("#chartND")
-          .append("g")
-          .attr("transform","translate("+marginND.left+","+ty+")")
-          .call(d3.axisBottom(xScale))     
-        d3.select("#chartND")
-          .append("g")
-          .attr("transform","translate("+marginND.left+","+marginND.top+")")
-          .call(d3.axisLeft(yScale))                  // 눈금을 표시할 함수 호출
-}
-
-// 정규분포 
-function showValueNormal0() {
-       var a, b, c;
-       chartND.selectAll("*").remove();
-       radioType = 1; 
-       document.myForm.type1.value = 1;
-       a = mu - 1.96*sigma;
-       b = mu + 1.96*sigma;
-       c = 0.95;
-       radioType = 1; 
-       document.myForm.type1.value = 1;
-       drawNormalGraphND(mu, sigma, a, b, c);
-
-       document.getElementById("a").value  = f3(a);
-       document.getElementById("b").value  = f3(b);
-       document.getElementById("c").value  = f4(c);
-       document.getElementById("f").value  = f3(a);
-       document.getElementById("g").value  = f3(b);
-       document.getElementById("h").value  = f4(c);
-       a = mu - 1.645*sigma;
-       document.getElementById("b2").value = f3(a);
-       document.getElementById("c2").value = f4(1-c);
-       document.getElementById("d").value  = f3(a);
-       document.getElementById("e").value  = f4(1-c);
-       b = mu + 1.645*sigma;
-       document.getElementById("a3").value = f3(b);
-       document.getElementById("c3").value = f4(1-c);
-       document.getElementById("a6").value = f3(b);
-       document.getElementById("c6").value = f4(1-c);
-}
-//
-function showValueNormal1(newValue) {
-          chartND.selectAll("*").remove();
-          var a, b, c;
-          var mu    = parseFloat(d3.select("#mu").node().value); 
-          var sigma = parseFloat(d3.select("#sigma").node().value); 
-          if (radioType == 1) {
-            document.getElementById("a").value  = f3(mu + sigma*(newValue-400)/100);
-            a = parseFloat(d3.select("#a").node().value); 
-            if ( a < mu-4*sigma ) a = mu - 4*sigma;   
-            b = parseFloat(d3.select("#b").node().value);
-            if ( a > b ) {
-              c = 0;
-              a = b;
-              document.getElementById("a").value = b.toString();
-              document.getElementById("range1Normal").value = (400+100*(b-mu)/sigma).toString();
-            } 
-            else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
-            d3.select("#c").node().value = f4(c);
-          }
-          else if (radioType == 2) {
-            a = mu - 4*sigma; 
-            document.getElementById("range21N").value = (400+100*(a-mu)/sigma).toString();
-            b = parseFloat(d3.select("#b2").node().value);
-            if ( b > mu+4*sigma ) b = mu + 4*sigma;
-            if ( a > b ) {
-              c = 0;
-              b = a;
-            }
-            else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
-            d3.select("#c2").node().value = f4(c);
-          }
-          else if (radioType == 3) {
-            document.getElementById("a3").value  = f3(mu + sigma*(newValue-400)/100);
-            a = parseFloat(d3.select("#a3").node().value);
-            b = mu + 4*sigma;
-            document.getElementById("range22N").value = (400+100*(b-mu)/sigma).toString();
-            if ( a > b ) {
-              c = 0;
-              b = a;
-            }
-            else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
-            d3.select("#c3").node().value = f4(c);
-          }
-          else if (radioType == 4) {
-            document.getElementById("f").value  = f3(mu + sigma*(newValue-400)/100);
-            a = parseFloat(d3.select("#f").node().value); 
-            if ( a < mu-4*sigma ) a = mu - 4*sigma;   
-            b = parseFloat(d3.select("#g").node().value);
-            if ( a > b ) {
-              c = 0;
-              a = b;
-            } 
-            else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
-            d3.select("#h").node().value = f4(c);
-          }
-          else if (radioType == 5) {
-            a = mu - 4*sigma; 
-            document.getElementById("range21N").value = (400+100*(a-mu)/sigma).toString();
-            b = parseFloat(d3.select("#d").node().value);
-            if ( b > mu+4*sigma ) b = mu + 4*sigma;
-            if ( a > b ) {
-              c = 0;
-              b = a;
-            }
-            else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
-            d3.select("#e").node().value = f4(c);
-          }
-          else if (radioType == 6) {
-            document.getElementById("a6").value  = f3(mu + sigma*(newValue-400)/100);
-            a = parseFloat(d3.select("#a6").node().value);
-            b = mu + 4*sigma;
-            document.getElementById("range22N").value = (400+100*(b-mu)/sigma).toString();
-            if ( a > b ) {
-              c = 0;
-              b = a;
-            }
-            else c = stdnormal_cdf((b-mu)/sigma) - stdnormal_cdf((a-mu)/sigma);
-            d3.select("#c6").node().value = f4(c);
-          }
-
-          drawNormalGraphND(mu, sigma, a, b, c);     
-}
-
-  </script>
-
-
-
 
   <!------------------------------------------------------------------------------------------------->
   <div class="mainTableGrey">
@@ -4515,18 +1756,10 @@ function showValueNormal1(newValue) {
       <div class="textL20M20">3) \(P(Z ≥ 1.96) = 1 - P(Z ≤ 1.96) = 1 - 0.975 = 0.025 \)
       </div>
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
-          </td>
-          <td>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
             <p>When using 『eStatH』 for 1), select the second option under the graph, enter 1.96, and click [Execute] button.
             <p>In the same way, 2) is calculated by entering -1.96 and 1.96 in the first option under the graph.
             <p>3) is calculated by selecting the third option under the graph and entering 1.96.
-          </td>
-        </tr>
-      </table>
       <p>
   </div>
   <!------------------------------------------------------------------------------------------------->
@@ -4551,60 +1784,36 @@ function showValueNormal1(newValue) {
       <div class="textL20M20">3) It is the same as looking up \(P(Z ≤ x) = 0.95\), \(x\) is 1.645 in the table.
       </div>
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
-          </td>
-          <td>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
             <p>When using 『eStatH』 for 1) enter \(p\) = 0.90 in the right box in the fifth option under the graph and click [Execute] button. It can be seen that the correct 90% percentile is 1.282.  
             <p>
-            <img class="imgFig600600" src="../FigureH/Fig0328A.png">
+            <img class="figure" src="./Figure/Fig0328A.png">
             <p>For 2) use the fourth option under the graph, enter \(p\) = 0.99 in the right box and click [Execute] button. It can be seen that the correct bilateral percentile are –2.5758 and 2.576.
             <p>For 3) use the 6th option under the graph, enter \(p\) = 0.05 in the box on the right and click [Execute] button. It can be seen that the correct right 5% percentile is 1.645.
-          </td>
-        </tr>
-      </table>
   </div>
   <!------------------------------------------------------------------------------------------------->
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:160px">
-            <h5>⏱ Practice 3.9</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
-          </td>
-          <td>
+        <h5>⏱ Practice 3.9</h5>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
             <p>If \(Z\) is the standard normal random variable, find the following probabilities using the standard normal distribution table and confirm it using 『eStatH』.
             <p>
               1) \(P(-1 ≤ Z ≤ 1)\) <br>
               2) \(P(-2 ≤ Z ≤ 2)\) <br>
               3) \(P(-3 ≤ Z ≤ 3)\) 
-          </td>
-        </tr>
-      </table>
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:160px">
-            <h5>⏱ Practice 3.10</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
-          </td>
-          <td>
-            <p>If \(Z\) is the standard normal random variable, find \(x\) which satisfies the following formula and cofirm it using 『eStatH』.
+        <h5>⏱ Practice 3.10</h5>
+            If \(Z\) is the standard normal random variable, find \(x\) which satisfies the following formula and cofirm it using 『eStatH』.
             <p>
               1) \(P(Z ≤ x) = 0.99  \) <br>
               2) \(P(-x ≤ Z ≤ x) = 0.95 \) <br>
               3) \(P(Z ≥ x) = 0.01\) 
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -4615,10 +1824,10 @@ function showValueNormal1(newValue) {
          95%, 97.5%, and 99.5% from the left of the standard normal distribution. 
          &lt;Figure 3.30&gt; shows the 95% and 99% probabilities when both ends are equally excluded..
       <p>
-            <img class="imgFig600600" src="../FigureH/Fig0329.png">
+            <img class="figure" src="./Figure/Fig0329.png">
             <div class="textLeft">&lt;Figure 3.29&gt; 95%, 97.5%, 99.5% percentiles of standard normal distribution<br> \(\small P(Z \le 1.645) = 0.95, P(Z \le 1.96) = 0.975, P(Z \le 2.575) = 0.995\)  </div>
       <p>
-            <img class="imgFig600600" src="../FigureH/Fig0330.png">
+            <img class="figure" src="./Figure/Fig0330.png">
             <div class="textLeft">&lt;Figure 3.30&gt; Middle 95%, 99% percentiles of standard normal distribution<br> \(\small P(-1.96 \le Z \le 1.96) = 0.95,  P(-2.575 \le Z \le 2.575) = 0.99\)</div>
       <p>
          Using the standard normal distribution table, you can find the probability of 
@@ -4663,22 +1872,13 @@ function showValueNormal1(newValue) {
            \( = 0.8832 \)
       </div>
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
-          </td>
-          <td>
-            <p>To obtain the probability of a normal distribution using 『eStatH』, first enter the mean as 70 and the standard deviation as 10 on the screen of &lt;Figure 3.31&gt;. 
+            To obtain the probability of a normal distribution using 『eStatH』, first enter the mean as 70 and the standard deviation as 10 on the screen of &lt;Figure 3.31&gt;. 
             <p>For 1) enter the value of 94.3 in the second option under the graph and click [Execute] button.
             <p>In a similar way, for 2) enter 57.7 in the third option to calculate.
             <p>For 3) enter the interval as [57.7, 94.3] in the first option and click [Execute] button. 
             <p>
-            <img class="imgFig600600" src="../FigureH/Fig0331.png">
-            <div class="textLeft">&lt;Figure 3.31&gt; Calculation of probability in normal distribution</div>
-          </td>
-        </tr>
-      </table>
+            <img class="figure" src="./Figure/Fig0331.png">
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
   </div>
   <!------------------------------------------------------------------------------------------------->
   <p>
@@ -4705,42 +1905,27 @@ function showValueNormal1(newValue) {
            [70 – 1.96 × 10, 70 + 1.96 × 10], that is, [50.4, 89.6].
       </div>
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
-          </td>
-          <td>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
             <p>To obtain the percentile of a normal distribution using 『eStatH』, first enter the mean as 70 and the standard deviation as 10 on the screen of &lt;Figure 3.32&gt;. 
             <p>For 1) enter 0.95 in the right box of the fifth option under the graph and click [Execute] button, the 95% percentile 86.449 appears.
             <p>For 2) enter 0.95 in the right box of the fourth option under the graph screen and click [Execute] button to display both 95% percentiles [50.400, 89.600]. 
             <p>
-            <img class="imgFig600600" src="../FigureH/Fig0331.png">
+            <img class="figure" src="./Figure/Fig0331.png">
             <div class="textLeft">&lt;Figure 3.32&gt; Calculation of percentile in normal distribution</div>
-          </td>
-        </tr>
-      </table>
+       <p>
   </div>
   <!------------------------------------------------------------------------------------------------->
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:160px">
-            <h5>⏱ Practice 3.11</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
-          </td>
-          <td>
-            <p> It is said that the weight of melons follows a normal distribution with a mean of 250g and a standard deviation of 12g. Find the following probabilities and check the calculation using 『eStatH』.
+        <h5>⏱ Practice 3.11</h5>
+            It is said that the weight of melons follows a normal distribution with a mean of 250g and a standard deviation of 12g. Find the following probabilities and check the calculation using 『eStatH』.
             <p>
               1) Find the probability that the weight of the melon is less than 260g. <br>
               2) Find the probability that the weight of the melon is greater than 240g. <br>
               3) Find the probability that the weight of the melon is greater than 240g and less than 260g.<br>
               4) Find the weight corresponding to the top 10% of melons.
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU520_Normal.svg" onclick="window.open(addrStr[151])">
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -4758,17 +1943,11 @@ function showValueNormal1(newValue) {
           the normal distribution with the mean \(np=50 \times 0.5 = 25\)  and variance 
           \(np=50 \times 0.5 \times 0.5 = 12.5\).
       <p>
-      <table>
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU420_Binomial.svg" onclick="window.open(addrStr[149])">
-          </td>
-          <td>
-            <img class="imgFig600600" src="../FigureH/Fig0333.png">
+         <div>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU420_Binomial.svg" onclick="window.open(addrStr[149])">
+            <img class="figure" src="./Figure/Fig0333.png">
             <div class="textLeft">&lt;Figure 3.33&gt;  Normal approximation of binomial when  \(n\) = 50, \(p\) = 0.5</div>
-          </td>
-        </tr>
-      </table>
+         </div>
   </div>
   <p>
   <!------------------------------------------------------------------------------------------------->
@@ -4797,295 +1976,20 @@ function showValueNormal1(newValue) {
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:160px">
-            <p>
-            <h5>⏱ Practice 3.12</h5>
-          </td>
-          <td>
-            <p>
+        <h5>⏱ Practice 3.12</h5>
                In one presidential election, a particular candidate's approval rating was found to be 40%. 
                To develop an election strategy, we will meet with 100 voters today to see if they support 
                the particular candidate. Find the following probability and check it using 『eStatH』. 
                Assume that there is no abstention.
                1) What is the probability that 40 or more (≥) and less than (≤) 50 out of 100 voters will support it? <br>
                2) What is the probability that more than 20 people (≥) will support it?
-          </td>
-        </tr>
-      </table>
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
+  <h3 id="0306">3.6 Exercise</h3>
+  <iframe class="exercise" src="./exercise/exercise03.html" ></iframe>
 
-
-  <div class="mainTablePink">
-    <h4> Exercise </h4>
-    <p style="color:blue">*** Select an answer and click [SUBMIT] button.</p>
-
-  <h6 class="textL30M30">3.1  Which one is an appropriate function as a probability distribution function?  </h6>
-  <form name="Q1">
-    <label><input type="radio" name="item" value="1"> \(f(x) = \frac{x}{5} \;\;(x=-1,0,1,2,3)\)</label><br>
-    <label><input type="radio" name="item" value="2"> \(f(x) = \frac{5-x}{14} \;\;(x=0,1,2,3)\)</label><br>
-    <label><input type="radio" name="item" value="3"> \(f(x) = x^2 - 1 \;\;(x=0,1,2,3) \)</label><br>
-    <label><input type="radio" name="item" value="4"> \(f(x) = x^3 - x^2 + 5 \;\;(x=0,1,2,3)\)</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,1,Q1)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ1">
-  </form>
-
-  <h6 class="textL30M30">3.2 Which one is not the property of a probability distribution function? </h6>
-  <form name="Q2">
-    <label><input type="radio" name="item" value="1"> \(f(x) \ge 0\)</label><br>
-    <label><input type="radio" name="item" value="2"> \(\int_{-∞}^{∞} f(x)dx = 1 \)</label><br>
-    <label><input type="radio" name="item" value="3"> \(P(a \le X \le b) = \int_a ^b f(x) dx\)</label><br>
-    <label><input type="radio" name="item" value="4"> \(\int_{-∞}^{∞} x f(x)dx = 1 \)</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,2,Q2)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ2">
-  </form>
-
-  <h6 class="textL30M30">3.3 If a random variable \(X\) has values 0, 1, 2, 3 and its probability
-         distribution function is f(x) = \(\frac{x}{6}\), what is the mean of the random variable \(X\)? 
-  </h6>
-  <form name="Q3">
-    <label><input type="radio" name="item" value="1"> \(\frac{5}{3}\)</label><br>
-    <label><input type="radio" name="item" value="2"> \(\frac{6}{3}\)</label><br>
-    <label><input type="radio" name="item" value="3"> \(\frac{7}{3}\)</label><br>
-    <label><input type="radio" name="item" value="4"> \(\frac{8}{3}\)</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,3,Q3)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ3">
-  </form>
-
-  <h6 class="textL30M30">3.4  If a continuous random variable \(X\) has the probability distribution function \(f(x)\) and it is defined on all real number, which one of the followings is not correct? </h6>
-  <form name="Q4">
-    <label><input type="radio" name="item" value="1"> \(f(x) \ge 0\)</label><br>
-    <label><input type="radio" name="item" value="2"> \(\int_{-∞}^{∞} f(x)dx = 1 \)</label><br>
-    <label><input type="radio" name="item" value="3"> \(P(a \le X \le b) = \int_a ^b f(x) dx\)</label><br>
-    <label><input type="radio" name="item" value="4"> \(\int_{0}^{∞} x f(x)dx = \frac{1}{2} \)</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,4,Q4)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ4">
-  </form>
-
-  <h6 class="textL30M30">3.5 If a probability distribution function of a random variable \(X\)
-       is as follows, what are the mean \(E(X)\) and standard deviation \(σ(X)\)?   
-  </h6>
-          <table> 
-            <tr>
-              <th class="thGrey" style="width:150px">\(X\)</th>
-              <td class="tdCenter">0</td>
-              <td class="tdCenter">1</td>
-              <td class="tdCenter">2</td>
-              <th>Total</th>
-            </tr>
-            <tr>
-              <th class="thGrey">\(P(X=x)\)</th>
-              <td class="tdCenter">\(\frac{3}{10}\)</td>
-              <td class="tdCenter">\(\frac{6}{10}\)</td>
-              <td class="tdCenter">\(\frac{1}{10}\)</td>
-              <th>1</th>
-            </tr>
-          </table>
-
-  <form name="Q5">
-    <label><input type="radio" name="item" value="1"> E(X)=0.8, σ(X)=0.6</label><br>
-    <label><input type="radio" name="item" value="2"> E(X)=0.6, σ(X)=0.8</label><br>
-    <label><input type="radio" name="item" value="3"> E(X)=0.7, σ(X)=0.1</label><br>
-    <label><input type="radio" name="item" value="4"> E(X)=0.1, σ(X)=0.7</label><br>
-
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,5,Q5)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ5">
-  </form>
-
-  <h6 class="textL30M30">3.6  Let the random variable X be the number of dots, 1, 2, ... , 6, 
-       which are appeared on the top when you roll a dice. Find the mean of the random variable  \(X\).
-  </h6>
-  <form name="Q6">
-    <label><input type="radio" name="item" value="1"> 2  </label><br>
-    <label><input type="radio" name="item" value="2"> 2.5</label><br>
-    <label><input type="radio" name="item" value="3"> 3  </label><br>
-    <label><input type="radio" name="item" value="4"> 3.5</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,6,Q6)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ6">
-  </form>
-
-  <h6 class="textL30M30">3.7  Let the random variable \(X\) be the number of dots when you roll a dice. What is the expected value of the squared value of each \(X\)? </h6>
-  <form name="Q7">
-    <label><input type="radio" name="item" value="1"> \(\frac{23}{6}\)</label><br>
-    <label><input type="radio" name="item" value="2"> \(\frac{41}{6}\)</label><br>
-    <label><input type="radio" name="item" value="3"> \(\frac{53}{6}\)</label><br>
-    <label><input type="radio" name="item" value="4"> \(\frac{91}{6}\)</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,7,Q7)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ7">
-  </form>
-
-  <h6 class="textL30M30">3.8 If a random variable X has \(E(X)\)=5 and \(E(X^2)\)=25,
-      what is the variance of \(X\), \(V(X)\)? 
-  </h6>
-  <form name="Q8">
-    <label><input type="radio" name="item" value="1"> 5</label><br>
-    <label><input type="radio" name="item" value="2"> 0</label><br>
-    <label><input type="radio" name="item" value="3"> 5</label><br>
-    <label><input type="radio" name="item" value="4"> 25</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,8,Q8)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ8">
-  </form>
-
-  <h6 class="textL30M30">3.9 If a random variable \(X\) is multiplied by 5 for each value of \(X\),
-        the standard deviation becomes what?  </h6>
-  <form name="Q9">
-    <label><input type="radio" name="item" value="1"> 5 times</label><br>
-    <label><input type="radio" name="item" value="2"> 1/5 times</label><br>
-    <label><input type="radio" name="item" value="3"> 10 times</label><br>
-    <label><input type="radio" name="item" value="4"> 1/10 times</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,9,Q9)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ9">
-  </form>
-
-  <h6 class="textL30M30">3.10  Midterm scores of a math class have the mean 24 and standard deviation 3. If each midterm score is multiplied by 2 and add 10 points, what are the mean and standard deviation of the new midterm scores?  </h6>
-  <form name="Q10">
-    <label><input type="radio" name="item" value="1"> 24, 3</label><br>
-    <label><input type="radio" name="item" value="2"> 48, 3</label><br>
-    <label><input type="radio" name="item" value="3"> 48, 6</label><br>
-    <label><input type="radio" name="item" value="4"> 58, 6</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,10,Q10)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ10">
-  </form>
-
-  <h6 class="textL30M30">3.11 If a random variable \(X\) has the mean of 20, what is the mean of \(Y=2X+3\)?   </h6>
-  <form name="Q11">
-    <label><input type="radio" name="item" value="1"> 20</label><br>
-    <label><input type="radio" name="item" value="2"> 40</label><br>
-    <label><input type="radio" name="item" value="3"> 23</label><br>
-    <label><input type="radio" name="item" value="4"> 43</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,11,Q11)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ11">
-  </form>
-
-  <h6 class="textL30M30">3.12 If a random variable \(X\) has the variance of 2, what is the variance of \(Y=2X+3\)? </h6>
-  <form name="Q12">
-    <label><input type="radio" name="item" value="1"> 2</label><br>
-    <label><input type="radio" name="item" value="2"> 3</label><br>
-    <label><input type="radio" name="item" value="3"> 8</label><br>
-    <label><input type="radio" name="item" value="4"> 18</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,12,Q12)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ12">
-  </form>
-
-  <h6 class="textL30M30">3.13  Which one the followings is wrong?  </h6>
-  <form name="Q13">
-    <label><input type="radio" name="item" value="1"> E(aX＋b)=aE(X)＋b</label><br>
-    <label><input type="radio" name="item" value="2"> E(X＋Y)=E(X)＋E(Y)</label><br>
-    <label><input type="radio" name="item" value="3"> V(aX＋b)=\(a^2\)V(X)</label><br>
-    <label><input type="radio" name="item" value="4"> V(aX＋b)=\(a^2\)V(X)+b</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,13,Q13)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ13">
-  </form>
-
-  <h6 class="textL30M30">3.14 What is the mean and variance of binomial distribution  \(B(100, \frac{1}{6})\)?  </h6>
-  <form name="Q14">
-    <label><input type="radio" name="item" value="1"> 20, 4</label><br>
-    <label><input type="radio" name="item" value="2"> 100, 16</label><br>
-    <label><input type="radio" name="item" value="3"> 100, 4</label><br>
-    <label><input type="radio" name="item" value="4"> 20, 16</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,14,Q14)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ14">
-  </form>
-
-  <h6 class="textL30M30">3.15 What is the variance of the binomial distribution which has the distribution function as  \(f(x) = {}_4 C_x (0.2)^x (1-0.2)^{4-x}\)?  </h6>
-  <form name="Q15">
-    <label><input type="radio" name="item" value="1"> 0.16</label><br>
-    <label><input type="radio" name="item" value="2"> 0.8</label><br>
-    <label><input type="radio" name="item" value="3"> 0.32</label><br>
-    <label><input type="radio" name="item" value="4"> 0.64</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,15,Q15)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ15">
-  </form>
-
-  <h6 class="textL30M30">3.16 There are 10 multiple choice questions where there is one correct answer among four possible answers. If a person chooses one answer randomly in each question, what is the probability that he would choose four correct answers? </h6>
-  <form name="Q16">
-    <label><input type="radio" name="item" value="1"> 0.0162</label><br>
-    <label><input type="radio" name="item" value="2"> 0.0487</label><br>
-    <label><input type="radio" name="item" value="3"> 0.1460</label><br>
-    <label><input type="radio" name="item" value="4"> 0.2050</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,16,Q16)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ16">
-  </form>
-
-  <h6 class="textL30M30">3.17 If a normal distribution has the mean  and standard deviation , what is the probability of the interval \(\mu ± 3 \sigma \)?  </h6>
-  <form name="Q17">
-    <label><input type="radio" name="item" value="1"> 99.73% approximately</label><br>
-    <label><input type="radio" name="item" value="2"> 97.73% approximately</label><br>
-    <label><input type="radio" name="item" value="3"> 95.73% approximately</label><br>
-    <label><input type="radio" name="item" value="4"> 68.73% approximately</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,17,Q17)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ17">
-  </form>
-
-  <h6 class="textL30M30">3.18 The entrance examination scores of a company follows a normal distribution with the mean 400 and standard deviation 50. What is the probability that a score belongs to the interval between 450 and 500 ? </h6>
-  <form name="Q18">
-    <label><input type="radio" name="item" value="1"> 80% approximately</label><br>
-    <label><input type="radio" name="item" value="2"> 50% approximately</label><br>
-    <label><input type="radio" name="item" value="3"> 30% approximately</label><br>
-    <label><input type="radio" name="item" value="4"> 14% approximately</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(33,18,Q18)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ18">
-  </form>
-
-
-  </div>
-
-  <script>
-    for (var i=0; i < ans[33][0]; i++) document.getElementById(ansID[i+1]).disabled = true;
-  </script>
-  <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(152)">&#10094;&#10094; &nbsp;&nbsp;<b>Chapter 2</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(154)"><b>Chapter 4</b>&nbsp;&nbsp; &#10095;&#10095;</button>
 </div>
-    
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
-    <script>
-        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
-        
-        /* ajust the height when click the toc
-           the code is from https://github.com/twbs/bootstrap/issues/1768
-        */
-        var shiftWindow = function() { scrollBy(0, -50) };
-        window.addEventListener("hashchange", shiftWindow);
-        function load() { if (window.location.hash) shiftWindow(); }
-        
-        /*add Bootstrap styles to tables*/
-        var tables = document.getElementsByTagName("table");
-        for(var i = 0; i < tables.length; ++i){
-            tables[i].className += "table table-bordered table-hover";
-        }
-    </script>
-
 </body>
 </html>
 

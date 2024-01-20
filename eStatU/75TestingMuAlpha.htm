@@ -57,13 +57,15 @@
       </tbody>
     </table>
     <p>
-    <button type="button" id="executeTH" ><span data-msgid="Execute">Execute</span></button></span>
+    <button type="button" id="executeTH" style="width:90px;"><span data-msgid="Execute">Execute</span></button></span>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;
     <span class="fontmath">C = </span>
     <input type="text" class="textarea"  size=6 id="C">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span class="fontmath">&beta; = </span>
     <input type="text" class="textarea" size=6 id="betaAB">
+    &nbsp;&nbsp;
+    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
     <p>
     <div>
       &nbsp; &nbsp; &nbsp; 
@@ -106,52 +108,7 @@
 
   </div> 
 
-  <script>
-      var bar = d3.select("#chart");
-      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
-      var graphWidth2, graphHeight2;
-      var svgWidth2   = 600;
-      var svgHeight2  = 400;
-      var title;
-      var mu0, mu1, stdP, alpha1, alpha2, beta1, beta2, nn1, nn2;
-      var ansBeta, ansC;
-      var h1Type;
+   <script src="/estat/eStatU/js/75TestingMuAlpha.js"> </script>
 
-      // Test type
-      var testType = 1; 
-      document.getElementById("sub1AB").style.display  = "block";
-//      document.getElementById("sub2AB").style.display  = "none";
-      document.getElementById("C").disabled = true; 
-      document.getElementById("betaAB").disabled = true;  
-      document.getElementById("mu1AB2").disabled = true;  
-      document.getElementById("alpha1AB2").disabled = true;  
-      document.getElementById("nn1AB2").disabled = true;  
-
-      // Testing Hypothesis ======================================
-      d3.select("#executeTH").on("click",function() {
-        inputValueAB();
-        if (isNaN(mu0) || isNaN(mu1) || isNaN(stdP) ) return;
-        if (testType == "1" && isNaN(nn1)) return;
-        drawNormalGraphTHAB(testType, h1Type, mu0, mu1, stdP, nn1, nn2, alpha1, alpha2, beta1, beta2);
-        document.getElementById("C").value = f2(ansC); 
-        document.getElementById("betaAB").value = f3(ansBeta);  
-        document.getElementById("mu1AB2").value = mu1;  
-        document.getElementById("alpha1AB2").value = alpha1;  
-        document.getElementById("nn1AB2").value = nn1;  
-      });
-
-      // svg Graph Save
-      d3.select("#saveGraphU").on("click", function() {
-        var svg = d3.select("#chart");
-        var width = svgWidth2;
-        var height = svgHeight2;
-        var svgString = getSVGString(svg.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
-    
-  </script>
 </body>
 </html>

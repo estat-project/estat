@@ -10,12 +10,11 @@
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+  <link href="/estat/eStat/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="../../css/dashboard.css" rel="stylesheet">
+  <link href="/estat/eStat/css/dashboard.css" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -24,12 +23,22 @@
       <![endif]-->
        <style type="text/css">code{white-space: pre;}</style>
        <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
-       <script src="../../js/prism.js"></script>
-       <link rel="stylesheet" href="../../css/prism.css">
-       <script src="../../js/jquery.min.js"></script>    
+       <link rel="stylesheet" href="/estat/eStat/css/pandoc.css">
+       <link rel="stylesheet" href="/estat/eStat/css/prism.css">
+       <script src="/estat/eStat/lib/jquery/jquery.min.js"></script>   
+       <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="/estat/eStat/lib/convertSVG.js"></script>
+       <script src="/estat/eStat/js/prism.js"></script>
+       <script src="/estat/eStat/js/eBook.js"></script>
+       <script src="/estat/eStat/js/eStatU.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>
+       <script> setLanguage('en'); </script>
        <script type="text/javascript" id="MathJax-script" async
 	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
        </script>
+
        <script>
 	 $(document).ready(function() {
   	     toc = $("#sidebar > ul > li > ul");
@@ -48,78 +57,53 @@
   		 $(sections[i]).replaceWith(li);
   	     }
 	 });
-	 </script>
-       <link rel="stylesheet" href="../../css/pandoc.css">
-       <script src="../../js/eBook.js"></script>
-       <script src="../../../eStat/js/language.js" ></script>   
-       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
-       <script src="../../../eStat/lib/d3/d3.layout.cloud.js"></script>
-       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
-       <script src="../../../eStat/js/eStatU.js"></script>
-       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
-       <script src="../../../eStat/lib/convertSVG.js"></script>
+       </script>
+
 </head>
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <ul class="nav navbar-nav">
-    <li><a href="../../../eStat/index.html"  target="_blank">eStat</a></li>
-    <li><a href="../../../eStatM/index.html" target="_blank">eStatM</a></li>
-  </ul>
-</nav>
-
+<!-- begin of left sidebar -->
 <div class="container-fluid">
-  <div class="row">
-    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
+<div class="row">
+<div id="sidebar" class="col-sm-2 col-md1 sidebar">
+  <ul>
+    <li> <a href="index.html"><b>차례</b> </a> </li>
+    <li> <a href="chapter01.html"> 1장 통계</a> </li>
+    <li> <a href="chapter02.html"> 2장 질적 자료의 그래프</a> </li>
+    <li> <a href="chapter03.html"> 3장 양적 자료의 그래프</a> </li>
+    <li> <a href="chapter04.html"> 4장 자료의 대푯값과 산포도</a> </li>
       <ul>
-	<li><a href=""></a>
-	  <ul>
-            <li><a href="../eStatM/index.html">목차</a></li>
-            <li><a href="../eStatM/chapter01.html">1. 통계</a></li>
-            <li><a href="../eStatM/chapter02.html">2. 질적 자료의 그래프</a></li>
-            <li><a href="../eStatM/chapter03.html">3. 양적 자료의 그래프</a></li>
-            <li><a href="../eStatM/chapter04.html">4. 자료의 대푯값과 산포도</a></li>
-	  </ul>
-	</li>
+        <li><a href="#0401">4.1 자료의 대푯값 – 평균 / 중앙값</a> </li>
+        <li><a href="#0402">4.2 자료의 산포도 - 표준편차</a> </li>
+        <li><a href="#0403">4.3 공분산 - 상관계수</a> </li>
+        <li><a href="#0404">4.4 연습문제</a> </li>
       </ul>
-    </div>
-  </div>
+  </ul>
 </div>
+</div>
+</div>
+<!-- end of left sidebar -->
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
   <!--***********************************************************************-->
   <h1>4. 자료의 대푯값과 산포도</h1> 
+  <h1>&nbsp; 🎲 🎯 ⚖ μ σ ρ</h1>
+  <b>
+      <ul>
+        <li><a href="#0401">4.1 자료의 대푯값 – 평균 / 중앙값</a> </li>
+        <li><a href="#0402">4.2 자료의 산포도 - 표준편차</a> </li>
+        <li><a href="#0403">4.3 공분산 - 상관계수</a> </li>
+        <li><a href="#0404">4.4 연습문제</a> </li>
+      </ul>
+        <a href="./pdf/chapter04.pdf" target="_blank">[4장 pdf]</a>
+  </b>
   <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(143)">&#10094;&#10094; &nbsp;&nbsp;<b>3장</b></button>
-<!--
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(144)"><b>3장</b>&nbsp;&nbsp; ➡&#10095;&#10095;</button>
--->
-  <p>
-  <table>
-    <tr>
-      <td style="width:300px">
-        <h1>&nbsp; 🎲 🎯 ⚖ μ σ ρ</h1>
-        <h4>
-        <a href="#0401"><u>4.1 자료의 대푯값 – 평균 / 중앙값</u></a> <p>
-        <a href="#0402"><u>4.2 자료의 산포도 - 표준편차</u></a> <p>
-        <a href="#0403"><u>4.3 공분산 - 상관계수</u></a> <p>
-
-        <a href="../eStatM/chapter04.pdf" target="_blank"><u>[4장 pdf]</u></a> 
-        </h4>
-      </td>
-      <td style="width:350px">
-        <h1></h1>
-        <p>양적 자료인 경우에 자료의 대푯값과 산포도를 측정하여 분석한다. 
-        <p>-  자료의 대푯값 – 평균 / 중앙값
-        <p>-  자료의 산포도 – 분산 / 표준편차
-        <p>-  두 양적자료의 공분산과 상관계수
-      </td>
-    </tr>
-  </table>
-      <br>
+        양적 자료인 경우에 자료의 대푯값과 산포도를 측정하여 분석한다. <br>
+        -  자료의 대푯값 – 평균 / 중앙값<br>
+        -  자료의 산포도 – 분산 / 표준편차<br>
+        -  두 양적자료의 공분산과 상관계수<br>
+      
 <!--
   <h6>
       <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
@@ -130,12 +114,7 @@
   <h3 id="0401">4.1 자료의 대푯값 – 평균 / 중앙값</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
+      <h4>⭐ 생각열기</h4>
           <p>
           <b>한 중학교 학생 5명을 표본 추출하여 몸무게를 조사한 자료가 다음과 같다. </b>
           <p>
@@ -147,20 +126,10 @@
               </td>
             </tr>
           </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <b>1) 이 자료들을 대표할 수 있는 대푯값을 찾기위한 그래프는 어떠한 것이 있을까? <br>
              2) 10명의 학생 몸무게를 대표할 만한 값으로는 어떠한 것이 있을까? 
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -204,7 +173,7 @@
          이 자료에서는 평균이 중앙값보다 약간 우측에 위치해 있는데 그 이유는 자료 중에서 77이 
          나머지 네 개의 자료보다느 오른쪽에 위치해 있기 때문이다. 즉 평균은 중앙값보다 극단값에 민감하다. 
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0401.png">
+         <img class="figure" src="./Figure/Fig0401.png">
          <div class="textLeft">&lt;그림 4.1&gt; 5명의 몸무게에 대한 점그래프</div>
       <p>자료가 많을 경우 위와 같이 수작업으로 평균과 중앙값을 구하는 것은 시간도 많이 걸리고 쉽지 않다. 『eStat』소프트웨어를 이용하여 자료의 대푯값을 구해보자. 
   </div>
@@ -220,511 +189,18 @@
          (전자책에서 자료를 복사하여 붙여넣기를 해도 됨)  
       <p>자료를 입력하면 자료수, 최솟값, 최댓값, 평균, 중앙값 등이 계산된다. [실행] 버튼을 클릭하면 &lt;그림 4.1&gt;과 같은 점그래프가 나타나고 평균 및 중앙값이 표시된다. 
       <p>
-      <!------ Dot graph html ----------------------------------------------------------------->
-      <button type="button" id="eraseDot" style="width:140px;"><b><span data-msgid="input data"></span></b></button>
-      <p> 
-      <table class="stat">
-        <tr>
-          <td> <b>자료</b> </td>
-          <td colspan="6"> 
-             <input type="text" size=80 id="data1"> 
-          </td>
-        </tr>
-        <tr>
-          <td> <span data-msgid="SortData">Sorted Data</span>  </td>
-          <td colspan="6"> 
-            <input type="text" size=80 id="datasort">
-          </td>
-        </tr>
-        <tr>
-          <td><span data-msgid="NumberData">Data Size</span></td>
-          <td style="text-align: center;"><span class="fontmath">n</span></td>
-          <td><input type="text" class="textarea" size=10 id="nn" style="text-align: right;"></td>
-          <td></td>
-          <td><span id="msgMin">Minimum</span></td>
-          <td style="text-align: center;"><span class="fontmath">min</span></td>
-          <td><input type="text" class="textarea" size=10 id="mini" style="text-align: right;"></td>
-        </tr>
-        <tr>
-          <td><span data-msgid="Total">Sum</td>
-          <td></td>
-          <td><input type="text" class="textarea" size=10 id="xsum" style="text-align: right;"></td>
-          <td></td>
-          <td><span id="msgMax">Maximum</span></td>
-          <td style="text-align: center;"><span class="fontmath">max</span></td>
-          <td><input type="text" class="textarea" size=10 id="maxi" style="text-align: right;"></td>
-        </tr>
-        <tr>
-        <tr>
-          <td><span data-msgid="Mean">Mean</td>
-          <td style="text-align: center;"><span class="fontmath">&mu;</span></td>
-          <td><input type="text" class="textarea" size=10 id="xbar" style="text-align: right;"></td>
-          <td></td>
-          <td><span id="msgRange">Range</span></td>
-          <td style="text-align: center;"><span class="fontmath">range</span></td>
-          <td><input type="text" size=10 id="range" style="text-align: right;"></td>
-        </tr>
-        <tr>
-          <td><span id="msgMed">Median</span></td>
-          <td style="text-align: center;"><span class="fontmath">m</span></td>
-          <td><input type="text" size=10 id="medi" style="text-align: right;"></td>
-          <td></td>
-          <td><span id="msgVariance">Variance</span></td>
-          <td style="text-align: center;"><span class="fontmath">&sigma;<sup>2</sup></span></td>
-          <td><input type="text" size=10 id="varS" style="text-align: right;"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><span id="msgMode">Mode</span></td>
-          <td style="text-align: center;"><span class="fontmath">mode</span></td>
-          <td><input type="text" size=10 id="mode" style="text-align: right;"></td>
-          <td></td>
-          <td><span data-msgid="Std Deviation">Std. Deviation</span></td>
-          <td style="text-align: center;"><span class="fontmath">&sigma;</span></td>
-          <td><input type="text" size=10 id="stdS" style="text-align: right;"></td>
-        </tr>
-      </table>
+      <!------*** Dot graph html ***-------------------------------------------------------------->
+         <iframe class="example80" src="./example/0401.html"> </iframe>
+         <div class="textLeft">&lt;그림 4.2&gt; 몸무게 자료 입력과 점그래프</div>
       <p>
-         <div class="textLeft">&lt;그림 4.2&gt; 점그래프를 위한 몸무게 자료 입력</div>
+          &lt;그림 4.1&gt; 아래에는 &lt;그림 4.3&gt;과 같은 시뮬레이션 창이 나타난다. 이 시뮬레이션은 마우스로 한 점을 이동시켜 평균과 중앙값의 변화를 살펴보는 것이다. 예를 들어 제일 오른쪽의 점을 마우스로 끌어 오른쪽으로 이동하면 평균은 변하지만 중앙값은 변하지 않는다. 즉 중앙값은 극단점에 영향을 받지 않는다
       <p>
-      <button type="button" id="executeDot"> <span data-msgid="Execute">Execute</span>     </button>
-      <p>
-      <svg id="chartDot" width="750" height="540" style="border-style:solid;"> </svg> 
-      <p> 
-      <button type="button" id="saveGraphDot" >
-	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
-      </button>
-      <p>
-        &lt;그림 4.1&gt; 아래에는 &lt;그림 4.3&gt;과 같은 시뮬레이션 창이 나타난다. 이 시뮬레이션은 마우스로 한 점을 이동시켜 평균과 중앙값의 변화를 살펴보는 것이다. 예를 들어 제일 오른쪽의 점을 마우스로 끌어 오른쪽으로 이동하면 평균은 변하지만 중앙값은 변하지 않는다. 즉 중앙값은 극단점에 영향을 받지 않는다
-      <p>
-               <img class="imgFig600600" src="../FigureM/Fig0403.png">
+               <img class="figure" src="./Figure/Fig0403.png">
                <div class="textLeft">&lt;그림 4.3&gt; 한 점의 변화에 따른 평균 / 중앙값 변화의 관찰 시뮬레이션</div>
       <p>
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
-    <!-----script for Dot graph ----------------------------------------------------------------------->
-  <script>
-      setLanguage('ko');
-      var chartDot = d3.select("#chartDot")
-      var svgWidth    = 750;
-      var svgHeight   = 540;  
-      var margin, graphWidth, graphHeight;
-      margin      = {top: 20, bottom: 100, left: 20, right: 20};
-      graphWidth  = svgWidth - margin.left - margin.right;
-      graphHeight = svgHeight - margin.top - margin.bottom;
-
-      var i, j, k, ith;
-      var x1, x2, y1, y2, cx, cy, ty;
-      var nint, step, buffer, nvalue, gxmin, gxmax, gxrange, xScaleDot, strMode, maxfreq; 
-      var nn, xbar, medi, mini, maxi, range, varS, stdS, left, right, mode, nvalue;
-      var nn3, xba3, medi3, mini3, maxi3, range3, stdS3;
-      var rowmax = 100;
-      var sdata      = new Array(rowmax);
-      var sdotx      = new Array(rowmax); 
-      var dataValue  = new Array(rowmax);
-      var dvalueFreq = new Array(rowmax);
-      var radius = 7;
-      var fontsize = "1em";
-
-      var generator, title;
-      document.getElementById("msgMed").innerHTML   = svgStr[46][langNum]; 
-      document.getElementById("msgMin").innerHTML   = svgStr[45][langNum]; 
-      document.getElementById("msgMax").innerHTML   = svgStr[47][langNum]; 
-      document.getElementById("msgRange").innerHTML = svgStr[112][langNum]; 
-      document.getElementById("msgVariance").innerHTML = svgStr[117][langNum]; 
-      document.getElementById("msgMode").innerHTML  = svgStr[120][langNum]; 
-
-      document.getElementById("datasort").disabled = true;    
-      document.getElementById("nn").disabled    = true;    
-      document.getElementById("xsum").disabled  = true; 
-      document.getElementById("xbar").disabled  = true; 
-      document.getElementById("medi").disabled  = true;   
-      document.getElementById("mode").disabled  = true;   
-      document.getElementById("mini").disabled  = true;  
-      document.getElementById("maxi").disabled  = true;  
-      document.getElementById("range").disabled = true; 
-      document.getElementById("varS").disabled  = true; 
-      document.getElementById("stdS").disabled  = true; 
-// basic statistics function ============================================
-simplestat2 = function(dataid) {
-        data = d3.select(dataid)
-	         .node()
-	         .value
-	         .trim()
-	         .split(new RegExp("[ ]*[, \t][ ]*"))   // ['8', '8', '9']
-	         .map(parseFloat);                      // [8.0, 8.0, 9.0]
-	if(isNaN(data[0])) data = [];
-        n = data.length;
-        sum = 0;
-        sumsq = 0;
-        data.forEach(function(d) {
-          sum += d;
-          sumsq += d*d;
-        });
-        xbar = sum / n;
-        v = (sumsq - n*xbar*xbar) / (n);
-        s = Math.sqrt(v)
-        data.sort(function(a, b) { return a - b; });
-        mini  = data[0];
-        maxi  = data[n-1];
-        range = maxi - mini;
-        medi = medianCalc(n,data);
-        var tdata = new Array(n);
-        var ntemp; 
-        if (n%2 == 1) { // odd
-          ntemp = (n+1)/2;
-          for (i=0; i<ntemp; i++) tdata[i] = data[i];
-          q1 = medianCalc(ntemp,tdata)
-          for (i=ntemp-1; i<n; i++) tdata[i-ntemp+1] = data[i];
-          q3 = medianCalc(ntemp,tdata)
-        }
-        else {
-          ntemp = n/2;
-          for (i=0; i<ntemp; i++) tdata[i] = data[i];
-          q1 = medianCalc(ntemp,tdata)
-          for (i=ntemp; i<n; i++) tdata[i-ntemp] = data[i];
-          q3 = medianCalc(ntemp,tdata)
-        }
-        iqr = q3 - q1;
-        // mode
-        nvalue = modeCalc(n, data, dataValue, dvalueFreq) ;
-        maxfreq = dvalueFreq[0];
-        for (i = 1; i < nvalue; i++) {
-          if (dvalueFreq[i] > maxfreq) maxfreq = dvalueFreq[i];
-        }
-        strMode ="";
-        if (maxfreq > 1) {
-          for (i = 0; i < nvalue; i++) {
-            if (dvalueFreq[i] == maxfreq) strMode += (dataValue[i]).toString() + " ";
-          }
-        }
-        return {'n':n, 'xbar':xbar, 'xsum':sum, 'sumsq':sumsq, 'var':v, 'std':s, 'mini':mini, 'q1':q1, 'medi':medi, 'q3':q3, 'maxi':maxi, 'range':range, 'iqr':iqr, 'mode': strMode};
-}
-
-        // init example
-        document.getElementById("data1").value = "63, 60, 65, 55, 77";
-        data1 = [63, 60, 65, 55, 77];
-        stat = simplestat2("#data1");  
-        nn   = stat.n;
-        document.getElementById("datasort").value = data;    
-        document.getElementById("nn").value    = stat.n;    
-        document.getElementById("xsum").value  = f2(stat.xsum);
-        document.getElementById("xbar").value  = f2(stat.xbar);
-        document.getElementById("medi").value  = f2(stat.medi);  
-        document.getElementById("range").value = f2(stat.range);  
-        document.getElementById("mini").value  = f2(stat.mini);  
-        document.getElementById("medi").value  = f2(stat.medi);  
-        document.getElementById("maxi").value  = f2(stat.maxi);  
-        document.getElementById("varS").value  = f2(stat.var);  
-        document.getElementById("stdS").value  = f2(stat.std); 
-        document.getElementById("mode").value  = stat.mode;  
-
-      // data input control =====================================
-      d3.select("#data1").on("input", function() {
-        stat = simplestat2("#data1");  
-        nn   = stat.n;
-        document.getElementById("datasort").value = data;    
-        document.getElementById("nn").value    = stat.n;    
-        document.getElementById("xsum").value  = f2(stat.xsum);
-        document.getElementById("xbar").value  = f2(stat.xbar);
-        document.getElementById("medi").value  = f2(stat.medi);  
-        document.getElementById("range").value = f2(stat.range);  
-        document.getElementById("mini").value  = f2(stat.mini);  
-        document.getElementById("medi").value  = f2(stat.medi);  
-        document.getElementById("maxi").value  = f2(stat.maxi);  
-        document.getElementById("varS").value  = f2(stat.var);  
-        document.getElementById("stdS").value  = f2(stat.std); 
-        document.getElementById("mode").value  = stat.mode;  
-      });
-
-      updateData = function() {
-        document.getElementById("data1").value = ''; 
-      }
-
-      // erase Dot Data and Graph
-      d3.select("#eraseDot").on("click",function() {
-        chartDot.selectAll("*").remove();
-        document.getElementById("data1").value = "";
-        document.getElementById("datasort").value = "";    
-        document.getElementById("nn").value    = "";   
-        document.getElementById("xsum").value  = ""; 
-        document.getElementById("xbar").value  = ""; 
-        document.getElementById("medi").value  = "";  
-        document.getElementById("range").value = "";   
-        document.getElementById("mini").value  = "";   
-        document.getElementById("medi").value  = ""; 
-        document.getElementById("maxi").value  = "";   
-        document.getElementById("varS").value  = "";  
-        document.getElementById("stdS").value  = ""; 
-        document.getElementById("mode").value  = "";   
-
-      })
-
-      // Draw Dot Graph ======================================
-      d3.select("#executeDot").on("click",function() {
-//        chartDot.selectAll("*").remove();
-        nn    = stat.n;  
-        for (i=0; i<nn; i++) {
-            if (isNaN(data[i]) ) { //문자 데이터 체크
-              chartDot.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
-                   .text(alertMsg[48][langNum]).style("stroke","red").style("font-size","1em");
-              return;
-            }
-        }
-  
-        xbar  = stat.xbar;
-        range = stat.range;  
-        mini  = stat.mini;  
-        medi  = stat.medi;  
-        maxi  = stat.maxi; 
-        varS  = stat.var;
-        stdS  = stat.std;
-        left  = xbar - stdS;
-        right = xbar + stdS;  
-        gxmin = xbar - 4*stdS;
-        gxmax = xbar + 4*stdS;
-        gxrange = gxmax - gxmin;
-        drawSimpleDotGrpah();
-
-        // draw dot graph simulation
-        x1 = margin.left + graphWidth/2;
-        y1 = margin.top + graphHeight/2 + 55;
-        chartDot.append("text").attr("x", x1).attr("y", y1).text("  ***  "+svgStrU[98][langNum]+"  *** ("+svgStrU[111][langNum]+")")
-             .style("font-size","10pt").style("stroke","red").style("text-anchor","middle");
-        // draw x axis for simulation
-        ty = margin.top + 3*graphHeight/4 + 40; 
-        xScaleDot = d3.scaleLinear().domain([gxmin,gxmax]).range([0,graphWidth])
-        chartDot.append("g")
-             .attr("transform","translate("+margin.left+","+ty+")")
-             .call(d3.axisBottom(xScaleDot))                  
-        // data transfer for simulation
-        for (i=0; i<nn; i++) sdata[i] = data[i];
-        cy = ty - 10; 
-        for (i=0; i<nn; i++) {
-          cx = margin.left + (sdata[i] - gxmin)*graphWidth/gxrange;
-          sdotx[i] = cx;
-          chartDot.append("circle")
-               .attr("cx",cx).attr("cy",cy).attr("r",radius).attr("fill",myColor[i])
-//             .on("click", clicked)
-               .call(dragDot())
-        }
-        drawDotGrpahSimulation(sdata)
-      })
-
-      // svg Graph Save
-      d3.select("#saveGraphDot").on("click", function() {
-        var svg = d3.select("#chartDot");
-        var width  = svgWidth;
-        var height = svgHeight;
-        var svgString = getSVGString(svg.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
-
-// median calculation
-function medianCalc(n, data) {
-        if (n < 2) return;
-        if (n%2 == 1) { // odd
-          return data[(n+1)/2 -1];
-        }
-        else { // even
-          return ( data[n/2 -1] + data[(n+2)/2 -1] ) / 2.;
-        }
-}
-// basic stat for sdata 
-function simplestat3(sdata) {
-        var i, sum, sumsq, xbar, v, s, ntemp;
-        var mini,q1,medi,q3, maxi,range, iqr;
-        var tdata = new Array(nn);
-
-        sum = 0;
-        sumsq = 0;
-        for (i=0; i<nn; i++) {
-          sum += sdata[i];
-          sumsq += sdata[i]*sdata[i];
-        }
-        xbar = sum / nn;
-        v = (sumsq - nn*xbar*xbar) / (nn);
-        s = Math.sqrt(v)
-
-        sdata.sort(function(a, b) { return a - b; });
-        sdotx.sort(function(a, b) { return a - b; });
-        mini  = sdata[0];
-        maxi  = sdata[nn-1];
-        range = maxi - mini;
-        medi = medianCalc(nn,sdata);
-        if (nn%2 == 1) { // odd
-          ntemp = (nn+1)/2;
-          for (i=0; i<ntemp; i++) tdata[i] = sdata[i];
-          q1 = medianCalc(ntemp,tdata)
-          for (i=ntemp-1; i<nn; i++) tdata[i-ntemp+1] = sdata[i];
-          q3 = medianCalc(ntemp,tdata)
-        }
-        else {
-          ntemp = nn/2;
-          for (i=0; i<ntemp; i++) tdata[i] = sdata[i];
-          q1 = medianCalc(ntemp,tdata)
-          for (i=ntemp; i<nn; i++) tdata[i-ntemp] = sdata[i];
-        }
-        iqr = q3 - q1;
-        return {'n':nn, 'xbar':xbar,'xsum':sum, 'sumsq':sumsq, 'var':v, 'std':s, 'mini':mini, 'q1':q1, 'medi':medi, 'q3':q3, 'maxi':maxi, 'range':range, 'iqr':iqr};
-}
-  // Sorting in ascending and count each value frequency
-  function modeCalc(dobs, dataA, dataValue, dvalueFreq) {
-    var i, j, temp;
-    var nvalue = 0;
-    for (i = 0; i < dobs; i++) {
-        dvalueFreq[i] = 0;
-    }
-    dataValue[nvalue] = dataA[0];
-    dvalueFreq[nvalue] = 1;
-    nvalue = 0;
-    for (i = 1; i < dobs; i++) {
-        if (dataA[i] == dataA[i - 1]) {
-            dvalueFreq[nvalue]++;
-        } else {
-            nvalue++;
-            dataValue[nvalue] = dataA[i];
-            dvalueFreq[nvalue]++;
-        }
-    }
-    nvalue++;
-    return nvalue;
-  }
-// draw dot graph for input data
-function drawSimpleDotGrpah() {
-        var xavg, xmed;
-        ty    = margin.top + graphHeight/4;
-        var xScaleDot = d3.scaleLinear().domain([gxmin,gxmax]).range([0,graphWidth])
-        chartDot.append("g")
-             .attr("transform","translate("+margin.left+","+ty+")")
-             .call(d3.axisBottom(xScaleDot))                  // 눈금을 표시할 함수 호출
-
-        // draw dot graph
-        cy = ty - 10; 
-        for (i=0; i<nn; i++) {
-          cx = margin.left + (data[i] - gxmin)*graphWidth/gxrange;
-          chartDot.append("circle").attr("cx",cx).attr("cy",cy).attr("r",radius)
-               .attr("fill",myColor[i])
-        }
-        // draw xbar line 
-        xavg = margin.left + (xbar-gxmin)*graphWidth/gxrange;
-        xmed = margin.left + (medi-gxmin)*graphWidth/gxrange;
-        y1 = ty + 25;
-        y2 = y1 - 60;
-        chartDot.append("line").attr("x1",xavg).attr("x2",xavg).attr("y1",y1).attr("y2",y2).style("stroke","green")
-        chartDot.append("text").attr("x", xavg).attr("y", y1+15).text("\u03BC="+f2(xbar))
-             .style("font-size",fontsize).style("stroke","green").style("text-anchor","middle")
-        chartDot.append("line").attr("x1",xmed).attr("x2",xmed).attr("y1",y1+25).attr("y2",y2).style("stroke","red")
-        chartDot.append("text").attr("x", xmed).attr("y", y1+40).text("m="+f2(medi))
-             .style("font-size",fontsize).style("stroke","red").style("text-anchor","middle")
-        x1 = margin.left + (left-gxmin)*graphWidth/gxrange;
-        x2 = margin.left + (right-gxmin)*graphWidth/gxrange;   
-        chartDot.append("text").attr("x", x1).attr("y", y1+15).text("\u03BC-\u03C3")
-             .style("font-size",fontsize).style("stroke","green").style("text-anchor","middle")
-        chartDot.append("text").attr("x", x2).attr("y", y1+15).text("\u03BC+\u03C3")
-             .style("font-size",fontsize).style("stroke","green").style("text-anchor","middle")
-        chartDot.append("text").attr("x", x2+50).attr("y", y1+15).text("\u03C3="+f2(stdS))
-             .style("font-size",fontsize).style("stroke","blue").style("text-anchor","middle")
-        chartDot.append("line").attr("x1",x1).attr("x2",x2).attr("y1",y1).attr("y2",y1).style("stroke","green")
-        chartDot.append("circle").attr("cx",x1).attr("cy",y1).attr("r",2).style("fill","green")
-        chartDot.append("circle").attr("cx",xavg).attr("cy",y1).attr("r",2).style("fill","green")
-        chartDot.append("circle").attr("cx",x2).attr("cy",y1).attr("r",2).style("fill","green")
-
-}
-// draw dot graph for simulation data
-function drawDotGrpahSimulation(sdata) {
-        chartDot.selectAll("text.simul").remove();
-        chartDot.selectAll("line.simul").remove();
-        chartDot.selectAll("circle.simul").remove();
-        var xavg, xmed;
-        stat3  = simplestat3(sdata);
-        nn3    = stat3.n;
-        xbar3  = stat3.xbar;
-        medi3  = stat3.medi;  
-        stdS3  = stat3.std; 
-        left3  = xbar3 - stdS3;
-        right3 = xbar3 + stdS3; 
-
-        // draw xbar line 
-        xavg = margin.left + (xbar3-gxmin)*graphWidth/gxrange;
-        xmed = margin.left + (medi3-gxmin)*graphWidth/gxrange;
-        ty = margin.top + 3*graphHeight/4 + 40; 
-        y1 = ty + 25;
-        y2 = y1 - 60;
-        chartDot.append("line").attr("x1",xavg).attr("x2",xavg).attr("y1",y1).attr("y2",y2)
-             .style("stroke","green").attr("class","simul")
-        chartDot.append("text").attr("x", xavg).attr("y", y1+15).text("\u03BC="+f2(xbar3))
-             .style("font-size",fontsize).style("stroke","green").style("text-anchor","middle").attr("class","simul")
-        chartDot.append("line").attr("x1",xmed).attr("x2",xmed).attr("y1",y1+25).attr("y2",y2)
-             .style("stroke","red").attr("class","simul")
-        chartDot.append("text").attr("x", xmed).attr("y", y1+40).text("m="+f2(medi3))
-             .style("font-size",fontsize).style("stroke","red").style("text-anchor","middle")
-        x1 = margin.left + (left3-gxmin)*graphWidth/gxrange;
-        x2 = margin.left + (right3-gxmin)*graphWidth/gxrange;   
-        chartDot.append("text").attr("x", x1).attr("y", y1+15).text("\u03BC-\u03C3").attr("class","simul")
-             .style("font-size",fontsize).style("stroke","green").style("text-anchor","middle")
-        chartDot.append("text").attr("x", x2).attr("y", y1+15).text("\u03BC+\u03C3").attr("class","simul")
-             .style("font-size",fontsize).style("stroke","green").style("text-anchor","middle")
-        chartDot.append("text").attr("x", x2+50).attr("y", y1+15).text("\u03C3="+f2(stdS3)).attr("class","simul")
-             .style("font-size",fontsize).style("stroke","blue").style("text-anchor","middle").attr("class","simul")
-        chartDot.append("line").attr("x1",x1).attr("x2",x2).attr("y1",y1).attr("y2",y1).style("stroke","green").attr("class","simul")
-        chartDot.append("circle").attr("cx",x1).attr("cy",y1).attr("r",2).style("fill","green").attr("class","simul")
-        chartDot.append("circle").attr("cx",xavg).attr("cy",y1).attr("r",2).style("fill","green").attr("class","simul")
-        chartDot.append("circle").attr("cx",x2).attr("cy",y1).attr("r",2).style("fill","green").attr("class","simul")
-}
-// mouse drag
-function dragDot() {
-
-   return d3.drag()
-            .on("start", function(d) {
-               d3.event.sourceEvent.stopPropagation();
-	       d3.select(this)
-	         .attr("r", radius*2)
-               var x = d3.event.x;
-               for (i=nn; i>0; i--) {
-                  if ( Math.abs(x - sdotx[i-1]) < (radius) ) {ith =i-1; break;} 
-               }
-            })
-            .on("drag", function(d) {
-               var x = d3.event.x;
-	       d3.select(this).attr("cx", x);
-
-            })
-            .on("end", function(d) {
-               var x = d3.event.x;
-               if (x < margin.left) {
-                 x = margin.left;
-               }
-               if (x > margin.left + graphWidth) {
-                 x = margin.left + graphWidth;
-               }
-	       d3.select(this)
-                 .attr("cx", x)
-                 .attr("r", radius*2)
-                 .transition()
-                 .attr("r", radius)
-               sdata[ith] = gxmin + gxrange*(x-margin.left)/graphWidth
-               sdotx[ith] = x;
-	       drawDotGrpahSimulation(sdata)
-            });
-}
-// mouse clicked
-function clicked(d, i) {
-    if (d3.event.defaultPrevented) return; // dragged
-    d3.select(this).transition()
-        .attr("fill", "black")
-        .attr("r", radius * 2)
-      .transition()
-        .attr("r", radius)
-        .attr("fill", "red");
-}
-
-  </script>
-
+ 
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
       <p><h4>🎲 실습 4.2</h4>
@@ -732,7 +208,7 @@ function clicked(d, i) {
          『eStat』을 이용하여 우리나라의 2월 서울의 일별 최저기온([실습 3.2])을 조사한 (자료 3.2)에 대하여
           평균 및 중앙값을 구해보자. 
           <div class="textLeft">(자료 3.2) 2021년 2월 서울의 일별 최저기온 (섭씨 도) (기상청)</div>
-          <table> 
+          <table style="width:600px;"> 
             <tr> 
               <td>
                 -2.3 -8.2 -9.4 -7.4 -4.4   4.3  -2.6   5.4  -6.1 -1.5 
@@ -742,17 +218,14 @@ function clicked(d, i) {
             </tr>
           </table>
       <p><b>풀이</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatM_10DotGraph.svg" onclick="window.open(addrStr[146])">     
-          </td>
-          <td>
-            <p>왼쪽의 QR을 이용하여 나타나는『eStatM』 메뉴에서 ‘점그래프 – 평균 / 표준편차’를 선택하면 
+            『eStatM』 메뉴에서 ‘점그래프 – 평균 / 표준편차’를 선택하면 
             &lt;그림 4.4&gt;와 같은 자료 입력창이 나타난다.
             <p>
-              <img class="imgFig600600" src="../FigureM/Fig0404.png">
+            <div class="QRFigure">
+              <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_10DotGraph.png" onclick="window.open(addrStr[146])">     
+              <img class="figure" src="./Figure/Fig0404.png">
               <div class="textLeft">&lt;그림 4.4&gt; 점그래프의 자료입력 상자</div>
+            </div>
             <p>
             <p>자료 입력’에 일별 최저기온 자료를 입력하면 (전자책에서 자료를 복사하여 붙여넣기를 해도 됨) 
                즉시 &lt;그림 4.4&gt;와 같이 입력된 자료수 28, 평균 –1.79, 중앙값 –1.90, 최솟값 –10.6도, 최댓값이
@@ -760,30 +233,18 @@ function clicked(d, i) {
             <p>[실행] 버튼을 클릭하면 &lt;그림 4.5&gt;와 같은 점그래프가 나타나고 평균(\(\mu\)) 및 중앙값(\(m\))이 표시된다. 
                이 점그래프 아래에는 점을 마우스로 변화시키며 평균과 중앙값의 변화를 살펴볼수 있는 시뮬레이션창이 나타난다.
             <p>
-              <img class="imgFig600600" src="../FigureM/Fig0405.png">
+              <img class="figure" src="./Figure/Fig0405.png">
               <div class="textLeft">&lt;그림 4.5&gt; 일별 최저기온의 점그래프와 시뮬레이션창</div>
             <p>
-          </td>
-        </tr>
-      </table>
-      <p>
      </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ 과제 4.1</h4> <p>
-            <input class="qrBtn" type="image" src="../../QR/eStatM_10DotGraph.svg" onclick="window.open(addrStr[146])">     
-          </td>
-          <td>
-          <p>
+        <h4>⏱ 과제 4.1</h4> <p>
             다음은 2016년 현재 서울의 25개 행정구별 자전거 전용 도로 길이에 대한 자료이다. 
             ([과제 3.1]). 『eStat』을 이용하여 점그래프와 자료의 대푯값을 구하고 분석하라.
- 
             <p>
             <div class="textLeft">(자료 3.3) 2019년 서울의 자전거 도로 (단위 km) <br> (서울통계정보시스템)</div>
             <table> 
@@ -794,22 +255,13 @@ function clicked(d, i) {
                 </td>
               </tr>
             </table>
-         </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_10BoxGraph.svg" onclick="window.open(addrStr[146])">     
     </div>
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ 과제 4.2</h4> <p>
-            <input class="qrBtn" type="image" src="../../QR/eStatM_10DotGraph.svg" onclick="window.open(addrStr[146])">     
-          </td>
-          <td>
-          <p>
+        <h4>⏱ 과제 4.2</h4> <p>
             다음은 2020년 우리나라를 통과한 태풍의 최대 풍속에 대한 자료이다 ([과제 3.2]). 『eStat』을 이용하여 점그래프와 자료의 대푯값을 구하고 분석하라.
             <p>
             <div class="textLeft">(자료 3.4) 2020년 우리나라를 통과한 태품의 최대풍속 <br>(단위 m/초) (기상청)</div>
@@ -821,9 +273,7 @@ function clicked(d, i) {
                 </td>
               </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_10BoxGraph.svg" onclick="window.open(addrStr[146])">     
     </div>
     <p>
     <!-------------------------------------------------------------------------->
@@ -831,37 +281,22 @@ function clicked(d, i) {
   <h4> 도수분포표에서 평균구하기 </h4>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ 생각열기</h4>
           <b>다음과 같이 한 중학교 학급의 학력고사 성적의 도수분포표가 주어졌다고 하자.  </b>
           <p>
           <div class="textLeft">[표 4.1] 중학교 학력고사 성적의 도수분포표</div>
-          <table> 
-            <tr> <th class="thGrey">계급</th> <th class="thGrey">자료수</th>   </tr>
+          <table style="width:400px;"> 
+            <tr> <th>계급</th> <th>자료수</th>   </tr>
             <tr> <td class="tdCenter">60이상 70미만</td> <td class="tdCenter"> 2</td> </tr>
             <tr> <td class="tdCenter">70 ~ 80</td>       <td class="tdCenter">10</td> </tr>
             <tr> <td class="tdCenter">80 ~ 90</td>       <td class="tdCenter">15</td> </tr>
             <tr> <td class="tdCenter">90 ~ 100</td>      <td class="tdCenter"> 3</td> </tr>
-            <tr> <th class="thGrey">합계</th> <th class="thGrey">30</th>   </tr>
+            <tr> <th>합계</th> <th>30</th>   </tr>
           </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
           <p>
+      <h4>💎 탐구</h4>
           <b>이 자료들을 대표할 수 있는 평균을 어떻게 구할까?
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
   <div class="mainTable">
@@ -869,13 +304,13 @@ function clicked(d, i) {
       <p>먼저 각 계급의 중간값을 구한다. 그리고 각 계급에 도수만큼 중간값이 있다고 생각하고 이 근사 자료를 이용하여 평균을 구한다.
 
           <div class="textLeft">[표 4.2] 중간값을 이용한 중학교 학력고사 성적의 근사 자료</div>
-          <table> 
-            <tr> <th class="thGrey">몸무게(kg)</th> <th class="thGrey">중간값</th> <th class="thGrey">도수</th> <th class="thGrey">근사자료</th>  </tr>
+          <table style="width:600px;"> 
+            <tr> <th>몸무게(kg)</th> <th>중간값</th> <th>도수</th> <th>근사자료</th>  </tr>
             <tr> <td class="tdCenter">60이상 ~ 70미만</td> <td class="tdCenter">65</td> <td class="tdCenter"> 3</td> <td>65 65</td>                          </tr>
             <tr> <td class="tdCenter">70 ~ 80</td>       <td class="tdCenter">75</td> <td class="tdCenter"> 7</td> <td>75 75 75 75 75</td>                 </tr>
             <tr> <td class="tdCenter">80 ~ 90</td>       <td class="tdCenter">85</td> <td class="tdCenter">11</td> <td>85 85 85 85 85 85 85 85 85 85 </td> </tr>
             <tr> <td class="tdCenter">90 ~ 100</td>      <td class="tdCenter">95</td> <td class="tdCenter"> 5</td> <td>95 95 95</td>                       </tr>
-            <tr> <th class="thGrey">합계</th> <th class="thGrey"></th> <th class="thGrey">30</th> <th class="thGrey"></th>  </tr>
+            <tr> <th>합계</th> <th></th> <th>30</th> <th></th>  </tr>
           </table>
 
       <p>즉, 평균은 다음과 같다.
@@ -892,952 +327,18 @@ function clicked(d, i) {
       <p>『eStatM』의 ‘도수분포다각형 – 상대도수 비교’를 이용하면 도수분포표의 근사적인 평균을 
           구할 수 있다. 계급구간의 왼쪽값과 도수1을 입력한 후 [실행] 버튼을 누르면 된다.
       <p>
-      <button type="button" id="eraseRelFreq" style="width:140px;"><b><span data-msgid="input data"></span></b></button>
-      <p>
-      <table>
-        <tr>
-          <td colspan="2" style="text-align: right;"><b><span data-msgid="Main Title">Main Title</span></b>&nbsp;</td>
-          <td colspan="3"><input type="text" size=63 id="mtitleRelFreq"></td>
-        </tr>
-	<tr>
-          <td>&nbsp;</td>
-          <td style="text-align: right;"><b><span data-msgid="y title">y title</span></b>&nbsp;</td>
-          <td><input type="text" size=10 id="ytitleRelFreq"></td>
-          <td style="text-align: right;"><b><span data-msgid="x title">x title</span></b>&nbsp;</td>
-          <td><input type="text" size=10 id="xtitleRelFreq"></td>
- 	</tr>
-      </table>  
-      <table class="data">
-      <tbody>
-	<tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td colspan="2"><b><span data-msgid="Histogram">Histogram</span> <span data-msgid="oneColor">Color</span></b></td>
-          <td style="text-align: center;"><input type="color" id="data02" onclick="changeColor()" style="width:80%"></td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td style="text-align: center;"><input type="color" id="data04" onclick="changeColor()" style="width:80%"></td>
-          <td>&nbsp;</td>
-          <td style="text-align: center;"><input type="color" id="data05" onclick="changeColor()" style="width:80%"></td>
- 	</tr>
-	<tr>
-          <td>&nbsp;</td>
-	  <td colspan="3" style="text-align: center;"><b><span data-msgid="Category">Category</span></b></td>
-          <td>&nbsp;</td>
-	  <td style="text-align: center;"><input type="text" size="9" id="freq1"></td>
-          <td>&nbsp;</td>
-	  <td style="text-align: center;"><input type="text" size="9" id="freq2"></td>
-          <td>&nbsp;</td>
-	  <td style="text-align: center;"><b><span data-msgid="RelativeFreq"></span>1</b></td>
-          <td>&nbsp;</td>
-	  <td style="text-align: center;"><b><span data-msgid="RelativeFreq"></span>2</b></td>
-	</tr>
-	<tr>
-          <td> 1</td>
-	  <td><input type="text" size="5" id="data10" style="text-align: right;"></td>
-          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;&nbsp;</td>
-          <td><input type="text" size="5" id="data11" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data12" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data13" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data14" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data15" style="text-align: right;"></td>
-	</tr>
-	<tr>
-          <td> 2</td>
-	  <td><input type="text" size="5" id="data20" style="text-align: right;"></td>
-          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;</td>
-          <td><input type="text" size="5" id="data21" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data22" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data23" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data24" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data25" style="text-align: right;"></td>
-	</tr>
-	<tr>
-          <td> 3</td>
-	  <td><input type="text" size="5" id="data30" style="text-align: right;"></td>
-          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;</td>
-          <td><input type="text" size="5" id="data31" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data32" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data33" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data34" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data35" style="text-align: right;"></td>
-	</tr>
-	<tr>
-          <td> 4</td>
-	  <td><input type="text" size="5" id="data40" style="text-align: right;"></td>
-          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;</td>
-          <td><input type="text" size="5" id="data41" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data42" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data43" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data44" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data45" style="text-align: right;"></td>
-	</tr>
-	<tr>
-          <td> 5</td>
-	  <td><input type="text" size="5" id="data50" style="text-align: right;"></td>
-          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;</td>
-          <td><input type="text" size="5" id="data51" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data52" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data53" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data54" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data55" style="text-align: right;"></td>
-	</tr>
-	<tr>
-          <td> 6</td>
-	  <td><input type="text" size="5" id="data60" style="text-align: right;"></td>
-          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;</td>
-          <td><input type="text" size="5" id="data61" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data62" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data63" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data64" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data65" style="text-align: right;"></td>
-	</tr>
-	<tr>
-          <td> 7</td>
-	  <td><input type="text" size="5" id="data70" style="text-align: right;"></td>
-          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;</td>
-          <td><input type="text" size="5" id="data71" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data72" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data73" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data74" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data75" style="text-align: right;"></td>
-	</tr>
-	<tr>
-          <td> 8</td>
-	  <td><input type="text" size="5" id="data80" style="text-align: right;"></td>
-          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;</td>
-          <td><input type="text" size="5" id="data81" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data82" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data83" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data84" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data85" style="text-align: right;"></td>
-	</tr>
-	<tr>
-          <td> 9</td>
-	  <td><input type="text" size="5" id="data90" style="text-align: right;"></td>
-          <td>&nbsp; &le; &nbsp; ~ &nbsp; &lt;</td>
-          <td><input type="text" size="5" id="data91" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data92" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data93" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data94" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data95" style="text-align: right;"></td>
-	</tr>
-	<tr>
-          <td> </td>
-          <td> </td>
-          <td> </td>
-	  <td style="text-align: right;"><span data-msgid="Total">Sum</span> </td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data102" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data103" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data104" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-	  <td><input type="text" size="9" id="data105" style="text-align: right;"></td>
-	</tr>
-        <tr>
-          <td> </td>
-          <td> </td>
-          <td> </td>
-	  <td style="text-align: right;"><span data-msgid="Mean">Mean</span> </td>
-          <td> </td>
-	  <td><input type="text" size="9" id="data112" style="text-align: right;"></td>
-          <td> </td>
-	  <td><input type="text" size="9" id="data113" style="text-align: right;"></td>
-        </tr>
-        <tr>
-          <td> </td>
-          <td> </td>
-          <td> </td>
-	  <td style="text-align: right;"><span data-msgid="Variance">Variance</span> </td>
-          <td> </td>
-	  <td><input type="text" size="9" id="data122" style="text-align: right;"></td>
-          <td> </td>
-	  <td><input type="text" size="9" id="data123" style="text-align: right;"></td>
-        </tr>
-        <tr>
-          <td> </td>
-          <td> </td>
-          <td> </td>
-	  <td style="text-align: right;"><span data-msgid="Std Deviation">Std. Deviation</span> </td>
-          <td> </td>
-	  <td><input type="text" size="9" id="data132" style="text-align: right;"></td>
-          <td> </td>
-	  <td><input type="text" size="9" id="data133" style="text-align: right;"></td>
-          <td> </td>
-        </tr>
-      </tbody>
-      </table>
-      <p>
+      <!------------- html for Freq Polygon ----------------------------------->
+         <iframe class="example120" src="./example/0402.html"> </iframe>
          <div class="textLeft">&lt;그림 4.6&gt; 도수분포표다각형을 이용한 평균의 계산</div>
-      <p>
-      <button type="button" id="executeRelFreq"  style="width:140px;"><span data-msgid="Execute">Execute</span></button> 
-      <p>
-      <svg id="chartRel" width="750" height="540" style="border-style:solid;"> </svg>
-      <p>
-      <button type="button" id="saveGraphRel"  style="width:140px;">
-	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
-      </button>
       <p>
   </div>
   <p>
-    <!---- Relative Frequencey script -------------------------------------------------------------->
-    <script>
-      setLanguage('ko');
-      var chartRel = d3.select("#chartRel")
-      marginRel      = {top: 80, bottom: 80, left: 90, right: 90};
-      graphWidthRel  = svgWidth - marginRel.left - marginRel.right;
-      graphHeightRel = svgHeight - marginRel.top - marginRel.bottom;
-
-      var colr = ["#FF0000","#FF8000","#FFFF00","#00FF00","#00FFFF","#0080FF","#0000FF","#8000FF","#FF00FF","#0000FF"];
-      var rowMax = 100;
-      var dint  = new Array(rowMax);
-      var catg1 = new Array(rowMax);
-      var catg2 = new Array(rowMax);
-      var catgm = new Array(rowMax);
-      var freq1 = new Array(rowMax);
-      var freq2 = new Array(rowMax);
-      var perc1 = new Array(rowMax);
-      var perc2 = new Array(rowMax);
-      var ncolr = new Array(10);
-      var maxcol = 4;
-      var nrow = new Array(maxcol);
-      var i, j, k, ith;
-      var x1, x2, y1, y2, cx, cy, tx, ty;
-      var nobs, sum1, sum2, mean1, mean2, vari1, vari2, stdv1, stdv2, start, xstep, temp;
-      var nvalueH, gxminH, gxmaxH, gyminH, gymaxH, xgap, xwidth, Histogram;
-      var mTitleRelFreq, yTitleRelFreq, xTitleRelFreq;
-      var freq1Name, freq2Name;
-
-      document.getElementById("data11").disabled = true;
-      document.getElementById("data21").disabled = true;
-      document.getElementById("data31").disabled = true;
-      document.getElementById("data41").disabled = true;
-      document.getElementById("data51").disabled = true;
-      document.getElementById("data61").disabled = true;
-      document.getElementById("data71").disabled = true;
-      document.getElementById("data81").disabled = true;
-      document.getElementById("data91").disabled = true;
-      document.getElementById("data14").disabled = true;
-      document.getElementById("data24").disabled = true;
-      document.getElementById("data34").disabled = true;
-      document.getElementById("data44").disabled = true;
-      document.getElementById("data54").disabled = true;
-      document.getElementById("data64").disabled = true;
-      document.getElementById("data74").disabled = true;
-      document.getElementById("data84").disabled = true;
-      document.getElementById("data94").disabled = true;
-      document.getElementById("data15").disabled = true;
-      document.getElementById("data25").disabled = true;
-      document.getElementById("data35").disabled = true;
-      document.getElementById("data45").disabled = true;
-      document.getElementById("data55").disabled = true;
-      document.getElementById("data65").disabled = true;
-      document.getElementById("data75").disabled = true;
-      document.getElementById("data85").disabled = true;
-      document.getElementById("data95").disabled = true;
-      document.getElementById("data102").disabled = true;
-      document.getElementById("data103").disabled = true;
-      document.getElementById("data104").disabled = true;
-      document.getElementById("data105").disabled = true;
-      document.getElementById("data112").disabled = true;
-      document.getElementById("data113").disabled = true;
-      document.getElementById("data122").disabled = true;
-      document.getElementById("data123").disabled = true;
-      document.getElementById("data132").disabled = true;
-      document.getElementById("data133").disabled = true;
-
-      // init Example of Rel Freq 
-        document.getElementById("mtitleRelFreq").value = "중학교 학력고사 성적";
-        document.getElementById("ytitleRelFreq").value = svgStr[30][langNum];
-        document.getElementById("xtitleRelFreq").value = "성적";
-        document.getElementById("data02").value = colr[2]; // Yellow
-        document.getElementById("data04").value = colr[0]; // red
-        document.getElementById("data05").value = colr[6]; // blue
-        document.getElementById("freq1").value  = "도수 1";
-        document.getElementById("freq2").value  = "도수 2";
-        document.getElementById("data10").value = "60";
-        document.getElementById("data20").value = "70";
-        document.getElementById("data30").value = "80";
-        document.getElementById("data40").value = "90";
-        document.getElementById("data12").value = "2";
-        document.getElementById("data22").value = "5";
-        document.getElementById("data32").value = "10";
-        document.getElementById("data42").value = "3";
-
-      // erase Hist data input =====================================
-      d3.select("#eraseRelFreq").on("click", function() {
-        eraseRelFreq()
-      });
-
-      // Draw Relative Histogram ======================================
-      d3.select("#executeRelFreq").on("click",function() {
-        initializeRelFreq();
-        if ( wrongInput ) return;
-        drawHistogramRel(nvalueH, dint, perc1, perc2);
-      })
-
-      // svg Graph Save
-      d3.select("#saveGraphRel").on("click", function() {
-        var svg = d3.select("#chartRel");
-        var width  = svgWidth;
-        var height = svgHeight;
-        var svgString = getSVGString(svg.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
-
-  // Erase data 
-  function eraseRelFreq() {
-        chartRel.selectAll("*").remove();
-        // title
-        document.getElementById("mtitleRelFreq").value = "";
-        document.getElementById("ytitleRelFreq").value = "";
-        document.getElementById("xtitleRelFreq").value = "";
-        // color
-        document.getElementById("data02").value = colr[2]; 
-        document.getElementById("data04").value = colr[0];
-        document.getElementById("data05").value = colr[6]; 
-        document.getElementById("data02").value = colr[2]; // Yellow
-        document.getElementById("data04").value = colr[0]; // red
-        document.getElementById("data05").value = colr[6]; // blue
-        document.getElementById("ytitleRelFreq").value = svgStr[30][langNum];
-        document.getElementById("freq1").value  = svgStr[16][langNum]+ " 1";
-        document.getElementById("freq2").value  = svgStr[16][langNum]+ " 2";
-        // category
-        document.getElementById("data10").value = "";
-        document.getElementById("data20").value = "";
-        document.getElementById("data30").value = "";
-        document.getElementById("data40").value = "";
-        document.getElementById("data50").value = "";
-        document.getElementById("data60").value = "";
-        document.getElementById("data70").value = "";
-        document.getElementById("data80").value = "";
-        document.getElementById("data90").value = "";
-        document.getElementById("data11").value = "";
-        document.getElementById("data21").value = "";
-        document.getElementById("data31").value = "";
-        document.getElementById("data41").value = "";
-        document.getElementById("data51").value = "";
-        document.getElementById("data61").value = "";
-        document.getElementById("data71").value = "";
-        document.getElementById("data81").value = "";
-        document.getElementById("data91").value = "";
-        // freq data
-        document.getElementById("data12").value  = "";
-        document.getElementById("data22").value  = "";
-        document.getElementById("data32").value  = "";
-        document.getElementById("data42").value  = "";
-        document.getElementById("data52").value  = "";
-        document.getElementById("data62").value  = "";
-        document.getElementById("data72").value  = "";
-        document.getElementById("data82").value  = "";
-        document.getElementById("data92").value  = "";
-        document.getElementById("data102").value = "";
-        document.getElementById("data112").value = "";
-        document.getElementById("data122").value = "";
-        document.getElementById("data132").value = "";
-        document.getElementById("data13").value  = "";
-        document.getElementById("data23").value  = "";
-        document.getElementById("data33").value  = "";
-        document.getElementById("data43").value  = "";
-        document.getElementById("data53").value  = "";
-        document.getElementById("data63").value  = "";
-        document.getElementById("data73").value  = "";
-        document.getElementById("data83").value  = "";
-        document.getElementById("data93").value  = "";
-        document.getElementById("data103").value = "";
-        document.getElementById("data113").value = "";
-        document.getElementById("data123").value = "";
-        document.getElementById("data133").value = "";
-        // clean up relative frequency
-        document.getElementById("data14").value = ""; 
-        document.getElementById("data24").value = ""; 
-        document.getElementById("data34").value = ""; 
-        document.getElementById("data44").value = ""; 
-        document.getElementById("data54").value = ""; 
-        document.getElementById("data64").value = ""; 
-        document.getElementById("data74").value = ""; 
-        document.getElementById("data84").value = ""; 
-        document.getElementById("data94").value = ""; 
-        document.getElementById("data104").value = "";
-        document.getElementById("data15").value = ""; 
-        document.getElementById("data25").value = ""; 
-        document.getElementById("data35").value = ""; 
-        document.getElementById("data45").value = ""; 
-        document.getElementById("data55").value = ""; 
-        document.getElementById("data65").value = ""; 
-        document.getElementById("data75").value = ""; 
-        document.getElementById("data85").value = ""; 
-        document.getElementById("data95").value = ""; 
-        document.getElementById("data105").value = "";
-  }
-  // intitalize histogram
-  function initializeRelFreq() {
-        chartRel.selectAll("*").remove();
-        // title
-        mTitleRelFreq = d3.select("#mtitleRelFreq").node().value;
-        yTitleRelFreq = d3.select("#ytitleRelFreq").node().value;
-        xTitleRelFreq = d3.select("#xtitleRelFreq").node().value;
-        if (yTitleRelFreq == "") yTitleRelFreq = svgStr[30][langNum];
-        // color
-        ncolr[2] = document.getElementById("data02").value; 
-        ncolr[0] = document.getElementById("data04").value;
-        ncolr[6] = document.getElementById("data05").value; 
-
-        // category
-        catg1[0] = d3.select("#data10").node().value;
-        catg1[1] = d3.select("#data20").node().value;
-        catg1[2] = d3.select("#data30").node().value;
-        catg1[3] = d3.select("#data40").node().value;
-        catg1[4] = d3.select("#data50").node().value;
-        catg1[5] = d3.select("#data60").node().value;
-        catg1[6] = d3.select("#data70").node().value;
-        catg1[7] = d3.select("#data80").node().value;
-        catg1[8] = d3.select("#data90").node().value;
-        // freq data
-        freq1Name= document.getElementById("freq1").value; 
-        freq2Name= document.getElementById("freq2").value; 
-        freq1[1] = parseFloat(d3.select("#data12").node().value);
-        freq1[2] = parseFloat(d3.select("#data22").node().value);
-        freq1[3] = parseFloat(d3.select("#data32").node().value);
-        freq1[4] = parseFloat(d3.select("#data42").node().value);
-        freq1[5] = parseFloat(d3.select("#data52").node().value);
-        freq1[6] = parseFloat(d3.select("#data62").node().value);
-        freq1[7] = parseFloat(d3.select("#data72").node().value);
-        freq1[8] = parseFloat(d3.select("#data82").node().value);
-        freq1[9] = parseFloat(d3.select("#data92").node().value);
-        freq2[1] = parseFloat(d3.select("#data13").node().value);
-        freq2[2] = parseFloat(d3.select("#data23").node().value);
-        freq2[3] = parseFloat(d3.select("#data33").node().value);
-        freq2[4] = parseFloat(d3.select("#data43").node().value);
-        freq2[5] = parseFloat(d3.select("#data53").node().value);
-        freq2[6] = parseFloat(d3.select("#data63").node().value);
-        freq2[7] = parseFloat(d3.select("#data73").node().value);
-        freq2[8] = parseFloat(d3.select("#data83").node().value);
-        freq2[9] = parseFloat(d3.select("#data93").node().value);
-        // clean up relative frequency
-        document.getElementById("data14").value = ""; 
-        document.getElementById("data24").value = ""; 
-        document.getElementById("data34").value = ""; 
-        document.getElementById("data44").value = ""; 
-        document.getElementById("data54").value = ""; 
-        document.getElementById("data64").value = ""; 
-        document.getElementById("data74").value = ""; 
-        document.getElementById("data84").value = ""; 
-        document.getElementById("data94").value = ""; 
-        document.getElementById("data15").value = ""; 
-        document.getElementById("data25").value = ""; 
-        document.getElementById("data35").value = ""; 
-        document.getElementById("data45").value = ""; 
-        document.getElementById("data55").value = ""; 
-        document.getElementById("data65").value = ""; 
-        document.getElementById("data75").value = ""; 
-        document.getElementById("data85").value = ""; 
-        document.getElementById("data95").value = ""; 
-        // get new color
-        colr[2] = d3.select("#data02").node().value;
-        colr[0] = d3.select("#data04").node().value;
-        colr[6] = d3.select("#data05").node().value;
-
-        // 입력한 행의 수 카운트
-        nrow[0] = 0;
-        for (i=0; i<rowMax; i++) {
-          if ( isNaN(catg1[i]) || catg1[i] == "" ) break;
-          else nrow[0]++;
-        }
-        // freq1 행의 수 카운트
-        nrow[2] = 0;
-        for (i=1; i<rowMax; i++) {
-          if ( isNaN(freq1[i]) || freq1[i] == "" ) break;
-          else nrow[2]++;
-        }
-        // freq2 행의 수 카운트
-        nrow[3] = 0;
-        for (i=1; i<rowMax; i++) {
-          if ( isNaN(freq2[i]) || freq2[i] == "" ) break;
-          else nrow[3]++;
-        }
-        nvalueH = nrow[0];  
-        // 입력행이 하나 이상인지 체크
-        tx = marginRel.left+100;
-        ty = marginRel.top;
-        if (nvalueH < 2 ) {
-          chartRel.append("text").attr("class","mea1n").attr("x", tx).attr("y", ty)
-               .text(alertMsg[46][langNum]).style("stroke","red").style("font-size", "1em")
-          wrongInput = true;
-          return;
-        }
-        // catg과 freq1 입력행의 수가 다른지 체크 
-        if (nvalueH != nrow[2]) {
-          chartRel.append("text").attr("class","mea1n").attr("x", tx).attr("y", ty)
-               .text(alertMsg[51][langNum]).style("stroke","red").style("font-size", "1em")
-          wrongInput = true;
-          return;
-        }
-        // catg와 freq2 입력행의 수가 다른지 체크 
-        if (nrow[3] > 0) {
-          if (nvalueH != nrow[3] ) {
-            chartRel.append("text").attr("class","mea1n").attr("x", tx).attr("y", ty)
-                 .text(alertMsg[51][langNum]).style("stroke","red").style("font-size", "1em")
-            wrongInput = true;
-            return;
-          }
-        }
-        // catg1, freq2에 문자 빈칸 있나 체크
-        for (i=0; i<nvalueH; i++) {
-            if (isNaN(catg1[i]) || isNaN(freq1[i+1]) ) {
-              chartRel.append("text").attr("class","mean").attr("x", tx).attr("y", ty)
-                   .text(alertMsg[52][langNum]).style("stroke","red").style("font-size", "1em")
-              wrongInput = true;
-              return;
-            }
-        }
-        // freq2에 문자 빈칸 있나 체크
-        if (nrow[3] > 0) {  
-          for (i=0; i<nvalueH; i++) {
-            if ( isNaN(freq2[i+1]) ) {
-              chartRel.append("text").attr("class","mean").attr("x", tx).attr("y", ty)
-                   .text(alertMsg[52][langNum]).style("stroke","red").style("font-size", "1em")
-              wrongInput = true;
-              return;
-            }
-          }
-        }
-        // catg1의 interval size가 같은지 
-        xstep = parseFloat(catg1[1]) - parseFloat(catg1[0]);
-        if (nrow[0] > 2) {
-          for (i=2; i<nvalueH; i++) {
-            temp = parseFloat(catg1[i]) - parseFloat(catg1[i-1]);
-            if (temp != xstep ) {
-              chartRel.append("text").attr("class","mean").attr("x", tx).attr("y", ty)
-                   .text(alertMsg[53][langNum]).style("stroke","red").style("font-size", "1em")
-              wrongInput = true;
-              return;
-            }
-          }
-        }
-        wrongInput = false;
-        // Right Interval Calculation
-        xstep = parseFloat(catg1[1]) - parseFloat(catg1[0]);
-        dint[0] = parseFloat(catg1[0]);
-        for (i = 0; i < nvalueH; i++) {
-          catg2[i]   = parseFloat(catg1[i]) + xstep; 
-          catgm[i]   = (parseFloat(catg1[i]) + parseFloat(catg2[i])) / 2;
-          dint[i+1]  = catg2[i];
-        } 
-        if( catg1[0] != "" ) document.getElementById("data11").value = f2(catg2[0]);
-        if( catg1[1] != "" ) document.getElementById("data21").value = f2(catg2[1]);
-        if( catg1[2] != "" ) document.getElementById("data31").value = f2(catg2[2]);
-        if( catg1[3] != "" ) document.getElementById("data41").value = f2(catg2[3]);
-        if( catg1[4] != "" ) document.getElementById("data51").value = f2(catg2[4]);
-        if( catg1[5] != "" ) document.getElementById("data61").value = f2(catg2[5]);
-        if( catg1[6] != "" ) document.getElementById("data71").value = f2(catg2[6]);
-        if( catg1[7] != "" ) document.getElementById("data81").value = f2(catg2[7]);
-        if( catg1[8] != "" ) document.getElementById("data91").value = f2(catg2[8]);
-        // Mean, Std Dev, Relative Frequency Calculation
-        sum1 = 0;
-        sum2 = 0;
-        mean1 = 0;
-        mean2 = 0;      
-        for (i = 0; i < nvalueH; i++) {
-            sum1  += freq1[i+1];
-            mean1 += catgm[i] * freq1[i+1];
-            if (nrow[3] > 0) {
-              sum2  += freq2[i+1];
-              mean2 += catgm[i] * freq2[i+1]; 
-            }
-        }
-        mean1 = mean1 / sum1;
-        if (nrow[3] > 0) mean2 = mean2 / sum2;
-        vari1 = 0;
-        vari2 = 0;      
-        for (i = 0; i < nvalueH; i++) {
-            vari1 += (catgm[i] - mean1) * (catgm[i] - mean1) * freq1[i+1];
-            if (nrow[3] > 0) {
-              vari2 += (catgm[i] - mean2) * (catgm[i] - mean2) * freq2[i+1]; 
-            }
-        }
-        vari1 = vari1 /sum1;
-        stdv1 = Math.sqrt(vari1);
-        if (nrow[3] > 0) {
-          vari2 = vari2 / sum2;
-          stdv2 = Math.sqrt(vari2);
-        }
-        for (i = 0; i < nvalueH; i++) {
-            perc1[i+1] = freq1[i+1] / sum1;
-            if (nrow[3] > 0) perc2[i+1] = freq2[i+1] / sum2;
-        } 
-        if( !isNaN(perc1[1]) ) document.getElementById("data14").value = f3(perc1[1]);
-        if( !isNaN(perc2[1]) ) document.getElementById("data15").value = f3(perc2[1]);
-        if( !isNaN(perc1[2]) ) document.getElementById("data24").value = f3(perc1[2]);
-        if( !isNaN(perc2[2]) ) document.getElementById("data25").value = f3(perc2[2]);
-        if( !isNaN(perc1[3]) ) document.getElementById("data34").value = f3(perc1[3]);
-        if( !isNaN(perc2[3]) ) document.getElementById("data35").value = f3(perc2[3]);
-        if( !isNaN(perc1[4]) ) document.getElementById("data44").value = f3(perc1[4]);
-        if( !isNaN(perc2[4]) ) document.getElementById("data45").value = f3(perc2[4]);
-        if( !isNaN(perc1[5]) ) document.getElementById("data54").value = f3(perc1[5]);
-        if( !isNaN(perc2[5]) ) document.getElementById("data55").value = f3(perc2[5]);
-        if( !isNaN(perc1[6]) ) document.getElementById("data64").value = f3(perc1[6]);
-        if( !isNaN(perc2[6]) ) document.getElementById("data65").value = f3(perc2[6]);
-        if( !isNaN(perc1[7]) ) document.getElementById("data74").value = f3(perc1[7]);
-        if( !isNaN(perc2[7]) ) document.getElementById("data75").value = f3(perc2[7]);
-        if( !isNaN(perc1[8]) ) document.getElementById("data84").value = f3(perc1[8]);
-        if( !isNaN(perc2[8]) ) document.getElementById("data85").value = f3(perc2[8]);
-        if( !isNaN(perc1[9]) ) document.getElementById("data94").value = f3(perc1[9]);
-        if( !isNaN(perc2[9]) ) document.getElementById("data95").value = f3(perc2[9]);
-        // write total
-        document.getElementById("data102").value = sum1;
-        document.getElementById("data104").value = f3(1);
-        document.getElementById("data112").value = f2(mean1);
-        document.getElementById("data122").value = f2(vari1);
-        document.getElementById("data132").value = f2(stdv1);
-        if (nrow[3] > 0) {
-          document.getElementById("data103").value = sum2;
-          document.getElementById("data105").value = f3(1);
-          document.getElementById("data113").value = f2(mean2);
-          document.getElementById("data123").value = f2(vari2);
-          document.getElementById("data133").value = f2(stdv2);
-        }
-  }
-
-  // 히스토그램 그리기 함수 -----------------------------------------------------------------------------------------------
-  function drawHistogramRel(nvalueH, dataValueH, dvalueFreq1, dvalueFreq2) {
-    var i, j, k, str, cx, cy;
-    var label, tempx, tempy, tempw, temph, xgap, xwidth, xstep, color1, colr2;
-    var nvaluH, gxminH, gxmaxH, gxrangeH, gyminH, gymaxH, gyrangeH, freqmax;
-
-    // 히스토그램 bins, 전체 데이터 최소 최대 계산
-    gxminH   = dataValueH[0];
-    gxmaxH   = dataValueH[nvalueH];
-    gxrangeH = gxmaxH - gxminH;
-    xgap     = graphWidthRel / (nvalueH + 2); // 좌우갭
-    xwidth   = graphWidthRel - 2 * xgap; // 좌우 갭을 뺀 실제 x 너비
-    xstep    = dataValueH[1] - dataValueH[0]; // Assume equal interval length
-    // 히스토그램 그리기
-    freqmax = 0;
-    for (j = 0; j <= nvalueH; j++) {
-        if (dvalueFreq1[j] > freqmax) freqmax = dvalueFreq1[j];
-        if (nrow[3] > 0) {
-          if (dvalueFreq2[j] > freqmax) freqmax = dvalueFreq2[j];
-        }
-    }
-    gyminH = 0;
-    gymaxH = freqmax * 1.2;  // Y축 버퍼
-    gyrangeH = gymaxH - gyminH;
-
-    // 전체 제목
-    drawTitleRel(mTitleRelFreq, yTitleRelFreq, xTitleRelFreq);
-    // 아래 축그리기
-    drawHistRelAxis(nvalueH, dataValueH, gxminH, gxmaxH, gyminH, gymaxH, graphWidthRel, graphHeightRel);   
-    // 히스토그램 freq1[]
-    tempw = xwidth * xstep / gxrangeH; // 막대 너비
-    for (i = 1; i <= nvalueH; i++) {
-            tempx = marginRel.left + xgap + xwidth * (dataValueH[i - 1] - gxminH) / gxrangeH;
-            tempy = marginRel.top + graphHeightRel - graphHeightRel * (dvalueFreq1[i] - gyminH) / gyrangeH;
-            temph = graphHeightRel * (dvalueFreq1[i] - gyminH) / gyrangeH;
-            chartRel.append("rect")
-                .style("fill", colr[2])
-                .attr("class", "bar")
-                .style("stroke", "lightgrey")
-                .style("stroke-width", "1px")
-                .attr("x", tempx)
-                .attr("width", tempw)
-                .attr("height", 0)
-                .attr("y", marginRel.top + graphHeightRel)
-                .transition() // 애니매이션 효과 지정
-                .delay(function(d, i) {
-                    return i * 250;
-                }) // 0.5초마다 그리도록 대기시간 설정
-                .duration(1000) // 2초동안 애니매이션이 진행되도록 설정
-                .attr("y", tempy)
-                .attr("height", temph)
-    } // endof i
-    color1 = colr[0];
-    showHistLineRel(nvalueH, xstep, dataValueH, dvalueFreq1, gxminH, gxmaxH, gyminH, gymaxH, xgap, xwidth, color1);
-
-    if (nrow[3] > 0) {
-      color2 = colr[6];
-      // 레이블
-      cx = marginRel.left + graphWidthRel + 10;
-      cy = marginRel.top + 30;
-      chartRel.append("circle").attr("class", "histline").style("fill", color1)
-             .attr("cx", cx).attr("cy", cy).attr("r", 3)
-      chartRel.append("text").attr("x", cx+10).attr("y", cy+7)
-           .style("font-size", "0.8em").style("font-family", "sans-seirf").style("stroke", color1).style("text-anchor", "begin")
-           .text(freq1Name)
-      cy += 30;
-      chartRel.append("circle").attr("class", "histline").style("fill", color2)
-             .attr("cx", cx).attr("cy", cy).attr("r", 3)
-      chartRel.append("text").attr("x", cx+10).attr("y", cy+7)
-           .style("font-size", "0.8em").style("font-family", "sans-seirf").style("stroke", color2).style("text-anchor", "begin")
-           .text(freq2Name)
-      // freq2 상대도수다각형
-      showHistLineRel(nvalueH, xstep, dataValueH, dvalueFreq2, gxminH, gxmaxH, gyminH, gymaxH, xgap, xwidth, color2);
-    }
-  }
-  // 히스토그램 y축, x축 그리기
-  function drawHistRelAxis(nvalueH, dataValueH, gxminH, gxmaxH, gyminH, gymaxH, graphWidthRel, graphHeightRel) {
-    var i, j, k;
-    var tx, ty, x1, x2, y1, y2, z1, z2;
-    var gxrangeH = gxmaxH - gxminH;
-    var xgap     = graphWidthRel / (nvalueH + 2); // 좌우갭
-    var xwidth   = graphWidthRel - 2 * xgap; // 좌우 갭을 뺀 실제 x 너비
-    var ygrid    = new Array(rowMax);
-
-    // Y축 그리기
-    var yScale = d3.scaleLinear().domain([gyminH, gymaxH]).range([graphHeightRel, 0]);
-    ygrid = yScale.ticks();
-    tx = marginRel.left;
-    ty = marginRel.top;
-    chartRel.append("g")
-         .attr("class", "axis")
-         .attr("transform", "translate(" + tx + ", " + ty + ") ")
-         .call(d3.axisLeft(yScale))
-    chartRel.append("line")
-         .attr("x1", marginRel.left + graphWidthRel)
-         .attr("x2", marginRel.left + graphWidthRel)
-         .attr("y1", marginRel.top)
-         .attr("y2", marginRel.top + graphHeightRel)
-         .style("stroke", "black")
-    // Y축 그리드
-    for (i = 1; i < ygrid.length; i++) {
-      ty = marginRel.top + yScale(ygrid[i]);
-      chartRel.append("line")
-           .attr("x1", marginRel.left)
-           .attr("x2", marginRel.left + graphWidthRel)
-           .attr("y1", ty)
-           .attr("y2", ty)
-           .style("stroke", "lightgrey")
-    }
-    // 히스토그램의 x축 선
-    tx = marginRel.left;
-    ty = marginRel.top;
-    chartRel.append("line")
-         .attr("x1", tx)
-         .attr("x2", marginRel.left + graphWidthRel)
-         .attr("y1", ty)
-         .attr("y2", ty)
-         .style("stroke", "black")
-    ty = marginRel.top + graphHeightRel;
-    chartRel.append("line")
-         .attr("x1", tx)
-         .attr("x2", marginRel.left + graphWidthRel)
-         .attr("y1", ty)
-         .attr("y2", ty)
-         .style("stroke", "black")
-    // 히스토그램의 x축 아래 tick, value 값선
-    y1 = marginRel.top + graphHeightRel;
-    y2 = y1 + 5;
-    for (i = 0; i <= nvalueH; i++) {
-        x1 = marginRel.left + xgap + xwidth * (dataValueH[i] - gxminH) / gxrangeH;
-        x2 = x1;
-        chartRel.append("line")
-            .attr("x1", x1)
-            .attr("x2", x2)
-            .attr("y1", y1)
-            .attr("y2", y2)
-            .style("stroke", "black")
-        // x 그리드
-        chartRel.append("line")
-            .attr("x1", x1)
-            .attr("x2", x2)
-            .attr("y1", y1)
-            .attr("y2", marginRel.top)
-            .style("stroke", "lightgrey")
-        chartRel.append("text")
-            .attr("class", "myaxis")
-            .style("text-anchor", "middle")
-            .style("font-family", "sans-serif")
-            .style("font-size", "0.7em")
-            .style("font-family", "sans-serif")
-            .style("stroke", "#0055FF")
-            .attr("x", x1)
-            .attr("y", y2 + 15)
-            .text(f2(dataValueH[i]))
-    }
-  }
-
-  // 그래프 제목 쓰기 함수
-  function drawTitleRel(mTitle, yTitle, xTitle) {
-    // 주제목
-    chartRel.append("text")
-        .attr("x", marginRel.left + graphWidthRel/2)
-        .attr("y", marginRel.top / 2 + 10)
-        .style("font-size", "1.8em")
-        .style("font-family", "sans-seirf")
-        .style("stroke", "black")
-        .style("text-anchor", "middle")
-        .text(mTitle)
-    // X축 제목
-    chartRel.append("text")
-            .style("font-size", "1em")
-            .style("font-family", "sans-seirf")
-            .style("stroke", "black")
-            .style("text-anchor", "middle")
-            .attr("x", marginRel.left + graphWidthRel / 2)
-            .attr("y", marginRel.top + graphHeightRel + marginRel.bottom * 0.6)
-            .text(xTitle)
-     // Y축 제목
-     var tx = marginRel.left / 2 - 30;
-     var ty = marginRel.top + 15;
-     chartRel.append("text")
-            .style("font-size", "1em")
-            .style("font-family", "sans-seirf")
-            .style("stroke", "black")
-            .style("text-anchor", "end")
-            .attr("x", tx)
-            .attr("y", ty)
-            .text(yTitle)
-            .attr("transform", "rotate(-90 30 100)")
-  }
-
-
-  // 히스토그램 도수분포다각형 표시 함수
-  function showHistLineRel(nvalueH, xstep, dataValueH, freq, gxminH, gxmaxH, gyminH, gymaxH, xgap, xwidth, colStr) {
-    var i, k;
-    var gxrangeH = gxmaxH - gxminH;
-    var gyrangeH = gymaxH - gyminH;
-        // left gap part
-        x1 = marginRel.left + xgap + xwidth * (dataValueH[0] - xstep / 2 - gxminH) / gxrangeH;
-        y1 = marginRel.top  + graphHeightRel;
-        x2 = marginRel.left + xgap + xwidth * (dataValueH[0] + xstep / 2 - gxminH) / gxrangeH;
-        y2 = marginRel.top  + graphHeightRel - graphHeightRel * (freq[1] - gyminH) / gyrangeH;
-        chartRel.append("circle")
-             .attr("class", "histline")
-             .style("stroke", colStr)
-             .style("stroke-width", "2px")
-             .attr("cx", x1)
-             .attr("cy", y1)
-             .attr("r", 3)
-        chartRel.append("line")
-             .attr("class", "histline")
-             .style("stroke", colStr)
-             .style("stroke-width", "2px")
-             .attr("x1", x1)
-             .attr("x2", x2)
-             .attr("y1", y1)
-             .attr("y2", y2)
-        str = f3(freq[1]);
-        chartRel.append("circle")
-             .attr("class", "histline")
-             .style("stroke", colStr)
-             .style("stroke-width", "2px")
-             .attr("cx", x2)
-             .attr("cy", y2)
-             .attr("r", 3)
-             .append("title")
-             .text(str)
-    // main polygon
-    for (i = 1; i < nvalueH; i++) {
-        x1 = x2;
-        y1 = y2;
-        x2 = marginRel.left + xgap + xwidth * (dataValueH[i] + xstep / 2 - gxminH) / gxrangeH;
-        y2 = marginRel.top  + graphHeightRel - graphHeightRel * (freq[i + 1] - gyminH) / gyrangeH;
-        str = f3(freq[i+1]);
-        chartRel.append("line")
-             .attr("class", "histline")
-             .style("stroke", colStr)
-             .style("stroke-width", "2px")
-             .attr("x1", x1)
-             .attr("x2", x2)
-             .attr("y1", y1)
-             .attr("y2", y2)
-        chartRel.append("circle")
-             .attr("class", "histline")
-             .style("stroke", colStr)
-             .style("stroke-width", "2px")
-             .attr("cx", x2)
-             .attr("cy", y2)
-             .attr("r", 3)
-             .append("title")
-             .text(str)
-    }
-        // right gap part
-        x1 = x2;
-        y1 = y2;
-        x2 = marginRel.left + xgap + xwidth * (dataValueH[nvalueH] + xstep / 2 - gxminH) / gxrangeH;
-        y2 = marginRel.top  + graphHeightRel;
-        chartRel.append("line")
-             .attr("class", "histline")
-             .style("stroke", colStr)
-             .style("stroke-width", "2px")
-             .attr("x1", x1)
-             .attr("x2", x2)
-             .attr("y1", y1)
-             .attr("y2", y2)
-        chartRel.append("circle")
-             .attr("class", "histline")
-             .style("stroke", colStr)
-             .style("stroke-width", "2px")
-             .attr("cx", x2)
-             .attr("cy", y2)
-             .attr("r", 3)
-  }
-
-    // Change Color
-    function changeColor(){
-      colr[2] = d3.select("#data02").node().value;
-      colr[0] = d3.select("#data04").node().value;
-      colr[6] = d3.select("#data05").node().value;
-    }
-
-
-    </script>
-
 
 <!--------------------------------------------------------------------------------------->
   <h3 id="0402">4.2 자료의 산포도 - 표준편차</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ 생각열기</h4>
           <b>한 중학교 학생 5명의 퀴즈 성적(10점 만점)이 다음과 같다.  </b>
           <p>
             <div class="textLeft">(자료 4.1) 한 중학교 학생 5명의 퀴즈 성적 (10점 만점)</div>
@@ -1848,19 +349,9 @@ function clicked(d, i) {
                 </td>
               </tr>
             </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 탐구</h4>
           <b>이 자료들이 흩어져 있는 정도를 측정하는 방법이 있을까?
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -1912,29 +403,17 @@ function clicked(d, i) {
       <p><h4>🎲 실습 4.3</h4>
        『eStat』을 이용하여 (자료 4.2) 5명 표본 학생들의 퀴즈 성적에 대한 점그래프를 그리고 평균 및 표준편차를 구해보자. 
       <p><b>풀이</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatM_10DotGraph.svg" onclick="window.open(addrStr[146])">     
-          </td>
-          <td>
-            <p>왼쪽의 QR을 이용해 『eStatM』 메뉴에서 ‘점그래프 – 평균/표준편차’를 선택하면 &lt;그림 4.7&gt;과 같은 창이 나타난다.
-            <p>실습 4.1과 같이 ‘자료 입력’에 학생들의 퀴즈성적 자료를 입력한다. (전자책에서 자료를 복사하여 붙여넣기를 해도 됨) 
-            <p>
-               <img class="imgFig600600" src="../FigureM/Fig0407.png">
-               <div class="textLeft">&lt;그림 4.7&gt;  점그래프를 위한 퀴즈성적 자료 입력</div>
-            <p>
-            <p>자료를 입력하면 자료수, 최솟값, 최댓값, 평균, 중앙값 등이 계산된다. [실행] 버튼을 클릭하면 
+      <p>
+         『eStatM』 메뉴에서 ‘점그래프 – 평균/표준편차’를 선택하면 &lt;그림 4.7&gt;과 같은 창이 나타난다.
+      <p>실습 4.1과 같이 ‘자료 입력’에 학생들의 퀴즈성적 자료를 입력한다. (전자책에서 자료를 복사하여 붙여넣기를 해도 됨) 
+      <p>자료를 입력하면 자료수, 최솟값, 최댓값, 평균, 중앙값 등이 계산된다. [실행] 버튼을 클릭하면 
                &lt;그림 4.8&gt;과 같은 점그래프가 나타나고 평균(\(\mu\)), 중앙값(\(m\)), 표준편차(\(\sigma\)), 
                그리고 \(\mu\) \(\pm\) \(\sigma\) 길이가 표시된다. 
-            <p>그림 아래에 있는 시뮬레이션 창을 이용하여 마우스로 한 점을 이동시키면서 표준편차 길이의 변화를 살펴볼 수 있다. 표준편차도 극단점에 영향을 받는다. 
-            <p>
-               <img class="imgFig600600" src="../FigureM/Fig0408.png">
-               <div class="textLeft">&lt;그림 4.8&gt; \(\mu\) \(\pm\) \(\sigma\)가 표시된 점그래프</div>
-            <p>
-          </td>
-        </tr>
-      </table>
+      <p>그림 아래에 있는 시뮬레이션 창을 이용하여 마우스로 한 점을 이동시키면서 표준편차 길이의 변화를 살펴볼 수 있다. 표준편차도 극단점에 영향을 받는다. 
+      <p>
+         <iframe class="example90" src="./example/0403.html"> </iframe>
+         <div class="textLeft">&lt;그림 4.8&gt; \(\mu\) \(\pm\) \(\sigma\)가 표시된 점그래프</div>
+      <p>
     </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
@@ -1943,16 +422,13 @@ function clicked(d, i) {
       <p><h4>🎲 실습 4.4</h4>
         『eStat』을 이용하여 우리나라의 2월 서울의 일별 최저기온([실습 3.2])을 조사한 (자료 3.2)에 대하여 점그래프를 그리고 평균 및 표준편차를 구해보자. 
       <p><b>풀이</b>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatM_10DotGraph.svg" onclick="window.open(addrStr[146])">     
-          </td>
-          <td>
-            <p>왼쪽의 QR을 이용하여 나타나는『eStatM』 메뉴에서 ‘점그래프 – 평균 / 표준편차’를 선택하면 &lt;그림 4.9&gt;>와 같은 자료 입력창이 나타난다.
+            왼쪽의 QR을 이용하여 나타나는『eStatM』 메뉴에서 ‘점그래프 – 평균 / 표준편차’를 선택하면 &lt;그림 4.9&gt;>와 같은 자료 입력창이 나타난다.
             <p>
-               <img class="imgFig600600" src="../FigureM/Fig0409.png">
+            <div class="QRFigure">
+               <img class="figure" src="./Figure/Fig0409.png">
                <div class="textLeft">&lt;그림 4.9&gt; 점그래프의 자료입력 상자</div>
+           <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_10DotGraph.png" onclick="window.open(addrStr[146])">     
+            </div>
             <p>
             <p>자료를 입력하면 자료수, 최솟값, 최댓값, 평균, 중앙값 등이 계산된다. [실행] 버튼을 클릭하면 
                &lt;그림 4.10&gt;과 같은 점그래프가 나타나고 평균(\(\mu\)), 중앙값(\(m\)), 표준편차(\(\sigma\)), 
@@ -1960,67 +436,45 @@ function clicked(d, i) {
             <p>그림 아래에 있는 시뮬레이션 창을 이용하여 마우스로 한 점을 이동시키면서 표준편차 길이의 
                 변화를 살펴볼 수 있다. 표준편차도 극단점에 영향을 받는다. 
             <p>
-               <img class="imgFig600600" src="../FigureM/Fig0410.png">
+               <img class="figure" src="./Figure/Fig0410.png">
                <div class="textLeft">&lt;그림 4.10&gt; 일별 최저기온의 점그래프와 시뮬레이션창</div>
             <p>
-          </td>
-        </tr>
-      </table>
     </div>
-    <!------------------------------------------------------------------------------------------------->
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ 과제 4.3</h4> <p>
-            <input class="qrBtn" type="image" src="../../QR/eStatM_10DotGraph.svg" onclick="window.open(addrStr[146])">     
-          </td>
-          <td>
-            <p>
+        <h4>⏱ 과제 4.3</h4> <p>
             다음은 2016년 현재 서울의 25개 행정구별 자전거 전용 도로 길이에 대한 자료이다 ([과제 3.1]). 『eStat』을 이용하여 점그래프와 자료의 평균 및 표준편차를 구하고 분석하라.
             <p>
             <div class="textLeft">(자료 3.3) 2019년 서울의 자전거 도로 (단위 km) (서울통계정보시스템)</div>
-            <table> 
+            <table style="width:600px;"> 
               <tr> 
                 <td>
-                  24 15 23 20 30 24  7  8  7 12 28 27 19 35 41 <br>
+                  24 15 23 20 30 24  7  8  7 12 28 27 19 35 41 
                   42 11  8 37 13 20 29 53 93 42
                 </td>
               </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_10DotGraph.png" onclick="window.open(addrStr[146])">     
     </div>
     <p>
 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ 과제 4.4</h4> <p>
-            <input class="qrBtn" type="image" src="../../QR/eStatM_10DotGraph.svg" onclick="window.open(addrStr[146])">     
-          </td>
-          <td>
-            <p>
+        <h4>⏱ 과제 4.4</h4> <p>
             다음은 2020년 우리나라를 통과한 태풍의 최대 풍속에 대한 자료이다 ([과제 3.2]). 『eStat』을 이용하여 점그래프와 자료의 평균 및 표준편차를 구하고 분석하라.
             <p>
             <div class="textLeft">(자료 3.4) 2020년 우리나라를 통과한 태품의 최대풍속 (단위 m/초) (기상청)</div>
-            <table> 
+            <table style="width:600px;"> 
               <tr> 
                 <td>
-                  40 22 21 29 19 22 24 45 49 55 24 27 29 35 19 <br>
+                  40 22 21 29 19 22 24 45 49 55 24 27 29 35 19 
                   24 35 40 56 24 21 43 18 <br>
                 </td>
               </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_10DotGraph.png" onclick="window.open(addrStr[146])">     
     </div>
     <p>
     <!-------------------------------------------------------------------------->
@@ -2028,37 +482,22 @@ function clicked(d, i) {
   <h3> 도수분포표에서 분산과 표준편차 구하기 </h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ 생각열기</h4>
           <b>다음과 같이 한 중학교 학급의 학력고사 성적의 도수분포표가 주어졌다고 하자.  </b>
           <p>
           <div class="textLeft">[표 4.3] 중학교 학력고사 성적의 도수분포표</div>
-          <table> 
-            <tr> <th class="thGrey">계급</th> <th class="thGrey">자료수</th>   </tr>
+          <table style="width:400px;"> 
+            <tr> <th>계급</th> <th>자료수</th>   </tr>
             <tr> <td class="tdCenter">60이상 ~ 70미만</td> <td class="tdCenter"> 2</td> </tr>
             <tr> <td class="tdCenter">70 ~ 80</td>       <td class="tdCenter">10</td> </tr>
             <tr> <td class="tdCenter">80 ~ 90</td>       <td class="tdCenter">15</td> </tr>
             <tr> <td class="tdCenter">90 ~ 100</td>      <td class="tdCenter"> 3</td> </tr>
-            <tr> <th class="thGrey">합계</th> <th class="thGrey">30</th>   </tr>
+            <tr> <th>합계</th> <th>30</th>   </tr>
           </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
           <p>
+      <h4>💎 탐구</h4>
           <b>이 자료들을 산포도로서 표준편차를 어떻게 구할까?
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
   <div class="mainTable">
@@ -2066,13 +505,13 @@ function clicked(d, i) {
       <p>먼저 각 계급의 중간값을 구한다. 그리고 각 계급에 도수만큼 중간값이 있다고 생각하고 이 근사 자료를 이용하여 평균을 구한다.
 
           <div class="textLeft">[표 4.4] 중간값을 이용한 중학교 학력고사 성적의 근사 자료</div>
-          <table> 
-            <tr> <th class="thGrey">몸무게(kg)</th> <th class="thGrey">중간값</th> <th class="thGrey">도수</th> <th class="thGrey">근사자료</th>  </tr>
+          <table style="width:600px;"> 
+            <tr> <th>몸무게(kg)</th> <th>중간값</th> <th>도수</th> <th>근사자료</th>  </tr>
             <tr> <td class="tdCenter">60이상 ~ 70미만</td> <td class="tdCenter">65</td> <td class="tdCenter"> 3</td> <td>65 65</td>                          </tr>
             <tr> <td class="tdCenter">70 ~ 80</td>       <td class="tdCenter">75</td> <td class="tdCenter"> 7</td> <td>75 75 75 75 75</td>                 </tr>
             <tr> <td class="tdCenter">80 ~ 90</td>       <td class="tdCenter">85</td> <td class="tdCenter">11</td> <td>85 85 85 85 85 85 85 85 85 85 </td> </tr>
             <tr> <td class="tdCenter">90 ~ 100</td>      <td class="tdCenter">95</td> <td class="tdCenter"> 5</td> <td>95 95 95</td>                       </tr>
-            <tr> <th class="thGrey">합계</th> <th class="thGrey"></th> <th class="thGrey">30</th> <th class="thGrey"></th>  </tr>
+            <tr> <th>합계</th> <th></th> <th>30</th> <th></th>  </tr>
           </table>
 
       <p>즉 평균은 다음과 같다.
@@ -2091,8 +530,9 @@ function clicked(d, i) {
           표준편차를 &lt;그림 4.11&gt;과 같이 구할 수 있다. &lt;그림 4.6&gt;과 같이 계급구간의 왼쪽값과 도수1을 입력한 후 
           [실행] 버튼을 누르면 된다.
       <p>
-         <img class="imgFig600600" src="../FigureM/Fig0406.png">
+         <iframe class="example110" src="./example/0404.html"> </iframe>
          <div class="textLeft">&lt;그림 4.11&gt; 도수분포표를 이용한 표준편차의 계산</div>
+      <p>
   </div>
   <p>
 
@@ -2100,35 +540,20 @@ function clicked(d, i) {
   <h3 id="0403">4.3 공분산 - 상관계수</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ 생각열기</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ 생각열기</h4>
           <b>한 중학교 남학생 7명의 신장과 체중을 조사하였더니 다음과 같다. </b>
           <p>
             <div class="textLeft">(자료 4.3) 한 중학교 학생 7명의 신장(cm)과 제중(kg)</div>
-            <table> 
-              <tr> <th></th> <th class="thGrey">1</th> <th class="thGrey">2</th> <th class="thGrey">3</th> <th class="thGrey">4</th> <th class="thGrey">5</th> <th class="thGrey">6</th> <th class="thGrey">7</th> </tr>
-              <tr> <th class="thGrey">신장</th> <td class="tdCenter">162</td> <td class="tdCenter">164</td> <td class="tdCenter">170</td> <td class="tdCenter">158</td> <td class="tdCenter">175</td> <td class="tdCenter">168</td> <td class="tdCenter">172</td> </tr>
-              <tr> <th class="thGrey">체중</th> <td class="tdCenter">54</td> <td class="tdCenter">60</td> <td class="tdCenter">64</td> <td class="tdCenter">52</td> <td class="tdCenter">65</td> <td class="tdCenter">60</td> <td class="tdCenter">67</td> </tr>
+            <table style="width:500px;"> 
+              <tr> <th></th> <th>1</th> <th>2</th> <th>3</th> <th>4</th> <th>5</th> <th>6</th> <th>7</th> </tr>
+              <tr> <th>신장</th> <td class="tdCenter">162</td> <td class="tdCenter">164</td> <td class="tdCenter">170</td> <td class="tdCenter">158</td> <td class="tdCenter">175</td> <td class="tdCenter">168</td> <td class="tdCenter">172</td> </tr>
+              <tr> <th>체중</th> <td class="tdCenter">54</td> <td class="tdCenter">60</td> <td class="tdCenter">64</td> <td class="tdCenter">52</td> <td class="tdCenter">65</td> <td class="tdCenter">60</td> <td class="tdCenter">67</td> </tr>
             </table>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 탐구</h4>
-        </td>
-        <td>
-          <p>
+            <p>
+      <h4>💎 탐구</h4>
           <b>
              -  두 변량의 상관관계를 알아볼 수 있는 측도가 있을까?
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -2166,450 +591,27 @@ function clicked(d, i) {
       <p>&lt;그림 4.12>에서 보듯이 (자료 4.3)의 신장과 체중의 공분산은 27이고 상관계수는 0.94로서 
          강한 양의 상관관계가 있음을 알 수 있다.
       <p>
-      <!---------- scatter plot html ---------------------------------------------------------> 
-      <button type="button" id="eraseScatter" style="width:140px;"><b><span data-msgid="input data"></span></b></button>
-      <table class="data">
-        <tr>
-          <td style="text-align: right;"><b><span data-msgid="Main Title">Main Title</span></b>&nbsp;</td>
-          <td colspan="3"><input type="text" size=65 id="mtitleScatter"></td>
-        </tr>
-	<tr>
-          <td style="text-align: right;"><b><span data-msgid="y title">y title</span></b>&nbsp;</td>
-          <td><input type="text" size=20 id="ytitleScatter"></td>
-          <td style="text-align: right;"><b><span data-msgid="x title">x title</span></b>&nbsp;</td>
-          <td><input type="text" size=20 id="xtitleScatter"></td>
- 	</tr>
-	<tr>
-	  <td style="text-align: right;"><b>X <span data-msgid="input data"> data</span></b></td>
-	  <td colspan="3"><input type="text" size=85 id="datax"></td>
-	</tr>
-	<tr>
-	  <td style="text-align: right;"><b>Y <span data-msgid="input data"> data</span></b></td>
-	  <td colspan="3"><input type="text" size=85 id="datay"></td>
-	</tr>
-      </table>
-      <table>
-	<tr>
-	  <td><span data-msgid="NumberData">Number of Data</span></td>         
-	  <td style="text-align: center;"><span class="fontmath">n<sub>x</sub></span></td>
-	  <td><input type="text" class="textarea" size=6 id="nn41" style="text-align: right;" ></td>
-	  <td> </td>
-	  <td style="text-align: center;"><span class="fontmath">n<sub>y</sub></span></td>
-	  <td><input type="text" class="textarea" size=6 id="nn42" style="text-align: right;" ></td>        
-	</tr>
-	<tr>
-	  <td><span data-msgid="Mean">Mean</span></td>
-	  <td style="text-align: center;"><span class="fontmath">&mu;<sub>x</sub></span></td>
-	  <td><input type="text" class="textarea" size=6 id="xbar41" style="text-align: right;" ></td>
-	  <td> </td>
-	  <td style="text-align: center;"><span class="fontmath">&mu;<sub>y</sub></span></td>
-	  <td><input type="text" class="textarea" size=6 id="xbar42" style="text-align: right;" ></td>
-	</tr>
-	<tr>
-          <td><span data-msgid="Variance"></span></td>
-	  <td style="text-align: center;"><span class="fontmath">&sigma;<sub>x</sub><sup>2</sup></span></td>
-	  <td><input type="text" class="textarea" size=6 id="var41" style="text-align: right;" ></td>
-	  <td> </td>
-	  <td style="text-align: center;"><span class="fontmath">&sigma;<sub>y</sub><sup>2</sup></span></td>
-	  <td><input type="text" class="textarea" size=6 id="var42" style="text-align: right;" ></td>
-	  <td> </td>
-          <td><span id="msgCovariance">Covariance</span></td>
-	  <td style="text-align: center;"><span class="fontmath">&sigma;<sub>xy</sub></span></td>
-	  <td><input type="text" class="textarea" size=6 id="var43" style="text-align: right;" ></td>
-	</tr>
-	<tr>
-          <td><span data-msgid="Std Deviation">Std. Deviation</span></td>
-	  <td style="text-align: center;"><span class="fontmath">&sigma;<sub>x</sub></span></td>
-	  <td><input type="text" class="textarea" size=6 id="std41" style="text-align: right;"></td>
-	  <td> </td>
-	  <td style="text-align: center;"><span class="fontmath">&sigma;<sub>y</sub></span></td>
-	  <td><input type="text" class="textarea" size=6 id="std42" style="text-align: right;" ></td>
-	  <td> </td>
-          <td><span id="msgCorr">Correlation</span></td>
-	  <td style="text-align: center;"><span class="fontmath">&rho;</span></td>
-	  <td><input type="text" class="textarea" size=6 id="std43" style="text-align: right;" ></td>
-	</tr>
-      </table>
+      <!----------*** scatter plotH html ***-------------------------------> 
+         <iframe class="example110" src="./example/0405.html"> </iframe>
+         <div class="textLeft">&lt;그림 4.12&gt;  신장 체중 자료 입력과 산점도</div>
       <p>
-         <div class="textLeft">&lt;그림 4.12&gt;  산점도를 위한 신장 체중 자료 입력</div>
-      <p>
-      <button type="button" id="executeScatter" >
-        <span data-msgid="Execute">Execute</span>
-      </button>
-      <p>
-      <svg id="chartScatter" width="750" height="540" style="border-style:solid;"> </svg> 
-      <p>
-      <button type="button" id="saveGraphScatter" >
-	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
-      </button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <label>
-        <input type="checkbox" id="regressScatter"> 
-        <span data-msgid="Regression Line">Regression Line </span>
-      </label> 
-      <p>
-    </div>
+     </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
-  <script>
-      setLanguage('ko');
-      var chartScatter = d3.select("#chartScatter"); 
-      var i;
-      var marginScatter = {top: 80, bottom: 80, left: 80, right: 80};
-      var buffer      = 40;
-      var graphWidthScatter  = svgWidth - marginScatter.left - marginScatter.right;
-      var graphHeightScatter = svgHeight - marginScatter.top - marginScatter.bottom;
-      var checkTitle  = true;
-      var mtitleScatter, ytitleScatter, xtitleScatter, xobs, yobs, tobs;
-      var fontsize = "1em";
-      var statScatter = new Array(30);
-      var statx    = new Array(30);
-      var staty    = new Array(30);
-      var rowmax   = 200;
-      var xdata    = new Array(rowmax);
-      var ydata    = new Array(rowmax);
-      document.getElementById("nn41").disabled    = true;    
-      document.getElementById("nn42").disabled    = true;    
-      document.getElementById("xbar41").disabled  = true;    
-      document.getElementById("xbar42").disabled  = true;    
-      document.getElementById("var41").disabled   = true;       
-      document.getElementById("var42").disabled   = true;       
-      document.getElementById("var43").disabled   = true;       
-      document.getElementById("std41").disabled   = true;       
-      document.getElementById("std42").disabled   = true;       
-      document.getElementById("std43").disabled   = true;       
-      document.getElementById("msgVariance").innerHTML = svgStr[117][langNum]; 
-      document.getElementById("msgCovariance").innerHTML = svgStr[121][langNum]; 
-      document.getElementById("msgCorr").innerHTML = svgStr[60][langNum]; 
-
-      // init example
-      document.getElementById("mtitleScatter").value = "중학생 7명의 신장과 체중 산점도";
-      document.getElementById("ytitleScatter").value = "체중, kg";
-      document.getElementById("xtitleScatter").value = "신장, cm";
-      document.getElementById("datax").value = "162,164,170,158,175,168,172";
-      document.getElementById("datay").value = "54,60,64,52,65,60,67";
-      xdata = [162,164,170,158,175,168,172];
-      ydata = [54,60,64,52,65,60,67];
-      xobs  = xdata.length;
-      yobs  = ydata.length; 
-
-      // input data control ===================================================
-      d3.select("#datax").on("input", function() {
-        statx = simplestat("#datax");  
-        xdata = data;  
-        xobs  = statx.n;
-      });
-
-      d3.select("#datay").on("input", function() {
-        staty = simplestat("#datay");  
-        ydata = data; 
-        yobs  = staty.n;
-      });
-
-      updateData = function() {
-        document.getElementById("datax").value = '';
-        document.getElementById("datay").value = '';    
-      }
-
-      // erase scatter plot
-      d3.select("#eraseScatter").on("click", function(){  
-        chartScatter.selectAll("*").remove();
-        // title
-        document.getElementById("mtitleScatter").value = "";
-        document.getElementById("ytitleScatter").value = "";
-        document.getElementById("xtitleScatter").value = "";
-        // data
-        document.getElementById("datax").value = '';
-        document.getElementById("datay").value = '';    
-        // stat
-        document.getElementById("nn41").value    = "";    
-        document.getElementById("nn42").value    = "";    
-        document.getElementById("xbar41").value  = "";    
-        document.getElementById("xbar42").value  = "";    
-        document.getElementById("var41").value   = "";       
-        document.getElementById("var42").value   = "";       
-        document.getElementById("var43").value   = "";       
-        document.getElementById("std41").value   = "";       
-        document.getElementById("std42").value   = "";       
-        document.getElementById("std43").value   = "";       
-      })
-      // execute scatter plot
-      d3.select("#executeScatter").on("click", function(){  
-          chartScatter.selectAll("*").remove();  // 전화면 제거
-          document.getElementById("regressScatter").checked = false;
-          // 입력행이 같은지 체크
-          if (xobs != yobs ) {
-            chartScatter.append("text").attr("class","mean").attr("x", 250).attr("y", marginScatter.top + 40)
-               .text(alertMsg[54][langNum]).style("stroke","red").style("font-size","1em");
-            return;
-          }
-          tobs = xobs;
-          // 입력 도수에 숫자 문자 빈칸 있나 체크
-          for (i=0; i<tobs; i++) {
-            if (isNaN(xdata[i]) || isNaN(ydata[i]) ) {
-              chartScatter.append("text").attr("class","mean").attr("x", 250).attr("y", marginScatter.top + 40)
-                 .text(alertMsg[48][langNum]).style("stroke","red").style("font-size","1em");
-              return;
-            }
-          }
-          // title
-          mtitleScatter = d3.select("#mtitleScatter").node().value;
-          ytitleScatter = d3.select("#ytitleScatter").node().value;
-          xtitleScatter = d3.select("#xtitleScatter").node().value;
-          // 통계량
-          basicScatterStat(tobs, xdata, ydata, statScatter);
-          document.getElementById("nn41").value   = tobs;    
-          document.getElementById("nn42").value   = tobs;    
-          document.getElementById("xbar41").value = f2(statScatter[1]);
-          document.getElementById("xbar42").value = f2(statScatter[11]);
-          document.getElementById("var41").value  = f2(statScatter[17]); 
-          document.getElementById("var42").value  = f2(statScatter[18]);    
-          document.getElementById("var43").value  = f2(statScatter[19]);    
-          document.getElementById("std41").value  = f2(statScatter[2]); 
-          document.getElementById("std42").value  = f2(statScatter[12]);    
-          document.getElementById("std43").value  = f2(statScatter[9]);    
-          showScatterPlot(tobs, xdata, ydata, statScatter[5], statScatter[6], statScatter[15], statScatter[16], graphWidthScatter, graphHeightScatter, checkTitle);
-      })
-
-      // 회귀선 그리기
-      d3.select("#regressScatter").on("click",function() {
-          if(this.checked) {
-            showRegressionScatter(statScatter[7], statScatter[8], statScatter[9], statScatter[10], statScatter[5], statScatter[6], statScatter[15], statScatter[16], checkTitle);
-          } else {
-	    removeRegressionScatter();
-          }
-      })
-      // svg Graph Save
-      d3.select("#saveGraphScatter").on("click", function() {
-        var svg = d3.select("#chartScatter");
-        var width = svgWidth;
-        var height = svgHeight;
-        var svgString = getSVGString(chartScatter.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
-
-// Two variable Basic Statistics
-function basicScatterStat(nobs, xdata, ydata, stat) {
-        var tempx, tempy;
-        var xsum = 0;
-        var ysum = 0;
-        for (i=0; i<nobs; i++) {
-          xsum += xdata[i];
-          ysum += ydata[i];
-        }
-        var xavg = xsum / nobs;
-        var yavg = ysum / nobs;
-        var sxx = 0;
-        var sxy = 0;
-        var syy = 0;
-        for (i=0; i<nobs; i++) {
-          tempx = xdata[i] - xavg;
-          tempy = ydata[i] - yavg;
-          sxx += tempx*tempx;
-          syy += tempy*tempy;
-          sxy += tempx*tempy; 
-        }
-        var xvar = sxx / nobs;
-        var xstd = Math.sqrt(xvar);
-        var yvar = syy / nobs;
-        var ystd = Math.sqrt(yvar);
-        var beta    = sxy / sxx;
-        var alpha   = yavg - beta*xavg;
-        var cov     = sxy / nobs;
-        var corr    = sxy / Math.sqrt(sxx * syy);
-        var rsquare = corr * corr;
-        var xmin = xdata[0];
-        var xmax = xdata[0];
-        var ymin = ydata[0];
-        var ymax = ydata[0];
-        for (i=1; i<nobs; i++) {
-          if (xmin > xdata[i]) xmin = xdata[i];
-          if (xmax < xdata[i]) xmax = xdata[i];
-          if (ymin > ydata[i]) ymin = ydata[i];
-          if (ymax < ydata[i]) ymax = ydata[i];
-        } 
-        // 그래프 화면 정의 
-        var xgap    = (xmax - xmin) / 5;
-        var ygap    = (ymax - ymin) / 5;
-        var gxmin   = xmin - xgap;
-        var gxmax   = xmax + xgap;
-        var gymin   = ymin - ygap;
-        var gymax   = ymax + ygap;
-        var gxrange = gxmax - gxmin;
-        var gyrange = gymax - gymin;
-        // save statistic
-        stat[0]  = nobs;
-        stat[1]  = xavg;    stat[11] = yavg;
-        stat[2]  = xstd;    stat[12] = ystd;
-        stat[3]  = xmin;    stat[13] = ymin;
-        stat[4]  = xmax;    stat[14] = ymax;
-        stat[5]  = gxmin;   stat[15] = gymin
-        stat[6]  = gxmax;   stat[16] = gymax;
-        stat[7]  = alpha;   stat[17] = xvar;
-        stat[8]  = beta;    stat[18] = yvar;
-        stat[9]  = corr;    stat[19] = cov;
-        stat[10] = rsquare;    
-}
-// 산점도 그리기 함수 -------------------------------------------------------------
-function showScatterPlot(nobs, xdata, ydata, gxmin, gxmax, gymin, gymax, graphWidthScatter, graphHeightScatter, checkTitle) {
-     var gxrange = gxmax - gxmin;
-     var gyrange = gymax - gymin;
-     var xgrid    = new Array(nobs);
-     var ygrid    = new Array(nobs);
-
-     var i, tx, ty;
-         // 주제목
-         chartScatter.append("text")
-            .attr("x", marginScatter.left + graphWidthScatter/2)
-            .attr("y", marginScatter.top / 2 + 10)
-            .style("font-size", "1.8em")
-            .style("font-family", "sans-seirf")
-            .style("stroke", "black")
-            .style("text-anchor", "middle")
-            .text(mtitleScatter)
-         // X축 제목
-         chartScatter.append("text")
-            .style("font-size", fontsize)
-            .style("font-family", "sans-seirf")
-            .style("stroke", "black")
-            .style("text-anchor", "middle")
-            .attr("x", marginScatter.left + graphWidthScatter / 2)
-            .attr("y", marginScatter.top + graphHeightScatter + marginScatter.bottom / 2 + 15)
-            .text(xtitleScatter)
-         // Y축 제목
-         tx = marginScatter.left / 2 - 30;
-         ty = marginScatter.top + 15;
-         chartScatter.append("text")
-            .style("font-size", fontsize)
-            .style("font-family", "sans-seirf")
-            .style("stroke", "black")
-            .style("text-anchor", "end")
-            .attr("x", tx)
-            .attr("y", ty)
-            .text(ytitleScatter)
-            .attr("transform", "rotate(-90 30 100)")
-
-        // x축 그리기
-        var xScaleScatter = d3.scaleLinear().domain([gxmin,gxmax]).range([0,graphWidthScatter])
-        xgrid = xScaleScatter.ticks();
-        // x축 그리드
-        for (i = 1; i < xgrid.length; i++) {
-          tx = marginScatter.left + xScaleScatter(xgrid[i]);
-          chartScatter.append("line")
-           .attr("x1", tx)
-           .attr("x2", tx)
-           .attr("y1", marginScatter.top)
-           .attr("y2", marginScatter.top + graphHeightScatter)
-           .style("stroke", "lightgrey")
-        }
-        ty = marginScatter.top + graphHeightScatter;
-        chartScatter.append("g")
-             .attr("transform","translate("+marginScatter.left+","+ty+")")
-	     .attr("class", "main axis date")
-             .call(d3.axisBottom(xScaleScatter)) 
-        chartScatter.append("g")
-             .attr("transform","translate("+marginScatter.left+","+marginScatter.top+")")
-	     .attr("class", "main axis date")
-             .call(d3.axisTop(xScaleScatter)) 
-        // y축 그리기
-        var yScale = d3.scaleLinear().domain([gymin,gymax]).range([graphHeightScatter, 0])
-        ygrid = yScale.ticks();
-        // Y축 그리드
-        for (i = 1; i < ygrid.length; i++) {
-          ty = marginScatter.top + yScale(ygrid[i]);
-          chartScatter.append("line")
-           .attr("x1", marginScatter.left)
-           .attr("x2", marginScatter.left + graphWidthScatter)
-           .attr("y1", ty)
-           .attr("y2", ty)
-           .style("stroke", "lightgrey")
-        }
-        ty = marginScatter.top;
-        chartScatter.append("g")
-             .attr("transform","translate("+marginScatter.left+","+ty+")")
-	     .attr("class", "main axis date")
-             .call(d3.axisLeft(yScale)) 
-        var tx = marginScatter.left + graphWidthScatter;
-        chartScatter.append("g")
-             .attr("transform","translate("+tx+","+ty+")")
-	     .attr("class", "main axis date")
-             .call(d3.axisRight(yScale)) 
-        // 산점도 점 그리기
-        chartScatter.selectAll("circle")
-             .data(xdata)
-             .enter()
-             .append("circle")
-             .attr("cx", function(d,i){ return marginScatter.left + graphWidthScatter*Math.random() })
-             .attr("cy", marginScatter.top + 20)
-             .transition()                           // 애니매이션 효과 지정
-             .delay(function(d,i) {return i*50;})   // 0.5초마다 그리도록 대기시간 설정
-             .duration(500) 
-             .attr("cx", function(d,i){ return marginScatter.left+graphWidthScatter*(d-gxmin)/gxrange;})
-             .attr("cy", function(d,i){ return marginScatter.top+graphHeightScatter-graphHeightScatter*(ydata[i]-gymin)/gyrange;})         
-             .attr("r", 5)
-             .attr("class","circle")
-             .style("fill",function(d,i){return myColor[i] })
-}
-
-// 회귀선 그리기 함수
-function showRegressionScatter(alpha, beta, corr, rsquare, gxmin, gxmax, gymin, gymax, checkTitle) {
-        var gxrange = gxmax - gxmin;
-        var gyrange = gymax - gymin;
-        var x1  = marginScatter.left + graphWidthScatter*(statScatter[3]-gxmin)/gxrange;
-        var y1  = marginScatter.top  + graphHeightScatter - graphHeightScatter*((alpha+beta*statScatter[3])-gymin)/gyrange;
-        var x2  = marginScatter.left + graphWidthScatter*(statScatter[4]-gxmin)/gxrange;
-        var y2  = marginScatter.top  + graphHeightScatter - graphHeightScatter*((alpha+beta*statScatter[4])-gymin)/gyrange;
-        chartScatter.append("line").attr("class","reglabel2")
-                .attr("x1",x1)
-                .attr("y1",y1)
-                .attr("x2",x2)
-                .attr("y2",y2)
-                .style("stroke","green") 
-     if(checkTitle) {   
-        chartScatter.append("text").attr("class","reglabel2")
-                .attr("x", marginScatter.left + 20)
-                .attr("y", marginScatter.top +  20)
-                .text(svgStrU[31][langNum]+" :  y = ("+f2(alpha)+") + ("+f2(beta)+ ") x")
-      
-        chartScatter.append("text").attr("class","reglabel2").attr("x", marginScatter.left + 80).attr("y", marginScatter.top +  40)
-                .text("ρ = "+f2(corr))
-     }
-}
-// Remove Regression Line of Scatter Plot
-function removeRegressionScatter() {
-	 chartScatter.selectAll("line.reglabel2").remove();
-         chartScatter.selectAll("text.reglabel2").remove();
-}
-  </script>
-
-
-
-
+ 
     <!-------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table style="width:650px">
-        <tr>
-          <td>
-            <h4>⏱ 과제 4.5</h4> <p>
-            <input class="qrBtn" type="image" src="../../QR/eStatM_30ScatterPlotH.svg" onclick="window.open(addrStr[157])">     
-          </td>
-          <td>
-          <p>
+        <h4>⏱ 과제 4.5</h4> <p>
             다음은 10명 학생들의 주당 학습시간과 시험성적에 대한 자료이다.  『eStatM』을 이용하여 
             산점도를 그리고 공분산과 상관관계를 구하라.
             <p>
             <div class="textLeft">(자료 4.4) 학생들의 주당 학습시간과 성적</div>
-            <table> 
-              <tr> <th class="thGrey"></th> <th class="thGrey">1</th> <th class="thGrey">2</th> <th class="thGrey">3</th> <th class="thGrey">4</th> <th class="thGrey">5</th> <th class="thGrey">6</th> <th class="thGrey">7</th> <th class="thGrey">8</th> <th class="thGrey">9</th> <th class="thGrey">10</th> </tr>
-              <tr> <th class="thGrey">학습시간</th> <td class="tdCenter">10</td> <td class="tdCenter">25</td> <td class="tdCenter">15</td> <td class="tdCenter">16</td> <td class="tdCenter">20</td> <td class="tdCenter">5</td> <td class="tdCenter">18</td> <td class="tdCenter">21</td> <td class="tdCenter">12</td> <td class="tdCenter">20</td> </tr>
-              <tr> <th class="thGrey">성적</th> <td class="tdCenter">75</td> <td class="tdCenter">95</td> <td class="tdCenter">82</td> <td class="tdCenter">85</td> <td class="tdCenter">97</td> <td class="tdCenter">65</td> <td class="tdCenter">87</td> <td class="tdCenter">88</td> <td class="tdCenter">76</td> <td class="tdCenter">90</td> </tr>
+            <table style="width:600px;"> 
+              <tr> <th></th> <th>1</th> <th>2</th> <th>3</th> <th>4</th> <th>5</th> <th>6</th> <th>7</th> <th>8</th> <th>9</th> <th>10</th> </tr>
+              <tr> <th>학습시간</th> <td class="tdCenter">10</td> <td class="tdCenter">25</td> <td class="tdCenter">15</td> <td class="tdCenter">16</td> <td class="tdCenter">20</td> <td class="tdCenter">5</td> <td class="tdCenter">18</td> <td class="tdCenter">21</td> <td class="tdCenter">12</td> <td class="tdCenter">20</td> </tr>
+              <tr> <th>성적</th> <td class="tdCenter">75</td> <td class="tdCenter">95</td> <td class="tdCenter">82</td> <td class="tdCenter">85</td> <td class="tdCenter">97</td> <td class="tdCenter">65</td> <td class="tdCenter">87</td> <td class="tdCenter">88</td> <td class="tdCenter">76</td> <td class="tdCenter">90</td> </tr>
             </table>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_30ScatterPlotH.png" onclick="window.open(addrStr[157])">     
     </div>
     <p>
     <!-------------------------------------------------------------------------->
@@ -2625,596 +627,27 @@ function removeRegressionScatter() {
        『eStatM』을 이용하여 여러 가지 상관계수에 대한 시뮬레이션을 하여 보자. 
       <p><b>풀이</b>
       <p>
-         『eStatM』 ‘상관계수’에서 상관계수’를 원하는 값으로 바꾸고 [실행] 버튼을 클릭하면 &lt;그림 4.13&gt;과 같은
+         『eStatM』 ‘상관계수실험’에서 상관계수를 정햐고 [실행] 버튼을 클릭하면 &lt;그림 4.13&gt;과 같은
          해당 상관계수에 대한 산점도가 나타난다. ‘회귀선’을 체크하면 점들을 대표하는 회귀선이 나타난다.
       <p>
-      <!---  Correlation simulation html -------------->
-      <table style="width:500px">
-        <tr>
-          <td style="width:100px">
-            <button type="button" id="redrawCorr" >
-              <b><span data-msgid="Execute">Execute</span></b>
-            </button>
-          </td>
-          <td style="width:150px"> <span data-msgid="Correlation Coefficient">Correlation Coefficient</span> &nbsp;&nbsp;
-              <input type="text" class="textarea" value="0.8" size=4 id="initCorr" style="text-align: center;">
-          </td>
-          <td>-1</td>
-          <td> <input style="width:150px" type="range" min="0" max="200" value="180" step="10" id="rangeCorr" onchange="showValue(this.value)"></td>
-          <td> 1 </td>
-          </td>
-        </tr>
-      </table>
-      <svg id="chartCorr" width="750" height="540" style="border-style:solid;"> </svg> 
-      <p>
-      <button type="button" id="saveGraphU" >
-	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
-      </button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <label>
-        <input type="checkbox" id="regressCorr">
-        <span data-msgid="Regression Line">Regression Line </span>
-      </label> 
-      <p>
+      <!-----*** html for regression simulation *** ------------------------------------------------------------------------>
+         <iframe class="example80" src="./example/0406.html"> </iframe>
          <div class="textLeft">&lt;그림 4.13&gt;  상관계수 시뮬레이션 창</div>
       <p>
     </div>
     <!------------------------------------------------------------------------------------------------->
     <p>
-    <!---script for Corr Simulation------------------------------------------------------------------------------->
-    <script type="text/javascript">
-      function showValue(newValue) {
-        var newV = (newValue - 100)/100;
-        document.getElementById("initCorr").value=newV;  
-      }
-    </script>
-
-    <script>
-      setLanguage('ko');
-      var chartCorr   = d3.select("#chartCorr"); 
-      var rr;
-      var marginCorr  = {top: 80, bottom: 40, left: 80, right: 80};
-      var buffer      = 40;
-      var graphWidthCorr  = svgWidth - marginCorr.left - marginCorr.right;
-      var graphHeightCorr = svgHeight - marginCorr.top - marginCorr.bottom;
-
-      var statCorr  = new Array(30);
-      var tobsCorr  = 200;
-      var xdataCorr = new Array(tobsCorr);
-      var ydataCorr = new Array(tobsCorr);
-      var generator = d3.randomNormal(0,1) 
-      var checkTitle = true;
-
-      d3.select("#redrawCorr").on("click", function(){  
-          chartCorr.selectAll("*").remove();  // 전화면 제거
-          document.getElementById("regressCorr").checked = false;
-          for (i=0; i<tobsCorr; i++) {
-            xdataCorr[i] = 0;
-            ydataCorr[i] = 0;
-          }
-	  rr = parseFloat(d3.select("#initCorr").node().value);  // 시작값 
-          if (rr > 1 ) rr = 0.999;
-          if (rr < -1) rr = -0.999;
-          // slider control
-          document.getElementById("rangeCorr").value  = 100*(1+rr);
-          for (i=0; i<tobsCorr; i++) {
-            xdataCorr[i] = generator();
-            ydataCorr[i] = rr*xdataCorr[i] + Math.sqrt(1-rr*rr)*generator();
-          }
-          basicScatterStat(tobsCorr, xdataCorr, ydataCorr, statCorr);
-          statCorr[5]  = -4; // gxmin
-          statCorr[6]  = 4;  // gxmax
-          statCorr[15] = -4; // gymin
-          statCorr[16] = 4;  // gymax
-          showCorrelation(tobsCorr, xdataCorr, ydataCorr, statCorr[5], statCorr[6], statCorr[15], statCorr[16], graphWidthCorr, graphHeightCorr, checkTitle);
-      })
-
-      // 회귀선 그리기
-      d3.select("#regressCorr").on("click",function() {
-          if(this.checked) {
-            showCorrRegression(statCorr[7], statCorr[8], statCorr[9], statCorr[10], statCorr[5], statCorr[6], statCorr[15], statCorr[16], checkTitle);
-          } else {
-	    removeCorrRegression();
-          }
-      })
-      // svg Graph Save
-      d3.select("#saveGraphU").on("click", function() {
-        var svg = d3.select("#chart");
-        var width = svgWidth;
-        var height = svgHeight;
-        var svgString = getSVGString(chartCorr.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
-
-// 산점도 그리기 함수 -------------------------------------------------------------
-function showCorrelation(nobs, xdata, ydata, gxmin, gxmax, gymin, gymax, graphWidthCorr, graphHeightCorr, checkTitle) {
-     var gxrange = gxmax - gxmin;
-     var gyrange = gymax - gymin;
-     var xgrid   = new Array(nobs);
-     var ygrid   = new Array(nobs);
-
-     var i, tx, ty;
-         // 주제목
-         chartCorr.append("text")
-            .attr("x", marginCorr.left + graphWidthCorr/2)
-            .attr("y", marginCorr.top / 2 + 10)
-            .style("font-size", "1.8em")
-            .style("font-family", "sans-seirf")
-            .style("stroke", "black")
-            .style("text-anchor", "middle")
-            .text("상관계수 시뮬레이션")
-        // x축 그리기
-        var xScaleCorr = d3.scaleLinear().domain([gxmin,gxmax]).range([0,graphWidthCorr])
-        xgrid = xScaleCorr.ticks();
-        // x축 그리드
-        for (i = 1; i < xgrid.length; i++) {
-          tx = marginCorr.left + xScaleCorr(xgrid[i]);
-          chartCorr.append("line")
-           .attr("x1", tx)
-           .attr("x2", tx)
-           .attr("y1", marginCorr.top)
-           .attr("y2", marginCorr.top + graphHeightCorr)
-           .style("stroke", "lightgrey")
-        }
-        ty = marginCorr.top + graphHeightCorr;
-        chartCorr.append("g")
-             .attr("transform","translate("+marginCorr.left+","+ty+")")
-	     .attr("class", "main axis date")
-             .call(d3.axisBottom(xScaleCorr)) 
-        chartCorr.append("g")
-             .attr("transform","translate("+marginCorr.left+","+marginCorr.top+")")
-	     .attr("class", "main axis date")
-             .call(d3.axisTop(xScaleCorr)) 
-        // y축 그리기
-        var yScale = d3.scaleLinear().domain([gymin,gymax]).range([graphHeightCorr, 0])
-        ygrid = yScale.ticks();
-        // Y축 그리드
-        for (i = 1; i < ygrid.length; i++) {
-          ty = marginCorr.top + yScale(ygrid[i]);
-          chartCorr.append("line")
-           .attr("x1", marginCorr.left)
-           .attr("x2", marginCorr.left + graphWidthCorr)
-           .attr("y1", ty)
-           .attr("y2", ty)
-           .style("stroke", "lightgrey")
-        }
-        ty = marginCorr.top;
-        chartCorr.append("g")
-             .attr("transform","translate("+marginCorr.left+","+ty+")")
-	     .attr("class", "main axis date")
-             .call(d3.axisLeft(yScale)) 
-        var tx = marginCorr.left + graphWidthCorr;
-        chartCorr.append("g")
-             .attr("transform","translate("+tx+","+ty+")")
-	     .attr("class", "main axis date")
-             .call(d3.axisRight(yScale)) 
-        // 산점도 점 그리기
-        chartCorr.selectAll("circle")
-             .data(xdata)
-             .enter()
-             .append("circle")
-             .attr("cx", function(d,i){ return marginCorr.left + graphWidthCorr*Math.random() })
-             .attr("cy", marginCorr.top + 20)
-             .transition()                           // 애니매이션 효과 지정
-             .delay(function(d,i) {return i*50;})   // 0.5초마다 그리도록 대기시간 설정
-             .duration(500) 
-             .attr("cx", function(d,i){ return marginCorr.left+graphWidthCorr*(d-gxmin)/gxrange;})
-             .attr("cy", function(d,i){ return marginCorr.top+graphHeightCorr-graphHeightCorr*(ydata[i]-gymin)/gyrange;})         
-             .attr("r", 5)
-             .attr("class","circle")
-             .style("fill",function(d,i){return myColor[i] })
-}
-
-// 회귀선 그리기 함수
-function showCorrRegression(alpha, beta, corr, rsquare, gxmin, gxmax, gymin, gymax, checkTitle) {
-        var gxrange = gxmax - gxmin;
-        var gyrange = gymax - gymin;
-        var x1  = marginCorr.left + graphWidthCorr*(statCorr[3]-gxmin)/gxrange;
-        var y1  = marginCorr.top  + graphHeightCorr - graphHeightCorr*((alpha+beta*statCorr[3])-gymin)/gyrange;
-        var x2  = marginCorr.left + graphWidthCorr*(statCorr[4]-gxmin)/gxrange;
-        var y2  = marginCorr.top  + graphHeightCorr - graphHeightCorr*((alpha+beta*statCorr[4])-gymin)/gyrange;
-        chartCorr.append("line").attr("class","reglabel2")
-                .attr("x1",x1)
-                .attr("y1",y1)
-                .attr("x2",x2)
-                .attr("y2",y2)
-                .style("stroke","green") 
-     if(checkTitle) {   
-        chartCorr.append("text").attr("class","reglabel2")
-                .attr("x", marginCorr.left + 20)
-                .attr("y", marginCorr.top +  20)
-                .text(svgStrU[31][langNum]+" :  y = ("+f2(alpha)+") + ("+f2(beta)+ ") x")
-      
-        chartCorr.append("text").attr("class","reglabel2").attr("x", marginCorr.left + 80).attr("y", marginCorr.top +  40)
-                .text("ρ = "+f2(corr))
-     }
-}
-// Remove Regression Line of Simulation
-function removeCorrRegression() {
-	 chartCorr.selectAll("line.reglabel2").remove();
-         chartCorr.selectAll("text.reglabel2").remove();
-}
-
-
-  </script>
 
   <div class="mainTable">
-      <p>상관관계가 강할 경우에는 변량들의 관계를 잘 설명할 수 있는 직선을 구하는데 이를 <b>회귀선</b>이라 한다. 
-         회귀선에 관한 자세한 설명은 대학 통계에서 다룬다.
+      상관관계가 강할 경우에는 변량들의 관계를 잘 설명할 수 있는 직선을 구하는데 이를 <b>회귀선</b>이라 한다. 
+      회귀선에 관한 자세한 설명은 대학 통계에서 다룬다.
   </div>
   <p>
 
-    <!------------------------------------------------------------------------------------------------->
-    <div class="mainTableGrey">
-      <p><h4>🎲 실습 4.7</h4>
-       『eStatM』을 이용하여 평면에 점을 찍고 이동하면서 상관계수와 회귀선을 관찰 하여 보자. 
-      <p><b>풀이</b>
-      <p>
-         『eStatM』 ‘상관계수 – 회귀선 실험’을 선택하면 상관계수와 회귀선을 실험할 수 있는 화면이 나타난다.
-         이 빈 화면에 마우스로 점을 찍으면 회귀선과 상관계수가 나타난다. 점을 마우스로 누른 후 이동하면 회귀선과 상관계수의 변화를 관찰할 수 있다.
-      <p>
-      <!-----html for regression simulation ----------------------------------------------------------------------------->
-      <button type="button" id="erase" >
-        <span data-msgid="Erase All">Erase All</span>
-      </button> 
-      <p>
-      <svg id="chartReg" width="750" height="540" style="border-style:solid;"> </svg>
-      <p>
-      <button type="button" id="saveGraphReg" >
- 	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
-      </button>
-      &nbsp;&nbsp;   
-      <input type="radio" name="addtype" id="add_on"  value="on" checked />
-        <label><span data-msgid="Add Point">Add Point</span></label>&nbsp;   
-      <input type="radio" name="addtype" id="add_off" value="off" />
-        <label><span data-msgid="Erase Point">Erase Point</span></label>   
-      <p>
-         <div class="textLeft">&lt;그림 4.14&gt;  상관계수 회귀선 실험을 위한 빈 화면</div>
-      <p>
-    </div>
-    <!------------------------------------------------------------------------------------------------->
-    <p>
-    <!-------script for Regression Simulation -------------------------------------------------------------------------------->
-    <script>
-      setLanguage('ko');
-      var chartReg = d3.select("#chartReg"); 
-      var marginReg = {top: 100, bottom: 70, left: 70, right: 100};
-      var buffer      = 40;
-      var graphWidthReg  = svgWidth - marginReg.left - marginReg.right;
-      var graphHeightReg = svgHeight - marginReg.top - marginReg.bottom;
+  <h3 id="0404">4.4 연습문제</h3>
+  <iframe class="exercise" src="./exercise/exercise04.html"></iframe>
 
-      // 회귀 시뮬레이션 변수들
-      var width  = svgWidth;
-      var height = svgHeight;
-      var xlim = [0, 10];
-      var ylim = [0, 10];
-      var xScaleReg = d3.scaleLinear()
-                     .domain(xlim)
-                     .range([marginReg.left, width - marginReg.right]);
-      var yscale = d3.scaleLinear()
-                     .domain(ylim)
-                     .range([height - marginReg.bottom, marginReg.top]);
-      var xaxis  = d3.axisBottom(xScaleReg)
-                     .ticks(5);
-      var yaxis  = d3.axisLeft(yscale)
-                     .ticks(5);
-      var line = chartReg.append("line");
-              
-      var removePoint = function() {
-           if(document.getElementById("add_off").checked) {	    
-             this.remove();
-	     updateRegressionLine();
-           }
-         }
-
-      var drag = d3.drag()
-            .on("start", function(d) {
-           	d3.event.sourceEvent.stopPropagation();
-	        d3.select(this)
-	          .style("fill", "#bf616a")
-	          .attr("r", 10);
-            })
-            .on("drag", function(d) {
-               var x = d3.event.x;
-	       var y = d3.event.y;
-	       d3.select(this)
-	         .attr("cx", x)
-	         .attr("cy", y);
-	    updateRegressionLine();
-            })
-           .on("end", function(d) {
-	       d3.select(this)
-	         .style("fill", "black")
-	        .attr("r", 5);
-            });
-
-
-      // 회귀선 시뮬레이션 -------------------------------------------------------------
-      var sub1  = svgStrU[52][langNum];
-      var sub2  = svgStrU[53][langNum];
-      var ty    = marginReg.top/3;
-      chartReg.append("text").attr("class","titleS").attr("x",marginReg.left).attr("y",ty).text(sub1);
-      chartReg.append("text").attr("class","titleS").attr("x",marginReg.left).attr("y",ty+20).text(sub2);
-
-      showScatterPlot3(graphWidthReg, graphHeightReg); // 화면
-
-      ncount = 0;
-      chartReg.on("click", function() {
-      if(d3.event.defaultPrevented) return;
-    
-      var pos = d3.mouse(this);
-      if(document.getElementById("add_on" ).checked) {
-                if ( pos[0] > marginReg.left && pos[0] < marginReg.left+graphWidthReg 
-                     && pos[1] > marginReg.top && pos[1] < marginReg.top+graphHeightReg) {
-            	  addPoint(pos[0], pos[1]);
-                  ncount++;
-                  updateRegressionLine();
-                }
-          }
-      });
-
-      // 회귀 시뮬레이션 화면 지우기
-      d3.select("#erase").on("click",function() {
-         chartReg.selectAll("circle").remove();
-         chartReg.selectAll("text.reglabel3").remove(); 
-         chartReg.selectAll("line.regline").remove();  
-         updateRegressionLine();
-         ncount = 0;
-      })
-
-      // svg Graph Save
-      d3.select("#saveGraphReg").on("click", function() {
-        var svg = d3.select("#chartReg");
-        var width = svgWidth;
-        var height = svgHeight;
-        var svgString = getSVGString(chartReg.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
-
-function showScatterPlot3(graphWidthReg, graphHeightReg) {
-        var gxmin = 0;
-        var gxmax = 10;
-        var gymin = 0;
-        var gymax = 10;
-        var gxrange = gxmax - gxmin;
-        var gyrange = gymax - gymin;
-        // x축 그리기
-        var xScaleReg = d3.scaleLinear().domain([gxmin,gxmax]).range([0,graphWidthReg])
-        var ty = marginReg.top + graphHeightReg;
-        chartReg.append("g")
-           .attr("transform","translate("+marginReg.left+","+ty+")")
-           .attr("class", "main axis date")
-           .call(d3.axisBottom(xScaleReg)) 
-        chartReg.append("g")
-           .attr("transform","translate("+marginReg.left+","+marginReg.top+")")
-	   .attr("class", "main axis date")
-           .call(d3.axisTop(xScaleReg)) 
-        // y축 그리기
-        var yScale = d3.scaleLinear().domain([gymin,gymax]).range([graphHeightReg, 0])
-        var ty = marginReg.top;
-        chartReg.append("g")
-           .attr("transform","translate("+marginReg.left+","+ty+")")
-           .attr("class", "main axis date")
-           .call(d3.axisLeft(yScale)) 
-        var tx = marginReg.left + graphWidthReg;
-        chartReg.append("g")
-           .attr("transform","translate("+tx+","+ty+")")
-	   .attr("class", "main axis date")
-           .call(d3.axisRight(yScale)) 
-}
-function addPoint(x, y) {
-    chartReg.append("circle")
-	.attr("cx", x)
-	.attr("cy", y)
-	.attr("r", 5)
-	.style("cursor", "pointer")
-        .style("fill","#0055FF")
-	.on("mouseenter", function() {
-	    d3.select(this)
-		.style("fill", "#bf616a");
-	})
-	.on("mouseleave", function() {
-	    d3.select(this)
-		    .style("fill", "#0055FF");
-	})
-	.on("click", removePoint)
-	.on("touch", removePoint)
-	.call(drag);
-}
-function lsfit(points) {
-    var n = points.length;
-    var sx = 0;
-    var sy = 0;
-    var sxx = 0;
-    var syy = 0;
-    var sxy = 0;
-    for(var i=0; i<n; ++i) {
-	var x = xScaleReg.invert(points[i].cx.baseVal.value);
-	var y = yscale.invert(points[i].cy.baseVal.value);
-	sx = sx + x;
-	sy = sy + y;
-	sxx = sxx + x*x;
-	sxy = sxy + x*y;
-	syy = syy + y*y;
-    }
-    b1 = (sxy - sx*sy/n)/(sxx - sx*sx/n);
-    b0 = sy/n - b1 * sx/n;
-    var sst = syy - sy*sy/n;
-    var sse = 0;
-    for(var i=0; i<n; ++i) {
-	var x = xScaleReg.invert(points[i].cx.baseVal.value);
-	var y = yscale.invert(points[i].cy.baseVal.value);
-	var e = y - (b0 + b1*x);
-	sse = sse + e*e;
-    }
-
-    r = (sxy - sx*sy/n) / Math.sqrt((sxx-sx*sx/n)*(syy-sy*sy/n))
-    return {a : b0, b : b1, xbar : sx/n, ybar : sy/n, rsq: 1 - sse/sst, r: r};
-}
-function updateRegressionLine() {
-    var x1, x2, y1, y2;
-    var coef = lsfit(chartReg.selectAll("circle").nodes());
-    if(isNaN(coef.a) || isNaN(coef.b) || isNaN(coef.xbar) || isNaN(coef.ybar)) {
-	 chartReg.selectAll("line.regline").remove();
-    } else {
-        chartReg.selectAll("line.regline").remove();
-         x1 = marginReg.left;
-        y1 = yscale(coef.a + xScaleReg.invert(marginReg.left)*coef.b);
-        x2 = marginReg.left + graphWidthReg;
-        y2 = yscale(coef.a + xScaleReg.invert(marginReg.left+graphWidthReg)*coef.b);
-        if (y1 < marginReg.top) {
-          y1 = marginReg.top;
-          x1 = xScaleReg( (yscale.invert(marginReg.top)-coef.a) / coef.b);
-        }
-        if (y1 > marginReg.top + graphHeightReg) {
-          y1 = marginReg.top + graphHeightReg;
-          x1 = xScaleReg( (yscale.invert(marginReg.top+graphHeightReg)-coef.a) / coef.b);
-        }      
-        if (y2 < marginReg.top) {
-          y2 = marginReg.top;
-          x2 = xScaleReg( (yscale.invert(marginReg.top)-coef.a) / coef.b);
-        }
-        if (y2 > marginReg.top + graphHeightReg) {
-          y2 = marginReg.top + graphHeightReg;
-          x2 = xScaleReg( (yscale.invert(marginReg.top+graphHeightReg)-coef.a) / coef.b);
-        } 
-        chartReg.append("line") 
-           .attr("class","regline")    
-	   .attr("x1", x1)
-	   .attr("y1", y1)
-	   .attr("x2", x2)
-	   .attr("y2", y2)
-	   .style("stroke", "royalblue");
-    }
-    // 회귀선, 상관계수, 결정계수
-    var y1 = marginReg.top + graphHeightReg +  marginReg.bottom/2 + 10;
-    chartReg.selectAll("text.reglabel3").remove();     
-    chartReg.append("text").attr("class","reglabel3")
-        .attr("x", marginReg.left + 20)
-        .attr("y", y1)
-        .text("y = ("+f2(coef.a)+") + ("+f2(coef.b)+ ") x")         
-    chartReg.append("text").attr("class","reglabel3")
-        .attr("x", marginReg.left + graphHeightReg/2)
-        .attr("y", y1)
-        .text("r = "+f2(coef.r))
-    chartReg.append("text").attr("class","reglabel3")
-        .attr("x", marginReg.left + graphHeightReg/2 + 70)
-        .attr("y", y1)
-        .text("r\u00B2 = "+f2(coef.rsq))
- }function clearAll() {
-    chartReg.selectAll("circle").remove();
-    chartReg.selectAll("text.reglabel3").remove(); 
-    chartReg.selectAll("line.regline").remove();    
-    updateRegressionLine();
- }
-  </script>
-
-  <p>
-  <div class="mainTablePink">
-    <h4> 연습문제 </h4>
-    <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
-
-  <h6 class="textL30M30">4.1  다음 자료 중 평균 28, 중앙값 30인 변량은? </h6>
-  <form name="Q1">
-    <label><input type="radio" name="item" value="1"> 12, 20, 30, 40</label><br>
-    <label><input type="radio" name="item" value="2"> 12, 30, 30, 40</label><br>
-    <label><input type="radio" name="item" value="3"> 12, 40, 30, 40</label><br>
-    <label><input type="radio" name="item" value="4"> 12, 40, 20, 40 </label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(24,1,Q1)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ1">
-  </form>
-
-  <h6 class="textL30M30">4.2 6명의 통계학 점수가 70, 60, 80, 90, 90, 70이다. 이 점수의 중앙값은 얼마인가?</h6>
-  <form name="Q2">
-    <label><input type="radio" name="item" value="1"> 70</label><br>
-    <label><input type="radio" name="item" value="2"> 75</label><br>
-    <label><input type="radio" name="item" value="3"> 80</label><br>
-    <label><input type="radio" name="item" value="4"> 90</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(24,2,Q2)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ2">
-  </form>
-
-  <h6 class="textL30M30">4.3 산술평균의 성질 중 틀린 것은?  </h6>
-  <form name="Q3">
-    <label><input type="radio" name="item" value="1"> 산술평균은 변량 중의 극단값의 영향을 많이 받는다.</label><br>
-    <label><input type="radio" name="item" value="2"> 산술평균에 대한 편차의 합은 0이 아니다.</label><br>
-    <label><input type="radio" name="item" value="3"> 산술평균에 대한 편차의 제곱의 합은 다른 어떤 수에 대한 편차의 제곱의 합보다 크지 않다.</label><br>
-    <label><input type="radio" name="item" value="4"> 편차의 제곱의 합을 최소로 하는 것은 산술평균이다.</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(24,3,Q3)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ3">
-  </form>
-
-  <h6 class="textL30M30">4.4 다음 자료 8, 10, 11, 12, 14의 분산은? </h6>
-  <form name="Q4">
-    <label><input type="radio" name="item" value="1"> 11</label><br>
-    <label><input type="radio" name="item" value="2"> 8</label><br>
-    <label><input type="radio" name="item" value="3"> 4</label><br>
-    <label><input type="radio" name="item" value="4"> 2</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(24,4,Q4)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ4">
-  </form>
-
-  <h6 class="textL30M30">4.5 X 자료가 1, 2, 3, 4, 5, 6일때 Y자료는 2, 4, 6, 8, 10, 12 이다. 
-     X와 Y의 상관계수는 얼마인가?</h6>
-  <form name="Q5">
-    <label><input type="radio" name="item" value="1"> 1</label><br>
-    <label><input type="radio" name="item" value="2"> 0.5</label><br>
-    <label><input type="radio" name="item" value="3"> 0</label><br>
-    <label><input type="radio" name="item" value="4"> -1</label><br>
-    <p>
-    <input type="button" value="제출" onClick="radio(24,5,Q5)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ5">
-  </form>
-
-  </div>
-
-  <script>
-    for (var i=0; i < ans[24][0]; i++) document.getElementById(ansID[i+1]).disabled = true;
-  </script>
-  <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(143)">&#10094;&#10094; &nbsp;&nbsp;<b>3장</b></button>
-<!--
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(144)"><b>3장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
--->
 </div>
-    
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
-    <script>
-        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
-        
-        /* ajust the height when click the toc
-           the code is from https://github.com/twbs/bootstrap/issues/1768
-        */
-        var shiftWindow = function() { scrollBy(0, -50) };
-        window.addEventListener("hashchange", shiftWindow);
-        function load() { if (window.location.hash) shiftWindow(); }
-        
-        /*add Bootstrap styles to tables*/
-        var tables = document.getElementsByTagName("table");
-        for(var i = 0; i < tables.length; ++i){
-            tables[i].className += "table table-bordered table-hover";
-        }
-    </script>
-
 </body>
 </html>
 

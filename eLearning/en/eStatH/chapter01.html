@@ -10,12 +10,11 @@
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+  <link href="/estat/eStat/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="../../css/dashboard.css" rel="stylesheet">
+  <link href="/estat/eStat/css/dashboard.css" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -24,12 +23,22 @@
       <![endif]-->
        <style type="text/css">code{white-space: pre;}</style>
        <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
-       <script src="../../js/prism.js"></script>
-       <link rel="stylesheet" href="../../css/prism.css">
-       <script src="../../js/jquery.min.js"></script>    
+       <link rel="stylesheet" href="/estat/eStat/css/pandoc.css">
+       <link rel="stylesheet" href="/estat/eStat/css/prism.css">
+       <script src="/estat/eStat/lib/jquery/jquery.min.js"></script>   
+       <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="/estat/eStat/lib/convertSVG.js"></script>
+       <script src="/estat/eStat/js/prism.js"></script>
+       <script src="/estat/eStat/js/eBook.js"></script>
+       <script src="/estat/eStat/js/eStatU.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>
+       <script> setLanguage('en'); </script>
        <script type="text/javascript" id="MathJax-script" async
 	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
        </script>
+
        <script>
 	 $(document).ready(function() {
   	     toc = $("#sidebar > ul > li > ul");
@@ -48,74 +57,50 @@
   		 $(sections[i]).replaceWith(li);
   	     }
 	 });
-	 </script>
-       <link rel="stylesheet" href="../../css/pandoc.css">
-       <script src="../../js/eBook.js"></script>
-       <script src="../../../eStat/js/language.js" ></script>   
-       <script src="../../../eStat/lib/d3/d3.v4.min.js"></script>   
-       <script src="../../../eStat/lib/d3/d3.layout.cloud.js"></script>
-       <script src="../../../eStat/lib/DistributionsUtil.js" ></script>
-       <script src="../../../eStat/js/eStatU.js"></script>
-       <script src="../../../eStat/lib/FileSaver.min.js" ></script>
-       <script src="../../../eStat/lib/convertSVG.js"></script>
+       </script>
+
 </head>
+
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <ul class="nav navbar-nav">
-    <li><a class="navbar-brand" href="../../../eStat/index.html" target="_blank">eStat</a></li>
-    <li><a class="navbar-brand" href="../../../eStatH/index.html" target="_blank">eStatH</a></li>
-  </ul>
-</nav>
-
+<!-- begin of left sidebar -->
 <div class="container-fluid">
-  <div class="row">
-    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
+<div class="row">
+<div id="sidebar" class="col-sm-2 col-md1 sidebar">
+  <ul>
+    <li> <a href="index.html"><b>Table of Chapters</b> </a> </li>
+    <li> <a href="chapter01.html"> 1. Number of Cases</a> </li>
       <ul>
-	<li><a href=""></a>
-	  <ul>
-            <li><a href="../eStatH/index.html">Table of Contents</a></li>
-            <li><a href="../eStatH/chapter01.html">1. Number of Cases</a></li>
-            <li><a href="../eStatH/chapter02.html">2. Probability</a></li>
-            <li><a href="../eStatH/chapter03.html">3. Random Variable and Probability Distribution</a></li>
-            <li><a href="../eStatH/chapter04.html">4. Estimation</a></li>
-	  </ul>
-	</li>
+        <li><a href="#0101">1.1  Permutation and Combination</a> </li>
+        <li><a href="#0102">1.2  Binomial Theorem</a> </li>
+        <li><a href="#0103">1.3  Exercise</a> </li>
       </ul>
-    </div>
-  </div>
+    <li> <a href="chapter02.html"> 2. Probability</a> </li>
+    <li> <a href="chapter03.html"> 3. Random Variable and Probability Distribution</a> </li>
+    <li> <a href="chapter04.html"> 4. Estimation</a> </li>
+  </ul>
 </div>
+</div>
+</div>
+<!-- end of left sidebar -->
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
   <!--***********************************************************************-->
   <h1>Chapter 1. Number of Cases</h1> 
-  <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:200px" onclick="moveSection(150)"> &#10094;&#10094; &nbsp;&nbsp;<b>Table of Contents</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:200px" onclick="moveSection(152)"><b>Chapter 2</b>&nbsp;&nbsp; &#10095;&#10095;</button>
-  <p>
-  <table>
-    <tr>
-      <td style="width:280px">
-        <h1>&nbsp; 🎲 🎴 ♥ ♦ ♣ ♠ </h1>
-        <h4>
-        <a href="#0101"><u>1.1  Permutation and Combination</u></a> <p>
-        <a href="#0102"><u>1.2  Binomial Theorem</u></a> <p>
-        <a href="../eStatH/chapter01.pdf" target="_blank"><u>[Chapter 1 pdf]</u></a>
-        </h4>
-      </td>
-      <td style="width:300px">
-        <h1></h1>
+  <h1>&nbsp; 🎲 🎴 ♥ ♦ ♣ ♠ </h1>
+    <b>
+      <ul>
+        <li><a href="#0101">1.1  Permutation and Combination</a> </li>
+        <li><a href="#0102">1.2  Binomial Theorem</a> </li>
+        <li><a href="#0103">1.3  Exercise</a> </li>
+      </ul>
+      <a href="./pdf/chapter01.pdf" target="_blank">[Chapter1.pdf]</a>
+    </b>
         <p>In our daily life, there are many situations in which we need to make 
            appropriate decisions. In order to make a rational decision, it is necessary
            to identify possible cases and analyze various alternatives. Observed data
            often have certain types and rules. In this case, permutation and combination 
            are often used to identify all possible cases.
-      </td>
-    </tr>
-  </table>
 <!--
   <h6>
       <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
@@ -126,22 +111,9 @@
   <h3 id="0101">1.1 Permutation and Combination</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <P>
+      <h4>⭐ Think</h4>
           <b>A bicycle club which has 10 members wants to elect officers to operate the club for the next year.
-          </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
+      <h4>💎 Explore</h4>
           <b>
           <div class="textL20M20">
               1) How many cases are there to elect one chairperson and one vice chairperson from 10 members?<br>
@@ -150,9 +122,6 @@
              2) How many cases are there to elect just two officers? 
           </div>
           </b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
 
@@ -167,7 +136,7 @@
          are selected by considering the order and it is denoted by \({}_{10} P_{2} \). 
          The upper part of &lt;Figure 1.1&gt; shows all cases of 90.
       <p>
-      <img class="imgFig600600" src="../FigureH/Fig0101.png">
+      <img class="figure" src="./Figure/Fig0101.png">
       <div class="figText">&lt;Figure 1.1&gt; Permutation and combination which select two out of ten</div>
       <p>
          The selection of two officers can be seen as a case where the positions
@@ -252,336 +221,26 @@
          <p>When \(n\) is less than 10 and \(r\) is equal to 2, if you click 
          [Execute] button, a figure of the number of all cases is displayed
          such as in &lt;Figure 1.1&gt;.
+      <p>        
+      <!-----*** html for permutation and combination ***-------------------->
+      <b>[Permutation and Combination]</b>
       <p>
-      <!----- html for permutation and combination -------------------->
-      <button type="button" id="erasePermutationData" style="width:120px;"><b>New Data</b></button>
+         <iframe class="example" src="./example/010101.html"> </iframe>
+         <div class="figText">&lt;Figure 1.2&gt; Calculation of permutation and combination</div>
       <p>
-      <table style="width: 300px;">
-        <tr>
-          <td style="width: 30px;"><span class="fontmath"> n = </span></td>
-          <td style="width: 50px;"><input type="text" size=3 id="nn" style="text-align: center;">&nbsp;</td>
-          <td style="width: 10px;"><sup><small> 1 </small></sup></td>
-          <td style="width: 100px;"><input type="range" min="1" max="30" value="10" id="rangeN" onchange="showValueN(this.value)"/></td>
-          <td style="width: 10px;"><sup><small>30</small></sup></td>
-        </tr>
-        <tr>
-          <td style="width: 30px;"><span class="fontmath"> r = </span></td>
-          <td style="width: 50px;"><input type="text" size=3 id="xx" style="text-align: center;"></td>
-          <td style="width: 10px;"><sup><small> 0 </small></sup></td>
-          <td style="width: 100px;"><input type="range"  min="0" max="30" value="2" id="rangeX" onchange="showValueX(this.value)"/></td>
-          <td style="width: 10px;"><sup><small>30</small></sup></td>
-        </tr>
-      </table>
-      <b><button type="button" style="width:120px;" id="execute1"><span data-msgid="Execute"></span></button> </b>
-      <p>
-      <table>
-        <tr>
-          <td><b>[<span data-msgid="Permutation">Permutation</span>]</b></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><span style="font-size:1.4em">\(n !\)</span></td>
-          <td>=</td>
-          <td><input type="text" size=20 id="nfact" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-          <td></td>
-          <td><span style="font-size:1.4em">\(r !\)</span></td>
-          <td>=</td>
-          <td><input type="text" size=20 id="rfact" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-          <td><span style="font-size:1.4em">\({}_n {P}_{r}\)</span></td>
-          <td>=</td>
-          <td><input type="text" size=20 id="permu" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-          <td>(<span data-msgid="NonReplacement">Non-replacement</span>)</td>
-          <td>&nbsp;<span style="color:red"> \(r \le n\)</span></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><span style="font-size:1.4em">\({}_n {Π}_{r}\)</span></td>
-          <td>=</td>
-          <td><input type="text" size=20 id="permuRep" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-          <td>(<span data-msgid="Replacement">Replacement</span>)</td>
-        </tr>
-      </table>
-      <table>
-        <tr>
-          <td colspan=5><b>[<span data-msgid="Combination">Combination</span>]</span></b></td>
-        </tr>
-        <tr>
-          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-          <td><span style="font-size:1.4em">\({}_n {C}_{r}\)</span></td>
-          <td>=</td>
-          <td><input type="text" size=20 id="combi" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-          <td>(<span data-msgid="NonReplacement">Non-replacement</span>)</td>
-          <td>&nbsp;<span style="color:red">\( r \le n\)</span></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td><span style="font-size:1.4em">\({}_n {H}_{r}\)</span></td>
-          <td>=</td>
-          <td><input type="text" size=20 id="combiRep" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-          <td>(<span data-msgid="Replacement">Replacement</span>)</td>
-          <td>&nbsp;<span style="color:blue">\({}_{n+r-1} C_{r} \)</span></td>
-        </tr>
-      </table>
-
-      <div style="color:red">&nbsp;&nbsp;&nbsp;*** \(\;\; {}_n P_{2},\; {}_n C_{2} \;\;\) <span data-msgid="NumberOfCase"></span>\( \; n &le; 10\) </div>
-      <svg id="chart" width="600" height="520"> </svg> 
-      <p>
-      <button type="button" id="saveGraphCOMBI" >
-	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
-      </button>
-      <p>
-      <div class="figText">&lt;Figure 1.2&gt; Calculation of permutation and combination</div>
   </div>
   <p>
-  <!------script for Permutation and Combination ----------------------------------------------------------------->
-  <script>
-      setLanguage('en');
-      var chart = d3.select("#chart");
-      var svgWidth, svgHeight, margin, graphWidth, graphHeight;
-      var margin      = {top: 10, bottom: 10, left: 10, right: 10};
-      var svgWidth    = 600;
-      var svgHeight   = 520;
-      var graphWidth  = svgWidth - margin.left - margin.right;
-      var graphHeight = svgHeight - margin.top - margin.bottom;
-      var i, nn, xx, nn2, pp, qq, rr, ss, permu, permuRep, permuMult, combi, combiRep;
-      var nfact, rfact;
-      var colr = ["#FF0000","#FF8000","#FFFF00","#80FF00","#00FFFF","#BF00FF","#FF00FF","#0080FF","#00BFFF","#8000FF"];
-
-      document.getElementById("nfact").disabled     = true; 
-      document.getElementById("rfact").disabled     = true; 
-      document.getElementById("permu").disabled     = true; 
-      document.getElementById("permuRep").disabled  = true; 
-      document.getElementById("combi").disabled     = true; 
-      document.getElementById("combiRep").disabled  = true; 
-      document.getElementById("nn").value           = "10"; 
-      document.getElementById("xx").value           = "2"; 
-
-      // Erase data
-      d3.select("#erasePermutationData").on("click",function() {
-        chart.selectAll("*").remove();
-        document.getElementById("nn").value        = ""; 
-        document.getElementById("xx").value        = ""; 
-        document.getElementById("nfact").value     = ""; 
-        document.getElementById("rfact").value     = ""; 
-        document.getElementById("permu").value     = ""; 
-        document.getElementById("permuRep").value  = "";  
-        document.getElementById("permuMult").value = ""; 
-        document.getElementById("combi").value     = ""; 
-        document.getElementById("combiRep").value  = ""; 
-      })
-      // Calculate Permutation & Combinatio ======================================
-      d3.select("#execute1").on("click",function() {
-        chart.selectAll("*").remove();
-        // input value
-        nn = parseFloat(d3.select("#nn").node().value);
-        xx = parseFloat(d3.select("#xx").node().value);
-        if ( isNaN(nn) || isNaN(xx) ) {  // wrong input
-          chart.append("text").attr("class","mean")
-             .attr("x", 250).attr("y", 100)
-             .text("Wrong input!  Enter number, not character!   Try again.")
-             .style("stroke","red")
-             .style("font-size","1.2em")
-          return;
-        }
-        if ( nn < 1 || nn > 30 ) {  // wrong input
-          chart.append("text").attr("class","mean")
-             .attr("x", 250).attr("y", 100)
-             .text("Enter n between 1 and 30 !!   Try again.")
-             .style("stroke","red")
-             .style("font-size","1.2em")
-          return;
-        }
-        calculate(nn, xx);
-        writeValue1();
-        drawPermutation(nn, xx, permu, combi);   
-      })
-
-      // svg Graph Save
-      d3.select("#saveGraphCOMBI").on("click", function() {
-        var svg = d3.select("#chart");
-        var width = svgWidth;
-        var height = svgHeight;
-        var svgString = getSVGString(svg.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
-
-      // factorial
-      function factorial(n) {
-        var fact = 1;
-        for (var i = 1; i <= n; i++) {
-          fact = fact * i;
-        }
-        return fact; 
-      }
-      // Calculate permutation and combination
-      function calculate(nn, xx) {
-        nfact = factorial(nn);
-        rfact = factorial(xx);
-        if ( xx > nn ) {
-          permu = "";
-          combi = "";
-        } 
-        else {
-          permu    = 1; 
-          for (i = 0; i < xx; i++) {
-            permu = permu * (nn - i);   
-          }
-          combi = permu / rfact;
-        }
-        permuRep = 1;
-        for (i = 0; i < xx; i++) {
-          permuRep = permuRep * nn;
-        }
-        combiRep = factorial(xx + nn-1) / (rfact * factorial(nn-1));
-      }
-      function writeValue1() {
-        document.getElementById("nfact").value    = f0(nfact);
-        document.getElementById("rfact").value    = f0(rfact);
-        if (xx > nn) document.getElementById("permu").value = "";
-        else document.getElementById("permu").value = f0(permu);
-        document.getElementById("permuRep").value = f0(permuRep);
-        document.getElementById("combi").value    = f0(combi);
-        document.getElementById("combiRep").value = f0(combiRep);
-        drawPermutation(nn, xx, permu, combi);   
-      }
-      // n slidebar
-      function showValueN(newValue) {
-        document.getElementById("nn").value = newValue;
-        nn = parseFloat(d3.select("#nn").node().value);
-        xx = parseFloat(d3.select("#xx").node().value);
-        calculate(nn, xx);
-        writeValue1();
-      }
-      // x slide bar
-      function showValueX(newValue) {
-        document.getElementById("xx").value = newValue;
-        nn = parseFloat(d3.select("#nn").node().value);
-        xx = parseFloat(d3.select("#xx").node().value);
-        calculate(nn, xx);
-        writeValue1();
-      }
-      // draw Permutaion and Combination
-      function drawPermutation(nn, xx, permu, combi) {
-        chart.selectAll("*").remove();
-        var i, j, tx, ty, cx, cy, temp, str1, str2, str3;
-        var radius = 8;
-        var xgap   = 50;
-        var ygap   = 20;
-        var fontsize  = "0.8em";
-        var fontsize2 = "1.3em";
-        // Permutation
-        cx = margin.left;
-        cy = margin.top + 20;
-        str1 = nn.toString();
-        str2 = xx.toString();
-        if ( xx <= nn) {
-          if (xx <= 1) temp = "";
-          else if (xx == 2) temp = " = " + str1 + " \u00D7 " + (nn-1).toString();
-          else if (xx == 3) temp = " = " + str1 + " \u00D7 " + (nn-1).toString() + " \u00D7 " + (nn-2).toString();
-          else temp = " = " + str1 + " \u00D7 " + (nn-1).toString() + " \u00D7 " + " \u22EF " + " \u00D7 " + (nn-xx+1).toString();
-          str3 = temp + " = " + permu.toString();
-          chart.append("text").attr("x", cx).attr("y", cy).text(str1).style("font-size",fontsize).style("stroke","black").style("text-anchor","begin")
-          chart.append("text").attr("x", cx+13).attr("y", cy).text("P").style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
-          chart.append("text").attr("x", cx+30).attr("y", cy).text(str2).style("font-size",fontsize).style("stroke","black").style("text-anchor","begin")
-          chart.append("text").attr("x", cx+45).attr("y", cy).text(str3).style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
-        } 
-        if ( nn > 10 || xx > 1 ) {
-          cy += ygap+5;
-          str3 = " = " + str1 + " ^ " + str2 + " = " + permuRep.toString();
-          chart.append("text").attr("x", cx).attr("y", cy).text(str1).style("font-size",fontsize).style("stroke","black").style("text-anchor","begin")
-          chart.append("text").attr("x", cx+13).attr("y", cy).text("Π").style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
-          chart.append("text").attr("x", cx+30).attr("y", cy).text(str2).style("font-size",fontsize).style("stroke","black").style("text-anchor","begin")
-          chart.append("text").attr("x", cx+45).attr("y", cy).text(str3).style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
-        }
-
-        if (nn <= 10 && xx == 2) {
-          for (i = 0; i < nn; i++) { 
-            cy = cy + ygap;
-            ty = cy + 4;
-            str1 = (i+1).toString();
-            for (j = 0; j < nn; j++) {
-              if (i==j) continue;
-              cx = (j+1) * xgap;
-              tx = cx + 15;
-              str2 = (j+1).toString();
-              chart.append("circle").attr("cx",cx).attr("cy",cy).attr("r",radius).style("fill",colr[i]);
-              chart.append("text").attr("x", cx).attr("y", ty).text(str1).style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
-              chart.append("circle").attr("cx",tx).attr("cy",cy).attr("r",radius).style("fill",colr[j]);
-              chart.append("text").attr("x", tx).attr("y", ty).text(str2).style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
-            } // endof j
-          } // endof i
-        } // endof if
-        // Combination
-        cx = margin.left;
-        cy = cy + 2*ygap;
-        str1 = nn.toString();
-        str2 = xx.toString();
-        if ( xx <= nn) {
-          if (xx == 0) str3 = " = 1 " + " / " + str2 + "! = " + combi.toString();
-          else if (xx == 1) str3 = " = " + str1 + " / " + str2 + "! = " + combi.toString();
-          else str3 = temp + " / " + str2 + "! = " + combi.toString();
-          chart.append("text").attr("x", cx).attr("y", cy).text(str1).style("font-size",fontsize).style("stroke","black").style("text-anchor","begin")
-          chart.append("text").attr("x", cx+13).attr("y", cy).text("C").style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
-          chart.append("text").attr("x", cx+30).attr("y", cy).text(str2).style("font-size",fontsize).style("stroke","black").style("text-anchor","begin")
-          chart.append("text").attr("x", cx+45).attr("y", cy).text(str3).style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
-        }
-        if ( nn > 10 || xx > 1 ) {
-          cy += ygap+5;
-          str3 = " = ("+str2+"+" + str1 + "-1)!" + " / ("+ str2 + "! ("+ str1+"-1)! ) = " + combiRep.toString();
-          chart.append("text").attr("x", cx).attr("y", cy).text(str1).style("font-size",fontsize).style("stroke","black").style("text-anchor","begin")
-          chart.append("text").attr("x", cx+13).attr("y", cy).text("H").style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
-          chart.append("text").attr("x", cx+30).attr("y", cy).text(str2).style("font-size",fontsize).style("stroke","black").style("text-anchor","begin")
-          chart.append("text").attr("x", cx+45).attr("y", cy).text(str3).style("font-size",fontsize2).style("stroke","black").style("text-anchor","begin")
-        }
-        if (nn <= 10 && xx == 2) {
-          for (i = 0; i < nn-1; i++) { 
-            cy = cy + ygap;
-            ty = cy + 4;
-            str1 = (i+1).toString();
-            for (j = i+1; j < nn; j++) {
-              cx = (j+1) * xgap;
-              tx = cx + 15;
-              str2 = (j+1).toString();
-              chart.append("circle").attr("cx",cx).attr("cy",cy).attr("r",radius).style("fill",colr[i]);
-              chart.append("text").attr("x", cx).attr("y", ty).text(str1).style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
-              chart.append("circle").attr("cx",tx).attr("cy",cy).attr("r",radius).style("fill",colr[j]);
-              chart.append("text").attr("x", tx).attr("y", ty).text(str2).style("font-size",fontsize).style("stroke","black").style("text-anchor","middle")
-            } // endof j
-          } // endof i
-        } // endof if
-      }
-  </script>
 
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:130px">
-            <h5>⏱ Practice 1.1</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_40Permutation.svg" onclick="window.open(addrStr[147])">
-          </td>
-          <td>
+        <h5>⏱ Practice 1.1</h5>
             There are 30 students in a class.
             <p>
             <div class="textL20M20">1) How many cases are there to elect 3 delegates?
             </div>
             <div class="textL20M20">2) How many cases are there to elect one president, one vice president, and one general secretary? 
             </div>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_40Permutation.svg" onclick="window.open(addrStr[147])">
     </div>
     <p>
  
@@ -595,27 +254,11 @@
   <!------------------------------------------------------------------------------------------------->
   <h4>A. Circular Permutation</h4>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ Think</h4>
           <b>Ten cyclists try to eat at a round table. </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 Explore</h4>
           <b>The number of cases to list 10 cyclists in a row is 10!. 
              But what is the number of cases if they are sitting on a round table?</b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
   <div class="mainTable">
@@ -682,21 +325,13 @@
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:130px">
-            <h5>⏱ Practice 1.2</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_40Permutation.svg" onclick="window.open(addrStr[147])">
-          </td>
-          <td>
+        <h5>⏱ Practice 1.2</h5>
             I would like to put five dishes, sour pork, beef, dumplings, noodle and fried rice on the revolving table at a Chinese restaurant. 
             <div class="textL20M20">1) How many cases are there to place dishes?
             </div>
             <div class="textL20M20">2) How many cases are there to place noodle and fried rice adjacent to each other?
             </div>
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_40Permutation.svg" onclick="window.open(addrStr[147])">
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -704,26 +339,10 @@
   <!------------------------------------------------------------------------------------------------->
   <h4>B. Permutation with replacement</h4>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ Think</h4>
           <b>My suitcase is supposed to set a password using three rolls in which each roll has 10 numbers from 0 to 9.</b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 Explore</h4>
           <b>How many cases of setting a password with three rolls are there?</b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
   <div class="mainTable">
@@ -777,132 +396,19 @@
            [Execute] button to calculate the permutation with replacement.
       </div>
       <p>
-
-      <!---    html for permutation with replacement ------------------------------>
-      <table style="width:650px">
-        <tr>
-          <td colspan=5><b>[<span data-msgid="PermutationReplace">Permutation with replacement</span>]</b></td>
-        </tr>
-        <tr>
-          <td style="width:100px;"><button type="button" id="erasePermutationReplace" style="width:100px;"><b>New Data</b></button></td>
-          <td style="width:100px; text-align:right;"><span class="fontmath"> n = </span><input type="text" size=2 id="nn3" style="text-align: center;"></td>
-          <td style="width: 10px;"><sup><small> 1 </small></sup></td>
-          <td style="width: 100px;"><input type="range" min="1" max="30" value="10" id="rangeN3" onchange="showValueN3(this.value)"/></td>
-          <td style="width: 10px;"><sup><small>30</small></sup></td>
-          <td style="width:100px; text-align:right;""><span class="fontmath"> r = </span> <input type="text" size=2 id="xx3" style="text-align: center;"></td>
-          <td style="width: 10px;"><sup><small> 0 </small></sup></td>
-          <td style="width: 100px;"><input type="range"  min="0" max="30" value="2" id="rangeX3" onchange="showValueX3(this.value)"/></td>
-          <td style="width: 10px;"><sup><small>30</small></sup></td>
-        </tr>
-        <tr>
-          <td><button type="button" style="width:100px;" id="execute3" style="width:100px;"><span data-msgid="Execute"></span></button></td>
-        </tr>
-      </table>
-      <table style="width:600px">
-        <tr>
-          <td><b>[<span data-msgid="Permutation">Permutation</span>]</b></td>
-        </tr>
-        <tr>
-          <td style="text-align: right;"><span style="font-size:1.4em">\(n !\)</span></td>
-          <td>=</td>
-          <td><input type="text" size=20 id="nfact3" style="text-align: right;"></td>
-        </tr>
-        <tr>
-          <td style="text-align: right;"><span style="font-size:1.4em">\(r !\)</span></td>
-          <td>=</td>
-          <td><input type="text" size=20 id="rfact3" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td style="text-align: right;"><span style="font-size:1.4em">\({}_n {P}_{r}\)</span></td>
-          <td>=</td>
-          <td><input type="text" size=20 id="permu3" style="text-align: right;"></td>
-          <td>(<span data-msgid="NonReplacement">Non-replacement</span>) &nbsp;<span style="color:red"> \(r \le n\)</span></td>
-        </tr>
-        <tr>
-          <td style="text-align: right;"><span style="font-size:1.4em">\({}_n {Π}_{r}\)</span></td>
-          <td>=</td>
-          <td><input type="text" size=20 id="permuRep3" style="text-align: right;"></td>
-          <td>(<span data-msgid="Replacement">Replacement</span>)</td>
-        </tr>
-      </table>
+      <!-----*** html for permutation and combination ***-------------------->
+      <b>[Permutation and Combination]</b>
       <p>
+         <iframe class="example40" src="./example/010102.html"> </iframe>
          <div class="figText">&lt;Figure 1.3&gt; Permutation with replacement</div>
   </div>
-  <!-------Script for Permutation with replacement -------------------------------------------------->
-  <script>
-      setLanguage('en');
-      document.getElementById("nfact3").disabled     = true; 
-      document.getElementById("rfact3").disabled     = true; 
-      document.getElementById("permu3").disabled     = true; 
-      document.getElementById("permuRep3").disabled  = true; 
-      // init example
-        document.getElementById("nn3").value = "4"; 
-        document.getElementById("xx3").value = "5"; 
-      // Erase data
-      d3.select("#erasePermutationReplace").on("click",function() {
-        document.getElementById("nn3").value       = ""; 
-        document.getElementById("xx3").value       = ""; 
-        document.getElementById("nfact3").value    = ""; 
-        document.getElementById("rfact3").value    = ""; 
-        document.getElementById("permu3").value    = ""; 
-        document.getElementById("permuRep3").value = ""; 
-      })
-      // 같은 것이 있는 순열 ======================================
-      d3.select("#execute3").on("click",function() {
-        nn3 = parseFloat(d3.select("#nn3").node().value);
-        xx3 = parseFloat(d3.select("#xx3").node().value);
-        if ( isNaN(nn3) || isNaN(xx3) ) {  // wrong input
-          return;
-        }
-        if ( nn3 < 1 || nn3 > 30 ) {  // wrong input
-          return;
-        }
-        calculate(nn3, xx3);
-        write3();
-      })
-      // n slidebar
-      function showValueN3(newValue) {
-        document.getElementById("nn3").value = newValue;
-        nn3 = parseFloat(d3.select("#nn3").node().value);
-        xx3 = parseFloat(d3.select("#xx3").node().value);
-        calculate(nn3, xx3);
-        write3();
-      }
-      // x slide bar
-      function showValueX3(newValue) {
-        document.getElementById("xx3").value = newValue;
-        nn3 = parseFloat(d3.select("#nn3").node().value);
-        xx3 = parseFloat(d3.select("#xx3").node().value);
-        calculate(nn3, xx3);
-        write3();
-      }
-      // write value
-      function write3() {
-        document.getElementById("nfact3").value    = f0(nfact);
-        document.getElementById("rfact3").value    = f0(rfact);
-        if (xx3 > nn3) document.getElementById("permu3").value = "";
-        else document.getElementById("permu3").value    = f0(permu);
-        document.getElementById("permuRep3").value = f0(permuRep);
-      }
-  </script>
-
 
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:130px">
-            <h5>⏱ Practice 1.3</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_40Permutation.svg" onclick="window.open(addrStr[147])">
-          </td>
-          <td>
-            <p>
+        <h5>⏱ Practice 1.3</h5>
             A customer of a credit card company must create a six-digit password using the numbers 0 to 9. How many passwords can be created?
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_40Permutation.svg" onclick="window.open(addrStr[147])">
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -911,26 +417,10 @@
   <!------------------------------------------------------------------------------------------------->
   <h4>C. Permutation with the Same Objects</h4>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p>
+      <h4>⭐ Think</h4>
           <b>You want to arrange three black balls and two red balls in a row. </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 Explore</h4>
           <b>Is the total number of cases of arranging five balls 5! = 120?</b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
   <div class="mainTable">
@@ -1015,93 +505,26 @@
          \(q\)  = 3 and click [Execute] button to calculate the permutation.
       </div>
       <p>
-      <!---    html for permutation with the same thing --->
-      <table style="width:750px">
-        <tr>
-          <td colspan=5><b>[<span data-msgid="PermutationSame">Permutation with the same thing</span>]</span></b></td>
-        </tr>
-        <tr>
-          <td><button type="button" id="erasePermutationSame" style="width:100px;"><b>New Data</b></button></td>
-          <td><span class="fontmath"> n = </span><input type="text" size=2 id="nn2" style="text-align: center;"></td>
-          <td><span style="color:red">\(= p + q + r + s\)</span></td>
-          <td><span class="fontmath">p = </span></td>
-          <td><input type="text" size=1 id="pp" style="text-align: right;"></td>
-          <td><span class="fontmath">q = </span></td>
-          <td><input type="text" size=1 id="qq" style="text-align: right;"></td>
-          <td><span class="fontmath">r = </span></td>
-          <td><input type="text" size=1 id="rr" style="text-align: right;"></td>
-          <td><span class="fontmath">s = </span></td>
-          <td><input type="text" size=1 id="ss" style="text-align: right;"></td>
-        </tr>
-        <tr>
-          <td><b><button type="button" style="width:100px;" id="execute2" style="width:100px;"><span data-msgid="Execute"></span></button> </b></td>
-          <td colspan="2" style="text-align:right;" ><span style="font-size:1.7em">\(\frac{n!}{p!\, q! \, r! \, s!}\) = </span></td>
-          <td colspan="4"><input type="text" size=20 id="permuMult" style="text-align: right;"></td>
-        </tr>
-      </table>
+      <!-----*** html for permutation and combination ***-------------------->
+      <b>[Permutation and Combination]</b>
       <p>
+         <iframe class="example40" src="./example/010103.html"> </iframe>
          <div class="figText">&lt;Figure 1.4&gt; Calculation of permutation with the same objects </div>
   </div>
   <!------------------------------------------------------------------------------------------------->
-  <p>
-  <script>
-      setLanguage('en');
-      document.getElementById("permuMult").disabled  = true; 
-      // init example
-        document.getElementById("nn2").value       = "7"; 
-        document.getElementById("pp").value        = "4"; 
-        document.getElementById("qq").value        = "3"; 
-      // Erase data
-      d3.select("#erasePermutationSame").on("click",function() {
-        document.getElementById("nn2").value       = ""; 
-        document.getElementById("pp").value        = ""; 
-        document.getElementById("qq").value        = ""; 
-        document.getElementById("rr").value        = ""; 
-        document.getElementById("ss").value        = ""; 
-        document.getElementById("permuMult").value = ""; 
-      })
-      // 같은 것이 있는 순열 ======================================
-      d3.select("#execute2").on("click",function() {
-        nn2 = parseFloat(d3.select("#nn2").node().value);
-        pp  = parseFloat(d3.select("#pp").node().value);
-        qq  = parseFloat(d3.select("#qq").node().value);
-        rr  = parseFloat(d3.select("#rr").node().value);
-        ss  = parseFloat(d3.select("#ss").node().value);
-        permuMult = factorial(nn2) / ( factorial(pp) * factorial(qq) * factorial(rr) * factorial(ss) );
-        document.getElementById("permuMult").value = f0(permuMult);
-      })
-  </script>
-  <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:130px">
-            <h5>⏱ Practice 1.4</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_40Permutation.svg" onclick="window.open(addrStr[147])">
-          </td>
-          <td>
-            <p>
+        <h5>⏱ Practice 1.4</h5>
             Find the number of permutations that can be made using all the letters in the word 'STATISTICS'.
-          </td>
-        </tr>
-      </table>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_40Permutation.svg" onclick="window.open(addrStr[147])">
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:130px">
-            <h5>⏱ Practice 1.5</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_40Permutation.svg" onclick="window.open(addrStr[147])">
-          </td>
-          <td>
-            <p>Winner of the Baseball Series in a year is determined by first four wins out of seven games. Find the number of cases in which team A wins at the 7th game among the two teams A and B in the Series. Assume that there is no draw in every game.
-          </td>
-        </tr>
-      </table>
+        <h5>⏱ Practice 1.5</h5>
+            Winner of the Baseball Series in a year is determined by first four wins out of seven games. Find the number of cases in which team A wins at the 7th game among the two teams A and B in the Series. Assume that there is no draw in every game.
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_40Permutation.svg" onclick="window.open(addrStr[147])">
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -1110,24 +533,10 @@
   <!------------------------------------------------------------------------------------------------->
   <h4>D. Combination with replacement</h4>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p><b>When I went to travel, there were pretty pencils with three colors, red, green and blue. I want to buy four pencils and give it to 4 friends.</b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
+      <h4>⭐ Think</h4>
+          <b>When I went to travel, there were pretty pencils with three colors, red, green and blue. I want to buy four pencils and give it to 4 friends.</b>
+      <h4>💎 Explore</h4>
           <p><b>What is the number of cases to buy four pencils?</b>
-        </td>
-      </tr>
-    </table>
   </div>
   <p>
   <div class="mainTable">
@@ -1234,129 +643,18 @@
           replacement.
       </div>
       <p>
-      <!---    html for combination with replacement ------------------------------>
-      <table style="width:650px">
-        <tr>
-          <td colspan=5><b>[Combination with replacement]</b></td>
-        </tr>
-        <tr>
-          <td style="width:100px;"><button type="button" id="eraseCombinationReplace" style="width:100px;"><b>New Data</b></button></td>
-          <td style="width:100px; text-align:right;"><span class="fontmath"> n = </span><input type="text" size=2 id="nn5" style="text-align: center;"></td>
-          <td style="width: 10px;"><sup><small> 1 </small></sup></td>
-          <td style="width: 100px;"><input type="range" min="1" max="30" value="10" id="rangeN5" onchange="showValueN5(this.value)"/></td>
-          <td style="width: 10px;"><sup><small>30</small></sup></td>
-          <td style="width:100px; text-align:right;""><span class="fontmath"> r = </span> <input type="text" size=2 id="xx5" style="text-align: center;"></td>
-          <td style="width: 10px;"><sup><small> 0 </small></sup></td>
-          <td style="width: 100px;"><input type="range"  min="0" max="30" value="2" id="rangeX5" onchange="showValueX5(this.value)"/></td>
-          <td style="width: 10px;"><sup><small>30</small></sup></td>
-        </tr>
-        <tr>
-          <td><button type="button" style="width:100px;" id="execute5" style="width:100px;"><b><span data-msgid="Execute"></span></b></button></td>
-        </tr>
-      </table>
-      <table style="width:600px">
-        <tr>
-          <td><b>[<span data-msgid="Combination"></span>]</b></td>
-        </tr>
-        <tr>
-          <td style="text-align: right;"><span style="font-size:1.4em">\(n !\)</span></td>
-          <td>=</td>
-          <td><input type="text" size=20 id="nfact5" style="text-align: right;"></td>
-        </tr>
-        <tr>
-          <td style="text-align: right;"><span style="font-size:1.4em">\(r !\)</span></td>
-          <td>=</td>
-          <td><input type="text" size=20 id="rfact5" style="text-align: right;"></td>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td style="text-align: right;"><span style="font-size:1.4em">\({}_n {C}_{r}\)</span></td>
-          <td>=</td>
-          <td><input type="text" size=20 id="combi5" style="text-align: right;"></td>
-          <td>(<span data-msgid="NonReplacement">Non-replacement</span>) &nbsp;<span style="color:red"> \(r \le n\)</span></td>
-        </tr>
-        <tr>
-          <td style="text-align: right;"><span style="font-size:1.4em">\({}_n {H}_{r}\)</span></td>
-          <td>=</td>
-          <td><input type="text" size=20 id="combiRep5" style="text-align: right;"></td>
-          <td>(<span data-msgid="Replacement">Replacement</span>) &nbsp;<span style="color:blue"> \({}_{n+r-1} {C}_{r}\)</span></td></td>
-        </tr>
-      </table>
+      <!-----*** html for permutation and combination ***-------------------->
+      <b>[Permutation and Combination]</b>
       <p>
+         <iframe class="example40" src="./example/010104.html"> </iframe>
          <div class="figText">&lt;Figure 1.5&gt; Calculation of combination with replacement</div>
   </div>
-  <!-------Script for Combination with replacement -------------------------------------------------->
-  <script>
-      setLanguage('en');
-      document.getElementById("nfact5").disabled     = true; 
-      document.getElementById("rfact5").disabled     = true; 
-      document.getElementById("combi5").disabled     = true; 
-      document.getElementById("combiRep5").disabled  = true; 
-      // init example
-        document.getElementById("nn5").value = "5"; 
-        document.getElementById("xx5").value = "3"; 
-      // Erase data
-      d3.select("#eraseCombinationReplace").on("click",function() {
-        document.getElementById("nn5").value       = ""; 
-        document.getElementById("xx5").value       = ""; 
-        document.getElementById("nfact5").value    = ""; 
-        document.getElementById("rfact5").value    = ""; 
-        document.getElementById("combi5").value    = ""; 
-        document.getElementById("combiRep5").value = ""; 
-      })
-      // 같은 것이 있는 순열 ======================================
-      d3.select("#execute5").on("click",function() {
-        nn5 = parseFloat(d3.select("#nn5").node().value);
-        xx5 = parseFloat(d3.select("#xx5").node().value);
-        if ( isNaN(nn5) || isNaN(xx5) ) {  // wrong input
-          return;
-        }
-        if ( nn5 < 1 || nn5 > 30 ) {  // wrong input
-          return;
-        }
-        calculate(nn5, xx5);
-        write5();
-      })
-      // n slidebar
-      function showValueN5(newValue) {
-        document.getElementById("nn5").value = newValue;
-        nn5 = parseFloat(d3.select("#nn5").node().value);
-        xx5 = parseFloat(d3.select("#xx5").node().value);
-        calculate(nn5, xx5);
-        write5();
-      }
-      // x slide bar
-      function showValueX5(newValue) {
-        document.getElementById("xx5").value = newValue;
-        nn5 = parseFloat(d3.select("#nn5").node().value);
-        xx5 = parseFloat(d3.select("#xx5").node().value);
-        calculate(nn5, xx5);
-        write5();
-      }
-      // write value
-      function write5() {
-        document.getElementById("nfact5").value    = f0(nfact);
-        document.getElementById("rfact5").value    = f0(rfact);
-        if (xx3 > nn3) document.getElementById("combi5").value = "";
-        else document.getElementById("combi5").value    = f0(combi);
-        document.getElementById("combiRep5").value = f0(combiRep);
-      }
-  </script>
-  <!------------------------------------------------------------------------------------------------->
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:130px">
-            <h5>⏱ Practice 1.6</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_40Permutation.svg" onclick="window.open(addrStr[147])">
-          </td>
-          <td>
-            <p>In how many cases can the three types of sweet candies in a box be distributed to five people with duplicates?
-          </td>
-        </tr>
-      </table>
+        <h5>⏱ Practice 1.6</h5>
+            In how many cases can the three types of sweet candies in a box be distributed to five people with duplicates?
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_40Permutation.svg" onclick="window.open(addrStr[147])">
     </div>
     <p>
   <!------------------------------------------------------------------------------------------------->
@@ -1366,33 +664,19 @@
   <h3 id="0102">1.2 Binomial Theorem</h3>
   <p>
   <div class="mainTableYellow">
-    <table>
-      <tr>
-        <td style="width:110px">
-          <h4>⭐ Think</h4>
-        </td>
-        <td style="width:450px">
-          <p><b>Each of the three pockets contains a silver bead and a gold bead. 
+      <h4>⭐ Think</h4>
+             <b>Each of the three pockets contains a silver bead and a gold bead. 
              The letter \(a\) is written on the silver beads and the letter \(b\)
              is written on the gold beads. </b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4>💎 Explore</h4>
-        </td>
-        <td>
-          <p>
+      <h4>💎 Explore</h4>
           <div class="textL20M20">
             <b>1) We try to multiply the written characters by taking one bead from each pocket. What is the total number of cases that appears?</b><br>
           </div>
           <div class="textL20M20">
             <b>2) Can the number of cases in which a gold bead is drawn twice, \(ab^2\), 
-               be expressed as a combination?</b>
-          </b>
-        </td>
-      </tr>
-    </table>
+               be expressed as a combination?</b>  
+            </b>
+          </div>
   </div>
   <p>
 
@@ -1537,313 +821,27 @@
       <h5>Solution</h5>
       <p>In 『eStatH』 'Binomial Theorem – Pascal's Triangle', enter \(n\) = 8 and click [Execute] 
          to see the result as shown in &lt;Figure 1.6&gt;.
-
-      <!--- html for Pascal Triangle ----------->
-      <table style="width:450px">
-        <tr>
-          <td><button type="button" style="width:100px;" id="executePascal"><span data-msgid="Execute"></span></button></td>
-          <td style="width:100px; text-align:right"><span class="fontmath">n = </span> <input type="text" size=3 id="nnP" value="8" style="text-align: center;"><td>
-          <td><sup><small> 1</small></sup></td>
-          <td><input type="range" style="width: 100px;" min="1" max="8" value="8" id="rangeNP" onchange="showValueNP(this.value)"/></td>
-          <td><sup><small>8</small></sup></td>
-        </tr>
-      </table>
-      <br>
-      <svg id="chartPascal" width="600" height="460"> </svg> 
-      <br>
-      <button type="button" id="saveGraphPascal" >
-	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
-      </button>
       <p>
-      <div class="figText">&lt;Figure 1.6&gt; Pascal's triangle.</div>
+      <!---*** html for Pascal Triangle ***----------->
+      <b>[Pascal Triangle]</b>
+      <p>
+         <iframe class="example70" src="./example/010201.html"> </iframe>
+         <div class="figText">&lt;Figure 1.6&gt; Pascal's triangle.</div>
   </div>
-  <p>
-  <!---- Script for Pascal --------------------------------------------------------------------------->
-  <script>
-      setLanguage('en');
-      var chartPascal = d3.select("#chartPascal");
-      var marginPascal = {top: 10, bottom: 10, left: 65, right: 5};
-      var graphWidth  = svgWidth - marginPascal.left - marginPascal.right;
-      var graphHeight = svgHeight - marginPascal.top - marginPascal.bottom;
-      var i, j, nnP, xx;
-      var nfact, rfact;
-      var colr = ["#FF0000","#FF8000","#FFFF00","#80FF00","#00FFFF","#BF00FF","#FF00FF","#0080FF","#00BFFF","#8000FF"];
-      var rowMax   = 10;
-      var colMax   = 11;
-      // binomial coefficient
-      var binomial = new Array(rowMax);
-      for (i=0; i<rowMax; i++) {
-        for (j=0; j<colMax; j++) {
-          binomial[i] = new Array(colMax);
-        }
-      }
-      binomial[0][0] = 1;
-      binomial[0][1] = 1;
-      binomial[1][0] = 2;
-      binomial[1][1] = 1;
-      binomial[1][2] = 1;
-      for (i = 2; i < rowMax; i++) {
-        binomial[i][0] = i + 1;
-        binomial[i][1] = 1;
-        for (j = 2; j <= i; j++) {
-          binomial[i][j] = binomial[i-1][j-1] + binomial[i-1][j];
-        }
-        binomial[i][j] = 1;
-      }
-      // init example
-        nnP = parseFloat(d3.select("#nnP").node().value);
-        drawPascal(nnP);   
-
-      // Draw Pascal Triangle ======================================
-      d3.select("#executePascal").on("click",function() {
-        chartPascal.selectAll("*").remove();
-        // input value
-        nnP = parseFloat(d3.select("#nnP").node().value);
-        if ( isNaN(nnP) ) {  // wrong input
-          chartPascal.append("text").attr("class","mean")
-             .attr("x", 250).attr("y", 100)
-             .text("Wrong input!  Enter number, not character!   Try again.")
-             .style("stroke","red")
-             .style("font-size","1.2em")
-          return;
-        }
-        if ( nnP < 1 || nnP > 9 ) {  // wrong input
-          chartPascal.append("text").attr("class","mean")
-             .attr("x", 250).attr("y", 100)
-             .text("Enter n between 1 and 9 !!   Try again.")
-             .style("stroke","red")
-             .style("font-size","1.2em")
-          return;
-        }
-        document.getElementById("rangeNP").value = nnP; 
-        drawPascal(nnP);   
-      })
-
-      // svg Graph Save
-      d3.select("#saveGraphPascal").on("click", function() {
-        var svg = d3.select("#chart");
-        var width = svgWidth;
-        var height = svgHeight;
-        var svgString = getSVGString(svg.node());
-        svgString2Image(svgString, width, height, 'png', save);
-        function save(dataBlob, filesize) {
-          saveAs(dataBlob, 'eStatGraphU.png');
-        }
-      });
-
-      // n slidebar
-      function showValueNP(newValue) {
-        document.getElementById("nnP").value = newValue;
-        nnP = parseFloat(d3.select("#nnP").node().value);
-        drawPascal(nnP);
-      }
-
-      // draw Pascal Triangle
-      function drawPascal(nnP) {
-        chartPascal.selectAll("*").remove();
-        var i, j, tx, ty, cx, cy, x1, y1, x2, y2, str1, str2, str3;
-        var radius = 15;
-        var xgap   = 30;
-        var ygap   = 45;
-        var temp   = 7;
-        var fontsize  = "1em";
-        var fontsize2 = "0.8em";
-        // Pascal Triangle
-        str1 = svgStr[122][langNum];
-        chartPascal.append("text").attr("x", "15px").attr("y", "40px").text(str1)
-             .style("font-size","1.8em").style("stroke","black").style("text-anchor","start");
-        cx = marginPascal.left + graphWidth / 2;
-        cy = marginPascal.top + 20;
-        str1 = binomial[0][1].toString();
-        chartPascal.append("circle").attr("cx",cx).attr("cy",cy).attr("r",radius).style("fill",colr[0]);
-        chartPascal.append("text").attr("x", cx).attr("y", cy+5).text(str1)
-             .style("font-size",fontsize).style("stroke","black").style("text-anchor","middle");
-        for (i = 1; i <= nnP; i++) {
-          if (i > 1) {
-            x1 = cx - (i-1)*xgap;
-            y1 = cy;
-            x2 = cx - i*xgap + 2*xgap;
-            y2 = cy + ygap;
-            for (j = 2; j < i+1; j++) {
-              chartPascal.append("line").attr("x1",x1+temp).attr("y1",y1+temp).attr("x2",x2-temp).attr("y2",y2-temp)
-                   .style("stroke",colr[i-1]).style("stroke-width","3");
-              x1 += 2*xgap;
-              x2 += 2*xgap;
-            }
-            x1 = cx - (i-1)*xgap + 2*xgap;
-            x2 = cx - i*xgap + 2*xgap;         
-            for (j = 2; j < i+1; j++) {
-              chartPascal.append("line").attr("x1",x1-temp).attr("y1",y1+temp).attr("x2",x2+temp).attr("y2",y2-temp)
-                   .style("stroke",colr[i-1]).style("stroke-width","3");;
-              x1 += 2*xgap;
-              x2 += 2*xgap;
-            }
-          }
-          cy = cy + ygap; 
-          ty = cy;
-          tx = cx - (i+1.4)*xgap;
-          str2 = "(a + b)";
-          chartPascal.append("text").attr("x", tx).attr("y", ty).text(str2)
-               .style("font-size",fontsize).style("stroke","black").style("text-anchor","end");
-          chartPascal.append("text").attr("x", tx+5).attr("y", ty-5).text(i)
-               .style("font-size",fontsize2).style("stroke","black").style("text-anchor","start");
-
-          tx = cx - i*xgap;
-          for (j = 1; j <= i+1; j++) {
-            str1 = binomial[i][j].toString();
-            chartPascal.append("circle").attr("cx",tx).attr("cy",ty).attr("r",radius).style("fill",colr[i]);
-            chartPascal.append("text").attr("x", tx).attr("y", ty+5).text(str1).style("font-size",fontsize).style("stroke","black").style("text-anchor","middle");
-            tx += 2*xgap;
-          }
-        }
-        // binomial theorem
-        cy = cy + ygap;
-        ty = cy
-        tx = cx - nnP*xgap - xgap;
-        chartPascal.append("text").attr("x", tx).attr("y", ty).text("a")
-             .style("font-size",fontsize).style("stroke","black").style("text-anchor","end");
-        chartPascal.append("text").attr("x", tx).attr("y", ty-5).text(nnP)
-             .style("font-size",fontsize2).style("stroke","black").style("text-anchor","start");
-        tx += 1.5*xgap;
-        for (j = 2; j <= nnP; j++) {
-            str1 = " + " + binomial[nnP][j].toString();
-            str2 = (nnP-j+1).toString();
-            str3 = (j-1).toString()
-            chartPascal.append("text").attr("x", tx).attr("y", ty).text(str1)
-                 .style("font-size",fontsize).style("stroke","black").style("text-anchor","end");
-            chartPascal.append("text").attr("x", tx+5).attr("y", ty).text("a")
-                 .style("font-size",fontsize).style("stroke","black").style("text-anchor","start");
-            chartPascal.append("text").attr("x", tx+12).attr("y", ty-5).text(str2)
-                 .style("font-size",fontsize2).style("stroke","black").style("text-anchor","start");
-            chartPascal.append("text").attr("x", tx+20).attr("y", ty).text("b")
-                 .style("font-size",fontsize).style("stroke","black").style("text-anchor","start");
-            chartPascal.append("text").attr("x", tx+30).attr("y", ty-5).text(str3)
-                 .style("font-size",fontsize2).style("stroke","black").style("text-anchor","start");
-            tx += 2.3*xgap;
-        }
-        str1 = " + " + "b";
-        chartPascal.append("text").attr("x", tx).attr("y", ty).text(str1)
-             .style("font-size",fontsize).style("stroke","black").style("text-anchor","end");
-        chartPascal.append("text").attr("x", tx).attr("y", ty-5).text(nnP)
-             .style("font-size",fontsize2).style("stroke","black").style("text-anchor","start");
-      }
-  </script>
   <p>
   <!------------------------------------------------------------------------------------------------->
     <div class="mainTablePink">
-      <table >
-        <tr>
-          <td style="width:130px">
-            <h5>⏱ Practice 1.7</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_40Pascal.svg" onclick="window.open(addrStr[165])">
-          </td>
-          <td>
-            <p>Use Pascal's triangle to expand \((a+b)^5 \).
-          </td>
-        </tr>
-      </table>
+        <h5>⏱ Practice 1.7</h5>
+            Use Pascal's triangle to expand \((a+b)^5 \).
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU_40Pascal.svg" onclick="window.open(addrStr[165])">
     </div>
     <p>
 
   <!------------------------------------------------------------------------------------------------->
   <p>
-  <div class="mainTablePink">
-    <h4> Exercise </h4>
-    <p style="color:blue">*** Select an answer and click [SUBMIT] button.</p>
-
-  <h6 class="textL30M30">1.1  What is the number of cases in which four students sit at a round table?  </h6>
-  <form name="Q1">
-    <label><input type="radio" name="item" value="1"> 1</label><br>
-    <label><input type="radio" name="item" value="2"> 2</label><br>
-    <label><input type="radio" name="item" value="3"> 24</label><br>
-    <label><input type="radio" name="item" value="4"> 6</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(31,1,Q1)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ1">
-  </form>
-
-  <h6 class="textL30M30">1.2 Using 10 numbers 0,1,2,..., 9, in how many cases can you create a four-digit password by allowing duplicates? </h6>
-  <form name="Q2">
-    <label><input type="radio" name="item" value="1"> 1000</label><br>
-    <label><input type="radio" name="item" value="2"> 10000</label><br>
-    <label><input type="radio" name="item" value="3"> 264256</label><br>
-    <label><input type="radio" name="item" value="4"> 21474838</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(31,2,Q2)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ2">
-  </form>
-
-  <h6 class="textL30M30">1.3 In how many cases can the letters in the word 'mathematics' be arranged in a row?</h6>
-  <form name="Q3">
-    <label><input type="radio" name="item" value="1"> 1663200</label><br>
-    <label><input type="radio" name="item" value="2"> 4989600</label><br>
-    <label><input type="radio" name="item" value="3"> 415800</label><br>
-    <label><input type="radio" name="item" value="4"> 34650</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(31,3,Q3)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ3">
-  </form>
-
-  <h6 class="textL30M30">1.4 A vacuum tube can be represented by the numbers 1 and 0 for electricity coming in and going out. What is the number of cases that can be represented by a bundle of 8 vacuum tubes. </h6>
-  <form name="Q4">
-    <label><input type="radio" name="item" value="1"> 8</label><br>
-    <label><input type="radio" name="item" value="2"> 128</label><br>
-    <label><input type="radio" name="item" value="3"> 256</label><br>
-    <label><input type="radio" name="item" value="4"> 512</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(31,4,Q4)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ4">
-  </form>
-
-  <h6 class="textL30M30">1.5 What is the coefficient of \(a^2 b^4\) in the expansion of \((a+b)^6\)?    </h6>
-  <form name="Q5">
-    <label><input type="radio" name="item" value="1"> 15</label><br>
-    <label><input type="radio" name="item" value="2"> 20</label><br>
-    <label><input type="radio" name="item" value="3"> 6</label><br>
-    <label><input type="radio" name="item" value="4"> 1</label><br>
-    <p>
-    <input type="button" value="SUBMIT" onClick="radio(31,5,Q5)"> &nbsp;&nbsp;&nbsp;
-    <input type="text" size=25 id="ansQ5">
-  </form>
-
-  </div>
-
-  <script>
-    for (var i=0; i < ans[31][0]; i++) document.getElementById(ansID[i+1]).disabled = true;
-  </script>
-  <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:200px" onclick="moveSection(150)"> &#10094;&#10094; &nbsp;&nbsp;<b>Table of Contents</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:200px" onclick="moveSection(152)"><b>Chapter 2</b>&nbsp;&nbsp; &#10095;&#10095;</button>
-
+  <h3 id="0103">1.3 Exercise</h3>
+  <iframe class="exercise" src="./exercise/exercise01.html" ></iframe>
 </div>
-    
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
-    <script>
-        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
-        
-        /* ajust the height when click the toc
-           the code is from https://github.com/twbs/bootstrap/issues/1768
-        */
-        var shiftWindow = function() { scrollBy(0, -50) };
-        window.addEventListener("hashchange", shiftWindow);
-        function load() { if (window.location.hash) shiftWindow(); }
-        
-        /*add Bootstrap styles to tables*/
-        var tables = document.getElementsByTagName("table");
-        for(var i = 0; i < tables.length; ++i){
-            tables[i].className += "table table-bordered table-hover";
-        }
-    </script>
-
 </body>
 </html>
 

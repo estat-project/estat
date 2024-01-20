@@ -10,12 +10,11 @@
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+  <link href="/estat/eStat/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="../../css/dashboard.css" rel="stylesheet">
+  <link href="/estat/eStat/css/dashboard.css" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -24,12 +23,22 @@
       <![endif]-->
        <style type="text/css">code{white-space: pre;}</style>
        <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
-       <script src="../../js/prism.js"></script>
-       <link rel="stylesheet" href="../../css/prism.css">
-       <script src="../../js/jquery.min.js"></script>    
+       <link rel="stylesheet" href="/estat/eStat/css/pandoc.css">
+       <link rel="stylesheet" href="/estat/eStat/css/prism.css">
+       <script src="/estat/eStat/lib/jquery/jquery.min.js"></script>   
+       <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="/estat/eStat/lib/convertSVG.js"></script>
+       <script src="/estat/eStat/js/prism.js"></script>
+       <script src="/estat/eStat/js/eBook.js"></script>
+       <script src="/estat/eStat/js/eStatU.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>
+       <script> setLanguage('ko'); </script>
        <script type="text/javascript" id="MathJax-script" async
 	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
        </script>
+
        <script>
 	 $(document).ready(function() {
   	     toc = $("#sidebar > ul > li > ul");
@@ -48,81 +57,69 @@
   		 $(sections[i]).replaceWith(li);
   	     }
 	 });
-	 </script>
-       <link rel="stylesheet" href="../../css/pandoc.css">
-       <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       </script>
+      
 </head>
+
 <body>
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <ul class="nav navbar-nav">
-    <li><a href="../../../eStat/index.html"  target="_blank">eStat</a></li>
-    <li><a href="../../../eStatU/index.html" target="_blank">eStatU</a></li>
-    <li><a href="../../Distribution/index.html" target="_blank">확률분포</a></li>
-  </ul>
-</nav>
-
+  
+<!-- begin of left sidebar -->
 <div class="container-fluid">
-  <div class="row">
-    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
-      <ul>
-	<li><a href=""></a>
-	  <ul>
-            <li><a href="index.html">차  례</a></li>
-            <li><a href="chapter01.html">1장 통계 데이터과학</a></li>
-            <li><a href="chapter02.html">2장 질적 데이터 시각화</a></li>
-            <li><a href="chapter03.html">3장 양적 데이터 시각화</a></li>
-            <li><a href="chapter04.html">4장 표/측도 데이터 정리</a></li>
-            <li><a href="chapter05.html">5장 확률, 확률분포함수</a></li>
-            <li><a href="chapter06.html">6장 표집분포와 추정</a></li>
-            <li><a href="chapter07.html">7장 한 모집단 모수 검정</a></li>
-            <li><a href="chapter08.html">8장 두 모집단 모수 검정</a></li>
-            <li><a href="chapter09.html">9장 여러 모평균의 검정</a></li>
-            <li><a href="chapter10.html">10장 비모수적 가설검정</a></li>
-            <li><a href="chapter11.html">11장 범주형 데이터 검정</a></li>
-            <li><a href="chapter12.html">12장 상관 및 회귀분석</a></li>
-            <li><a href="chapter13.html">13장 시계열분석</a></li>
-	  </ul>
-	</li>
-      </ul>
-    </div>
-  </div>
+<div class="row">
+<div id="sidebar" class="col-sm-2 col-md1 sidebar">
+  <ul>
+    <li> <a href="index.html"><b>차례</b> </a> </li>
+    <li> <a href="chapter01.html"> <span data-msgid="Chapter01"> </span></a> </li>
+    <li> <a href="chapter02.html"> <span data-msgid="Chapter02"> </span></a> </li>
+    <li> <a href="chapter03.html"> <span data-msgid="Chapter03"> </span></a> </li>
+    <li> <a href="chapter04.html"> <span data-msgid="Chapter04"> </span></a> </li>
+    <li> <a href="chapter05.html"> <span data-msgid="Chapter05"> </span></a> </li>
+    <li> <a href="chapter06.html"> <span data-msgid="Chapter06"> </span></a> </li>
+    <li> <a href="chapter07.html"> <span data-msgid="Chapter07"> </span></a> </li>
+	      <ul>
+                <li><a href="#0701">&nbsp; 7.1  모평균 가설검정</a></li>
+                <li><a href="#0702">&nbsp; 7.2  모분산 가설검정</a></li>
+                <li><a href="#0703">&nbsp; 7.3  모비율 가설검정</a></li>
+                <li><a href="#0704">&nbsp; 7.4  &alpha;와 &beta;를 같이 고려하는 가설검정</a></li> 
+                <li><a href="#0705">&nbsp; 7.5  가설검정의 응용: 품질관리 표본검사</a></li> 
+                <li><a href="#0706">&nbsp; 7.6  연습문제</a></li> 
+	      </ul>
+    <li> <a href="chapter08.html"> <span data-msgid="Chapter08"> </span></a> </li>
+    <li> <a href="chapter09.html"> <span data-msgid="Chapter09"> </span></a> </li>
+    <li> <a href="chapter10.html"> <span data-msgid="Chapter10"> </span></a> </li>
+    <li> <a href="chapter11.html"> <span data-msgid="Chapter11"> </span></a> </li>
+    <li> <a href="chapter12.html"> <span data-msgid="Chapter12"> </span></a> </li>
+    <li> <a href="chapter13.html"> <span data-msgid="Chapter13"> </span></a> </li>
+  </ul>
 </div>
+</div>
+</div>
+<!-- end of left sidebar -->
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
   <!--***********************************************************************-->
   <h1>7장  한 모집단 모수의 가설검정</h1> 
+  <h1>&nbsp; 🎲 🎴 ♥ ♦ ♣ ♠ </h1>
+  <b>
+	      <ul>
+                <li><a href="#0701">&nbsp; 7.1  모평균 가설검정</a></li>
+                <li><a href="#0702">&nbsp; 7.2  모분산 가설검정</a></li>
+                <li><a href="#0703">&nbsp; 7.3  모비율 가설검정</a></li>
+                <li><a href="#0704">&nbsp; 7.4  &alpha;와 &beta;를 같이 고려하는 가설검정</a></li> 
+                <li><a href="#0705">&nbsp; 7.5  가설검정의 응용: 품질관리 표본검사</a></li> 
+                <li><a href="#0706">&nbsp; 7.6  연습문제</a></li> 
+	      </ul>
+                <a href="./pdf/chapter07.pdf" target="_blank">[7장 pdf]</a>
+  </b>
   <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(166)"> &#10094;&#10094; &nbsp;&nbsp;<b>6장</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(168)"><b>8장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
-  <p>
-  <table>
-    <tr>
-      <td style="width:300px">
-        <h1>&nbsp; 🎲 🎴 ♥ ♦ ♣ ♠ </h1>
-        <h4>
-        <a href="#0701"><u>7.1  모평균 가설검정</u></a> <p>
-        <a href="#0702"><u>7.2  모분산 가설검정</u></a> <p>
-        <a href="#0703"><u>7.3  모비율 가설검정</u></a> <p>
-        <a href="#0704"><u>7.4  &alpha;와 &beta;를 같이 고려하는 가설검정</u></a> <p>
-        <a href="chapter07.pdf" target="_blank"><u>[7장 pdf]</u></a>
-        </h4>
-      </td>
-      <td style="width:350px">
-        <h1></h1>
-        <p>모집단의 모수가 궁금하여 이를 6장처럼 표본분포를 이용하여 추정하는 문제도 있지만 모수의 값에 대한 두 가지 가설이 타당한지에 관심이 있을 수도 있다. 
-           이러한 모수에 대한 가설을 검정하기 위해서도 표본을 추출하여 결정을 하는데 이 장에서는 한 모집단 모수의 가설검정에 대하여 알아보자
-        <p>- 모평균 가설검정
-        <br>- 모분산 가설검정
-        <br>- 모비율 가설검정
-        <p>을 살펴보고 1종오류와 2종오류를 같이 고려하는 가설검정을 설명한다. 
-      </td>
-    </tr>
-  </table>
+        모집단의 모수가 궁금하여 이를 6장처럼 표본분포를 이용하여 추정하는 문제도 있지만 모수의 값에 대한 두 가지 가설이 타당한지에 관심이 있을 수도 있다. 
+           이러한 모수에 대한 가설을 검정하기 위해서도 표본을 추출하여 결정을 하는데 이 장에서는 한 모집단 모수의 가설검정에 대하여 알아보자.<br>
+        - 모평균 가설검정<br>
+        - 모분산 가설검정<br>
+        - 모비율 가설검정<br>
+        을 살펴보고 1종오류와 2종오류를 같이 고려하는 가설검정을 설명한다. <br>
+        그리고 가설검정의 응용으로 품질관리 표본검사를 소개한다.
 <!--
   <h6>
       <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
@@ -225,7 +222,7 @@
       </table>
       <p>
       선택기준에 사용되는 다음 식  
-      $$
+      $$\small 
          \frac {\overline X - \mu_0}{ \frac {\sigma}{\sqrt{n}} }
       $$
       를 <b>검정통계량</b>(test statistic)이라고 부른다. 
@@ -236,7 +233,7 @@
       뜻하기 때문에\(H_0\) 를 기각한다</b>. 대부분의 통계패키지에서는 p-값을 계산하여 준다.
       <p>
       모분산 \(\sigma^2\)를 모르는 경우 모집단이 정규분포를 따른다면 검정통계량 
-      $$
+      $$\small 
          \frac {\overline X - \mu_0}{ \frac {S}{\sqrt{n}} }
       $$
       는 자유도가 (n-1)인 t 분포를 따르므로 모평균 가설검정은 표 7.2의 선택기준에서 표준정규분포 대신 t 분포를
@@ -269,84 +266,60 @@
   </div>
   <p>
   <div class="mainTableGrey">
-      <table>
-        <tr>
-          <td colspan="2">
-            <p><h5>🎲 예 7.1</h5>
+        <h5>🎲 예 7.1</h5>
             남자 대학생 10명을 표본 추출하여 신장을 조사하니 다음과 같다. (단위 cm)
-            <p>
+        <p>
             <div class="textLeft"> 172  175  178  182  176  180  169  185  173  177</div>
-            <p>
+        <p>
             모평균이 175cm 인지 아니면 이보다 큰지 유의수준 5%로 『eStatU』을 이용하여 가설검정하여 보자. 
-          </td>
-        </tr>
-        <tr>
-          <td style="width:100px">
-            <h5>풀이</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStat.svg" onclick="window.open(addrStr[0])">
-          </td>
-          <td>
-            <p>
+        <h5>풀이</h5>
             『eStat』에서 시트에 [그림 7.1]과 같이 데이터를 입력한 후 모평균 가설검정 아이콘을 클릭하고 변량선택박스에서
             '분석변량'을 V1 선택하면 데이터의 평균-신뢰구간 점그래프가 나타난다([그림 7.2]). 
-            <p>
-            <img src="../FigureU/Fig0701.png">
+        <p>
+        <div>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStat.svg" onclick="window.open(addrStr[0])">
+            <img src="./Figure/Fig0701.png">
             <div class="textLeft">[그림 7.1] 데이터 입력</div>
-            <p>
-            <img src="../FigureU/Fig0702.png">
+        </div>
+        <p>
+            <img src="./Figure/Fig0702.png">
             <div class="textLeft">[그림 7.2] 데이터의 점그래프 및 평균 신뢰구간</div>
-            <p>
+        <p>
             그래프 창 밑의 선택 창([그림 7.3])에서 '히스토그램'을 클릭하면 [데이터에 대한 히스토그램과 정규분포곡선이 
             출력되어 데이터가 정규분포인지 대략 검사할 수 있다.  (11장에서 설명).
-            <p>
-            <img src="../FigureU/Fig0703.png">
+        <p>
+            <img src="./Figure/Fig0703.png">
             <div class="textLeft">[그림 7.3] 모평균 가설검정의 선택사항</div>
-            <p>
-            <img src="../FigureU/Fig0704.png">
+        <p>
+            <img src="./Figure/Fig0704.png">
             <div class="textLeft">[그림 7.4] 데이터의 히스토그램과 정규분포 곡선</div>
             <p>
             선택 창에서 [그림 7.3]과 같이 \(&mu;_0\) = 170을 입력하고, 대립가설 형태를 우측검정, 유의수준을 5%로 선택하고
             [t 검정(Z)] 버튼을 누르면 [그림 7.5]와 같은 검정통계량의 분포인 t 분포 그래프가 나타나고 결과저장창에 
             검정결과가 나타난다([그림 7.6]). 선택 창에서 Z 검정을 선택할 수도 있다. 이 경우에는 모표준편차 &sigma;를 입력하여야 한다. 
-            <p>
-            <img src="../FigureU/Fig0705.png">
+        <p>
+            <img src="./Figure/Fig0705.png">
             <div class="textLeft">[그림 7.5] 모평균 가설검정 그래프</div>
-            <p>
-            <img src="../FigureU/Fig0706.png">
+        <p>
+            <img src="./Figure/Fig0706.png">
             <div class="textLeft">[그림 7.6] 모평균 가설검정의 결과</div>
-          </td>
-        </tr>
-      </table>
   </div>
   <p>
       같은 예를 『eStatU』를 이용하여 가설검정할 수 있다.
+  <p>
   <div class="mainTableGrey">
-      <table>
-        <tr>
-          <td colspan="2">
-            <p><h5>🎲 예 7.2</h5>
+        <h5>🎲 예 7.2</h5>
             위의 [예 7.1]을 『eStatU』을 이용하여 가설검정하여 보자. 
-          </td>
-        </tr>
-        <tr>
-          <td style="width:100px">
-            <h5>풀이</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStatU700_TestMu.svg" onclick="window.open(addrStr[101])">
-          </td>
-          <td>
-            <p>
+        <h5>풀이</h5>
             『eStatU』 주메뉴에서 '가설검정: 모평균 &mu;'를 선택하면 [그림 7.7]과 같은 화면이 나타난다. 여기에서 
             검정할 값  \(&mu;_0\)= 175를 입력하고, 두 번째 가설 우측검정을 선택하고, 표본자료를 입력한후 
            [실행] 버튼을 누르면 신뢰구간이 계산되고 [그림 7.8]과 같은 검정결과가 나타난다.
-            <p>
-            <img src="../FigureU/Fig0707.png">
-            <div class="textLeft">[그림 7.7] 『eStatU』모평균 가설검정 데이터 입력창</div>
-            <p>
-            <img src="../FigureU/Fig0708.png">
-            <div class="textLeft">[그림 7.8] 『eStatU』모평균 가설검정 결과</div>
-          </td>
-        </tr>
-      </table>
+        <p>
+        <!---   ************ html for Testing Hypothesis Mu ************  ---->
+        <b>[<span data-msgid="Testing Hypothesis mu">Testing Hypothesis : Population Mean &mu; </span>]</b>
+        <p>
+        <iframe class="example90" src="./example/070101.html"> </iframe>
+        <div class="textLeft">[그림 7.8] 『eStatU』모평균 가설검정 결과</div>
   </div>
   <p>
   <!------------------------------------------------------------------------------------------>
@@ -367,8 +340,8 @@
       </div>
       <table style="width:720px"> 
         <tr> 
-          <th class="thGrey" style="width:150px">가설형태</th>
-          <th class="thGrey" style="width:570px">선택기준</th>
+          <th style="width:150px">가설형태</th>
+          <th style="width:570px">선택기준</th>
         </tr>
         <tr style="height:40px">
           <td>1) \( \; H_0 : \sigma^{2} = \sigma^{2}_0 \)<br>\(\quad\,\, H_1 : \sigma^{2} > \sigma^{2}_0 \)</td>
@@ -391,79 +364,54 @@
   </div>
   <p>
   <div class="mainTableGrey">
-      <table>
-        <tr>
-          <td colspan="2">
-            <p><h5>🎲 예 7.3</h5>
+        <h5>🎲 예 7.3</h5>
             남자 대학생 10명을 표본 추출하여 신장을 조사하니 다음과 같다. (단위 cm)
             <p>
             <div class="textLeft">172  175  178  182  176  180  169  185  173  177
             </div>
             <p>
             모분산이 \(5^2\)인지 아닌지 유의수준 5%로 『eStat』를 이용하여 가설검정하여 보자.
-          </td>
-        </tr>
-        <tr>
-          <td style="width:100px">
-            <h5>풀이</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStat.svg" onclick="window.open(addrStr[0])">
-          </td>
-          <td>
-            <p>
+        <h5>풀이</h5>
             『eStat』에서 시트에 [그림 7.9]와 같이 데이터를 입력한 후 모분산 가설검정 아이콘 를 클릭하고
             '변량선택박스'에서 V1을 선택하면 [그림 7.10]과 같은 데이터의 점그래프와 (평균) ± (표준편차) 구간이 나타난다.
             <p>
-            <img src="../FigureU/Fig0709.png">
+        <div>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStat.svg" onclick="window.open(addrStr[0])">
+            <img src="./Figure/Fig0709.png">
             <div class="textLeft">[그림 7.9] 『eStat』 데이터 입력</div>
+        </div>
             <p>
-            <img src="../FigureU/Fig0710.png">
+            <img src="./Figure/Fig0710.png">
             <div class="textLeft">[그림 7.10] 모분산의 가설검정에서 점그래프와 (평균) ± (표준편차) 구간 </div>
             <p>
             그래프 창 밑의 선택창([그림 7.11])에서 \(\sigma^2_0\) = 25를 입력하고, 대립가설 형태를 우측검정,
             유의수준을 5%로 선택하고 '\(\chi^2\) 검정' 버튼을 누르면 [그림 7.12]와 같은 가설검정 결과 그래프와 결과표([그림 7.13])가 나타난다. 
             <p>
-            <img src="../FigureU/Fig0711.png">
+            <img src="./Figure/Fig0711.png">
             <div class="textLeft">[그림 7.11] 모분산 가설검정의 선택사항</div>
             <p>
-            <img src="../FigureU/Fig0712.png">
+            <img src="./Figure/Fig0712.png">
             <div class="textLeft">[그림 7.12] 모분산 가설검정 결과</div>
             <p>
-            <img src="../FigureU/Fig0713.png">
+            <img src="./Figure/Fig0713.png">
             <div class="textLeft">[그림 7.13] 모분산 가설검정 결과</div>
             <p>
-          </td>
-        </tr>
-      </table>
   </div>
   <p>
   같은 예를 『eStatU』를 이용하여 가설검정할 수 있다.
   <div class="mainTableGrey">
-      <table>
-        <tr>
-          <td colspan="2">
-            <p><h5>🎲 예 7.4</h5>
+        <h5>🎲 예 7.4</h5>
              위의 [예 7.3]을 『eStatU』을 이용하여 가설검정하여 보자. 
-          </td>
-        </tr>
-        <tr>
-          <td style="width:100px">
-            <h5>풀이</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStatU720_TestSigma.svg" onclick="window.open(addrStr[102])">
-          </td>
-          <td>
-            <p>
+        <h5>풀이</h5>
             『eStatU』 주메뉴에서 '가설검정: 모분산 \(\sigma^2\)'를 선택하면 [그림 7.14]와 같은 화면이 나타난다. 
             여기에서 검정할 값 \(\sigma^2_0\)  = 175를 입력하고, 양측검정을 선택하고, 표본자료를 입력한후 
             [실행] 버튼을 누르면 신뢰구간이 계산되고 [그림 7.15]와 같은 검정결과가 나타난다.
-            <p>
-            <img src="../FigureU/Fig0714.png">
-            <div class="textLeft">[그림 7.14] 『eStatU』모분산 가설검정 데이터 입력창</div>
-            <p>
-            <img src="../FigureU/Fig0715.png">
-            <div class="textLeft">[그림 7.15] 『eStatU』모분산 가설검정 결과 </div>
-          </td>
-        </tr>
-      </table>
+        <p>
+        <!---   ************ html for testing variance ************  ---->
+        <b>[<span data-msgid="Testing Hypothesis sigma"></span>]</b>
+        <p>
+        <iframe class="example90" src="./example/070201.html"> </iframe>
+        <div class="textLeft">[그림 7.15] 『eStatU』모분산 가설검정 결과 </div>
   </div>
   <p>
  
@@ -488,8 +436,8 @@
       </div>
       <table style="width:720px"> 
         <tr> 
-          <th class="thGrey" style="width:150px">가설형태</th>
-          <th class="thGrey" style="width:570px">선택기준</th>
+          <th style="width:150px">가설형태</th>
+          <th style="width:570px">선택기준</th>
         </tr>
         <tr style="height:40px">
           <td>1) \( \; H_0 : p = p_0 \)<br>\(\quad\,\, H_1 : p > p_0 \)</td>
@@ -514,33 +462,19 @@
       『eStatU』를 이용하여 모비율의 가설검정을 할 수 있다.
   <p>
   <div class="mainTableGrey">
-      <table>
-        <tr>
-          <td colspan="2">
-            <p><h5>🎲 예 7.5</h5>
+         <h5>🎲 예 7.5</h5>
               한 지역의 국회의원 선거여론조사를 지난달 실시한 결과 특정후보의 지지율이 60%이었다. 최근에 지지율에 변동이 있는지 알아보기 위해 100명을 단순임의추출하였더니 55명이 지지를 하였다. 특정후보에 대한 현재 지지율이 60%에서 변동이 있는지 유의수준 5%로 『eStatU』을 이용하여 가설검정하여 보자. 
-          </td>
-        </tr>
-        <tr>
-          <td style="width:100px">
-            <h5>풀이</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStatU740_TestP.svg" onclick="window.open(addrStr[103])">
-          </td>
-          <td>
-            <p>
+         <h5>풀이</h5>
             『eStatU』주메뉴에서 '가설검정: 모비율 p'를 선택하면 [그림 7.16]과  같은 화면이 나타난다. 
             여기에서 검정할 값 \(p_0\) = 0.6을 입력하고, 양측검정을 선택하고,  유의수준을 선택한 후, 
             표본크기 n = 100와 표본비율 \(\hat p\) = 0.55를 입력한 후 [실행] 버튼을 누르면 
             신뢰구간이 계산되고 [그림 7.17]과 같은 검정결과가 나타난다. 
-            <p>
-            <img src="../FigureU/Fig0716.png">
-            <div class="textLeft">[그림 7.16] 『eStatU』의 모비율 가설검정 데이터 입력</div>
-            <p>
-            <img src="../FigureU/Fig0717.png">
-            <div class="textLeft">[그림 7.17] 『eStatU』를 이용한 모비율 가설검정 결과</div>
-          </td>
-        </tr>
-      </table>
+         <p>
+         <!---   ************ html for testing p ************  ---->
+         <b>[<span data-msgid="Testing Hypothesis P">Testing Hypothesis : Population Proportion p</span>]</b>
+         <p>
+         <iframe class="example90" src="./example/070301.html"> </iframe>
+         <div class="textLeft">[그림 7.17] 『eStatU』를 이용한 모비율 가설검정 결과</div>
   </div>
   <p>
 
@@ -561,47 +495,33 @@
       『eStatU』를 이용하여 2종오류의 확률을 구하여 보자. 
   <p>
   <div class="mainTableGrey">
-      <table>
-        <tr>
-          <td colspan="2">
-            <p><h5>🎲 예 7.6</h5>
+        <h5>🎲 예 7.6</h5>
              모평균의 두 가설 \(H_0 : &mu; = 1500\),  \(H_1 : &mu; = 1600\)이 있을 때 모표준편차는 &sigma; = 200, 
              표본의 크기는 n=30 이다. 유의수준이 5%일 때 2종오류 &beta;를 『eStatU』를 이용하여 구하여 보자. 
-          </td>
-        </tr>
-        <tr>
-          <td style="width:100px">
-            <h5>풀이</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStatU750_TestMuAlpha.svg" onclick="window.open(addrStr[104])">
-          </td>
-          <td>
-            <p>
+        <h5>풀이</h5>
             유의수준이 5%일 때 가설의 선택기준은 다음과 같다.
-            <p>
-            '\(\overline X\) < 1500 + (1.645)\(\frac{200}{\sqrt{30}}\) = 1560.06 이면 \(H_0\) 기각'
-            <p>
+        <p>
+            '\(\small \overline X\) < 1500 + (1.645)\(\frac{200}{\sqrt{30}}\) = 1560.06 이면 \(H_0\) 기각'
+        <p>
             따라서 '\(H_1\)이 참인데  \(H_0\)가 맞다'라고 하는 2종오류의 확률은 다음과 같다.
-            <p>
-            <div class="textLeft">&beta; = \(P( \overline X\) < 1560.06 | \(H_1\) 이 참일 때)
+        <p>
+            <div class="textLeft">&beta; = \(\small P( \overline X\) < 1560.06 | \(H_1\) 이 참일 때)
             </div>
-            <div class="textLeft"> = \(P( \frac { (\overline X -1600)} {\frac{200}{\sqrt{30}} }  < \frac { 1506.06 -1600} {\frac{200}{\sqrt{30}} } ) \)
+            <div class="textLeft"> = \(\small P( \frac { (\overline X -1600)} {\frac{200}{\sqrt{30}} }  < \frac { 1506.06 -1600} {\frac{200}{\sqrt{30}} } ) \)
             </div>
-            <div class="textLeft"> = \(P( Z < -1.09) = 0.137 \)
+            <div class="textLeft"> = \(\small P( Z < -1.09) = 0.137 \)
             </div>
-            <p>
+        <p>
             『eStatU』에서 '가설검정 &mu; 실험: C, &beta; 계산'을 선택하면 [그림 7.18]과 같은 화면이 나타난다. 
             여기에서 \(&mu;_0 = 1500\), \(&mu;_1 = 1600\), \(&sigma; = 200\), \(n = 30\), 
             \(&alpha; = 0.05\)를 입력하고 [실행] 버튼을 누르면 C, &beta;가 계산되고 [그림 7.19]와
             같은 실험 창이 나타난다. 여기에서 \(&mu;_1\), &alpha;, n을 변화시키며 &beta;의 변화를 관찰할 수 있다.
-            <p>
-            <img src="../FigureU/Fig0718.png">
-            <div class="textLeft">[그림 7.18] 『eStatU』 &beta; 계산을 위한 데이터 입력</div>
-            <p>
-            <img src="../FigureU/Fig0719.png">
-            <div class="textLeft">[그림 7.19] &beta;의 변화 실험 창 </div>
-          </td>
-        </tr>
-      </table>
+        <p>
+        <!---   ************ html for Testing hypothesis mu - C, beta ************  ---->
+        <b>[<span data-msgid="Testing Hypothesis muA">Testing Hypothesis : Population Mean &mu; </span>]</b>
+        <p>
+        <iframe class="example90" src="./example/070401.html"> </iframe>
+        <div class="textLeft">[그림 7.19] &beta;의 변화 실험 창 </div>
   </div>
   <p>
       일반적으로 두 가설검정에 대한 판별력 비교에는 대립가설이 참일 때 이 대립가설을 맞을 확률인 <b>검정력</b>(power of test)이 이용된다.
@@ -618,240 +538,174 @@
       만일 표본의 크기가 미리 정하여져 있지 않고 분석자가 정할 수 있다면 &alpha;와 &beta;를 원하는 수준으로 하는 가설검정을  할 수 있다.
   <p>
    <div class="mainTableGrey">
-     <table>
-        <tr>
-          <td colspan="2">
-            <p><h5>🎲 예 7.6</h5>
+        <h5>🎲 예 7.7</h5>
              가설검정 \(H_0 : &mu; = 1500\),  \(H_1 : &mu; = 1570\)이 있을 때 1종오류의 확률(&alpha;)을 5%, 
              2종오류의 확률(&beta;)을 10%로 하는 표본의 크기와 이때의 선택기준을 『eStatU』를 이용하여 구하여 보자.  
-          </td>
-        </tr>
-        <tr>
-          <td style="width:100px">
-            <h5>풀이</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStatU750_TestMuAlpha.svg" onclick="window.open(addrStr[105])">
-          </td>
-          <td>
-            <p>
+        <h5>풀이</h5>
             표본의 크기를 n 이라 하고 임계값을 C라고 할 때, 1종오류와 2종오류의 확률은 정의에 의해 다음과 같다.
-            <div class="textLeft">&alpha; = \(P( \overline X\) > C | \(H_0\) 이 참일 때)
+            <div class="textLeft">&alpha; = \(\small P( \overline X\) > C | \(H_0\) 이 참일 때)
             </div>
-            <div class="textLeft">&beta;  = \(P( \overline X\) < C | \(H_1\) 이 참일 때)
+            <div class="textLeft">&beta;  = \(\small P( \overline X\) < C | \(H_1\) 이 참일 때)
             </div>
-            <p>
-            표본평균의 표집분포이론에서 \(H_0 \)가 참일 때는 \(\overline X\)의 분포는 
-            \(N(1500, \frac{200^2}{n} )\) 이고,  \(H_1\)이 참일 때는 \(\overline X\)의 분포는
+        <p>
+            표본평균의 표집분포이론에서 \(H_0 \)가 참일 때는 \(\small \overline X\)의 분포는 
+            \(N(1500, \frac{200^2}{n} )\) 이고,  \(H_1\)이 참일 때는 \(\small \overline X\)의 분포는
             \(N(1570, \frac{200^2}{n} )\) 이다. 따라서 &alpha; = 0.05, &beta; = 0.10,
             \(z_{0.05}\)  = 1.645, \(z_{0.90}\) = -1.280 이므로 다음 두 식이 성립된다.
-            <p>
+        <p>
             <div class="textLeft"> \(C = 1500 + 1.645 × \frac{200}{\sqrt n} \)
             </div>
             <div class="textLeft"> \(C = 1570 - 1.280 × \frac{200}{\sqrt n} \)
             </div>
-            <p>
+        <p>
             위의 두 식은 미지수가  n과  C인 연립방정식이므로 해를 구하면 n = 69.8, C = 1539.4 가 된다. 
             즉, 표본의 크기는 대략 70이고, 선택기준은 다음과 같다.
-            <p>
-            <div class="textLeft">'\( \overline X > 1539.4\) 이면 \(H_0 \)를 기각'
+        <p>
+            <div class="textLeft">'\(\small  \overline X > 1539.4\) 이면 \(H_0 \)를 기각'
             </div>
-            <p>
+        <p>
             『eStatU』에서 '가설검정 &mu; 실험: C, n 계산'을 선택하면 [그림 7.20]과 같은 화면이 나타난다. 
             여기에서 \(&mu;_0 = 1500\), \(&mu;_1 = 1600\), \(&sigma; = 200\), 
             \(&alpha; = 0.05\),  \(&beta; = 0.10\)를 입력하고 [실행] 버튼을 누르면 C, n이 계산되고
             [그림 7.21]과 같은 실험 창이 나타난다. 여기에서 \(&mu;_1\), &alpha;, &beta;를 변화시키며 
             C, n의 변화를 관찰할 수 있다.
-            <p>
-            <img src="../FigureU/Fig0720.png">
-            <div class="textLeft">[그림 7.20] 『eStatU』 C, n 계산을 위한 데이터 입력</div>
-            <p>
-            <img src="../FigureU/Fig0721.png">
-            <div class="textLeft">[그림 7.21] 『eStatU』 C, n 변화 실험 창 </div>
-          </td>
-        </tr>
-      </table>
+        <p>
+        <!--- ************ html Testing for alpha and beta ******* ---->
+        <b>[<span data-msgid="Testing Hypothesis muAB">Testing Hypothesis : Population Mean &mu;</span></b>
+        <p>
+        <iframe class="example90" src="./example/070402.html"> </iframe>
+        <div class="textLeft">[그림 7.21] 『eStatU』 C, n 변화 실험 창 </div>
   </div>
   <p>
 
-  <div class="mainTablePink">
-    <h4> 연습문제 </h4>
-    <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
-
-    <h6 class="textL30M30">7.1 1종오류란 무엇인가? </h6> 
-    <form name="Q1">
-      <label><input type="radio" name="item" value="1"> 귀무가설이 옳은 데도 기각하는 오류</label><br>
-      <label><input type="radio" name="item" value="2"> 귀무가설이 옳은 데도 옳다고 하는 오류</label><br>
-      <label><input type="radio" name="item" value="3"> 귀무가설이 옳지 않은 데도 기각되는 오류</label><br>
-      <label><input type="radio" name="item" value="4"> 귀무가설이 옳지 않은 데도 옳다고 하는 오류</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(7,1,Q1)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ1">
-    </form>
-
-    <h6 class="textL30M30">7.2 귀무가설이 기각될 때 대신 받아들이려는 가설은?</h6>
-    <form name="Q2">
-      <label><input type="radio" name="item" value="1"> 귀무가설</label><br>
-      <label><input type="radio" name="item" value="2"> 유의수준</label><br>
-      <label><input type="radio" name="item" value="3"> 대립가설</label><br>
-      <label><input type="radio" name="item" value="4"> 기본가설</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(7,2,Q2)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ2">
-    </form>
-   
-    <h6 class="textL30M30">7.3  다음 중 옳은 설명은? </h6>
-    <form name="Q3">
-      <label><input type="radio" name="item" value="1"> 통계적 가설에 대한 결론은 항상 절대적이다.</label><br>
-      <label><input type="radio" name="item" value="2"> 귀무가설이 기각된다는 것은 대립가설을 채택한다는 뜻이다.</label><br>
-      <label><input type="radio" name="item" value="3"> 1종오류를 줄이기 위해서는 유의수준 0.01보다는 0.05를 채택하는 것이 좋다.</label><br>
-      <label><input type="radio" name="item" value="4"> 2종오류를 줄이기 위해서는 유의수준 0.05보다는 0.01을 채택하는 것이 좋다.</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(7,3,Q3)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ3">
-    </form>
-
-    <h6 class="textL30M30">7.4  유의수준 &alpha; = 0.05의 의미는? </h6>
-    <form name="Q4">
-      <label><input type="radio" name="item" value="1"> 동일한 검정법을 여러 번 반복하여 사용할 때 잘못으로 귀무가설 를 기각하게 될 경우가 전체의 5％ 이하일 것이라는 뜻이다.</label><br>
-      <label><input type="radio" name="item" value="2"> 대립가설이 기각될 확률이 0.05라는 뜻이다.</label><br>
-      <label><input type="radio" name="item" value="3"> 대립가설이 귀무가설보다 채택될 확률이 0.05가 된다는 뜻이다.</label><br>
-      <label><input type="radio" name="item" value="4"> 2종오류를 허용하는 확률 범위가 5％ 이하라는 뜻이다.</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(7,4,Q4)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ4">
-    </form>
-
-    <h6 class="textL30M30">7.5  표준정규분포를 이용하는 모평균의 우측검정에서 유의수준 5％일 때 검정통계량의 기각 기준선은 얼마인가? </h6>
-    <form name="Q5">
-      <label><input type="radio" name="item" value="1"> 2.58</label><br>
-      <label><input type="radio" name="item" value="2"> 1.64</label><br>
-      <label><input type="radio" name="item" value="3"> 2.33</label><br>
-      <label><input type="radio" name="item" value="4"> 1.96</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(7,5,Q5)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ5">
-    </form>
-
-    <h6 class="textL30M30">7.6  귀무가설 \(\small H_0 : \mu = \mu_0 \)일 때 양측검정의 대립가설은? </h6>
-    <form name="Q6">
-      <label><input type="radio" name="item" value="1"> \(\small H_1 ; \mu > \mu_0 \)</label><br>
-      <label><input type="radio" name="item" value="2"> \(\small H_1 ; \mu < \mu_0 \)</label><br>
-      <label><input type="radio" name="item" value="3"> \(\small H_1 ; \mu = \mu_0 \)</label><br>
-      <label><input type="radio" name="item" value="4"> \(\small H_1 ; \mu \ne \mu_0 \)</label><br>
-     <p>
-      <input type="button" value="제출" onClick="radio(7,6,Q6)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ6">
-    </form>
-
-    <h6 class="textL30M30">7.7  다음은 통계적 가설검정의 순서를 나열한 것이다. 올바른 순서는?  
-       a. 가설을 설정한다.  
-       b. 유의수준을 결정한다.
-       c. 가설의 채택 여부를 결정한다.
-       d. 검정통계량을 계산한다.
-       e. 기각역을 구한다. 
-    </h6>
-    <form name="Q7">
-      <label><input type="radio" name="item" value="1"> a→d→e→b→c</label><br>
-      <label><input type="radio" name="item" value="2"> a→d→b→e→c</label><br>
-      <label><input type="radio" name="item" value="3"> b→e→d→a→c</label><br>
-    <label><input type="radio" name="item" value="4"> a→c→b→d→e</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(7,7,Q7)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ7">
-    </form>
-   
-    <h6 class="textL30M30">7.8  다음 설명 중 틀린 것은?  </h6>
-    <form name="Q8">
-      <label><input type="radio" name="item" value="1"> 귀무가설이 기각된다는 것은 대립가설을 채택한다는 뜻이다.</label><br>
-      <label><input type="radio" name="item" value="2"> 1종오류를 범할 확률의 최대허용한계를 유의수준이라고 한다.</label><br>
-      <label><input type="radio" name="item" value="3"> 귀무가설이 거짓일 때 귀무가설을 채택하는 오류를 1종오류라고 한다.</label><br>
-      <label><input type="radio" name="item" value="4"> 대립가설이 옳은데도 귀무가설을 채택하는 오류를 2종오류라고 한다.</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(7,8,Q8)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ8">
-    </form>
-
-    <h6 class="textL30M30">7.9  귀무가설 \(\small H_0 : \sigma^2 = \sigma^2_0 \)일 때 양측검정의 선택기준은?  &alpha;= 0.05.</h6>
-    <form name="Q9">
-      <label><input type="radio" name="item" value="1"> If \( \frac {(n-1)S^{2}} {\sigma_{0}^{2}} > \chi_{n-1: &alpha; }^{2}\), reject \(\small H_0\)</label><br>
-      <label><input type="radio" name="item" value="2"> If \( \frac {(n-1)S^{2}} {\sigma_{0}^{2}} < \chi_{n-1: &alpha; }^{2}\), reject \(\small H_0\)</label><br>
-      <label><input type="radio" name="item" value="3"> If \( \frac {(n-1)S^{2}} {\sigma_{0}^{2}} > \chi_{n-1: &alpha;/2 }^{2}\), reject \(\small H_0\)</label><br>
-      <label><input type="radio" name="item" value="4"> If \( \frac {(n-1)S^{2}} {\sigma_{0}^{2}} > \chi_{n-1: &alpha;/2 }^{2}\) or \( \frac {(n-1)S^{2}} {\sigma_{0}^{2}} > \chi_{n-1: 1-&alpha;/2 }^{2}\), reject \(\small H_0\)</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(7,9,Q9)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ9">
-    </form>
-
-    <h6 class="textL30M30">7.10 한 동전이 정상적인지 검정하기 위해 동전을 10,000번 던졌더니 앞면이 5020번, 뒷면이 4980번 나왔다. 검정하고자하는 가설은? </h6>
-    <form name="Q10">
-      <label><input type="radio" name="item" value="1"> \(\small H_0 : \mu = 10000\)</label><br>
-      <label><input type="radio" name="item" value="2"> \(\small H_0 : \mu > 5000\)</label><br>
-      <label><input type="radio" name="item" value="3"> \(\small H_0 : p >  0.5\)</label><br>
-      <label><input type="radio" name="item" value="4"> \(\small H_0 : p \ne 0.5\)</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(7,10,Q10)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ10">
-    </form>
-
-    <h6 class="textL30M30">7.11 가설검정의 검정력이란? </h6> 
-    <form name="Q11">
-      <label><input type="radio" name="item" value="1"> &alpha;</label><br>
-      <label><input type="radio" name="item" value="2"> 1-&alpha;</label><br>
-      <label><input type="radio" name="item" value="3"> &beta;</label><br>
-      <label><input type="radio" name="item" value="4"> 1-&beta;</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(7,11,Q11)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ11">
-    </form>
-  
-    <h6 class="textL30M30">7.12 가설검정의 운영특성함수란? </h6>
-    <form name="Q12">
-      <label><input type="radio" name="item" value="1"> &alpha;</label><br>
-      <label><input type="radio" name="item" value="2"> 1-&alpha;</label><br>
-      <label><input type="radio" name="item" value="3"> &beta;</label><br>
-      <label><input type="radio" name="item" value="4"> 1-&beta;</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(7,12,Q12)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ12">
-    </form>
-  </div>
-
-  <script>
-    for (var i=1; i < ans[7][0]+1; i++) document.getElementById(ansID[i]).disabled = true;
-  </script>
+  <h3 id="0705">7.5 가설검정의 응용: 품질관리 표본검사</h3>
+  <p>
+<!---
+  <h6>
+      <a href="./pdf/0705.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://youtu.be/3SDaVzGqPL0" target="_blank"><u>[video]</u></a>
+  </h6>
+-->
   <p>
 
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(166)"> &#10094;&#10094; &nbsp;&nbsp;<b>6장</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(168)"><b>8장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
+  <div class="mainTable">
+       이 장에서 연구한 가설검정이 품질관리에 어떻게 사용되는지 살펴보자. <b>표본검사</b> (sampling inspection)는 한 로트가 
+       만족할만한 품질인지 알아보고 싶은 경우에 제품 전체를 검사하기가 불가능 하거나 힘들어 일부 표본만 추출하여 전체 제품에 대한 품질을 
+       예측하는 것이다. 표본검사에서 얻어지는 결론은 로트가 ‘합격이냐’ ‘불합격이냐’를 판정하는 것이다.
+    <p>
+       한 로트에서 추출된 각 제품의 품질특성값을 무게나 길이 등과 같이 계량형으로 측정할 수 있을 때 이를 <b>계량형 표본검사</b>
+       (sampling inspection by variables)라 한다. 이 검사는 로트로부터 추출한 표본에 대한 품질특성값의 평균을 토대로 로트의 
+       합격 불합격 판정을 하는데 가설검정과 유사하다. 이 표본검사는 로트의 제품들에 대한 품질특성값의 표준편차 \(\sigma\)가 알려져 
+       있는 경우와, \(\sigma\)가 알려져 있지 않은 경우의 두 가지로 나눌 수 있다.       
+    <p>
+  </div>
+  <p>
+
+  <h4>7.5.1 계량형 푭본검사 : 로트의 표준편차 \(\sigma\)를 아는 경우 </h4>
+     일반적으로 계량형 표본검사의 이론은 검사의 대상이 되는 제품의 품질특성값이 정규분포를 하고 표준편차 \(\sigma\)를 아는 것으로 가정한다.
+     \(\sigma\)를 안다는 것은 현실적으로 불가능하나 \(\sigma\)에 대한 충분한 사전지식을 갖고 있거나 비교적 정확한 추정이 가능한 경우를
+     의미한다. 
+  <p>
+     계량형 표본검사에서는 제품의 불량여부를 결정하기 위한 품질특성값의 <b>규격하한값</b> (minimum specification limit) \(L\)이 
+     존재하는 경우와, <b>규격상한값</b> (maximum specification limit) \(R\)가 존재하는 경우, \(L\) 또는 과 \(R\) 
+     모두 존재하는 경우가 있다. 아래의 예를 통하여 \(L\)를 아는 경우의 계량형 표본검사를 알아보자.
+
+    <!------------------------------------------------------------------------------------------------->
+    <div class="mainTableGrey">
+      <b>예 7.7</b> (규격하한값이 있는 경우) 
+      <br>
+         한 철강회사에서 생산되는 철사줄의 장력이 과거의 경험으로 정규분포를 하고 분산이 30, 즉 표준편차가 　\(\sigma = \sqrt{30} = 5.48 \)
+         이라고 하자. 한 롤(roll)의 철사줄 장력이 87이하이면 원하는 작업에 쓰일 수 없어 불량품으로 판정한다. 즉 규격하한값이 \(L\) = 87 이다.
+         철사줄 롤이 많이 들어있는 한 로트 전체를 모두 검사하는 것은 제품이 다 파괴되어 불가능하다. 그래서 표본을 추출해 한 로트에 들어있는
+         롤의 불량률이 1%라고 추정되면 그 로트를 합격시키고, 불량률이 5%라고 추정되면 불합격시킨다. 
+      <br>
+         표본의 크기와 판정기준을 어떻게 하여야 되겠는가? 단 판정기준은 좋은 로트를 불합격으로 하는 생산자 위험 확률을 \(\alpha\) = 1%로,
+         나쁜 로트를 합격으로 판정하는 소비자 위험 확률 \(\beta\) = 10% 로 하라.
+      <p>
+      <b>풀이</b>
+      <p>
+         품질특성값을 확률변수 \(X\)라 하자. 규격하한값이 \(L\) = 87 이므로 분산 \(\sigma^2\)이 30 (표준편차 5.4772) 일 때 정규분포 이론에서 
+         87이하가 1%이내가 되기 위한 모평균의 값 \(\mu_0\) 를 구하기 위해서는  P(X < 87) = 0.01 을 \(Z\) 표준화하면
+      $$
+         P(Z < \frac {87 - \mu_0 } { \sqrt{30} } ) = 0.01
+      $$
+         이므로 표준정규분포표에 따르면  \(\frac {87 - \mu_0 } { \sqrt{30} } \) = -2.33 이 되어야 한다. 
+         그러므로 \(\mu_0 = 87 + 2.33 \sqrt{30} = 99.7684 \)가 합격되는 로트의 평균이다.   
+      <p>
+         유사한 방법으로 87이하가 5%이하가 되기 위한 모평균의 값 \(\mu_1\)를 구하기 위해서는 P(X < 87) = 0.05 을 \(Z\) 표준화하여
+      $$
+         P(Z < \frac {87 - \mu_1 } { \sqrt{30} } ) = 0.05
+      $$ 
+         이므로 \(\frac {87 - \mu_1 } { \sqrt{30} } \) =  –1.645가 되어야 한다. 그러므로 \(\mu_1\) = 96.0146 이 불합격되는
+         로트의 평균이다. 
+      <p>
+         따라서 로트에서 표본을 추출해 품질특성값을 측정하여 로트의 합격여부를 결정하는 문제는 두 모집단에 대한 가설
+      $$
+         H_0 : \mu = 99.7684 , H_1 : \mu = 96.0146
+      $$
+         중 하나를 선택하는 가설검정 문제와 같다. 여기서 주어진 1종오류(좋은 로트를 불합격으로 판정하는 것: 생산자 위험)의 확률 \(\alpha\)와
+         2종오류(나쁜 로트를 합격으로 판정하는 것; 소비자 위험)의 확률 \(\beta\)를 이용하여 표본의 크기와 선택기준을 정하게 된다(7.4절 
+         ‘\(\alpha\)와 \(\beta\)를 동시에 고려하는 가설검정’ 참조). 
+      <p>
+         이 가설검정은 5장의 표본평균의 분포를 근거로 한 것이다. 즉, 모집단이 평균이 99.7684, 분산이 30인 정규분포라면 크기가 \(n\)인 
+         표본평균의 분포는 \(N(99.7684, 30/n)\) 이고, 모집단이 평균이 96.0146, 분산이 30인 정규분포라면 표본평균의 분포는 
+         \(N(96.0146, 30/n)\) 이 된다. 따라서 선택기준은 이 표본평균의 분포에 의거하여 <그림 7.21>과 같이 좋은 로트를 불합격으로
+         하는 확률을 \(\alpha\) = 1%로, 나쁜 로트를 합격으로 판정하는 확률을 \(\beta\) = 10% 로 하는 표본의 크기와 기준값 \(C\)를
+         구하는 것이다.
+      <p>
+         \(\alpha\) = 1% 라는 것은 그림과 같이 정규분포 \(N(99.7684, 30/n)\) 에서 표본평균 \(\overline X\)가 \(C\)보다 
+         작을 확률, 즉 \(P(\overline X < C) = 0.01\)을 뜻하므로 표준화하면
+      $$
+         P(Z < \frac {C - 99.7684} {\sqrt { \frac{30}{n}} } ) = 0.01
+      $$
+         이다. 따라서 
+      $$
+         \frac {C - 99.7684} {\sqrt { \frac{30}{n}} } = -2.33
+      $$
+         이 되어야 한다. 비슷하게 \(\beta\) = 10% 라는 것은 그림과 같이 정규분포 \( N(96.0146, 30/n) \)에서 표본평균 \(\overline X\)가
+         \(C\)보다 클 확률, 즉 \(P(\overline X > C) = 0.10 \)을 뜻하므로 표준화하면
+      $$
+         P(Z > \frac {C - 96.0146} {\sqrt { \frac{30}{n}} } ) = 0.10
+      $$
+         이다. 따라서 
+      $$
+         \frac {C - 96.0146} {\sqrt { \frac{30}{n}} } = 1.28
+      $$
+         이 되어야 한다. 위의 두 식을 \(C\)와 \(n\)에 관한 연립방정식으로 풀면 표본의 크기는 \(n\) = 27.77이고, 
+         기준값은 \(C\)  = 97.3457 이 된다. 즉, 선택기준은 크기가 대략 28인 표본의 표본평균을 구하여
+      $$
+         \text {‘만일 표본평균이 } \overline X < 97.3457, \text {이면 로트는 불합격, 아니면 합격’}
+      $$
+      <!--- ************ html Testing for alpha and beta ******* ---->
+      <b>[<span data-msgid="Testing Hypothesis muAB">Testing Hypothesis : Population Mean &mu;</span></b>
+      <p>
+      <iframe class="example80" src="./example/070501.html"> </iframe>
+      <div class="figText">[그림 7.22] \(\alpha\)와 \(\beta\)를 이용하는 가섦검정의 \(C\)와 \(n\)을 결정</div>  
+      <p>
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <p>
+
+    <h4>7.5.2 계량형 푭본검사 : 로트의 표준편차 \(\sigma\)를 모르는 경우 </h4>
+        로트 품질특성값의 표준편차 \(\sigma\)를 모를 때는 \(\sigma\)의 추정치를 사용하는 것 이외는 본질적으로 \(\sigma\)를 
+        아는 경우와 동일한 표본검사 방법으로 진행된다. 표준편차를 모르는 경우 일반적으로 <b>미국 국방성 표준 계량형 표본검사표</b>
+        (Military Standard Sampling Procedures and Tables for Inspection by Variables: MIL-STD-414)를
+        사용하여 표본검사를 하는데 이 표는 품질특성값이 정규분포를 한다는 가정을 하고 있으며 다음과 같이 4편으로 되어있고 각각에 검사절차가 설명되어 있다.
+    <p>
+       A편 : 표본검사에 관한 일반사항 <br>
+       B편 : 로트의 표준편차 \(\sigma\)를 모르는 경우의 표본검사, 표준편차법 <br>
+       C편 : 로트의 표준편차 \(\sigma\)를 모르는 경우의 표본검사, 범위법 <br>
+       D편 : 로트의 표준편차 \(\sigma\)를 아는 경우의 표본검사
+    <p>
+       MIL-STD-414의 검사수준에는 제품의 가격이나 검사에 소요되는 시간에 따라  Ⅰ,Ⅱ,Ⅲ,Ⅳ,Ⅴ의 다섯 수준이 있는데 일반적인 검사수준은 Ⅳ이다. MIL-STD-414는 로트의 크기와 로트 전체의 품질합격수준 그리고 검사수준이 주어졌을 때, 추출하여야 할 표본의 크기와 로트가 합격되기 위한 표본의 최대허용 불량률 M을 지정해 준다. 
+    <p>
+       MIL-STD-414의 자세한 내용은 방대해서 이 책에서는 생략한다. 관심있는 사람은 참고문헌을 참조하기 바란다. 
+    <p>
+
+  <h3 id="0706">7.6  연습문제</h3>
+  <iframe class="exercise" src="./exercise/exercise07.html"></iframe>
 
 </div>
-    
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
-    <script>
-        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
-        
-        /* ajust the height when click the toc
-           the code is from https://github.com/twbs/bootstrap/issues/1768
-        */
-        var shiftWindow = function() { scrollBy(0, -50) };
-        window.addEventListener("hashchange", shiftWindow);
-        function load() { if (window.location.hash) shiftWindow(); }
-        
-        /*add Bootstrap styles to tables*/
-        var tables = document.getElementsByTagName("table");
-        for(var i = 0; i < tables.length; ++i){
-            tables[i].className += "table table-bordered table-hover";
-        }
-    </script>
-
 </body>
 </html>
 

@@ -10,12 +10,11 @@
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+  <link href="/estat/eStat/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="../../css/dashboard.css" rel="stylesheet">
+  <link href="/estat/eStat/css/dashboard.css" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -24,12 +23,22 @@
       <![endif]-->
        <style type="text/css">code{white-space: pre;}</style>
        <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
-       <script src="../../js/prism.js"></script>
-       <link rel="stylesheet" href="../../css/prism.css">
-       <script src="../../js/jquery.min.js"></script>    
+       <link rel="stylesheet" href="/estat/eStat/css/pandoc.css">
+       <link rel="stylesheet" href="/estat/eStat/css/prism.css">
+       <script src="/estat/eStat/lib/jquery/jquery.min.js"></script>   
+       <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="/estat/eStat/lib/convertSVG.js"></script>
+       <script src="/estat/eStat/js/prism.js"></script>
+       <script src="/estat/eStat/js/eBook.js"></script>
+       <script src="/estat/eStat/js/eStatU.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>
+       <script> setLanguage('ko'); </script>
        <script type="text/javascript" id="MathJax-script" async
 	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
        </script>
+
        <script>
 	 $(document).ready(function() {
   	     toc = $("#sidebar > ul > li > ul");
@@ -48,71 +57,64 @@
   		 $(sections[i]).replaceWith(li);
   	     }
 	 });
-	 </script>
-       <link rel="stylesheet" href="../../css/pandoc.css">
-       <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       </script>
+      
 </head>
+
 <body>
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <ul class="nav navbar-nav">
-    <li><a href="../../../eStat/index.html"  target="_blank">eStat</a></li>
-    <li><a href="../../../eStatU/index.html" target="_blank">eStatU</a></li>
-    <li><a href="../../Distribution/index.html" target="_blank">확률분포</a></li>
-  </ul>
-</nav>
-
+  
+<!-- begin of left sidebar -->
 <div class="container-fluid">
-  <div class="row">
-    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
-      <ul>
-	<li><a href=""></a>
-	  <ul>
-            <li><a href="index.html">차  례</a></li>
-            <li><a href="chapter01.html">1장 통계 데이터과학</a></li>
-            <li><a href="chapter02.html">2장 질적 데이터 시각화</a></li>
-            <li><a href="chapter03.html">3장 양적 데이터 시각화</a></li>
-            <li><a href="chapter04.html">4장 표/측도 데이터 정리</a></li>
-            <li><a href="chapter05.html">5장 확률, 확률분포함수</a></li>
-            <li><a href="chapter06.html">6장 표집분포와 추정</a></li>
-            <li><a href="chapter07.html">7장 한 모집단 모수 검정</a></li>
-            <li><a href="chapter08.html">8장 두 모집단 모수 검정</a></li>
-            <li><a href="chapter09.html">9장 여러 모평균의 검정</a></li>
-            <li><a href="chapter10.html">10장 비모수적 가설검정</a></li>
-            <li><a href="chapter11.html">11장 범주형 데이터 검정</a></li>
-            <li><a href="chapter12.html">12장 상관 및 회귀분석</a></li>
-            <li><a href="chapter13.html">13장 시계열분석</a></li>
-	  </ul>
-	</li>
-      </ul>
-    </div>
-  </div>
+<div class="row">
+<div id="sidebar" class="col-sm-2 col-md1 sidebar">
+  <ul>
+    <li> <a href="index.html"><b>차례</b> </a> </li>
+    <li> <a href="chapter01.html"> <span data-msgid="Chapter01"> </span></a> </li>
+    <li> <a href="chapter02.html"> <span data-msgid="Chapter02"> </span></a> </li>
+    <li> <a href="chapter03.html"> <span data-msgid="Chapter03"> </span></a> </li>
+    <li> <a href="chapter04.html"> <span data-msgid="Chapter04"> </span></a> </li>
+    <li> <a href="chapter05.html"> <span data-msgid="Chapter05"> </span></a> </li>
+    <li> <a href="chapter06.html"> <span data-msgid="Chapter06"> </span></a> </li>
+    <li> <a href="chapter07.html"> <span data-msgid="Chapter07"> </span></a> </li>
+    <li> <a href="chapter08.html"> <span data-msgid="Chapter08"> </span></a> </li>
+    <li> <a href="chapter09.html"> <span data-msgid="Chapter09"> </span></a> </li>
+    <li> <a href="chapter10.html"> <span data-msgid="Chapter10"> </span></a> </li>
+    <li> <a href="chapter11.html"> <span data-msgid="Chapter11"> </span></a> </li>
+    <li> <a href="chapter12.html"> <span data-msgid="Chapter12"> </span></a> </li>
+    <li> <a href="chapter13.html"> <span data-msgid="Chapter13"> </span></a> </li>
+	      <ul>
+                <li><a href="#1301">&nbsp; 13.1  시계열분석이란?</a></li>
+                <li><a href="#1302">&nbsp; 13.2  시계열의 평활</a></li>
+                <li><a href="#1303">&nbsp; 13.3  시계열의 변환</a></li>
+                <li><a href="#1304">&nbsp; 13.4  시계열예측: 회귀모형</a></li> 
+                <li><a href="#1305">&nbsp; 13.5  시계열예측: 지수평활모형</a></li> 
+                <li><a href="#1306">&nbsp; 13.6  시계열예측: 계절모형</a></li> 
+                <li><a href="#1307">&nbsp; 13.7  연습문제</a></li> 
+	      </ul>
+  </ul>
 </div>
+</div>
+</div>
+<!-- end of left sidebar -->
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
   <!--***********************************************************************-->
   <h1>13장 시계열분석</h1> 
+  <b>
+	      <ul>
+                <li><a href="#1301">&nbsp; 13.1  시계열분석이란?</a></li>
+                <li><a href="#1302">&nbsp; 13.2  시계열의 평활</a></li>
+                <li><a href="#1303">&nbsp; 13.3  시계열의 변환</a></li>
+                <li><a href="#1304">&nbsp; 13.4  시계열예측: 회귀모형</a></li> 
+                <li><a href="#1305">&nbsp; 13.5  시계열예측: 지수평활모형</a></li> 
+                <li><a href="#1306">&nbsp; 13.6  시계열예측: 계절모형</a></li> 
+                <li><a href="#1307">&nbsp; 13.7  연습문제</a></li> 
+	      </ul>
+                <a href="./pdf/chapter13.pdf" target="_blank">[13장 pdf]</a>
+  </b>
   <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(172)"> &#10094;&#10094; &nbsp;&nbsp;<b>12장</b></button>
-  <p>
-  <table>
-    <tr>
-      <td style="width:250px">
-        <h4>
-        <a href="#1301"><u>13.1  시계열분석이란?</u></a> <p>
-        <a href="#1302"><u>13.2  시계열의 평활</u></a> <p>
-        <a href="#1303"><u>13.3  시계열의 변환</u></a> <p>
-        <a href="#1304"><u>13.4  시계열예측: 회귀모형</u></a> <p>
-        <a href="#1305"><u>13.5  시계열예측: 지수평활모형</u></a> <p>
-        <a href="#1306"><u>13.6  시계열예측: 계절모형</u></a> <p>
-        <a href="chapter13.pdf" target="_blank"><u>[13장 pdf]</u></a>
-        </h4>
-      </td>
-      <td style="width:350px">
-        <p>이 장에서는 시간에 따라 관측되는 자료, 즉 시계열에 대해 공부한다.
+        이 장에서는 시간에 따라 관측되는 자료, 즉 시계열에 대해 공부한다.
         <p>
         --- 시계열분석이 무엇인지 살펴보고, 시계열모형의 종류를 구분<br>
         --- 시계열을 평활하는 방법<br>
@@ -123,9 +125,6 @@
         <p>
           에 대해 알아본다. 하지만 주로 기술(descriptive)방법과 간단한 모형에 역점을 두어 설명하고, 이론적인 모형인 
            Box-Jenkins의 모형 등에 대한 논의와, 추정이나 검정 부분은 다루지 않기로 한다.
-      </td>
-    </tr>
-  </table>
 <!--
   <h6>
       <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
@@ -145,8 +144,8 @@
       <p>
       <table style="width:300px"> 
         <tr> 
-          <th class="thGrey">연도</th>
-          <th class="thGrey">인구</th>
+          <th>연도</th>
+          <th>인구</th>
        </tr>
         <tr> 
            <td class="tdCenter">
@@ -201,22 +200,22 @@
       <table style="width:650px">
         <tr>
           <td>
-            <img class="imgFig600400" src="../FigureU/Fig1301.png">
-            <div class="figText">&lt;그림 13.1&gt;우리나라의 인구 시계열그림</div>
+            <img class="imgFig600400" src="./Figure/Fig1301.png">
+            <div class="figText">[그림 13.1] 우리나라의 인구 시계열그림</div>
           </td>
         </tr>
       </table>
       <p>
          우리가 자주 접하는 시계열로는 백화점이나 기업의 월별 매출액, 일별 종합주가지수, 연도별 농작물의 생산량, 연도별 수출 및 수입액에 대한 시계열, 연도별 국민소득 및 경제성장률 등 무수히 많이 있다.
       <p>
-         [표 13.2]는 최근 6년 동안의 미국의 장난감/게임 업계의 월별 매출액 전월대비 변화율이고 &lt;그림 13.2&gt;는 이에 대한 그림이다. 전월대비 변화율이어서 0을 기준으로 오르내리며 매년 11월과 12월에 많은 증가세를 보이는 계절성 자료임을 관찰할 수 있다. 하지만 2020년 5월은 다른 연도와 달리 211%나 되는 증가율을 보인 특이점이다. 시계열은 원자료를 변화율과 같은 시계열로 변환하면 자료의 특성을 더 잘 살펴볼 수 있다.
+         [표 13.2]는 최근 6년 동안의 미국의 장난감/게임 업계의 월별 매출액 전월대비 변화율이고 [그림 13.2] 는 이에 대한 그림이다. 전월대비 변화율이어서 0을 기준으로 오르내리며 매년 11월과 12월에 많은 증가세를 보이는 계절성 자료임을 관찰할 수 있다. 하지만 2020년 5월은 다른 연도와 달리 211%나 되는 증가율을 보인 특이점이다. 시계열은 원자료를 변화율과 같은 시계열로 변환하면 자료의 특성을 더 잘 살펴볼 수 있다.
       <p>
       <div class="textLeft">[표 13.2]  미국의 장난감/게임 산업의 전월대비 변화율(%)  (출처: 미국 통계청)</div>
       <p>
       <table style="width:300px"> 
         <tr> 
-          <th class="thGrey">연.월</th>
-          <th class="thGrey">백분율 변화</th>
+          <th>연.월</th>
+          <th>백분율 변화</th>
        </tr>
         <tr> 
            <td class="tdCenter">
@@ -373,8 +372,8 @@
       <table style="width:650px">
         <tr>
          <td>
-            <img class="imgFig600400" src="../FigureU/Fig1302.png">
-            <div class="figText">&lt;그림 13.2&gt;장난감/게임 산업의 전월대비 변화율(%) </div>
+            <img class="imgFig600400" src="./Figure/Fig1302.png">
+            <div class="figText">[그림 13.2] 장난감/게임 산업의 전월대비 변화율(%) </div>
           </td>
         </tr>
       </table>
@@ -387,12 +386,12 @@
          월별 강우량, 평균 기온, 아이스크림 판매량 등의 시계열이 계절 요인을 갖는다. 계절요인은 일반적으로 
          주기가 짧은 것이 보통인데, 계절에 의한 것이 아닌 주기가 장기간에 걸쳐서 나타날 때의 변동을 
          <b>순환</b>(cycle)요인이라고 한다. 이러한 순환요인의 관찰을 통하여 주기적인 경기의 활황 또는 불황 등을 
-         예측할 수 있다. &lt;그림 13.3&gt;은 미국 S&P500 지수를 1997년에서 2016까지 그린 것으로 6년 주기의 순환성을 관찰할 수 있다.      <p>
+         예측할 수 있다. [그림 13.3] 은 미국 S&P500 지수를 1997년에서 2016까지 그린 것으로 6년 주기의 순환성을 관찰할 수 있다.      <p>
       <table style="width:650px">
         <tr>
           <td>
-            <img class="imgFig600400" src="../FigureU/Fig1303.png">
-            <div class="figText">&lt;그림 13.3&gt; 미국 S&P500 지수 (1997- 2016년)</div>
+            <img class="imgFig600400" src="./Figure/Fig1303.png">
+            <div class="figText">[그림 13.3]  미국 S&P500 지수 (1997- 2016년)</div>
           </td>
         </tr>
       </table>
@@ -482,18 +481,24 @@
          시계열의 추세 등을 잘 관찰하여 시계열모형을 만들기 위해서는 원자료를 이용할 수도 있지만 자료를 평활(smoothing)하여 살펴보는 경우가 많다. 주식시세와 같은 시계열에서는 우발적인 우연요인이나 규칙을 찾기 어려운 순환요인으로 인해 일시적이거나 단기적인 변동이 커서 지속적인 경향을 찾아내기 힘든 경우가 많다. 이 경우 일시적이거나 단기적인 변동을 제거하여 전체적이고 장기적인 추세를 효과적으로 파악하기 위한 방법으로 이용되는 것이 평활법(smoothing techniques)인데 중심이동평균법(centered moving average method)과 지수평활법(exponential smoothing method)이 많이 이용된다. 
     </div>
     <p>
+        <!---   ************ html for Time Series - Smoothing ************  ---->
+        <b>[<span data-msgid="TimeSeries"></span> : <span data-msgid="Smoothing"></span>. <span data-msgid="Filtering"></span>]</b>
+        <p>
+        <iframe class="example90" src="./example/130201.html"> </iframe>
+        <div class="figText">[그림 13.4]  매년 종가기존 원유 가격의 평활</div>
+    <p>
     <h4>13.2.1 중심이동평균</h4>
     <p>
     <div class="mainTable">
-         [표 13.3]의 시계열은 1987년부터 2022년까지 매년 종가기준 셰계 원유가격이다. &lt;그림 13.4&gt;에서 보면 시계열의 단기적인 등락이 큼을 알 수 있는데 그 주된 원인으로는 두 차례에 걸친 석유파동으로 인한 가격폭등을 들 수 있을 것이다. 하지만 석유파동과 같은 원인은 지속적이지 않고 단기적이므로 우리가 만약 장기적인 휘발유 소비량의 추세에 관심이 있다면 이런 단기적인 원인에 의한 변동을 제거해서 보는 것이 더 효과적일 것이다.
+         [표 13.3]의 시계열은 1987년부터 2022년까지 매년 종가기준 셰계 원유가격이다. [그림 13.4] 에서 보면 시계열의 단기적인 등락이 큼을 알 수 있는데 그 주된 원인으로는 두 차례에 걸친 석유파동으로 인한 가격폭등을 들 수 있을 것이다. 하지만 석유파동과 같은 원인은 지속적이지 않고 단기적이므로 우리가 만약 장기적인 휘발유 소비량의 추세에 관심이 있다면 이런 단기적인 원인에 의한 변동을 제거해서 보는 것이 더 효과적일 것이다.
       <p>
       <div class="textLeft">[표 13.3]  세계의 원유가격(연말 종가기준, US$)과 5점-중심이동평균</div>
       <p>
       <table style="width:400px"> 
         <tr> 
-          <th class="thGrey" style="width:100px">연도r</th>
-          <th class="thGrey" style="width:150px">원유가격</th>
-          <th class="thGrey" style="width:150px">5점 중심이동평균</th>
+          <th style="width:100px">연도r</th>
+          <th style="width:150px">원유가격</th>
+          <th style="width:150px">5점 중심이동평균</th>
         </tr>
         <tr> 
            <td class="tdCenter">
@@ -613,19 +618,6 @@
          </tr>
       </table>
       <p>
-
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU330_TimeseriesSmoothing.svg" onclick="window.open(addrStr[134])">
-          </td>
-          <td>
-            <img class="imgFig600400" src="../FigureU/Fig1304.png">
-            <div class="figText">&lt;그림 13.4&gt; 매년 종가기존 원유 가격과 5점 이동평균</div>
-          </td>
-        </tr>
-      </table>
-      <p>
         시계열의 <b>N점 중심이동평균</b>(N-point centered moving average)이란 한 시점을 중심으로 개의 자료의 
         평균을 말한다. 예를 들어, 원유 가격 자료에서 어떤 특정 년도의 5점 중심이동평균의 값은 특정 년도 이전의 
         2년간의 자료, 해당 년도, 이후의 2년간 자료의 평균을 구한 값이다. 식으로 나타내 보면  \(M_t\) 를 시간
@@ -639,7 +631,7 @@
       <br>
         \( \qquad \qquad \quad =\, \frac {16.74 + 17.12 + 21.84 + 28.48 + 19.15} {5} \,=\, 20.6660 \)
       <p>
-         이와 같이 구한 모든 5점 중심이동평균의 값을 계산하면 [표 13.3]과 같고 그 그림이 &lt;그림 13.4&gt;와 같다. 
+         이와 같이 구한 모든 5점 중심이동평균의 값을 계산하면 [표 13.3]과 같고 그 그림이 [그림 13.4] 와 같다. 
          여기서 처음 2년과 마지막 2년의 중심이동평균은 구할 수 없다는 점에 유의하자. 이동평균의 그래프가 
          단기적인 변동이 제거됨으로써 본래 자료의 그래프보다 장기적인 추세를 파악하기에 더 좋음을 알 수 있다.
       <p>
@@ -714,7 +706,7 @@
       <p>
          \(\alpha\) = 0.3으로 지수평활된 모든 자료가 [표 13.4]에 주어져 있다. 지수평활법에서는 이동평균법과는 
          달리 양끝에서 손실된 자료가 생기지 않음을 알 수 있다. 원유 가격 시계열과 지수 평활된 자료를 
-         &lt;그림 13.5&gt;에 나타내었다. 평활된 자료는 본래 자료보다 그 변화가 심하지 않음을 알 수 있다. \(\alpha\)의 
+         [그림 13.5] 에 나타내었다. 평활된 자료는 본래 자료보다 그 변화가 심하지 않음을 알 수 있다. \(\alpha\)의 
          값을 작게 하면 현재보다는 과거의 자료에 보다 많은 비중을 두게 되어 현재의 자료의 급격한 변화에 덜 
          민감하게 된다. 반대로 \(\alpha\)의 값을 1에 가깝게 할수록, 즉, 현재의 자료에 보다 많은 비중을 두게 
          될수록 평활된 자료는 본래의 자료와 닮게 되므로 평활의 효과가 없어지게 된다. 
@@ -723,9 +715,9 @@
       <p>
       <table style="width:400px"> 
         <tr> 
-          <th class="thGrey" style="width:100px">연도</th>
-          <th class="thGrey" style="width:150px">원유가격</th>
-          <th class="thGrey" style="width:150px">지수평활<br>&alpha;=0.3</th>
+          <th style="width:100px">연도</th>
+          <th style="width:150px">원유가격</th>
+          <th style="width:150px">지수평활<br>&alpha;=0.3</th>
         </tr>
         <tr> 
            <td class="tdCenter">
@@ -845,17 +837,8 @@
          </tr>
       </table>
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU330_TimeseriesSmoothing.svg" onclick="window.open(addrStr[134])">
-          </td>
-          <td>
-            <img class="imgFig600400" src="../FigureU/Fig1305.png">
-            <div class="figText">&lt;그림 13.5&gt; 매년 종가기존 원유 가격과 &alpha;=0.3 지수평활 </div>
-          </td>
-        </tr>
-      </table>
+            <img class="imgFig600400" src="./Figure/Fig1305.png">
+            <div class="figText">[그림 13.5]  매년 종가기존 원유 가격과 &alpha;=0.3 지수평활 </div>
     </div>
   <p>
   <h4>13.2.3 중심이동중앙값(필터링)</h4>
@@ -872,7 +855,7 @@
         \(\qquad MovingMedian_{1989} \,=\, median \{ Y_{1987} , Y_{1988} ,Y_{1989} , Y_{1990} , Y_{1991} \} \)
         \(\qquad \qquad \qquad \qquad \qquad \;\;=\, median \{16.74, 17.12 , 21.84 , 28.48,19.15 \}  \,=\, 19.15 \)
       <p>
-         이와 같이 구한 모든 5점 중심이동중앙값과 그 그래프를 [표 13.5]과 &lt;그림 13.6&gt; 에 나타내었다. 여기서 
+         이와 같이 구한 모든 5점 중심이동중앙값과 그 그래프를 [표 13.5]과 [그림 13.6]  에 나타내었다. 여기서 
          처음 2년과 마지막 2년의 중심이동중앙값은 구할 수 없다는 점에 유의하자. 중심이동중앙값은 이상점을 
          제거(필터링)하기 때문에 본래 자료보다 많이 평활하게 된다. 
       <p>
@@ -880,9 +863,9 @@
       <p>
       <table style="width:400px"> 
         <tr> 
-          <th class="thGrey" style="width:100px">연도</th>
-          <th class="thGrey" style="width:150px">원유가격</th>
-          <th class="thGrey" style="width:150px">5점 중심이동중앙값</th>
+          <th style="width:100px">연도</th>
+          <th style="width:150px">원유가격</th>
+          <th style="width:150px">5점 중심이동중앙값</th>
         </tr>
         <tr> 
            <td class="tdCenter">
@@ -1002,17 +985,8 @@
          </tr>
       </table>
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU330_TimeseriesSmoothing.svg" onclick="window.open(addrStr[134])">
-          </td>
-          <td>
-            <img class="imgFig600400" src="../FigureU/Fig1306.png">
-            <div class="figText">&lt;그림 13.6&gt;  매년 종가기존 원유 가격과 5점 중심이동중앙값</div>
-          </td>
-        </tr>
-      </table>
+            <img class="imgFig600400" src="./Figure/Fig1306.png">
+            <div class="figText">[그림 13.6]   매년 종가기존 원유 가격과 5점 중심이동중앙값</div>
       <p>
          N의 값이 짝수인 경우에는 기준 년도 양 쪽으로 같은 수의 자료를 갖는 중심 이동중앙값을  구할 수 없는 
          어려움이 있다. 가령 1987년부터 1990년까지의 4점 이동중앙값의 중심은 1988년과 1989년 사이에 있다. 
@@ -1033,6 +1007,12 @@
        시계열은 직접 그래프를 그려 살펴볼 수도 있지만 여러 가지 특징을 살펴보기 위해 증감백분율 변화를 살피기도 하고 기준시점 대비 백분율인 지수를 구하기도 한다. 또한 직전 자료와의 관련성을 살펴보기 위해 시차를 두고 비교하기도 하고 차분을 이용하여 수평형 자료로 변환하기도 한다. 시계열이 시간에 따라 분산이 커지면 로그나 제곱근, 박스-콕스 변환 등을 이용하여 시계열모형을 적용하기 좋은 형태로 변환하기도 한다.    
    </div>
    <p>
+      <!---   ************ html for Time Series - Transformation ************  ---->
+      <b>[<span data-msgid="TimeSeries"></span> : <span data-msgid="Transformation"></span>]</b>
+      <p>
+         <iframe class="example" src="./example/130301.html"> </iframe>
+      <p>
+
    <h4>13.3.1 백분율</h4>
    <p>
     <div class="mainTable">
@@ -1050,9 +1030,9 @@
       <p>
       <table style="width:400px"> 
         <tr> 
-          <th class="thGrey" style="width:100px">연도</th>
-          <th class="thGrey" style="width:150px">주택수</th>
-          <th class="thGrey" style="width:150px">% 변화율</th>
+          <th style="width:100px">연도</th>
+          <th style="width:150px">주택수</th>
+          <th style="width:150px">% 변화율</th>
         </tr>
         <tr> 
            <td class="tdCenter">
@@ -1097,18 +1077,8 @@
         </tr>
       </table>
       <p>
-
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU340_TimeseriesTransformation.svg" onclick="window.open(addrStr[135])">
-          </td>
-          <td>
-            <img class="imgFig600400" src="../FigureU/Fig1307.png">
-            <div class="figText">&lt;그림 13.7&gt; 우리나라 주택수의 증감백분율 변화</div>
-          </td>
-        </tr>
-      </table>
+            <img class="imgFig600400" src="./Figure/Fig1307.png">
+            <div class="figText">[그림 13.7]  우리나라 주택수의 증감백분율 변화</div>
       <p>
 
     </div>
@@ -1135,9 +1105,9 @@
       <p>
       <table style="width:400px"> 
         <tr> 
-          <th class="thGrey" style="width:100px">연도</th>
-          <th class="thGrey" style="width:150px">주택수</th>
-          <th class="thGrey" style="width:150px">단순지수<br>기준시: 2010</th>
+          <th style="width:100px">연도</th>
+          <th style="width:150px">주택수</th>
+          <th style="width:150px">단순지수<br>기준시: 2010</th>
         </tr>
         <tr> 
            <td class="tdCenter">
@@ -1182,18 +1152,10 @@
         </tr>
       </table>
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU340_TimeseriesTransformation.svg" onclick="window.open(addrStr[135])">
-          </td>
-          <td>
-            <img class="imgFig600400" src="../FigureU/Fig1308.png">
-            <div class="figText">&lt;그림 13.8&gt; 우리나라 주택수의 단순지수</div>
-          </td>
-        </tr>
-      </table>
-     </div>
+            <img class="imgFig600400" src="./Figure/Fig1308.png">
+            <div class="figText">[그림 13.8]  우리나라 주택수의 단순지수</div>
+      <p>
+  </div>
   <p>
   <h4>다. 복합지수</h4>
   <p>
@@ -1222,11 +1184,11 @@
       <p>
       <table style="width:660px"> 
         <tr> 
-          <th class="thGrey" style="width:60px"><br>월</th>
-          <th class="thGrey" style="width:150px">구리<br>가격 &nbsp;&nbsp;   생산량</th>
-          <th class="thGrey" style="width:150px">철  <br>가격 &nbsp;&nbsp;   생산량</th>
-          <th class="thGrey" style="width:150px">납  <br>가격 &nbsp;&nbsp;   생산량</th>
-          <th class="thGrey" style="width:150px"><br>라스페이레스    파세</th>
+          <th style="width:60px"><br>월</th>
+          <th style="width:150px">구리<br>가격 &nbsp;&nbsp;   생산량</th>
+          <th style="width:150px">철  <br>가격 &nbsp;&nbsp;   생산량</th>
+          <th style="width:150px">납  <br>가격 &nbsp;&nbsp;   생산량</th>
+          <th style="width:150px"><br>라스페이레스    파세</th>
         </tr>
         <tr> 
            <td class="tdCenter">
@@ -1338,13 +1300,13 @@
       <p>
       <table style="width:660px"> 
         <tr> 
-          <th class="thGrey" style="width:60px">t</th>
-          <th class="thGrey" style="width:100px">연월</th>
-          <th class="thGrey" style="width:100px">물가지수</th>
-          <th class="thGrey" style="width:100px">시차 1</th>
-          <th class="thGrey" style="width:100px">시차 2</th>
-          <th class="thGrey" style="width:100px"> ... </th>
-          <th class="thGrey" style="width:100px">시차 12</th>
+          <th style="width:60px">t</th>
+          <th style="width:100px">연월</th>
+          <th style="width:100px">물가지수</th>
+          <th style="width:100px">시차 1</th>
+          <th style="width:100px">시차 2</th>
+          <th style="width:100px"> ... </th>
+          <th style="width:100px">시차 12</th>
         </tr>
         <tr> 
            <td class="tdCenter">
@@ -1537,8 +1499,8 @@
       <p>
       <table style="width:300px"> 
         <tr> 
-          <th class="thGrey">시차 </th>
-          <th class="thGrey">자기상관함수</th>
+          <th>시차 </th>
+          <th>자기상관함수</th>
         </tr>
         <tr> 
            <td class="tdCenter">
@@ -1570,17 +1532,9 @@
         </tr>
       </table>
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU340_TimeseriesTransformation.svg" onclick="window.open(addrStr[135])">
-          </td>
-          <td>
-            <img class="imgFig600400" src="../FigureU/Fig1309.png">
-            <div class="figText">&lt;그림 13.9&gt; 시차별 자기상관함수 그래프</div>
-          </td>
-        </tr>
-      </table>
+            <img class="imgFig600400" src="./Figure/Fig1309.png">
+            <div class="figText">[그림 13.9]  시차별 자기상관함수 그래프</div>
+      <p>
     </div>
     <p>
     <h6>나. 차분</h6>
@@ -1600,19 +1554,10 @@
          를 2차 차분(second-order difference)이라고 한다. 원자료가 이차곡선을 갖는 추세일 경우 2차 차분 
          시계열이 수평형 시계열이 된다. 
       <p>
-         [표 13.10]의 자료를 1차 차분하여 그림을 그리면 &lt;그림 13.10&gt;과 같다.
+         [표 13.10]의 자료를 1차 차분하여 그림을 그리면 [그림 13.10] 과 같다.
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU340_TimeseriesTransformation.svg" onclick="window.open(addrStr[135])">
-          </td>
-          <td>
-            <img class="imgFig600400" src="../FigureU/Fig1310.png">
-            <div class="figText">&lt;그림 13.10&gt; 소비자 물가지수를 1차 차분한 그래프</div>
-          </td>
-        </tr>
-      </table>
+            <img class="imgFig600400" src="./Figure/Fig1310.png">
+            <div class="figText">[그림 13.10]  소비자 물가지수를 1차 차분한 그래프</div>
       <p>
 
     </div>
@@ -1630,10 +1575,10 @@
          \( \qquad  \text{제곱함수}      \qquad \qquad W = Y^2      \) <br>
          \( \qquad  \text{박스-콕스변환} \quad \;\;\;  W = \frac {Y^p - 1 }{p}  \) 만일 p ≠ 0, log(Y) 만일 p = 0
       <p>
-         [표 13.11]는 어느 장남감 회사의 분기별 매출액이고 &lt;그림 13.11&gt;은 이 자료의 그림으로서 분기별  
+         [표 13.11]는 어느 장남감 회사의 분기별 매출액이고 [그림 13.11] 은 이 자료의 그림으로서 분기별  
          계절형 자료인데 시간이 갈수록 계절성은 있지만 매출이 증가하는 것을 볼 수 있다. 이와 같이 시간에 따라 
          분산성이 커지는 자료는 통계적 모형을 적용하기가 쉽지 않다. 이 경우 로그변환 \(W = log(Y)\)을 하면 
-         &lt;그림 13.11&gt;과 같이 시간이 증가할 때의 분산성을 줄일 수 있어 모형을 적용할 수 있다. 
+         [그림 13.11] 과 같이 시간이 증가할 때의 분산성을 줄일 수 있어 모형을 적용할 수 있다. 
          로그 변환된 자료로 모형을 적용하여 예측을 한 후에는 다시 지수변환  \(Y = exp(W)\)를 하여 원자료를 
          예측한다.
       <p>
@@ -1641,9 +1586,9 @@
       <p>
       <table style="width:300px"> 
         <tr> 
-          <th class="thGrey" style="width:60px">t</th>
-          <th class="thGrey" style="width:120px">연도</th>
-          <th class="thGrey" style="width:120px">매출액</th>
+          <th style="width:60px">t</th>
+          <th style="width:120px">연도</th>
+          <th style="width:120px">매출액</th>
         </tr>
         <tr> 
            <td class="tdCenter">
@@ -1715,17 +1660,8 @@
          </tr>
       </table>
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU340_TimeseriesTransformation.svg" onclick="window.open(addrStr[135])">
-          </td>
-          <td>
-            <img class="imgFig600400" src="../FigureU/Fig1311.png">
-            <div class="figText">&lt;그림 13.11&gt; 한 장남감 회사의 매출액과 로그변환</div>
-          </td>
-        </tr>
-      </table>
+            <img class="imgFig600400" src="./Figure/Fig1311.png">
+            <div class="figText">[그림 13.11]  한 장남감 회사의 매출액과 로그변환</div>
       <p>
          제곱근 변환은 로그변환과 유사한 목적으로 사용되고 제곱 변환은 시간이 갈수록 분산성이 작아질 때 사용할 수 있다. 박스-콕스 변환은 일반적인 변환이다.
     </div>
@@ -1763,10 +1699,10 @@
         12장에서 설명하였듯이 표준오차나 결정계수는 적합성 여부에 대한 절대적인 기준을 정하기가 힘들기 때문에 
         선형 추세모형의 적합성 여부는 추세 모수 \(\beta_1\)이 0 인지 아닌지에 대한 가설 검정을 이용한다. 
      <p>
-        \( \qquad \text{가설: }  \qquad \qquad \,\, H_0 : \beta_1 = 0, H_1: \beta_1 \ne 0\) <br>
-        \( \qquad \text{검정통계량:} \qquad t_{obs} = \frac {{\hat \beta}_1 } { SE ({{\hat \beta}_1 }) } \) , 
-             여기서  \(\;\; SE( \hat{ \beta_1} ) \,=\, \frac{ s} { \sqrt { \sum_{i=1}^ n (i - \overline t  )^2 } }     \) <br>
-        \( \qquad \text{기각역:} \qquad \qquad If \,\; |t_{obs}| \,>\, t_{n-2,\alpha/2}, \,\, H_0 기각, \;\;    \) 유의수준 \(\alpha\) <br>
+        \(\small  \qquad \text{가설: }  \qquad \qquad \,\, H_0 : \beta_1 = 0, H_1: \beta_1 \ne 0\) <br>
+        \(\small  \qquad \text{검정통계량:} \qquad t_{obs} = \frac {{\hat \beta}_1 } { SE ({{\hat \beta}_1 }) } \) , 
+             여기서  \(\small \;\; SE( \hat{ \beta_1} ) \,=\, \frac{ s} { \sqrt { \sum_{i=1}^ n (i - \overline t  )^2 } }     \) <br>
+        \(\small  \qquad \text{기각역:} \qquad \qquad If \,\; |t_{obs}| \,>\, t_{n-2,\alpha/2}, \,\, H_0 기각, \;\;    \) 유의수준 \(\alpha\) <br>
      <p>
         만일 귀무가설  \(H_0\)가 기각되지 못하면 모형은 타당하다고 볼 수 없다. 
      <p>
@@ -1781,7 +1717,7 @@
         \({\hat Y}_{t_0} \,=\, {\hat \beta}_0  \,+\, {\hat \beta}_1 \cdot t_0 \)는 시점  \(t_0\)에서 확률변수
         \({\hat Y}_{t_0}\)의 평균에 대한 점추정으로 해석할 수 있고 이때 \(Y_{t_0}\)의 평균에 대한 신뢰구간은 
         다음과 같다.
-     $$
+     $$\small 
         {\hat Y}_{t_0}  \,±\, t_{n-2,\alpha/2} \cdot  SE ({\hat Y}_{t_0}  ) \;\;  여기서 \;\, SE ( {\hat Y}_{t_0} )  \,=\, s \cdot \sqrt {  \frac{1}{n} + \frac {(t_0 - \overline t )^2} { \sum_{i=1}^n (i - \overline t )^2 } }   
      $$
         추세가 2차식, 3차식 또는 그 이상의 다항식 형태일 경우 다음과 같은 다중선형회귀모형을 가정할 수 있다.
@@ -1815,8 +1751,8 @@
       <div class="textLeft">[표 13.12] 대한민국 GDP</div>
       <table style="width:300px"> 
         <tr> 
-          <th class="thGrey" style="width:150px">연도</th>
-          <th class="thGrey" style="width:150px">GDP (십억 $)</th>
+          <th style="width:150px">연도</th>
+          <th style="width:150px">GDP (십억 $)</th>
         </tr>
         <tr> 
            <td class="tdCenter">
@@ -1887,17 +1823,12 @@
       </table>
 
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU350_TimeseriesRegression.svg" onclick="window.open(addrStr[136])">
-          </td>
-          <td>
-            <img class="imgFig600400" src="../FigureU/Fig1312.png">
-            <div class="figText">&lt;그림 13.12&gt; 대한민국 GDP와 세 회귀모형</div>
-          </td>
-        </tr>
-      </table>
+      <!---   ************ html for Time Series - Regression Model ************  ---->
+      <b>[<span data-msgid="TimeSeries"></span> <span data-msgid="Forecasting"></span> : <span data-msgid="RegressionModel"></span>]</b>
+      <p>
+         <iframe class="example" src="./example/130401.html"> </iframe>
+         <div class="figText">[그림 13.12]  대한민국 GDP의 회귀모형</div>
+      <p>
     </div>
 
   <p>
@@ -1907,6 +1838,11 @@
         시계열이 추세 경향으로 움직일 때는 회귀모형으로 미래를 잘 예측할 수 있다. 그러나 시간별, 일별 등으로 역동적으로 움직이는 시계열을 예측하기는 적절하지 못할 수 있다. 이 경우 이동평균모형이나 지수평활모형을 이용할 수 있다. 시계열이 정상형인 경우와 선형추세인 경우로 나누어 설명한다.
     </div>
     <p>
+      <!---   ************ html for Time Series - Smoothing ************  ---->
+      <b>[<span data-msgid="TimeSeries"></span> : <span data-msgid="EWMA"></span>]</b>
+      <p>
+         <iframe class="example90" src="./example/130501.html"> </iframe>
+      <p>
     <h4>13.5.1 정상형 시게열</h4>
     <p>
     <div class="mainTable">
@@ -1960,7 +1896,7 @@
          \(\qquad M_{T} \;±\; 1.96 \sqrt{ \frac{MSE} {N} } \)  <br>	
       <p>
          한 가구회사의 최근 2년 동안의 월별 매출액이 [표 13.13]와 같고 6점 이동평균을 구하여 한 시점 후를 예측한 후 
-         원자료와 예측값과의 잔차를 구하였다. 이에 대한 시계열 그림이 &lt;그림 13.13&gt;과 같다. 이 시계열은 대략 
+         원자료와 예측값과의 잔차를 구하였다. 이에 대한 시계열 그림이 [그림 13.13] 과 같다. 이 시계열은 대략 
          95를 기준으로 상․하로 변동하고 있는데 이와 같은 시계열을 정상형 시계열이라 한다.
       <p>
          \(N\) = 6인 경우 처음 5개 시점에 대한 이동평균은 구할 수 없다. 시점 6에서의 이동평균은
@@ -1986,11 +1922,11 @@
       <p>
       <table style="width:660px"> 
         <tr> 
-          <th class="thGrey" style="width:60px"><br>\(t\)</th>
-          <th class="thGrey" style="width:150px">매출액(백만$)<br>\(Y_t\)</th>
-          <th class="thGrey" style="width:150px">6점 이동평균<br>\(M_t\)</th>
-          <th class="thGrey" style="width:150px">한 시점 예측<br>\({\hat Y}_t\)</th>
-          <th class="thGrey" style="width:150px">잔차<br>\(e_t = Y_t - {\hat Y}_t\)</th>
+          <th style="width:60px"><br>\(t\)</th>
+          <th style="width:150px">매출액(백만$)<br>\(Y_t\)</th>
+          <th style="width:150px">6점 이동평균<br>\(M_t\)</th>
+          <th style="width:150px">한 시점 예측<br>\({\hat Y}_t\)</th>
+          <th style="width:150px">잔차<br>\(e_t = Y_t - {\hat Y}_t\)</th>
         </tr>
         <tr> 
           <td class="tdCenter">
@@ -2126,17 +2062,9 @@
          <tr>
       </table>
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU360_TimeseriesHeuristic.svg" onclick="window.open(addrStr[137])">
-          </td>
-          <td>
-            <img class="imgFig600400" src="../FigureU/Fig1313.png">
-            <div class="figText">&lt;그림 13.13&gt; 가구회사의 월별 매출액과 6점 이동평균, 한 시점 예측 </div>
-          </td>
-        </tr>
-      </table>
+            <img class="imgFig600400" src="./Figure/Fig1313.png">
+            <div class="figText">[그림 13.13]  가구회사의 월별 매출액과 6점 이동평균, 한 시점 예측 </div>
+      <p>
     </div>
     <p>
       <h6>※ 초기 시점의 이동평균</h6>
@@ -2232,18 +2160,18 @@
          \(\qquad   98.66 \;±\; 1.96 \; \sqrt { \frac{0.1} {2-0.1} 269.72  }        \)<br>
          \(\qquad   [65.27, 132.05]      \)<br>
       <p> 
-         [표 13.14]는 이상의 식을 정리한 것이고 &lt;그림 13.14&gt;는 \(\alpha\) = 0.1 인 단순지수평활모형을 이용한 
+         [표 13.14]는 이상의 식을 정리한 것이고 [그림 13.14] 는 \(\alpha\) = 0.1 인 단순지수평활모형을 이용한 
          한 시점 후의 예측과 향후 3개월의 예측에 대한 그림이다. 
       <p>
       <div class="textLeft">[표 13.14] &alpha; = 0.1 인 단순지수평활과 한 시점 후의 예측, 잔차</div>
       <p>
       <table style="width:660px"> 
         <tr> 
-          <th class="thGrey" style="width:60px"><br>\(t\)</th>
-          <th class="thGrey" style="width:150px">매출액(백만$)<br>\(Y_t\)</th>
-          <th class="thGrey" style="width:150px">지수평활<br>\(S_t\)</th>
-          <th class="thGrey" style="width:150px">한 시점 예측<br>\({\hat Y}_t\)</th>
-          <th class="thGrey" style="width:150px">잔차<br>\(e_t = Y_t - {\hat Y}_t\)</th>
+          <th style="width:60px"><br>\(t\)</th>
+          <th style="width:150px">매출액(백만$)<br>\(Y_t\)</th>
+          <th style="width:150px">지수평활<br>\(S_t\)</th>
+          <th style="width:150px">한 시점 예측<br>\({\hat Y}_t\)</th>
+          <th style="width:150px">잔차<br>\(e_t = Y_t - {\hat Y}_t\)</th>
         </tr>
         <tr> 
           <td class="tdCenter">
@@ -2379,17 +2307,8 @@
          </tr>
       </table>
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU360_TimeseriesHeuristic.svg" onclick="window.open(addrStr[137])">
-          </td>
-          <td>
-            <img class="imgFig600400" src="../FigureU/Fig1314.png">
-            <div class="figText">&lt;그림 13.14&gt; α = 0.1  단순지수평활모형을 이용한 한 시점 후의 예측</div>
-          </td>
-        </tr>
-      </table>
+            <img class="imgFig600400" src="./Figure/Fig1314.png">
+            <div class="figText">[그림 13.14]  α = 0.1  단순지수평활모형을 이용한 한 시점 후의 예측</div>
       <p>
     <h6>※ 지수평활의 초기값</h6>
        시점 \(t=1\)에서의 초기 지수평활값 \(S_0\)는 구할 수 없으므로 대개 다음 세 가지 방법이 많이 이용된다. 
@@ -2424,20 +2343,11 @@
       $$
          즉, 선형추세 모형인 경우에 단순이동평균 \(M_t\)는 \(\frac{N-1}{2} \beta_1 \) 만큼의 편향(bias)되어 있음을 
          알 수 있다. 예를 들어 [표 13.10]의 선형추세를 갖는 소비자 물가지수에 대해 5점 단순이동평균 를 이용하여 한 시점
-         후를 예측하면 *lt;그림 13.15&gt;와 같다. \(M_t\)를 이용한 예측값이 원래 시계열의 추세보다 항상 떨어져 있음을 
+         후를 예측하면 *lt;그림 13.15] 와 같다. \(M_t\)를 이용한 예측값이 원래 시계열의 추세보다 항상 떨어져 있음을 
          알 수 있다.
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU360_TimeseriesHeuristic.svg" onclick="window.open(addrStr[137])">
-          </td>
-          <td>
-            <img class="imgFig600400" src="../FigureU/Fig1315.png">
-            <div class="figText">&lt;그림 13.15&gt; 선형추세를 갖는 소비자 물가지수에 대해 5점 단순이동평균 예측</div>
-          </td>
-        </tr>
-      </table>
+            <img class="imgFig600400" src="./Figure/Fig1315.png">
+            <div class="figText">[그림 13.15]  선형추세를 갖는 소비자 물가지수에 대해 5점 단순이동평균 예측</div>
       <p>
          선형추세인 경우 단순이동평균모형의 편향을 없애기 위한 한 가지 방법이 단순이동평균에 대해 다시 이동평균을 구하는
          <b>이중이동평균</b>(double moving average)이다. \(T\) 시점에서의 \(N\)점 이중이동평균 
@@ -2478,11 +2388,11 @@
       <p>
       <table style="width:660px"> 
         <tr> 
-          <th class="thGrey" style="width:60px"><br>\(t\)</th>
-          <th class="thGrey" style="width:150px">물가지수<br>\(Y_t\)</th>
-          <th class="thGrey" style="width:150px">5점 단순이동평균<br>\( M_t\)</th>
-          <th class="thGrey" style="width:150px">5점 이중이동평균<br>\( M_t ^(2)\)</th>
-          <th class="thGrey" style="width:150px">한 시점 예측\({\hat Y}_{(t-1)+1}\)</th>
+          <th style="width:60px"><br>\(t\)</th>
+          <th style="width:150px">물가지수<br>\(Y_t\)</th>
+          <th style="width:150px">5점 단순이동평균<br>\( M_t\)</th>
+          <th style="width:150px">5점 이중이동평균<br>\( M_t ^(2)\)</th>
+          <th style="width:150px">한 시점 예측\({\hat Y}_{(t-1)+1}\)</th>
         </tr>
         <tr> 
            <td class="tdCenter">
@@ -2617,17 +2527,9 @@
          </tr>
        </table>
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU360_TimeseriesHeuristic.svg" onclick="window.open(addrStr[137])">
-          </td>
-          <td>
-            <img class="imgFig600400" src="../FigureU/Fig1316.png">
-            <div class="figText">&lt;그림 13.16&gt; 이중 이동평균모형을 이용한 소비자물가지수의 예측</div>
-          </td>
-        </tr>
-      </table>
+            <img class="imgFig600400" src="./Figure/Fig1316.png">
+            <div class="figText">[그림 13.16]  이중 이동평균모형을 이용한 소비자물가지수의 예측</div>
+      <p>
     </div>
     <p>
 
@@ -2682,11 +2584,11 @@
       <p>
       <table style="width:660px"> 
         <tr> 
-          <th class="thGrey" style="width:60px"><br>\(t\)</th>
-          <th class="thGrey" style="width:150px">물가지수<br>\(Y_t\)</th>
-          <th class="thGrey" style="width:150px">수평계수<br>\( {\hat \beta}_0 (t)\)</th>
-          <th class="thGrey" style="width:150px">추세계수<br>\( {\hat \beta}_1 (t)\)</th>
-          <th class="thGrey" style="width:150px">한 시점 예측\({\hat Y}_{(t-1)+1}\)</th>
+          <th style="width:60px"><br>\(t\)</th>
+          <th style="width:150px">물가지수<br>\(Y_t\)</th>
+          <th style="width:150px">수평계수<br>\( {\hat \beta}_0 (t)\)</th>
+          <th style="width:150px">추세계수<br>\( {\hat \beta}_1 (t)\)</th>
+          <th style="width:150px">한 시점 예측\({\hat Y}_{(t-1)+1}\)</th>
         </tr>
         <tr> 
            <td class="tdCenter">
@@ -2826,19 +2728,11 @@
          </tr>
       </table>
       <p>
-         &lt;그림 13.17&gt;은 홀트 이중지수평활모형을 이용한 예측값을 보여주고 있다.
+         [그림 13.17] 은 홀트 이중지수평활모형을 이용한 예측값을 보여주고 있다.
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU360_TimeseriesHeuristic.svg" onclick="window.open(addrStr[137])">
-          </td>
-          <td>
-            <img class="imgFig600400" src="../FigureU/Fig1317.png">
-            <div class="figText">&lt;그림 13.17&gt;  홀트 이중지수평활모형을 이용한 물가지수의 예측</div>
-          </td>
-        </tr>
-      </table>
+            <img class="imgFig600400" src="./Figure/Fig1317.png">
+            <div class="figText">[그림 13.17]   홀트 이중지수평활모형을 이용한 물가지수의 예측</div>
+      <p>
     </div>
 
 
@@ -2888,13 +2782,13 @@
       <p>
      <table style="width:700px"> 
         <tr> 
-          <th class="thGrey" style="width:50px"></th>
-          <th class="thGrey" style="width:150px">①<br>연도-분기</th>
-          <th class="thGrey" style="width:100px">②<br>매출액<br></th>
-          <th class="thGrey" style="width:100px">③<br>4점 MA</th>
-          <th class="thGrey" style="width:100px">④<br>4점 중심MA</th>
-          <th class="thGrey" style="width:100px">⑤<br>계절비율</th>
-          <th class="thGrey" style="width:100px">⑥<br>비계절자료\(D_t\)</th>
+          <th style="width:50px"></th>
+          <th style="width:150px">①<br>연도-분기</th>
+          <th style="width:100px">②<br>매출액<br></th>
+          <th style="width:100px">③<br>4점 MA</th>
+          <th style="width:100px">④<br>4점 중심MA</th>
+          <th style="width:100px">⑤<br>계절비율</th>
+          <th style="width:100px">⑥<br>비계절자료\(D_t\)</th>
         </tr>
         <tr> 
            <td class="tdCenter">
@@ -3037,13 +2931,13 @@
       <p>
        <table style="width:720px"> 
         <tr> 
-          <th class="thGrey" style="width:120px">①<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 연도<br>분기</th>
-          <th class="thGrey" style="width:100px">②<br>2018</th>
-          <th class="thGrey" style="width:100px">③<br>2019</th>
-          <th class="thGrey" style="width:100px">④<br>2020</th>
-          <th class="thGrey" style="width:100px">⑤<br>2021</th>
-          <th class="thGrey" style="width:100px">⑥<br>절사평균</th>
-          <th class="thGrey" style="width:100px">⑦<br>계절지수<br>\(s_t\)</th>
+          <th style="width:120px">①<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 연도<br>분기</th>
+          <th style="width:100px">②<br>2018</th>
+          <th style="width:100px">③<br>2019</th>
+          <th style="width:100px">④<br>2020</th>
+          <th style="width:100px">⑤<br>2021</th>
+          <th style="width:100px">⑥<br>절사평균</th>
+          <th style="width:100px">⑦<br>계절지수<br>\(s_t\)</th>
         </tr>
         <tr> 
            <td class="tdCenter">
@@ -3114,34 +3008,14 @@
           & \text{시점 20 :} \quad{\hat Y}_{20} \;=\; (61.2000 \;+\; 1.6088 \times 20) \times 1.0378 \;=\; 93.853  \\
         \end{align}
       $$
-        &lt;그림 13.19&gt;는 계절 예측값의 그래프이다.
+        [그림 13.19] 는 계절 예측값의 그래프이다.
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU370_TimeseriesSeasonal.svg" onclick="window.open(addrStr[138])">
-          </td>
-          <td>
-            <img class="imgFig600400" src="../FigureU/Fig1318.png">
-            <div class="figText">&lt;그림 13.18&gt; 비계절시계열에 대한 매출액에 대한 선형 회귀모형예측 </div>
-          </td>
-        </tr>
-      </table>
+      <!---   ************ html for Time Series - Seasonal ************  ---->
+      <b>[<span data-msgid="TimeSeries"></span>  <span data-msgid="Forecasting"></span> : <span data-msgid="SeasonalModel"></span>]</b><br>
+      <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Y = (<span data-msgid="Trend"></span>) × (<span data-msgid="Seasonal"></span>) × (<span data-msgid="Irregular"></span>)</b>
       <p>
-
-      <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU370_TimeseriesSeasonal.svg" onclick="window.open(addrStr[138])">
-          </td>
-          <td>
-            <img class="imgFig600400" src="../FigureU/Fig1319.png">
-            <div class="figText">&lt;그림 13.19&gt;  한 회사의 분기별 매출액에 향후 1년에 대한 예측 </div>
-          </td>
-        </tr>
-      </table>
-     </div>
+         <iframe class="example" src="./example/130601.html"> </iframe>
+         <div class="figText">[그림 13.18]  비계절시계열에 대한 매출액에 대한 선형 회귀모형예측 </div>
 
   <p>
   <h4>13.6.2 홀트-윈터스 계절모형</h4>
@@ -3152,11 +3026,11 @@
       <p>
        <table style="width:720px"> 
         <tr> 
-          <th class="thGrey" style="width:120px"></th>
-          <th class="thGrey" style="width:100px">계절 1</th>
-          <th class="thGrey" style="width:100px">계절 2</th>
-          <th class="thGrey" style="width:100px">\(\cdots\)</th>
-          <th class="thGrey" style="width:100px">계절 \(L\)</th>
+          <th style="width:120px"></th>
+          <th style="width:100px">계절 1</th>
+          <th style="width:100px">계절 2</th>
+          <th style="width:100px">\(\cdots\)</th>
+          <th style="width:100px">계절 \(L\)</th>
          <tr> 
            <td class="tdCenter">
              주기 1<br>
@@ -3218,13 +3092,13 @@
       <p>
      <table style="width:700px"> 
         <tr> 
-          <th class="thGrey" style="width:50px">t</th>
-          <th class="thGrey" style="width:120px">연도 분기</th>
-          <th class="thGrey" style="width:100px">매출액<br>\(Y_t\)</th>
-          <th class="thGrey" style="width:100px">수평<br>\(l_t\)</th>
-          <th class="thGrey" style="width:100px">추세<br>\(b_t\)</th>
-          <th class="thGrey" style="width:100px">계절<br>\(s_t\)</th>
-          <th class="thGrey" style="width:100px">한 시점 예측<br>\(\hat Y _{(t-1)+1}\)</th>
+          <th style="width:50px">t</th>
+          <th style="width:120px">연도 분기</th>
+          <th style="width:100px">매출액<br>\(Y_t\)</th>
+          <th style="width:100px">수평<br>\(l_t\)</th>
+          <th style="width:100px">추세<br>\(b_t\)</th>
+          <th style="width:100px">계절<br>\(s_t\)</th>
+          <th style="width:100px">한 시점 예측<br>\(\hat Y _{(t-1)+1}\)</th>
         </tr>
         <tr> 
            <td class="tdCenter">
@@ -3384,7 +3258,7 @@
         </tr>
       </table>
       <p>
-        &lt;그림 13.20&gt;은 향후 1년의 홀트-윈터스 예측값으로 다음과 같이 계산된다.
+        [그림 13.19] 는 향후 1년의 홀트-윈터스 예측값으로 다음과 같이 계산된다.
       $$
         \begin{align}
           & \text{시점 17 :} \quad {\hat Y}_{16+1} \;=\;\; (l_{16} + 1 \times\;b_{16} ) \cdot s_{13} \;=\;(88.4618 + 1.8341)\times1.2074 \;=\;109.024   \\    
@@ -3394,444 +3268,20 @@
         \end{align}
       $$
       <p>
-      <table style="width:650px">
-        <tr>
-          <td>
-            <input class="qrBtn" type="image" src="../../QR/eStatU380_TimeseriesHoltWinter.svg" onclick="window.open(addrStr[139])">
-          </td>
-          <td>
-            <img class="imgFig600400" src="../FigureU/Fig1320.png">
-            <div class="figText">&lt;그림 13.20&gt; 한 회사의 분기별 매출액에 대한 홀트-윈터스 계절모형 예측 </div>
-          </td>
-        </tr>
-      </table>
+      <!---   ************ html for Time Series - Holt Winter Seasonal ************  ---->
+      <b>[<span data-msgid="TimeSeries"></span>  <span data-msgid="Forecasting"></span> : <span data-msgid="HoltWinter"></span>]</b><br>
+      <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Y(t+h) = (L(t) + h × b(t)) × S(t+h-m(k+1)) </b>
+      <p>
+         <iframe class="example120" src="./example/130602.html"> </iframe>
+         <div class="figText">[그림 13.19]  한 회사의 분기별 매출액에 대한 홀트-윈터스 계절모형 예측 </div>
+      <p>
     </div>
 
-  <div class="mainTablePink">
-    <h4> 연습문제 </h4>
-  <p>
-     다음 연습문제(13.1 – 13.4) 시계열 자료를 그래프로 나타내고 적절한 평활법과 변환을 적용한 후 적젛한 예측모형을 찾아 다음 연도를 예측하라.
-  <p>
-  <div class="mainTablePink">
-    <p>
-    <div class="textL30M30">
-      13.1 다음 표는 한 제조회사의 2001 - 2014년 동안 선적시에 손상된 품목들의 개수에 대한 자료이다. 
-    </div>
-      <p>
-      <table style="width:300px"> 
-        <tr> 
-          <th class="thGrey">연도</th>
-          <th class="thGrey">항목</th>
-        </tr>
-        <tr> 
-           <td class="tdCenter">
-             2001<br>
-             2002<br>
-             2003<br>
-             2004<br>
-             2005<br>
-             2006<br>
-             2007<br>
-             2008<br>
-             2009<br>
-             2010<br>
-             2011<br>
-             2012<br>
-             2013<br>
-             2014<br>
-           </td> 
-           <td class="tdCenter">
-             533<br>
-             373<br>
-             132<br>
-             555<br>
-             168<br>
-             281<br>
-             175<br>
-             291<br>
-             228<br>
-             204<br>
-             349<br>
-             234<br>
-             209<br>
-             176<br>
-           </td> 
-         </tr>
-      </table>
-      <p>
-
-    <div class="textL30M30">
-      13.2  다음은 한 소매점의 2001-2014년 사이의 판매량(단위:천달러)을 나타낸다.
-    </div>
-    <p>
-      <table style="width:300px"> 
-        <tr> 
-          <th class="thGrey">연도</th>
-          <th class="thGrey">매출</th>
-        </tr>
-        <tr> 
-           <td class="tdCenter">
-             2001<br>
-             2002<br>
-             2003<br>
-             2004<br>
-             2005<br>
-             2006<br>
-             2007<br>
-             2008<br>
-             2009<br>
-             2010<br>
-             2011<br>
-             2012<br>
-             2013<br>
-             2014<br>
-          </td> 
-           <td class="tdCenter">
-                815<br>
-              1276<br>
-              4752<br>
-              7535<br>
-              10122<br>
-              9642<br>
-              14100<br>
-              12529<br>
-              12824<br>
-              13777<br>
-              15379<br>
-              18705<br>
-              17632<br>
-              16571<br>
-          </td> 
-        </tr>
-      </table>
     <p> 
-
-    <div class="textL30M30">
-      13.3  다음 표는 한 회사의 2001-2014년 사이 보증기간 동안 수리된 품목들의 수를 보여주고 있다. 
-    </div>
-      <table style="width:300px"> 
-        <tr> 
-          <th class="thGrey">연도</th>
-          <th class="thGrey">항목</th>
-        </tr>
-        <tr> 
-           <td class="tdCenter">
-             2001<br>
-             2002<br>
-             2003<br>
-             2004<br>
-             2005<br>
-             2006<br>
-             2007<br>
-             2008<br>
-             2009<br>
-             2010<br>
-             2011<br>
-             2012<br>
-             2013<br>
-             2014<br>
-           </td> 
-           <td class="tdCenter">
-             749<br>
-             709<br>
-             700<br>
-             678<br>
-             611<br>
-             641<br>
-             631<br>
-             611<br>
-             600<br>
-             574<br>
-             559<br>
-             543<br>
-             534<br>
-             524<br>
-          </td> 
-        </tr>
-      </table>
-    <p>
-
-    <div class="textL30M30">
-      13.4  다음 표는 한 회사의 11년간의 연 판매액(단위:십억)을 보여주고 있다.
-    </div>
-      <p>
-            <table style="width:300px"> 
-        <tr> 
-          <th class="thGrey">연도</th>
-          <th class="thGrey">매출</th>
-        </tr>
-        <tr> 
-           <td class="tdCenter">
-             2012<br>
-             2013<br>
-             2014<br>
-             2015<br>
-             2016<br>
-             2017<br>
-             2018<br>
-             2019<br>
-             2020<br>
-             2021<br>
-             2022<br>
-          </td> 
-           <td class="tdCenter">
-             12<br>
-             14<br>
-             18<br>
-             20<br>
-             18<br>
-             16<br>
-             20<br>
-             22<br>
-             27<br>
-             24<br>
-             30<br>
-          </td> 
-        </tr>
-      </table>
-    <p>
-
-    <div class="textL30M30">
-      13.5  다음 자료는 각각 2000년과 2015년 사이의 은과 원유의 가격을 나타낸다. 은과 원유의 백분율 변화와 가격 지수를 구한 후 한 그림에 겹쳐서 그려 보라.
-    </div>
-      <p>
-       <table style="width:300px"> 
-        <tr> 
-          <th class="thGrey">연도</th>
-          <th class="thGrey">은<br>($/온스)</th>
-          <th class="thGrey">원유<br>($/배럴)</th>
-        </tr>
-       <tr> 
-           <td class="tdCenter">
-             2000<br>
-             2001<br>
-             2002<br>
-             2003<br>
-             2004<br>
-             2005<br>
-             2006<br>
-             2007<br>
-             2008<br>
-             2009<br>
-             2010<br>
-             2011<br>
-             2012<br>
-             2013<br>
-             2014<br>
-             2015<br>
-          </td> 
-           <td class="tdCenter">
-             1.771 <br>
-             1.546 <br>
-             1.684 <br>
-             2.558 <br>
-             4.708 <br>
-             4.419 <br>
-             4.353 <br>
-             4.620 <br>
-              5.440<br>
-             11.090<br>
-             20.633<br>
-             10.481<br>
-              7.950<br>
-             11.439<br>
-              8.141<br>
-              6.192<br>
-          </td> 
-           <td class="tdCenter">
-              1.80<br>
-              2.18<br>
-              2.48<br>
-              5.18<br>
-             10.46<br>
-             11.51<br>
-             11.51<br>
-             12.70<br>
-             15.40<br>
-             18.00<br>
-             28.00<br>
-             32.00<br>
-             34.00<br>
-             30.00<br>
-             26.00<br>
-             26.00<br>
-          </td> 
-        </tr>
-      </table>
-    <p> 
-
-    <div class="textL30M30">
-      13.6  다음 표는 한 스포츠 상품 판매사가 2017-2021년 동안 판매한 스키의 수를 나타내고 있다. <br>
-        1) 승법 계절모형으로 다음 연도의 예측을 하라. <br>
-        2) 홀트-윈터스 계절모형으로 다음 연도의 예측을 하라. <br>
-    </div>
-      <p>
-      <table style="width:300px"> 
-        <tr> 
-          <th class="thGrey">연.월</th>
-          <th class="thGrey">매출</th>
-        </tr>
-        <tr> 
-           <td class="tdCenter">
-             2017.1<br>
-             2017.2<br>
-             2017.3<br>
-             2017.4<br>
-             2017.5<br>
-             2017.6<br>
-             2017.7<br>
-             2017.8<br>
-             2017.9<br>
-             2017.10<br>
-             2017.11<br>
-             2017.12<br>
-             2018.1<br>
-             2018.2<br>
-             2018.3<br>
-             2018.4<br>
-             2018.5<br>
-             2018.6<br>
-             2018.7<br>
-             2018.8<br>
-             2018.9<br>
-             2018.10<br>
-             2018.11<br>
-             2018.12<br>
-             2019.1<br>
-             2019.2<br>
-             2019.3<br>
-             2019.4<br>
-             2019.5<br>
-             2019.6<br>
-             2019.7<br>
-             2019.8<br>
-             2019.9<br>
-             2019.10<br>
-             2019.11<br>
-             2019.12<br>
-             2020.1<br>
-             2020.2<br>
-             2020.3<br>
-             2020.4<br>
-             2020.5<br>
-             2020.6<br>
-             2020.7<br>
-             2020.8<br>
-             2020.9<br>
-             2020.10<br>
-             2020.11<br>
-             2020.12<br>
-             2021.1<br>
-             2021.2<br>
-             2021.3<br>
-             2021.4<br>
-             2021.5<br>
-             2021.6<br>
-             2021.7<br>
-             2021.8<br>
-             2021.9<br>
-             2021.10<br>
-             2021.11<br>
-             2021.12<br>
-          </td> 
-           <td class="tdCenter">
-               0<br>
-               2<br>
-              10<br>
-               4<br>
-              89<br>
-              33<br>
-              11<br>
-               4<br>
-              17<br>
-               5<br>
-              17<br>
-               0<br>
-               3<br>
-               0<br>
-               5<br>
-               4<br> 
-              14<br> 
-              23<br> 
-               7<br> 
-              11<br>
-              11<br> 
-               4<br>
-               4<br>
-               8<br>
-               9<br> 
-               2<br> 
-              46<br> 
-              11<br> 
-              14<br> 
-              30<br> 
-              22<br> 
-               4<br>
-               7<br> 
-               4<br>  
-               0<br>  
-               2<br>
-             13<br>  
-              4<br>  
-             56<br> 
-             30<br>
-             90<br>
-             20<br>
-             15<br>
-             11<br>
-              6<br>
-              5<br> 
-              1<br>
-              7<br>
-              4<br>
-             12<br>
-              6<br> 
-             10<br> 
-             17<br> 
-             32<br>
-             24<br>
-              9<br>
-             10<br>
-              5<br>
-             17<br>
-              1<br>
-          </td> 
-        </tr>
-      </table>
-    <p> 
+  <h3 id="1307">13.7  연습문제</h3>
+  <iframe class="exercise" src="./exercise/exercise13.html"></iframe>
       
-  </div>
-
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(172)"> &#10094;&#10094; &nbsp;&nbsp;<b>12장</b></button>
- 
 </div>
-    
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
-    <script>
-        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
-        
-        /* ajust the height when click the toc
-           the code is from https://github.com/twbs/bootstrap/issues/1768
-        */
-        var shiftWindow = function() { scrollBy(0, -50) };
-        window.addEventListener("hashchange", shiftWindow);
-        function load() { if (window.location.hash) shiftWindow(); }
-        
-        /*add Bootstrap styles to tables*/
-        var tables = document.getElementsByTagName("table");
-        for(var i = 0; i < tables.length; ++i){
-            tables[i].className += "table table-bordered table-hover";
-        }
-    </script>
-
 </body>
 </html>
 

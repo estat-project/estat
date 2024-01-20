@@ -26,8 +26,8 @@
       <li><a href="../eStatU/07StemLeafPlot.htm">&#8546; &nbsp; <span data-msgid="Stem & Leaf Plot">Stem and Leaf Plot</span></a></li>
       <li><a href="../eStatU/08Histogram.htm">&#8546; &nbsp; <span data-msgid="Histogram">Histogram</span> - <span data-msgid="Frequency Table"></span></a></li>
       <li><a href="../eStatU/09RelativeFrequency.htm">&#8546; &nbsp; <span data-msgid="Frequency Polygon"></span> - <span data-msgid="RelativeFreq">Relative Frequency</span> <span data-msgid="ComparisonGraph"></span></a></li>
-      <li><a href="10DotGraph.htm">&#8547; &nbsp; <span data-msgid="Dot Graph"></span> - <span data-msgid="MeanStd"></span></a></li>
-      <li><a href="30ScatterPlotH.htm">&#8547; &nbsp; <span data-msgid="Scatterplot"></span> - <span data-msgid="CorrelationAnalysis"></span></a></li>
+      <li><a href="../eStatU/10DotGraph.htm">&#8547; &nbsp; <span data-msgid="Dot Graph"></span> - <span data-msgid="MeanStd"></span></a></li>
+      <li><a href="../eStatU/30ScatterPlotH.htm">&#8547; &nbsp; <span data-msgid="Scatterplot"></span> - <span data-msgid="CorrelationAnalysis"></span></a></li>
       <li><a href="../eStatU/31CorrelationEng.htm">&#8547; &nbsp; <span data-msgid="Correlation Coefficient">Correlation Coefficient</span> - <span data-msgid="Simulation">Simulation</span></a></li>
       <li><a href="../eStatU/32RegressionEng.htm">&#8547; &nbsp; <span data-msgid="Correlation Coefficient"></span> - <span data-msgid="Regression Experiment">Regression Experiment</span></a></li>
     </ul>
@@ -48,6 +48,8 @@
 
   <script>
       localStorage['myKey'] = "../eStatM/index.html";
+      var lang = localStorage.getItem("lang");
+      setLanguage(lang);
       var svg = d3.select("#ScatterPlot2"); 
       svg.selectAll("*").remove();  // 전화면 제거
       var svgWidth    = 300;

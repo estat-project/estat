@@ -104,9 +104,15 @@ $message.ko = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "검정 &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "검정 &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "분산분석",
-    "Middle School Stat Education": "중등 통계교육",
-    "High School Stat Education": "고등 통계교육",
-    "University Stat Education": "대학 통계교육",
+    "MiddleSchool": "중학통계",
+    "HighSchool":   "고등통계",
+    "University":   "대학통계",
+    "eStatHeading": "eStat은 통계교육을 위한 무료 소프트웨어로서 웹기반의 다이나믹 데이터시각화와 그래프를 이용한 통계분석을 할 수 있습니다.",
+    "Support":      "후원",
+    "Donation":     "기부",
+    "Middle School Stat Education": "중학통계교육",
+    "High School Stat Education": "고등통계교육",
+    "University Stat Education": "대학통계교육",
     "Elem Stat Graph Example": "초중그래프 예",
     "Learning eStat w Example": "eStat ?",
     "Vertical": "수직형",
@@ -502,6 +508,7 @@ $message.ko = {
     "Distribution":      "확률분포",
 };  
 // Korean
+appStr[0][0] = "/estat/eStat/index.html";
 appStr[1][0] = "/estat/eStatH/index.html";
 appStr[2][0] = "/estat/eStatU/index.html";
 appStr[3][0] = "/estat/eStatE/index.html";
@@ -933,6 +940,12 @@ $message.en = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Testing Hypothesis &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Analysis of Variance",
+    "MiddleSchool": "Middle School",
+    "HighSchool":   "High School",
+    "University":   "University",
+    "eStatHeading": "eStat is a web-based freeware for better Statistics Education using dynamic data visualization and graphical statistical analysis.",
+    "Support":      "Support",
+    "Donation":     "Donation",
     "Middle School Stat Education": "Middle School Stat Education",
     "High School Stat Education": "High School Stat Education",
     "University Stat Education": "University Stat Education",
@@ -1316,31 +1329,32 @@ $message.en = {
     "RawSeries":         "Raw Series",
     "RBD":               "Randomized Block Design",
     "Latin":             "Latin Square Design",
-    "Chapter01":         "Chapter 1&nbsp; Statistics and Data Science",
-    "Chapter02":         "Chapter 2&nbsp; Visualization of Qualitative Data",
-    "Chapter03":         "Chapter 3&nbsp; Visualization of Quantitative Data",
-    "Chapter04":         "Chapter 4&nbsp; Data Summary with Tables and Measure",
-    "Chapter05":         "Chapter 5&nbsp; Probability Distribution",
-    "Chapter06":         "Chapter 6&nbsp; Sampling Distributions and Estimation",
-    "Chapter07":         "Chapter 7&nbsp; Testing Hypothesis for Single Population Parameters",
-    "Chapter08":         "Chapter 8&nbsp; Testing Hypothesis for Two Population Parameters",
-    "Chapter09":         "Chapter 9&nbsp; Testing Hypothesis for Several Population Means",
-    "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
-    "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
-    "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
-    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Chapter01":         " 1&nbsp; Statistics and Data Science",
+    "Chapter02":         " 2&nbsp; Visualization of Qualitative Data",
+    "Chapter03":         " 3&nbsp; Visualization of Quantitative Data",
+    "Chapter04":         " 4&nbsp; Data Summary with Tables and Measure",
+    "Chapter05":         " 5&nbsp; Probability Distribution",
+    "Chapter06":         " 6&nbsp; Sampling Distributions and Estimation",
+    "Chapter07":         " 7&nbsp; Testing Hypothesis for Single Population",
+    "Chapter08":         " 8&nbsp; Testing Hypothesis for Two Population",
+    "Chapter09":         " 9&nbsp; Testing Hypothesis for Several Population",
+    "Chapter10":         "10      Nonparametric Testing Hypothesis",
+    "Chapter11":         "11      Testing Hypothesis for Categorical Data",
+    "Chapter12":         "12      Correlation and Regression Analysis",
+    "Chapter13":         "13      Time Series Analysis",    "Distribution":      "확률분포",
     "Distribution":      "Distribution",
 
 };
 // English
-appStr[1][1] = "../eStatH/index.html";
-appStr[2][1] = "../eStatU/index.html";
-appStr[3][1] = "../eStatE/index.html";
-appStr[4][1] = "../eHelp/index_en.html";
+appStr[0][1] = "/estat/eStat/index.html";
+appStr[1][1] = "/estat/eStatH/index.html";
+appStr[2][1] = "/estat/eStatU/index.html";
+appStr[3][1] = "/estat/eStatE/index.html";
+appStr[4][1] = "/estat/eHelp/index_en.html";
 appStr[5][1] = "index.html";
 appStr[6][1] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][1] = "/estat/eLearning/en/eStatH/index.html";
-appStr[8][1] = "/estat/eLearning/en/index.html";
+appStr[8][1] = "/estat/eLearning/en/eStatU/index.html";
 appStr[11][1] = "Large Population Country";
 appStr[12][1] = "Life Expectancy (OECD)";
 appStr[13][1] = "Population Pyramid (Korea)";
@@ -1745,6 +1759,12 @@ $message.ja = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "母平均の仮説検定 (2集団) &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "母分散の仮説検定 (2集団) &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "分散分析",
+    "MiddleSchool": "中学統計",
+    "HighSchool":   "高校統計",
+    "University":   "大学統計",
+    "eStatHeading": "eStat は、動的なデータの視覚化とグラフィカルな統計分析を使用して、より良い統計教育を行うための Web ベースのフリーウェアです。",
+    "Support":      "サポート",
+    "Donation":     "寄付",
     "Middle School Stat Education": "中学統計教育",
     "High School Stat Education": "高校統計教育",
     "University Stat Education": "大学統計教育",
@@ -2144,14 +2164,15 @@ $message.ja = {
 
 };
 // Japanese
-appStr[1][2] = "../eStatH/index.html";
-appStr[2][2] = "../eStatU/index.html";
-appStr[3][2] = "../eStatE/index_en.html";
-appStr[4][2] = "../eHelp/index_en.html";
+appStr[0][2] = "/estat/eStat/index.html";
+appStr[1][2] = "/estat/eStatH/index.html";
+appStr[2][2] = "/estat/eStatU/index.html";
+appStr[3][2] = "/estat/eStatE/index_en.html";
+appStr[4][2] = "/estat/eHelp/index_en.html";
 appStr[5][2] = "index.html";
 appStr[6][2] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][2] = "/estat/eLearning/en/eStatH/index.html";
-appStr[8][2] = "/estat/eLearning/en/index.html";
+appStr[8][2] = "/estat/eLearning/en/eStatU/index.html";
 alertMsg[1][2] = "選択した変数の中に、欠損値が含まれています!";
 alertMsg[2][2] = "変数の番号をクリックし，シートから変数を選んでください. 変数が2つ以上の場合は，1番目の変数がグループ変数として指定されます. ";
 alertMsg[3][2] = "選択した列に欠損値があります.";
@@ -2521,6 +2542,12 @@ $message.zhTW = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "假設檢定 &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "假設檢定 &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "變異數分析",
+    "MiddleSchool": "中學統計",
+    "HighSchool":   "高級中學統計",
+    "University":   "大學統計",
+    "eStatHeading": "eStat 是一款基於網路的免費軟體，使用動態資料視覺化和圖形統計分析來實現更好的統計教育。",
+    "Support":      "支援",
+    "Donation":     "捐款",
     "Middle School Stat Education": "中學統計教育",
     "High School Stat Education": "高級中學統計教育",
     "University Stat Education": "大學統計教育",
@@ -2917,14 +2944,15 @@ $message.zhTW = {
 
 };
 // Chinese 
-appStr[1][3] = "../eStatH/index.html";
-appStr[2][3] = "../eStatU/index.html";
-appStr[3][3] = "../eStatE/index_en.html";
-appStr[4][3] = "../eHelp/index_en.html";
+appStr[0][3] = "/estat/eStat/index.html";
+appStr[1][3] = "/estat/eStatH/index.html";
+appStr[2][3] = "/estat/eStatU/index.html";
+appStr[3][3] = "/estat/eStatE/index_en.html";
+appStr[4][3] = "/estat/eHelp/index_en.html";
 appStr[5][3] = "index.html";
 appStr[6][3] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][3] = "/estat/eLearning/en/eStatH/index.html";
-appStr[8][3] = "/estat/eLearning/en/index.html";
+appStr[8][3] = "/estat/eLearning/en/eStatU/index.html";
 alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[2][3] = "逐一選取變數進行分析(選按欄位名稱)。若是同時選取兩變數，則第一個視為群組變數。";
 alertMsg[3][3] = "所選的變數有缺失值。";
@@ -3293,6 +3321,12 @@ $message.fr = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Test d'hypothèse &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Test d'hypothèse &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Analyse de la variance",
+    "MiddleSchool": "École intermédiaire",
+    "HighSchool":   "Lycée",
+    "University":   "Université",
+    "eStatHeading": "eStat est un logiciel gratuit basé sur le Web pour une meilleure éducation statistique utilisant la visualisation dynamique des données et l'analyse statistique graphique.",
+    "Support":      "Soutien",
+    "Donation":     "Don",
     "Middle School Stat Education": "Enseignement des statistiques au collège",
     "High School Stat Education": "L'enseignement de la statistique au lycée",
     "University Stat Education": "Enseignement de la statistique à l'université",
@@ -3690,14 +3724,15 @@ $message.fr = {
 
 };
 // French
-appStr[1][4] = "../eStatH/index.html";
-appStr[2][4] = "../eStatU/index.html";
-appStr[3][4] = "../eStatE/index_en.html";
-appStr[4][4] = "../eHelp/index_en.html";
+appStr[0][4] = "/estat/eStat/index.html";
+appStr[1][4] = "/estat/eStatH/index.html";
+appStr[2][4] = "/estat/eStatU/index.html";
+appStr[3][4] = "/estat/eStatE/index_en.html";
+appStr[4][4] = "/estat/eHelp/index_en.html";
 appStr[5][4] = "index.html";
 appStr[6][4] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][4] = "/estat/eLearning/en/eStatH/index.html";
-appStr[8][4] = "/estat/eLearning/en/index.html";
+appStr[8][4] = "/estat/eLearning/en/eStatU/index.html";
 alertMsg[1][4] = "L'une des variables sélectionnées ne contient pas de données.";
 alertMsg[1][4] = "Une des variables sélectionnées ne contient pas de données.";
 alertMsg[2][4] = "Selectionnez une par une les variables à analyser en cliquant sur chaque nom de colonne. Pour deux variables, la premiere est la variable de groupe. ";
@@ -4068,6 +4103,12 @@ $message.de = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Hypothesen testen  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Hypothesen testen &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Varianzanalyse",
+    "MiddleSchool": "Mittelschule",
+    "HighSchool":   "Weiterführende Schule",
+    "University":   "Universität",
+    "eStatHeading": "eStat ist eine webbasierte Freeware für eine bessere Statistikausbildung mit dynamischer Datenvisualisierung und grafischer statistischer Analyse.",
+    "Support":      "Unterstützung",
+    "Donation":     "Spende",
     "Middle School Stat Education": "Statistische Bildung in der Mittelstufe",
     "High School Stat Education": "Statistikausbildung an High Schools",
     "University Stat Education": "Statistikausausbildung an Universitäten",
@@ -4462,14 +4503,15 @@ $message.de = {
 
 };
 // German 
-appStr[1][5] = "../eStatH/index.html";
-appStr[2][5] = "../eStatU/index.html";
-appStr[3][5] = "../eStatE/index_en.html";
-appStr[4][5] = "../eHelp/index_en.html";
+appStr[0][5] = "/estat/eStat/index.html";
+appStr[1][5] = "/estat/eStatH/index.html";
+appStr[2][5] = "/estat/eStatU/index.html";
+appStr[3][5] = "/estat/eStatE/index_en.html";
+appStr[4][5] = "/estat/eHelp/index_en.html";
 appStr[5][5] = "index.html";
 appStr[6][5] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][5] = "/estat/eLearning/en/eStatH/index.html";
-appStr[8][5] = "/estat/eLearning/en/index.html";
+appStr[8][5] = "/estat/eLearning/en/eStatU/index.html";
 alertMsg[1][5] = "Eine der ausgewählten Variablen enthält keine Daten.";
 alertMsg[2][5] = "Wähle Variablen durch Ankliken für die  Analyse aus.  If two variables, first one is group variable. ";
 alertMsg[3][5] = "Wähle Variablen durch Ankliken für die  Analyse aus.";
@@ -4838,6 +4880,12 @@ $message.es = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Prueba de hipótesis &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Prueba de hipótesis &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Análisis de Varianza",
+    "MiddleSchool": "Escuela intermedia",
+    "HighSchool":   "Escuela secundaria",
+    "University":   "Universidad",
+    "eStatHeading": "eStat es un software gratuito basado en web para una mejor educación estadística que utiliza visualización dinámica de datos y análisis estadístico gráfico.",
+    "Support":      "Apoyo",
+    "Donation":     "Donación",
     "Middle School Stat Education": "Educación estadística de la escuela secundaria",
     "High School Stat Education": "Educación Estadística de Bachillerato",
     "University Stat Education": "Educación Estadística Universitaria",
@@ -5235,14 +5283,15 @@ $message.es = {
 
 };
 // Spanish
-appStr[1][6] = "../eStatH/index.html";
-appStr[2][6] = "../eStatU/index.html";
-appStr[3][6] = "../eStatE/index_en.html";
-appStr[4][6] = "../eHelp/index_en.html";
+appStr[0][6] = "/estat/eStat/index.html";
+appStr[1][6] = "/estat/eStatH/index.html";
+appStr[2][6] = "/estat/eStatU/index.html";
+appStr[3][6] = "/estat/eStatE/index_en.html";
+appStr[4][6] = "/estat/eHelp/index_en.html";
 appStr[5][6] = "index.html";
 appStr[6][6] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][6] = "/estat/eLearning/en/eStatH/index.html";
-appStr[8][6] = "/estat/eLearning/en/index.html";
+appStr[8][6] = "/estat/eLearning/en/eStatU/index.html";
 alertMsg[1][6] = "Una de las variables seleccionadas no contiene datos";
 alertMsg[2][6] = "Seleccionar una a una las  variables para el análisis (clicando los nombres de las columnas). Si hay dos variables, la primera es la variable grupo";
 alertMsg[3][6] = "Datos faltantes en la variable seleccionada";
@@ -5611,6 +5660,12 @@ $message.vi = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Kiểm định giả thuyết &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Kiểm định giả thuyết &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Phân tích ANOVA",
+    "MiddleSchool": "Trường trung học cơ sở",
+    "HighSchool":   "Trung học phổ thông",
+    "University":   "Trường đại học",
+    "eStatHeading": "eStat là phần mềm miễn phí dựa trên web để Giáo dục Thống kê tốt hơn bằng cách sử dụng trực quan hóa dữ liệu động và phân tích thống kê đồ họa.",
+    "Support":      "Ủng hộ",
+    "Donation":     "Quyên góp",
     "Middle School Stat Education": "Giáo dục thống kê trung học cơ sở",
     "High School Stat Education": "Thống kê trung học",
     "University Stat Education": "Thống kê Đại học",
@@ -6004,14 +6059,15 @@ $message.vi = {
 
 };
 // Vietnamese
-appStr[1][7] = "../eStatH/index.html";
-appStr[2][7] = "../eStatU/index.html";
-appStr[3][7] = "../eStatE/index_en.html";
-appStr[4][7] = "../eHelp/index_en.html";
+appStr[0][7] = "/estat/eStat/index.html";
+appStr[1][7] = "/estat/eStatH/index.html";
+appStr[2][7] = "/estat/eStatU/index.html";
+appStr[3][7] = "/estat/eStatE/index_en.html";
+appStr[4][7] = "/estat/eHelp/index_en.html";
 appStr[5][7] = "index.html";
 appStr[6][7] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][7] = "/estat/eLearning/en/eStatH/index.html";
-appStr[8][7] = "/estat/eLearning/en/index.html";
+appStr[8][7] = "/estat/eLearning/en/eStatU/index.html";
 alertMsg[1][7] = "Đã chọn biến không chứa dữ liệu";
 alertMsg[2][7] = "Chọn từng biến để phân tích (click tên cột). Nếu chọn 2 biến, biến đầu tiên là biến định tính";
 alertMsg[3][7] = "Biến đã chọn thiếu số liệu";
@@ -6380,6 +6436,12 @@ $message.id = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": " Pengujian Hipotesis &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": " Pengujian Hipotesis &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Analisis Varians",
+    "MiddleSchool": "Sekolah Menengah",
+    "HighSchool":   "Sekolah menengah atas",
+    "University":   "Universitas",
+    "eStatHeading": "eStat adalah perangkat lunak gratis berbasis web untuk Pendidikan Statistika yang lebih baik menggunakan visualisasi data dinamis dan analisis statistik grafis.",
+    "Support":      "Mendukung",
+    "Donation":     "Sumbangan",
     "Middle School Stat Education": "Pendidikan Statistik Sekolah Menengah",
     "High School Stat Education": "Pelajaran Statistika tingkat Sekolah Menengah Atas",
     "University Stat Education": "Pelajaran Statistika tingkat Universitas",
@@ -6777,14 +6839,15 @@ $message.id = {
 
 };
 // Indonesian 
-appStr[1][8] = "../eStatH/index.html";
-appStr[2][8] = "../eStatU/index.html";
-appStr[3][8] = "../eStatE/index_en.html";
-appStr[4][8] = "../eHelp/index_en.html";
+appStr[0][8] = "/estat/eStat/index.html";
+appStr[1][8] = "/estat/eStatH/index.html";
+appStr[2][8] = "/estat/eStatU/index.html";
+appStr[3][8] = "/estat/eStatE/index_en.html";
+appStr[4][8] = "/estat/eHelp/index_en.html";
 appStr[5][8] = "index.html";
 appStr[6][8] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][8] = "/estat/eLearning/en/eStatH/index.html";
-appStr[8][8] = "/estat/eLearning/en/index.html";
+appStr[8][8] = "/estat/eLearning/en/eStatU/index.html";
 alertMsg[1][8] = "Salah satu variabel yang dipilih tidak memiliki data.";
 alertMsg[2][8] = "Pilih variabel untuk analisis (klik nama kolom) satu per satu. Jika dua variabel, maka yang pertama adalah variabel grup. ";
 alertMsg[3][8] = "Data hilang pada variabel yang dipilih.";
@@ -7153,6 +7216,12 @@ $message.mn = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Тестэн таамаглал &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Тестэн таамаглал &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Дундаж кватрат хазайлтын шинжилгээ",
+    "MiddleSchool": "Дунд сургууль",
+    "HighSchool":   "Ахлах сургууль",
+    "University":   "Их сургууль",
+    "eStatHeading": "eStat нь динамик өгөгдлийн дүрслэл, график статистик дүн шинжилгээг ашиглан илүү сайн статистикийн боловсрол олгох вэб дээр суурилсан үнэгүй програм юм.",
+    "Support":      "Дэмжлэг",
+    "Donation":     "Хандив",
     "Middle School Stat Education": "Дунд сургуулийн статистикийн боловсрол",
     "High School Stat Education": "Ахлах сургуулийн статистикийн боловсрол",
     "University Stat Education": "Их сургуулийн статистикийн боловсрол ",
@@ -7548,14 +7617,15 @@ $message.mn = {
 
 };
 // Mongolian
-appStr[1][9] = "../eStatH/index.html";
-appStr[2][9] = "../eStatU/index.html";
-appStr[3][9] = "../eStatE/index_en.html";
-appStr[4][9] = "../eHelp/index_en.html";
+appStr[0][9] = "/estat/eStat/index.html";
+appStr[1][9] = "/estat/eStatH/index.html";
+appStr[2][9] = "/estat/eStatU/index.html";
+appStr[3][9] = "/estat/eStatE/index_en.html";
+appStr[4][9] = "/estat/eHelp/index_en.html";
 appStr[5][9] = "index.html";
 appStr[6][9] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][9] = "/estat/eLearning/en/eStatH/index.html";
-appStr[8][9] = "/estat/eLearning/en/index.html";
+appStr[8][9] = "/estat/eLearning/en/eStatU/index.html";
 alertMsg[1][9] = "Нэг сонгогдсон хувьсагч нь өгөгдөл байхгүй ";
 alertMsg[2][9] = "Судалгаа шинжилгээнд хувьсагчуудыг нэг нэгээр сонгох. Хэрэв эхнийх нь 2 хувьсагч бол групп хувьсагч болно.";
 alertMsg[3][9] = "Сонгогдсон хувьсагчаас өгөгдөл орхигдсон.";
@@ -7924,6 +7994,12 @@ $message.zh = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "假设检验 &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "假设检验 &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "方差分析",
+    "MiddleSchool": "中学统计",
+    "HighSchool":   "高中统计",
+    "University":   "大学统计",
+    "eStatHeading": "eStat 是一款基于网络的免费软件，使用动态数据可视化和图形统计分析来实现更好的统计教育",
+    "Support":      "支持",
+    "Donation":     "捐款",
     "Middle School Stat Education": "中学统计",
     "High School Stat Education": "高中统计",
     "University Stat Education": "大学统计",
@@ -8321,14 +8397,15 @@ $message.zh = {
 
 };
 // Chinese Simplified
-appStr[1][10] = "../eStatH/index.html";
-appStr[2][10] = "../eStatU/index.html";
-appStr[3][10] = "../eStatE/index_en.html";
-appStr[4][10] = "../eHelp/index_en.html";
+appStr[0][10] = "/estat/eStat/index.html";
+appStr[1][10] = "/estat/eStatH/index.html";
+appStr[2][10] = "/estat/eStatU/index.html";
+appStr[3][10] = "/estat/eStatE/index_en.html";
+appStr[4][10] = "/estat/eHelp/index_en.html";
 appStr[5][10] = "index.html";
 appStr[6][10] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][10] = "/estat/eLearning/en/eStatH/index.html";
-appStr[8][10] = "/estat/eLearning/en/index.html";
+appStr[8][10] = "/estat/eLearning/en/eStatU/index.html";
 alertMsg[1][10] = "所选的变量，其中之一没有包含资料。";
 alertMsg[2][10] = "逐一选取变量进行分析（选按栏位名称）。若是同事选取两个变量，则第一个视为群组变量。";
 alertMsg[3][10] = "所选的变量有缺失值。";
@@ -8672,6 +8749,12 @@ $message.pt = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Teste de Hipóteses  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Testing Hypothesis &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Análise de Variância",
+    "MiddleSchool": "Ensino fundamental",
+    "HighSchool":   "Ensino médio",
+    "University":   "Universidade",
+    "eStatHeading": "eStat é um freeware baseado na web para uma melhor educação estatística usando visualização dinâmica de dados e análise estatística gráfica.",
+    "Support":      "Apoiar",
+    "Donation":     "Doação",
     "Middle School Stat Education": "Ensino Médio Estatística Educação",
     "High School Stat Education": "Educação Estatística no Ensino Médio",
     "University Stat Education": "Educação Estatística Universitária",
@@ -9071,14 +9154,15 @@ $message.pt = {
 
 };
 // Portugese
-appStr[1][11] = "../eStatH/index.html";
-appStr[2][11] = "../eStatU/index.html";
-appStr[3][11] = "../eStatE/index_en.html";
-appStr[4][11] = "../eHelp/index_en.html";
+appStr[0][11] = "/estat/eStat/index.html";
+appStr[1][11] = "/estat/eStatH/index.html";
+appStr[2][11] = "/estat/eStatU/index.html";
+appStr[3][11] = "/estat/eStatE/index_en.html";
+appStr[4][11] = "/estat/eHelp/index_en.html";
 appStr[5][11] = "index.html";
 appStr[6][11] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][11] = "/estat/eLearning/en/eStatH/index.html";
-appStr[8][11] = "/estat/eLearning/en/index.html";
+appStr[8][11] = "/estat/eLearning/en/eStatU/index.html";
 alertMsg[1][11] = "Uma das variáveis selecionadas não contém observações.";
 alertMsg[2][11] = "Selecione as variáveis para a análise uma por uma (clique nos nomes das colunas). Se houverem duas variáveis, a primeira deve ser a de agrupamento.";
 alertMsg[3][11] = "Dados faltantes para variável selecionada.";
@@ -9448,6 +9532,12 @@ $message.gr = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Έλεγχος Υπόθεσης &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Έλεγχος Υπόθεσης &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Ανάλυση Μεταβλητών",
+    "MiddleSchool": "Γυμνάσιο",
+    "HighSchool":   "Λύκειο",
+    "University":   "Πανεπιστήμιο",
+    "eStatHeading": "Το eStat είναι ένα δωρεάν λογισμικό βασισμένο στο διαδίκτυο για καλύτερη Εκπαίδευση Στατιστικής χρησιμοποιώντας δυναμική οπτικοποίηση δεδομένων και γραφική στατιστική ανάλυση.",
+    "Support":      "Υποστήριξη",
+    "Donation":     "Δωρεά",
     "Middle School Stat Education": "Εκπαίδευση Στατιστικής Γυμνασίου",
     "High School Stat Education": "Εκπαίδευση Στατιστικής Λυκείου",
     "University Stat Education": "Ακαδημαϊκή Εκπαίδευση Στατιστικής",
@@ -9847,14 +9937,15 @@ $message.gr = {
 
 };
 // Greek
-appStr[1][12] = "../eStatH/index.html";
-appStr[2][12] = "../eStatU/index.html";
-appStr[3][12] = "../eStatE/index_en.html";
-appStr[4][12] = "../eHelp/index_en.html";
+appStr[0][12] = "/estat/eStat/index.html";
+appStr[1][12] = "/estat/eStatH/index.html";
+appStr[2][12] = "/estat/eStatU/index.html";
+appStr[3][12] = "/estat/eStatE/index_en.html";
+appStr[4][12] = "/estat/eHelp/index_en.html";
 appStr[5][12] = "index.html";
 appStr[6][12] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][12] = "/estat/eLearning/en/eStatH/index.html";
-appStr[8][12] = "/estat/eLearning/en/index.html";
+appStr[8][12] = "/estat/eLearning/en/eStatU/index.html";
 alertMsg[1][12] = "Μία από τις επιλεγμένες μεταβλητές δεν έχει δεδομένα.";
 alertMsg[2][12] = "Επιλέξτε μεταβλητές για ανάλυση (επιλέξτε ονόματα στηλών) μία προς μία. Αν έχετε δύο μεταβλητές θέστε τη μία ως ομάδα μεταβλητών.";
 alertMsg[3][12] = "Ελλιπείς δεδομένα στις επιλεγμένες μεταβλητές.";
@@ -10223,6 +10314,12 @@ $message.ro = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Testare Ipoteza  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Testare Ipoteza &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Analiza Varianței",
+    "MiddleSchool": "Gimnaziu",
+    "HighSchool":   "Liceu",
+    "University":   "Universitate",
+    "eStatHeading": "eStat este un program gratuit bazat pe web pentru o mai bună educație statistică, folosind vizualizarea dinamică a datelor și analiza statistică grafică.",
+    "Support":      "A sustine",
+    "Donation":     "Donare",
     "Middle School Stat Education": "Educație statistică pentru școala medie",
     "High School Stat Education": "Statistică La Nivel Liceal",
     "University Stat Education": "Statistică la Nivel Universitar",
@@ -10623,14 +10720,15 @@ $message.ro = {
 
 };
 // Romanian
-appStr[1][13] = "../eStatH/index.html";
-appStr[2][13] = "../eStatU/index.html";
-appStr[3][13] = "../eStatE/index_en.html";
-appStr[4][13] = "../eHelp/index_en.html";
+appStr[0][13] = "/estat/eStat/index.html";
+appStr[1][13] = "/estat/eStatH/index.html";
+appStr[2][13] = "/estat/eStatU/index.html";
+appStr[3][13] = "/estat/eStatE/index_en.html";
+appStr[4][13] = "/estat/eHelp/index_en.html";
 appStr[5][13] = "index.html";
 appStr[6][13] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][13] = "/estat/eLearning/en/eStatH/index.html";
-appStr[8][13] = "/estat/eLearning/en/index.html";
+appStr[8][13] = "/estat/eLearning/en/eStatU/index.html";
 alertMsg[1][13] = "Una dintre variabilele selectate nu are date introduse.";
 alertMsg[2][13] = "Selectați variabilele pentru analiză(click pe numele coloanelor) una câte una. În cazul a două variabile, prima este considerată un grup de variabile.";
 alertMsg[3][13] = "Date lipsă în variabila selectată.";
@@ -11000,6 +11098,12 @@ $message.th = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "ทดสอบสมมติฐาน  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "ทดสอบสมมติฐาน &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "ตัวแปรวิเคราะห์",
+    "MiddleSchool": "โรงเรียนมัธยมต้น",
+    "HighSchool":   "มัธยม",
+    "University":   "มหาวิทยาลัย",
+    "eStatHeading": "eStat เป็นฟรีแวร์บนเว็บสำหรับการศึกษาสถิติที่ดีขึ้น โดยใช้การแสดงภาพข้อมูลแบบไดนามิกและการวิเคราะห์ทางสถิติแบบกราฟิก",
+    "Support":      "สนับสนุน",
+    "Donation":     "บริจาค",
     "Middle School Stat Education": "การศึกษาสถิติโรงเรียนมัธยม",
     "High School Stat Education": "สถิติระดับมัธยมศึกษา",
     "University Stat Education": "สถิติระดับมหาวิทยาลัย",
@@ -11399,14 +11503,15 @@ $message.th = {
 
 };
 // Thai
-appStr[1][14] = "../eStatH/index.html";
-appStr[2][14] = "../eStatU/index.html";
-appStr[3][14] = "../eStatE/index_en.html";
-appStr[4][14] = "../eHelp/index_en.html";
+appStr[0][14] = "/estat/eStat/index.html";
+appStr[1][14] = "/estat/eStatH/index.html";
+appStr[2][14] = "/estat/eStatU/index.html";
+appStr[3][14] = "/estat/eStatE/index_en.html";
+appStr[4][14] = "/estat/eHelp/index_en.html";
 appStr[5][14] = "index.html";
 appStr[6][14] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][14] = "/estat/eLearning/en/eStatH/index.html";
-appStr[8][14] = "/estat/eLearning/en/index.html";
+appStr[8][14] = "/estat/eLearning/en/eStatU/index.html";
 alertMsg[1][14] = "หนึ่งในตัวแปรที่เลือกไว้ไม่มีข้อมูล";
 alertMsg[2][14] = "เลือกตัวแปรเพื่อนำมาวิเคราะห์ (คลิกที่ชื่อคอลัมน์) ทีละตัวแปร หากมีตัวแปรสองตัว ตัวแปรแรกเป็นตัวแปรกลุ่ม";
 alertMsg[3][14] = "ตัวแปรที่เลือกไว้มีข้อมูลสูญหาย";
@@ -11776,6 +11881,12 @@ $message.pl = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Hipoteza testowa  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Hipoteza testowa &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Analiza wariancji",
+    "MiddleSchool": "Gimnazjum",
+    "HighSchool":   "Liceum",
+    "University":   "Uniwersytet",
+    "eStatHeading": "eStat to darmowe oprogramowanie internetowe umożliwiające lepszą edukację statystyczną, wykorzystujące dynamiczną wizualizację danych i graficzną analizę statystyczną.",
+    "Support":      "Wsparcie",
+    "Donation":     "Darowizna",
     "Middle School Stat Education": "Edukacja Statystyczna Liceum",
     "High School Stat Education": "Statystyka - wykształcenie w szkole wyższej",
     "University Stat Education": "Statystyka - edukacja poziom uniwersytecki",
@@ -12177,14 +12288,15 @@ $message.pl = {
 };
 
 // Polish
-appStr[1][15] = "../eStatH/index.html";
-appStr[2][15] = "../eStatU/index.html";
-appStr[3][15] = "../eStatE/index_en.html";
-appStr[4][15] = "../eHelp/index_en.html";
+appStr[0][15] = "/estat/eStat/index.html";
+appStr[1][15] = "/estat/eStatH/index.html";
+appStr[2][15] = "/estat/eStatU/index.html";
+appStr[3][15] = "/estat/eStatE/index_en.html";
+appStr[4][15] = "/estat/eHelp/index_en.html";
 appStr[5][15] = "index.html";
 appStr[6][15] = "../eLearning/en/index.html";
 appStr[7][15] = "/estat/eLearning/en/eStatH/index.html";
-appStr[8][15] = "/estat/eLearning/en/index.html";
+appStr[8][15] = "/estat/eLearning/en/eStatU/index.html";
 alertMsg[1][15] = "Jedna z wybranych zmiennych nie zawiera danych.";
 alertMsg[2][15] = "Wybierz zmienne do analizy (klikając nazwy kolumn) jedną po drugiej. Jeśli dwie zmienne to pierwsza zmienna jest grupująca.";
 alertMsg[3][15] = "Brak danych dla wybranej zmiennej.";
@@ -12554,6 +12666,12 @@ $message.az = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Fərziyyənin Yoxlanması  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Fərziyyənin Yoxlanması &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Dispersiya Analizi",
+    "MiddleSchool": "Orta məktəb",
+    "HighSchool":   "Ali məktəb",
+    "University":   "Universitet",
+    "eStatHeading": "eStat dinamik məlumatların vizuallaşdırılması və qrafik statistik analizdən istifadə edərək daha yaxşı Statistika Təhsili üçün veb əsaslı pulsuz proqramdır.",
+    "Support":      "Dəstək",
+    "Donation":     "İanə",
     "Middle School Stat Education": "Orta Məktəb Statistikası",
     "High School Stat Education": "Yuxarı Sinif Statistikası",
     "University Stat Education": "Universitet Statistikası",
@@ -12954,14 +13072,15 @@ $message.az = {
 
 };
 // Azerbaijan
-appStr[1][16] = "../eStatH/index.html";
-appStr[2][16] = "../eStatU/index.html";
-appStr[3][16] = "../eStatE/index_en.html";
-appStr[4][16] = "../eHelp/index_en.html";
+appStr[0][16] = "/estat/eStat/index.html";
+appStr[1][16] = "/estat/eStatH/index.html";
+appStr[2][16] = "/estat/eStatU/index.html";
+appStr[3][16] = "/estat/eStatE/index_en.html";
+appStr[4][16] = "/estat/eHelp/index_en.html";
 appStr[5][16] = "index.html";
 appStr[6][16] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][16] = "/estat/eLearning/en/eStatH/index.html";
-appStr[8][16] = "/estat/eLearning/en/index.html";
+appStr[8][16] = "/estat/eLearning/en/eStatU/index.html";
 alertMsg[1][16] = "Seçilmiş dəyişənlərdən birində verilənlər yoxdur.";
 alertMsg[2][16] = "Təhlil üçün dəyişənləri bir-bir seçin (sütun adına klikləyin və ya seçim qutusunda dəyişəni seçin). Emal Edilməmiş Verilənlər üçün iki dəyişən seçilərsə, birincisi analiz (və ya Y) dəyişəni, ikincisi isə qrup (və ya X) dəyişənidir. ";
 alertMsg[3][16] = "Seçilmiş dəyişən haqqında verilənlərin çatışmazlığı.";
@@ -13330,6 +13449,12 @@ $message.uz = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "sinov gipotezasi  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "sinov gipotezasi &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Tafovutni tahlil qilish",
+    "MiddleSchool": "O'rta maktab",
+    "HighSchool":   "O'rta maktab",
+    "University":   "Universitet",
+    "eStatHeading": "eStat - bu dinamik ma'lumotlarni vizuallashtirish va grafik statistik tahlildan foydalangan holda yaxshiroq Statistika ta'limi uchun veb-ga asoslangan bepul dastur.",
+    "Support":      "Qo'llab-quvvatlash",
+    "Donation":     "Xayriya",
     "Middle School Stat Education": "O'rta maktab statistikasi ta'limi",
     "High School Stat Education": "Maktab Stat Ta'lim",
     "University Stat Education": "Universitet Stat Ta'lim",
@@ -13732,14 +13857,15 @@ $message.uz = {
 
 };
 // Uzbekistan
-appStr[1][17] = "../eStatH/index.html";
-appStr[2][17] = "../eStatU/index.html";
-appStr[3][17] = "../eStatE/index_en.html";
-appStr[4][17] = "../eHelp/index_en.html";
+appStr[0][17] = "/estat/eStat/index.html";
+appStr[1][17] = "/estat/eStatH/index.html";
+appStr[2][17] = "/estat/eStatU/index.html";
+appStr[3][17] = "/estat/eStatE/index_en.html";
+appStr[4][17] = "/estat/eHelp/index_en.html";
 appStr[5][17] = "index.html";
 appStr[6][17] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][17] = "/estat/eLearning/en/eStatH/index.html";
-appStr[8][17] = "/estat/eLearning/en/index.html";
+appStr[8][17] = "/estat/eLearning/en/eStatU/index.html";
 alertMsg[1][17] = "Tanlangan ozgaruvchilardan birida malumot yoq.";
 alertMsg[2][17] = "o'zgaruvchilarni bir ma bir tahlil qiling.ikkita o'zgaruvchisi birinchi b'olib guruh o'zgaruvchisidir.";
 alertMsg[3][17] = "tanlangan o'zgaruvchiga oid m'alumotlar yoq.";
@@ -14108,6 +14234,12 @@ $message.ru = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Тестирование гипотезы  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Тестирование гипотезы &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Дисперсионный анализ",
+    "MiddleSchool": "Средняя школа",
+    "HighSchool":   "Средняя школа",
+    "University":   "Университет",
+    "eStatHeading": "eStat — это бесплатное веб-программное обеспечение для лучшего статистического образования с использованием динамической визуализации данных и графического статистического анализа.",
+    "Support":      "Поддерживать",
+    "Donation":     "Пожертвование",
     "Middle School Stat Education": "Статистическое образование в средней школе",
     "High School Stat Education": "Статистика для старших классов школы",
     "University Stat Education": "Статистика для высшего образования",
@@ -14508,14 +14640,15 @@ $message.ru = {
 
 };
 // Russian
-appStr[1][18] = "../eStatH/index.html";
-appStr[2][18] = "../eStatU/index.html";
-appStr[3][18] = "../eStatE/index_en.html";
-appStr[4][18] = "../eHelp/index_en.html";
+appStr[0][18] = "/estat/eStat/index.html";
+appStr[1][18] = "/estat/eStatH/index.html";
+appStr[2][18] = "/estat/eStatU/index.html";
+appStr[3][18] = "/estat/eStatE/index_en.html";
+appStr[4][18] = "/estat/eHelp/index_en.html";
 appStr[5][18] = "index.html";
 appStr[6][18] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][18] = "/estat/eLearning/en/eStatH/index.html";
-appStr[8][18] = "/estat/eLearning/en/index.html";
+appStr[8][18] = "/estat/eLearning/en/eStatU/index.html";
 alertMsg[1][18] = "В одном из выбранных переменных отсутствуют данные.";
 alertMsg[2][18] = "Выберите переменные для анализа (щелкнув названия столбцов) поочерёдно. Если имеются два переменных, то первая - это групповая переменная.";
 alertMsg[3][18] = "Отсутствуют данные по выбранной переменной.";
@@ -14884,6 +15017,12 @@ $message.tr = {
     "Testing Hypothesis  &mu;<sub>1</sub>, &mu;<sub>2</sub>": "Hipotez testi  &mu;<sub>1</sub>, &mu;<sub>2</sub>",
     "Testing Hypothesis &sigma;<sub>1</sub><sup>2</sup>, &sigma;<sub>2</sub><sup>2</sup>": "Hipotez testi &sigma;<sub>1</sub>&#178;, &sigma;<sub>2</sub>&#178;",
     "Analysis of Variance": "Varyans analizi",
+    "MiddleSchool": "Orta okul",
+    "HighSchool":   "Lise",
+    "University":   "Üniversite",
+    "eStatHeading": "eStat, dinamik veri görselleştirme ve grafiksel istatistiksel analiz kullanan daha iyi İstatistik Eğitimi için web tabanlı ücretsiz bir yazılımdır.",
+    "Support":      "Destek",
+    "Donation":     "Bağış",
     "Middle School Stat Education": "Ortaokul İstatistik Eğitimi",
     "High School Stat Education": "Lise istatistik eğitimi",
     "University Stat Education": "Üniversite istatistik eğitimi",
@@ -15284,14 +15423,15 @@ $message.tr = {
 };
 
 // Turkish
-appStr[1][19] = "../eStatH/index.html";
-appStr[2][19] = "../eStatU/index.html";
-appStr[3][19] = "../eStatE/index_en.html";
-appStr[4][19] = "../eHelp/index_en.html";
+appStr[0][19] = "/estat/eStat/index.html";
+appStr[1][19] = "/estat/eStatH/index.html";
+appStr[2][19] = "/estat/eStatU/index.html";
+appStr[3][19] = "/estat/eStatE/index_en.html";
+appStr[4][19] = "/estat/eHelp/index_en.html";
 appStr[5][19] = "index.html";
 appStr[6][19] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][19] = "/estat/eLearning/en/eStatH/index.html";
-appStr[8][19] = "/estat/eLearning/en/index.html";
+appStr[8][19] = "/estat/eLearning/en/eStatU/index.html";
 alertMsg[1][19] = "Seçilen değişkenlerden birinin verisi yok";
 alertMsg[2][19] = "Analiz için değişkenleri tek tek seçin (sütun adını tıklayın veya seçim kutusundaki var'ı seçin). Ham veriler için iki değişken seçilirse, ilki analiz(veya Y) değişkenidir ve 2. grup (veya X) değişkenidir.";
 alertMsg[3][19] = "Seçilen değişkende veri eksik.";

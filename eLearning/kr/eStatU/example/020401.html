@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <title data-msgid="Word Cloud">Word Cloud</title>
+       <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+       <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>   
+       <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="/estat/eStat/lib/d3/d3.layout.cloud.js"></script>
+       <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="/estat/eStat/lib/convertSVG.js"></script>
+       <script src="/estat/eStat/js/eBook.js"></script>
+       <script src="/estat/eStat/js/eStatU.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>   
+       <script> setLanguage('ko'); </script>
+
+  </head>
+  <body>
+
+    <div class="title">
+      <b>&nbsp; <span data-msgid="WordCloud">Word Cloud</span></b> 
+      <button class="menu" onclick="menuLoc()" >
+        <b><span data-msgid="Menu">Menu</span></b>
+      </button>
+    </div>
+
+    <p> 
+      <!--------Word cloud html ------------------------------------------------------------------------->
+      <p> 
+      <b>[<span data-msgid="input data">Data Input</span>]</b> 
+      &nbsp;
+      <button type="button" id="eraseWordData" style="width:140px;"><span data-msgid="Erase All"></span></button>
+      <p>
+      <textarea id="textarea" name="textarea" rows="10" cols="99"></textarea>  
+      <p> 
+      <button type="button" id="executeWord" style="width:140px;">
+        <span data-msgid="Execute">Execute</span>
+      </button> 
+      <p>
+      <svg id="chartWord" width="750" height="540" style="border-style:solid;"> </svg> 
+      <p> 
+      <button type="button" id="saveGraphWord" style="width:140px;">
+	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
+      </button>
+      <p>
+
+  <script src="/estat/eStatU/js/05WordCloud.js"> </script>
+  <script>
+      document.getElementById("textarea").value = "제4차 산업 혁명은 기술이 사회와 심지어 인간의 신체에도 내장되는 새로운 방식을 대표하는 디지털 혁명 위에 구축되고 있다.[10] 제4차 산업 혁명은 로봇 공학, 인공 지능, 나노 기술, 양자 프로그래밍, 생명 공학, IoT, 3D 인쇄 및 자율주행 차량을 비롯한 여러 분야에서 새로운 기술 혁신이 나타나고 있다. 세계 경제 포럼 암시자 슈왑(Klaus Schwab)의 저서 제4차 산업 혁명에서 이 4번째 혁명이 기술 발전에 의해 특징지어졌던 이전의 3가지 혁명과 근본적으로 다른 점을 언급하고 있다. 이러한 기술은 수십억 명의 사람들을 계속해서 웹에 연결하고 비즈니스 및 조직의 효율성을 획기적으로 향상시키며 더 나은 자산 관리를 통해 자연 환경을 재생산할 수 있는 커다란 잠재력을 가지고 있다.[11] 제4차 산업 혁명 마스터 하기는 스위스 Davos-Klosters에서 열린 세계 경제 포럼 연례회의 (World Economic Forum Annual Meeting 2016)의 주제였다."; 
+  </script>
+
+</body>
+</html>

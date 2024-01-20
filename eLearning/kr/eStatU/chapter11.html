@@ -10,12 +10,11 @@
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+  <link href="/estat/eStat/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="../../css/dashboard.css" rel="stylesheet">
+  <link href="/estat/eStat/css/dashboard.css" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -24,12 +23,22 @@
       <![endif]-->
        <style type="text/css">code{white-space: pre;}</style>
        <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
-       <script src="../../js/prism.js"></script>
-       <link rel="stylesheet" href="../../css/prism.css">
-       <script src="../../js/jquery.min.js"></script>    
+       <link rel="stylesheet" href="/estat/eStat/css/pandoc.css">
+       <link rel="stylesheet" href="/estat/eStat/css/prism.css">
+       <script src="/estat/eStat/lib/jquery/jquery.min.js"></script>   
+       <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="/estat/eStat/lib/convertSVG.js"></script>
+       <script src="/estat/eStat/js/prism.js"></script>
+       <script src="/estat/eStat/js/eBook.js"></script>
+       <script src="/estat/eStat/js/eStatU.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>
+       <script> setLanguage('ko'); </script>
        <script type="text/javascript" id="MathJax-script" async
 	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
        </script>
+
        <script>
 	 $(document).ready(function() {
   	     toc = $("#sidebar > ul > li > ul");
@@ -48,87 +57,70 @@
   		 $(sections[i]).replaceWith(li);
   	     }
 	 });
-	 </script>
-       <link rel="stylesheet" href="../../css/pandoc.css">
-       <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       </script>
+      
 </head>
+
 <body>
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <ul class="nav navbar-nav">
-    <li><a href="../../../eStat/index.html"  target="_blank">eStat</a></li>
-    <li><a href="../../../eStatU/index.html" target="_blank">eStatU</a></li>
-    <li><a href="../../Distribution/index.html" target="_blank">확률분포</a></li>
-  </ul>
-</nav>
-
+  
+<!-- begin of left sidebar -->
 <div class="container-fluid">
-  <div class="row">
-    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
-      <ul>
-	<li><a href=""></a>
-	  <ul>
-            <li><a href="index.html">차  례</a></li>
-            <li><a href="chapter01.html">1장 통계 데이터과학</a></li>
-            <li><a href="chapter02.html">2장 질적 데이터 시각화</a></li>
-            <li><a href="chapter03.html">3장 양적 데이터 시각화</a></li>
-            <li><a href="chapter04.html">4장 표/측도 데이터 정리</a></li>
-            <li><a href="chapter05.html">5장 확률, 확률분포함수</a></li>
-            <li><a href="chapter06.html">6장 표집분포와 추정</a></li>
-            <li><a href="chapter07.html">7장 한 모집단 모수 검정</a></li>
-            <li><a href="chapter08.html">8장 두 모집단 모수 검정</a></li>
-            <li><a href="chapter09.html">9장 여러 모평균의 검정</a></li>
-            <li><a href="chapter10.html">10장 비모수적 가설검정</a></li>
-            <li><a href="chapter11.html">11장 범주형 데이터 검정</a></li>
-            <li><a href="chapter12.html">12장 상관 및 회귀분석</a></li>
-            <li><a href="chapter13.html">13장 시계열분석</a></li>
-	  </ul>
-	</li>
-      </ul>
-    </div>
-  </div>
+<div class="row">
+<div id="sidebar" class="col-sm-2 col-md1 sidebar">
+  <ul>
+    <li> <a href="index.html"><b>차례</b> </a> </li>
+    <li> <a href="chapter01.html"> <span data-msgid="Chapter01"> </span></a> </li>
+    <li> <a href="chapter02.html"> <span data-msgid="Chapter02"> </span></a> </li>
+    <li> <a href="chapter03.html"> <span data-msgid="Chapter03"> </span></a> </li>
+    <li> <a href="chapter04.html"> <span data-msgid="Chapter04"> </span></a> </li>
+    <li> <a href="chapter05.html"> <span data-msgid="Chapter05"> </span></a> </li>
+    <li> <a href="chapter06.html"> <span data-msgid="Chapter06"> </span></a> </li>
+    <li> <a href="chapter07.html"> <span data-msgid="Chapter07"> </span></a> </li>
+    <li> <a href="chapter08.html"> <span data-msgid="Chapter08"> </span></a> </li>
+    <li> <a href="chapter09.html"> <span data-msgid="Chapter09"> </span></a> </li>
+    <li> <a href="chapter10.html"> <span data-msgid="Chapter10"> </span></a> </li>
+    <li> <a href="chapter11.html"> <span data-msgid="Chapter11"> </span></a> </li>
+	      <ul>
+                <li><a href="#1101">&nbsp; 11.1  적합성 검정</a></li>
+                <li><a href="#1102">&nbsp; 11.2  교차표의 가설검정</a></li>
+                <li><a href="#110201">&nbsp; 11.2.1  독립성검정</a></li>
+                <li><a href="#110202">&nbsp; 11.2.2  동질성검정</a></li>
+                <li><a href="#1103">&nbsp; 11.3 연습문제</a></li> 
+	      </ul>
+    <li> <a href="chapter12.html"> <span data-msgid="Chapter12"> </span></a> </li>
+    <li> <a href="chapter13.html"> <span data-msgid="Chapter13"> </span></a> </li>
+  </ul>
 </div>
+</div>
+</div>
+<!-- end of left sidebar -->
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
   <!--***********************************************************************-->
   <h1>11장 범주형 데이터의 가설검정</h1> 
+  <b>
+	      <ul>
+                <li><a href="#1101">&nbsp; 11.1  적합성 검정</a></li>
+                <li><a href="#1102">&nbsp; 11.2  교차표의 가설검정</a></li>
+                <li><a href="#110201">&nbsp; 11.2.1  독립성검정</a></li>
+                <li><a href="#110202">&nbsp; 11.2.2  동질성검정</a></li>
+                <li><a href="#1103">&nbsp; 11.3 연습문제</a></li> 
+	      </ul>
+                <a href="./pdf/chapter11.pdf" target="_blank">[11장 pdf]</a>
+  </b>
   <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(170)"> &#10094;&#10094; &nbsp;&nbsp;<b>10장</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(172)"><b>12장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
-  <p>
-  <table>
-    <tr>
-      <td style="width:250px">
-        <h4>
-        <a href="#1101"><u>11.1  적합성 검정</u></a> <p>
-        <a href="#1102"><u>11.2  교차표의 가설검정</u></a> <p>
-        <a href="#11021">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>독립성 검정</u></a> <p>
-        <a href="#11022">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>동질성 검정</u></a> <p>
-        <a href="chapter11.pdf" target="_blank"><u>[11장 pdf]</u></a>
-        </h4>
-      </td>
-      <td style="width:350px">
-        <p>7장에서 10장까지 알아본 여러 가지 형태의 가설검정은 모두 연속형 자료에 대한 것이다. 이 장에서는 성별, 
+        7장에서 10장까지 알아본 여러 가지 형태의 가설검정은 모두 연속형 자료에 대한 것이다. 이 장에서는 성별, 
            교육정도 등과 같은 범주형 데이터를 이용하여 모집단에 대한 가설검정 방법을 알아본다. 을 살펴보고, 11.2절에서는 교차표에 대한 독립성검정과 동질성검정을 살펴보고 두 이산형 변량에 대한 관련성의 측도에는 어떠한 것이 있는지 알아본다.
         <p> - 도수분포표에 대한 적합성검정 : <br>
-              &nbsp;&nbsp;&nbsp;범주형 데이터인 경우와 연속형 데이터인 경우
+              &nbsp;&nbsp;&nbsp;범주형 데이터인 경우와 연속형 데이터인 경우<br>
         <p> - 교차표의 검정 : <br>
               &nbsp;&nbsp;&nbsp;독립성 검정과 동질성 검정
-      </td>
-    </tr>
-  </table>
 <!--
   <h6>
       <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
   </h6>
 -->
-  <p>
-  <p>
-
   <p>
   <div class="mainTable">
     <p>
@@ -144,8 +136,8 @@
     <p>
       <table style="width:400px"> 
         <tr> 
-          <th class="thGrey">\(X\)</th>
-          <th class="thGrey">\(P(X = x)\)</th>
+          <th>\(X\)</th>
+          <th>\(P(X = x)\)</th>
        </tr>
        <tr> <td class="tdCenter">\(x_1\)</td>    <td class="tdCenter">\(p_1\)</td>    </tr>
        <tr> <td class="tdCenter">\(x_2\)</td>    <td class="tdCenter">\(p_2\)</td>    </tr>
@@ -177,17 +169,14 @@
   </div>
   <p>
   <div class="mainTableGrey">
-      <table>
-        <tr>
-          <td colspan="2">
-            <p><h5>🎲 예 11.1</h5>
+        <h5>🎲 예 11.1</h5>
             한 지방선거에서 세 후보자의 지지도를 알아보기 위해 150명을 표본추출하여 조사한 결과가 다음과 같다.
             <p>
             <table style="width:500px"> 
               <tr> 
-                <th class="thGrey">후보자</th>
-                <th class="thGrey">지지자수</th>
-                <th class="thGrey">백분율</th>
+                <th>후보자</th>
+                <th>지지자수</th>
+                <th>백분율</th>
              </tr>
              <tr> <td class="tdCenter">갑</td> <td class="tdCenter">60</td> <td class="tdCenter">40.0％</td> </tr>
              <tr> <td class="tdCenter">을</td> <td class="tdCenter">50</td> <td class="tdCenter">33.3％</td> </tr>
@@ -196,15 +185,7 @@
             </table>
             <p>
             이 표본자료만 본다면 ‘갑’ 후보가 40％ 지지율로 타 후보들보다 지지율이 높은 것 같다. 과연 이 표본자료의 결과를 가지고 후보의 지지율이 다르다고 볼 수 있는가? 유의수준 5％로 검정하라. 『eStatU』를 이용하여 적합성검정을 하라.
-          </td>
-        </tr>
-        <tr>
-          <td style="width:100px">
-            <h5>풀이</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStatU910_TestFit.svg" onclick="window.open(addrStr[110])">
-          </td>
-          <td>
-            <p>
+        <h5>풀이</h5>
             각 후보의 지지율을 \(p_1 , p_2 , p_3\) 라 할때 가설은 다음과 같다.
             <p>
             <div class="textLeft">\(H_0\) : 세 후보의 지지율이 같다.  (즉, \(H_0 : p_1 = p_2 = p_3 = \frac{1}{3}\) )</div>
@@ -217,9 +198,9 @@
             <p>
             <table style="width:500px"> 
               <tr> 
-                <th class="thGrey">후보자</th>
-                <th class="thGrey">관찰도수<br>(\(O_i\)로 표시)</th>
-                <th class="thGrey">기대도수<br>(\(E_i\)로 표시)</th>
+                <th>후보자</th>
+                <th>관찰도수<br>(\(O_i\)로 표시)</th>
+                <th>기대도수<br>(\(E_i\)로 표시)</th>
              </tr>
              <tr> <td class="tdCenter">갑</td> <td class="tdCenter">\(O_1 = 60\)</td> <td class="tdCenter">\(E_1 = 50\)</td> </tr>
              <tr> <td class="tdCenter">을</td> <td class="tdCenter">\(O_2 = 50\)</td> <td class="tdCenter">\(E_2 = 50\)</td> </tr>
@@ -265,18 +246,15 @@
             <p>
             『eStatU』의 ‘적합성검정’ 메뉴를 선택하여 나타나는 입력박스에 [그림 11.1]과 같이 ‘관찰도수’와 ‘기대확률’ 데이터를 입력한다. 데이터 입력이 끝난 후 유의수준을 선택하고 ‘실행’ 버튼을 누르면 ‘기대도수’가 계산되고 카이제곱 검정 결과가 계산된다. 카이제곱분포를 이용한 검정은 기대도수가 적어도 5이상이 될 때 적용하여야 한다.   
             <p>
-            <img src="../FigureU/Fig1101.png">
-            <div class="textLeft">[그림 11.1] 『eStatU』 데이터 입력</div>
-            <p>
-            <img src="../FigureU/Fig1102.png">
-            <div class="textLeft">[그림 11.2] 『eStatU』 카이제곱 적합성 검정  </div>
-            <p>
-          </td>
-        </tr>
-      </table>
+        <!---   ************ html for Goodness of Fit Test ************  ---->
+        <b>[<span data-msgid="TestingFit"></span>]</b>
+        <p>
+        <iframe class="example110" src="./example/110101.html"> </iframe>
+        <div class="textLeft">[그림 11.2] 『eStatU』 카이제곱 적합성 검정  </div>
+        <p>
   </div>
   <p>
-  <p>
+
   <div class="mainTable">
     <p>
     <h4>정규분포 적합성 검정</h4>
@@ -286,41 +264,28 @@
   </div>
   <p>
   <div class="mainTableGrey">
-    <table>
-      <tr>
-        <td colspan="2">
-          <p><h5>🎲 예 11.2</h5>
+      <h5>🎲 예 11.2</h5>
           어느 도서관을 오전에 방문한 30명의 나이를 조사하니 다음과 같다. 모집단이 정규분포라는 가설을 유의수준 5％로 검정하라.
           <p>
           <div class="textLeft">
               28 55 26 35 43 47 47 17 35 26 65 57 34 28 43<br>
               20 30 53 27 32 34 43 18 38 29 44 67 48 45 43  
           </div>
-          <p>
-          <p>
-        </td>
-      </tr>
-      <tr>
-        <td style="width:100px">
-          <h5>풀이</h5>
-          <input class="qrBtn" type="image" src="../../QR/eStatU910_TestFit.svg" onclick="window.open(addrStr[110])">
-        </td>
-        <td>
-          <p>
+      <h5>풀이</h5>
           나이는 연속형 변량이지만 구간을 나누어서 도수분포를 만들 수 있다. 이렇게 구간별 도수분포를 구하는 것을 범주형화라고 부른다. 나이를 10세부터 시작하여 구간을 10살 간격으로 도수분포를 구해 보자. 『eStat』의 히스토그램을 이용하면 이러한 도수분포를 쉽게 구할 수 있다. [그림 11.3]과 같이 데이터를 입력하고 히스토그램 아이콘을 누르면 나타나는 변량선택창에서 나이를 선택하면 [그림 11.4]와 같은 히스토그램이 나타난다.
           <p>
-            <img src="../FigureU/Fig1103.png">
+            <img src="./Figure/Fig1103.png">
             <div class="textLeft">[그림 11.3]   『eStat』데이터 입력</div>
           <p>
-            <img src="../FigureU/Fig1104.png">
+            <img src="./Figure/Fig1104.png">
             <div class="textLeft">[그림 11.4] 나이의 기본 히스토그램</div>
           <p>
           히스토그램 밑의 선택사항에서 ‘구간시작’을 10, ‘구간너비’를 10으로 지정한후 ‘새구간으로 실행’ 버튼을 누르면 [그림 11.5]와 같이 10세 간격으로 조정된 히스토그램이 나타나고 이때 ‘도수분포표’ 버튼을 누르면 결과저장창에 [그림 11.6]과 같은 구간별 도수분포가 나타난다. 구간 간격의 지정은 분석자가 결정하여야 한다.
           <p>
-            <img src="../FigureU/Fig1105.png">
+            <img src="./Figure/Fig1105.png">
             <div class="textLeft">[그림 11.5] 구간조정된 나이의 히스토그램</div>
           <p>
-            <img src="../FigureU/Fig1106.png">
+            <img src="./Figure/Fig1106.png">
             <div class="textLeft">[그림 11.6] 구간조정된 나이의 도수분포표 </div>
           <p>
           정규분포는 \(-∞ < x < ∞\)에 정의된 연속형 분포여서 구간에 대한 도수분포를 다음과 같이 정리하였다.
@@ -328,9 +293,9 @@
           <div class="textLeft">표 11.1 구간조정된 나이의 도수분포표 </div> 
           <table style="width:500px"> 
             <tr> 
-              <th class="thGrey">구간번호</th>
-              <th class="thGrey">구간</th>
-              <th class="thGrey">관찰도수</th>
+              <th>구간번호</th>
+              <th>구간</th>
+              <th>관찰도수</th>
            </tr>
            <tr> <td class="tdCenter">1</td> <td class="tdCenter">\(    X < 20   \)</td> <td class="tdCenter">2</td> </tr>
            <tr> <td class="tdCenter">2</td> <td class="tdCenter">\(20 \le X < 30\)</td> <td class="tdCenter">7</td> </tr>
@@ -347,16 +312,8 @@
           <p>
           이와 같은 가설은 구체적으로 어떠한 정규분포인지 명시하지 않았기 때문에 모평균 \(\mu\)와 모분산 \(\sigma^2\)은 표본에서 예측하여야 한다. 현재 『eStat』의 히스토그램 화면에서 주메뉴의 ‘기초통계량’ 아이콘을 누르면 [그림 11.7]과 같은 기초통계량표가 결과저장창에 나타난다. 표본평균은 38.567, 표본표준편차는 12.982이다. 
           <p>
-            <img src="../FigureU/Fig1107.png">
+            <img src="./Figure/Fig1107.png">
             <div class="textLeft">[그림 11.7] 나이의 기초통계량</div>
-          <p>
-        </td>
-      </tr>
-      <tr>
-        <td style="width:100px">
-            <input class="qrBtn" type="image" src="../../QR/eStatU520_Normal.svg" onclick="window.open(addrStr[88])">
-        </td>
-        <td>
           <p>
           따라서 위의 가설은 다음과 같이 구체화하여 적을 수 있다.
           <p>
@@ -368,8 +325,11 @@
           <p>
             <div class="textLeft"> \(P(X \lt 20) = P(Z \lt  \frac {20-38.567} {12.982} ) = P(Z \lt -1.430)=0.075\)</div> 
           <p>
-            <img src="../FigureU/Fig1108.png">
+          <div>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU520_Normal.svg" onclick="window.open(addrStr[88])">
+            <img src="./Figure/Fig1108.png">
             <div class="textLeft">[그림 11.8] 『eStatU』정규분포를 이용한 구간확률 계산</div>
+          </div>
           <p>
           같은 방법으로 다음 구간의 확률을 계산한다.
           <p>
@@ -384,11 +344,11 @@
           <div class="textLeft">표 11.2  \(N(38.567,\; 12.982  ^{2} )\)에서 각 구간별 기대확률과 기대도수</div> 
           <table style="width:600px"> 
             <tr> 
-              <th class="thGrey">구간번호</th>
-              <th class="thGrey">구간</th>
-              <th class="thGrey">관찰도수</th>
-              <th class="thGrey">기대확률</th>
-              <th class="thGrey">기대도수</th>
+              <th>구간번호</th>
+              <th>구간</th>
+              <th>관찰도수</th>
+              <th>기대확률</th>
+              <th>기대도수</th>
             </tr>
             <tr> <td class="tdCenter">1</td> <td class="tdCenter">\(    X < 20   \)</td> <td class="tdCenter">2</td> <td class="tdCenter">0.075</td> <td class="tdCenter">2.25</td> </tr>
             <tr> <td class="tdCenter">2</td> <td class="tdCenter">\(20 \le X < 30\)</td> <td class="tdCenter">7</td> <td class="tdCenter">0.178</td> <td class="tdCenter">5.34</td> </tr>
@@ -402,11 +362,11 @@
           <p>
           <table style="width:600px"> 
             <tr> 
-              <th class="thGrey">Interval id</th>
-              <th class="thGrey">Interval</th>
-              <th class="thGrey">Observed frequency</th>
-              <th class="thGrey">Expected probability</th>
-              <th class="thGrey">Expected frequency</th>
+              <th>Interval id</th>
+              <th>Interval</th>
+              <th>Observed frequency</th>
+              <th>Expected probability</th>
+              <th>Expected frequency</th>
             </tr>
             <tr> <td class="tdCenter">1</td> <td class="tdCenter">\(    X < 30   \)</td> <td class="tdCenter">9</td> <td class="tdCenter">0.253</td> <td class="tdCenter">7.59</td> </tr>
             <tr> <td class="tdCenter">2</td> <td class="tdCenter">\(30 \le X < 40\)</td> <td class="tdCenter">7</td> <td class="tdCenter">0.289</td> <td class="tdCenter">8.67</td> </tr>
@@ -427,15 +387,13 @@
           <p>
           『eStatU』의 ‘적합성검정’을 이용하여 검정결과를 확인할 수 있다. ‘적합성검정’ 메뉴를 선택하여 나타나는 입력박스에 [그림 11.9]와 같이 표 11.3의 ‘관찰도수’와 ‘기대확률’ 데이터를 입력한다. 유의수준을 선택하고 [실행] 버튼을 누르면 ‘기대도수’가 계산되고 카이제곱 검정 결과가 나타난다([그림 11.10])
           <p>
-            <img src="../FigureU/Fig1109.png">
-            <div class="textLeft">[그림 11.9] 적합성검정 </div>
-          <p>
-            <img src="../FigureU/Fig1110.png">
-            <div class="textLeft">[그림 11.10] 카이제곱 적합성검정 결과</div>
-          <p>
-        </td>
-      </tr>
-    </table>
+        <!---   ************ html for Goodness of Fit Test ************  ---->
+        <p>
+        <b>[<span data-msgid="TestingFit"></span>]</b>
+        <p>
+        <iframe class="example110" src="./example/110102.html"> </iframe>
+        <div class="textLeft">[그림 11.10] 카이제곱 적합성검정 결과</div>
+        <p>
   </div>
   <p>
 
@@ -443,7 +401,7 @@
   <h3 id="1102">11.2 교차표의 가설검정</h3>
   <p>
   <div class="mainTable">
-    <h4>독립성 검정</h4>
+    <h4 id="110201">독립성 검정</h4>
     <p>
     교차표의 <b>독립성검정</b>(test of independence)은 한 모집단에서 표본을 추출하였을 때 두 범주형 변량에 대한 독립성 여부를 조사하는 것이다. 
     <p>
@@ -458,12 +416,12 @@
     <p>
       <table style="width:500px"> 
         <tr> 
-          <th class="thGrey">변량 A | 변량 B</th>
-          <th class="thGrey">\(B_1\)</th>
-          <th class="thGrey">\(B_2\)</th>
-          <th class="thGrey">\(\cdots\)</th>
-          <th class="thGrey">\(B_c\)</th>
-          <th class="thGrey">합계</th>
+          <th>변량 A | 변량 B</th>
+          <th>\(B_1\)</th>
+          <th>\(B_2\)</th>
+          <th>\(\cdots\)</th>
+          <th>\(B_c\)</th>
+          <th>합계</th>
        </tr>
        <tr>
           <td class="tdCenter">\(A_1\)</td>
@@ -521,12 +479,12 @@
       <div class="textLeft">표 11.5  관찰도수 \(O_{ij}\) 기호</div>
       <table style="width:500px"> 
         <tr> 
-          <th class="thGrey">변량 A | 변량 B</th>
-          <th class="thGrey">\(B_1\)</th>
-          <th class="thGrey">\(B_2\)</th>
-          <th class="thGrey">\(\cdots\)</th>
-          <th class="thGrey">\(B_c\)</th>
-          <th class="thGrey">합계</th>
+          <th>변량 A | 변량 B</th>
+          <th>\(B_1\)</th>
+          <th>\(B_2\)</th>
+          <th>\(\cdots\)</th>
+          <th>\(B_c\)</th>
+          <th>합계</th>
        </tr>
        <tr>
           <th class="tdCenter">\(A_1\)</th>
@@ -582,11 +540,11 @@
     <p>
       <table style="width:650px"> 
         <tr> 
-          <th class="thGrey">변량 A \ 변량 B</th>
-          <th class="thGrey">\(B_1\)</th>
-          <th class="thGrey">\(B_2\)</th>
-          <th class="thGrey">\(\cdots\)</th>
-          <th class="thGrey">\(B_c\)</th>
+          <th>변량 A \ 변량 B</th>
+          <th>\(B_1\)</th>
+          <th>\(B_2\)</th>
+          <th>\(\cdots\)</th>
+          <th>\(B_c\)</th>
        </tr>
        <tr>
           <td class="tdCenter">\(A_1\)</td>
@@ -632,19 +590,16 @@
   </div>
   <p>
   <div class="mainTableGrey">
-    <table>
-      <tr>
-        <td colspan="2">
-          <p><h5>🎲 예 11.3</h5>
+      <h5>🎲 예 11.3</h5>
            대학생들의 안경 착용 여부를 남녀별로 조사하기 위해 100명을 표본추출하여 교차표를 작성하였더니 다음과 같다.  
           <p>
           <div class="textLeft">표 11.7  성별과 안경착용여부의 교차표 </div>
           <table style="width:500px"> 
             <tr> 
-              <th class="thGrey"></th>
-              <th class="thGrey">안경안씀</th>
-              <th class="thGrey">안경씀</th>
-              <th class="thGrey">합계</th>
+              <th></th>
+              <th>안경안씀</th>
+              <th>안경씀</th>
+              <th>합계</th>
            </tr>
            <tr>
               <td class="tdCenter">남자</td>
@@ -677,22 +632,13 @@
           <div class="textL20M20">
             3) 『eStatU』를 이용하여 독립성검정 결과를 확인하라.
           </div>
-          <p> 
-        </td>
-      </tr>
-      <tr>
-        <td style="width:100px">
-          <h5>풀이</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStat.svg" onclick="window.open(addrStr[0])">
-        </td>
-        <td>
-          <p>
+      <h5>풀이</h5>
           1) 『eStat』에서 [그림 11.11]과 같이 데이터를 입력하고 ‘꺾은선그래프’를 선택한 후 성별, 안경안씀, 안경씀 변량을 차례로 누르면 [그림 11.12]와 같은 꺾은선그래프가 나타난다. 꺾은선그래프를 살펴보면 남녀별로 안경착용 여부가 많이 다름이 관찰된다. 남자인 경우 안경을 쓰지 않은 학생이 많고(남자 중에 80％), 여자인 경우 안경을 쓴 학생이 많다(여자 중에 60％). 이러한 경우 성별 변량과 안경 착용여부 변량은 관련이 있다고 생각된다. 이와 같이 두 변량이 서로 관련이 있을 때는 꺾은선그래프가 교차해서 나타나게 된다.
           <p>
-          <img src="../FigureU/Fig1111.png">
+          <img src="./Figure/Fig1111.png">
           <div class="textLeft">[그림 11.11] 『eStat』 데이터 입력</div>
           <p>
-          <img src="../FigureU/Fig1112.png">
+          <img src="./Figure/Fig1112.png">
           <div class="textLeft">[그림 11.12] 성별과 안경 착용여부에 대한 꺾은선그래프</div>
           <p>
           2) 만일 두 변량이 관련이 없다면(즉, 두 변량이 서로 독립이라면) 표 11.7의 교차표는 남자나 여자나 안경을 착용한 비율이 전체 학생의 안경을 착용한 비율 60％와 같아야 될 것이다. 즉, 독립인 경우에 기대되는 교차표는 다음과 같다.
@@ -700,10 +646,10 @@
           <div class="textLeft">표 11.8  성별과 안경착용여부가 독립일 경우의 교차표 </div>
           <table style="width:500px"> 
             <tr> 
-              <th class="thGrey"></th>
-              <th class="thGrey">안경안씀</th>
-              <th class="thGrey">안경씀</th>
-              <th class="thGrey">합계</th>
+              <th></th>
+              <th>안경안씀</th>
+              <th>안경씀</th>
+              <th>합계</th>
            </tr>
            <tr>
               <td class="tdCenter">남자</td>
@@ -739,29 +685,19 @@
           <p>
           이 예에서는  \(\chi_{obs}^{2}\) = 16.67이고, \(\chi_{(r-1)(c-1); &alpha;}^{2} = \chi_{(2-1)(2-1); 0.05}^{2} = \chi_{1; 0.05}^{2}\) = 3.841 보다 크므로 두 변량이 서로 독립이라는 귀무가설은 기각된다. 즉, 성별과 안경착용은 관련이 있다고 볼 수 있다.
           <p>
-        </td>
-      </tr>
-      <tr>
-        <td style="width:100px">
-            <input class="qrBtn" type="image" src="../../QR/eStatU920_TestIndependence.svg" onclick="window.open(addrStr[111])">
-        </td>
-        <td>
-          <p>
           3) 『eStatU』의 독립성검정에서 [그림 11.13]과 같이 데이터를 입력하고 ‘실행’ 버튼을 누르면 [그림 11.14]와 같은 카이제곱 검정 결과가 나타난다.
           <p>
-          <img src="../FigureU/Fig1113.png">
-          <div class="textLeft">[그림 11.13] 『eStatU』의 독립성검정 데이터 입력</div>
-          <p>
-          <img src="../FigureU/Fig1114.png">
-          <div class="textLeft">[그림 11.14] 『eStatU』의 카이제곱 독립성검정 결과</div>
-          <p>
-        </td>
-      </tr>
-    </table>
+        <!---   ************ html for Test of Independence ************  ---->
+        <p>
+        <b>[<span data-msgid="Testing Independence"></span>]</b>
+        <p>
+        <iframe class="example110" src="./example/110201.html"> </iframe>
+        <div class="textLeft">[그림 11.14] 『eStatU』의 카이제곱 독립성검정 결과</div>
+        <p>
   </div>
   <p>
   <div class="mainTable">
-    <h4>동질성 검정</h4>  
+    <h4 id="110202">동질성 검정</h4>  
     <p>
     독립성검정은 한 모집단에서 추출된 표본자료의 두 범주형 변량에 대한 교차표에 대한 것이었다. 하지만 같은 교차표라도 여러 개의 모집단에서 표본을 추출한 것일 수도 있다 이렇게 서로 다른 모집단에서 각각 표본을 추출하는 경우는 연구의 효율을 높이거나 시간적, 공간적 제약을 받을 때 많이 나타난다. 예를 들어, 어느 대학교의 1, 2, 3, 4학년의 영어 성적을 비교하고자 할 때는 각 학년을 별개의 모집단으로 하여 각각 표본을 추출하여 비교 분석하는 것이 타당하다. 어느 경우나 교차표는 다음과 같다.
     <p>
@@ -769,11 +705,11 @@
     <p>
       <table style="width:550px"> 
         <tr> 
-          <th class="thGrey" style="width:150px">영어성적 \ 학년</th>
-          <th class="thGrey" style="width:100px">1학년</th>
-          <th class="thGrey" style="width:100px">2학년</th>
-          <th class="thGrey" style="width:100px">3학년</th>
-          <th class="thGrey" style="width:100px">4학년</th>
+          <th style="width:150px">영어성적 \ 학년</th>
+          <th style="width:100px">1학년</th>
+          <th style="width:100px">2학년</th>
+          <th style="width:100px">3학년</th>
+          <th style="width:100px">4학년</th>
        </tr>
        <tr>
           <td class="tdCenter">A</td>
@@ -823,20 +759,17 @@
   </div>
   <p>
   <div class="mainTableGrey">
-    <table>
-      <tr>
-        <td colspan="2">
-          <p><h5>🎲 예 11.4</h5>
+      <h5>🎲 예 11.4</h5>
            한 TV방송국에서 방영하는 세 프로그램 (A, B, C)에 대하여 시청자가 연령층별로 다른지 조사하기 위해 청년(10대와 20대), 중년(30대와 40대), 장년(50대 이상)층의 모집단에서 각각 표본을 200명, 100명, 100명씩 추출한 결과가 다음과 같다. 연령층별로 TV프로그램 선호가 다른지 유의수준 5％로 검정하라.
           <p>
           <div class="textLeft">표 11.10 각 연령층별 선호 TV 프로그램 교차표 </div>
           <table style="width:600px"> 
             <tr> 
-              <th class="thGrey" style="width:200px">TV 프로그램 \ 연령층</th>
-              <th class="thGrey" style="width:100px">청년</th>
-              <th class="thGrey" style="width:100px">중년</th>
-              <th class="thGrey" style="width:100px">장년</th>
-              <th class="thGrey" style="width:100px">합계</th>
+              <th style="width:200px">TV 프로그램 \ 연령층</th>
+              <th style="width:100px">청년</th>
+              <th style="width:100px">중년</th>
+              <th style="width:100px">장년</th>
+              <th style="width:100px">합계</th>
            </tr>
            <tr>
               <td class="tdCenter">A</td>
@@ -867,16 +800,7 @@
               <th class="tdCenter">400</th>
            </tr>
           </table>
-          <p>
-        </td>
-      </tr>
-      <tr>
-        <td style="width:100px">
-          <h5>풀이</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStatU920_TestIndependence.svg" onclick="window.open(addrStr[111])">
-        </td>
-        <td>
-          <p>
+      <h5>풀이</h5>
             이 문제의 가설은 다음과 같다.
           <p>
           <div class="textL20">
@@ -907,107 +831,18 @@
           <p>
           그러므로 \(H_0\)는 기각된다. 즉, 연령층별로 TV프로그램의 선호는 다르다.
           <p>    
-        </td>
-      </tr>
-    </table>
+      <!---   ************ html for Test of Independence ************  ---->
+      <p>
+      <b>[<span data-msgid="Testing Independence"></span>]</b>
+      <p>
+      <iframe class="example110" src="./example/110202.html"> </iframe>
+      <p>
   </div>
   <p>
-   <div class="mainTablePink">
-    <h4> 연습문제 </h4>
-    <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
-
-    <h6 class="textL30M30">11.1 표본의 데이터가 한 이론 분포를 따르는지 조사하려면 어떠한 검정이 필요한가? </h6> 
-    <form name="Q1">
-      <label><input type="radio" name="item" value="1"> 적합성검정</label><br>
-      <label><input type="radio" name="item" value="2"> 독립성검정</label><br>
-      <label><input type="radio" name="item" value="3"> 두 모비율 검정</label><br>
-      <label><input type="radio" name="item" value="4"> 두 모평균 검정</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(11,1,Q1)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ1">
-    </form>
-
-    <h6 class="textL30M30">11.2 표본 추출된 연속형 데이터가 한 이론 분포를 따른다는 적합성검정을 위해 먼저 필요한 작업은? </h6>
-    <form name="Q2">
-      <label><input type="radio" name="item" value="1"> 로그변환</label><br>
-      <label><input type="radio" name="item" value="2"> 구간별 도수분포</label><br>
-      <label><input type="radio" name="item" value="3"> [0,1] 변환 </label><br>
-      <label><input type="radio" name="item" value="4"> 도수분포</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(11,2,Q2)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ2">
-    </form>
-    <h6 class="textL30M30">11.3 한 모집단에서 추출된 표본의 두 이산형 변량에 대한 교차표에서 ‘행변량과 열변량은 아무런 관련이 없다’라는 가설을 검정하는 방법은? </h6>
-    <form name="Q3">
-      <label><input type="radio" name="item" value="1"> 적합성검정</label><br>
-      <label><input type="radio" name="item" value="2"> 독립성검정</label><br>
-      <label><input type="radio" name="item" value="3"> 두 모비율 검정</label><br>
-      <label><input type="radio" name="item" value="4"> 동질성검정</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(11,3,Q3)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ3">
-    </form>
-
-    <h6 class="textL30M30">11.4 두 모집단에서 각각 추출된 이산형 표본의 교차표에서 두 모집단의 분포가 같은지 가설을 검정하는 방법은?</h6>
-    <form name="Q4">
-      <label><input type="radio" name="item" value="1"> 적합성검정</label><br>
-      <label><input type="radio" name="item" value="2"> 독립성검정</label><br>
-      <label><input type="radio" name="item" value="3"> 두 모비율 검정</label><br>
-      <label><input type="radio" name="item" value="4"> 동질성검정</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(11,4,Q4)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ4">
-    </form>
-
-    <h6 class="textL30M30">11.5 다음 중 교차표의 검정에 사용되는 통계분포는 어느 것인가?  </h6>
-    <form name="Q5">
-      <label><input type="radio" name="item" value="1"> t 분포</label><br>
-      <label><input type="radio" name="item" value="2"> 카이제곱분포</label><br>
-      <label><input type="radio" name="item" value="3"> 이항분포</label><br>
-      <label><input type="radio" name="item" value="4"> 정규분포</label><br>
-      <p>
-      <input type="button" value="제출" onClick="radio(11,5,Q5)"> &nbsp;&nbsp;&nbsp;
-      <input type="text" size=15 id="ansQ5">
-    </form>
-  </div>
-
-  <script>
-    for (var i=1; i < ans[11][0]+1; i++) document.getElementById(ansID[i]).disabled = true;
-  </script>
-  <p>
-
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(170)"> &#10094;&#10094; &nbsp;&nbsp;<b>10장</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(172)"><b>12장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
+  <h3 id="1103">11.3  연습문제</h3>
+  <iframe class="exercise" src="./exercise/exercise11.html" ></iframe>
 
 </div>
-    
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
-    <script>
-        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
-        
-        /* ajust the height when click the toc
-           the code is from https://github.com/twbs/bootstrap/issues/1768
-        */
-        var shiftWindow = function() { scrollBy(0, -50) };
-        window.addEventListener("hashchange", shiftWindow);
-        function load() { if (window.location.hash) shiftWindow(); }
-        
-        /*add Bootstrap styles to tables*/
-        var tables = document.getElementsByTagName("table");
-        for(var i = 0; i < tables.length; ++i){
-            tables[i].className += "table table-bordered table-hover";
-        }
-    </script>
-
 </body>
 </html>
 

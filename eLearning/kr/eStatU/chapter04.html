@@ -10,12 +10,11 @@
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+  <link href="/estat/eStat/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="../../css/dashboard.css" rel="stylesheet">
+  <link href="/estat/eStat/css/dashboard.css" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -24,12 +23,22 @@
       <![endif]-->
        <style type="text/css">code{white-space: pre;}</style>
        <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
-       <script src="../../js/prism.js"></script>
-       <link rel="stylesheet" href="../../css/prism.css">
-       <script src="../../js/jquery.min.js"></script>    
+       <link rel="stylesheet" href="/estat/eStat/css/pandoc.css">
+       <link rel="stylesheet" href="/estat/eStat/css/prism.css">
+       <script src="/estat/eStat/lib/jquery/jquery.min.js"></script>   
+       <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="/estat/eStat/lib/convertSVG.js"></script>
+       <script src="/estat/eStat/js/prism.js"></script>
+       <script src="/estat/eStat/js/eBook.js"></script>
+       <script src="/estat/eStat/js/eStatU.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>
+       <script> setLanguage('ko'); </script>
        <script type="text/javascript" id="MathJax-script" async
 	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
        </script>
+
        <script>
 	 $(document).ready(function() {
   	     toc = $("#sidebar > ul > li > ul");
@@ -48,79 +57,60 @@
   		 $(sections[i]).replaceWith(li);
   	     }
 	 });
-	 </script>
-       <link rel="stylesheet" href="../../css/pandoc.css">
-       <script src="../../js/eBook.js"></script>
-       <script src="/estat/eStat/js/language.js" ></script>
+       </script>
+      
 </head>
+
 <body>
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <ul class="nav navbar-nav">
-    <li><a href="../../../eStat/index.html"  target="_blank">eStat</a></li>
-    <li><a href="../../../eStatU/index.html" target="_blank">eStatU</a></li>
-    <li><a href="../../Distribution/index.html" target="_blank">확률분포</a></li>
-  </ul>
-</nav>
-
+  
+<!-- begin of left sidebar -->
 <div class="container-fluid">
-  <div class="row">
-    <div id="sidebar" class="col-sm-3 col-md2 sidebar">
-      <ul>
-	<li><a href=""></a>
-	  <ul>
-            <li><a href="index.html">차  례</a></li>
-            <li><a href="chapter01.html">1장 통계 데이터과학</a></li>
-            <li><a href="chapter02.html">2장 질적 데이터 시각화</a></li>
-            <li><a href="chapter03.html">3장 양적 데이터 시각화</a></li>
-            <li><a href="chapter04.html">4장 표/측도 데이터 정리</a></li>
-            <li><a href="chapter05.html">5장 확률, 확률분포함수</a></li>
-            <li><a href="chapter06.html">6장 표집분포와 추정</a></li>
-            <li><a href="chapter07.html">7장 한 모집단 모수 검정</a></li>
-            <li><a href="chapter08.html">8장 두 모집단 모수 검정</a></li>
-            <li><a href="chapter09.html">9장 여러 모평균의 검정</a></li>
-            <li><a href="chapter10.html">10장 비모수적 가설검정</a></li>
-            <li><a href="chapter11.html">11장 범주형 데이터 검정</a></li>
-            <li><a href="chapter12.html">12장 상관 및 회귀분석</a></li>
-            <li><a href="chapter13.html">13장 시계열분석</a></li>
-	  </ul>
-	</li>
-      </ul>
-    </div>
-  </div>
+<div class="row">
+<div id="sidebar" class="col-sm-2 col-md1 sidebar">
+  <ul>
+    <li> <a href="index.html"><b>차례</b> </a> </li>
+    <li> <a href="chapter01.html"> <span data-msgid="Chapter01"> </span></a> </li>
+    <li> <a href="chapter02.html"> <span data-msgid="Chapter02"> </span></a> </li>
+    <li> <a href="chapter03.html"> <span data-msgid="Chapter03"> </span></a> </li>
+    <li> <a href="chapter04.html"> <span data-msgid="Chapter04"> </span></a> </li>
+	      <ul>
+                <li><a href="#0401">&nbsp; 4.1 도수분포표와 교차표</a></li>
+                <li><a href="#0402">&nbsp; 4.2 측도를 이용한 데이터 요약</a></li>
+                <li><a href="#0403">&nbsp; 4.3 연습문제</a></li> 
+	      </ul>
+    <li> <a href="chapter05.html"> <span data-msgid="Chapter05"> </span></a> </li>
+    <li> <a href="chapter06.html"> <span data-msgid="Chapter06"> </span></a> </li>
+    <li> <a href="chapter07.html"> <span data-msgid="Chapter07"> </span></a> </li>
+    <li> <a href="chapter08.html"> <span data-msgid="Chapter08"> </span></a> </li>
+    <li> <a href="chapter09.html"> <span data-msgid="Chapter09"> </span></a> </li>
+    <li> <a href="chapter10.html"> <span data-msgid="Chapter10"> </span></a> </li>
+    <li> <a href="chapter11.html"> <span data-msgid="Chapter11"> </span></a> </li>
+    <li> <a href="chapter12.html"> <span data-msgid="Chapter12"> </span></a> </li>
+    <li> <a href="chapter13.html"> <span data-msgid="Chapter13"> </span></a> </li>
+  </ul>
 </div>
-
+</div>
+</div>
+<!-- end of left sidebar -->
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
   <!--***********************************************************************-->
   <h1>4장 표/측도를 이용한 데이터 정리</h1> 
+  <h1>&nbsp; ⚖ μ  🎯  σ</h1>
+  <b>
+	      <ul>
+                <li><a href="#0401">&nbsp; 4.1 도수분포표와 교차표</a></li>
+                <li><a href="#0402">&nbsp; 4.2 측도를 이용한 데이터 요약</a></li>
+                <li><a href="#0403">&nbsp; 4.3 연습문제</a></li> 
+	      </ul>
+                <a href="./pdf/chapter04.pdf" target="_blank">[4장 pdf]</a>
+  </b>
   <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(163)">&#10094;&#10094; &nbsp;&nbsp;<b>3장</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(165)"><b>5장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
-  <p>
-  <table>
-    <tr>
-      <td style="width:300px">
-        <h1>&nbsp; ⚖ μ  🎯  σ</h1>
-        <h4>
-        <a href="#0401"><u>4.1 도수분포표와 교차표</u></a> <p>
-        <a href="#0402"><u>4.2 측도를 이용한 데이터 요약</u></a> <p>
-        <a href="chapter04.pdf" target="_blank"><u>[4장 pdf]</u></a> 
-        </h4>
-      </td>
-      <td style="width:350px">
-        <h1></h1>
-        <p>데이터의 수가 많고 복잡할 때 그래프를 이용한 데이터 시각화를 하면 내포된 정보를 쉽고 빠르게 살펴볼 수 있다. 
-           하지만 좀 더 자세한 정보를 얻고 싶을 때는 표나 측도를 구하여 살펴보는 것이 좋다. 이 장에서는
-        <p>질적 데이터 요약 방법으로서 도수분포표와 교차표를 소개한다.
-        <p>양적 데이터 정리 방법으로서 측도를 이용한 데이터 요약을 설명한다.
-      </td>
-    </tr>
-  </table>
-      <br>
+        데이터의 수가 많고 복잡할 때 그래프를 이용한 데이터 시각화를 하면 내포된 정보를 쉽고 빠르게 살펴볼 수 있다. 
+           하지만 좀 더 자세한 정보를 얻고 싶을 때는 표나 측도를 구하여 살펴보는 것이 좋다. 이 장에서는<br>
+        질적 데이터 요약 방법으로서 도수분포표와 교차표를 소개한다.<br>
+        양적 데이터 정리 방법으로서 측도를 이용한 데이터 요약을 설명한다.<br>
 <!--
   <h6>
       <a href="https://youtu.be/FWZ2gsrYz-w" target="_blank"><u>[video]</u></a>
@@ -138,8 +128,8 @@
       도수분포를 이용하여 그린 것이다. 
       <p>
           <div class="textLeft">표 4.1 성별 데이터 </div>
-          <table style="width:400px"> 
-            <tr> <th class="thGrey">성별</th> </tr>
+          <table style="width:200px"> 
+            <tr> <th>성별</th> </tr>
             <tr> <td class="tdCenter">1</td> </tr>
             <tr> <td class="tdCenter">2</td> </tr>
             <tr> <td class="tdCenter">1</td> </tr>
@@ -154,41 +144,30 @@
   </div>
   <p>
   <div class="mainTableGrey">
-      <table>
-        <tr>
-          <td colspan="2">
-            <p><h5>🎲 예 4.1</h5>
+        <h5>🎲 예 4.1</h5>
             『eStat』을 이용하여 이 성별 범주형 원시 데이터의 도수분포표를 작성하여 보자.
-          </td>
-        </tr>
-        <tr>
-          <td style="width:100px">
-            <h5>풀이</h5>
-            <input class="qrBtn" type="image" src="../../QR/EX020301.svg" onclick="window.open(addrStr[12])">
-          </td>
-          <td>
-            <p>
+        <h5>풀이</h5>
             『eStat』에 성별 데이터를 [그림 4.1]과 같이 입력한다. '변량편집'을 이용하여 변량명 '성별'을 입력하고 변량값 1과 2에 대한 변량값명 '남' '여'를 입력한다([그림 4.2]). 이와 같이 변량값명에 대한 편집을 한 데이터는 JSON 형식으로 저장(하여야 정보를 잃어버리지 않게 된다. 다시 불러올 때도 JSON 형식으로 불러오는 아이콘 을 클릭하여야 한다.  
             <p>
-               <img src="../FigureU/Fig0401.png">
+            <div>
+               <input class="qrBtn" type="image" src="/estat/eStat/qr/EX020301.svg" onclick="window.open(addrStr[12])">
+               <img src="./Figure/Fig0401.png">
                <div class="textLeft">[그림 4.1] 데이터 입력 </div>
+            </div>
             <p>
-               <img src="../FigureU/Fig0402.png">
+               <img src="./Figure/Fig0402.png">
                <div class="textLeft">[그림 4.2] 변량 편집 </div>
             <p>
             [그림 4.1]과 같이 변량선택박스에서 '분석변량'으로 성별을 선택하면 [그림 4.3]과 같은 성별의 막대그래프가 그려지고 여기서 마우스로 도수분포표 아이콘 을 선택하면 [그림 4.4]와 같은 남녀별 학생수에 대한 도수분포표가 결과저장창에 나타난다. 
             <p>
-               <img src="../FigureU/Fig0403.png">
+               <img src="./Figure/Fig0403.png">
                <div class="textLeft">[그림 4.3] 성별의 막대그래프</div>
             <p>
-               <img src="../FigureU/Fig0404.png">
+               <img src="./Figure/Fig0404.png">
                <div class="textLeft">[그림 4.4] 성별 도수분포표</div>
             <p>
             막대그래프나 원그래프는 이 도수분포를 이용하여 그린 것이다. 
             <p>
-         </td>
-        </tr>
-      </table>
   </div>
 
   <!---------------------------------------------------->
@@ -206,50 +185,39 @@
   <p>
 
   <div class="mainTableGrey">
-      <table>
-        <tr>
-          <td colspan="2">
-            <p><h5>🎲 예 4.2</h5>
+        <h5>🎲 예 4.2</h5>
             수달의 길이(『eStat』의 [Ex] ⇨ 01Korean ⇨ 031연속_수달의길이.csv) 데이터의 
             히스토그램과 도수분포표를 『eStat』을 이용하여 구해보자.
-          </td>
-        </tr>
-        <tr>
-          <td style="width:100px">
-            <h5>풀이</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStat.svg" onclick="window.open(addrStr[0])">
-          </td>
-          <td>
-            <p>
+        <h5>풀이</h5>
             『eStat』에서 [Ex] ⇨ 01Korean ⇨ 031연속_수달의 길이.csv를 불러온다([그림 4.5]). 
             마우스로 히스토그램 아이콘을 클릭하고 변량명
             '수달의길이'를 선택하면 [그림 4.6]과 같은 히스토그램이 그려진다. 
             <p>
-               <img src="../FigureU/Fig0405.png">
+            <div>
+               <input class="qrBtn" type="image" src="/estat/eStat/qr/eStat.svg" onclick="window.open(addrStr[0])">
+               <img src="./Figure/Fig0405.png">
                <div class="textLeft">[그림 4.5] 수달길이 데이터</div>
+            </div>
             <p>
-               <img src="../FigureU/Fig0406.png">
+               <img src="./Figure/Fig0406.png">
                <div class="textLeft">[그림 4.6] 수달길이의 히스토그램 </div>
             <p>
            그래프 밑의 선택 대화상자에서([그림 4.7]) '도수분포표'를 클릭하면 [그림 4.8]과 같은 구간별 도수분포표가 결과저장창에 나타난다. 
             <p>
-               <img src="../FigureU/Fig0407.png">
+               <img src="./Figure/Fig0407.png">
                <div class="textLeft">[그림 4.7] 히스토그램의 선택사항</div>
             <p>
-               <img src="../FigureU/Fig0408.png">
+               <img src="./Figure/Fig0408.png">
                <div class="textLeft">[그림 4.8] 수달 길이의 구간별 도수분포표</div>
             <p>
             만일 히스토그램 구간을 60kg에서 5kg간격으로 재조정하기 위해서는 그래프 선택사항에서 '구간시작'을 60, 구간너비를 5로 설정한 후 '새구간으로 실행' 버튼을 누르면 [그림 4.9]와 같은 히스토그램이 나타난다. 선택사항의 '도수분포표'를 클릭하면 [그림 4.10]의 도수분포표가 나타난다.
             <p>
-               <img src="../FigureU/Fig0409.png">
+               <img src="./Figure/Fig0409.png">
                <div class="textLeft">[그림 4.9] 구간 조정된 히스토그램</div>
             <p>
-               <img src="../FigureU/Fig0410.png">
+               <img src="./Figure/Fig0410.png">
                <div class="textLeft">[그림 4.10] 구간 조정된 도수분포표</div>
             <p>
-         </td>
-        </tr>
-      </table>
   </div>
   <p>
   <!---------------------------------------------------->
@@ -266,15 +234,12 @@
   </div>
   <p>
   <div class="mainTableGrey">
-      <table>
-        <tr>
-          <td colspan="2">
-            <p><h5>🎲 예 4.3</h5>
+        <h5>🎲 예 4.3</h5>
             한 여론조사에서 성별(1:남자, 2:여자)과 함께 결혼여부(1:미혼, 2:결혼, 3:기타)를 조사한 데이터가 표 4.2와 같다. 성별 결혼여부에 대한 교차표를 구해 보자. 
             <p>
             <div class="textLeft">표 4.1 성별 데이터 </div>
             <table style="width:400px"> 
-              <tr> <th class="thGrey">성별</th> <th class="thGrey">결혼여부</th> </tr>
+              <tr> <th>성별</th> <th>결혼여부</th> </tr>
               <tr> <td class="tdCenter">1</td> <td class="tdCenter">1</td> </tr>
               <tr> <td class="tdCenter">2</td> <td class="tdCenter">2</td> </tr>
               <tr> <td class="tdCenter">1</td> <td class="tdCenter">1</td> </tr>
@@ -286,46 +251,35 @@
               <tr> <td class="tdCenter">1</td> <td class="tdCenter">3</td> </tr>
               <tr> <td class="tdCenter">2</td> <td class="tdCenter">1</td> </tr>
             </table>
-            <p>
-          </td>
-        </tr>
-        <tr>
-          <td style="width:100px">
-            <h5>풀이</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStat.svg" onclick="window.open(addrStr[0])">
-          </td>
-          <td>
-            <p>
+        <h5>풀이</h5>
            『eStat』에 성별과 결혼여부 데이터를 입력한다([그림 4.11]). '변량편집'을 이용하여 변량명 '성별'을 
             입력하고 변량값 1과 2에 대한 변량값명 '남자', '여자'를 입력한다. 같은 방법으로 변량명 '결혼여부'를 
             입력하고 변량값 1, 2, 3에 대한 변량값명 '미혼', '기혼', '기타'를 입력한다. 이와 같이 변량값명에 대한 
-            편집을 한 데이터는 JSON 형식으로 저장(아이콘<img src="../../icon/eStat_icon07_jsonSave.png" class="imgIcon">
+            편집을 한 데이터는 JSON 형식으로 저장(아이콘<img src="/estat/eStat/icon/eStat_icon07_jsonSave.png" class="imgIcon">
             클릭)한다. 다시 불러올 때도 JSON 형식으로 불러오는 아이콘
-            <img src="../../icon/eStat_icon05_jsonOpen.png" class="imgIcon"> 을 클릭하여야 한다.  
+            <img src="/estat/eStat/icon/eStat_icon05_jsonOpen.png" class="imgIcon"> 을 클릭하여야 한다.  
             <p>
-               <img src="../FigureU/Fig0411.png">
+            <div>
+               <input class="qrBtn" type="image" src="/estat/eStat/qr/eStat.svg" onclick="window.open(addrStr[0])">
+               <img src="./Figure/Fig0411.png">
                <div class="textLeft">[그림 4.11] 성별 결혼여부 데이터 입력</div>
+            </div>
             <p>
             마우스로 첫째 변량('분석변량') '결혼여부'와, 둘째 변량('by 그룹') '성별'의 변량명을 차례로 클릭하면 기본적으로 선택되어있는 [그림 4.12]와 같은 성별 결혼여부의 막대그래프가 나타난다. 이때 도수분포표 아이콘 을 클릭하면 성별 결혼여부의 교차표가 결과저장창에 표시된다([그림 4.13]). 교차표에서는 행변량이 그룹변량이 되고 열변량이 분석변량이 된다. 이 교차표를 이용하여 성별 결혼여부에 대한 막대그래프가 그려진 것이다. 
             <p>
-               <img src="../FigureU/Fig0412.png">
+               <img src="./Figure/Fig0412.png">
                <div class="textLeft">[그림 4.12] 성별 결혼여부의 막대그래프</div>
             <p>
-               <img src="../FigureU/Fig0413.png">
+               <img src="./Figure/Fig0413.png">
                <div class="textLeft">[그림 4.13] 성별 결혼여부에 대한 교차표</div>
             <p>
-         </td>
-        </tr>
-      </table>
   </div>
   <p>
 
-
-<!--------------------------------------------------------------------------------------->
+  <!--------------------------------------------------------------------------------------->
   <h3 id="0402">4.2 측도를 이용한 데이터 요약</h3>
-  <p>
+
   <div class="mainTable">
-    <!---------------------------------------------------->
     <h4>중심위치의 측도</h4>
       <p>
       <b>중심위치의 측도</b>(measure of central tendency)에는 평균, 중앙값, 최빈값 등이 있는데 이 중 가장 많이 사용되는 것이 
@@ -396,7 +350,7 @@
       간주하기도 한다. 통계패키지에서는 상자그래프의 좌측선을 max(최솟값, \(Q_1\)-1.5*IQR), 우측선을 
       min(최댓값,\(Q_3\) +1.5*IQR)으로 표시하기도 한다.
       <p>
-         <img src="../FigureU/Fig0414.png">
+         <img src="./Figure/Fig0414.png">
          <div class="textLeft">[그림 4.14] 상자그래프</div>
       <p>
       <b>변이계수</b>(coefficient of variation)는 표준편차를 평균으로 나눈값에 100을 곱하여 %를 계산한 것으로서 단위가 다른 두 종류의 데이터를 비교할 때 이용된다.
@@ -406,255 +360,49 @@
 
     <!---------------------------------------------------->
     <h4>『eStat』을 이용한 측도의 계산</h4>
-    <p>
+
   <div class="mainTableGrey">
-      <table>
-        <tr>
-          <td colspan="2">
-            <p><h5>🎲 예 4.4</h5>
+        <h5>🎲 예 4.4</h5>
             통계학 클래스의 7명 표본 학생을 대상으로 10점 만점인 퀴즈를 본 결과 5, 6, 3, 7, 9, 4, 8점 이었다. 이 데이터의 표본평균과 표본중앙값을 『eStat』을 이용하여 구해 보자.
-          </td>
-        </tr>
-        <tr>
-          <td style="width:100px">
-            <h5>풀이</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStat.svg" onclick="window.open(addrStr[0])">
-          </td>
-          <td>
-            <p>
+        <h5>풀이</h5>
             『eStat』을 이용하여 평균과 중앙값을 구하려면 시트의 V1열에 데이터를 입력한 후 기초통계량 아이콘
-            <img src="../../icon/eStat_icon19_measure.png" class="imgIcon">  을 클릭한다. 그러면 결과저장창에 
+            <img src="/estat/eStat/icon/eStat_icon19_measure.png" class="imgIcon">  을 클릭한다. 그러면 결과저장창에 
             [그림 4.15]와 같은 결과가 나타난다. 평균, 중앙값과 함께 표준편차, 최솟값, 최댓값, \(Q_1\), \(Q_3\), 범위
             사분위수범위, 변이계수를 계산하여 준다. 이때 분산, 표준편차, 변이계수는 데이터가 모집단안지(n공식) 또는 표본인지(n-1 공식)에 
             따라 분석자가 선택하여 사용한다. 
             <p>
-               <img src="../FigureU/Fig0415.png">
+            <div>
+               <input class="qrBtn" type="image" src="/estat/eStat/qr/eStat.svg" onclick="window.open(addrStr[0])">
+               <img src="./Figure/Fig0415.png">
                <div class="textLeft">[그림 4.15] 『eStat』의 평균, 표준편차, 최솟값, 중앙값 및 최댓값 </div>
+            </div>
             <p>
             상자그래프 아이콘을 클릭하면 [그림 4.16]과 같은 그래프가 보여진다.
             <p>
-               <img src="../FigureU/Fig0416.png">
+               <img src="./Figure/Fig0416.png">
                <div class="textLeft">[그림 4.16] 퀴즈성적의 상자그래프</div>
             <p>
-         </td>
-        </tr>
-      </table>
   </div>
 
     <!---------------------------------------------------->
     <h4>『eStatU』를 이용한 측도의 계산</h4>
-    <p>
+
   <div class="mainTableGrey">
-      <table>
-        <tr>
-          <td colspan="2">
-            <p><h5>🎲 예 4.5</h5>
+        <h5>🎲 예 4.5</h5>
             위의 [예 4.4]를 『eStatU』을 이용하여 측도를 계산하여 보자. 
-          </td>
-        </tr>
-        <tr>
-          <td style="width:100px">
-            <h5>풀이</h5>
-            <input class="qrBtn" type="image" src="../../QR/eStatU_10BoxGraph.svg" onclick="window.open(addrStr[77])">
-          </td>
-          <td>
-            <p>
+        <h5>풀이</h5>
             『eStatU』메뉴에서 '상자그래프 – 기초통계량'을 선택하면 [그림 4.17]과 같은 데이터 입력 화면이 나타난다. 여기에 데이터를 입력하면 그 즉시 기초통계량이 계산되고 [실행] 버튼을 클릭하면 [그림 4.18]과 같은 점그래프와 상자그래프가 나타난다. 이 그래프의 아래부분에 있는 점들은 마우스로 움직일 수 있어 통계량의 변화를 관찰할 수 있다.
             <p>
-               <img src="../FigureU/Fig0417.png">
-               <div class="textLeft">[그림 4.17] 『eStatH』를 이용한 퀴즈성적의 기초통계량</div>
+               <iframe class="example90" src="./example/040301.html"> </iframe>
+               <div class="textLeft">[그림 4.18] 『eStatU』를 이용한 퀴즈성적의 상자그래프, 밑의 그림은 시뮬레이션창</div>
             <p>
-               <img src="../FigureU/Fig0418.png">
-               <div class="textLeft">[그림 4.18] 『eStatH』를 이용한 퀴즈성적의 상자그래프</div>
-            <p>
-         </td>
-        </tr>
-      </table>
   </div>
   <p>
 
+  <h3 id="0403">4.3  연습문제</h3>
+  <iframe class="exercise" src="./exercise/exercise04.html"></iframe>
 
-
-  <div class="mainTablePink">
-    <h4> 연습문제 </h4>
-    <p style="color:blue">*** 답을 선택한 후 [제출] 버튼을 누르세요
-
-      <h6 class="textL30M30">4.1  다음 데이터 중 평균 28, 중앙값 30, 최빈수가 40인 변량은?  </h6> 
-      <form name="Q1">
-        <label><input type="radio" name="item" value="1"> 12, 20, 30, 40</label><br>
-        <label><input type="radio" name="item" value="2"> 12, 30, 30, 40</label><br>
-        <label><input type="radio" name="item" value="3"> 12, 40, 30, 40</label><br>
-        <label><input type="radio" name="item" value="4"> 12, 40, 20, 40</label><br>
-        <p>
-        <input type="button" value="제출" onClick="radio(4,1,Q1)"> &nbsp;&nbsp;&nbsp;
-        <input type="text" size=15 id="ansQ1">
-      </form>
-
-      <h6 class="textL30M30">4.2  6명의 통계학 점수가 70, 60, 80, 90, 90, 70이다. 이 점수의 중앙값은 얼마인가? </h6>
-      <form name="Q2">
-        <label><input type="radio" name="item" value="1"> 70</label><br>
-        <label><input type="radio" name="item" value="2"> 75</label><br>
-        <label><input type="radio" name="item" value="3"> 80</label><br>
-        <label><input type="radio" name="item" value="4"> 90</label><br>
-        <p>
-        <input type="button" value="제출" onClick="radio(4,2,Q2)"> &nbsp;&nbsp;&nbsp;
-        <input type="text" size=15 id="ansQ2">
-      </form>
-
-      <h6 class="textL30M30">4.3  숫자 1, 2, 3, … , n 을 각각 쓴 카드가 있다. 이들 숫자의 평균은?</h6>
-      <form name="Q3">
-        <label><input type="radio" name="item" value="1"> \( \frac{(n+1)(2n+1)}{2}\)</label><br>
-        <label><input type="radio" name="item" value="2"> \( \frac{2n+1}{3} \)</label><br>
-        <label><input type="radio" name="item" value="3"> \( \frac{n(n+1)}{2} \)</label><br>
-        <label><input type="radio" name="item" value="4"> \( \frac{n+1}{2} \)</label><br>
-        <p>
-        <input type="button" value="제출" onClick="radio(4,3,Q3)"> &nbsp;&nbsp;&nbsp;
-        <input type="text" size=15 id="ansQ3">
-      </form>
-
-      <h6 class="textL30M30">4.4  한 개에 100원씩 하는 토마토 10개와 한 개에 150원씩 하는 토마토를 600원어치를 샀다. 1개당 평균 얼마를 주고 산 셈이 되는가? </h6>
-      <form name="Q4">
-        <label><input type="radio" name="item" value="1"> 114.3</label><br>
-        <label><input type="radio" name="item" value="2"> 122.5</label><br>
-        <label><input type="radio" name="item" value="3"> 125.0</label><br>
-        <label><input type="radio" name="item" value="4"> 125.7</label><br>
-        <p>
-        <input type="button" value="제출" onClick="radio(4,4,Q4)"> &nbsp;&nbsp;&nbsp;
-        <input type="text" size=15 id="ansQ4">
-      </form>
-
-      <h6 class="textL30M30">4.5  크기가 \(n_1\), \(n_2\)인 두 자료의 평균이 각각 \(\overline x_1\), \(\overline x_2\)일 때, 이 두 자료를 합친 전체의 평균 \(\overline x\)는?  </h6>
-      <form name="Q5">
-        <label><input type="radio" name="item" value="1"> \( \frac{n_1 {\overline x}_1 + n_2 {\overline x}_2}{n_1 + n_2} \)</label><br>
-        <label><input type="radio" name="item" value="2"> \( \frac{n_1 {\overline x}_2 + n_2 {\overline x}_1}{n_1 + n_2} \)</label><br>
-        <label><input type="radio" name="item" value="3"> \( \frac{{\overline x}_1 + {\overline x}_2}{n_1 + n_2} \)</label><br>
-        <label><input type="radio" name="item" value="4"> \( \frac{n_1 n_2 {\overline x}_1 + {\overline x}_2 }{n_1 + n_2} \)</label><br>
-        <p>
-        <input type="button" value="제출" onClick="radio(4,5,Q5)"> &nbsp;&nbsp;&nbsp;
-        <input type="text" size=15 id="ansQ5">
-      </form>
-
-      <h6 class="textL30M30">4.6  데이터 \(x_1 , x_2 , ... , x_n \)의 평균이 \(\overline x\)일 때 , \( \sum_{i=1}^{n} {x_i - \overline x}\) 의 값은?</h6>
-      <form name="Q6">
-        <label><input type="radio" name="item" value="1"> 1</label><br>
-        <label><input type="radio" name="item" value="2"> 0</label><br>
-        <label><input type="radio" name="item" value="3"> -1</label><br>
-        <label><input type="radio" name="item" value="4"> n</label><br>
-        <p>
-        <input type="button" value="제출" onClick="radio(4,6,Q6)"> &nbsp;&nbsp;&nbsp;
-        <input type="text" size=15 id="ansQ6">
-      </form>
-
-      <h6 class="textL30M30">4.7  산술평균의 성질 중 틀린 것은? </h6>
-      <form name="Q7">
-        <label><input type="radio" name="item" value="1"> 산술평균은 변량 중의 극단값의 영향을 많이 받는다.</label><br>
-        <label><input type="radio" name="item" value="2"> 산술평균에 대한 편차의 합은 0이 아니다.</label><br>
-        <label><input type="radio" name="item" value="3"> 산술평균에 대한 편차의 제곱의 합은 다른 어떤 수에 대한 편차의 제곱의 합보다 크지 않다.</label><br>
-        <label><input type="radio" name="item" value="4"> 편차의 제곱의 합을 최소로 하는 것은 산술평균이다.</label><br>
-        <p>
-        <input type="button" value="제출" onClick="radio(4,7,Q7)"> &nbsp;&nbsp;&nbsp;
-        <input type="text" size=15 id="ansQ7">
-      </form>
-
-      <h6 class="textL30M30">4.8  다음 표는 어느 대학생의 평가표이다. 학점수를 가중값으로 하는 가중평균은? </h6>
-          <table style="width:500px"> 
-            <tr>
-              <td class="tdLeft">과목명</td> 
-              <td class="tdCenter">A</td>
-              <td class="tdCenter">B</td>
-              <td class="tdCenter">C</td>
-              <td class="tdCenter">D</td>
-              <td class="tdCenter">E</td>
-              <td class="tdCenter">F</td>
-            </tr>
-            <tr>
-              <td class="tdLeft">학점수</td>
-              <td class="tdCenter">4</td>
-              <td class="tdCenter">3</td>
-              <td class="tdCenter">3</td>
-              <td class="tdCenter">2</td>
-              <td class="tdCenter">2</td>
-              <td class="tdCenter">1</td>
-            </tr>
-            <tr>
-              <td class="tdLeft">점수</td>
-              <td class="tdCenter">80</td>
-              <td class="tdCenter">90</td>
-              <td class="tdCenter">85</td>
-              <td class="tdCenter">95</td>
-              <td class="tdCenter">75</td>
-              <td class="tdCenter">90</td>
-            </tr>
-          </table>     
-      <form name="Q8">
-        <label><input type="radio" name="item" value="1"> 82.85</label><br>
-        <label><input type="radio" name="item" value="2"> 85.00</label><br>
-        <label><input type="radio" name="item" value="3"> 83.25</label><br>
-        <label><input type="radio" name="item" value="4"> 80.00</label><br>
-        <p>
-        <input type="button" value="제출" onClick="radio(4,8,Q8)"> &nbsp;&nbsp;&nbsp;
-        <input type="text" size=15 id="ansQ8">
-      </form>
-
-      <h6 class="textL30M30">4.9  어느 도수분포에서 1사분위수가 68.25, 2사분위수가 79.06, 3사분위수가 90.75일 때 다음의 통계적 해석이 틀린 것은?</h6>
-      <form name="Q9">
-        <label><input type="radio" name="item" value="1"> 전체도수의 25%가 68.25 이하이다.</label><br>
-        <label><input type="radio" name="item" value="2"> 전체도수의 50%가 68.25 이하이다.</label><br>
-        <label><input type="radio" name="item" value="3"> 전체도수의 50%가 79.06 이하이다.</label><br>
-        <label><input type="radio" name="item" value="4"> 전체도수의 75%가 90.75 이하이다.</label><br>
-        <p>
-        <input type="button" value="제출" onClick="radio(4,9,Q9)"> &nbsp;&nbsp;&nbsp;
-        <input type="text" size=15 id="ansQ9">
-      </form>
-
-      <h6 class="textL30M30">4.10 성질이 다르거나 또는 평균이 다른 자료의 산포도를 비교하는데 편리한 척도는?</h6>
-      <form name="Q10">
-        <label><input type="radio" name="item" value="1"> 상대도수</label><br>
-        <label><input type="radio" name="item" value="2"> 표준편차	</label><br>
-        <label><input type="radio" name="item" value="3"> 변이계수</label><br>
-        <label><input type="radio" name="item" value="4"> 상관계수</label><br>
-        <p>
-        <input type="button" value="제출" onClick="radio(4,10,Q10)"> &nbsp;&nbsp;&nbsp;
-        <input type="text" size=15 id="ansQ10">
-      </form>
-
-    </div>
-    <p>
-    <script>
-      for (var i=1; < ans[4][0]+1; i++) document.getElementById(ansID[i]).disabled = true;
-    </script>
-    <p>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(163)">&#10094;&#10094; &nbsp;&nbsp;<b>3장</b></button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button type="button" style="width:160px" onclick="moveSection(165)"><b>5장</b>&nbsp;&nbsp; &#10095;&#10095;</button>
 </div>
-    
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
-    <script>
-        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
-        
-        /* ajust the height when click the toc
-           the code is from https://github.com/twbs/bootstrap/issues/1768
-        */
-        var shiftWindow = function() { scrollBy(0, -50) };
-        window.addEventListener("hashchange", shiftWindow);
-        function load() { if (window.location.hash) shiftWindow(); }
-        
-        /*add Bootstrap styles to tables*/
-        var tables = document.getElementsByTagName("table");
-        for(var i = 0; i < tables.length; ++i){
-            tables[i].className += "table table-bordered table-hover";
-        }
-    </script>
-
 </body>
 </html>
 
