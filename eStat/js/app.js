@@ -3715,12 +3715,13 @@ d3.select("#estatE").on("click", function() {
 d3.select("#estat").on("click", function() {
     window.open(appStr[4][langNum]);
 })
-// eStat Home 메뉴
+// eStat Home 메뉴v
 d3.select("#home").on("click", function() {
     window.open(appStr[0][langNum]);
 })
 // eStaLecture 메뉴
 d3.select("#estatLecture").on("click", function() {
+var levelNum = localStorage.getItem("level");
     if (levelNum == "2") {window.open(appStr[6][langNum]);}
     else if (levelNum == "3") {window.open(appStr[7][langNum]);}
     else {window.open(appStr[8][langNum]);}
