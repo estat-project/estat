@@ -370,10 +370,11 @@ variableSelectClear();
 document.getElementById("analysisVar").innerHTML = svgStr[26][langNum]; // 분석변량
 document.getElementById("groupVar").innerHTML    = svgStr[18][langNum]; // 그룹
 */
+/*
 // 학습수준 컨트롤
 var levelNum = localStorage.getItem("level");
 if (levelNum == null) levelNum = "4";
-/*
+
  document.myForm1.type1.value = parseInt(levelNum);
 if (levelNum == "1") { // 초등
     document.getElementById("tool-group-graph-numeric").style.display = "none"; // 연속형 그래프 감추기
