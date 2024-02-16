@@ -7,17 +7,19 @@
       var graphWidth  = svgWidth - margin.left - margin.right;
       var graphHeight = svgHeight - margin.top - margin.bottom;
       var checkTitle  = true;
-      var mTitle, yTitle, xTitle, yobs, x1obs, x2obs, x3obs, tobs, numVar;
+      var mTitle, yTitle, xTitle, yobs, x1obs, x2obs, x3obs, x4obs, x5obs, tobs, numVar;
       var fontsize = "1em";
       var statF     = new Array(30);
       var rowmax    = 200;
-      var colmax    = 4;
+      var colmax    = 6;
       var xdata     = new Array(rowmax);
       var ydata     = new Array(rowmax);
       var yydata    = new Array(rowmax);
       var x1data    = new Array(rowmax);
       var x2data    = new Array(rowmax);
       var x3data    = new Array(rowmax);
+      var x4data    = new Array(rowmax);
+      var x5data    = new Array(rowmax);
       var avgX      = new Array(colmax);
       var Cov       = new Array(colmax);
       var Corr      = new Array(colmax);
@@ -33,7 +35,8 @@
       var T        = new Array(colmax);
       var Beta     = new Array(colmax);
       var Cii      = new Array(colmax);
-      var tdvarName = ["Y", "X1", "X2", "X3"];
+      var tdvarName = ["Y", "X1", "X2", "X3", "X4", "X5"];
+      var tdvarNameSub = ["Y", "X<sub>1</sub>", "X<sub>2</sub>", "X<sub>3</sub>", "X<sub>4</sub>", "X<sub>5</sub>"];
 
       chart.selectAll("*").remove();
       // input data control ===================================================
@@ -57,21 +60,35 @@
         x3data = data; 
         x3obs = stat.n;
       });
+      d3.select("#data5").on("input", function() {
+        stat = simplestat("#data5");  
+        x4data = data; 
+        x4obs = stat.n;
+      });
+      d3.select("#data6").on("input", function() {
+        stat = simplestat("#data6");  
+        x5data = data; 
+        x5obs = stat.n;
+      });
 
       updateData = function() {
         document.getElementById("data1").value = '';
         document.getElementById("data2").value = '';    
         document.getElementById("data3").value = '';    
         document.getElementById("data4").value = '';    
+        document.getElementById("data5").value = '';    
+        document.getElementById("data6").value = '';    
       }
 
       // erase Data and Graph
       d3.select("#erase").on("click",function() {
         chart.selectAll("*").remove();
-        document.getElementById("data1").value  = "";
-        document.getElementById("data2").value  = "";
-        document.getElementById("data3").value  = "";
-        document.getElementById("data4").value  = "";
+        document.getElementById("data1").value = "";
+        document.getElementById("data2").value = "";
+        document.getElementById("data3").value = "";
+        document.getElementById("data4").value = "";
+        document.getElementById("data5").value = "";
+        document.getElementById("data6").value = "";
       })
 
       d3.select("#executeRegression").on("click", function(){  
@@ -128,6 +145,46 @@
             }
             numVar = 4;
             for (j = 0; j < yobs; j++) D[3][j] = x3data[j];
+          }
+          if (x4obs > 0) {
+            if (yobs != x4obs ) { // data size should be the same
+              chart.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
+                 .text(alertMsg[54][langNum]).style("stroke","red").style("font-size","1em");
+              return;
+            }
+            // 입력 데이터에 숫자 문자 빈칸 있나 체크
+            for (j = 0; j < tobs; j++) {
+              if ( isNaN(x4data[j]) ) {
+                chart.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
+                   .text(alertMsg[48][langNum]).style("stroke","red").style("font-size","1em");
+                return;
+              }
+            }
+            numVar = 5;
+            for (j = 0; j < yobs; j++) D[4][j] = x4data[j];
+          }
+          if (x5obs > 0) {
+            if (yobs != x5obs ) { // data size should be the same
+              chart.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
+                 .text(alertMsg[54][langNum]).style("stroke","red").style("font-size","1em");
+              return;
+            }
+            // 입력 데이터에 숫자 문자 빈칸 있나 체크
+            for (j = 0; j < tobs; j++) {
+              if ( isNaN(x5data[j]) ) {
+                chart.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
+                   .text(alertMsg[48][langNum]).style("stroke","red").style("font-size","1em");
+                return;
+              }
+            }
+            numVar = 6;
+            for (j = 0; j < yobs; j++) D[5][j] = x5data[j];
+          }
+          // observation < var number이면 해를 구할수 없음
+          if (yobs < numVar ) { // obs < var
+              chart.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
+                 .text("observations < number of variable ???").style("stroke","red").style("font-size","1em");
+              return;
           }
           tobs = yobs;
 
@@ -706,7 +763,7 @@ function multivariateTable(numVar, tobs) {
         cell[1].style.textAlign = "center";
         cell[6].style.textAlign = "center";
         cell[0].innerHTML = svgStr[63][langNum] + " " + (k + 1).toString(); // "변량";
-        cell[1].innerHTML = tdvarName[k];
+        cell[1].innerHTML = tdvarNameSub[k];
         cell[2].innerHTML = tobs;
         cell[3].innerHTML = f3(avgX[k]).toString();
         temp = Math.sqrt(Cov[k][k]); // std dev
@@ -753,7 +810,7 @@ function multivariateTable(numVar, tobs) {
             cell[j].style.border = "1px solid black";
         }
         cell[0].innerHTML = svgStr[63][langNum] + " " + (i + 1).toString(); // "변량";
-        cell[1].innerHTML = tdvarName[i];
+        cell[1].innerHTML = tdvarNameSub[i];
         for (k = 0; k < numVar; k++) {
             if (i == k || Corr[i][k] == 1) str = "1";
             else {
@@ -854,7 +911,7 @@ function regressionTable2(numVar, tobs) {
 
     for (k = 0; k < numVar; k++) {
         row = table.insertRow(++num);
-        for (j = 0; j < ncol; j++) {
+        for (j = 0; j < 6; j++) {
             cell[j] = row.insertCell(j);
             cell[j].style.border = "1px solid black";
             cell[j].style.textAlign = "right";
@@ -863,7 +920,7 @@ function regressionTable2(numVar, tobs) {
         cell[0].style.backgroundColor = "#eee";
         cell[5].style.textAlign = "center";
         if (k == 0) cell[0].innerHTML = "&beta;<sub>" + k + "</sub>";
-        else cell[0].innerHTML = "&beta;<sub>" + k + "</sub> " + " " + tdvarName[k];
+        else cell[0].innerHTML = "&beta;<sub>" + k + "</sub> " + " " + tdvarNameSub[k];
         cell[1].innerHTML = f3(Beta[k]).toString();
         stderr = Math.sqrt(Cii[k] * statF[8]);
         tobs = Beta[k] / stderr;
@@ -891,7 +948,7 @@ function regressionTable2(numVar, tobs) {
     cell[0].style.border = "1px solid black";
 
     row = table.insertRow(++num);
-    for (j = 0; j < ncol; j++) {
+    for (j = 0; j < 6; j++) {
         cell[j] = row.insertCell(j);
         cell[j].style.textAlign = "center";
         cell[j].style.backgroundColor = "#eee";
@@ -905,7 +962,7 @@ function regressionTable2(numVar, tobs) {
     cell[5].innerHTML = "p " + svgStr[69][langNum]; // "p-값 =";    
 
     row = table.insertRow(++num);
-    for (j = 0; j < ncol; j++) {
+    for (j = 0; j < 6; j++) {
         cell[j] = row.insertCell(j);
         cell[j].style.textAlign = "right";
         cell[j].style.border = "1px solid black";
@@ -922,7 +979,7 @@ function regressionTable2(numVar, tobs) {
     cell[5].innerHTML = str;
 
     row = table.insertRow(++num);
-    for (j = 0; j < ncol; j++) {
+    for (j = 0; j < 6; j++) {
         cell[j] = row.insertCell(j);
         cell[j].style.textAlign = "right";
         cell[j].style.border = "1px solid black";
@@ -936,7 +993,7 @@ function regressionTable2(numVar, tobs) {
     cell[0].style.backgroundColor = "#eee";
 
     row = table.insertRow(++num);
-    for (j = 0; j < ncol; j++) {
+    for (j = 0; j < 6; j++) {
         cell[j] = row.insertCell(j);
         cell[j].style.textAlign = "right";
         cell[j].style.backgroundColor = "#eee";
