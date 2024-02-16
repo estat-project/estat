@@ -33,10 +33,10 @@
   }
 
 // eStat link address
-    var temp      = "http://www.estat.me/estat/eStat/?json=";
+    var temp      = "http://www.estat.me/estat/eStat/indexU.html?json=";
     var nString   = 200;
     var addrStr   = new Array(nString);
-    addrStr[0]   = "/estat/eStat/index.html";
+    addrStr[0]   = "/estat/eStat/indexU.html";
     addrStr[1]   = "/estat/eStatH/index.html";
     addrStr[2]   = "/estat/eStatU/index.html";
     addrStr[3]   = "https://www.youtube.com/watch?v=jjfCqdDZZ6Q";
@@ -220,4 +220,6 @@
     addrStr[177] = "/estat/eStatU/32RegressionAnalysis2.htm";
 // eStatM
     addrStr[181] = "/estat/eStatM/index.html";
+    addrStr[182] = "/estat/eStat/indexM.html";
+    addrStr[183] = "/estat/eStat/indexH.html";
 

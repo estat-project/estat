@@ -1341,7 +1341,7 @@ $message.en = {
     "Chapter10":         "10      Nonparametric Testing Hypothesis",
     "Chapter11":         "11      Testing Hypothesis for Categorical Data",
     "Chapter12":         "12      Correlation and Regression Analysis",
-    "Chapter13":         "13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Chapter13":         "13      Time Series Analysis",
     "Distribution":      "Distribution",
 
 };
@@ -3719,7 +3719,7 @@ $message.fr = {
     "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
     "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
-    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Chapter13":         "Chapter 13      Time Series Analysis", 
     "Distribution":      "Distribution",
 
 };
@@ -4498,7 +4498,7 @@ $message.de = {
     "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
     "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
-    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Chapter13":         "Chapter 13      Time Series Analysis", 
     "Distribution":      "Distribution",
 
 };
@@ -5278,7 +5278,7 @@ $message.es = {
     "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
     "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
-    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Chapter13":         "Chapter 13      Time Series Analysis", 
     "Distribution":      "Distribution",
 
 };
@@ -6054,7 +6054,7 @@ $message.vi = {
     "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
     "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
-    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Chapter13":         "Chapter 13      Time Series Analysis",  
     "Distribution":      "Distribution",
 
 };
@@ -6834,7 +6834,7 @@ $message.id = {
     "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
     "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
-    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Chapter13":         "Chapter 13      Time Series Analysis", 
     "Distribution":      "Distribution",
 
 };
@@ -7612,7 +7612,7 @@ $message.mn = {
     "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
     "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
-    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Chapter13":         "Chapter 13      Time Series Analysis", 
     "Distribution":      "Distribution",
 
 };
@@ -9149,7 +9149,7 @@ $message.pt = {
     "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
     "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
-    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Chapter13":         "Chapter 13      Time Series Analysis", 
     "Distribution":      "Distribution",
 
 };
@@ -9932,7 +9932,7 @@ $message.gr = {
     "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
     "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
-    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Chapter13":         "Chapter 13      Time Series Analysis", 
     "Distribution":      "Distribution",
 
 };
@@ -10715,7 +10715,7 @@ $message.ro = {
     "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
     "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
-    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Chapter13":         "Chapter 13      Time Series Analysis", 
     "Distribution":      "Distribution",
 
 };
@@ -11498,7 +11498,7 @@ $message.th = {
     "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
     "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
-    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Chapter13":         "Chapter 13      Time Series Analysis", 
     "Distribution":      "Distribution",
 
 };
@@ -12283,7 +12283,7 @@ $message.pl = {
     "Chapter11":         "Chapter 11      Testowanie hipotezy dla danych kategorycznych",
     "Chapter12":         "Chapter 12      Analiza korelacji i regresji",
     "Chapter13":         "Chapter 13      Analiza szeregów czasowych", 
-    "Distribution":     "Rozkład",
+    "Distribution":      "Rozkład",
 
 };
 
@@ -13055,20 +13055,20 @@ $message.az = {
     "RawSeries":         "Emal Edilməmiş Zaman Sırası",
     "RBD":               "Təsadüfi Blok Dizaynı",
     "Latin":             "Latın Kvadrat Dizaynı",
-    "Chapter01":         "Chapter 1&nbsp; Statistics and Data Science",
-    "Chapter02":         "Chapter 2&nbsp; Visualization of Qualitative Data",
-    "Chapter03":         "Chapter 3&nbsp; Visualization of Quantitative Data",
-    "Chapter04":         "Chapter 4&nbsp; Data Summary with Tables and Measure",
-    "Chapter05":         "Chapter 5&nbsp; Probability Distribution",
-    "Chapter06":         "Chapter 6&nbsp; Sampling Distributions and Estimation",
-    "Chapter07":         "Chapter 7&nbsp; Testing Hypothesis for Single Population Parameters",
-    "Chapter08":         "Chapter 8&nbsp; Testing Hypothesis for Two Population Parameters",
-    "Chapter09":         "Chapter 9&nbsp; Testing Hypothesis for Several Population Means",
-    "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
-    "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
-    "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
-    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
-    "Distribution":      "Distribution",
+    "Chapter01":         "Chapter 1&nbsp; Statistika və Məlumat Elmi",
+    "Chapter02":         "Chapter 2&nbsp; Kateqorik məlumatın təsviri",
+    "Chapter03":         "Chapter 3&nbsp; Ədədi məlumatın təsviri",
+    "Chapter04":         "Chapter 4&nbsp; Yekun məlumat, Cədvəl və Ölçülər",
+    "Chapter05":         "Chapter 5&nbsp; Ehtimal Paylanması",
+    "Chapter06":         "Chapter 6&nbsp; Nümunə paylanması və Təxminetmə",
+    "Chapter07":         "Chapter 7&nbsp; Bir populyasiyanın parametrləri üçün hipotez testi",
+    "Chapter08":         "Chapter 8&nbsp; İki populyasiyanın parametrləri üçün hipotez testi",
+    "Chapter09":         "Chapter 9&nbsp; Bir neçə populyasiyanın ədədi ortası üçün hipotez testi",
+    "Chapter10":         "Chapter 10      Qeyri parametrik Hipotez testi",
+    "Chapter11":         "Chapter 11      Kateqorik məlumat üçün Hipotez testi",
+    "Chapter12":         "Chapter 12      Korrelyasiya və Reqressiya Analizi",
+    "Chapter13":         "Chapter 13      Zaman sırası analizi",
+    "Distribution":      "Paylanma",
 
 };
 // Azerbaijan
@@ -13852,7 +13852,7 @@ $message.uz = {
     "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
     "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
-    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Chapter13":         "Chapter 13      Time Series Analysis",    
     "Distribution":      "Distribution",
 
 };
@@ -14635,7 +14635,7 @@ $message.ru = {
     "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
     "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
-    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Chapter13":         "Chapter 13      Time Series Analysis",
     "Distribution":      "Distribution",
 
 };
@@ -15417,7 +15417,7 @@ $message.tr = {
     "Chapter10":         "Chapter 10      Nonparametric Testing Hypothesis",
     "Chapter11":         "Chapter 11      Testing Hypothesis for Categorical Data",
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
-    "Chapter13":         "Chapter 13      Time Series Analysis",    "Distribution":      "확률분포",
+    "Chapter13":         "Chapter 13      Time Series Analysis", 
     "Distribution":      "Distribution",
 
 };
