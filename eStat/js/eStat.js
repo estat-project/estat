@@ -1,4 +1,6 @@
- // eStat.js
+// eStat.js
+var levelNum = localStorage.getItem("level");
+
 svgWidth = 600;
 svgHeight = 560;
 margin = {
@@ -107,15 +109,17 @@ function graphSubHide() {
     document.getElementById("sub52").style.display = "none"; //상자그래프 감추기
     document.getElementById("sub6").style.display = "none"; //산점도 회귀선 감추기
     document.getElementById("sub7").style.display = "none"; //히스토그램 선택사항 감추기
+    document.getElementById("sub13").style.display = "none"; //그래프 제목편집 선택사항 감추기
+    document.getElementById("sub14").style.display = "none"; //변량편집 선택사항 감추기
+  if (levelNum == "4") { // 대학
     document.getElementById("sub8").style.display = "none"; //가설검정 Mu 1 선택사항 감추기
     document.getElementById("sub9").style.display = "none"; //가설검정 Sigma 1 선택사항 감추기
     document.getElementById("sub10").style.display = "none"; //가설검정 Mu 12 선택사항 감추기
     document.getElementById("sub11").style.display = "none"; //가설검정 Sigma 12 선택사항 감추기
     document.getElementById("sub12").style.display = "none"; //가설검정 ANOVA 선택사항 감추기
-    document.getElementById("sub13").style.display = "none"; //그래프 제목편집 선택사항 감추기
-    document.getElementById("sub14").style.display = "none"; //변량편집 선택사항 감추기
     document.getElementById("sub15").style.display = "none"; //Two way ANOVA
     document.getElementById("sub16").style.display = "none"; //Simple Linear Regression 감추기
+  }
 }
 // Button Color Change
 function buttonColorChange() {
@@ -182,12 +186,14 @@ function buttonColorChange() {
     document.getElementById("hist1").style.backgroundColor = buttonColorB;
     document.getElementById("scatter1").style.backgroundColor = buttonColorB;
     document.getElementById("statTable").style.backgroundColor = buttonColorB;
+  if (levelNum == "4") { // 대학
     document.getElementById("testM1").style.backgroundColor = buttonColorB;
     document.getElementById("testS1").style.backgroundColor = buttonColorB;
     document.getElementById("testM12").style.backgroundColor = buttonColorB;
     document.getElementById("testS12").style.backgroundColor = buttonColorB;
     document.getElementById("anova").style.backgroundColor = buttonColorB;
     document.getElementById("regression").style.backgroundColor = buttonColorB;
+  }
     // sub icon menu background
     document.getElementById("separate2V").style.backgroundColor = buttonColorB;
     document.getElementById("stack2V").style.backgroundColor = buttonColorB;
@@ -214,12 +220,14 @@ function buttonColorChange() {
     document.getElementById("hist1").style.width = iconB1;
     document.getElementById("scatter1").style.width = iconB1;
     document.getElementById("statTable").style.width = iconB1;
+  if (levelNum == "4") { // 대학
     document.getElementById("testM1").style.width = iconB1;
     document.getElementById("testS1").style.width = iconB1;
     document.getElementById("testM12").style.width = iconB1;
     document.getElementById("testS12").style.width = iconB1;
     document.getElementById("anova").style.width = iconB1;
     document.getElementById("regression").style.width = iconB1;
+  }
     // sub icon menu width
     document.getElementById("separate2V").style.width = iconB2;
     document.getElementById("stack2V").style.width = iconB2;
@@ -245,12 +253,14 @@ function buttonColorChange() {
     document.getElementById("hist1").style.height = iconB1;
     document.getElementById("scatter1").style.height = iconB1;
     document.getElementById("statTable").style.height = iconB1;
+  if (levelNum == "4") { // 대학
     document.getElementById("testM1").style.height = iconB1;
     document.getElementById("testS1").style.height = iconB1;
     document.getElementById("testM12").style.height = iconB1;
     document.getElementById("testS12").style.height = iconB1;
     document.getElementById("anova").style.height = iconB1;
     document.getElementById("regression").style.height = iconB1;
+  }
     // sub icon menu height
     document.getElementById("separate2V").style.height = iconB2;
     document.getElementById("stack2V").style.height = iconB2;
