@@ -1,4 +1,4 @@
-﻿      var bar = d3.select("#chart");
+      var bar = d3.select("#chart");
       var svgWidth, svgHeight, margin, graphWidth, graphHeight;
       var svgWidth2, svgHeight2, graphWidth2, graphHeight2;
       svgWidth2   = 600;
@@ -138,16 +138,16 @@
       }
 
       // input data control ===================================================
-      d3.select("#data1").on("input", function() {
-        stat = simplestat("#data1");  
+      d3.select("#data801").on("input", function() {
+        stat = simplestat("#data801");  
         x = data;
         document.getElementById("nn41").value   = stat.n;    
         document.getElementById("xbar41").value = f2(stat.xbar);
         document.getElementById("var41").value  = f2(stat.var);    
       });
 
-      d3.select("#data2").on("input", function() {
-        stat = simplestat("#data2");  
+      d3.select("#data802").on("input", function() {
+        stat = simplestat("#data802");  
         y = data; 
         document.getElementById("nn42").value   = stat.n;    
         document.getElementById("xbar42").value = f2(stat.xbar);
@@ -155,8 +155,8 @@
       });
 
       updateData = function() {
-        document.getElementById("data1").value = '';
-        document.getElementById("data2").value = '';    
+        document.getElementById("data801").value = '';
+        document.getElementById("data802").value = '';    
       }
 
       d3.select("#nn41").on("input", updateData);
@@ -175,8 +175,8 @@
         document.getElementById("mu4").value     = "0";
         document.getElementById("alpha").value   = "0.05";
         document.getElementById("alpha2").value  = "0.05";
-        document.getElementById("data1").value   = "";
-        document.getElementById("data2").value   = "";
+        document.getElementById("data801").value   = "";
+        document.getElementById("data802").value   = "";
         document.getElementById("nn41").value    = "";
         document.getElementById("nn42").value    = "";
         document.getElementById("nDiff").value   = "";
@@ -218,7 +218,7 @@
         document.getElementById("rangeAlpha").value = alpha*1000;
         // input value
         mu4    = parseFloat(d3.select("#mu4").node().value);
-        stat = simplestat("#data1");
+        stat = simplestat("#data801");
         if (stat.n > 0) {
             nn41    = stat.n;
             xbar41  = stat.xbar;
@@ -229,7 +229,7 @@
             xbar41 = parseFloat(d3.select("#xbar41").node().value);
             var41  = parseFloat(d3.select("#var41").node().value);
         }
-        stat = simplestat("#data2");
+        stat = simplestat("#data802");
         if (stat.n > 0) {
             nn42    = stat.n;
             xbar42  = stat.xbar;

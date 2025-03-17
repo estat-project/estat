@@ -115,7 +115,8 @@
     In testing hypothesis of the population mean described in chapters 7 and 8, the number of populations was one or two. However, many cases are encountered where there are three or more population means to compare. 
     The analysis of variance (ANOVA) is used to test whether several population means are equal or not. The ANOVA was first published by British statistician R. A. Fisher as a test method applied to the study of agriculture, but today its principles are applied in many experimental sciences, including economics, business administration, psychology and medicine.
     <p>
-    In section 9.1, the one-way ANOVA for single factor is introduced. In section 9.2, experimental designs for experiments are introduced. In section 9.2, the two-way ANOVA for two factors experiments is introduced.
+    In section 9.1, the one-way ANOVA for single factor is introduced. In section 9.2, experimental designs for experiments 
+    are introduced. In section 9.3, the two-way ANOVA for two factors experiments is introduced.
 
   <p>
 
@@ -350,7 +351,7 @@
            The following ANOVA table provides a single view of the above calculation.
       </div>
       <p>
-            <table class="width:600px">
+            <table style="width:600px">
                 <tr> 
                   <th>Factor</th>
                   <th>Sum of Squares</th>
@@ -1104,7 +1105,7 @@
         <p>
         In average, car type A has the best fuel mileage than other car types. In order to examine more about the 
         differences between car types, the multiple comparison test in the previous section can be applied. 
-        In this example, you can use one HSD value for all mean comparisons, because the number of repetitions
+        In this example, you can use one HSD value for all mean comparisons, because the number of repetitions (r)
         at each level is the same. 
         <p>
          \(\quad \small  HSD = q_{3,8; 0.05} \sqrt {\frac{MSE}{r}} = (4.041) \sqrt{\frac{0.484}{5}} \) = 1.257
@@ -1179,7 +1180,7 @@
       <p>
       <table style="width:600px"> 
          <tr> 
-           <th style="width:130px"></th> <th>Column 1 (Road 1)</th> <th>Column 2 (Road 2</th> <th>Column 3 (Road 3)</th> <th>Column 4 (Road 4)</th>
+           <th style="width:130px"></th> <th>Column 1 (Road 1)</th> <th>Column 2 (Road 2)</th> <th>Column 3 (Road 3)</th> <th>Column 4 (Road 4)</th>
          </tr>
          <tr> <td class="tdCenter">Row 1 (Driver 1)</td>  <td class="tdCenter">A</td> <td class="tdCenter">B</td> <td class="tdCenter">C</td> <td class="tdCenter">D</td> </tr>
          <tr> <td class="tdCenter">Row 2 (Driver 2)</td>  <td class="tdCenter">B</td> <td class="tdCenter">C</td> <td class="tdCenter">D</td> <td class="tdCenter">A</td> </tr>
@@ -1198,8 +1199,8 @@
       <p>
       The hypothesis of Latin square design with \(r\) treatments is as follows: 
       <p>
-      Null Hypothesis        \(\qquad \qquad H  _{0} : \mu_{1} = \mu_{2} = \cdots = \mu_{r} \) <br>
-      Alternative Hypothesis \(\quad \; H_{1} : \) At least one pair of \(\mu_i \) is not equal.
+      Null Hypothesis        \(\qquad \quad H_{0} : \mu_{1} = \mu_{2} = \cdots = \mu_{r} \) <br>
+      Alternative Hypothesis \(\;\;\quad \; H_{1} : \) At least one pair of \(\mu_i \) is not equal.
       <p>
       Statistical model of the \(r × r \) Latin square design with \(r\) treatments can be represented as follows:
       $$
@@ -1248,18 +1249,18 @@
       <p>
       <b>Total sum of squares</b> : <br>
       <b>SST</b> = \(\sum_{i=1}^{r} \sum_{j=1}^{r} \sum_{k=1}^{r} ( Y_{ijk} - {\overline Y}_{\cdot \cdot \cdot} )^2 \) , 
-         &nbsp;&nbsp; degrees of freedom ; \(r^3 - 1\) 
+         &nbsp;&nbsp; degrees of freedom ; \(r^2 - 1\) 
       <p>
       <b>Error sum of squares</b> : <br>
       <b>SSE</b> = \(\sum_{i=1}^{r} \sum_{j=1}^{r} \sum_{k=1}^{r} ( {Y}_{ijk} - {\overline Y}_{i \cdot \cdot} - {\overline Y}_{\cdot j \cdot}  - {\overline Y}_{\cdot \cdot k} + 2 {\overline Y}_{\cdot \cdot \cdot})^2 \) , 
-         &nbsp;&nbsp; degrees of freedom ; \(r^2 -3r + 2\) 
+         &nbsp;&nbsp; degrees of freedom ; \((r-1)(r-2)\) 
       <p>
       <b>Row sum of squares</b> : <br>
-      <b>SSTr</b> = \(\sum_{i=1}^{r} \sum_{j=1}^{r} \sum_{k=1}^{r} ( {\overline Y}_{i \cdot \cdot} - {\overline Y}_{\cdot \cdot \cdot} )^2 \)
+      <b>SSR</b> = \(\sum_{i=1}^{r} \sum_{j=1}^{r} \sum_{k=1}^{r} ( {\overline Y}_{i \cdot \cdot} - {\overline Y}_{\cdot \cdot \cdot} )^2 \)
          &nbsp;&nbsp; degrees of freedom ; \(r - 1\) 
       <p>
       <b>Column sum of squares</b> : <br>
-      <b>SSB</b> = \(\sum_{i=1}^{r} \sum_{j=1}^{r} \sum_{k=1}^{r} ( {\overline Y}_{\cdot j \cdot} - {\overline Y}_{\cdot \cdot \cdot} )^2 \) 
+      <b>SSC</b> = \(\sum_{i=1}^{r} \sum_{j=1}^{r} \sum_{k=1}^{r} ( {\overline Y}_{\cdot j \cdot} - {\overline Y}_{\cdot \cdot \cdot} )^2 \) 
          &nbsp;&nbsp; degrees of freedom ; \(r - 1\) 
       <p> 
       <b>Treatment sum of squares</b> : <br>
@@ -1273,7 +1274,7 @@
       <b>Division of the sum of squares and degrees of freedom
         <p>
          Sum of squares :    SST  = SSE + SSR + SSC + SSTr <br>  
-         Degrees of freedom : \(r^3 -1 = (r^2 - 3r + 2)  + (r-1) + (r-1) + (r-1) \)
+         Degrees of freedom : \(r^2 -1 = (r-1)(r-2)  + (r-1) + (r-1) + (r-1) \)
       </b>
     </div>
       
@@ -1315,14 +1316,14 @@
                 <tr> 
                   <td class="tdCenter">Error</td>
                   <td class="tdCenter">SSE</td>
-                  <td class="tdCenter">\(r^2 - 3r + 2\)</td>
-                  <td class="tdCenter">MSE=\(\frac{SSE}{(r^2 - 3r + 2)}\)</td>
+                  <td class="tdCenter">\((r-1)(r-2)\)</td>
+                  <td class="tdCenter">MSE=\(\frac{SSE}{(r-1)(r-2))}\)</td>
                   <td class="tdCenter"></td>
                 </tr>
                 <tr> 
                   <td class="tdCenter">Total</td>
                   <td class="tdCenter">SST</td>
-                  <td class="tdCenter">\(r^3 -1\)</td>
+                  <td class="tdCenter">\(r^2 -1\)</td>
                   <td class="tdCenter"></td>
                   <td class="tdCenter"></td>
                 </tr>
@@ -1962,7 +1963,7 @@
     <p>
 
   <h3 id="0904">9.4 Exercise</h3>
-  <iframe class="exercise" src="./exercise/exercise09.html"> </iframe>
+  <iframe class="exercise" style="width:800px" src="./exercise/exercise09.html"> </iframe>
 </div>
 
     <!-- Bootstrap core JavaScript

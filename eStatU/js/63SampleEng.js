@@ -1,4 +1,4 @@
-﻿      var chartLaw = d3.select("#chartLaw")
+      var chartLaw = d3.select("#chartLaw")
       var totalHeight = 640;
       var svgWidthLaw    = 600;
       var svgHeightLaw   = 320;  // 모집단 그래프 영역

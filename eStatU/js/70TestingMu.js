@@ -1,4 +1,4 @@
-﻿      var bar = d3.select("#chart");
+      var bar = d3.select("#chart");
       var svgWidth, svgHeight, margin, graphWidth, graphHeight;
       var graphWidth2, graphHeight2;
       var svgWidth2   = 600;
@@ -58,15 +58,15 @@ function clearText(){
       }  
 
       // data input control =====================================
-      d3.select("#data1").on("input", function() {
-        stat = simplestat("#data1");  
+      d3.select("#data701").on("input", function() {
+        stat = simplestat("#data701");  
         document.getElementById("nn").value   = stat.n;    
         document.getElementById("xbar").value = f3(stat.xbar);
         document.getElementById("variS").value  = f3(stat.var);  
       });
 
       updateData = function() {
-        document.getElementById("data1").value = ''; 
+        document.getElementById("data701").value = ''; 
       }
 
       d3.select("#nn").on("input", updateData);
@@ -81,7 +81,7 @@ function clearText(){
         document.myForm1.type1[0].checked = true;
         document.getElementById("variP").disabled = true; 
         document.getElementById("mu").value     = "";
-        document.getElementById("data1").value  = "";
+        document.getElementById("data701").value  = "";
         document.getElementById("nn").value     = "";
         document.getElementById("xbar").value   = "";
         document.getElementById("variS").value  = "";
@@ -108,7 +108,7 @@ function clearText(){
 
         // input value
         mu   = parseFloat(d3.select("#mu").node().value);
-        stat = simplestat("#data1");
+        stat = simplestat("#data701");
         variP = parseFloat(d3.select("#variP").node().value);
         if (stat.n > 0) {
           nn    = stat.n;

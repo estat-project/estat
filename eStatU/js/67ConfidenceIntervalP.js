@@ -1,4 +1,4 @@
-﻿      var bar = d3.select("#chart");
+      var bar = d3.select("#chart");
       var svgWidth, svgHeight, margin, graphWidth, graphHeight;
       var margin      = {top: 10, bottom: 10, left: 10, right: 10};
       var svgWidth2   = 600;

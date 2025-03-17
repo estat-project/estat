@@ -187,6 +187,7 @@ $message.ko = {
     "MiddleStat": "초등/중학: 통계",
     "HighStat":   "고등: 확률 및 통계",
     "UnivStat":   "통계 데이터과학",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using 『eStat』 and R",
     "ebookLink":  "전자책 링크",
     "Menu": "메뉴",
     "Binomial Experiment": "이항분포실험",
@@ -338,7 +339,8 @@ $message.ko = {
     "Interaction": "교호작용",
     "NoInteraction": "교호작용 없음",
     "ExistInteraction": "교호작용 있음",
-    "eStatLecture": "eStat e강의",
+    "eStatLecture": "eStat 책/강의",
+    "eDataLecture": "eDataScience 책/강의",
     "NonParametricMu12_title": "비모수 : 윌콕슨 순위합검정", 
     "NonParametricMu12": "비모수 : 윌콕슨 순위합검정 : 위치모수 M<sub>1</sub>, M<sub>2</sub>", 
     "Sample Range": "표본순위합",
@@ -506,7 +508,54 @@ $message.ko = {
     "Chapter12":         "12장 상관 및 회귀분석",
     "Chapter13":         "13장 시계열분석",
     "Distribution":      "확률분포",
+    "DecisionTree":      "의사결정나무",
+    "MaxDepth":          "최대나무수준x",
+    "MinData":           "최소가지데이터수",
+    "Discriminant":      "판별분석",
+    "BayesTable":        "분류분석표",
+    "ScatterBarGraph":   "막대그래프행렬",
+    "MultiCrossTable":   "교차표행렬",
+    "MultiFreqTable":    "다차원도수분포표",
+    "ParallelGraph":     "평행좌표그래프",
+    "DataPartition":     "데이터분할",
+    "Training":          "훈련용",
+    "Testing":           "시험용",
+    "PriorProb":         "사전확률",
+    "SampleProp":        "표본비율",
+    "EqualProp":         "등비율",
+    "KNN":               "K-인접이웃분류",
+    "numKNN":            "인접이웃",
+    "PCA":               "주성분분석",
+    "PCgraph":           "주성분산점도",
+    "PCtable":           "주성분표",
+    "Logistic":          "로지스틱회귀분석",
+    "KmeansCluster":     "K-평균군집분석",
+    "KmeansGraph":       "K-평균군집산점도",
+    "KmeansTable":       "K-평균군집표",
+    "NumberOfGroup":     "군집수",
+    "MaxIteration":      "최대반복수",
+    "StopEpsi":          "오차한계",
+    "StatCluster":       "군집통계",
+    "ClusterTable":      "군집표",
+    "StatClassification": "분류통계",
+    "HierarchyCluster":  "계층적군집분석",
+    "MaxObs":            "최대데이터수",
+    "HierarchyGraph":    "계층적군집그래프",
+    "Distance":          "거리측도",
+    "Euclid":            "유클리드",
+    "Manhattan":         "맨하탄",
+    "Linkage":           "연결법",
+    "Single":            "최단거리",
+    "Complete":          "최장거리",
+    "Average":           "평균거리",
+    "Centroid":          "중심거리",
+    "Ward":              "와드거리",
+    "Standardization":   "표준화",
+    "StatMultivariate":  "다변량통계",
+    "NaiveBayes":        "단순베이즈분류",
+
 };  
+
 // Korean
 appStr[0][0] = "/estat/eStat/index.html";
 appStr[1][0] = "/estat/eStatH/index.html";
@@ -517,6 +566,8 @@ appStr[5][0] = "index_en.html";
 appStr[6][0] = "/estat/eLearning/kr/eStatM/index.html";
 appStr[7][0] = "/estat/eLearning/kr/eStatH/index.html";
 appStr[8][0] = "/estat/eLearning/kr/eStatU/index.html";
+appStr[9][0] = "/estat/eLearning/en/DataScience/index.html";
+appStr[10][0] = "";
 appStr[11][0] = "인구 많은 나라";
 appStr[12][0] = "기대수명 (OECD)";
 appStr[13][0] = "인구피라미드 (한국)";
@@ -566,8 +617,6 @@ appStr[56][0] = "돼지고기";
 appStr[57][0] = "닭고기";
 appStr[58][0] = "신장";
 appStr[59][0] = "체중";
-
-
 
 alertMsg[1][0] = "자료가 없습니다!";
 alertMsg[2][0] = "분석을 원하는 변량명을 클릭하고 아이콘 버튼을 누르거나 또는 변량선택 박스에서 변량을 선택하세요!";
@@ -762,6 +811,23 @@ svgStr[125][0]= "이산확률변량의 확률분포";
 svgStr[126][0]= "행 %";
 svgStr[127][0]= "열 %";
 svgStr[128][0]= "전체 %";
+svgStr[129][0] = "막대그래프행렬";
+svgStr[130][0] = "사전확률";
+svgStr[131][0] = "고유값";
+svgStr[132][0] = "고유벡터";
+svgStr[133][0] = "다차원도수분포표";
+svgStr[134][0] = "계층적군집그래프";
+svgStr[135][0] = "거리";
+svgStr[136][0] = "최단연결법";
+svgStr[137][0] = "최장연결법";
+svgStr[138][0] = "평균연결법";
+svgStr[139][0] = "중심연결법";
+svgStr[140][0] = "와드(Ward)법";
+svgStr[141][0] = "군집연결";
+svgStr[142][0] = "군집수 (K)";
+svgStr[143][0] = "Bayes 정보기준";
+svgStr[144][0] = "총급내제곱합";
+svgStr[145][0] = "Akaike 정보기준";
 
 svgStrU[1][0] = "이항분포";
 svgStrU[2][0] = "반복수";
@@ -897,6 +963,21 @@ svgStrU[131][0] = "계절지수";
 svgStrU[132][0] = "Holt-Winters 승법계절모형";
 svgStrU[133][0] = "비계절시계열";
 svgStrU[134][0] = "블록";
+svgStrU[135][0] = "군집분석";
+svgStrU[136][0] = "군집";
+svgStrU[137][0] = "의사결정나무";
+svgStrU[138][0] = "의사결정규칙조건";
+svgStrU[139][0] = "의사결정";
+svgStrU[140][0] = "반복";
+svgStrU[141][0] = "평형좌표그래프";
+svgStrU[142][0] = "분류분석";
+svgStrU[143][0] = "분류함수";
+svgStrU[144][0] = "분류결과";
+svgStrU[145][0] = "의사결정";
+svgStrU[146][0] = "오분류율";
+svgStrU[147][0] = "셀";
+svgStrU[148][0] = "훈련데이터";
+svgStrU[149][0] = "시험데이터";
 
 
 // English
@@ -1024,8 +1105,9 @@ $message.en = {
     "eStatM MiddleStatEdu": "eStatM - Elementary / Middle School Statistics SW",
     "MiddleStat": "Elementary / Middle School",
     "HighStat":   "High School Statistics",
-    "UnivStat":   "Statistics and Data Science",
-    "ebookLink":  "webBook Link",
+    "UnivStat":   "Introduction to Statistics using 『eStat』",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using 『eStat』 and R",
+    "ebookLink":  "webBook",
     "Menu": "Menu",
     "Binomial Experiment": "Binomial Experiment",
     "Binomial Distribution": "Binomial Distribution",
@@ -1067,7 +1149,7 @@ $message.en = {
     "Confidence Interval Sigma": "Estimation : &sigma;&#178; ",
     "Confidence Interval P": "Estimation : p",
     "Estimation Accuracy": "Estimation Accuracy",
-    "Repetition": "Repetition",
+    "Repetition": "repetition",
     "Confidence Level": "Confidence Level",
     "Testing Hypothesis mu_titleAB": "Testing Hypothesis Mean",
     "Testing Hypothesis mu_title": "Testing Mean",
@@ -1176,7 +1258,8 @@ $message.en = {
     "Interaction": "Interaction",
     "NoInteraction": "No Interaction",
     "ExistInteraction": "Exist Interaction",
-    "eStatLecture": "eLearning",
+    "eStatLecture": "eStat Learning",
+    "eDataLecture": "eDataScience Learning",
     "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
     "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Rank Sum Test",
@@ -1245,8 +1328,8 @@ $message.en = {
     "ConditionalProb":   "Conditional Probability",
     "JointProb":         "Joint Probability",
     "DiscreteDist":      "Discrete Distribution",
-    "Categorize":        "Categorize",
-    "Recode":            "Recode",
+    "Categorize":        "Recode: Category",
+    "Recode":            "Recode: Value",
     "Compute":           "Compute",
     "SelectIf":          "Select If",
     "InfoValueLabel":    "*** Select variable, enter variable name and / or value label.",
@@ -1343,6 +1426,57 @@ $message.en = {
     "Chapter12":         "12      Correlation and Regression Analysis",
     "Chapter13":         "13      Time Series Analysis",
     "Distribution":      "Distribution",
+    "DecisionRule":      "Decision Rule",
+    "DecisionTree":      "Decision Tree",
+    "VarSelect":         "Variable selelection",
+    "MaxDepth":          "Tree depth max",
+    "MinData":           "Branch data min",
+    "Entropy":           "Entropy",
+    "Gini":              "Gini",
+    "ClassError":        "Classification Error",
+    "Chisquare":         "Chi-square",
+    "Discriminant":      "Bayes Classification Analysis",
+    "BayesTable":        "Classification Table",
+    "ScatterBarGraph":   "Bar Graph Matrix",
+    "MultiCrossTable":   "Cross Table Matrix",
+    "MultiFreqTable":    "Muti-dim Frequency Table",
+    "ParallelGraph":     "Parallel Graph",
+    "DataPartition":     "Data partition",
+    "Training":          "Train",
+    "Testing":           "Test",
+    "PriorProb":         "Prior probability",
+    "SampleProp":        "sample proportion",
+    "EqualProp":         "equal proportion",
+    "KNN":               "K Nearest Neighbor Classification",
+    "numKNN":            "Nearest Neighbor",
+    "PCA":               "Principal Component Analysis",
+    "PCgraph":           "Principal Component Scatterplot",
+    "PCtable":           "Principal Component Table",
+    "Logistic":          "Logistic Regression Analysis",
+    "KmeansCluster":     "K-means Clustering",
+    "KmeansGraph":       "K-means Cluster Scatterplot",
+    "KmeansTable":       "K-means Cluster Table",
+    "NumberOfGroup":     "number of clusters",
+    "MaxIteration":      "max iteration",
+    "StopEpsi":          "ESS difference bound",
+    "StatCluster":       "Cluster Statistics",
+    "ClusterTable":      "Cluster Table",
+    "StatClassification": "Classification Stat",
+    "HierarchyCluster":  "Hierarchical Clustering",
+    "MaxObs":            "Maximum number of observations",
+    "HierarchyGraph":    "Hierarchy Graph",
+    "Distance":          "Distance measure",
+    "Euclid":            "Euclid",
+    "Manhattan":         "Manhattan",
+    "Linkage":           "Linkage",
+    "Single":            "Single",
+    "Complete":          "Complete",
+    "Average":           "Average",
+    "Centroid":          "Centroid",
+    "Ward":              "Ward",
+    "Standardization":   "Data standardization",
+    "StatMultivariate":  "Multivariate Stat",
+    "NaiveBayes":        "Naive Bayes Classification",
 
 };
 // English
@@ -1355,6 +1489,8 @@ appStr[5][1] = "index.html";
 appStr[6][1] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][1] = "/estat/eLearning/en/eStatH/index.html";
 appStr[8][1] = "/estat/eLearning/en/eStatU/index.html";
+appStr[9][1] = "/estat/eLearning/en/DataScience/index.html";
+appStr[10][1] = "";
 appStr[11][1] = "Large Population Country";
 appStr[12][1] = "Life Expectancy (OECD)";
 appStr[13][1] = "Population Pyramid (Korea)";
@@ -1448,7 +1584,7 @@ alertMsg[60][1] = "!!! This variable has more than 9 values";
 alertMsg[61][1] = "!!! No value entered";
 alertMsg[62][1] = "!!! Enter formula";
 alertMsg[63][1] = "!!! No data which satisfies conditions.";
-alertMsg[64][1] = "";
+alertMsg[64][1] = "Number of observations in each group should be greater than 1 !!   Try again.";
 alertMsg[65][1] = ""; 
 alertMsg[66][1] = "";
 alertMsg[67][1] = "";
@@ -1583,6 +1719,23 @@ svgStr[125][1] = "Discrete Distribution";
 svgStr[126][1] = "Row %";
 svgStr[127][1] = "Col %";
 svgStr[128][1] = "Tot %";
+svgStr[129][1] = "Bar Graph Matrix";
+svgStr[130][1] = "Prior Prob";
+svgStr[131][1] = "Eigenvalue";
+svgStr[132][1] = "Eigenvector";
+svgStr[133][1] = "Multidimension Frequency Table";
+svgStr[134][1] = "Hierarchical Cluster Graph";
+svgStr[135][1] = "Distance";
+svgStr[136][1] = "Single";
+svgStr[137][1] = "Complete";
+svgStr[138][1] = "Average";
+svgStr[139][1] = "Centroid";
+svgStr[140][1] = "Ward";
+svgStr[141][1] = "Linkage";
+svgStr[142][1] = "Number of Clusters <br>K";
+svgStr[143][1] = "Bayes Information Criteria";
+svgStr[144][1] = "Within Sum of Squares";
+svgStr[145][1] = "Akaike Information Criteria";
 
 svgStrU[1][1] = "Binomial Distribution";
 svgStrU[2][1] = "repetition";
@@ -1718,6 +1871,21 @@ svgStrU[131][1] = "Seasonal Index";
 svgStrU[132][1] = "Holt-Winters Multiplicative Seasonal Model";
 svgStrU[133][1] = "Deseasonal Series";
 svgStrU[134][1] = "Block";
+svgStrU[135][1] = "Cluster Analysis";
+svgStrU[136][1] = "Cluster";
+svgStrU[137][1] = "Decision Tree";
+svgStrU[138][1] = "Decision Rule Condition";
+svgStrU[139][1] = "Decision";
+svgStrU[140][1] = "Iteration";
+svgStrU[141][1] = "Parallel Graph";
+svgStrU[142][1] = "Classification";
+svgStrU[143][1] = "Classification Function";
+svgStrU[144][1] = "Classification Result";
+svgStrU[145][1] = "Decision";
+svgStrU[146][1] = "Misclassification Rate";
+svgStrU[147][1] = "Cell";
+svgStrU[148][1] = "Training Data";
+svgStrU[149][1] = "Testing Data";
 
 // Japanese
 $message.ja = {
@@ -1844,6 +2012,7 @@ $message.ja = {
     "MiddleStat": "中統計",
     "HighStat":   "高統計",
     "UnivStat":   "統計データサイエンス",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
     "ebookLink":  "電子書籍リンク (English)",
     "Menu": "メニュー",
     "Binomial Experiment": "二項分布シミュレーション",
@@ -1996,6 +2165,7 @@ $message.ja = {
     "NoInteraction": "交互作用無",
     "ExistInteraction": "交互作用有",
     "eStatLecture": "eStat 講義",
+    "eDataLecture": "eDataScience Learning",
     "NonParametricMu12_title": "ウィルコクソン順位合檢定", 
     "NonParametricMu12": "ウィルコクソン順位合檢定 : 位置母數 M<sub>1</sub>, M<sub>2</sub>", 
     "Sample Range": "標本順位合",
@@ -2161,6 +2331,51 @@ $message.ja = {
     "Chapter12":         "第12章 相関と回帰分析",
     "Chapter13":         "第13章 時系列分析",
     "Distribution":      "確率分布",
+    "DecisionTree":      "デシジョンツリー",
+    "MaxDepth":          "ツリーの最大深さ",
+    "MinData":           "ブランチデータの最小値",
+    "Discriminant":      "判別分析",
+    "BayesTable":        "Classification Table",
+    "ScatterBarGraph":   "Bar Graph Matrix",
+    "MultiCrossTable":   "Cross Table Matrix",
+    "MultiFreqTable":    "Muti-dim Frequency Table",
+    "ParallelGraph":     "Parallel Graph",
+    "DataPartition":     "Data partition",
+    "Training":          "Train",
+    "Testing":           "Test",
+    "PriorProb":         "Prior probability",
+    "SampleProp":        "sample proportion",
+    "EqualProp":         "equal proportion",
+    "KNN":               "K Nearest Neighbor Classification",
+    "numKNN":            "Nearest Neighbor",
+    "PCA":               "Principal Component Analysis",
+    "PCgraph":           "Principal Component Scatterplot",
+    "PCtable":           "Principal Component Table",
+    "Logistic":          "Logistic Regression Analysis",
+    "KmeansCluster":     "K-means Clustering",
+    "KmeansGraph":       "K-means Cluster Scatterplot",
+    "KmeansTable":       "K-means Cluster Table",
+    "NumberOfGroup":     "number of clusters",
+    "MaxIteration":      "max iteration",
+    "StopEpsi":          "ESS difference bound",
+    "StatCluster":       "Cluster Statistics",
+    "ClusterTable":      "Cluster Table",
+    "StatClassification": "Classification Stat",
+    "HierarchyCluster":  "Hierarchical Clustering",
+    "MaxObs":            "Maximum number of observations",
+    "HierarchyGraph":    "Hierarchy Graph",
+    "Distance":          "Distance measure",
+    "Euclid":            "Euclid",
+    "Manhattan":         "Manhattan",
+    "Linkage":           "Linkage",
+    "Single":            "Single",
+    "Complete":          "Complete",
+    "Average":           "Average",
+    "Centroid":          "Centroid",
+    "Ward":              "Ward",
+    "Standardization":   "Data standardization",
+    "StatMultivariate":  "Multivariate Stat",
+    "NaiveBayes":        "Naive Bayes Classification",
 
 };
 // Japanese
@@ -2173,6 +2388,44 @@ appStr[5][2] = "index.html";
 appStr[6][2] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][2] = "/estat/eLearning/en/eStatH/index.html";
 appStr[8][2] = "/estat/eLearning/en/eStatU/index.html";
+appStr[9][2] = "/estat/eLearning/en/DataScience/index.html";
+appStr[10][2] = "";
+appStr[11][2] = "Large Population Country";
+appStr[12][2] = "Life Expectancy (OECD)";
+appStr[13][2] = "Population Pyramid (Korea)";
+appStr[14][2] = "GNP per Capita (OECD)";
+appStr[15][2] = "Top World Export Country";
+appStr[16][2] = "Obesity % of Population";
+appStr[17][2] = "Temperature of Major City";
+appStr[18][2] = "Top CO2 Emission Country";
+appStr[19][2] = "Alcohol Consume (OECD)";
+appStr[20][2] = "Continuous Data Graph";
+appStr[21][2] = "Length of Otter";
+appStr[22][2] = "Age of Teacher";
+appStr[23][2] = "Age of Teacher by Sex";
+appStr[24][2] = "Cleanliness of Tooth";
+appStr[25][2] = "Math Exam Scores";
+appStr[26][2] = "Calorie of Hamberger";
+appStr[27][2] = "Height vs Weight by Sex";
+appStr[28][2] = "Discrete Data Graphs";
+appStr[29][2] = "";
+appStr[30][2] = "";
+appStr[31][2] = "unit";
+appStr[32][2] = "Country";
+appStr[33][2] = "Male";
+appStr[34][2] = "Female";
+appStr[35][2] = "Age";
+appStr[36][2] = "Person";
+appStr[37][2] = "billion $";
+appStr[38][2] = "Export";
+appStr[39][2] = "Obesity %";
+appStr[40][2] = "Celsius";
+appStr[41][2] = "City";
+appStr[42][2] = "Jan High";
+appStr[43][2] = "Jul High";
+appStr[44][2] = "million ton";
+appStr[45][2] = "liter/year";
+appStr[46][2] = "Alcohol";
 alertMsg[1][2] = "選択した変数の中に、欠損値が含まれています!";
 alertMsg[2][2] = "変数の番号をクリックし，シートから変数を選んでください. 変数が2つ以上の場合は，1番目の変数がグループ変数として指定されます. ";
 alertMsg[3][2] = "選択した列に欠損値があります.";
@@ -2365,6 +2618,23 @@ svgStr[125][2] = "離散型分布";
 svgStr[126][2] = "行 %";
 svgStr[127][2] = "列 %";
 svgStr[128][2] = "全体 %";
+svgStr[129][2] = "棒グラフ マトリックス";
+svgStr[130][2] = "事前確率";
+svgStr[131][2] = "固有値";
+svgStr[132][2] = "固有ベクトル";
+svgStr[133][2] = "多次元頻度テーブル";
+svgStr[134][2] = "階層型クラスター グラフ";
+svgStr[135][2] = "距離";
+svgStr[136][2] = "単一";
+svgStr[137][2] = "完了";
+svgStr[138][2] = "平均";
+svgStr[139][2] = "重心";
+svgStr[140][2] = "ワード";
+svgStr[141][2] = "リンケージ";
+svgStr[142][2] = "Number of Clusters <br>K";
+svgStr[143][2] = "Bayes Information Criteria";
+svgStr[144][2] = "Within Sum of Squares";
+svgStr[145][2] = "Akaike Information Criteria";
 
 svgStrU[1][2] = "二項分布";
 svgStrU[2][2] = "反復数";
@@ -2500,6 +2770,21 @@ svgStrU[131][2] = "季節指数";
 svgStrU[132][2] = "Holt-Winters乗法季節モデル";
 svgStrU[133][2] = "非季節時系列";
 svgStrU[134][2] = "ブロック";
+svgStrU[135][2] = "クラスター分析";
+svgStrU[136][2] = "クラスター";
+svgStrU[137][2] = "デシジョン ツリー";
+svgStrU[138][2] = "決定ルール条件";
+svgStrU[139][2] = "決定";
+svgStrU[140][2] = "反復";
+svgStrU[141][2] = "並列グラフ";
+svgStrU[142][2] = "分類";
+svgStrU[143][2] = "分類関数";
+svgStrU[144][2] = "分類結果";
+svgStrU[145][2] = "決定";
+svgStrU[146][2] = "誤分類率";
+svgStrU[147][2] = "セル";
+svgStrU[148][2] = "トレーニング データ";
+svgStrU[149][2] = "データのテスト";
 
 
 // Chinese
@@ -2624,6 +2909,7 @@ $message.zhTW = {
     "MiddleStat": "中統計",
     "HighStat":   "高統計",
     "UnivStat":   "Statistics and Data Science",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
     "ebookLink":  "電子書連結 (English)",
     "Menu": "選單",
     "Binomial Experiment": "二項式分佈實驗",
@@ -2776,6 +3062,7 @@ $message.zhTW = {
     "NoInteraction": "無交互作用",
     "ExistInteraction": "有交互作用",
     "eStatLecture": "eStat 講義",
+    "eDataLecture": "eDataScience Learning",
     "NonParametricMu12_title": "非參數Wilcoxon 等級和檢定", 
     "NonParametricMu12": "非參數Wilcoxon 等級和檢定 : 位置參數 M<sub>1</sub>, M<sub>2</sub>", 
     "Sample Range": "秩和",
@@ -2941,11 +3228,56 @@ $message.zhTW = {
     "Chapter12":         "第12章 相關性和回歸",
     "Chapter13":         "第13章 時間序列分析",
     "Distribution":      "概率分佈",
+    "DecisionTree":      "決策樹",
+    "MaxDepth":          " 樹最大深度",
+    "MinData":           "分支資料最小值",
+    "Discriminant":      "判別分析",
+    "BayesTable":        "Classification Table",
+    "ScatterBarGraph":   "Bar Graph Matrix",
+    "MultiCrossTable":   "Cross Table Matrix",
+    "MultiFreqTable":    "Muti-dim Frequency Table",
+    "ParallelGraph":     "Parallel Graph",
+    "DataPartition":     "Data partition",
+    "Training":          "Train",
+    "Testing":           "Test",
+    "PriorProb":         "Prior probability",
+    "SampleProp":        "sample proportion",
+    "EqualProp":         "equal proportion",
+    "KNN":               "K Nearest Neighbor Classification",
+    "numKNN":            "Nearest Neighbor",
+    "PCA":               "Principal Component Analysis",
+    "PCgraph":           "Principal Component Scatterplot",
+    "PCtable":           "Principal Component Table",
+    "Logistic":          "Logistic Regression Analysis",
+    "KmeansCluster":     "K-means Clustering",
+    "KmeansGraph":       "K-means Cluster Scatterplot",
+    "KmeansTable":       "K-means Cluster Table",
+    "NumberOfGroup":     "number of clusters",
+    "MaxIteration":      "max iteration",
+    "StopEpsi":          "ESS difference bound",
+    "StatCluster":       "Cluster Statistics",
+    "ClusterTable":      "Cluster Table",
+    "StatClassification": "Classification Stat",
+    "HierarchyCluster":  "Hierarchical Clustering",
+    "MaxObs":            "Maximum number of observations",
+    "HierarchyGraph":    "Hierarchy Graph",
+    "Distance":          "Distance measure",
+    "Euclid":            "Euclid",
+    "Manhattan":         "Manhattan",
+    "Linkage":           "Linkage",
+    "Single":            "Single",
+    "Complete":          "Complete",
+    "Average":           "Average",
+    "Centroid":          "Centroid",
+    "Ward":              "Ward",
+    "Standardization":   "Data standardization",
+    "StatMultivariate":  "Multivariate Stat",
+    "NaiveBayes":        "Naive Bayes Classification",
 
 };
 // Chinese 
-appStr[0][3] = "/estat/eStat/index.html";
-appStr[1][3] = "/estat/eStatH/index.html";
+appStr[1][3] = "/estat/eStat/index.html";
+appStr[2][3] = "/estat/eStatH/index.html";
 appStr[2][3] = "/estat/eStatU/index.html";
 appStr[3][3] = "/estat/eStatE/index_en.html";
 appStr[4][3] = "/estat/eHelp/index_en.html";
@@ -2953,6 +3285,44 @@ appStr[5][3] = "index.html";
 appStr[6][3] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][3] = "/estat/eLearning/en/eStatH/index.html";
 appStr[8][3] = "/estat/eLearning/en/eStatU/index.html";
+appStr[9][3] = "/estat/eLearning/en/DataScience/index.html";
+appStr[10][3] = "";
+appStr[11][3] = "Large Population Country";
+appStr[12][3] = "Life Expectancy (OECD)";
+appStr[13][3] = "Population Pyramid (Korea)";
+appStr[14][3] = "GNP per Capita (OECD)";
+appStr[15][3] = "Top World Export Country";
+appStr[16][3] = "Obesity % of Population";
+appStr[17][3] = "Temperature of Major City";
+appStr[18][3] = "Top CO2 Emission Country";
+appStr[19][3] = "Alcohol Consume (OECD)";
+appStr[20][3] = "Continuous Data Graph";
+appStr[21][3] = "Length of Otter";
+appStr[22][3] = "Age of Teacher";
+appStr[23][3] = "Age of Teacher by Sex";
+appStr[24][3] = "Cleanliness of Tooth";
+appStr[25][3] = "Math Exam Scores";
+appStr[26][3] = "Calorie of Hamberger";
+appStr[27][3] = "Height vs Weight by Sex";
+appStr[28][3] = "Discrete Data Graphs";
+appStr[29][3] = "";
+appStr[30][3] = "";
+appStr[31][3] = "unit";
+appStr[32][3] = "Country";
+appStr[33][3] = "Male";
+appStr[34][3] = "Female";
+appStr[35][3] = "Age";
+appStr[36][3] = "Person";
+appStr[37][3] = "billion $";
+appStr[38][3] = "Export";
+appStr[39][3] = "Obesity %";
+appStr[40][3] = "Celsius";
+appStr[41][3] = "City";
+appStr[42][3] = "Jan High";
+appStr[43][3] = "Jul High";
+appStr[44][3] = "million ton";
+appStr[45][3] = "liter/year";
+appStr[46][3] = "Alcohol";
 alertMsg[1][3] = "所選擇的變數，其中之一沒有包含資料。";
 alertMsg[2][3] = "逐一選取變數進行分析(選按欄位名稱)。若是同時選取兩變數，則第一個視為群組變數。";
 alertMsg[3][3] = "所選的變數有缺失值。";
@@ -3145,6 +3515,23 @@ svgStr[125][3] = "離散型分佈";
 svgStr[126][3] = "行 %";
 svgStr[127][3] = "列 %";
 svgStr[128][3] = "總計 %";
+svgStr[129][3] = "長條圖矩陣";
+svgStr[130][3] = "先驗機率";
+svgStr[131][3] = "特徵值";
+svgStr[132][3] = "特徵向量";
+svgStr[133][3] = "多維頻率表";
+svgStr[134][3] = "層次聚類圖";
+svgStr[135][3] = "距離";
+svgStr[136][3] = "單一";
+svgStr[137][3] = "完成";
+svgStr[138][3] = "平均";
+svgStr[139][3] = "質心";
+svgStr[140][3] = "病房";
+svgStr[141][3] = "連動";
+svgStr[142][3] = "Number of Clusters <br>K";
+svgStr[143][3] = "Bayes Information Criteria";
+svgStr[144][3] = "Within Sum of Squares";
+svgStr[145][3] = "Akaike Information Criteria";
 
 svgStrU[1][3] = "二項式分佈";
 svgStrU[2][3] = "重覆數";
@@ -3280,6 +3667,21 @@ svgStrU[131][3] = "季節性指數";
 svgStrU[132][3] = "Holt-Winters 乘法季節性模型";
 svgStrU[133][3] = "非季節性時間序列";
 svgStrU[134][3] = "塊";
+svgStrU[135][3] = "聚類分析";
+svgStrU[136][3] = "集群";
+svgStrU[137][3] = "決策樹";
+svgStrU[138][3] = "決策規則條件";
+svgStrU[139][3] = "決定";
+svgStrU[140][3] = "迭代";
+svgStrU[141][3] = "平行圖";
+svgStrU[142][3] = "分類";
+svgStrU[143][3] = "分類函數";
+svgStrU[144][3] = "分類結果";
+svgStrU[145][3] = "決定";
+svgStrU[146][3] = "誤分類率";
+svgStrU[147][3] = "儲存格";
+svgStrU[148][3] = "訓練資料";
+svgStrU[149][3] = "測試資料";
 
 // French
 $message.fr = {
@@ -3403,6 +3805,7 @@ $message.fr = {
     "MiddleStat": "Statistiques du collège",
     "HighStat":   "Statistiques du lycée",
     "UnivStat":   "Statistics and Data Science",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Menu",
     "Binomial Experiment": "Essai binomialt",
@@ -3555,6 +3958,7 @@ $message.fr = {
     "NoInteraction": "Aucune Interaction",
     "ExistInteraction": "Exister Interaction",
     "eStatLecture": "eStat eConférence",
+    "eDataLecture": "eDataScience Learning",
     "NonParametricMu12_title": "Wilcoxon Rang Sum Tester", 
     "NonParametricMu12": "Wilcoxon Rang Sum Tester : Paramètre d'emplacement M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Rang Sum Tester",
@@ -3721,6 +4125,51 @@ $message.fr = {
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
     "Chapter13":         "Chapter 13      Time Series Analysis", 
     "Distribution":      "Distribution",
+    "DecisionTree":      "Decision Tree",
+    "MaxDepth":          "Tree Depth Max",
+    "MinData":           "Branch Data Min",
+    "Discriminant":      "Discriminant Analysis",
+    "BayesTable":        "Classification Table",
+    "ScatterBarGraph":   "Bar Graph Matrix",
+    "MultiCrossTable":   "Cross Table Matrix",
+    "MultiFreqTable":    "Muti-dim Frequency Table",
+    "ParallelGraph":     "Parallel Graph",
+    "DataPartition":     "Data partition",
+    "Training":          "Train",
+    "Testing":           "Test",
+    "PriorProb":         "Prior probability",
+    "SampleProp":        "sample proportion",
+    "EqualProp":         "equal proportion",
+    "KNN":               "K Nearest Neighbor Classification",
+    "numKNN":            "Nearest Neighbor",
+    "PCA":               "Principal Component Analysis",
+    "PCgraph":           "Principal Component Scatterplot",
+    "PCtable":           "Principal Component Table",
+    "Logistic":          "Logistic Regression Analysis",
+    "KmeansCluster":     "K-means Clustering",
+    "KmeansGraph":       "K-means Cluster Scatterplot",
+    "KmeansTable":       "K-means Cluster Table",
+    "NumberOfGroup":     "number of clusters",
+    "MaxIteration":      "max iteration",
+    "StopEpsi":          "ESS difference bound",
+    "StatCluster":       "Cluster Statistics",
+    "ClusterTable":      "Cluster Table",
+    "StatClassification": "Classification Stat",
+    "HierarchyCluster":  "Hierarchical Clustering",
+    "MaxObs":            "Maximum number of observations",
+    "HierarchyGraph":    "Hierarchy Graph",
+    "Distance":          "Distance measure",
+    "Euclid":            "Euclid",
+    "Manhattan":         "Manhattan",
+    "Linkage":           "Linkage",
+    "Single":            "Single",
+    "Complete":          "Complete",
+    "Average":           "Average",
+    "Centroid":          "Centroid",
+    "Ward":              "Ward",
+    "Standardization":   "Data standardization",
+    "StatMultivariate":  "Multivariate Stat",
+    "NaiveBayes":        "Naive Bayes Classification",
 
 };
 // French
@@ -3733,6 +4182,44 @@ appStr[5][4] = "index.html";
 appStr[6][4] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][4] = "/estat/eLearning/en/eStatH/index.html";
 appStr[8][4] = "/estat/eLearning/en/eStatU/index.html";
+appStr[9][4] = "/estat/eLearning/en/DataScience/index.html";
+appStr[10][4] = "";
+appStr[11][4] = "Large Population Country";
+appStr[12][4] = "Life Expectancy (OECD)";
+appStr[13][4] = "Population Pyramid (Korea)";
+appStr[14][4] = "GNP per Capita (OECD)";
+appStr[15][4] = "Top World Export Country";
+appStr[16][4] = "Obesity % of Population";
+appStr[17][4] = "Temperature of Major City";
+appStr[18][4] = "Top CO2 Emission Country";
+appStr[19][4] = "Alcohol Consume (OECD)";
+appStr[20][4] = "Continuous Data Graph";
+appStr[21][4] = "Length of Otter";
+appStr[22][4] = "Age of Teacher";
+appStr[23][4] = "Age of Teacher by Sex";
+appStr[24][4] = "Cleanliness of Tooth";
+appStr[25][4] = "Math Exam Scores";
+appStr[26][4] = "Calorie of Hamberger";
+appStr[27][4] = "Height vs Weight by Sex";
+appStr[28][4] = "Discrete Data Graphs";
+appStr[29][4] = "";
+appStr[30][4] = "";
+appStr[31][4] = "unit";
+appStr[32][4] = "Country";
+appStr[33][4] = "Male";
+appStr[34][4] = "Female";
+appStr[35][4] = "Age";
+appStr[36][4] = "Person";
+appStr[37][4] = "billion $";
+appStr[38][4] = "Export";
+appStr[39][4] = "Obesity %";
+appStr[40][4] = "Celsius";
+appStr[41][4] = "City";
+appStr[42][4] = "Jan High";
+appStr[43][4] = "Jul High";
+appStr[44][4] = "million ton";
+appStr[45][4] = "liter/year";
+appStr[46][4] = "Alcohol";
 alertMsg[1][4] = "L'une des variables sélectionnées ne contient pas de données.";
 alertMsg[1][4] = "Une des variables sélectionnées ne contient pas de données.";
 alertMsg[2][4] = "Selectionnez une par une les variables à analyser en cliquant sur chaque nom de colonne. Pour deux variables, la premiere est la variable de groupe. ";
@@ -3926,6 +4413,23 @@ svgStr[125][4] = "Distribution discrète";
 svgStr[126][4] = "ligne %";
 svgStr[127][4] = "colonne %";
 svgStr[128][4] = "total %";
+svgStr[129][4] = "Matrice de graphique à barres";
+svgStr[130][4] = "Prob préalable" ;
+svgStr[131][4] = "Valeur propre";
+svgStr[132][4] = "Vecteur propre";
+svgStr[133][4] = "Tableau de fréquences multidimensionnelles" ;
+svgStr[134][4] = "Graphique de cluster hiérarchique";
+svgStr[135][4] = "Distance";
+svgStr[136][4] = "Unique";
+svgStr[137][4] = "Complet";
+svgStr[138][4] = "Moyenne";
+svgStr[139][4] = "Centroïde";
+svgStr[140][4] = "Quartier";
+svgStr[141][4] = "Lien";
+svgStr[142][4] = "Number of Clusters <br>K";
+svgStr[143][4] = "Bayes Information Criteria";
+svgStr[144][4] = "Within Sum of Squares";
+svgStr[145][4] = "Akaike Information Criteria";
 
 svgStrU[1][4] = "Loi binomiale";
 svgStrU[2][4] = "Répétition";
@@ -4061,6 +4565,21 @@ svgStrU[131][4] = "Index saisonnier" ;
 svgStrU[132][4] = "Modèle saisonnier multiplicatif de Holt-Winters" ;
 svgStrU[133][4] = "Séries désaisonnalisées" ;
 svgStrU[134][4] = "Bloc";
+svgStrU[135][4] = "Analyse de cluster" ;
+svgStrU[136][4] = "Cluster" ;
+svgStrU[137][4] = "Arbre de décision" ;
+svgStrU[138][4] = "Condition de règle de décision" ;
+svgStrU[139][4] = "Décision";
+svgStrU[140][4] = "Itération";
+svgStrU[141][4] = "Graphique parallèle";
+svgStrU[142][4] = "Classification";
+svgStrU[143][4] = "Fonction de classification" ;
+svgStrU[144][4] = "Résultat de la classification" ;
+svgStrU[145][4] = "Décision";
+svgStrU[146][4] = "Taux d'erreurs de classification" ;
+svgStrU[147][4] = "Cellule";
+svgStrU[148][4] = "Données d'entraînement" ;
+svgStrU[149][4] = "Données de test" ;
 
 
 // German
@@ -4185,6 +4704,7 @@ $message.de = {
     "MiddleStat": "Statistik Mittelschule",
     "HighStat":   "Statistik des Gymnasiums",
     "UnivStat":   "Statistics and Data Science",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Menü",
     "Binomial Experiment": "Binomialexperiment",
@@ -4334,6 +4854,7 @@ $message.de = {
     "NoInteraction": "Keine Interaktion",
     "ExistInteraction": "Interaction existiert",
     "eStatLecture": "eStat eVorlesung",
+    "eDataLecture": "eDataScience Learning",
     "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
     "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Rangsum Test",
@@ -4500,6 +5021,51 @@ $message.de = {
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
     "Chapter13":         "Chapter 13      Time Series Analysis", 
     "Distribution":      "Distribution",
+    "DecisionTree":      "Decision Tree",
+    "MaxDepth":          "Tree Depth Max",
+    "MinData":           "Branch Data Min",
+    "Discriminant":      "Discriminant Analysis",
+    "BayesTable":        "Classification Table",
+    "ScatterBarGraph":   "Bar Graph Matrix",
+    "MultiCrossTable":   "Cross Table Matrix",
+    "MultiFreqTable":    "Muti-dim Frequency Table",
+    "ParallelGraph":     "Parallel Graph",
+    "DataPartition":     "Data partition",
+    "Training":          "Train",
+    "Testing":           "Test",
+    "PriorProb":         "Prior probability",
+    "SampleProp":        "sample proportion",
+    "EqualProp":         "equal proportion",
+    "KNN":               "K Nearest Neighbor Classification",
+    "numKNN":            "Nearest Neighbor",
+    "PCA":               "Principal Component Analysis",
+    "PCgraph":           "Principal Component Scatterplot",
+    "PCtable":           "Principal Component Table",
+    "Logistic":          "Logistic Regression Analysis",
+    "KmeansCluster":     "K-means Clustering",
+    "KmeansGraph":       "K-means Cluster Scatterplot",
+    "KmeansTable":       "K-means Cluster Table",
+    "NumberOfGroup":     "number of clusters",
+    "MaxIteration":      "max iteration",
+    "StopEpsi":          "ESS difference bound",
+    "StatCluster":       "Cluster Statistics",
+    "ClusterTable":      "Cluster Table",
+    "StatClassification": "Classification Stat",
+    "HierarchyCluster":  "Hierarchical Clustering",
+    "MaxObs":            "Maximum number of observations",
+    "HierarchyGraph":    "Hierarchy Graph",
+    "Distance":          "Distance measure",
+    "Euclid":            "Euclid",
+    "Manhattan":         "Manhattan",
+    "Linkage":           "Linkage",
+    "Single":            "Single",
+    "Complete":          "Complete",
+    "Average":           "Average",
+    "Centroid":          "Centroid",
+    "Ward":              "Ward",
+    "Standardization":   "Data standardization",
+    "StatMultivariate":  "Multivariate Stat",
+    "NaiveBayes":        "Naive Bayes Classification",
 
 };
 // German 
@@ -4512,6 +5078,44 @@ appStr[5][5] = "index.html";
 appStr[6][5] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][5] = "/estat/eLearning/en/eStatH/index.html";
 appStr[8][5] = "/estat/eLearning/en/eStatU/index.html";
+appStr[9][5] = "/estat/eLearning/en/DataScience/index.html";
+appStr[10][5] = "";
+appStr[11][5] = "Large Population Country";
+appStr[12][5] = "Life Expectancy (OECD)";
+appStr[13][5] = "Population Pyramid (Korea)";
+appStr[14][5] = "GNP per Capita (OECD)";
+appStr[15][5] = "Top World Export Country";
+appStr[16][5] = "Obesity % of Population";
+appStr[17][5] = "Temperature of Major City";
+appStr[18][5] = "Top CO2 Emission Country";
+appStr[19][5] = "Alcohol Consume (OECD)";
+appStr[20][5] = "Continuous Data Graph";
+appStr[21][5] = "Length of Otter";
+appStr[22][5] = "Age of Teacher";
+appStr[23][5] = "Age of Teacher by Sex";
+appStr[24][5] = "Cleanliness of Tooth";
+appStr[25][5] = "Math Exam Scores";
+appStr[26][5] = "Calorie of Hamberger";
+appStr[27][5] = "Height vs Weight by Sex";
+appStr[28][5] = "Discrete Data Graphs";
+appStr[29][5] = "";
+appStr[30][5] = "";
+appStr[31][5] = "unit";
+appStr[32][5] = "Country";
+appStr[33][5] = "Male";
+appStr[34][5] = "Female";
+appStr[35][5] = "Age";
+appStr[36][5] = "Person";
+appStr[37][5] = "billion $";
+appStr[38][5] = "Export";
+appStr[39][5] = "Obesity %";
+appStr[40][5] = "Celsius";
+appStr[41][5] = "City";
+appStr[42][5] = "Jan High";
+appStr[43][5] = "Jul High";
+appStr[44][5] = "million ton";
+appStr[45][5] = "liter/year";
+appStr[46][5] = "Alcohol";
 alertMsg[1][5] = "Eine der ausgewählten Variablen enthält keine Daten.";
 alertMsg[2][5] = "Wähle Variablen durch Ankliken für die  Analyse aus.  If two variables, first one is group variable. ";
 alertMsg[3][5] = "Wähle Variablen durch Ankliken für die  Analyse aus.";
@@ -4704,6 +5308,23 @@ svgStr[125][5] = "Diskrete Verteilung";
 svgStr[126][5] = "Reihe %";
 svgStr[127][5] = "Säule %";
 svgStr[128][5] = "Gesamt %";
+svgStr[129][5] = "Balkendiagramm-Matrix";
+svgStr[130][5] = "Prior Prob";
+svgStr[131][5] = "Eigenwert";
+svgStr[132][5] = "Eigenvektor";
+svgStr[133][5] = "Multidimension-Häufigkeitstabelle";
+svgStr[134][5] = "Hierarchisches Clusterdiagramm";
+svgStr[135][5] = "Entfernung";
+svgStr[136][5] = "Single";
+svgStr[137][5] = "Abgeschlossen";
+svgStr[138][5] = "Durchschnitt";
+svgStr[139][5] = "Schwerpunkt";
+svgStr[140][5] = "Ward";
+svgStr[141][5] = "Verknüpfung";
+svgStr[142][5] = "Number of Clusters <br>K";
+svgStr[143][5] = "Bayes Information Criteria";
+svgStr[144][5] = "Within Sum of Squares";
+svgStr[145][5] = "Akaike Information Criteria";
 
 svgStrU[1][5] = "Binomialverteilung";
 svgStrU[2][5] = "Wiederholung";
@@ -4839,6 +5460,21 @@ svgStrU[131][5] = "Saisonaler Index";
 svgStrU[132][5] = "Multiplikatives Saisonmodell von Holt-Winters";
 svgStrU[133][5] = "Seasonal Series";
 svgStrU[134][5] = "Block";
+svgStrU[135][5] = "Clusteranalyse";
+svgStrU[136][5] = "Cluster";
+svgStrU[137][5] = "Entscheidungsbaum";
+svgStrU[138][5] = "Bedingung der Entscheidungsregel";
+svgStrU[139][5] = "Entscheidung";
+svgStrU[140][5] = "Iteration";
+svgStrU[141][5] = "Paralleldiagramm";
+svgStrU[142][5] = "Klassifizierung";
+svgStrU[143][5] = "Klassifizierungsfunktion";
+svgStrU[144][5] = "Klassifizierungsergebnis";
+svgStrU[145][5] = "Entscheidung";
+svgStrU[146][5] = "Fehlklassifizierungsrate";
+svgStrU[147][5] = "Zelle";
+svgStrU[148][5] = "Trainingsdaten";
+svgStrU[149][5] = "Daten testen";
 
 // Spanish
 $message.es = {
@@ -4962,6 +5598,7 @@ $message.es = {
     "MiddleStat": "Estadísticas de la escuela intermedia",
     "HighStat":   "Estadísticas de la escuela secundaria",
     "UnivStat":   "Statistics and Data Science",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Menú",
     "Binomial Experiment": "Experimento Binomial",
@@ -5114,6 +5751,7 @@ $message.es = {
     "NoInteraction": "Sin Interaction",
     "ExistInteraction": "Interacción existente",
     "eStatLecture": "eStat eConferencia",
+    "eDataLecture": "eDataScience Learning",
     "NonParametricMu12_title": "Wilcoxon Rank Sum Test", 
     "NonParametricMu12": "Wilcoxon Rank Sum Test : Location Parameter M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "prueba de suma de rango",
@@ -5280,6 +5918,51 @@ $message.es = {
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
     "Chapter13":         "Chapter 13      Time Series Analysis", 
     "Distribution":      "Distribution",
+    "DecisionTree":      "Decision Tree",
+    "MaxDepth":          "Tree Depth Max",
+    "MinData":           "Branch Data Min",
+    "Discriminant":      "Discriminant Analysis",
+    "BayesTable":        "Classification Table",
+    "ScatterBarGraph":   "Bar Graph Matrix",
+    "MultiCrossTable":   "Cross Table Matrix",
+    "MultiFreqTable":    "Muti-dim Frequency Table",
+    "ParallelGraph":     "Parallel Graph",
+    "DataPartition":     "Data partition",
+    "Training":          "Train",
+    "Testing":           "Test",
+    "PriorProb":         "Prior probability",
+    "SampleProp":        "sample proportion",
+    "EqualProp":         "equal proportion",
+    "KNN":               "K Nearest Neighbor Classification",
+    "numKNN":            "Nearest Neighbor",
+    "PCA":               "Principal Component Analysis",
+    "PCgraph":           "Principal Component Scatterplot",
+    "PCtable":           "Principal Component Table",
+    "Logistic":          "Logistic Regression Analysis",
+    "KmeansCluster":     "K-means Clustering",
+    "KmeansGraph":       "K-means Cluster Scatterplot",
+    "KmeansTable":       "K-means Cluster Table",
+    "NumberOfGroup":     "number of clusters",
+    "MaxIteration":      "max iteration",
+    "StopEpsi":          "ESS difference bound",
+    "StatCluster":       "Cluster Statistics",
+    "ClusterTable":      "Cluster Table",
+    "StatClassification": "Classification Stat",
+    "HierarchyCluster":  "Hierarchical Clustering",
+    "MaxObs":            "Maximum number of observations",
+    "HierarchyGraph":    "Hierarchy Graph",
+    "Distance":          "Distance measure",
+    "Euclid":            "Euclid",
+    "Manhattan":         "Manhattan",
+    "Linkage":           "Linkage",
+    "Single":            "Single",
+    "Complete":          "Complete",
+    "Average":           "Average",
+    "Centroid":          "Centroid",
+    "Ward":              "Ward",
+    "Standardization":   "Data standardization",
+    "StatMultivariate":  "Multivariate Stat",
+    "NaiveBayes":        "Naive Bayes Classification",
 
 };
 // Spanish
@@ -5292,6 +5975,44 @@ appStr[5][6] = "index.html";
 appStr[6][6] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][6] = "/estat/eLearning/en/eStatH/index.html";
 appStr[8][6] = "/estat/eLearning/en/eStatU/index.html";
+appStr[9][6] = "/estat/eLearning/en/DataScience/index.html";
+appStr[10][6] = "";
+appStr[11][6] = "Large Population Country";
+appStr[12][6] = "Life Expectancy (OECD)";
+appStr[13][6] = "Population Pyramid (Korea)";
+appStr[14][6] = "GNP per Capita (OECD)";
+appStr[15][6] = "Top World Export Country";
+appStr[16][6] = "Obesity % of Population";
+appStr[17][6] = "Temperature of Major City";
+appStr[18][6] = "Top CO2 Emission Country";
+appStr[19][6] = "Alcohol Consume (OECD)";
+appStr[20][6] = "Continuous Data Graph";
+appStr[21][6] = "Length of Otter";
+appStr[22][6] = "Age of Teacher";
+appStr[23][6] = "Age of Teacher by Sex";
+appStr[24][6] = "Cleanliness of Tooth";
+appStr[25][6] = "Math Exam Scores";
+appStr[26][6] = "Calorie of Hamberger";
+appStr[27][6] = "Height vs Weight by Sex";
+appStr[28][6] = "Discrete Data Graphs";
+appStr[29][6] = "";
+appStr[30][6] = "";
+appStr[31][6] = "unit";
+appStr[32][6] = "Country";
+appStr[33][6] = "Male";
+appStr[34][6] = "Female";
+appStr[35][6] = "Age";
+appStr[36][6] = "Person";
+appStr[37][6] = "billion $";
+appStr[38][6] = "Export";
+appStr[39][6] = "Obesity %";
+appStr[40][6] = "Celsius";
+appStr[41][6] = "City";
+appStr[42][6] = "Jan High";
+appStr[43][6] = "Jul High";
+appStr[44][6] = "million ton";
+appStr[45][6] = "liter/year";
+appStr[46][6] = "Alcohol";
 alertMsg[1][6] = "Una de las variables seleccionadas no contiene datos";
 alertMsg[2][6] = "Seleccionar una a una las  variables para el análisis (clicando los nombres de las columnas). Si hay dos variables, la primera es la variable grupo";
 alertMsg[3][6] = "Datos faltantes en la variable seleccionada";
@@ -5484,6 +6205,23 @@ svgStr[125][6] = "Distribución discreta";
 svgStr[126][6] = "hilera %";
 svgStr[127][6] = "columna %";
 svgStr[128][6] = "total %";
+svgStr[129][6] = "Matriz de gráfico de barras";
+svgStr[130][6] = "Problema anterior";
+svgStr[131][6] = "Valor propio";
+svgStr[132][6] = "Vector propio";
+svgStr[133][6] = "Tabla de frecuencias multidimensionales";
+svgStr[134][6] = "Gráfico de conglomerados jerárquicos";
+svgStr[135][6] = "Distancia";
+svgStr[136][6] = "Único";
+svgStr[137][6] = "Completo";
+svgStr[138][6] = "Promedio";
+svgStr[139][6] = "Centroide";
+svgStr[140][6] = "Pupilo";
+svgStr[141][6] = "Vinculación";
+svgStr[142][6] = "Number of Clusters <br>K";
+svgStr[143][6] = "Bayes Information Criteria";
+svgStr[144][6] = "Within Sum of Squares";
+svgStr[145][6] = "Akaike Information Criteria";
 
 svgStrU[1][6] = "Distribución Binomial";
 svgStrU[2][6] = "Repetición";
@@ -5619,6 +6357,21 @@ svgStrU[131][6] = "Índice estacional";
 svgStrU[132][6] = "Modelo estacional multiplicativo de Holt-Winters";
 svgStrU[133][6] = "Serie estacional";
 svgStrU[134][6] = "Bloquear";
+svgStrU[135][6] = "Análisis de conglomerados";
+svgStrU[136][6] = "Clúster";
+svgStrU[137][6] = "Árbol de decisión";
+svgStrU[138][6] = "Condición de regla de decisión";
+svgStrU[139][6] = "Decisión";
+svgStrU[140][6] = "Iteración";
+svgStrU[141][6] = "Gráfico paralelo";
+svgStrU[142][6] = "Clasificación";
+svgStrU[143][6] = "Función de clasificación";
+svgStrU[144][6] = "Resultado de la clasificación";
+svgStrU[145][6] = "Decisión";
+svgStrU[146][6] = "Tasa de clasificación errónea";
+svgStrU[147][6] = "Celda";
+svgStrU[148][6] = "Datos de entrenamiento";
+svgStrU[149][6] = "Datos de prueba";
 
 // Vietnamese
 $message.vi = {
@@ -5742,6 +6495,7 @@ $message.vi = {
     "MiddleStat": "Trường trung học thống kê",
     "HighStat":   "thống kê trường trung học",
     "UnivStat":   "Statistics and Data Science",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Menu",
     "Binomial Experiment": "Thí nghiệm nhị thức",
@@ -5894,6 +6648,7 @@ $message.vi = {
     "NoInteraction": "Không tương tác",
     "ExistInteraction": "Tương tác hiện tại",
     "eStatLecture": "Bài giảng eStat ",
+    "eDataLecture": "eDataScience Learning",
     "NonParametricMu12_title": " Kiểm định hạng Wilconxon ", 
     "NonParametricMu12": "Wilcoxon Xếp hạng Tổng kiểm tra : Thông số thống kê M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Kiểm định hạng",
@@ -6056,6 +6811,51 @@ $message.vi = {
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
     "Chapter13":         "Chapter 13      Time Series Analysis",  
     "Distribution":      "Distribution",
+    "DecisionTree":      "Decision Tree",
+    "MaxDepth":          "Tree Depth Max",
+    "MinData":           "Branch Data Min",
+    "Discriminant":      "Discriminant Analysis",
+    "BayesTable":        "Classification Table",
+    "ScatterBarGraph":   "Bar Graph Matrix",
+    "MultiCrossTable":   "Cross Table Matrix",
+    "MultiFreqTable":    "Muti-dim Frequency Table",
+    "ParallelGraph":     "Parallel Graph",
+    "DataPartition":     "Data partition",
+    "Training":          "Train",
+    "Testing":           "Test",
+    "PriorProb":         "Prior probability",
+    "SampleProp":        "sample proportion",
+    "EqualProp":         "equal proportion",
+    "KNN":               "K Nearest Neighbor Classification",
+    "numKNN":            "Nearest Neighbor",
+    "PCA":               "Principal Component Analysis",
+    "PCgraph":           "Principal Component Scatterplot",
+    "PCtable":           "Principal Component Table",
+    "Logistic":          "Logistic Regression Analysis",
+    "KmeansCluster":     "K-means Clustering",
+    "KmeansGraph":       "K-means Cluster Scatterplot",
+    "KmeansTable":       "K-means Cluster Table",
+    "NumberOfGroup":     "number of clusters",
+    "MaxIteration":      "max iteration",
+    "StopEpsi":          "ESS difference bound",
+    "StatCluster":       "Cluster Statistics",
+    "ClusterTable":      "Cluster Table",
+    "StatClassification": "Classification Stat",
+    "HierarchyCluster":  "Hierarchical Clustering",
+    "MaxObs":            "Maximum number of observations",
+    "HierarchyGraph":    "Hierarchy Graph",
+    "Distance":          "Distance measure",
+    "Euclid":            "Euclid",
+    "Manhattan":         "Manhattan",
+    "Linkage":           "Linkage",
+    "Single":            "Single",
+    "Complete":          "Complete",
+    "Average":           "Average",
+    "Centroid":          "Centroid",
+    "Ward":              "Ward",
+    "Standardization":   "Data standardization",
+    "StatMultivariate":  "Multivariate Stat",
+    "NaiveBayes":        "Naive Bayes Classification",
 
 };
 // Vietnamese
@@ -6068,6 +6868,44 @@ appStr[5][7] = "index.html";
 appStr[6][7] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][7] = "/estat/eLearning/en/eStatH/index.html";
 appStr[8][7] = "/estat/eLearning/en/eStatU/index.html";
+appStr[9][7] = "/estat/eLearning/en/DataScience/index.html";
+appStr[10][7] = "";
+appStr[11][7] = "Large Population Country";
+appStr[12][7] = "Life Expectancy (OECD)";
+appStr[13][7] = "Population Pyramid (Korea)";
+appStr[14][7] = "GNP per Capita (OECD)";
+appStr[15][7] = "Top World Export Country";
+appStr[16][7] = "Obesity % of Population";
+appStr[17][7] = "Temperature of Major City";
+appStr[18][7] = "Top CO2 Emission Country";
+appStr[19][7] = "Alcohol Consume (OECD)";
+appStr[20][7] = "Continuous Data Graph";
+appStr[21][7] = "Length of Otter";
+appStr[22][7] = "Age of Teacher";
+appStr[23][7] = "Age of Teacher by Sex";
+appStr[24][7] = "Cleanliness of Tooth";
+appStr[25][7] = "Math Exam Scores";
+appStr[26][7] = "Calorie of Hamberger";
+appStr[27][7] = "Height vs Weight by Sex";
+appStr[28][7] = "Discrete Data Graphs";
+appStr[29][7] = "";
+appStr[30][7] = "";
+appStr[31][7] = "unit";
+appStr[32][7] = "Country";
+appStr[33][7] = "Male";
+appStr[34][7] = "Female";
+appStr[35][7] = "Age";
+appStr[36][7] = "Person";
+appStr[37][7] = "billion $";
+appStr[38][7] = "Export";
+appStr[39][7] = "Obesity %";
+appStr[40][7] = "Celsius";
+appStr[41][7] = "City";
+appStr[42][7] = "Jan High";
+appStr[43][7] = "Jul High";
+appStr[44][7] = "million ton";
+appStr[45][7] = "liter/year";
+appStr[46][7] = "Alcohol";
 alertMsg[1][7] = "Đã chọn biến không chứa dữ liệu";
 alertMsg[2][7] = "Chọn từng biến để phân tích (click tên cột). Nếu chọn 2 biến, biến đầu tiên là biến định tính";
 alertMsg[3][7] = "Biến đã chọn thiếu số liệu";
@@ -6260,6 +7098,23 @@ svgStr[125][7] = "Phân phối rời rạc";
 svgStr[126][7] = "hàng ngang %";
 svgStr[127][7] = "cột%";
 svgStr[128][7] = "toàn bộ %";
+svgStr[129][7] = "Ma trận biểu đồ thanh";
+svgStr[130][7] = "Kiểm tra trước";
+svgStr[131][7] = "Giá trị riêng";
+svgStr[132][7] = "Vector riêng";
+svgStr[133][7] = "Bảng tần số đa chiều";
+svgStr[134][7] = "Biểu đồ cụm phân cấp";
+svgStr[135][7] = "Khoảng cách";
+svgStr[136][7] = "Đơn";
+svgStr[137][7] = "Hoàn thành";
+svgStr[138][7] = "Trung bình";
+svgStr[139][7] = "Trung tâm";
+svgStr[140][7] = "Phường";
+svgStr[141][7] = "Liên kết";
+svgStr[142][7] = "Number of Clusters <br>K";
+svgStr[143][7] = "Bayes Information Criteria";
+svgStr[144][7] = "Within Sum of Squares";
+svgStr[145][7] = "Akaike Information Criteria";
 
 svgStrU[1][7] = "Phân phối nhị thức";
 svgStrU[2][7] = "Lặp lại";
@@ -6395,6 +7250,21 @@ svgStrU[131][7] = "Chỉ số theo mùa";
 svgStrU[132][7] = "Mô hình theo mùa đa số Holt-Winters";
 svgStrU[133][7] = "Dòng Deseasonal";
 svgStrU[134][7] = "Khối";
+svgStrU[135][7] = "Phân tích cụm";
+svgStrU[136][7] = "Cụm";
+svgStrU[137][7] = "Cây quyết định";
+svgStrU[138][7] = "Điều kiện quy tắc quyết định";
+svgStrU[139][7] = "Quyết định";
+svgStrU[140][7] = "Lặp lại";
+svgStrU[141][7] = "Đồ thị song song";
+svgStrU[142][7] = "Phân loại";
+svgStrU[143][7] = "Hàm phân loại";
+svgStrU[144][7] = "Kết quả phân loại";
+svgStrU[145][7] = "Quyết định";
+svgStrU[146][7] = "Tỷ lệ phân loại sai";
+svgStrU[147][7] = "Ô";
+svgStrU[148][7] = "Dữ liệu huấn luyện";
+svgStrU[149][7] = "Dữ liệu thử nghiệm";
 
 // Indonesian
 $message.id = {
@@ -6518,6 +7388,7 @@ $message.id = {
     "MiddleStat": "Statistik Sekolah Menengah",
     "HighStat":   "Statistik SMA",
     "UnivStat":   "Statistics and Data Science",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Menu",
     "Binomial Experiment": "Percobaan Binomial",
@@ -6670,6 +7541,7 @@ $message.id = {
     "NoInteraction": "Tanpa Interaction",
     "ExistInteraction": "Ada Interaction",
     "eStatLecture": "eStat Pengantar Kuliahe",
+    "eDataLecture": "eDataScience Learning",
     "NonParametricMu12_title": "Wilcoxon Tes Jumlah Peringkat", 
     "NonParametricMu12": "Wilcoxon Tes Jumlah Peringkatt : Parameter Lokasi M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Uji Jumlah Peringkat",
@@ -6836,6 +7708,51 @@ $message.id = {
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
     "Chapter13":         "Chapter 13      Time Series Analysis", 
     "Distribution":      "Distribution",
+    "DecisionTree":      "Decision Tree",
+    "MaxDepth":          "Tree Depth Max",
+    "MinData":           "Branch Data Min",
+    "Discriminant":      "Discriminant Analysis",
+    "BayesTable":        "Classification Table",
+    "ScatterBarGraph":   "Bar Graph Matrix",
+    "MultiCrossTable":   "Cross Table Matrix",
+    "MultiFreqTable":    "Muti-dim Frequency Table",
+    "ParallelGraph":     "Parallel Graph",
+    "DataPartition":     "Data partition",
+    "Training":          "Train",
+    "Testing":           "Test",
+    "PriorProb":         "Prior probability",
+    "SampleProp":        "sample proportion",
+    "EqualProp":         "equal proportion",
+    "KNN":               "K Nearest Neighbor Classification",
+    "numKNN":            "Nearest Neighbor",
+    "PCA":               "Principal Component Analysis",
+    "PCgraph":           "Principal Component Scatterplot",
+    "PCtable":           "Principal Component Table",
+    "Logistic":          "Logistic Regression Analysis",
+    "KmeansCluster":     "K-means Clustering",
+    "KmeansGraph":       "K-means Cluster Scatterplot",
+    "KmeansTable":       "K-means Cluster Table",
+    "NumberOfGroup":     "number of clusters",
+    "MaxIteration":      "max iteration",
+    "StopEpsi":          "ESS difference bound",
+    "StatCluster":       "Cluster Statistics",
+    "ClusterTable":      "Cluster Table",
+    "StatClassification": "Classification Stat",
+    "HierarchyCluster":  "Hierarchical Clustering",
+    "MaxObs":            "Maximum number of observations",
+    "HierarchyGraph":    "Hierarchy Graph",
+    "Distance":          "Distance measure",
+    "Euclid":            "Euclid",
+    "Manhattan":         "Manhattan",
+    "Linkage":           "Linkage",
+    "Single":            "Single",
+    "Complete":          "Complete",
+    "Average":           "Average",
+    "Centroid":          "Centroid",
+    "Ward":              "Ward",
+    "Standardization":   "Data standardization",
+    "StatMultivariate":  "Multivariate Stat",
+    "NaiveBayes":        "Naive Bayes Classification",
 
 };
 // Indonesian 
@@ -6848,6 +7765,44 @@ appStr[5][8] = "index.html";
 appStr[6][8] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][8] = "/estat/eLearning/en/eStatH/index.html";
 appStr[8][8] = "/estat/eLearning/en/eStatU/index.html";
+appStr[9][8] = "/estat/eLearning/en/DataScience/index.html";
+appStr[10][8] = "";
+appStr[11][8] = "Large Population Country";
+appStr[12][8] = "Life Expectancy (OECD)";
+appStr[13][8] = "Population Pyramid (Korea)";
+appStr[14][8] = "GNP per Capita (OECD)";
+appStr[15][8] = "Top World Export Country";
+appStr[16][8] = "Obesity % of Population";
+appStr[17][8] = "Temperature of Major City";
+appStr[18][8] = "Top CO2 Emission Country";
+appStr[19][8] = "Alcohol Consume (OECD)";
+appStr[20][8] = "Continuous Data Graph";
+appStr[21][8] = "Length of Otter";
+appStr[22][8] = "Age of Teacher";
+appStr[23][8] = "Age of Teacher by Sex";
+appStr[24][8] = "Cleanliness of Tooth";
+appStr[25][8] = "Math Exam Scores";
+appStr[26][8] = "Calorie of Hamberger";
+appStr[27][8] = "Height vs Weight by Sex";
+appStr[28][8] = "Discrete Data Graphs";
+appStr[29][8] = "";
+appStr[30][8] = "";
+appStr[31][8] = "unit";
+appStr[32][8] = "Country";
+appStr[33][8] = "Male";
+appStr[34][8] = "Female";
+appStr[35][8] = "Age";
+appStr[36][8] = "Person";
+appStr[37][8] = "billion $";
+appStr[38][8] = "Export";
+appStr[39][8] = "Obesity %";
+appStr[40][8] = "Celsius";
+appStr[41][8] = "City";
+appStr[42][8] = "Jan High";
+appStr[43][8] = "Jul High";
+appStr[44][8] = "million ton";
+appStr[45][8] = "liter/year";
+appStr[46][8] = "Alcohol";
 alertMsg[1][8] = "Salah satu variabel yang dipilih tidak memiliki data.";
 alertMsg[2][8] = "Pilih variabel untuk analisis (klik nama kolom) satu per satu. Jika dua variabel, maka yang pertama adalah variabel grup. ";
 alertMsg[3][8] = "Data hilang pada variabel yang dipilih.";
@@ -7040,6 +7995,23 @@ svgStr[125][8] = "Distribusi Diskrit";
 svgStr[126][8] = "baris %";
 svgStr[127][8] = "kolom %";
 svgStr[128][8] = "jumlah %";
+svgStr[129][8] = "Matriks Grafik Batang";
+svgStr[130][8] = "Masalah Sebelumnya";
+svgStr[131][8] = "Nilai Eigen";
+svgStr[132][8] = "Vektor Eigen";
+svgStr[133][8] = "Tabel Frekuensi Multidimensi";
+svgStr[134][8] = "Grafik Cluster Hierarki";
+svgStr[135][8] = "Jarak";
+svgStr[136][8] = "Tunggal";
+svgStr[137][8] = "Selesai";
+svgStr[138][8] = "Rata-rata";
+svgStr[139][8] = "Pusat Tengah";
+svgStr[140][8] = "Bangsal";
+svgStr[141][8] = "Tautan";
+svgStr[142][8] = "Number of Clusters <br>K";
+svgStr[143][8] = "Bayes Information Criteria";
+svgStr[144][8] = "Within Sum of Squares";
+svgStr[145][8] = "Akaike Information Criteria";
 
 svgStrU[1][8] = "Distribusi Binomial";
 svgStrU[2][8] = "Ulangan";
@@ -7175,6 +8147,21 @@ svgStrU[131][8] = "Indeks Musiman";
 svgStrU[132][8] = "Model Musiman Perkalian Holt-Winters";
 svgStrU[133][8] = "Seri Deseasonal";
 svgStrU[134][8] = "Blok";
+svgStrU[135][8] = "Analisis Klaster";
+svgStrU[136][8] = "Kluster";
+svgStrU[137][8] = "Pohon Keputusan";
+svgStrU[138][8] = "Kondisi Aturan Keputusan";
+svgStrU[139][8] = "Keputusan";
+svgStrU[140][8] = "Iterasi";
+svgStrU[141][8] = "Grafik Paralel";
+svgStrU[142][8] = "Klasifikasi";
+svgStrU[143][8] = "Fungsi Klasifikasi";
+svgStrU[144][8] = "Hasil Klasifikasi";
+svgStrU[145][8] = "Keputusan";
+svgStrU[146][8] = "Tingkat Kesalahan Klasifikasi";
+svgStrU[147][8] = "Sel";
+svgStrU[148][8] = "Data Pelatihan";
+svgStrU[149][8] = "Pengujian Data";
 
 // Mongolian
 $message.mn = {
@@ -7298,6 +8285,7 @@ $message.mn = {
     "MiddleStat": "Дунд сургуулийн статистик",
     "HighStat":   "Ахлах сургуулийн статистик",
     "UnivStat":   "Statistics and Data Science",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Цэс",
     "Binomial Experiment": "Бином туршилт",
@@ -7448,6 +8436,7 @@ $message.mn = {
     "NoInteraction": "Харилцан яриа үгүй",
     "ExistInteraction": "Харилцан холбоо үүсгэх",
     "eStatLecture": "eStat Лекцийн танилцуулга",
+    "eDataLecture": "eDataScience Learning",
     "NonParametricMu12_title": "Wilcoxon Дундаж дүн шинжилгээt", 
     "NonParametricMu12": "Wilcoxon Дундаж дүн шинжилгээ : Байршлын параметрr M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Дундаж дүн шинжилгээ",
@@ -7614,6 +8603,51 @@ $message.mn = {
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
     "Chapter13":         "Chapter 13      Time Series Analysis", 
     "Distribution":      "Distribution",
+    "DecisionTree":      "Decision Tree",
+    "MaxDepth":          "Tree Depth Max",
+    "MinData":           "Branch Data Min",
+    "Discriminant":      "Discriminant Analysis",
+    "BayesTable":        "Classification Table",
+    "ScatterBarGraph":   "Bar Graph Matrix",
+    "MultiCrossTable":   "Cross Table Matrix",
+    "MultiFreqTable":    "Muti-dim Frequency Table",
+    "ParallelGraph":     "Parallel Graph",
+    "DataPartition":     "Data partition",
+    "Training":          "Train",
+    "Testing":           "Test",
+    "PriorProb":         "Prior probability",
+    "SampleProp":        "sample proportion",
+    "EqualProp":         "equal proportion",
+    "KNN":               "K Nearest Neighbor Classification",
+    "numKNN":            "Nearest Neighbor",
+    "PCA":               "Principal Component Analysis",
+    "PCgraph":           "Principal Component Scatterplot",
+    "PCtable":           "Principal Component Table",
+    "Logistic":          "Logistic Regression Analysis",
+    "KmeansCluster":     "K-means Clustering",
+    "KmeansGraph":       "K-means Cluster Scatterplot",
+    "KmeansTable":       "K-means Cluster Table",
+    "NumberOfGroup":     "number of clusters",
+    "MaxIteration":      "max iteration",
+    "StopEpsi":          "ESS difference bound",
+    "StatCluster":       "Cluster Statistics",
+    "ClusterTable":      "Cluster Table",
+    "StatClassification": "Classification Stat",
+    "HierarchyCluster":  "Hierarchical Clustering",
+    "MaxObs":            "Maximum number of observations",
+    "HierarchyGraph":    "Hierarchy Graph",
+    "Distance":          "Distance measure",
+    "Euclid":            "Euclid",
+    "Manhattan":         "Manhattan",
+    "Linkage":           "Linkage",
+    "Single":            "Single",
+    "Complete":          "Complete",
+    "Average":           "Average",
+    "Centroid":          "Centroid",
+    "Ward":              "Ward",
+    "Standardization":   "Data standardization",
+    "StatMultivariate":  "Multivariate Stat",
+    "NaiveBayes":        "Naive Bayes Classification",
 
 };
 // Mongolian
@@ -7626,6 +8660,44 @@ appStr[5][9] = "index.html";
 appStr[6][9] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][9] = "/estat/eLearning/en/eStatH/index.html";
 appStr[8][9] = "/estat/eLearning/en/eStatU/index.html";
+appStr[9][9] = "/estat/eLearning/en/DataScience/index.html";
+appStr[10][9] = "";
+appStr[11][9] = "Large Population Country";
+appStr[12][9] = "Life Expectancy (OECD)";
+appStr[13][9] = "Population Pyramid (Korea)";
+appStr[14][9] = "GNP per Capita (OECD)";
+appStr[15][9] = "Top World Export Country";
+appStr[16][9] = "Obesity % of Population";
+appStr[17][9] = "Temperature of Major City";
+appStr[18][9] = "Top CO2 Emission Country";
+appStr[19][9] = "Alcohol Consume (OECD)";
+appStr[20][9] = "Continuous Data Graph";
+appStr[21][9] = "Length of Otter";
+appStr[22][9] = "Age of Teacher";
+appStr[23][9] = "Age of Teacher by Sex";
+appStr[24][9] = "Cleanliness of Tooth";
+appStr[25][9] = "Math Exam Scores";
+appStr[26][9] = "Calorie of Hamberger";
+appStr[27][9] = "Height vs Weight by Sex";
+appStr[28][9] = "Discrete Data Graphs";
+appStr[29][9] = "";
+appStr[30][9] = "";
+appStr[31][9] = "unit";
+appStr[32][9] = "Country";
+appStr[33][9] = "Male";
+appStr[34][9] = "Female";
+appStr[35][9] = "Age";
+appStr[36][9] = "Person";
+appStr[37][9] = "billion $";
+appStr[38][9] = "Export";
+appStr[39][9] = "Obesity %";
+appStr[40][9] = "Celsius";
+appStr[41][9] = "City";
+appStr[42][9] = "Jan High";
+appStr[43][9] = "Jul High";
+appStr[44][9] = "million ton";
+appStr[45][9] = "liter/year";
+appStr[46][9] = "Alcohol";
 alertMsg[1][9] = "Нэг сонгогдсон хувьсагч нь өгөгдөл байхгүй ";
 alertMsg[2][9] = "Судалгаа шинжилгээнд хувьсагчуудыг нэг нэгээр сонгох. Хэрэв эхнийх нь 2 хувьсагч бол групп хувьсагч болно.";
 alertMsg[3][9] = "Сонгогдсон хувьсагчаас өгөгдөл орхигдсон.";
@@ -7818,6 +8890,23 @@ svgStr[125][9] = "Дискрет хуваарилалт";
 svgStr[126][9] = "мөр %";
 svgStr[127][9] = "багана %";
 svgStr[128][9] = "нийт %";
+svgStr[129][9] = "Бадан график матриц";
+svgStr[130][9] = "Өмнө нь шалгах";
+svgStr[131][9] = "Өөрийн утга";
+svgStr[132][9] = "Өөрийн вектор";
+svgStr[133][9] = "Олон хэмжээст давтамжийн хүснэгт";
+svgStr[134][9] = "Шаталсан кластер график";
+svgStr[135][9] = "Зай";
+svgStr[136][9] = "Ганц бие";
+svgStr[137][9] = "Бүрэн";
+svgStr[138][9] = "Дундаж";
+svgStr[139][9] = "Центроид";
+svgStr[140][9] = "Тойрог";
+svgStr[141][9] = "Холбоос";
+svgStr[142][9] = "Number of Clusters <br>K";
+svgStr[143][9] = "Bayes Information Criteria";
+svgStr[144][9] = "Within Sum of Squares";
+svgStr[145][9] = "Akaike Information Criteria";
 
 svgStrU[1][9] = "Бином тархалт ";
 svgStrU[2][9] = "Давтамж";
@@ -7953,6 +9042,21 @@ svgStrU[131][9] = "Улирлын индекс";
 svgStrU[132][9] = "Холт-Винтерсийн үржүүлэх улирлын загвар";
 svgStrU[133][9] = "Улиралгүй цуврал";
 svgStrU[134][9] = "Блок"; 
+svgStrU[135][9] = "Кластерын шинжилгээ";
+svgStrU[136][9] = "Кластер";
+svgStrU[137][9] = "Шийдвэрийн мод";
+svgStrU[138][9] = "Шийдвэрийн дүрмийн нөхцөл";
+svgStrU[139][9] = "Шийдвэр";
+svgStrU[140][9] = "Давталт";
+svgStrU[141][9] = "Зэрэгцээ график";
+svgStrU[142][9] = "Ангилал";
+svgStrU[143][9] = "Ангиллын функц";
+svgStrU[144][9] = "Ангиллын үр дүн";
+svgStrU[145][9] = "Шийдвэр";
+svgStrU[146][9] = "Буруу ангиллын хувь";
+svgStrU[147][9] = "Эс";
+svgStrU[148][9] = "Сургалтын өгөгдөл";
+svgStrU[149][9] = "Туршилтын өгөгдөл";
 
 // Chinese - Simplified
 $message.zh = {
@@ -8076,6 +9180,7 @@ $message.zh = {
     "MiddleStat": "中学统计",
     "HighStat":   "高中统计",
     "UnivStat":   "Statistics and Data Science",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
     "ebookLink":  "韩文电子书连结",
     "Menu": "选择",
     "Binomial Experiment": "二项式分布试验",
@@ -8228,6 +9333,7 @@ $message.zh = {
     "NoInteraction": "交互作用無",
     "ExistInteraction": "交互作用有",
     "eStatLecture": "eStat e講義",
+    "eDataLecture": "eDataScience Learning",
     "NonParametricMu12_title": "非參數Wilcoxon 順位合檢定", 
     "NonParametricMu12": "非參數Wilcoxon 順位合檢定 : 位置母數 M<sub>1</sub>, M<sub>2</sub>", 
     "Sample Range": "標本順位合",
@@ -8394,6 +9500,51 @@ $message.zh = {
     "Chapter12":         "第12章 相关性和回归",
     "Chapter13":         "第13章 时间序列分析",
     "Distribution":      "概率分布",
+    "DecisionTree":      "决策树",
+    "MaxDepth":          "树最大深度",
+    "MinData":           "分支数据最小值",
+    "Discriminant":      "判别分析",
+    "BayesTable":        "Classification Table",
+    "ScatterBarGraph":   "Bar Graph Matrix",
+    "MultiCrossTable":   "Cross Table Matrix",
+    "MultiFreqTable":    "Muti-dim Frequency Table",
+    "ParallelGraph":     "Parallel Graph",
+    "DataPartition":     "Data partition",
+    "Training":          "Train",
+    "Testing":           "Test",
+    "PriorProb":         "Prior probability",
+    "SampleProp":        "sample proportion",
+    "EqualProp":         "equal proportion",
+    "KNN":               "K Nearest Neighbor Classification",
+    "numKNN":            "Nearest Neighbor",
+    "PCA":               "Principal Component Analysis",
+    "PCgraph":           "Principal Component Scatterplot",
+    "PCtable":           "Principal Component Table",
+    "Logistic":          "Logistic Regression Analysis",
+    "KmeansCluster":     "K-means Clustering",
+    "KmeansGraph":       "K-means Cluster Scatterplot",
+    "KmeansTable":       "K-means Cluster Table",
+    "NumberOfGroup":     "number of clusters",
+    "MaxIteration":      "max iteration",
+    "StopEpsi":          "ESS difference bound",
+    "StatCluster":       "Cluster Statistics",
+    "ClusterTable":      "Cluster Table",
+    "StatClassification": "Classification Stat",
+    "HierarchyCluster":  "Hierarchical Clustering",
+    "MaxObs":            "Maximum number of observations",
+    "HierarchyGraph":    "Hierarchy Graph",
+    "Distance":          "Distance measure",
+    "Euclid":            "Euclid",
+    "Manhattan":         "Manhattan",
+    "Linkage":           "Linkage",
+    "Single":            "Single",
+    "Complete":          "Complete",
+    "Average":           "Average",
+    "Centroid":          "Centroid",
+    "Ward":              "Ward",
+    "Standardization":   "Data standardization",
+    "StatMultivariate":  "Multivariate Stat",
+    "NaiveBayes":        "Naive Bayes Classification",
 
 };
 // Chinese Simplified
@@ -8406,6 +9557,44 @@ appStr[5][10] = "index.html";
 appStr[6][10] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][10] = "/estat/eLearning/en/eStatH/index.html";
 appStr[8][10] = "/estat/eLearning/en/eStatU/index.html";
+appStr[9][10] = "/estat/eLearning/en/DataScience/index.html";
+appStr[10][10] = "";
+appStr[11][10] = "Large Population Country";
+appStr[12][10] = "Life Expectancy (OECD)";
+appStr[13][10] = "Population Pyramid (Korea)";
+appStr[14][10] = "GNP per Capita (OECD)";
+appStr[15][10] = "Top World Export Country";
+appStr[16][10] = "Obesity % of Population";
+appStr[17][10] = "Temperature of Major City";
+appStr[18][10] = "Top CO2 Emission Country";
+appStr[19][10] = "Alcohol Consume (OECD)";
+appStr[20][10] = "Continuous Data Graph";
+appStr[21][10] = "Length of Otter";
+appStr[22][10] = "Age of Teacher";
+appStr[23][10] = "Age of Teacher by Sex";
+appStr[24][10] = "Cleanliness of Tooth";
+appStr[25][10] = "Math Exam Scores";
+appStr[26][10] = "Calorie of Hamberger";
+appStr[27][10] = "Height vs Weight by Sex";
+appStr[28][10] = "Discrete Data Graphs";
+appStr[29][10] = "";
+appStr[30][10] = "";
+appStr[31][10] = "unit";
+appStr[32][10] = "Country";
+appStr[33][10] = "Male";
+appStr[34][10] = "Female";
+appStr[35][10] = "Age";
+appStr[36][10] = "Person";
+appStr[37][10] = "billion $";
+appStr[38][10] = "Export";
+appStr[39][10] = "Obesity %";
+appStr[40][10] = "Celsius";
+appStr[41][10] = "City";
+appStr[42][10] = "Jan High";
+appStr[43][10] = "Jul High";
+appStr[44][10] = "million ton";
+appStr[45][10] = "liter/year";
+appStr[46][10] = "Alcohol";
 alertMsg[1][10] = "所选的变量，其中之一没有包含资料。";
 alertMsg[2][10] = "逐一选取变量进行分析（选按栏位名称）。若是同事选取两个变量，则第一个视为群组变量。";
 alertMsg[3][10] = "所选的变量有缺失值。";
@@ -8599,6 +9788,23 @@ svgStr[125][10] = "离散分布";
 svgStr[126][10] = "行 %";
 svgStr[127][10] = "列 %";
 svgStr[128][10] = "总计 %";
+svgStr[129][10] = "条形图矩阵";
+svgStr[130][10] = "先验概率";
+svgStr[131][10] = "特征值";
+svgStr[132][10] = "特征向量";
+svgStr[133][10] = "多维频率表";
+svgStr[134][10] = "层次聚类图";
+svgStr[135][10] = "距离";
+svgStr[136][10] = "单个";
+svgStr[137][10] = "完成";
+svgStr[138][10] = "平均";
+svgStr[139][10] = "质心";
+svgStr[140][10] = "病房";
+svgStr[141][10] = "联动";
+svgStr[142][10] = "Number of Clusters <br>K";
+svgStr[143][10] = "Bayes Information Criteria";
+svgStr[144][10] = "Within Sum of Squares";
+svgStr[145][10] = "Akaike Information Criteria";
 
 svgStrU[1][10] = "二项式分布";
 svgStrU[2][10] = "重复数";
@@ -8708,6 +9914,21 @@ svgStrU[131][10] = "季节性指数";
 svgStrU[132][10] = "Holt-Winters 乘法季节性模型";
 svgStrU[133][10] = "非季节性时间序列";
 svgStrU[134][10] = "堵塞";
+svgStrU[135][10] = "聚类分析";
+svgStrU[136][10] = "集群";
+svgStrU[137][10] = "决策树";
+svgStrU[138][10] = "决策规则条件";
+svgStrU[139][10] = "决定";
+svgStrU[140][10] = "迭代";
+svgStrU[141][10] = "平行图";
+svgStrU[142][10] = "分类";
+svgStrU[143][10] = "分类函数";
+svgStrU[144][10] = "分类结果";
+svgStrU[145][10] = "决定";
+svgStrU[146][10] = "误分类率";
+svgStrU[147][10] = "单元格";
+svgStrU[148][10] = "训练数据";
+svgStrU[149][10] = "测试数据";
 
 // Portugese
 $message.pt = {
@@ -8834,6 +10055,7 @@ $message.pt = {
     "MiddleStat": "Estatísticas do ensino médio",
     "HighStat":   "Estatísticas do ensino médio",
     "UnivStat":   "Statistics and Data Science",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Menu",
     "Binomial Experiment": "Experimento Binomial",
@@ -8985,6 +10207,7 @@ $message.pt = {
     "NoInteraction": "Sem Interação",
     "ExistInteraction": "Existe Interação",
     "eStatLecture": "Aula eStat",
+    "eDataLecture": "eDataScience Learning",
     "NonParametricMu12_title": "Teste da Soma dos Postos (Wilcoxon-Mann-Whitney)", 
     "NonParametricMu12": "Teste da Soma dos Postos : Parâmetro de Locação M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Teste da Soma dos Postos",
@@ -9151,6 +10374,51 @@ $message.pt = {
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
     "Chapter13":         "Chapter 13      Time Series Analysis", 
     "Distribution":      "Distribution",
+    "DecisionTree":      "Decision Tree",
+    "MaxDepth":          "Tree Depth Max",
+    "MinData":           "Branch Data Min",
+    "Discriminant":      "Discriminant Analysis",
+    "BayesTable":        "Classification Table",
+    "ScatterBarGraph":   "Bar Graph Matrix",
+    "MultiCrossTable":   "Cross Table Matrix",
+    "MultiFreqTable":    "Muti-dim Frequency Table",
+    "ParallelGraph":     "Parallel Graph",
+    "DataPartition":     "Data partition",
+    "Training":          "Train",
+    "Testing":           "Test",
+    "PriorProb":         "Prior probability",
+    "SampleProp":        "sample proportion",
+    "EqualProp":         "equal proportion",
+    "KNN":               "K Nearest Neighbor Classification",
+    "numKNN":            "Nearest Neighbor",
+    "PCA":               "Principal Component Analysis",
+    "PCgraph":           "Principal Component Scatterplot",
+    "PCtable":           "Principal Component Table",
+    "Logistic":          "Logistic Regression Analysis",
+    "KmeansCluster":     "K-means Clustering",
+    "KmeansGraph":       "K-means Cluster Scatterplot",
+    "KmeansTable":       "K-means Cluster Table",
+    "NumberOfGroup":     "number of clusters",
+    "MaxIteration":      "max iteration",
+    "StopEpsi":          "ESS difference bound",
+    "StatCluster":       "Cluster Statistics",
+    "ClusterTable":      "Cluster Table",
+    "StatClassification": "Classification Stat",
+    "HierarchyCluster":  "Hierarchical Clustering",
+    "MaxObs":            "Maximum number of observations",
+    "HierarchyGraph":    "Hierarchy Graph",
+    "Distance":          "Distance measure",
+    "Euclid":            "Euclid",
+    "Manhattan":         "Manhattan",
+    "Linkage":           "Linkage",
+    "Single":            "Single",
+    "Complete":          "Complete",
+    "Average":           "Average",
+    "Centroid":          "Centroid",
+    "Ward":              "Ward",
+    "Standardization":   "Data standardization",
+    "StatMultivariate":  "Multivariate Stat",
+    "NaiveBayes":        "Naive Bayes Classification",
 
 };
 // Portugese
@@ -9163,6 +10431,44 @@ appStr[5][11] = "index.html";
 appStr[6][11] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][11] = "/estat/eLearning/en/eStatH/index.html";
 appStr[8][11] = "/estat/eLearning/en/eStatU/index.html";
+appStr[9][11] = "/estat/eLearning/en/DataScience/index.html";
+appStr[10][11] = "";
+appStr[11][11] = "Large Population Country";
+appStr[12][11] = "Life Expectancy (OECD)";
+appStr[13][11] = "Population Pyramid (Korea)";
+appStr[14][11] = "GNP per Capita (OECD)";
+appStr[15][11] = "Top World Export Country";
+appStr[16][11] = "Obesity % of Population";
+appStr[17][11] = "Temperature of Major City";
+appStr[18][11] = "Top CO2 Emission Country";
+appStr[19][11] = "Alcohol Consume (OECD)";
+appStr[20][11] = "Continuous Data Graph";
+appStr[21][11] = "Length of Otter";
+appStr[22][11] = "Age of Teacher";
+appStr[23][11] = "Age of Teacher by Sex";
+appStr[24][11] = "Cleanliness of Tooth";
+appStr[25][11] = "Math Exam Scores";
+appStr[26][11] = "Calorie of Hamberger";
+appStr[27][11] = "Height vs Weight by Sex";
+appStr[28][11] = "Discrete Data Graphs";
+appStr[29][11] = "";
+appStr[30][11] = "";
+appStr[31][11] = "unit";
+appStr[32][11] = "Country";
+appStr[33][11] = "Male";
+appStr[34][11] = "Female";
+appStr[35][11] = "Age";
+appStr[36][11] = "Person";
+appStr[37][11] = "billion $";
+appStr[38][11] = "Export";
+appStr[39][11] = "Obesity %";
+appStr[40][11] = "Celsius";
+appStr[41][11] = "City";
+appStr[42][11] = "Jan High";
+appStr[43][11] = "Jul High";
+appStr[44][11] = "million ton";
+appStr[45][11] = "liter/year";
+appStr[46][11] = "Alcohol";
 alertMsg[1][11] = "Uma das variáveis selecionadas não contém observações.";
 alertMsg[2][11] = "Selecione as variáveis para a análise uma por uma (clique nos nomes das colunas). Se houverem duas variáveis, a primeira deve ser a de agrupamento.";
 alertMsg[3][11] = "Dados faltantes para variável selecionada.";
@@ -9355,6 +10661,23 @@ svgStr[125][11] = "Distribuição Discreta";
 svgStr[126][11] = "fileira %";
 svgStr[127][11] = "coluna %";
 svgStr[128][11] = "total %";
+svgStr[129][11] = "Matriz de gráfico de barras";
+svgStr[130][11] = "Problema anterior";
+svgStr[131][11] = "Autovalor";
+svgStr[132][11] = "Vetor próprio";
+svgStr[133][11] = "Tabela de frequência multidimensional";
+svgStr[134][11] = "Gráfico de cluster hierárquico";
+svgStr[135][11] = "Distância";
+svgStr[136][11] = "Único";
+svgStr[137][11] = "Concluído";
+svgStr[138][11] = "Média";
+svgStr[139][11] = "Centróide";
+svgStr[140][11] = "Ala";
+svgStr[141][11] = "Ligação";;
+svgStr[142][11] = "Number of Clusters <br>K";
+svgStr[143][11] = "Bayes Information Criteria";
+svgStr[144][11] = "Within Sum of Squares";
+svgStr[145][11] = "Akaike Information Criteria";
 
 svgStrU[1][11] = "Distribuição Binomial";
 svgStrU[2][11] = "Repetição";
@@ -9490,6 +10813,21 @@ svgStrU[131][11] = "Índice sazonal";
 svgStrU[132][11] = "Modelo Sazonal Multiplicativo de Holt-Winters";
 svgStrU[133][11] = "Série Fora de Temporada";
 svgStrU[134][11] = "Bloco";
+svgStrU[135][11] = "Análise de Cluster";
+svgStrU[136][11] = "Cluster";
+svgStrU[137][11] = "Árvore de Decisão";
+svgStrU[138][11] = "Condição da Regra de Decisão";
+svgStrU[139][11] = "Decisão";
+svgStrU[140][11] = "Iteração";
+svgStrU[141][11] = "Gráfico Paralelo";
+svgStrU[142][11] = "Classificação";
+svgStrU[143][11] = "Função de classificação";
+svgStrU[144][11] = "Resultado da Classificação";
+svgStrU[145][11] = "Decisão";
+svgStrU[146][11] = "Taxa de classificação incorreta";
+svgStrU[147][11] = "Célula";
+svgStrU[148][11] = "Dados de treinamento";
+svgStrU[149][11] = "Dados de teste";
 
 
 // Greek
@@ -9617,6 +10955,7 @@ $message.gr = {
     "MiddleStat": "Στατιστικά Γυμνασίου",
     "HighStat":   "Στατιστικά Λυκείου",
     "UnivStat":   "Statistics and Data Science",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Μενού",
     "Binomial Experiment": "Διωνυμικό Πείραμα",
@@ -9768,6 +11107,7 @@ $message.gr = {
     "NoInteraction": "Χωρίς Αλληλεπίδραση",
     "ExistInteraction": "Υπάρχει Αλληλεπίδραση",
     "eStatLecture": "Εισαγωγική Διάλεξη eStat",
+    "eDataLecture": "eDataScience Learning",
     "NonParametricMu12_title": "Έλεγχος Αθροίσματος Βαθμίδων του Wilcoxon", 
     "NonParametricMu12": "λεγχος Αθροίσματος Βαθμίδων του Wilcoxon : Θέση Παραμέτρου M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Έλεγχος Αθροίσματος Βαθμίδων του",
@@ -9934,6 +11274,51 @@ $message.gr = {
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
     "Chapter13":         "Chapter 13      Time Series Analysis", 
     "Distribution":      "Distribution",
+    "DecisionTree":      "Decision Tree",
+    "MaxDepth":          "Tree Depth Max",
+    "MinData":           "Branch Data Min",
+    "Discriminant":      "Discriminant Analysis",
+    "BayesTable":        "Classification Table",
+    "ScatterBarGraph":   "Bar Graph Matrix",
+    "MultiCrossTable":   "Cross Table Matrix",
+    "MultiFreqTable":    "Muti-dim Frequency Table",
+    "ParallelGraph":     "Parallel Graph",
+    "DataPartition":     "Data partition",
+    "Training":          "Train",
+    "Testing":           "Test",
+    "PriorProb":         "Prior probability",
+    "SampleProp":        "sample proportion",
+    "EqualProp":         "equal proportion",
+    "KNN":               "K Nearest Neighbor Classification",
+    "numKNN":            "Nearest Neighbor",
+    "PCA":               "Principal Component Analysis",
+    "PCgraph":           "Principal Component Scatterplot",
+    "PCtable":           "Principal Component Table",
+    "Logistic":          "Logistic Regression Analysis",
+    "KmeansCluster":     "K-means Clustering",
+    "KmeansGraph":       "K-means Cluster Scatterplot",
+    "KmeansTable":       "K-means Cluster Table",
+    "NumberOfGroup":     "number of clusters",
+    "MaxIteration":      "max iteration",
+    "StopEpsi":          "ESS difference bound",
+    "StatCluster":       "Cluster Statistics",
+    "ClusterTable":      "Cluster Table",
+    "StatClassification": "Classification Stat",
+    "HierarchyCluster":  "Hierarchical Clustering",
+    "MaxObs":            "Maximum number of observations",
+    "HierarchyGraph":    "Hierarchy Graph",
+    "Distance":          "Distance measure",
+    "Euclid":            "Euclid",
+    "Manhattan":         "Manhattan",
+    "Linkage":           "Linkage",
+    "Single":            "Single",
+    "Complete":          "Complete",
+    "Average":           "Average",
+    "Centroid":          "Centroid",
+    "Ward":              "Ward",
+    "Standardization":   "Data standardization",
+    "StatMultivariate":  "Multivariate Stat",
+    "NaiveBayes":        "Naive Bayes Classification",
 
 };
 // Greek
@@ -9946,6 +11331,44 @@ appStr[5][12] = "index.html";
 appStr[6][12] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][12] = "/estat/eLearning/en/eStatH/index.html";
 appStr[8][12] = "/estat/eLearning/en/eStatU/index.html";
+appStr[9][12] = "/estat/eLearning/en/DataScience/index.html";
+appStr[10][12] = "";
+appStr[11][12] = "Large Population Country";
+appStr[12][12] = "Life Expectancy (OECD)";
+appStr[13][12] = "Population Pyramid (Korea)";
+appStr[14][12] = "GNP per Capita (OECD)";
+appStr[15][12] = "Top World Export Country";
+appStr[16][12] = "Obesity % of Population";
+appStr[17][12] = "Temperature of Major City";
+appStr[18][12] = "Top CO2 Emission Country";
+appStr[19][12] = "Alcohol Consume (OECD)";
+appStr[20][12] = "Continuous Data Graph";
+appStr[21][12] = "Length of Otter";
+appStr[22][12] = "Age of Teacher";
+appStr[23][12] = "Age of Teacher by Sex";
+appStr[24][12] = "Cleanliness of Tooth";
+appStr[25][12] = "Math Exam Scores";
+appStr[26][12] = "Calorie of Hamberger";
+appStr[27][12] = "Height vs Weight by Sex";
+appStr[28][12] = "Discrete Data Graphs";
+appStr[29][12] = "";
+appStr[30][12] = "";
+appStr[31][12] = "unit";
+appStr[32][12] = "Country";
+appStr[33][12] = "Male";
+appStr[34][12] = "Female";
+appStr[35][12] = "Age";
+appStr[36][12] = "Person";
+appStr[37][12] = "billion $";
+appStr[38][12] = "Export";
+appStr[39][12] = "Obesity %";
+appStr[40][12] = "Celsius";
+appStr[41][12] = "City";
+appStr[42][12] = "Jan High";
+appStr[43][12] = "Jul High";
+appStr[44][12] = "million ton";
+appStr[45][12] = "liter/year";
+appStr[46][12] = "Alcohol";
 alertMsg[1][12] = "Μία από τις επιλεγμένες μεταβλητές δεν έχει δεδομένα.";
 alertMsg[2][12] = "Επιλέξτε μεταβλητές για ανάλυση (επιλέξτε ονόματα στηλών) μία προς μία. Αν έχετε δύο μεταβλητές θέστε τη μία ως ομάδα μεταβλητών.";
 alertMsg[3][12] = "Ελλιπείς δεδομένα στις επιλεγμένες μεταβλητές.";
@@ -10138,6 +11561,23 @@ svgStr[125][12] = "Διακριτή Διανομή";
 svgStr[126][12] = "σειρά %";
 svgStr[127][12] = "στήλη %";
 svgStr[128][12] = "σύνολο %";
+svgStr[129][12] = "Bar Graph Matrix";
+svgStr[130][12] = "Προηγούμενο πρόβλημα";
+svgStr[131][12] = "Ιδιοτιμή";
+svgStr[132][12] = "Ιδιοδιάνυσμα";
+svgStr[133][12] = "Πίνακας συχνοτήτων πολλαπλών διαστάσεων";
+svgStr[134][12] = "Γράφημα ιεραρχικού συμπλέγματος";
+svgStr[135][12] = "Απόσταση";
+svgStr[136][12] = "Single";
+svgStr[137][12] = "Ολοκληρώθηκε";
+svgStr[138][12] = "Μέσος όρος";
+svgStr[139][12] = "Centroid";
+svgStr[140][12] = "Ward";
+svgStr[141][12] = "Σύνδεση";
+svgStr[142][12] = "Number of Clusters <br>K";
+svgStr[143][12] = "Bayes Information Criteria";
+svgStr[144][12] = "Within Sum of Squares";
+svgStr[145][12] = "Akaike Information Criteria";
 
 svgStrU[1][12] = "Διωνυμική Κατανομή";
 svgStrU[2][12] = "Επανάληψη";
@@ -10272,6 +11712,21 @@ svgStrU[131][12] = "Seasonal Index";
 svgStrU[132][12] = "Πολλαπλασιαστικό εποχικό μοντέλο Holt-Winters";
 svgStrU[133][12] = "Deseasonal Series";
 svgStrU[134][12] = "ΟΙΚΟΔΟΜΙΚΟ ΤΕΤΡΑΓΩΝΟ";
+svgStrU[135][12] = "Ανάλυση συμπλέγματος";
+svgStrU[136][12] = "Σύμπλεγμα";
+svgStrU[137][12] = "Δέντρο αποφάσεων";
+svgStrU[138][12] = "Συνθήκη κανόνα απόφασης";
+svgStrU[139][12] = "Απόφαση";
+svgStrU[140][12] = "Επανάληψη";
+svgStrU[141][12] = "Παράλληλο γράφημα";
+svgStrU[142][12] = "Ταξινόμηση";
+svgStrU[143][12] = "Συνάρτηση ταξινόμησης";
+svgStrU[144][12] = "Αποτέλεσμα ταξινόμησης";
+svgStrU[145][12] = "Απόφαση";
+svgStrU[146][12] = "Ποσοστό εσφαλμένης ταξινόμησης";
+svgStrU[147][12] = "Κελί";
+svgStrU[148][12] = "Δεδομένα εκπαίδευσης";
+svgStrU[149][12] = "Δεδομένα δοκιμής";
 
 
 // Romanian
@@ -10399,6 +11854,7 @@ $message.ro = {
     "MiddleStat": "Statistica gimnaziului",
     "HighStat":   "Statistica liceului",
     "UnivStat":   "Statistics and Data Science",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Meniu",
     "Binomial Experiment": "Experiment Binomial",
@@ -10551,6 +12007,7 @@ $message.ro = {
     "NoInteraction": "Fără Interacțiune",
     "ExistInteraction": "Există Interacțiune",
     "eStatLecture": "Introducere eStat",
+    "eDataLecture": "eDataScience Learning",
     "NonParametricMu12_title": "Testul Wilcoxon al Sumei Rangurilor", 
     "NonParametricMu12": "Testul Wilcoxon al Sumei Rangurilor : Parametru de Localizare M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Testul Rang Suma",
@@ -10717,6 +12174,51 @@ $message.ro = {
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
     "Chapter13":         "Chapter 13      Time Series Analysis", 
     "Distribution":      "Distribution",
+    "DecisionTree":      "Decision Tree",
+    "MaxDepth":          "Tree Depth Max",
+    "MinData":           "Branch Data Min",
+    "Discriminant":      "Discriminant Analysis",
+    "BayesTable":        "Classification Table",
+    "ScatterBarGraph":   "Bar Graph Matrix",
+    "MultiCrossTable":   "Cross Table Matrix",
+    "MultiFreqTable":    "Muti-dim Frequency Table",
+    "ParallelGraph":     "Parallel Graph",
+    "DataPartition":     "Data partition",
+    "Training":          "Train",
+    "Testing":           "Test",
+    "PriorProb":         "Prior probability",
+    "SampleProp":        "sample proportion",
+    "EqualProp":         "equal proportion",
+    "KNN":               "K Nearest Neighbor Classification",
+    "numKNN":            "Nearest Neighbor",
+    "PCA":               "Principal Component Analysis",
+    "PCgraph":           "Principal Component Scatterplot",
+    "PCtable":           "Principal Component Table",
+    "Logistic":          "Logistic Regression Analysis",
+    "KmeansCluster":     "K-means Clustering",
+    "KmeansGraph":       "K-means Cluster Scatterplot",
+    "KmeansTable":       "K-means Cluster Table",
+    "NumberOfGroup":     "number of clusters",
+    "MaxIteration":      "max iteration",
+    "StopEpsi":          "ESS difference bound",
+    "StatCluster":       "Cluster Statistics",
+    "ClusterTable":      "Cluster Table",
+    "StatClassification": "Classification Stat",
+    "HierarchyCluster":  "Hierarchical Clustering",
+    "MaxObs":            "Maximum number of observations",
+    "HierarchyGraph":    "Hierarchy Graph",
+    "Distance":          "Distance measure",
+    "Euclid":            "Euclid",
+    "Manhattan":         "Manhattan",
+    "Linkage":           "Linkage",
+    "Single":            "Single",
+    "Complete":          "Complete",
+    "Average":           "Average",
+    "Centroid":          "Centroid",
+    "Ward":              "Ward",
+    "Standardization":   "Data standardization",
+    "StatMultivariate":  "Multivariate Stat",
+    "NaiveBayes":        "Naive Bayes Classification",
 
 };
 // Romanian
@@ -10729,6 +12231,44 @@ appStr[5][13] = "index.html";
 appStr[6][13] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][13] = "/estat/eLearning/en/eStatH/index.html";
 appStr[8][13] = "/estat/eLearning/en/eStatU/index.html";
+appStr[9][13] = "/estat/eLearning/en/DataScience/index.html";
+appStr[10][13] = "";
+appStr[11][13] = "Large Population Country";
+appStr[12][13] = "Life Expectancy (OECD)";
+appStr[13][13] = "Population Pyramid (Korea)";
+appStr[14][13] = "GNP per Capita (OECD)";
+appStr[15][13] = "Top World Export Country";
+appStr[16][13] = "Obesity % of Population";
+appStr[17][13] = "Temperature of Major City";
+appStr[18][13] = "Top CO2 Emission Country";
+appStr[19][13] = "Alcohol Consume (OECD)";
+appStr[20][13] = "Continuous Data Graph";
+appStr[21][13] = "Length of Otter";
+appStr[22][13] = "Age of Teacher";
+appStr[23][13] = "Age of Teacher by Sex";
+appStr[24][13] = "Cleanliness of Tooth";
+appStr[25][13] = "Math Exam Scores";
+appStr[26][13] = "Calorie of Hamberger";
+appStr[27][13] = "Height vs Weight by Sex";
+appStr[28][13] = "Discrete Data Graphs";
+appStr[29][13] = "";
+appStr[30][13] = "";
+appStr[31][13] = "unit";
+appStr[32][13] = "Country";
+appStr[33][13] = "Male";
+appStr[34][13] = "Female";
+appStr[35][13] = "Age";
+appStr[36][13] = "Person";
+appStr[37][13] = "billion $";
+appStr[38][13] = "Export";
+appStr[39][13] = "Obesity %";
+appStr[40][13] = "Celsius";
+appStr[41][13] = "City";
+appStr[42][13] = "Jan High";
+appStr[43][13] = "Jul High";
+appStr[44][13] = "million ton";
+appStr[45][13] = "liter/year";
+appStr[46][13] = "Alcohol";
 alertMsg[1][13] = "Una dintre variabilele selectate nu are date introduse.";
 alertMsg[2][13] = "Selectați variabilele pentru analiză(click pe numele coloanelor) una câte una. În cazul a două variabile, prima este considerată un grup de variabile.";
 alertMsg[3][13] = "Date lipsă în variabila selectată.";
@@ -10921,6 +12461,23 @@ svgStr[125][13] = "Distribuție discretă";
 svgStr[126][13] = "rând %";
 svgStr[127][13] = "coloană %";
 svgStr[128][13] = "total %";
+svgStr[129][13] = "Matrice grafică cu bare";
+svgStr[130][13] = "Proba anterioară";
+svgStr[131][13] = "Valoare proprie";
+svgStr[132][13] = "Vector propriu";
+svgStr[133][13] = "Tabel de frecvență multidimensional";
+svgStr[134][13] = "Grafic cluster ierarhic";
+svgStr[135][13] = "Distanța";
+svgStr[136][13] = "Singur";
+svgStr[137][13] = "Complet";
+svgStr[138][13] = "Medie";
+svgStr[139][13] = "Centroid";
+svgStr[140][13] = "Secție";
+svgStr[141][13] = "Legătură";
+svgStr[142][13] = "Number of Clusters <br>K";
+svgStr[143][13] = "Bayes Information Criteria";
+svgStr[144][13] = "Within Sum of Squares";
+svgStr[145][13] = "Akaike Information Criteria";
 
 svgStrU[1][13] = "Distribuție Binomială";
 svgStrU[2][13] = "Repetiție";
@@ -11056,6 +12613,21 @@ svgStrU[131][13] = "Index sezonier";
 svgStrU[132][13] = "Model sezonier multiplicativ Holt-Winters";
 svgStrU[133][13] = "Serial de sezon";
 svgStrU[134][13] = "Bloc";
+svgStrU[135][13] = "Analiză cluster";
+svgStrU[136][13] = "Cluster";
+svgStrU[137][13] = "Arborele de decizie";
+svgStrU[138][13] = "Condiția regulii deciziei";
+svgStrU[139][13] = "Decizie";
+svgStrU[140][13] = "Iterație";
+svgStrU[141][13] = "Grafic paralel";
+svgStrU[142][13] = "Clasificare";
+svgStrU[143][13] = "Funcția de clasificare";
+svgStrU[144][13] = "Rezultatul clasificării";
+svgStrU[145][13] = "Decizie";
+svgStrU[146][13] = "Rata de clasificare greșită";
+svgStrU[147][13] = "Celula";
+svgStrU[148][13] = "Date de antrenament";
+svgStrU[149][13] = "Date de testare";
 
 
 // Thai
@@ -11183,6 +12755,7 @@ $message.th = {
     "MiddleStat": "สถิติมัธยมต้น",
     "HighStat":   "สถิติมัธยมปลาย",
     "UnivStat":   "Statistics and Data Science",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
     "ebookLink":  "webBook Link (English)",
     "Menu": "เมนู",
     "Binomial Experiment": "การทดลองทวินาม",
@@ -11335,6 +12908,7 @@ $message.th = {
     "NoInteraction": "ไม่มีอิทธิพลร่วม",
     "ExistInteraction": "มีอิทธิพลร่วม",
     "eStatLecture": "การบรรยายแนะนำ eStat",
+    "eDataLecture": "eDataScience Learning",
     "NonParametricMu12_title": "การทดสอบผลบวกลำดับที่ของวิลค็อกซัน", 
     "NonParametricMu12": "การทดสอบผลบวกลำดับที่ของวิลค็อกซัน : พารามิเตอร์บ่งตำแหน่ง M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "การทดสอบผลบวกลำดับที่ของวิลค็อกซัน",
@@ -11500,6 +13074,51 @@ $message.th = {
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
     "Chapter13":         "Chapter 13      Time Series Analysis", 
     "Distribution":      "Distribution",
+    "DecisionTree":      "Decision Tree",
+    "MaxDepth":          "Tree Depth Max",
+    "MinData":           "Branch Data Min",
+    "Discriminant":      "Discriminant Analysis",
+    "BayesTable":        "Classification Table",
+    "ScatterBarGraph":   "Bar Graph Matrix",
+    "MultiCrossTable":   "Cross Table Matrix",
+    "MultiFreqTable":    "Muti-dim Frequency Table",
+    "ParallelGraph":     "Parallel Graph",
+    "DataPartition":     "Data partition",
+    "Training":          "Train",
+    "Testing":           "Test",
+    "PriorProb":         "Prior probability",
+    "SampleProp":        "sample proportion",
+    "EqualProp":         "equal proportion",
+    "KNN":               "K Nearest Neighbor Classification",
+    "numKNN":            "Nearest Neighbor",
+    "PCA":               "Principal Component Analysis",
+    "PCgraph":           "Principal Component Scatterplot",
+    "PCtable":           "Principal Component Table",
+    "Logistic":          "Logistic Regression Analysis",
+    "KmeansCluster":     "K-means Clustering",
+    "KmeansGraph":       "K-means Cluster Scatterplot",
+    "KmeansTable":       "K-means Cluster Table",
+    "NumberOfGroup":     "number of clusters",
+    "MaxIteration":      "max iteration",
+    "StopEpsi":          "ESS difference bound",
+    "StatCluster":       "Cluster Statistics",
+    "ClusterTable":      "Cluster Table",
+    "StatClassification": "Classification Stat",
+    "HierarchyCluster":  "Hierarchical Clustering",
+    "MaxObs":            "Maximum number of observations",
+    "HierarchyGraph":    "Hierarchy Graph",
+    "Distance":          "Distance measure",
+    "Euclid":            "Euclid",
+    "Manhattan":         "Manhattan",
+    "Linkage":           "Linkage",
+    "Single":            "Single",
+    "Complete":          "Complete",
+    "Average":           "Average",
+    "Centroid":          "Centroid",
+    "Ward":              "Ward",
+    "Standardization":   "Data standardization",
+    "StatMultivariate":  "Multivariate Stat",
+    "NaiveBayes":        "Naive Bayes Classification",
 
 };
 // Thai
@@ -11512,6 +13131,44 @@ appStr[5][14] = "index.html";
 appStr[6][14] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][14] = "/estat/eLearning/en/eStatH/index.html";
 appStr[8][14] = "/estat/eLearning/en/eStatU/index.html";
+appStr[9][14] = "/estat/eLearning/en/DataScience/index.html";
+appStr[10][14] = "";
+appStr[11][14] = "Large Population Country";
+appStr[12][14] = "Life Expectancy (OECD)";
+appStr[13][14] = "Population Pyramid (Korea)";
+appStr[14][14] = "GNP per Capita (OECD)";
+appStr[15][14] = "Top World Export Country";
+appStr[16][14] = "Obesity % of Population";
+appStr[17][14] = "Temperature of Major City";
+appStr[18][14] = "Top CO2 Emission Country";
+appStr[19][14] = "Alcohol Consume (OECD)";
+appStr[20][14] = "Continuous Data Graph";
+appStr[21][14] = "Length of Otter";
+appStr[22][14] = "Age of Teacher";
+appStr[23][14] = "Age of Teacher by Sex";
+appStr[24][14] = "Cleanliness of Tooth";
+appStr[25][14] = "Math Exam Scores";
+appStr[26][14] = "Calorie of Hamberger";
+appStr[27][14] = "Height vs Weight by Sex";
+appStr[28][14] = "Discrete Data Graphs";
+appStr[29][14] = "";
+appStr[30][14] = "";
+appStr[31][14] = "unit";
+appStr[32][14] = "Country";
+appStr[33][14] = "Male";
+appStr[34][14] = "Female";
+appStr[35][14] = "Age";
+appStr[36][14] = "Person";
+appStr[37][14] = "billion $";
+appStr[38][14] = "Export";
+appStr[39][14] = "Obesity %";
+appStr[40][14] = "Celsius";
+appStr[41][14] = "City";
+appStr[42][14] = "Jan High";
+appStr[43][14] = "Jul High";
+appStr[44][14] = "million ton";
+appStr[45][14] = "liter/year";
+appStr[46][14] = "Alcohol";
 alertMsg[1][14] = "หนึ่งในตัวแปรที่เลือกไว้ไม่มีข้อมูล";
 alertMsg[2][14] = "เลือกตัวแปรเพื่อนำมาวิเคราะห์ (คลิกที่ชื่อคอลัมน์) ทีละตัวแปร หากมีตัวแปรสองตัว ตัวแปรแรกเป็นตัวแปรกลุ่ม";
 alertMsg[3][14] = "ตัวแปรที่เลือกไว้มีข้อมูลสูญหาย";
@@ -11704,6 +13361,23 @@ svgStr[125][14] = "การกระจายแบบไม่ต่อเน�
 svgStr[126][14] = "แถว %";
 svgStr[127][14] = "คอลัมน์%";
 svgStr[128][14] = "ทั้งหมด %";
+svgStr[129][14] = "เมทริกซ์กราฟแท่ง";
+svgStr[130][14] = "ปัญหาก่อนหน้า";
+svgStr[131][14] = "ค่าลักษณะเฉพาะ";
+svgStr[132][14] = "ไอเกนเวกเตอร์";
+svgStr[133][14] = "ตารางความถี่หลายมิติ";
+svgStr[134][14] = "กราฟคลัสเตอร์แบบลำดับชั้น";
+svgStr[135][14] = "ระยะทาง";
+svgStr[136][14] = "เดี่ยว";
+svgStr[137][14] = "เสร็จสิ้น";
+svgStr[138][14] = "เฉลี่ย";
+svgStr[139][14] = "เซนทรอยด์";
+svgStr[140][14] = "วอร์ด";
+svgStr[141][14] = "การเชื่อมโยง";
+svgStr[142][14] = "Number of Clusters <br>K";
+svgStr[143][14] = "Bayes Information Criteria";
+svgStr[144][14] = "Within Sum of Squares";
+svgStr[145][14] = "Akaike Information Criteria";
 
 svgStrU[1][14] = "การแจกแจงทวินาม";
 svgStrU[2][14] = "การทำซ้ำ";
@@ -11838,6 +13512,21 @@ svgStrU[131][14] = "ดัชนีตามฤดูกาล";
 svgStrU[132][14] = "รูปแบบการคูณตามฤดูกาลของ Holt-Winters";
 svgStrU[133][14] = "ซีรีส์ที่ไม่เป็นไปตามฤดูกาล";
 svgStrU[134][14] = "กลุ่ม";
+svgStrU[135][14] = "การวิเคราะห์คลัสเตอร์";
+svgStrU[136][14] = "คลัสเตอร์";
+svgStrU[137][14] = "แผนผังการตัดสินใจ";
+svgStrU[138][14] = "เงื่อนไขกฎการตัดสินใจ";
+svgStrU[139][14] = "การตัดสินใจ";
+svgStrU[140][14] = "วนซ้ำ";
+svgStrU[141][14] = "กราฟขนาน";
+svgStrU[142][14] = "การจำแนกประเภท";
+svgStrU[143][14] = "ฟังก์ชันการจำแนกประเภท";
+svgStrU[144][14] = "ผลการจำแนกประเภท";
+svgStrU[145][14] = "การตัดสินใจ";
+svgStrU[146][14] = "อัตราการจำแนกประเภทผิด";
+svgStrU[147][14] = "เซลล์";
+svgStrU[148][14] = "ข้อมูลการฝึก";
+svgStrU[149][14] = "กำลังทดสอบข้อมูล";
 
 
 // Polish
@@ -11966,6 +13655,7 @@ $message.pl = {
     "MiddleStat": "Statystyka podstawy",
     "HighStat":   "Statystyka szkół wyższych",
     "UnivStat":   "Statystyka i nauka o danych",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Menu",
     "Binomial Experiment": "Eksperyment dla rozkładu dwumianowego",
@@ -12118,6 +13808,7 @@ $message.pl = {
     "NoInteraction": "Brak interakcji",
     "ExistInteraction": "Występuje interakcja",
     "eStatLecture": "eStat Wykład wprowadzający",
+    "eDataLecture": "eDataScience Learning",
     "NonParametricMu12_title": "Test sumy rang Wilcoxona", 
     "NonParametricMu12": "Test sumy rang Wilcoxona : Location Parameter M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Test sumy rang ",
@@ -12284,6 +13975,51 @@ $message.pl = {
     "Chapter12":         "Chapter 12      Analiza korelacji i regresji",
     "Chapter13":         "Chapter 13      Analiza szeregów czasowych", 
     "Distribution":      "Rozkład",
+    "DecisionTree":      "Decision Tree",
+    "MaxDepth":          "Tree Depth Max",
+    "MinData":           "Branch Data Min",
+    "Discriminant":      "Discriminant Analysis",
+    "BayesTable":        "Classification Table",
+    "ScatterBarGraph":   "Bar Graph Matrix",
+    "MultiCrossTable":   "Cross Table Matrix",
+    "MultiFreqTable":    "Muti-dim Frequency Table",
+    "ParallelGraph":     "Parallel Graph",
+    "DataPartition":     "Data partition",
+    "Training":          "Train",
+    "Testing":           "Test",
+    "PriorProb":         "Prior probability",
+    "SampleProp":        "sample proportion",
+    "EqualProp":         "equal proportion",
+    "KNN":               "K Nearest Neighbor Classification",
+    "numKNN":            "Nearest Neighbor",
+    "PCA":               "Principal Component Analysis",
+    "PCgraph":           "Principal Component Scatterplot",
+    "PCtable":           "Principal Component Table",
+    "Logistic":          "Logistic Regression Analysis",
+    "KmeansCluster":     "K-means Clustering",
+    "KmeansGraph":       "K-means Cluster Scatterplot",
+    "KmeansTable":       "K-means Cluster Table",
+    "NumberOfGroup":     "number of clusters",
+    "MaxIteration":      "max iteration",
+    "StopEpsi":          "ESS difference bound",
+    "StatCluster":       "Cluster Statistics",
+    "ClusterTable":      "Cluster Table",
+    "StatClassification": "Classification Stat",
+    "HierarchyCluster":  "Hierarchical Clustering",
+    "MaxObs":            "Maximum number of observations",
+    "HierarchyGraph":    "Hierarchy Graph",
+    "Distance":          "Distance measure",
+    "Euclid":            "Euclid",
+    "Manhattan":         "Manhattan",
+    "Linkage":           "Linkage",
+    "Single":            "Single",
+    "Complete":          "Complete",
+    "Average":           "Average",
+    "Centroid":          "Centroid",
+    "Ward":              "Ward",
+    "Standardization":   "Data standardization",
+    "StatMultivariate":  "Multivariate Stat",
+    "NaiveBayes":        "Naive Bayes Classification",
 
 };
 
@@ -12297,6 +14033,44 @@ appStr[5][15] = "index.html";
 appStr[6][15] = "../eLearning/en/index.html";
 appStr[7][15] = "/estat/eLearning/en/eStatH/index.html";
 appStr[8][15] = "/estat/eLearning/en/eStatU/index.html";
+appStr[9][15] = "/estat/eLearning/en/DataScience/index.html";
+appStr[10][15] = "";
+appStr[11][15] = "Large Population Country";
+appStr[12][15] = "Life Expectancy (OECD)";
+appStr[13][15] = "Population Pyramid (Korea)";
+appStr[14][15] = "GNP per Capita (OECD)";
+appStr[15][15] = "Top World Export Country";
+appStr[16][15] = "Obesity % of Population";
+appStr[17][15] = "Temperature of Major City";
+appStr[18][15] = "Top CO2 Emission Country";
+appStr[19][15] = "Alcohol Consume (OECD)";
+appStr[20][15] = "Continuous Data Graph";
+appStr[21][15] = "Length of Otter";
+appStr[22][15] = "Age of Teacher";
+appStr[23][15] = "Age of Teacher by Sex";
+appStr[24][15] = "Cleanliness of Tooth";
+appStr[25][15] = "Math Exam Scores";
+appStr[26][15] = "Calorie of Hamberger";
+appStr[27][15] = "Height vs Weight by Sex";
+appStr[28][15] = "Discrete Data Graphs";
+appStr[29][15] = "";
+appStr[30][15] = "";
+appStr[31][15] = "unit";
+appStr[32][15] = "Country";
+appStr[33][15] = "Male";
+appStr[34][15] = "Female";
+appStr[35][15] = "Age";
+appStr[36][15] = "Person";
+appStr[37][15] = "billion $";
+appStr[38][15] = "Export";
+appStr[39][15] = "Obesity %";
+appStr[40][15] = "Celsius";
+appStr[41][15] = "City";
+appStr[42][15] = "Jan High";
+appStr[43][15] = "Jul High";
+appStr[44][15] = "million ton";
+appStr[45][15] = "liter/year";
+appStr[46][15] = "Alcohol";
 alertMsg[1][15] = "Jedna z wybranych zmiennych nie zawiera danych.";
 alertMsg[2][15] = "Wybierz zmienne do analizy (klikając nazwy kolumn) jedną po drugiej. Jeśli dwie zmienne to pierwsza zmienna jest grupująca.";
 alertMsg[3][15] = "Brak danych dla wybranej zmiennej.";
@@ -12489,7 +14263,23 @@ svgStr[125][15] = "rozkład dyskretny";
 svgStr[126][15] = "wiersz %";
 svgStr[127][15] = "kolumna %";
 svgStr[128][15] = "całkowity %";
-
+svgStr[129][15] = "Macierz wykresów słupkowych";
+svgStr[130][15] = "Wcześniejsze prawdopodobieństwo";
+svgStr[131][15] = "Wartość własna";
+svgStr[132][15] = "Wektor własny";
+svgStr[133][15] = "Wielowymiarowa tabela częstości";
+svgStr[134][15] = "Hierarchiczny wykres skupień";
+svgStr[135][15] = "Odległość";
+svgStr[136][15] = "Pojedynczy";
+svgStr[137][15] = "Ukończono";
+svgStr[138][15] = "Średnia";
+svgStr[139][15] = "Centroida";
+svgStr[140][15] = "Okręg";
+svgStr[141][15] = "Powiązanie";
+svgStr[142][15] = "Number of Clusters <br>K";
+svgStr[143][15] = "Bayes Information Criteria";
+svgStr[144][15] = "Within Sum of Squares";
+svgStr[145][15] = "Akaike Information Criteria";
 
 svgStrU[1][15] = "Rozkład dwumianowy";
 svgStrU[2][15] = "Powtórzenie";
@@ -12625,6 +14415,21 @@ svgStrU[131][15] = "Indeks sezonowy";
 svgStrU[132][15] = "Model sezonowy multiplikatywny Holta-Wintersa";
 svgStrU[133][15] = "Seria pozasezonowa";
 svgStrU[134][15] = "Blok";
+svgStrU[135][15] = "Analiza skupień";
+svgStrU[136][15] = "Klaster";
+svgStrU[137][15] = "Drzewo decyzyjne";
+svgStrU[138][15] = "Warunek reguły decyzji";
+svgStrU[139][15] = "Decyzja";
+svgStrU[140][15] = "Iteracja";
+svgStrU[141][15] = "Wykres równoległy";
+svgStrU[142][15] = "Klasyfikacja";
+svgStrU[143][15] = "Funkcja klasyfikacyjna";
+svgStrU[144][15] = "Wynik klasyfikacji";
+svgStrU[145][15] = "Decyzja";
+svgStrU[146][15] = "Współczynnik błędnych klasyfikacji";
+svgStrU[147][15] = "Komórka";
+svgStrU[148][15] = "Dane treningowe";
+svgStrU[149][15] = "Testowanie danych";
  
 // Azerbaijan
 $message.az = {
@@ -12751,6 +14556,7 @@ $message.az = {
     "MiddleStat": "Orta məktəb Statistikası",
     "HighStat":   "Yuxarı Sinif Statistikası",
     "UnivStat":   "Statistics and Data Science",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
     "ebookLink":  "webBook Link (English)",
     "Menu": "menyu",
     "Binomial Experiment": "Binomial Eksperiment",
@@ -12903,6 +14709,7 @@ $message.az = {
     "NoInteraction": "Qarşlıqlı Əlaqə Yoxdur",
     "ExistInteraction": "Qarşılıqlı Əlaqə Mövcuddur",
     "eStatLecture": "eStat eTəhsil",
+    "eDataLecture": "eDataScience Learning",
     "NonParametricMu12_title": "Vilkokson Cərgələrin Cəmi Testi", 		
     "NonParametricMu12": "Vilkokson Cərgələrin Cəmi Testi: Mövqe Parametri M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Cərgələrin Cəmi Testi",
@@ -13069,6 +14876,51 @@ $message.az = {
     "Chapter12":         "Chapter 12      Korrelyasiya və Reqressiya Analizi",
     "Chapter13":         "Chapter 13      Zaman sırası analizi",
     "Distribution":      "Paylanma",
+    "DecisionTree":      "Decision Tree",
+    "MaxDepth":          "Tree Depth Max",
+    "MinData":           "Branch Data Min",
+    "Discriminant":      "Discriminant Analysis",
+    "BayesTable":        "Classification Table",
+    "ScatterBarGraph":   "Bar Graph Matrix",
+    "MultiCrossTable":   "Cross Table Matrix",
+    "MultiFreqTable":    "Muti-dim Frequency Table",
+    "ParallelGraph":     "Parallel Graph",
+    "DataPartition":     "Data partition",
+    "Training":          "Train",
+    "Testing":           "Test",
+    "PriorProb":         "Prior probability",
+    "SampleProp":        "sample proportion",
+    "EqualProp":         "equal proportion",
+    "KNN":               "K Nearest Neighbor Classification",
+    "numKNN":            "Nearest Neighbor",
+    "PCA":               "Principal Component Analysis",
+    "PCgraph":           "Principal Component Scatterplot",
+    "PCtable":           "Principal Component Table",
+    "Logistic":          "Logistic Regression Analysis",
+    "KmeansCluster":     "K-means Clustering",
+    "KmeansGraph":       "K-means Cluster Scatterplot",
+    "KmeansTable":       "K-means Cluster Table",
+    "NumberOfGroup":     "number of clusters",
+    "MaxIteration":      "max iteration",
+    "StopEpsi":          "ESS difference bound",
+    "StatCluster":       "Cluster Statistics",
+    "ClusterTable":      "Cluster Table",
+    "StatClassification": "Classification Stat",
+    "HierarchyCluster":  "Hierarchical Clustering",
+    "MaxObs":            "Maximum number of observations",
+    "HierarchyGraph":    "Hierarchy Graph",
+    "Distance":          "Distance measure",
+    "Euclid":            "Euclid",
+    "Manhattan":         "Manhattan",
+    "Linkage":           "Linkage",
+    "Single":            "Single",
+    "Complete":          "Complete",
+    "Average":           "Average",
+    "Centroid":          "Centroid",
+    "Ward":              "Ward",
+    "Standardization":   "Data standardization",
+    "StatMultivariate":  "Multivariate Stat",
+    "NaiveBayes":        "Naive Bayes Classification",
 
 };
 // Azerbaijan
@@ -13081,6 +14933,44 @@ appStr[5][16] = "index.html";
 appStr[6][16] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][16] = "/estat/eLearning/en/eStatH/index.html";
 appStr[8][16] = "/estat/eLearning/en/eStatU/index.html";
+appStr[9][16] = "/estat/eLearning/en/DataScience/index.html";
+appStr[10][16] = "";
+appStr[11][16] = "Large Population Country";
+appStr[12][16] = "Life Expectancy (OECD)";
+appStr[13][16] = "Population Pyramid (Korea)";
+appStr[14][16] = "GNP per Capita (OECD)";
+appStr[15][16] = "Top World Export Country";
+appStr[16][16] = "Obesity % of Population";
+appStr[17][16] = "Temperature of Major City";
+appStr[18][16] = "Top CO2 Emission Country";
+appStr[19][16] = "Alcohol Consume (OECD)";
+appStr[20][16] = "Continuous Data Graph";
+appStr[21][16] = "Length of Otter";
+appStr[22][16] = "Age of Teacher";
+appStr[23][16] = "Age of Teacher by Sex";
+appStr[24][16] = "Cleanliness of Tooth";
+appStr[25][16] = "Math Exam Scores";
+appStr[26][16] = "Calorie of Hamberger";
+appStr[27][16] = "Height vs Weight by Sex";
+appStr[28][16] = "Discrete Data Graphs";
+appStr[29][16] = "";
+appStr[30][16] = "";
+appStr[31][16] = "unit";
+appStr[32][16] = "Country";
+appStr[33][16] = "Male";
+appStr[34][16] = "Female";
+appStr[35][16] = "Age";
+appStr[36][16] = "Person";
+appStr[37][16] = "billion $";
+appStr[38][16] = "Export";
+appStr[39][16] = "Obesity %";
+appStr[40][16] = "Celsius";
+appStr[41][16] = "City";
+appStr[42][16] = "Jan High";
+appStr[43][16] = "Jul High";
+appStr[44][16] = "million ton";
+appStr[45][16] = "liter/year";
+appStr[46][16] = "Alcohol";
 alertMsg[1][16] = "Seçilmiş dəyişənlərdən birində verilənlər yoxdur.";
 alertMsg[2][16] = "Təhlil üçün dəyişənləri bir-bir seçin (sütun adına klikləyin və ya seçim qutusunda dəyişəni seçin). Emal Edilməmiş Verilənlər üçün iki dəyişən seçilərsə, birincisi analiz (və ya Y) dəyişəni, ikincisi isə qrup (və ya X) dəyişənidir. ";
 alertMsg[3][16] = "Seçilmiş dəyişən haqqında verilənlərin çatışmazlığı.";
@@ -13273,6 +15163,23 @@ svgStr[125][16] = "Diskret Dağılma";
 svgStr[126][16] = "sıra %";
 svgStr[127][16] = "sütun %";
 svgStr[128][16] = "ümumi %";
+svgStr[129][16] = "Ştrix Qrafik Matrisi";
+svgStr[130][16] = "Əvvəlki Prob";
+svgStr[131][16] = "Xüsusi dəyər";
+svgStr[132][16] = "Xüsusi vektor";
+svgStr[133][16] = "Çoxölçülü Tezlik Cədvəli";
+svgStr[134][16] = "İyerarxik Klaster Qrafiki";
+svgStr[135][16] = "Məsafə";
+svgStr[136][16] = "Tək";
+svgStr[137][16] = "Tamamlandı";
+svgStr[138][16] = "Orta";
+svgStr[139][16] = "Centroid";
+svgStr[140][16] = "Halta";
+svgStr[141][16] = "Əlaqə";
+svgStr[142][16] = "Number of Clusters <br>K";
+svgStr[143][16] = "Bayes Information Criteria";
+svgStr[144][16] = "Within Sum of Squares";
+svgStr[145][16] = "Akaike Information Criteria";
 
 svgStrU[1][16] = "Binomial paylanma";
 svgStrU[2][16] = "Təkrar";
@@ -13408,6 +15315,21 @@ svgStrU[131][16] = "Mövsümi İndeks";
 svgStrU[132][16] = "Holt-Winters Multiplikativ Mövsümi Zaman Sırası Modeli";
 svgStrU[133][16] = "Mövsümi Zaman Sırası";
 svgStrU[134][16] = "Blok";
+svgStrU[135][15] = "Klaster Analizi";
+svgStrU[136][15] = "Klaster";
+svgStrU[137][15] = "Qərar Ağacı";
+svgStrU[138][15] = "Qərar Qaydasının Şərti";
+svgStrU[139][15] = "Qərar";
+svgStrU[140][15] = "İterasiya";
+svgStrU[141][15] = "Paralel Qrafik";
+svgStrU[142][15] = "Təsnifat";
+svgStrU[143][15] = "Təsnifat funksiyası";
+svgStrU[144][15] = "Təsnifat Nəticəsi";
+svgStrU[145][15] = "Qərar";
+svgStrU[146][15] = "Yanlış Təsnifat dərəcəsi";
+svgStrU[147][15] = "Hüceyrə";
+svgStrU[148][15] = "Təlim Məlumatı";
+svgStrU[149][15] = "Məlumatların sınaqdan keçirilməsi";
 
 // Uzbekistan
 $message.uz = {
@@ -13534,6 +15456,7 @@ $message.uz = {
     "MiddleStat": "O'rta maktab statistikasi",
     "HighStat":   "Oliy maktab statistikasi",
     "UnivStat":   "Statistics and Data Science",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Menyu",
     "Binomial Experiment": "Binominal tajriba",
@@ -13688,6 +15611,7 @@ $message.uz = {
     "NoInteraction": "shovqin yo'q",
     "ExistInteraction": "mavjud o'zaro ta'sir",
     "eStatLecture": "eStat O'qish",
+    "eDataLecture": "eDataScience Learning",
     "NonParametricMu12_title": "Parametrik emas : Wilcoxon tartib miqdori sinov", 
     "NonParametricMu12": "Parametrik emas : Wilcoxon tartib miqdori sinov : joylashuv parametrlari M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Parametrik emas : tartib miqdori sinov",
@@ -13854,6 +15778,51 @@ $message.uz = {
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
     "Chapter13":         "Chapter 13      Time Series Analysis",    
     "Distribution":      "Distribution",
+    "DecisionTree":      "Decision Tree",
+    "MaxDepth":          "Tree Depth Max",
+    "MinData":           "Branch Data Min",
+    "Discriminant":      "Discriminant Analysis",
+    "BayesTable":        "Classification Table",
+    "ScatterBarGraph":   "Bar Graph Matrix",
+    "MultiCrossTable":   "Cross Table Matrix",
+    "MultiFreqTable":    "Muti-dim Frequency Table",
+    "ParallelGraph":     "Parallel Graph",
+    "DataPartition":     "Data partition",
+    "Training":          "Train",
+    "Testing":           "Test",
+    "PriorProb":         "Prior probability",
+    "SampleProp":        "sample proportion",
+    "EqualProp":         "equal proportion",
+    "KNN":               "K Nearest Neighbor Classification",
+    "numKNN":            "Nearest Neighbor",
+    "PCA":               "Principal Component Analysis",
+    "PCgraph":           "Principal Component Scatterplot",
+    "PCtable":           "Principal Component Table",
+    "Logistic":          "Logistic Regression Analysis",
+    "KmeansCluster":     "K-means Clustering",
+    "KmeansGraph":       "K-means Cluster Scatterplot",
+    "KmeansTable":       "K-means Cluster Table",
+    "NumberOfGroup":     "number of clusters",
+    "MaxIteration":      "max iteration",
+    "StopEpsi":          "ESS difference bound",
+    "StatCluster":       "Cluster Statistics",
+    "ClusterTable":      "Cluster Table",
+    "StatClassification": "Classification Stat",
+    "HierarchyCluster":  "Hierarchical Clustering",
+    "MaxObs":            "Maximum number of observations",
+    "HierarchyGraph":    "Hierarchy Graph",
+    "Distance":          "Distance measure",
+    "Euclid":            "Euclid",
+    "Manhattan":         "Manhattan",
+    "Linkage":           "Linkage",
+    "Single":            "Single",
+    "Complete":          "Complete",
+    "Average":           "Average",
+    "Centroid":          "Centroid",
+    "Ward":              "Ward",
+    "Standardization":   "Data standardization",
+    "StatMultivariate":  "Multivariate Stat",
+    "NaiveBayes":        "Naive Bayes Classification",
 
 };
 // Uzbekistan
@@ -13866,6 +15835,44 @@ appStr[5][17] = "index.html";
 appStr[6][17] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][17] = "/estat/eLearning/en/eStatH/index.html";
 appStr[8][17] = "/estat/eLearning/en/eStatU/index.html";
+appStr[9][17] = "/estat/eLearning/en/DataScience/index.html";
+appStr[10][17] = "";
+appStr[11][17] = "Large Population Country";
+appStr[12][17] = "Life Expectancy (OECD)";
+appStr[13][17] = "Population Pyramid (Korea)";
+appStr[14][17] = "GNP per Capita (OECD)";
+appStr[15][17] = "Top World Export Country";
+appStr[16][17] = "Obesity % of Population";
+appStr[17][17] = "Temperature of Major City";
+appStr[18][17] = "Top CO2 Emission Country";
+appStr[19][17] = "Alcohol Consume (OECD)";
+appStr[20][17] = "Continuous Data Graph";
+appStr[21][17] = "Length of Otter";
+appStr[22][17] = "Age of Teacher";
+appStr[23][17] = "Age of Teacher by Sex";
+appStr[24][17] = "Cleanliness of Tooth";
+appStr[25][17] = "Math Exam Scores";
+appStr[26][17] = "Calorie of Hamberger";
+appStr[27][17] = "Height vs Weight by Sex";
+appStr[28][17] = "Discrete Data Graphs";
+appStr[29][17] = "";
+appStr[30][17] = "";
+appStr[31][17] = "unit";
+appStr[32][17] = "Country";
+appStr[33][17] = "Male";
+appStr[34][17] = "Female";
+appStr[35][17] = "Age";
+appStr[36][17] = "Person";
+appStr[37][17] = "billion $";
+appStr[38][17] = "Export";
+appStr[39][17] = "Obesity %";
+appStr[40][17] = "Celsius";
+appStr[41][17] = "City";
+appStr[42][17] = "Jan High";
+appStr[43][17] = "Jul High";
+appStr[44][17] = "million ton";
+appStr[45][17] = "liter/year";
+appStr[46][17] = "Alcohol";
 alertMsg[1][17] = "Tanlangan ozgaruvchilardan birida malumot yoq.";
 alertMsg[2][17] = "o'zgaruvchilarni bir ma bir tahlil qiling.ikkita o'zgaruvchisi birinchi b'olib guruh o'zgaruvchisidir.";
 alertMsg[3][17] = "tanlangan o'zgaruvchiga oid m'alumotlar yoq.";
@@ -14058,6 +16065,23 @@ svgStr[125][17] = "Diskret taqsimot";
 svgStr[126][17] = "qator %";
 svgStr[127][17] = "ustun %";
 svgStr[128][17] = "jami %";
+svgStr[129][17] = "Strixli grafik matritsasi";
+svgStr[130][17] = "Oldin tekshiruv";
+svgStr[131][17] = "Xususiy qiymat";
+svgStr[132][17] = "Xususiy vektor";
+svgStr[133][17] = "Ko'p o'lchovli chastotalar jadvali";
+svgStr[134][17] = "Ierarxik klaster grafigi";
+svgStr[135][17] = "Masofa";
+svgStr[136][17] = "Yagona";
+svgStr[137][17] = "To'liq";
+svgStr[138][17] = "O'rtacha";
+svgStr[139][17] = "Centroid";
+svgStr[140][17] = "Bo'lim";
+svgStr[141][17] = "Bog'lanish";
+svgStr[142][17] = "Number of Clusters <br>K";
+svgStr[143][17] = "Bayes Information Criteria";
+svgStr[144][17] = "Within Sum of Squares";
+svgStr[145][17] = "Akaike Information Criteria";
 
 svgStrU[1][17] = "Binominal Tarqatish";
 svgStrU[2][17] = "takrorlash";
@@ -14193,6 +16217,21 @@ svgStrU[131][17] = "Mavsumiy indeks";
 svgStrU[132][17] = "Holt-Winters multiplikativ mavsumiy modeli";
 svgStrU[133][17] = "Mavsumiy seriya";
 svgStrU[134][17] = "Bloklash";
+svgStrU[135][17] = "Klaster tahlili";
+svgStrU[136][17] = "Klaster";
+svgStrU[137][17] = "Qaror daraxti";
+svgStrU[138][17] = "Qaror qoidasi sharti";
+svgStrU[139][17] = "Qaror";
+svgStrU[140][17] = "Iteratsiya";
+svgStrU[141][17] = "Parallel grafik";
+svgStrU[142][17] = "Tasniflash";
+svgStrU[143][17] = "Tasniflash funktsiyasi";
+svgStrU[144][17] = "Tasniflash natijasi";
+svgStrU[145][17] = "Qaror";
+svgStrU[146][17] = "Noto'g'ri tasniflash darajasi";
+svgStrU[147][17] = "Hujayra";
+svgStrU[148][17] = "O'quv ma'lumotlari";
+svgStrU[149][17] = "Sinov ma'lumotlari";
 
 // Russian
 $message.ru = {
@@ -14319,6 +16358,7 @@ $message.ru = {
     "MiddleStat": "Статистика средней школы",
     "HighStat":   "Статистика средней школы",
     "UnivStat":   "Statistics and Data Science",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Меню",
     "Binomial Experiment": "Биномиальный эксперимент",
@@ -14471,6 +16511,7 @@ $message.ru = {
     "NoInteraction": "Нет взаимодействия",
     "ExistInteraction": "Существующее взаимодействие",
     "eStatLecture": "Вводная лекция eStat",
+    "eDataLecture": "eDataScience Learning",
     "NonParametricMu12_title": "Непараметрические : Критерий суммы рангов Уилкоксона независимых измерений", 
     "NonParametricMu12": "Непараметрические : Критерий суммы рангов Уилкоксона независимых измерений : Location Parameter M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Непараметрические : Сумма рангов Тест",
@@ -14637,6 +16678,51 @@ $message.ru = {
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
     "Chapter13":         "Chapter 13      Time Series Analysis",
     "Distribution":      "Distribution",
+    "DecisionTree":      "Decision Tree",
+    "MaxDepth":          "Tree Depth Max",
+    "MinData":           "Branch Data Min",
+    "Discriminant":      "Discriminant Analysis",
+    "BayesTable":        "Classification Table",
+    "ScatterBarGraph":   "Bar Graph Matrix",
+    "MultiCrossTable":   "Cross Table Matrix",
+    "MultiFreqTable":    "Muti-dim Frequency Table",
+    "ParallelGraph":     "Parallel Graph",
+    "DataPartition":     "Data partition",
+    "Training":          "Train",
+    "Testing":           "Test",
+    "PriorProb":         "Prior probability",
+    "SampleProp":        "sample proportion",
+    "EqualProp":         "equal proportion",
+    "KNN":               "K Nearest Neighbor Classification",
+    "numKNN":            "Nearest Neighbor",
+    "PCA":               "Principal Component Analysis",
+    "PCgraph":           "Principal Component Scatterplot",
+    "PCtable":           "Principal Component Table",
+    "Logistic":          "Logistic Regression Analysis",
+    "KmeansCluster":     "K-means Clustering",
+    "KmeansGraph":       "K-means Cluster Scatterplot",
+    "KmeansTable":       "K-means Cluster Table",
+    "NumberOfGroup":     "number of clusters",
+    "MaxIteration":      "max iteration",
+    "StopEpsi":          "ESS difference bound",
+    "StatCluster":       "Cluster Statistics",
+    "ClusterTable":      "Cluster Table",
+    "StatClassification": "Classification Stat",
+    "HierarchyCluster":  "Hierarchical Clustering",
+    "MaxObs":            "Maximum number of observations",
+    "HierarchyGraph":    "Hierarchy Graph",
+    "Distance":          "Distance measure",
+    "Euclid":            "Euclid",
+    "Manhattan":         "Manhattan",
+    "Linkage":           "Linkage",
+    "Single":            "Single",
+    "Complete":          "Complete",
+    "Average":           "Average",
+    "Centroid":          "Centroid",
+    "Ward":              "Ward",
+    "Standardization":   "Data standardization",
+    "StatMultivariate":  "Multivariate Stat",
+    "NaiveBayes":        "Naive Bayes Classification",
 
 };
 // Russian
@@ -14649,6 +16735,44 @@ appStr[5][18] = "index.html";
 appStr[6][18] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][18] = "/estat/eLearning/en/eStatH/index.html";
 appStr[8][18] = "/estat/eLearning/en/eStatU/index.html";
+appStr[9][18] = "/estat/eLearning/en/DataScience/index.html";
+appStr[10][18] = "";
+appStr[11][18] = "Large Population Country";
+appStr[12][18] = "Life Expectancy (OECD)";
+appStr[13][18] = "Population Pyramid (Korea)";
+appStr[14][18] = "GNP per Capita (OECD)";
+appStr[15][18] = "Top World Export Country";
+appStr[16][18] = "Obesity % of Population";
+appStr[17][18] = "Temperature of Major City";
+appStr[18][18] = "Top CO2 Emission Country";
+appStr[19][18] = "Alcohol Consume (OECD)";
+appStr[20][18] = "Continuous Data Graph";
+appStr[21][18] = "Length of Otter";
+appStr[22][18] = "Age of Teacher";
+appStr[23][18] = "Age of Teacher by Sex";
+appStr[24][18] = "Cleanliness of Tooth";
+appStr[25][18] = "Math Exam Scores";
+appStr[26][18] = "Calorie of Hamberger";
+appStr[27][18] = "Height vs Weight by Sex";
+appStr[28][18] = "Discrete Data Graphs";
+appStr[29][18] = "";
+appStr[30][18] = "";
+appStr[31][18] = "unit";
+appStr[32][18] = "Country";
+appStr[33][18] = "Male";
+appStr[34][18] = "Female";
+appStr[35][18] = "Age";
+appStr[36][18] = "Person";
+appStr[37][18] = "billion $";
+appStr[38][18] = "Export";
+appStr[39][18] = "Obesity %";
+appStr[40][18] = "Celsius";
+appStr[41][18] = "City";
+appStr[42][18] = "Jan High";
+appStr[43][18] = "Jul High";
+appStr[44][18] = "million ton";
+appStr[45][18] = "liter/year";
+appStr[46][18] = "Alcohol";
 alertMsg[1][18] = "В одном из выбранных переменных отсутствуют данные.";
 alertMsg[2][18] = "Выберите переменные для анализа (щелкнув названия столбцов) поочерёдно. Если имеются два переменных, то первая - это групповая переменная.";
 alertMsg[3][18] = "Отсутствуют данные по выбранной переменной.";
@@ -14840,6 +16964,23 @@ svgStr[125][18] = "Дискретное распределение";
 svgStr[126][18] = "ряд %";
 svgStr[127][18] = "столбец %";
 svgStr[128][18] = "общий %";
+svgStr[129][18] = "Матрица гистограммы";
+svgStr[130][18] = "Предыдущая проблема";
+svgStr[131][18] = "Собственное значение";
+svgStr[132][18] = "Собственный вектор";
+svgStr[133][18] = "Многомерная таблица частот";
+svgStr[134][18] = "Иерархический кластерный график";
+svgStr[135][18] = "Расстояние";
+svgStr[136][18] = "Одиночный";
+svgStr[137][18] = "Завершено";
+svgStr[138][18] = "Среднее";
+svgStr[139][18] = "Центроид";
+svgStr[140][18] = "Опека";
+svgStr[141][18] = "Связь";
+svgStr[142][18] = "Number of Clusters <br>K";
+svgStr[143][18] = "Bayes Information Criteria";
+svgStr[144][18] = "Within Sum of Squares";
+svgStr[145][18] = "Akaike Information Criteria";
 
 svgStrU[1][18] = "Биномиальное распределение";
 svgStrU[2][18] = "Повторение";
@@ -14975,7 +17116,21 @@ svgStrU[131][18] = "Сезонные индексы";
 svgStrU[132][18] = "Мультипликативная сезонная модель Холта-Уинтерса";
 svgStrU[133][18] = "Десезонная серия";
 svgStrU[134][18] = "Блок";
-
+svgStrU[135][18] = "Кластерный анализ";
+svgStrU[136][18] = "Кластер";
+svgStrU[137][18] = "Дерево решений";
+svgStrU[138][18] = "Условие правила принятия решения";
+svgStrU[139][18] = "Решение";
+svgStrU[140][18] = "Итерация";
+svgStrU[141][18] = "Параллельный график";
+svgStrU[142][18] = "Классификация";
+svgStrU[143][18] = "Функция классификации";
+svgStrU[144][18] = "Результат классификации";
+svgStrU[145][18] = "Решение";
+svgStrU[146][18] = "Коэффициент ошибочной классификации";
+svgStrU[147][18] = "Ячейка";
+svgStrU[148][18] = "Обучающие данные";
+svgStrU[149][18] = "Данные тестирования";
 
 // Turkish
 $message.tr = {
@@ -15101,6 +17256,7 @@ $message.tr = {
     "MiddleStat": "Orta okul istatistiği",
     "HighStat":   "Lise istatistiği",
     "UnivStat":   "Statistics and Data Science",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
     "ebookLink":  "eKitab linki (İngilizce)",
     "Menu": "Menü",
     "Binomial Experiment": "Binom deneyi",
@@ -15253,6 +17409,7 @@ $message.tr = {
     "NoInteraction": "Etkileşim yoktur",
     "ExistInteraction": "Etkileşim vardir",
     "eStatLecture": "e-Eğitim",
+    "eDataLecture": "eDataScience Learning",
     "NonParametricMu12_title": "Parametrik olmayan: Wilcoxon sıra toplamı testi", 
     "NonParametricMu12": "Parametrik Olmayan : Wilcoxon sıra toplamı testi : Konum Parametresi M<sub>1</sub>, M<sub>2</sub>", 
     "WilcoxonTest": "Parametrik Olmayan: Sıra Toplamı Testi",
@@ -15419,6 +17576,51 @@ $message.tr = {
     "Chapter12":         "Chapter 12      Correlation and Regression Analysis",
     "Chapter13":         "Chapter 13      Time Series Analysis", 
     "Distribution":      "Distribution",
+    "DecisionTree":      "Decision Tree",
+    "MaxDepth":          "Tree Depth Max",
+    "MinData":           "Branch Data Min",
+    "Discriminant":      "Discriminant Analysis",
+    "BayesTable":        "Classification Table",
+    "ScatterBarGraph":   "Bar Graph Matrix",
+    "MultiCrossTable":   "Cross Table Matrix",
+    "MultiFreqTable":    "Muti-dim Frequency Table",
+    "ParallelGraph":     "Parallel Graph",
+    "DataPartition":     "Data partition",
+    "Training":          "Train",
+    "Testing":           "Test",
+    "PriorProb":         "Prior probability",
+    "SampleProp":        "sample proportion",
+    "EqualProp":         "equal proportion",
+    "KNN":               "K Nearest Neighbor Classification",
+    "numKNN":            "Nearest Neighbor",
+    "PCA":               "Principal Component Analysis",
+    "PCgraph":           "Principal Component Scatterplot",
+    "PCtable":           "Principal Component Table",
+    "Logistic":          "Logistic Regression Analysis",
+    "KmeansCluster":     "K-means Clustering",
+    "KmeansGraph":       "K-means Cluster Scatterplot",
+    "KmeansTable":       "K-means Cluster Table",
+    "NumberOfGroup":     "number of clusters",
+    "MaxIteration":      "max iteration",
+    "StopEpsi":          "ESS difference bound",
+    "StatCluster":       "Cluster Statistics",
+    "ClusterTable":      "Cluster Table",
+    "StatClassification": "Classification Stat",
+    "HierarchyCluster":  "Hierarchical Clustering",
+    "MaxObs":            "Maximum number of observations",
+    "HierarchyGraph":    "Hierarchy Graph",
+    "Distance":          "Distance measure",
+    "Euclid":            "Euclid",
+    "Manhattan":         "Manhattan",
+    "Linkage":           "Linkage",
+    "Single":            "Single",
+    "Complete":          "Complete",
+    "Average":           "Average",
+    "Centroid":          "Centroid",
+    "Ward":              "Ward",
+    "Standardization":   "Data standardization",
+    "StatMultivariate":  "Multivariate Stat",
+    "NaiveBayes":        "Naive Bayes Classification",
 
 };
 
@@ -15432,6 +17634,44 @@ appStr[5][19] = "index.html";
 appStr[6][19] = "/estat/eLearning/en/eStatM/index.html";
 appStr[7][19] = "/estat/eLearning/en/eStatH/index.html";
 appStr[8][19] = "/estat/eLearning/en/eStatU/index.html";
+appStr[9][19] = "/estat/eLearning/en/DataScience/index.html";
+appStr[10][19] = "";
+appStr[11][19] = "Large Population Country";
+appStr[12][19] = "Life Expectancy (OECD)";
+appStr[13][19] = "Population Pyramid (Korea)";
+appStr[14][19] = "GNP per Capita (OECD)";
+appStr[15][19] = "Top World Export Country";
+appStr[16][19] = "Obesity % of Population";
+appStr[17][19] = "Temperature of Major City";
+appStr[18][19] = "Top CO2 Emission Country";
+appStr[19][19] = "Alcohol Consume (OECD)";
+appStr[20][19] = "Continuous Data Graph";
+appStr[21][19] = "Length of Otter";
+appStr[22][19] = "Age of Teacher";
+appStr[23][19] = "Age of Teacher by Sex";
+appStr[24][19] = "Cleanliness of Tooth";
+appStr[25][19] = "Math Exam Scores";
+appStr[26][19] = "Calorie of Hamberger";
+appStr[27][19] = "Height vs Weight by Sex";
+appStr[28][19] = "Discrete Data Graphs";
+appStr[29][19] = "";
+appStr[30][19] = "";
+appStr[31][19] = "unit";
+appStr[32][19] = "Country";
+appStr[33][19] = "Male";
+appStr[34][19] = "Female";
+appStr[35][19] = "Age";
+appStr[36][19] = "Person";
+appStr[37][19] = "billion $";
+appStr[38][19] = "Export";
+appStr[39][19] = "Obesity %";
+appStr[40][19] = "Celsius";
+appStr[41][19] = "City";
+appStr[42][19] = "Jan High";
+appStr[43][19] = "Jul High";
+appStr[44][19] = "million ton";
+appStr[45][19] = "liter/year";
+appStr[46][19] = "Alcohol";
 alertMsg[1][19] = "Seçilen değişkenlerden birinin verisi yok";
 alertMsg[2][19] = "Analiz için değişkenleri tek tek seçin (sütun adını tıklayın veya seçim kutusundaki var'ı seçin). Ham veriler için iki değişken seçilirse, ilki analiz(veya Y) değişkenidir ve 2. grup (veya X) değişkenidir.";
 alertMsg[3][19] = "Seçilen değişkende veri eksik.";
@@ -15614,6 +17854,23 @@ svgStr[125][19] = "Ayrık dağılım";
 svgStr[126][19] = "Sıra %";
 svgStr[127][19] = "Sütun %";
 svgStr[128][19] = "Toplam %";
+svgStr[129][19] = "Çubuk Grafik Matrisi";
+svgStr[130][19] = "Önceki Olasılık";
+svgStr[131][19] = "Özdeğer";
+svgStr[132][19] = "Özvektör";
+svgStr[133][19] = "Çok Boyutlu Frekans Tablosu";
+svgStr[134][19] = "Hiyerarşik Küme Grafiği";
+svgStr[135][19] = "Mesafe";
+svgStr[136][19] = "Tek";
+svgStr[137][19] = "Tamamlandı";
+svgStr[138][19] = "Ortalama";
+svgStr[139][19] = "Merkez";
+svgStr[140][19] = "Koğuş";
+svgStr[141][19] = "Bağlantı";
+svgStr[142][19] = "Number of Clusters <br>K";
+svgStr[143][19] = "Bayes Information Criteria";
+svgStr[144][19] = "Within Sum of Squares";
+svgStr[145][19] = "Akaike Information Criteria";
 
 svgStrU[1][19] = "Binom dağılımı";
 svgStrU[2][19] = "Tekrar";
@@ -15749,4 +18006,18 @@ svgStrU[131][19] = "Mevsimsel Dizin";
 svgStrU[132][19] = "Holt-Winters Çarpımsal Mevsimsel Model";
 svgStrU[133][19] = "Sezonluk Seriler";
 svgStrU[134][19] = "Engelle";
-
+svgStrU[135][19] = "Küme Analizi";
+svgStrU[136][19] = "Küme";
+svgStrU[137][19] = "Karar Ağacı";
+svgStrU[138][19] = "Karar Kuralı Koşulu";
+svgStrU[139][19] = "Karar";
+svgStrU[140][19] = "Yineleme";
+svgStrU[141][19] = "Paralel Grafik";
+svgStrU[142][19] = "Sınıflandırma";
+svgStrU[143][19] = "Sınıflandırma İşlevi";
+svgStrU[144][19] = "Sınıflandırma Sonucu";
+svgStrU[145][19] = "Karar";
+svgStrU[146][19] = "Yanlış Sınıflandırma Oranı";
+svgStrU[147][19] = "Hücre";
+svgStrU[148][19] = "Eğitim Verileri";
+svgStrU[149][19] = "Veriler Test Ediliyor";

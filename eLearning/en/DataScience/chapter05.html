@@ -1,0 +1,3244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 5</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="/estat/eStat/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/estat/eStat/css/dashboard.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <style type="text/css">code{white-space: pre;}</style>
+       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
+       <link rel="stylesheet" href="/estat/eStat/css/prism.css">
+       <link rel="stylesheet" href="/estat/eStat/css/pandoc.css">
+       <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="/estat/eStat/lib/jquery/jquery.min.js"></script>    
+       <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="/estat/eStat/lib/convertSVG.js"></script>
+       <script src="/estat/eStat/js/prism.js"></script>
+       <script src="/estat/eStat/js/eBook.js"></script>
+       <script src="/estat/eStat/js/eStatU.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>
+       <script> setLanguage('en'); </script>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+
+       <script>
+	 $(document).ready(function() {
+  	     toc = $("#sidebar > ul > li > ul");
+  	     sections = toc.children();   // <li>
+  	     for(var i=0; i<sections.length; i++) {
+  		 if ($(sections[i]).children().length == 1) { continue; }
+  		 var first = sections[i].firstElementChild;  // <a>
+  		 var last = sections[i].lastElementChild;
+  		 var li = $("<li>");
+  		 var details = $("<details>");
+  		 var summary = $("<summary>");
+  		 $(summary).append(first)
+  		 $(details).append(summary);
+  		 $(details).append(last);
+  		 $(li).append(details);	
+  		 $(sections[i]).replaceWith(li);
+  	     }
+	 });
+       </script>
+      
+</head>
+
+<body>
+  
+<!-- begin of left sidebar -->
+<div class="container-fluid">
+<div class="row">
+<div id="sidebar" class="col-sm-2 col-md1 sidebar">
+  <ul>
+    <li> <a href="index.html"><b>Table of chapters</b> </a> </li>
+    <li> <a href="chapter01.html"> 1 Data science and artificial intelligence</a> </li>
+    <li> <a href="chapter02.html"> 2 Data visualization</a> </li>
+    <li> <a href="chapter03.html"> 3 Data summary and transformation</a> </li>
+    <li> <a href="chapter04.html"> 4 Probability and distribution</a> </li>
+    <li> <a href="chapter05.html"> 5 Estimation, testing hypothesis, and regression analysis</a> </li>
+          <ul>
+                <li><a href="#0501">&nbsp;&nbsp; 5.1 Sampling distribution and estimation</a></li>
+                <li><a href="#0502">&nbsp;&nbsp; 5.2 Testing hypothesis for a population mean</a></li>
+                <li><a href="#0503">&nbsp;&nbsp; 5.3 Testing hypothesis for two populations means</a></li>
+                <li><a href="#0504">&nbsp;&nbsp; 5.4 Testing hypothesis for several population means: ANOVA</a></li>
+                <li><a href="#0505">&nbsp;&nbsp; 5.5 Regression analysis</a></li>
+                <li><a href="#0506">&nbsp;&nbsp; 5.6 R practice</a></li>
+                <li><a href="#0507">&nbsp;&nbsp; 5.7 Exercise</a></li>
+          </ul>
+    <li> <a href="chapter06.html"> 6 Supervised machine learning for categorical data</a> </li>
+    <li> <a href="chapter07.html"> 7 Supervised machine learning for continuous data</a> </li>
+    <li> <a href="chapter08.html"> 8 Unsupervised machine learning</a> </li>
+    <li> <a href="chapter09.html"> 9 Artificial intelligence and other applications</span></a> </li>
+  </ul>
+</div>
+</div>
+</div>
+<!-- end of left sidebar -->
+
+  
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+  <p>
+  <h2>Chapter 5. Estimation, testing hypothesis, and regression analysis</h2> 
+  <h6>
+      <a href="./pdf/ppt5.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="./pdf/book5.pdf" target="_blank"><u>[book]</u></a>
+  </h6>
+          <ul>
+              <li class="listNone"><a href="#0501">5.1 Sampling distribution and estimation</a></li> 
+                <li class="listNoneIndent"><a href="#050101">5.1.1 Sampling distribution of sample means</a></li>
+                <li class="listNoneIndent"><a href="#050102">5.1.2 Estimation of a population mean</a></li>
+              <li class="listNone"><a href="#0502">5.2 Testing hypothesis for a population mean</a></li>
+              <li class="listNone"><a href="#0503">5.3 Testing hypothesis for two populations means</a></li>
+              <li class="listNone"><a href="#0504">5.4 Testing hypothesis for several population means: Analysis of variance</a></li>
+              <li class="listNone"><a href="#0505">5.5 Regression analysis</a></li>
+                <li class="listNoneIndent"><a href="#050501">5.5.1 Correlation analysis</a></li>
+                <li class="listNoneIndent"><a href="#050502">5.5.2 Simple linear regression</a></li>
+                <li class="listNoneIndent"><a href="#050503">5.5.3 Multiple linear regression</a></li>
+              <li class="listNone"><a href="#0506">5.6 R practice</a></li>
+              <li class="listNone"><a href="#0507">5.7 Exercise</a></li>
+          </ul>
+  <p>
+  <h5>CHAPTER OBJECTIVES</h5> 
+  <div class="mainTable">
+       We introduce the following in this chapter.
+    <p>
+       <div class="textL30M20">
+         • What is the sampling distribution of sample means is, and how can we we estimate a population mean 
+           using the sampling distribution in section 5.1?
+       </div>
+       <div class="textL30M20">
+         • What a testing hypothesis is and the testing hypothesis for a single population mean in section 5.2.
+       </div>
+       <div class="textL30M20">
+         • Testing hypothesis for comparing two population means in section 5.3.
+       </div>
+       <div class="textL30M20">
+         • Testing hypothesis for comparing several populations means using analysis of variance in section 5.4. 
+       </div>
+       <div class="textL30M20">
+         • Correlation and regression analysis to analyze the relation between several continuous variables in section 5.5. 
+       </div>
+  </div>
+  <p>
+
+  <!----------------------------------------------------------------------------------->
+  <h3 id="0501">5.1 Sampling distribution and estimation</h3>
+  <p>
+  <div class="mainTable">
+      A population is usually very massive, and it is difficult and costly to investigate the entire population.
+      Therefore, characteristic values of the population, such as a population mean
+      and variance called <b>population parameters</b>, are usually estimated using a set of samples.
+      Characteristic values of samples, such as a sample mean and sample variance called <b>sample statistic</b>.
+      The distribution of all possible values of the sample statistic is called a <b>sampling distribution</b>. 
+      The sampling distribution identifies a relationship between the sample statistic and population parameter, 
+      making it possible to estimate and to test a population parameter. Section 5.1.1 discusses the sampling distribution 
+      of all possible sample means, and section 5.1.2 discusses how to estimate the population mean using 
+      the sampling distribution. 
+  </div>
+  <p>
+    
+  <!------------------------------------------------------------------------------------------------->
+  <h4 id="050101">5.1.1 Sampling distribution of sample means</h4>
+  <p>
+  <div class="mainTable">
+       A population mean &mu; is called a <b>parameter</b> of a population, one of the characteristic values of the population.
+       We collect samples of size n and calculate a sample mean to estimate the population mean.
+       We hope this sample mean can estimate the population mean correctly, but there are many ways to collect 
+       samples of size n, and therefore, so many possible sample means. We hope this sample mean can estimate 
+       the population mean correctly, but there are many ways to collect samples of size n, and therefore, 
+       so many possible sample means. The distribution of all possible sample means is
+       called a <b>sampling distribution of all possible sample means</b>.  
+       Since the sample mean is a random variable that can have many different values, it is usually denoted 
+       with a capital letter such as \(\small  \overline X \) and called an <b>estimator</b> of the population parameter &mu;. 
+       An observed sample mean, marked \(\small  \overline x \) with a lowercase letter, is called an <b>estimate</b> of &mu;.
+    <p>
+       If a population is a normal distribution \( N(&mu;, &sigma;^2 ) \), 
+       the distribution of all possible sample means is exactly a normal distribution \( N(&mu;, \frac {&sigma;^2 }{n} ) \). 
+       If a population is not a normal distribution but the sample size is large enough, 
+       the distribution of all possible sample means is approximately a normal distribution such as \( N(&mu;, \frac {&sigma;^2 }{n} ) \). 
+       We call this the <b>central limit theorem</b>, which is a key theory underlying modern statistics. 
+       Theoretical proof of this theorem is beyond the scope of this book; please refer to any book on mathematical statistics.  
+  </div>
+  <p>
+  <div class="mainTableYellow">
+       <b>Central limit theorem</b>
+    <p>
+       If a population has an infinite elements with a mean &mu; and variance \( &sigma;^2 \), 
+       then, if the sample size is large enough, the distribution of all possible sample means is 
+       an approximately normal distribution \( N(&mu;, \frac {&sigma;^2 }{n} ) \). 
+       We can summarize specifically the central limit theorem as follows.
+    <p>
+       <div class="textL20M20">1) The average of all possible sample means, \(\small  &mu;_{\overline X} \), is equal to the population mean &mu;. <br> (i.e., \(\small  &mu;_{\overline X} = &mu; \) ) 
+       </div>
+       <div class="textL20M20">2) The variance of all possible sample means, \(\small  &sigma;_{\overline X}^2 \), is the population variance divided by \(n\). <br> (i.e., \(\small  &sigma;_{\overline X}^2 = \frac {&sigma;^2}{n} \) ) 
+       </div>
+       <div class="textL20M20">3) The distribution of all possible sample means is approximately a normal distribution. 
+       </div>
+    <p>
+       The above facts can be briefly written as \(\small  \overline {X} \sim N(&mu;, \frac {&sigma;^2}{n} ) \).        
+  </div>
+  <p>
+  <div class="mainTable">
+      The following simulation using 『eStatU』 shows that when a population is a normal distribution,
+      the distribution of all possible sample means is approximately normal, but variances become smaller as the sample size increases. 
+      <p>
+  </div>
+  <p>
+  <div class="mainTableGrey">
+      <!-----------***  html for  CLT  ***------------------------------------------------------>
+      <b>[Central Limit Theorem]</b> 
+      <p>
+         <iframe class="example" src="./example/050101.html"> </iframe>
+      <p>
+      &lt;Figure 5.1.1&gt; shows a simulation using 『eStatU』 in case a population is skewed 
+      from its mean. The distribution of all possible sample means is closer to normal as the sample size increases. 
+      <p>
+         <img class="figure70" src="./Figure/Fig050101.png">
+         <div class="figText">&lt;Figure 5.1.1&gt; 『eStatU』 Simulation of the central limit theorem </div>
+      <p>
+  </div>
+  <p>
+
+  <!--------------------------------------------------------------------------->
+  <h4 id="050102">5.1.2 Estimation of a population mean</h4>
+  <p>
+  <div class="mainTable">
+       When a sample survey is conducted, only one set of samples, usually smaller than the population size,
+       is selected from a population to estimate a characteristic value of the population, such as the population mean. 
+       We typically consider the sample mean of the selected samples to estimate the population mean. 
+       Can this sample mean can estimate the population mean well, even if the sample mean is only calculated 
+       from one set of small samples? This question is fundamental in estimating the population parameter 
+       that everyone can think about at least once. The sampling distribution of all possible sample means  
+       answers this question. Whatever the population distribution is, if the sample size
+       is large enough, all possible sample means are distributed around the population mean in the form 
+       of a normal distribution by the central limit theorem. Therefore, the sample mean obtained from one set of samples is usually
+       close to the population mean. Even in the worst case, the difference between the population mean 
+       and sample mean, known as an error, is not so significant, and it is possible to estimate the 
+       population mean using the sample mean. The larger the sample size, the more sample means are 
+       concentrated around the population mean based on the central limit theorem and hence, 
+       we can reduce the error of the estimation.
+    <p>
+       The value of an observed sample mean is called a <b>point estimate</b> of the population mean.
+       In general, the sample statistic used to estimate a population parameter must have good characteristics 
+       to be accurate. The sample mean has all the good characteristics to estimate the population mean, 
+       and the sample variance also has all the good characteristics to estimate the population variance.
+    <p>
+       In contrast to the point estimate for a population mean, estimating the population mean using an interval
+       is called an <b>interval estimation</b>. 
+       If a population follows a normal distribution with the mean &mu;  and variance \(&sigma;^2 \), 
+       the distribution of all possible sample means follows a normal distribution with the mean &mu; and variance \(\frac {&sigma;^2}{n} \), 
+       so the probability that one sample mean will be included in the interval 
+       \( [\, &mu; - z_{\alpha / 2} \times \frac {&sigma;}{\sqrt{n}} ,\;  &mu; + z_{\alpha / 2} \times \frac {&sigma;}{\sqrt{n}} \,]\) 
+       is \(\small 1 -\alpha \) as follows.
+       $$\small  
+         P(\mu - z_{\alpha / 2} \times \frac {&sigma;}{\sqrt{n}} < \overline X < \mu + z_{\alpha / 2} \times \frac {&sigma;}{\sqrt{n}} ) = 1 - \alpha
+       $$
+       We can rewrite this formula as follows.
+       $$\small 
+         P(\overline X - z_{\alpha / 2} \times \frac {&sigma;}{\sqrt{n}} < \mu < \overline X + z_{\alpha / 2} \times \frac {&sigma;}{\sqrt{n}} ) = 1 - \alpha
+       $$
+       Assuming &sigma; is known, the meaning of the above formula is that 95% of intervals obtained by applying the formula 
+       \(\small  [ \overline {X} - z_{\alpha / 2} \times \frac {&sigma;}{\sqrt{n}}, \overline {X} + z_{\alpha / 2} \times \frac {&sigma;}{\sqrt{n}} ] \) 
+       for all possible sample means include the population mean. The formula of this interval is referred to as 
+       the 100(1- \(\alpha \))% confidence interval of the population mean.
+       $$\small 
+         \left[ \overline {X} - z_{\alpha / 2} \times \frac {&sigma;}{\sqrt{n}}, \overline {X} + z_{\alpha / 2} \times \frac {&sigma;}{\sqrt{n}} \right]
+       $$
+    <br>
+       100(1-&alpha;)% here is called a <b>confidence level</b>, which refers to the probability of intervals that will include 
+       the population mean among all possible intervals calculated by the confidence interval formula. Usually, we use 0.01 or 0.05 for &alpha;.
+       \( z_{&alpha;} \) is the upper &alpha; percentile of the standard normal distribution. 
+       In other words, if \(Z\) is the random variable that follows the standard normal distribution, 
+       the probability that \(Z\) is greater than \( z_{&alpha;} \) is &alpha;, i.e., 
+       $$
+         P(Z > z_{&alpha;} ) = &alpha;
+       $$
+       For example, \( z_{0.025;} \) = 1.96, \( z_{0.05} \) = 1.645, \( z_{0.01} \) = 2.326, and \( z_{0.005} \) = 2.575.  
+    <p>
+       The following simulation shows the 95% confidence intervals for the population mean by extracting 
+       100 sets of samples with the sample size \(n\) = 20 
+       from a population of 10,000 numbers which follow the standard normal distribution N(0,1). 
+       In this case, 96 of the 100 confidence intervals contain the population mean 0. 
+       This result might be different on your computer because the program uses a random number generator, 
+       which depends on the computer. Whenever we repeat these experiments, the result may also vary slightly.
+  </div>
+  <p>
+  <div class="mainTableGrey">
+      <!----***   html for confidence interval Simulation  ***--------------------------------------->
+      <b>[<span data-msgid="Confidence Interval Simulation">Confidence Interval Experiment</span>]</b> 
+      <p>
+         <iframe class="example" src="./example/050102.html"> </iframe>
+  </div>
+  <p>
+  <div class="mainTableGrey">
+      <b>Example 5.1.1</b>
+      The average monthly starting salary of college graduates was 275 (unit: 10,000 KRW) after a simple random sampling 
+      of 100 this year. Assume that the starting salary for all college graduates follows a normal distribution 
+      with a standard deviation of 5. 
+      <p>
+      <div class="textL20M20">1) What is the point estimate of the average monthly starting salary of all college graduates?
+      </div>
+      <div class="textL20M20">2) Estimate a 95% confidence interval of the average monthly starting salary of college graduates.
+      </div>
+      <div class="textL20M20">3) Estimate a 99% confidence interval of the average monthly starting salary of college graduates. Compare the width of this interval to the 95% confidence interval.
+      </div>
+      <div class="textL20M20">4) If the sample size is increased to 400 and its average is the same, estimate a 95% confidence interval of the average monthly starting salary for all college graduates. Compare the width of the interval to question 2).
+      </div>
+      <p>
+      <b>Answer</b>
+      <p>
+      <div class="textL20M20">1) Point estimation of the average monthly starting salary is the sample mean which is 275 (unit: 10,000 KRW). 
+      </div>
+      <p>
+      <div class="textL20M20">2) Since the 95％ confidence interval implies &alpha; = 0.05, z value is as follows.
+      </div>
+      <p>
+      \( \qquad \small  z_{&alpha;/2} = z_{0.05/2} = 1.96 \)
+      <p>
+      <div class="textL20">Therefore, the 95％ confidence interval is as follows.
+      </div>
+      <p>
+      \( \qquad \small \left[ \overline X - z_{\alpha/2} \frac {\sigma} {\sqrt{n}} ,\; \overline X + z_{\alpha/2} \frac {\sigma} {\sqrt{n}} \right] \) <br>
+      \( \qquad \small  ⇔ [ 275 － 1.96 \frac{5}{10},\; 275 ＋ 1.96 \frac{5}{10} ] \) <br>
+      \( \qquad \small  ⇔ [274.02,\; 275.98] \)
+      <p>
+      <div class="textL20M20">3) Since the 99％ confidence interval implies &alpha;  = 0.01, z value is as follows.
+      </div>
+      <p>
+      \( \qquad \small z_{&alpha;/2} = z_{0.01/2} = 2.575 \)
+      <p>
+      <div class="textL20">Hence, the 99％ confidence interval is as follows. 
+      </div>
+      <p>
+      \( \qquad \small  [ 275 － 2.575 \frac{5}{10},\; 275 ＋ 2.575 \frac{5}{10} ] \) <br>
+      \( \qquad \small  ⇔ [273.71,\; 276.29] \)
+      <p>
+      <div class="textL20">Therefore, if the confidence level is increasing, the width of the confidence interval becomes wider.
+      </div>
+      <p>
+      <div class="textL20M20">4) If the sample size is 400, the 95％ confidence interval is as follows. 
+      </div>
+      <p>
+      \( \qquad \small  ⇔ [ 275 － 1.96 \frac{5}{20},\; 275 ＋ 1.96 \frac{5}{20} ] \) <br>
+      \( \qquad \small  ⇔ [274.51,\; 275.49] \)
+      <p>
+      <div class="textL20">Therefore, as the sample size increases, the width of the confidence interval becomes narrower, which is more accurate. 
+      </div>
+  </div>
+  <p>
+  <div  class="mainTablePink">
+       <b>Practice 5.1.1</b>
+       A large manufacturer's quality manager wants to know raw materials' average weight. Twenty-five samples 
+       were collected by simple random sampling, and their sample mean was 60 kg. Assume the population 
+       standard deviation is 5 kg. Use 『eStatU』 to answer the following.
+    <p>
+       <div class="textL20M20">1) What is a point estimation of the population mean weight of raw materials? 
+       </div>
+       <div class="textL20M20">2) Estimate a 95% confidence interval of the population mean weight of raw materials. 
+       </div>
+       <div class="textL20M20">3) Estimate a 99% confidence interval of the population mean weight of raw materials. Compare the width of this interval to the 95% confidence interval.
+       </div>
+       <div class="textL20M20">4) If the sample size is increased to 100 and its average is the same, estimate a 95% confidence interval of the population mean weight of raw materials. Compare the width of the interval to question 2).
+       </div>
+  </div>
+  <p>
+
+  <!------------------------------------------------------------------------------------------------->
+  <h5>Interval estimation of a population mean – Unknown population variance</h5>
+  <p>
+  <div class="mainTable">
+        One problem in estimating the unknown population mean using the confidence interval formula 
+        in the previous section is that the population variance may be unknown. 
+        If the sample size is large enough, a confidence interval of 
+        the population mean can be obtained approximately using the sample variance instead of the population variance
+        in the confidence interval formula. However, if the sample size is small and the sample variance is used, 
+        we should use a confidence interval based on the \(t\) distribution. 
+        The \(t\) distribution was studied by a statistician W. S. Gosset, who worked for a brewer in Ireland 
+        and published his study result in 1907 under the alias Student. 
+        So \(t\) distribution is often referred to as Student's \(t\) distribution. The \(t\) distribution 
+        is not just a single distribution, but it is a family of distributions with a parameter called 
+        a degree of freedom, 1,2, ... , 30, ... and denoted as \(t_1 ,t_2 , ... , t_{30} , ... \)
+      <p>
+         The shape of the \(t\) distribution is symmetrical about zero (y axis), similar to the standard normal 
+         distribution, but it has a tail that is flat and longer than the standard normal distribution. 
+         &lt;Figure 5.1.2&gt; shows the standard normal distribution N(0,1), and \(t\) distribution 
+         with 3 degrees of freedom simultaneously using the \(t\) distribution module of 『eStatU』.
+      <p>
+         <div class="QRFigure">
+           <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU540_T.svg" onclick="window.open(addrStr[89])">
+           <img class="figure50" src="./Figure/Fig050102.png">
+           <div class="figText">&lt;Figure 5.1.2&gt; Comparison of \(t_3\) and N(0,1)</div>
+         </div>
+      <br>
+         The \(t\) distribution is closer to the standard normal distribution as degrees of freedom increase above 100, 
+         which is why a confidence interval can be obtained approximately using the standard normal distribution 
+         if the sample size is greater than 100. 
+         Denote \(t_{n:\,&alpha;}\) as the 100\(\times\)&alpha;% percentile from the right tail 
+         of the \(t\) distribution with \(n\) degrees of freedom. 
+         For example, \(t_{7:\,0.05}\) is the 5% percentile of the \(t\) distribution from the right tail and its value is 1.895 
+         as &lt;Figure 5.1.3&gt;. In the standard normal distribution, this value was 1.645. Since 
+         the \(t\) distribution is symmetrical, \(t_{n:\,1-&alpha;} = - t_{n:\,&alpha;}\). 
+         To find a percentile value from the right tail of the \(t_{7}\)  distribution using 『eStatU』, 
+         click on '\(t\) distribution' in the main menu of 『eStatU』 and then set the degree of freedom (df) to 7, 
+         and set the probability value in the sixth option below the \(t\) distribution graph to 0.05, 
+         then \(t_{7:\,0.05}\) = 1.895 will appear.  
+  </div>
+  <p>
+  <div class="mainTableGrey">
+      <!--------------*** html for t-distribution ***---------------------------------------------->
+         <b>[<span data-msgid="t Distribution">t Distribution</span>]</b>
+      <p>
+          <iframe class="example" src="./example/050103.html"> </iframe>
+          <div class="figText">&lt;Figure 5.1.3&gt; The 5% percentile of the \(t\) distribution from the right tail</div>
+  </div>
+  <p>
+  <div class="mainTable">
+    <p>
+       Assume that a population follows a normal distribution, and consider an interval estimation of 
+       the population mean in case of the unknown population variance.
+       If \( X_1 , X_2 , ... , X_n \) is a random sample of size \(n\) from the population, 
+       then it can be shown that the distribution of \( \frac {\overline X -\mu}{S/\sqrt{n}} \), where &sigma; is replaced with S, 
+       is the \(t\) distribution with \( n-1 \) degrees of freedom. 
+       $$\small 
+         \frac {\overline X -\mu}{\frac{S}{\sqrt{n}}} \sim t_{n-1}
+       $$
+       Hence, the probability of the following interval is (1 - &alpha;).
+       $$\small 
+         P \left( -t_{n-1;\;\alpha/2} < \frac {\overline{X} - \mu } {\frac{S}{\sqrt{n}}} < t_{n-1:\;\alpha/2} \right) = 1 - \alpha
+       $$
+       The above formula can be summarized as the confidence interval for the population mean when the population variance is unknown. 
+       $$\small 
+         \left[\; \overline X - t_{n-1:\;\alpha/2} \frac {S} {\sqrt{n}} ,\; \overline X + t_{n-1:\;\alpha/2} \frac {S} {\sqrt{n}} \; \right] 
+       $$
+       where \(n\) is the sample size and \(\small S\) is the sample standard deviation.
+  </div>
+  <p>
+  <div class="mainTableGrey">
+       <b>Example 5.1.2</b>
+       Suppose we do not know the population variance in Example 4.4.2. If the sample size is 25 and the sample standard deviation is 5 (unit: 10,000 KRW), estimate the mean of the starting salary of college graduates at the 95% confidence level.
+    <p>
+       <b>Answer</b>
+    <p>
+       Since we do not know the population variance, we should use the \(t\) distribution for interval estimation of the population mean. 
+       Since \( t_{n-1:\;\alpha/2} = t_{25-1:\;0.05/2} = t_{25-1:\;0.025} = 2.0639 \), the 95% confidence interval of the population mean is as follows.
+       $$ \small
+         \begin{multline}
+         \shoveleft \left[ \overline X - t_{n-1:\;\alpha/2} \frac {S} {\sqrt{n}} , \overline X + t_{n-1:\;\alpha/2} \frac {S} {\sqrt{n}} \right] \\
+         \shoveleft ⇔ [ 275 － 2.0639(5/5) , 275 ＋ 2.0639(5/5) ] \\
+         \shoveleft ⇔ [ 272.9361, 277.0639 ]
+         \end{multline}
+       $$
+       Note that the smaller the sample size, the wider the interval width. 
+  </div>
+  <p>
+  <div class="mainTableGrey">
+       <b>Example 5.1.3</b>
+       The following data shows a simple random sampling of 10 new male students' heights in a college this year.
+       Use 『eStatU』 to make a 95% confidence interval of the height of the first-year college students.
+       <p class="textLeft">
+         171  172  185  169  175  177  174  179  168  173
+    <p>
+       <b>Answer</b>
+    <p>
+       Click [Estimation : μ Confidence Interval] on the menu of 『eStatU』 and enter data at the [Sample Data] box.
+       Then the confidence intervals [170.68, 177.92] are calculated using the \(t_9\) distribution.
+       In this  『eStatU』 module, confidence intervals can also be obtained by entering the sample sizes, 
+       sample mean, and sample variance without entering data.
+    <p>
+      <!--------------*** html for Confidence Interval Mu ***---------------------------------------------->
+         <b>[<span data-msgid="Confidence Interval Mu"></span> <span data-msgid="Confidence Interval"></span>]</b>
+    <p>
+         <iframe class="example" src="./example/050104.html"> </iframe>
+    <p>
+       In this module of 『eStatU』, a simulation experiment to investigate the size of the confidence interval 
+       can be done by changing the sample size \(n\) and the confidence level 1 - &alpha;. 
+       If you increase \(n\), the interval size becomes narrower. If you increase 1 - &alpha;, 
+       the interval size becomes wider.
+  </div>
+  <p>
+  <div  class="mainTablePink">
+       <b>Practice 5.1.2</b>
+       In [Practice 5.1.1], suppose you do not know the population standard deviation,
+       and the sample standard deviation is 5 kg. Answer the same questions in [Practice 5.1.1] using 『eStatU』. 
+       <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU650_ConfIntMu.svg" onclick="window.open(addrStr[96])">
+  </div>
+  <p>
+
+  <!------------------------------------------------------------------------------------------------->
+  <h3 id="0502">5.2 Testing hypothesis for a population mean</h3>
+  <p>
+  <div class="mainTable">
+       Examples of testing hypotheses for a population mean are as follows.
+    <p>
+       <div class="textL30M10">
+        -  The weight of a cookie bag is indicated as 200g. Would there be enough cookies to meet the indicated weight?
+       </div>
+       <div class="textL30M10">
+        -  At a light bulb factory, a newly developed light bulb advertises a longer bulb life than the past one. Is this propaganda reliable?
+       </div>
+       <div class="textL30M10">
+        -  Immediately after completing this year's academic test, students said there would be a 5-point increase 
+        in the average English score, which is higher than last year. How can you investigate if this is true?
+       </div>
+    <p>
+       The testing hypothesis is an answer to the above questions (hypothesis). The testing hypothesis is 
+       a statistical decision-making method using samples, which is used to compare two hypotheses about the population 
+       parameter. This section discusses the test of the population mean, which is frequently used in applications.
+       The following example explains the theory of the testing hypothesis about a single population mean.
+  </div>
+  <p>
+  <div class="mainTableGrey">
+       <b>Example 5.2.1</b>
+       At a light bulb factory, the average life expectancy of a light bulb made by a conventional production method is known 
+       to be 1500 hours, and the standard deviation is 200 hours. Recently, the company has been trying to introduce a new production method, 
+       with an average life expectancy of 1600 hours for light bulbs. Thirty samples were taken by simple random sampling from 
+       the new type of light bulbs to confirm this argument, and the sample mean was \(\small \overline x \) = 1555 hours. 
+       Can you tell me that the new light bulb has an average life of 1600 hours?
+    <p>
+       <b>Answer</b>
+    <p>
+       A statistical approach to the question of this issue is first to make two assumptions about the different arguments 
+       for the population mean &mu; . Namely,
+       $$ \small
+         \begin{multline}
+         \shoveleft H_0 : &mu; = 1500 \\ 
+         \shoveleft H_1 : &mu; = 1600
+         \end{multline}
+       $$
+       \(\small H_0\) is called a null hypothesis and \(\small H_1\) is an alternative hypothesis. 
+       In most cases, the null hypothesis is defined as an ‘existing known fact’ and the alternative hypothesis is defined as 
+       ‘new facts or changes in current beliefs’. So when choosing between two hypotheses, the basic idea of testing a hypothesis 
+       is 'unless there is a significant reason, we accept the null hypothesis (current fact) without choosing the alternative 
+       hypothesis (the fact of the matter). This idea of testing a hypothesis is referred to as ‘conservative decision making’.
+    <p>
+       A common sense for choosing between two hypotheses is 'which population mean of two hypotheses is 
+       closer in the distance to the sample mean'. Based on this common sense, which uses the concept of distance, 
+       the sample mean of 1555 is closer to \(\small H_1 : &mu; = 1600\), so we choose the alternative hypothesis. 
+       However, a statistical testing hypothesis makes a decision using the sampling distribution of \(\small \overline X\) 
+       to select a critical value \(C\) and to make a decision rule as follows. 
+    <p>
+       \( \small
+         \qquad \text {  ‘If \(\overline X\) is smaller than C, then the null hypothesis \(H_0\) will be chosen, else reject \(H_0\)’}
+       \)
+    <p>
+       The area of {\(\small \overline X &le; C\)} is called an <b>acceptance region</b> of \(\small H_0\) and 
+       the area {\(\small \overline X &gt; C\)} is called 
+       a <b>rejection region</b> of \(\small H_0\) (&lt;Figure 5.2.1&gt;).
+    <p>
+       <img class="figure50" src="./Figure/Fig050201.png">
+       <div class="figText">&lt;Figure 5.2.1&gt;  Acceptance and rejection region of  \(H_{0}\)</div>
+    <p>
+       If this decision rule chooses a hypothesis, there are always two possible errors. 
+       One is a <b>Type 1 Error</b> which accepts \(\small H_1\) when \(\small H_0\) is true, 
+       the other is a <b>Type 2 Error</b> which accept \(\small H_0\) when \(\small H_1\) is true. 
+       We can summarize these errors as in Table 5.2.1.
+    <p> 
+      <table style="width:450px"> 
+        <tr>
+          <th colspan="3">Table 5.2.1  Two types of errors in testing hypothesis</th>
+        </tr>
+        <tr> 
+          <th style="width:150px"></th>
+          <th style="width:150px">Actual<br>\(\small H_0\) is true</th>
+          <th style="width:150px">Actual<br>\(\small H_1\) is true</th>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">Decision : \(\small H_0\) is true</td>
+          <td class="tdCenter">Correct</td>
+          <td class="tdCenter">Type 2 Error</td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">Decision : \(\small H_1\) is true</td>
+          <td class="tdCenter">Type 1 Error</td>
+          <td class="tdCenter">Correct</td>
+        </tr>
+      </table>
+    <p>
+       If you try to reduce one type of error when the sample size is fixed, the other type of error will increase. 
+       That is why we came up with a conservative decision-making method that defines the null hypothesis \(\small H_0\)
+       as 'past or present facts' and 'accept the null hypothesis unless there is significant evidence for the 
+       alternative hypothesis.' In this conservative way, we try to reduce the type 1 error as much as possible that selects
+       \(\small H_1\)  when \(\small H_0\) is true, which would be more risky than the type 2 error. The testing hypothesis 
+       determines the tolerance for the probability of the type 1 error, usually 5% or 1% for rigorous tests, 
+       and uses the selection criteria that satisfy this limitation. The tolerance for the probability that this 
+       type 1 error will occur is called the <b>significance level</b> and denoted as &alpha;. 
+       The probability of the type 2 error is denoted as &beta;.
+    <p>
+       If the significance level is established, the decision rule for the two hypotheses can be tested using the 
+       sampling distribution of all possible sample means. &lt;Figure 5.2.2&gt; shows two population distributions 
+       of two hypotheses and their sampling distributions of all possible sample means in each hypothesis. 
+    <p>
+       <img class="figure50" src="./Figure/Fig050202.png">
+       <div class="figText">&lt;Figure 5.2.2&gt; Testing Hypothesis</div>
+    <p>
+       The sampling distribution of all possible sample means, which corresponds to the population
+       of the null hypothesis \(\small H_0\) : &mu; = 1500, is approximately normal
+       \(\small N(1500,200^2 )\) by the central limit theorem. 
+       The sampling distribution of all possible sample means, which corresponds to the population 
+       of the alternative hypothesis \(\small H_1\) : &mu; = 1600, is approximately normal
+       \(\small N(1600,200^2 )\). The population standard deviation for each population is 
+       assumed to be 200 from historical data. Then, the decision rule becomes as follows. 
+    <p>
+       \( \small
+         \qquad \text {‘If \(\overline X &le; C\), then accept \(H_{0}\), else accept \(H_{1}\) (i.e. reject \(H_{0}\) )’}
+       \)
+    <p>
+        In Figure 5.2.2, the shaded area represents the probability of the type 1 error. If we set the significance level, 
+        which is the tolerance level of the type 1 error, is 5%, i.e., \(\small P(\overline X &le; C) = 0.95\), \(C\)  
+        can be calculated by finding the percentile of the normal distribution \(\small N(1500,\frac{200^2}{30})\) as follows. 
+    <p>
+       \( \small
+        \qquad 1500+1.645 \frac{200}{\sqrt 30 } = 1560.06
+       \)
+    <p>
+       Therefore, the decision rule can be written as follows.
+    <p>
+       \( \small
+         \qquad \text {‘If \(\overline X\) &le; 1560.06, then accept \(H_0 \), else reject \(H_0\)  (accept \(H_1\) ).’}
+       \)
+    <p>
+       In this problem, the observed sample mean of the random variable \(\small \overline X\) is 
+       \(\small \overline x\)= 1555 and \(\small H_0 \) is accepted. In other words, the hypothesis of 
+       \(\small H_0 \) : &mu; = 1500  is judged to be correct, which contradicts the result of 
+       common sense criteria that \(\small \overline x\) = 1555 is closer to \(\small H_1 \) : &mu; = 1600
+       than \(\small H_0 \) : &mu; = 1500. We can interpret that the sample mean
+       of 1555 is insufficient evidence to reject the null hypothesis using a conservative decision-making method. 
+    <p>
+       The above decision rule is often written as follows, emphasizing that it results from a conservative 
+       decision-making method. 
+    <p>
+       \( \small
+         \qquad \text {‘If \(\overline X\)  &le; 1560.06, then do not reject \(H_0\), else reject \(H_0 \).’}
+       \)
+    <p>
+       In addition, this decision rule can be written for calculation purposes as follows.
+    <p>
+       \( \small
+        \qquad \text {‘If \(\frac{\overline X - 1500}{\frac {200}{\sqrt{30}}}\) &le; 1.645, then accept \(H_0\) , else reject \(H_0\).’}
+       \)
+    <p>
+       In this case, since \(\small\overline x\) = 1555, \(\frac{1555 - 1500}{\frac {200}{\sqrt{30}}}\) = 1.506,
+       and it is less than 1.645. Therefore, we accept \(\small H_0\). 
+  </div>
+  <p>
+  <div class="mainTable">
+       Since the testing hypothesis by the conservative decision-making is only based on the probability of 
+       the type 1 error as seen in [Example 5.2.1], even if the alternative hypotheses is \(H_1 : &mu; &gt; 1500\), 
+       we will have the same decision rule. 
+       Generally, there are three types of alternative hypotheses in the testing hypothesis for the population mean as follows.
+    <p>
+       <table style="width:600px">
+         <tr>
+           <td>1) \(\quad H_1 : \mu \gt \mu_0\)</td>
+           <td>2) \(\quad H_1 : \mu \lt \mu_0\)</td>
+           <td>3) \(\quad H_1 : \mu \ne \mu_0\)</td>
+         </tr>
+       </table>
+       Since 1) has the rejection region on the right side of the sampling distribution of all possible sample means 
+       under the null hypothesis, it is called a <b>right-sided test</b>. Since 2) has the rejection region on the left side
+       of the sampling distribution, it is called a <b>left-sided test</b>. Since 3) has rejection regions on both sides 
+       of the sampling distribution, it is called a <b>two-sided test</b>.
+    <p>
+       In [Example 5.2.1], if the sample mean is either 1555 or 1540, we cannot reject the null hypothesis, 
+       but the degrees of evidence that the null hypothesis is not rejected are different. 
+       The degree of evidence that the null hypothesis is not rejected is measured by calculating the probability of the type 1 error 
+       when the observed sample mean value is considered as the critical value for decision, which is called the <b>\(p\)-value</b>. 
+       That is, the \(p\)-value indicates where the observed sample mean is located among all possible sample means by 
+       considering the location of the alternative hypothesis. In [Example 5.2.1], the \(p\)-value for \(\small\overline X\) = 1540 
+       is the probability of sample means which is greater than \(\small\overline X\) = 1540 using \(N(1500, \frac{200^2}{30} )\) as follows. 
+       $$ \small
+         p\text{-value} = P( \overline X > 1540) = P(\frac{\overline X - 1500}{\frac{200}{\sqrt{30}}} ) = 0.0660
+       $$
+       The higher the \(p\)-value, the stronger the reason for not being rejected. If \(H_0\)  is rejected, the smaller 
+       the \(p\)-value, the stronger the grounds for rejection. Therefore, if the \(p\)-value is less than the significance level 
+       the analyst decided, then \(H_0\) is rejected because it means that the sample mean is in the rejection region. 
+       Statistical packages provide this \(p\)-value. The <b>decision rule using \(p\)-value</b> is as follows.
+    <p>
+        'If \(p\)-value &lt; &alpha;, then \(H_0\) is rejected, else \(H_0\) is accepted.'     
+    <p>
+       If the population standard deviation, &sigma;, is unknown and the population follows a normal distribution,
+       the test statistic 
+       $$\small
+         \frac {\overline X - \mu_0}{ \frac {S}{\sqrt{n}} }
+       $$	
+       is a \(t\) distribution with \((n-1)\) degrees of freedom. If the population standard deviation is unknown,
+       the decision rule for each type of three alternative hypothesis are summarized in Table 5.2.2 where &alpha; 
+       is the significance level.
+    <p>
+      <table style="width:600px"> 
+        <tr>
+          <th colspan="2">Table 5.2.2  Testing hypothesis for a population mean  - unknown &sigma; case </th>
+        </tr>
+        <tr> 
+          <th style="width:200px">Type of Hypothesis</th>
+          <th style="width:400px">Decision Rule</th>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">1) \( \; H_0 : \mu = \mu_0 \)<br>\(\quad\,\, H_1 : \mu > \mu_0 \)</td>
+          <td class="tdLeft">If \(\small  \frac {\overline X - \mu_0}{ \frac {S}{\sqrt{n}} } > t_{n-1: \; &alpha;} \), then reject \( H_0 \) </td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">2) \( \; H_0 : \mu = \mu_0 \)<br>\(\quad\,\, H_1 : \mu < \mu_0 \)</td>
+          <td class="tdLeft">If \(\small  \frac {\overline X - \mu_0}{ \frac {S}{\sqrt{n}} } < - t_{n-1: \; &alpha;} \), then reject \( H_0 \) </td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">3) \( \; H_0 : \mu = \mu_0 \)<br>\(\quad\,\, H_1 : \mu \ne \mu_0 \)</td>
+          <td class="tdLeft">If \(\small  \left | \frac {\overline X - \mu_0}{ \frac {S}{\sqrt{n}} } \right | > t_{n-1; \; &alpha;/2} \), then reject \( H_0 \) </td>
+        </tr>
+        <tr>
+          <td colspan="2">Note: Assume that the population is a normal distribution.<br>
+            The \(\small H_0\) of 1) can be written as \(\small H_0 : \mu \le \mu_0 \) , 2) as \(\small H_0 : \mu \ge \mu_0 \)
+          </td>
+        </tr>
+      </table>
+  </div>
+  <p>
+  <div class="mainTableGrey">
+       <b>Example 5.2.2</b>
+       The weight of a bag of cookies is supposed to be 250 grams. Suppose the weight of all bags of cookies follows 
+       a normal distribution. In the survey of 16 random samples of bags, the sample mean 
+       was 253 grams, and the sample standard deviation was 10 grams. 
+       Test the hypothesis whether the weight of the bag of cookies is 250g or larger using &alpha; = 1％ and find the \(p\)-value.
+       Use  『eStatU』  to test the hypothesis above.
+    <p>
+       <b>Answer</b>
+    <p>
+       Since the population standard deviation is unknown and the sample size is small, the decision rule is as follows.
+       $$ \small
+        \begin{multline}
+        \shoveleft \text{'If }  \frac {\overline X - \mu_0} {\frac {S}{\sqrt{n}} } > t_{n-1: \; &alpha;} , \text{ then reject }  H_0  \text{ else accept } H_0 ’ \\
+        \shoveleft \text{'If }  \frac {253 - 250}{ \frac {10}{\sqrt{16}} } > t_{16:\; 0.01} , \text{ then reject }  H_0  \text{ else accept }  H_0 ’ \\
+        \end{multline}
+       $$
+       Since the value of test statistic is \( \frac {253 - 250}{ \frac {10}{\sqrt{16}} } = 1.2 \), 
+       and \(t_{15: \; 0.01} = 2.602\) , we accept \(\small H_0\). Note that the decision rule can be written as follows.
+    <p>
+       \( \small
+         \qquad \qquad\text{'If }  \overline X  > 250 + 2.602 \frac {10}{\sqrt{16}} , \text{ then reject } H_0 \text{ else accept } H_0 ’ \\
+       \)
+    <p>
+       In 『eStatU』 menu, select [Testing Hypothesis &mu;], enter 250 at the box on [Hypothesis] and 
+       select the alternative hypotheses as the right test. Check [Test Type] as t test and enter &alpha = 0.01. 
+       At the [Sample Statistics], enter sample size 16, sample mean 253, and sample variance \(10^2 = 100\). 
+       If you click the [Execute] button, the confidence Interval for μ is calculated, and 
+       the testing result will appear as in &lt;Figure 5.2.3&gt;.
+    <p>
+       <div class="QRFigure">
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU700_TestMu.svg" onclick="window.open(addrStr[101])">
+            <img class="figure70" src="./Figure/Fig050203.png">
+            <div class="figText">&lt;Figure 5.2.3&gt; Testing hypothesis for &mu; with \(t\) distribution using 『eStatU』</div>
+       </div>
+    <p>
+       Since the \(p\)-value is the probability that \(t_{15}\) is greater than the test statistics 1.200,
+       the \(p\)-value is 0.124 using the module of \(t\) distribution in 『eStatU』. 
+    <p>
+    <p>
+       <!---   ************ html for Testing Hypothesis Mu ************  ---->
+       <b>[<span data-msgid="Testing Hypothesis mu">Testing Hypothesis : Population Mean &mu; </span>]</b>
+    <p>
+         <iframe class="example120" src="./example/050201.html"> </iframe>
+  </div>
+  <p>
+  <div  class="mainTablePink">
+       <b>Practice 5.2.1</b>
+       The following data are weights of the 7 employees randomly selected who are working in the shipping department of a wholesale food company.
+    <p>
+            <div class="textLeft">154, 186, 159, 174, 183, 163, 181  (unit pound) </div>
+            <div class="textLeft"> Ex ⇨ DataScience ⇨ Weight.csv. </div>
+    <p>
+       Based on this data, is the average weight of employees working in the shipping department 160 or greater than 160? Use the significance level of 5%.
+       <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU700_TestMu.svg" onclick="window.open(addrStr[101])">
+  </div>
+  <p>
+
+  <!--------------------------------------------------------------------------------->
+  <h3 id="0503">5.3 Testing hypothesis for two populations means</h3>
+  <p>
+
+  <div class="mainTable">
+       When samples are selected independently from two populations, 
+       an estimator for the difference of two population means, \(\mu_1 - \mu_2\), is the difference 
+       of two sample means, \(\small {\overline x}_1 - {\overline x}_2\). The sampling distribution of 
+       all possible sample means differences is approximately a normal distribution with the mean
+       \(\mu_1 - \mu_2\) and variance \(\frac{\sigma^2_1}{n_1} + \frac{\sigma^2_2}{n_2}\) 
+       if both sample sizes are large enough.
+       Since the population variances \( \sigma^2_1 \) and \( \sigma^2_2 \) are usually unknown, 
+       sample variances, \(\small S^2_1 \) and \(\small S^2_2 \), are used.  
+       If the two populations follow normal distributions and their variances can be assumed to be the same,
+       we can show that the following sample statistic for the sample means difference follows 
+       \(t\)-distribution with \(n_1 + n_2 -2\) degrees of freedom.
+       $$ \small 
+         \frac { ({\overline X}_1 - {\overline X}_2 ) }{\sqrt{\frac{S^2_p}{n_1} +\frac{S^2_p}{n_2} } } 
+         \qquad \text{where } S^2_p  = \frac{(n_1 -1 )S^2_1 + (n_2 -1)S^2_2}{n_1 + n_2 -2}
+       $$
+       \(s^2_p\) is an estimator of the population variance called as a <b>pooled variance</b> 
+       which is an weighted average of two sample variances \( s^2_1 \) and \( s^2_2 \) using 
+       the sample sizes as weights when population variances are assumed to be the same. 
+  </div>
+  <p>
+  <div class="mainTable">
+       Assume that two populations follow normal distributions as \(\small N(\mu_1 , \sigma_1^2 )\), and 
+       \(\small N(\mu_1 , \sigma_1^2 )\). Consider the interval estimation of the population mean difference 
+       when you do not know the population variances, but they can be assumed to be the same.   
+       Using the sampling distribution of the sample mean differences described above,
+       the 100(1 - &alpha;)% confidence interval for the population mean difference when the population variances are unknown
+       can be shown as follows.
+       $$\small 
+         \left[\; (\overline X_1 - \overline X_2 ) - t_{n_1 + n_2 - 2: \;\alpha/2} \sqrt { \frac{S^2_p}{n_1} + \frac{S^2_p}{n_2} },\; (\overline X_1 - \overline X_2 ) + t_{n_1 + n_2 -2:\;\alpha/2} \sqrt { \frac{S^2_p}{n_1} + \frac{S^2_p}{n_2} } \;\right] 
+       $$
+       where \(n_1\) and \(n_2\) are the sample size, \(\small {\overline X}_1 \) and \(\small {\overline X}_2 \) 
+       are sample means of each population. 
+       \(s^2_p\) is an estimator of the population variance, called the <b>pooled variance</b>. 
+  </div>
+  <p>
+
+ <div class="mainTable">
+       A comparison of two populations means, \(\small \mu_1\) and \(\small \mu_2\). is possible by testing the hypothesis 
+       that the difference in the population means is equal to zero or not.  
+       There are many examples comparing the means of two populations as follows. 
+    <p>
+       <div class="textL30M10">
+        -  Is there a difference between the starting salary of male and female graduates in this year’s college graduates?
+       </div>
+       <div class="textL30M10">
+        -  Is there a difference in the weight of the products produced in the two production lines?
+       </div>
+    <br>
+       Generally, testing hypothesis for two populations means can be divided into three types, 
+       depending on the type of alternative hypothesis.
+       $$  \small 
+         \begin{multline}
+         \shoveleft 1)\quad H_0 : \mu_1 - \mu_2 = D_0 \qquad H_1 : \mu_1 - \mu_2 \gt D_0 \\
+         \shoveleft 2)\quad H_0 : \mu_1 - \mu_2 = D_0 \qquad H_1 : \mu_1 - \mu_2 \lt D_0 \\
+         \shoveleft 3)\quad H_0 : \mu_1 - \mu_2 = D_0 \qquad H_1 : \mu_1 - \mu_2 \ne D_0 \\
+         \end{multline}
+       $$
+       Here \(\small D_0\) is the value for the difference in population means to be tested. 
+       When samples are selected independently from two populations, 
+       the estimator of the difference of two population means, \(\small \mu_1 - \mu_2\), is the difference 
+       of sample means, \(\small {\overline x}_1 - {\overline x}_2\). 
+       If two populations follow normal distributions and their variances can be assumed to be the same,
+       the testing hypothesis for the difference between the two populations means uses the following statistic.
+       $$ \small 
+         \frac { ({\overline x}_1 - {\overline x}_2 ) - D_0 }{\sqrt{\frac{s^2_p}{n_1} +\frac{s^2_p}{n_2} } } 
+         \qquad \text{where } s^2_p  = \frac{(n_1 -1 )s^2_1 + (n_2 -1)s^2_2}{n_1 + n_2 -2}
+       $$
+       The test statistic follows a \(t\)-distribution with \(n_1 + n_2 -2\) degrees of freedom.
+       The decision rule for testing the difference between the two populations' means is as follows. 
+    <p>
+       <table style="width:700px"> 
+        <tr>
+          <th colspan="2">Table 5.3.1  Testing hypothesis of two populations means</th>
+        </tr>
+        <tr> 
+          <th style="width:200px">Type of Hypothesis</th>
+          <th style="width:500px">Decision Rule</th>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">1) \( \; H_0 : \mu_1 - \mu_2 = D_0 \)<br>\(\quad\,\, H_1 : \mu_1 - \mu_2 > D_0 \)</td>
+          <td class="tdLeft">If \(\small  \frac { ({\overline x}_1 - {\overline x}_2 ) - D_0 }{\sqrt{\frac{s^2_p}{n_1} +\frac{s^2_p}{n_2} } } > t_{n_1 + n_2 -2; \; &alpha;} \), then reject \( H_0 \), else accept \( H_0 \) </td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">2) \( \; H_0 : \mu_1 - \mu_2 = D_0 \)<br>\(\quad\,\, H_1 : \mu_1 - \mu_2 < D_0 \)</td>
+          <td class="tdLeft">If \(\small  \frac { ({\overline x}_1 - {\overline x}_2 ) - D_0 }{\sqrt{\frac{s^2_p}{n_1} +\frac{s^2_p}{n_2} } } < - t_{n_1 + n_2 -2; \; &alpha;} \), then reject \( H_0 \), else accept \( H_0 \) </td>
+        </tr>
+        <tr style="height:40px">
+          <td class="tdLeft">3) \( \; H_0 : \mu_1 - \mu_2 = D_0 \)<br>\(\quad\,\, H_1 : \mu_1 - \mu_2 \ne D_0 \)</td>
+          <td class="tdLeft">If \(\small  \left | \frac { ({\overline x}_1 - {\overline x}_2 ) - D_0 }{\sqrt{\frac{s^2_p}{n_1} +\frac{s^2_p}{n_2} } } \right | > t_{n_1 + n_2 -2; \;&alpha;/2} \), then reject \( H_0 \), else accept \( H_0 \) </td>
+        </tr>
+        <tr>
+          <td colspan="2">Note: Assume independent samples, normal populations, population variances are equal.<br>
+            If sample sizes are large enough (\(\small n_1 > 30, n_2 >30 \)), \(t\)-distribution is 
+            approximately close to the standard normal distribution and the decision rule may use the standard
+            normal distribution.
+          </td>
+        </tr>
+       </table>
+  </div>
+  <p>
+  <div class="mainTableGrey">
+       <b>Example 5.3.1</b>
+       Two machines produce cookies at a factory, and a cookie bag's average weight should be 270g. We sampled cookie bags 
+       from each of the two machines to examine the weight of the cookie bags. The average weight of 15 cookie bags extracted 
+       from machine 1 was 275g, and their standard deviation was 12g. The average weight of 14 cookie bags extracted 
+       from machine 2 was 269g, and the standard deviation was 10g.
+    <p>
+       1) Find a 99% confidence interval for the difference between two population means. <br>
+       2) Test whether the two machines' cookie bag weights are different. Use &alpha; = 0.01. <br>
+       3) Check the test result using 『eStatU』.
+    <p>
+       <b>Answer</b>
+    <p>
+       1) We can summarize the sample information in this example as follows.
+       $$ \small
+         \begin{multline}
+         \shoveleft n_1 = 15,\quad \overline x_1 = 275,\quad s_1 = 12 \\
+         \shoveleft n_2 = 14,\quad \overline x_2 = 269,\quad s_2 = 10 \\
+         \end{multline}
+       $$
+       Therefore, the pooled variance of two samples is as follows.
+       $$ \small
+         \begin{multline}
+         \shoveleft s^2_p  = \frac{(n_1 -1 )s^2_1 + (n_2 -1)s^2_2}{n_1 + n_2 -2} 
+           = \frac{(15 - 1 ) 12^2 + (14 - 1) 10^2}{15 + 14 -2} = 122.815 \\
+         \end{multline}
+       $$
+       Since the t-value for 99% confidence interval is  \(\small t_{15 + 14 -2;\; 0.01/2} = t_{27:\; 0.005} = 2.7707\),
+       the 99% confidence interval is as follows.
+       $$ \small 
+         \begin{multline}
+         \left[\; (\overline X_1 - \overline X_2 ) - t_{n_1 + n_2 - 2: \;\alpha/2} \sqrt { \frac{S^2_p}{n_1} + \frac{S^2_p}{n_2} },\; (\overline X_1 - \overline X_2 ) + t_{n_1 + n_2 -2:\;\alpha/2} \sqrt { \frac{S^2_p}{n_1} + \frac{S^2_p}{n_2} } \;\right] 
+         \end{multline}
+       $$
+       $$\small 
+         \begin{multline}
+         \left[\; (275 - 269) - 2.7707 \sqrt { \frac{122.815}{15} + \frac{122.815}{14} },\; (275 - 269) + 2.7707 \sqrt { \frac{122.815}{15} + \frac{122.815}{14} } \;\right]  \\
+         \end{multline}
+       $$
+       $$\small 
+         \begin{multline}
+         \left[\; -5.410, \; 17.410 \; \right ]
+         \end{multline}
+       $$
+    <p>
+       2) The hypothesis of this problem is \(\small H_0 : \mu_1 = \mu_2 ,\, H_1 : \mu_1 \ne \mu_2 \). Hence, the decision rule is as follows.
+       $$ \small
+         \begin{multline}
+         \shoveleft '\text{If } \left | \frac { ({\overline x}_1 - {\overline x}_2 ) - D_0 }{\sqrt{\frac{s^2_p}{n_1} +\frac{s^2_p}{n_2} } } \right | > t_{n_1 + n_2 -2;\, &alpha;/2} , \text{ then reject } H_0 ’ \\
+         \end{multline}
+       $$
+       \(\small D_0 = 0\) in this exaample. The calculation of the test statistic is as follows.
+       $$ \small
+         \begin{multline}
+         \shoveleft \left | \frac {275 - 269} { \sqrt{\frac{122.815}{15} +\frac{122.815}{14} } } \right | = 1.457 \\
+         \end{multline}
+       $$
+       Since 1.457 &lt; 2.7707, \(\small H_0\) can not be rejected. 
+    <p>
+       3) In 『eStatU』 menu, select [Testing Hypothesis \(\mu_1 , \mu_2\)]. At the window shown in &lt;Figure 5.3.1&gt;, 
+       check the alternative hypotheses of not equal case at [Hypothesis], check the variance assumption of 
+       [Test Type] as the equal case, check the significance level of 1%, check the independent sample, 
+       and enter sample sizes \(n_1 , n_2\), sample means \(\small \overline x_1 , \overline x_2\), and sample variances
+       as the following window. Click [Execute] button to see the confidence interval and result of the testing hypothesis.  
+    <p>
+      <!---   ************ html for testing mu1 and mu2 ************  ---->
+      <b>[<span data-msgid="Testing Hypothesis mu12">Testing Hypothesis : two populations Means &mu;<sub>1</sub>,  &mu;<sub>2</sub></span>]</b>
+    <p>
+         <iframe class="example120" src="./example/050301.html"> </iframe>
+  </div>
+  <p>
+  <div class="mainTable">
+      If variances of two populations are different, the test statistic 
+      $$\small  
+        \frac { ({\overline x}_1 - {\overline x}_2 ) - D_0 }{\sqrt{\frac{s^2_1}{n_1} +\frac{s^2_2}{n_2} } } 
+      $$
+      does not follow a \(t\)-distribution even if populations are normally distributed. The testing hypothesis
+      for two populations means when their population variances are different is called a Behrens-Fisher problem,
+      and several methods to solve this problem have been studied. The Satterthwaite method approximates 
+      the degrees of freedom of the \(t\)-distribution in the decision rule in Table 5.3.1 with \(\phi\) as follows.
+      $$
+        \phi = \frac { \left( \frac{s_1^2}{n_1} + \frac{s_2^2}{n_2} \right)^2 }
+                     { \frac { \left( \frac{s_1^2}{n_1} \right)^2 } {n_1 -1} + \frac { \left( \frac{s_2^2}{n_2} \right)^2 } {n_2 -1} }  
+      $$
+  </div>
+  <p>
+  <div class="mainTableGrey">
+       <b>Example 5.3.2</b> (Monthly wages by male and female) 
+    <br>Random samples of 10 male and female college graduates this year showed their monthly  
+        wages as follows. (Unit 10,000 KRW)
+    <p>
+      <div class="textLeft">
+        Male   	272 255 278 282 296 312 356 296 302 312 <br>
+        Female 	276 280 369 285 303 317 290 250 313 307 <br>
+        Ex ⇨ DataScience ⇨ WageByGender.csv. 
+      </div>
+      <p>
+      Using 『eStat』, answer the following questions.
+      <p>
+      <div class="textL20M20">1) If population variances are assumed to be the same, test the hypothesis at the 5% 
+        significance level of whether the average monthly wage for males and females is the same. 
+      </div>
+      <div class="textL20M20">2) If population variances are assumed to be different, test the hypothesis at the 5% 
+        significance level of whether the average monthly wage for males and females is the same.
+      </div>
+      <p>
+      <b>Answer</b>
+      <p>
+      <div class="textL20M20">
+        1) In  『eStat』, enter raw data of gender (M or F) and income as shown in &lt;Figure 5.3.1&gt; 
+           on the sheet. This type of data input is similar to all statistical packages. 
+           After entering the data, click the icon  for testing two populations' means and select 
+           'Analysis Var' as V2 and 'By Group' variable as V1. A 95% confidence interval graph 
+           that compares the sample means of two populations will be displayed as &lt;Figure 5.3.2&gt;.
+      </div>
+      <p>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/EX080103.png" onclick="window.open(addrStr[25])">
+            <img class="figure30" src="./Figure/Fig050301.png">
+            <div class="figText">&lt;Figure 5.3.1&gt; Data input for testing two populations means </div>
+         </div>
+      <p>
+      <img class="figure70" src="./Figure/Fig050302.png">
+      <div class="figText">&lt;Figure 5.3.2&gt; Dot graph and confidence Intervals by gender for testing two populations means</div>
+      <p>
+      In the options window, as in &lt;Figure 5.3.3&gt; located below the Graph Area, 
+      enter the average difference \(\small D = 0\) for the desired test, select the variance assumption
+      \(\sigma_1^2 = \sigma_2^2\), the 5% significance level and click the [t-test] button. 
+      Then, the graphical result of the testing hypothesis for two populations' means will be shown 
+      as in &lt;Figure 5.3.4&gt; and the test result as in &lt;Figure 5.3.5&gt;.
+      <p>
+      <img class="figure70" src="./Figure/Fig050303.png">
+      <div class="figText">&lt;Figure 5.3.3&gt; Options to test for two populations means</div>
+      <p>
+      <img class="figure70" src="./Figure/Fig050304.png">
+      <div class="figText">&lt;Figure 5.3.4&gt; Testing hypothesis for  and  – case of the same population variances</div>
+      <p>
+      <img class="figure70" src="./Figure/Fig050305.png">
+      <div class="figText">&lt;Figure 5.3.5&gt; The result of testing hypothesis for two populations means if population variances are the same</div>
+      <p>
+      <div class="textL20M20">
+        2) Select the variance assumption \(\sigma_1^2 \ne \sigma_2^2\) at the option window and 
+           click [t-test] button under the graph to display the graph of the hypothesis test and 
+           the test result table as in &lt;Figure 5.3.6&gt; and &lt;Figure 5.3.7&gt;.
+      </div>
+      <p>
+      <img class="figure70" src="./Figure/Fig050306.png">
+      <div class="figText">&lt;Figure 5.3.6&gt; Testing hypothesis for   and   – case of the different population variances</div>
+      <p>
+      <img class="figure70" src="./Figure/Fig050307.png">
+      <div class="figText">&lt;Figure 5.3.7&gt; result of testing hypothesis for two populations means if population variances are different</div>
+  </div>
+  <p>
+  <div  class="mainTablePink">
+         <b>Practice 5.3.1</b>  (Oral Cleanliness by Brushing Methods)<br>
+            Oral cleanliness scores were examined for eight samples using the basic brushing method (coded 1) 
+            and seven samples using the rotation method (coded 2). The data are saved at the following location of 『eStat』.
+            <p>
+            <div clsss="textLeft">Ex ⇨ DataScience ⇨ ToothCleanByBrushMethod.csv</div> 
+            <p>
+            <div class="textL20M20">
+              1) If population variances are the same, test the hypothesis at the 5% significance level to determine whether scores for both brushing methods are the same using 『eStat』.  
+            </div>
+            <div class="textL20M20">
+              2) If population variances are different, test the hypothesis at the 5% significance level to determine whether scores for both brushing methods are the same using 『eStat』. 
+            </div>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/PR080101.png" onclick="window.open(addrStr[63])">
+  </div>
+  <p>
+
+  <!--------------------------------------------------------------------------------->
+  <h3 id="0504">5.4 Testing hypothesis for several population means: Analysis of variances</h3>
+  <p>
+  <div class="mainTable">
+       Section 5.3 discussed comparing the means of two populations using the testing hypothesis. This section 
+       discusses comparing the means of several populations. There are many examples of comparing means of several 
+       populations as follows. 
+    <p>   
+       <div class="textL30M10">
+        -  Are average hours of library usage for each grade the same?
+       </div>
+       <div class="textL30M10">
+        -  Are yields of three different rice seeds equal?
+       </div>
+       <div class="textL30M10">
+        -  In a chemical reaction, are response rates the same at four different temperatures? 
+       </div>
+       <div class="textL30M10">
+        -  Are the average monthly wages of college graduates the same in three different cities? 
+       </div>
+    <br>
+       The group variable used to distinguish population groups, such as the grade or the rice, is called 
+       a <b>factor</b>.
+       This section describes the one-way analysis of variance (ANOVA), which compares population means when there is a 
+       single factor. Let us take a look at the following example.
+  </div>
+  <p>
+  <div class="mainTableGrey">
+       <b>Example 5.4.1</b>
+       We collected samples randomly from each grade to compare the English proficiency scores of each grade at a university,
+       and the data are in Table 5.4.1. The last column is the average 
+       \({\overline y}_{1\cdot}\), \({\overline y}_{2\cdot}\), \({\overline y}_{3\cdot}\), \({\overline y}_{4\cdot}\) for each grade.
+    <p>
+       <table style="width:600px"> 
+         <tr>
+           <th colspan="8">Table 5.4.1  English Proficiency Score by Grade</th>
+         </tr>
+         <tr> 
+           <th style="width:100px"> Socre</th>
+           <th>Student 1</th>
+           <th>Student 2</th>
+           <th>Student 3</th>
+           <th>Student 4</th>
+           <th>Student 5</th>
+           <th>Student 6</th>
+           <th style="width:100px">Student Average</th>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Grade 1</td>
+           <td class="tdCenter">81</td>
+           <td class="tdCenter">75</td>
+           <td class="tdCenter">69</td>
+           <td class="tdCenter">90</td>
+           <td class="tdCenter">72</td>
+           <td class="tdCenter">83</td>
+           <td class="tdCenter">\({\overline y}_{1\cdot}\)=78.3</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">Grade 2</td>
+           <td class="tdCenter">65</td>
+           <td class="tdCenter">80</td>
+           <td class="tdCenter">73</td>
+           <td class="tdCenter">79</td>
+           <td class="tdCenter">81</td>
+           <td class="tdCenter">69</td>
+           <td class="tdCenter">\({\overline y}_{2\cdot}\)=74.5</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">Grade 3</td>
+           <td class="tdCenter">72</td>
+           <td class="tdCenter">67</td>
+           <td class="tdCenter">62</td>
+           <td class="tdCenter">76</td>
+           <td class="tdCenter">80</td>
+           <td class="tdCenter"></td>  
+           <td class="tdCenter">\({\overline y}_{3\cdot}\)=71.4</td>
+         </tr>
+         <tr> 
+           <td class="tdCenter">Grade 4</td> 
+           <td class="tdCenter">89</td>
+           <td class="tdCenter">94</td>
+           <td class="tdCenter">79</td>
+           <td class="tdCenter">88</td>
+           <td class="tdCenter"></td>  
+           <td class="tdCenter"></td>  
+           <td class="tdCenter">\({\overline y}_{4\cdot}\)=87.5</td>
+         </tr>
+       </table>
+       <p class="textLeft">[Ex] ⇨ DataScience ⇨ EnglishScoreByGrade.csv. 
+    <p>
+       <div class="textL20M20">
+         1) Draw a dot graph of test scores for each grade and compare their averages using 『eStat』.
+       </div>
+       <div class="textL20M20">
+         2) Set up a null hypothesis and an alternative hypothesis. Test a hypothesis 
+            whether the average scores of each grade are the same or not. 
+       </div>
+       <div class="textL20M20">
+         3) Apply the one-way analysis of variances to test the hypothesis in question 2).
+       </div>
+       <div class="textL20M20">
+         4) Check the result of the ANOVA test using 『eStat』.
+       </div>
+    <p>
+       <b>Answer</b>
+    <p>
+       <div class="textL20M20">
+         1) Enter data on the sheet to draw a dot graph with data shown in Table 5.4.1 using  『eStat』, and
+            set variable names to 'Grade' and 'Score' as shown in &lt;Figure 5.4.1&gt;. In the variable selection box 
+            appeared by clicking the ANOVA icon on the main menu of 『eStat』, select 'Analysis Var' as ‘Score’ 
+            and 'By Group' as ‘Grade’. The dot graph of English scores by each grade and the 95% confidence interval 
+            are displayed in &lt;Figure 5.4.2&gt;.  
+            Clicking the 'Confidence Interval Graph' button, we can see a more detailed comparison of the population mean
+            on each dot graph. &lt;Figure 5.4.2&gt; shows sample means as \({\overline y}_{1\cdot}\)= 78.3,
+            \({\overline y}_{2\cdot}\) = 74.5, \({\overline y}_{3\cdot}\) = 71.4,
+            \({\overline y}_{4\cdot}\) = 87.5. The sample mean of the 4th grade is 
+            relatively larger than the other grades and \({\overline y}_{2\cdot}\) and \({\overline y}_{3\cdot}\) are similar. 
+            Therefore, we can expect that the population mean 
+            \(\mu_{2}\) and \(\mu_{3}\) would be the same and  \(\mu_{4}\) will differ from three other population means. 
+            However, we need to test whether these differences of sample means are statistically significant.
+
+       </div>
+    <p>
+         <table>
+           <tr>
+             <td style="width:100px"><input class="qrBtn" type="image" src="/estat/eStat/qr/EX090101.png" onclick="window.open(addrStr[27])"></td>
+             <td><img class="figure50" src="./Figure/Fig050401.png"></td>
+           </tr>
+           <tr>
+             <td></td>
+             <td><div class="figText">&lt;Figure 5.4.1&gt; 『eStat』 data input for ANOVA</div></td>
+           </tr>
+         </table>
+    <p>
+       <img class="figure70" src="./Figure/Fig050402.png">
+       <div class="figText">&lt;Figure 5.4.2&gt; 95% Confidence Interval by grade</div>
+    <p>
+       <div class="textL20">
+          Clicking the [Histogram] button under this graph, as in &lt;Figure 5.4.3&gt;, to check the normality of the data will 
+          draw histograms and normal distributions simultaneously, as shown in Figure 5.4.4&gt;
+       </div>
+    <p>
+       <img class="figure70" src="./Figure/Fig050403.png">
+       <div class="figText">&lt;Figure 5.4.3&gt; Options of ANOVA</div>
+    <p>
+       <img class="figure70" src="./Figure/Fig050404.png">
+       <div class="figText">&lt;Figure 5.4.4&gt; Histogram of English score by grade</div>
+    <p>
+       <div class="textL20M20">
+         2) In this example, the null hypothesis to test is that the population means of English scores of the four grades 
+            are all the same, and the alternative hypothesis is that the population means of the English scores are not the same. 
+            In other words, if  \(\mu_1 , \mu_2 , \mu_3 ,\) and \(\mu_4\) are the population means of English scores 
+            for each grade, the hypothesis to test can be written as follows, 
+         <p>
+         <div class="textL30">
+           Null hypothesis \(\small \qquad \qquad \; H_0\): \(\mu_1 = \mu_2 = \mu_3 = \mu_4\) 
+         </div>
+         <div class="textL30">
+           Alternative hypothesis \( \quad \small H_1\): at least one pair of \(\mu_i\) is not the same
+         </div>
+       </div>
+    <p>
+       <div class="textL20M20">
+        3) A measure that can be considered first as a basis for testing differences in multiple sample means would be 
+           the distance from each mean to the overall mean. In other words, if the overall sample mean for all 21 students 
+           is expressed as \(\overline y_{\cdot \cdot}\), the squared distance from each sample mean to the overall mean
+           is as follows when the number of samples in each grade is weighted. This squared distance is called 
+           the <b>between sum of squares (SSB)</b> or the <b>treatment sum of squares (SSTr)</b>. 
+           <p>
+           <div class="textL30">
+             \(\small SSTr = 6(78.3 - {\overline y}_{\cdot \cdot})^2 + 6(74.5 - {\overline y}_{\cdot \cdot})^2 + 5(71.4 - {\overline y}_{\cdot \cdot})^2 + 4(87.5 - {\overline y}_{\cdot \cdot})^2  \) = 643.633
+           </div>
+       </div>
+    <p>
+       <div class="textL20">
+            If the squared distance \(\small SSTr\) is close to zero, all sample means of English scores for four grades are similar.
+            However, this treatment sum of squares can be larger if the number of populations increases. 
+            Modifications are required to become a test statistic to determine whether several population means are equal. 
+            The squared distance from each observation to its sample mean of the grade is called the <b>within sum of squares (SSW)</b> or 
+            the <b>error sum of squares (SSE)</b> as defined below.
+       </div>
+       <p>
+       <div class="textL30">
+            \(\small SSE = (81 -{\overline y}_{1 \cdot})^2 + (75 -{\overline y}_{1 \cdot})^2 + \cdots + (83 -{\overline y}_{1 \cdot})^2\) <br>
+            \(\small \qquad + (65 -{\overline y}_{2 \cdot})^2 + (80 -{\overline y}_{2 \cdot})^2 + \cdots + (69 -{\overline y}_{2 \cdot})^2\) <br>   
+            \(\small \qquad + (72 -{\overline y}_{3 \cdot})^2 + (67 -{\overline y}_{3 \cdot})^2 + \cdots + (80 -{\overline y}_{3 \cdot})^2\) <br>
+            \(\small \qquad + (89 -{\overline y}_{4 \cdot})^2 + (94 -{\overline y}_{4 \cdot})^2 + \cdots + (88 -{\overline y}_{4 \cdot})^2\) <br>  
+            \(\small =  839.033\)
+       </div>
+       <p>
+       <div class="textL20">
+            If population distributions of English scores in each grade follow normal distributions and their variances are 
+            the same, the following test statistic has the \(F_{3, 17}\) distribution.
+       </div>
+       <p>
+       <div class="textL30">
+            \(\small  F_{0} = \frac { \frac{SSTr}{(4-1)} } { \frac{SSE}{(21-4)} } \)
+       </div>
+       <p>
+       <div class="textL20">
+            This statistic can be used to test whether or not the population's English scores in four grades are the same.  
+            In the test statistic, the numerator \(\frac{SSTr}{4-1}\) is called the <b>treatment mean square (MSTr)</b>,
+            which implies a variance between 
+            grade means. The denominator \(\frac{SSE}{21-4}\) is called the <b>error mean square (MSE)</b>,
+            which implies a variance within each grade. The MSE is a pooled variance of four sample variances.
+            Thus, the above test statistics are based on the ratio of two variances, which is why the test of multiple 
+            population means is called an <b>analysis of variance (ANOVA)</b>.
+         <p>
+            The calculated test statistic, which is the observed \(\small F\) value \(\small F_{0}\), using data of 
+            English scores for each grade is as follows.
+       </div>
+       <p>
+       <div class="textL30">
+            \( F_{0} = \frac { \frac{SSTr}{(4-1)} } { \frac{839.033}{(21-4)} } = \frac { \frac{643.633}{(4-1)} } { \frac{SSE}{(21-4)} } = 4.347\)
+       </div>
+       <p>
+       <div class="textL20">
+            Since \(\small F_{3,17;\; 0.05}\) = 3.20, the null hypothesis that population means of English scores 
+            of each grade are the same, \(\small H_0 : \mu_1 = \mu_2 = \mu_3 = \mu_4 \), is rejected at the 5% significance level. 
+            In other words, there is a difference in population means of English scores of each grade. 
+            The following ANOVA table provides a single view of the above calculation.
+       </div>
+       <p>
+            <table style="width:700px">
+                <tr> 
+                  <th>Factor</th>
+                  <th>Sum of Squares</th>
+                  <th>Degree of freedom</th>
+                  <th>Mean Squares</th>
+                  <th>F ratio</th>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Treatment</td>
+                  <td class="tdCenter">SSTr = 643.633</td>
+                  <td class="tdCenter">4-1</td>
+                  <td class="tdCenter">MSTr = \(\frac{643.633}{3}\)</td>
+                  <td class="tdCenter">\(F_0 = 4.347\)</td>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Error</td>
+                  <td class="tdCenter">SSE = 839.033</td>
+                  <td class="tdCenter">21-4</td>
+                  <td class="tdCenter">MSE = \(\frac{839.033}{17}\)</td>
+                  <td class="tdCenter"></td>
+                </tr>
+                <tr> 
+                  <td class="tdCenter">Total</td>
+                  <td class="tdCenter">SST = 1482.666</td>
+                  <td class="tdCenter">20</td>
+                  <td class="tdCenter"></td>
+                  <td class="tdCenter"></td>
+                </tr>
+             </table>
+       <p>
+       <div class="textL20M20">
+            4) In &lt;Figure 5.4.3&gt;, if you select the significance level of 5%, the confidence level of 95%, 
+            and click [ANOVA F test] button, a graph showing the location of the test statistic in the F distribution
+            is appeared as shown in &lt;Figure 5.4.5&gt;. Also, in the Log Area, the mean and confidence interval tables 
+            and test results for each grade appear in &lt;Figure 5.4.6&gt;.
+       </div>
+       <p>
+       <div class="textL20">
+            <img class="figure70" src="./Figure/Fig050405.png">
+            <div class="figText">&lt;Figure 5.4.5&gt;  『eStat』  ANOVA F test</div>
+         <p>
+            <img class="figure70" src="./Figure/Fig050406.png">
+            <div class="figText">&lt;Figure 5.4.6&gt;  『eStat』 Basic Statistics and ANOVA table</div>
+         <p>
+            The analysis of variance is also possible using 『eStatU』 as below. Entering the data as below, 
+            and clicking the [Execute] button will have the same result as in &lt;Figure 5.4.5&gt; and &lt;Figure 5.4.6&gt;.
+       </div> 
+       <p>
+          <!---   ************ html for ANOVA ************  ---->
+       <p>
+          <b>[<span data-msgid="Testing Hypothesis ANOVA">Testing Hypothesis : 3+ Population Means (ANOVA)</span>]</b>
+       <p>
+          <iframe class="example120" src="./example/050401.html"> </iframe>
+  </div>
+  <p>    
+  <div class="mainTable">
+      The above example refers to two variables: the English score and grade. The variable, such as the English score, is 
+      called an <b>analysis variable</b> or a <b>response variable</b>. The response variable is mostly a continuous variable. The 
+      variable used to distinguish populations, such as the grade, is called a <b>group variable</b> or a <b>factor variable</b>, which 
+      is mostly a categorical variable. Each value of a factor variable is called a <b>level</b> of the factor, and the number 
+      of these levels is the number of populations to be compared. In the above example, the factor has four levels, 
+      1st, 2nd, 3rd and 4th grade. The term 'response' or 'factor' is originated to analyze data 
+      in engineering, agriculture, medicine, and pharmacy experiments. 
+      The analysis of variance method that examines the effect of a single factor on the response variable is called the 
+      <b>one-way ANOVA</b>. Table 5.4.2 shows the typical data structure of the one-way ANOVA when the number of levels of a 
+      factor is \(k\), and the numbers of observations at each level are \(n_1 , n_2 , ... , n_k\).
+    <p>
+       <table style="width:500px"> 
+         <tr>
+           <th colspan="3">Table 5.4.2  Notation of the one-way ANOVA</th>
+         </tr>
+         <tr> 
+           <th style="width:100px">Factor</th>
+           <th>Observed values of sample</th>
+           <th style="width:100px">Average</th>
+         </tr>
+         <tr> <td class="tdCenter">Level 1</td>    <td class="tdCenter">\(Y_{11} \; Y_{12}\; \cdots \;Y_{1n_1} \)</td> <td class="tdCenter">\(\overline Y_{1\cdot}\)</td> </tr>
+         <tr> <td class="tdCenter">Level 2</td>    <td class="tdCenter">\(Y_{21} \; Y_{22}\; \cdots \;Y_{2n_2} \)</td> <td class="tdCenter">\(\overline Y_{2\cdot}\)</td> </tr>
+         <tr> <td class="tdCenter">\(\cdots\)</td> <td class="tdCenter">\(\cdots\)</td>                      <td class="tdCenter">\(\cdots\)</td> </tr>
+         <tr> <td class="tdCenter">Level k</td>    <td class="tdCenter">\(Y_{k1} \; Y_{k2}\; \cdots \;Y_{kn_k} \)</td> <td class="tdCenter">\(\overline Y_{k\cdot}\)</td> </tr>
+         <tr> <td></td> <td class="tdRight">Total</td>    <td class="tdCenter">\( {\overline Y}_{\cdot \cdot} \)</td> </tr>
+      </table>
+
+
+    <br>    
+       Statistical model for the one-way analysis of variance is given as follows. 
+       $$
+         \begin{align}
+           Y_{ij} &= \mu_i + \epsilon_{ij} \\
+                  &= \mu + \alpha_i + \epsilon_{ij}, \;i=1,2,...,k; \;j=1,2,..., n_i  \\
+           &\text{where}\;\; \epsilon_{ij} \backsim N(0, \sigma ^2)
+         \end{align}
+       $$
+       \(Y_{ij}\) represents the \(j^{th}\) observed value of the response variable for the \(i^{th}\) level of factor. 
+       The population mean of the \(i^{th}\) level, \(\mu_{i}\), is represented as \(\mu + \alpha_{i}\) where \(\mu\)
+       is the mean of entire population and \(\alpha_{i}\) is the effect of \(i^{th}\) level for the response 
+       variable. \(\epsilon_{ij}\) denotes an error term of the \(j^{th}\) observation 
+       for the \(i^{th}\) level, and the all error terms are assumed independent of each other and follow 
+       the same normal distribution with the mean 0 and variance \(\sigma^{2}\).   
+       The error term \(\epsilon_{ij}\) is a random variable in the response variable due to reasons other than levels of the factor. 
+       For example, in the English score example, differences in English performance for each grade can be caused 
+       by other variables besides the variables of grade, such as individual study hours, gender and IQ. 
+       However, by assuming that these variations are relatively small compared to variations due to differences in grade, the 
+       error term can be interpreted as the sum of these various reasons. 
+       The hypothesis to test can be represented using \(\alpha_{i}\) instead of \(\mu_{i}\) as follows. 
+    <p>
+       <div class="textL20">
+          Null hypothesis \(\qquad \quad \;\;\; H_0\): \(\alpha_1 = \alpha_2 = \alpha_3 = \alpha_4\) = 0 <br>
+       </div>
+       <div class="textL20">
+          Alternative hypothesis \( \quad H_1\): at least one \(\alpha_i\) is not equal to 0
+       </div>
+    <br>
+       The analysis of variance table as Table 5.4.3 is used to test the hypothesis. 
+  </div>
+  <p>
+  <div class="mainTable">
+    <p>
+       <table style="width:700px"> 
+         <tr>
+           <th colspan="5">Table 5.4.3  Analysis of variance table of the one-way ANOVA</th>
+         </tr>
+         <tr> 
+                  <th>Factor</th>
+                  <th>Sum of Squares</th>
+                  <th>Degree of freedom</th>
+                  <th>Mean Squares</th>
+                  <th>F ratio</th>
+         </tr>
+         <tr> 
+                  <td class="tdCenter">Treatment</td>
+                  <td class="tdCenter">SSTr</td>
+                  <td class="tdCenter">\(k-1\)</td>
+                  <td class="tdCenter">MSTr=\(\frac{SSTr}{k-1}\)</td>
+                  <td class="tdCenter">\(F_0 = \frac{MSTr}{MSE}\)</td>
+         </tr>
+         <tr> 
+                  <td class="tdCenter">Error</td>
+                  <td class="tdCenter">SSE</td>
+                  <td class="tdCenter">\(n-k\)</td>
+                  <td class="tdCenter">MSE=\(\frac{SSE}{n-k}\)</td>
+                  <td class="tdCenter"></td>
+         </tr>
+         <tr> 
+                  <td class="tdCenter">Total</td>
+                  <td class="tdCenter">SST</td>
+                  <td class="tdCenter">\(n-1\)</td>
+                  <td class="tdCenter"></td>
+                  <td class="tdCenter"></td>
+         </tr>
+         <tr>
+           <td></td>
+           <td></td>
+           <td colspan="3">where \(\qquad n = \sum_{i=1}^{n} \; n_i\)</td>
+         </tr>        
+       </table>
+       The three sum of squares for the analysis of variances can be described as follows. 
+  </div>
+  <p>
+  <div class="textL20">
+         <b>SST</b> = \(\sum_{i=1}^{k} \sum_{j=1}^{n_i} ( Y_{ij} - {\overline Y}_{\cdot \cdot} )^2 \;\) : <br>
+         The sum of squared distances between observed values of the response variable and the mean of total observations 
+         is called the <b>total sum of squares</b> (SST). 
+         <p>
+         <b>SSTr</b> = \(\sum_{i=1}^{k} \sum_{j=1}^{n_i} ( {\overline Y}_{i \cdot} - {\overline Y}_{\cdot \cdot} )^2 \;\) : <br>
+         The sum of squared distances between the mean of each level and the mean of total observations is called the 
+         <b>treatment sum of squares</b> (SSTr). It represents the variation between level means. 
+         <p>
+         <b>SSE</b> = \(\sum_{i=1}^{k} \sum_{j=1}^{n_i} ( {Y}_{ij} - {\overline Y}_{i \cdot} )^2 \;\) : <br>
+         The sum of squared distances between observations of the \(i^{th}\) level and the mean of the \(i^{th}\) level is referred to as 
+         'within variation', and is called the <b>error sum of squares</b> (SSE).
+  </div>
+  <p>
+  <div class="mainTable">
+       The following logic determines the degree of freedom of each sum of squares. 
+       The SST consists of \(n\) number of squares, \(( Y_{ij} - {\overline Y}_{\cdot \cdot} )^2\), 
+       but \( {\overline Y}_{\cdot \cdot} \) should be calculated first, before SST is calculated,
+       and hence the degree of freedom of SST is \(n-1\). The SSE consists of \(n\) number of squares,
+       \(( {Y}_{ij} - {\overline Y}_{i \cdot} )^2 \), but the  number of values, 
+       \({\overline Y}_{1 \cdot}, {\overline Y}_{2 \cdot}, ... , {\overline Y}_{k \cdot}\) 
+       should be calculated first before SSE is calculated, and hence, the degree of freedom of SSE is \(n-k\).
+       The degree of freedom of SSTr is calculated as the degree of freedom of SST minus the degree of freedom of
+       SSE, which is \(k-1\). In the one-way analysis of variance, the following partition of the sum of 
+       squares and degree of freedom are always established;
+    <p>    
+       Sum of squares:  SST = SSTr + SSE     <br>	
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Degrees of freedom:  \((n-1) = (k-1) + (n-k)\) 
+    <br>    
+       The sum of squares divided by the corresponding degrees of freedom is referred to as the mean squares, and Table 
+       5.4.3 defines the treatment mean squares (MSTr) and error mean squares (MSE).  
+       The treatment mean square implies the average variation between each level of the factor, and the error 
+       mean square implies the average variation within observations in each level. Therefore, if MSTr is relatively 
+       much larger than MSE, we can conclude that the population means of each level, \(\mu_i\), are not the same. So by what 
+       criteria can you say it is relatively much larger?
+    <p>
+       The calculated \(F\) value, \(F_0\), in the last column of the ANOVA table represents the relative size of MSTr and MSE. If 
+       the assumptions of \(\epsilon_{ij}\) are satisfied, and if the null hypothesis
+       \(\small H_0 : \alpha_1 = \alpha_2 = \cdots = \alpha_k \) = 0  is true, then the 
+       test statistic follows a \(F\) distribution with degrees of freedoms \(k-1\) and \(n-k\). 
+       $$
+         F_{0} = \frac { \frac{SSTr}{(k-1)} } { \frac{SSE}{(n-k)} } 
+       $$
+       Therefore, when the significance level is \(\alpha\) for a test, if the calculated value \(F_0\) is greater 
+       than the value of \(F_{k-1,n-k; &alpha;}\), then the null hypothesis is rejected. That is, 
+        it is determined that the population means of each factor level are different. 
+       (Note:  『eStat』 calculates this test's \(p\)-value. Hence, if the \(p\)-value is smaller than 
+       the significance level \(\alpha\), then reject the null hypothesis.)
+  </div>
+  <p>    
+  <div class="mainTablePink">
+         <b>Practice 5.4.1</b> 
+            <b>(Plant Growth by Condition)</b><br>
+            Results from an experiment to compare yields (as measured by the dried weight of plants) obtained under a control 
+            (leveled ‘ctrl’) and two treatment conditions (leveled ‘trt1’ and ‘trt2’). The weight data with 
+            30 observations on control and two treatments (‘crtl’, ‘trt1’, ‘trt2’), are saved at the following location 
+            of  『eStat』. Answer the following using 『eStat』 ,
+            <p>
+            <div class="textLeft"> [Ex] ⇨ DataScience ⇨ PlantGrowth.csv </div>
+            <p> 
+            <div class="textL20M20">
+              1) Draw a dot graph of weights for each control and treatment. 
+            </div>
+            <div class="textL20M20">
+              2) Test a hypothesis whether the weights are the same or not. Use the 5% significance level. 
+            </div>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/PR090101.png" onclick="window.open(addrStr[65])">
+  </div>
+  <p>   
+
+  <!--------------------------------------------------------------------------------->
+  <h3 id="0505">5.5 Regression analysis</h3>
+  <p>
+  <!--------------------------------------------------------------------------------->
+  <h4 id="050501">5.5.1 Correlation analysis</h4>
+  <div class="mainTable">
+       Sample correlation coefficient \(r\) can be used for testing the hypothesis of a population 
+       correlation coefficient \(\rho\). We test usually \(H_0 : \rho = 0\)
+       which tests the existence of linear correlation. This test can be done using \(t\) distribution
+       as follows.
+  </div>
+  <p>
+  <div class="mainTableYellow">
+      <b>Testing a population correlation coefficient</b>
+      <p>
+         Null hypothesis: \(H_0 : \rho = 0\)
+      <p>
+         Test statistic:  \(\quad t_0 = \sqrt{n-2} \frac{r}{\sqrt{1 - r^2 }}\)  
+         follows \(t\) distribution with \(n-2\) degrees of freedom
+      <p>
+         Rejection region of \(H_0\): <br>
+         \( \qquad 1)\; H_1 : \rho < 0 : \;\;\)   Reject if \(\; t_0 < -t_{n-2;\, &alpha;}\)     <br>  
+         \( \qquad 2)\; H_1 : \rho > 0 : \;\;\)   Reject if \(\; t_0 >  t_{n-2;\, &alpha;}\)     <br>    
+         \( \qquad 3)\; H_1 : \rho \ne 0 : \;\;\) Reject if \(\; |t_0 | > t_{n-2;\, &alpha;/2}\)    
+  </div>
+  <p>
+  <div class="mainTableNoIndent">
+       We can also test a hypothesis \(H_0 : \rho = \rho_0\) when \(\rho_0 \ne 0\), but please refer other statistics book.
+  </div>
+  <p>
+  <div class="mainTableGrey">
+       <b>Example 5.5.1</b>
+       Based on the survey of advertising costs and sales for 10 companies that make the same product, 
+       we obtained the following data as in Table 5.5.1. Draw a scatter plot for this data using 『eStat』, 
+       and find the sample correlation coefficient of the two variables. Test the hypothesis that 
+       the population correlation coefficient is zero with the significance level 0.05. 
+    <p>
+       <div class="textLeft">Table 5.5.1  Advertising costs and sales (unit: 1 million USD)</div>
+    <p>
+       <table style="width:300px"> 
+         <tr> 
+           <th>Company</th>
+           <th>Advertise (X)</th>
+           <th>Sales (Y)</th>
+         </tr>
+         <tr> <td class="tdCenter">1</td> <td class="tdCenter"> 4</td> <td class="tdCenter">39</td> </tr>
+         <tr> <td class="tdCenter">2</td> <td class="tdCenter"> 6</td> <td class="tdCenter">42</td> </tr>
+         <tr> <td class="tdCenter">3</td> <td class="tdCenter"> 6</td> <td class="tdCenter">45</td> </tr>
+         <tr> <td class="tdCenter">4</td> <td class="tdCenter"> 8</td> <td class="tdCenter">47</td> </tr>
+         <tr> <td class="tdCenter">5</td> <td class="tdCenter"> 8</td> <td class="tdCenter">50</td> </tr>
+         <tr> <td class="tdCenter">6</td> <td class="tdCenter"> 9</td> <td class="tdCenter">50</td> </tr>
+         <tr> <td class="tdCenter">7</td> <td class="tdCenter"> 9</td> <td class="tdCenter">52</td> </tr>
+         <tr> <td class="tdCenter">8</td> <td class="tdCenter">10</td> <td class="tdCenter">55</td> </tr>
+         <tr> <td class="tdCenter">9</td> <td class="tdCenter">12</td> <td class="tdCenter">57</td> </tr>
+         <tr> <td class="tdCenter">10</td><td class="tdCenter">12</td> <td class="tdCenter">60</td> </tr>
+       </table>
+    <p>
+       <div class="textLeft">[Ex]  ⇨ DataScience  ⇨ SalesByAdvertise.csv.</div>
+    <p>
+       <b>Answer</b>
+    <p>
+       Using 『eStat』 , enter data as shown in &lt;Figure 5.5.1&gt;. If you select the Sales as 'Y Var' and the 
+       Advertise 'by X Var' in the variable selection box that appears when you click the scatter plot icon on the 
+       main menu, the scatter plot will appear as shown in &lt;Figure 5.5.2&gt;. As we can expect, the scatter 
+       plot show that the more investments in advertising, the more sales increase, and not only that, the form of 
+       increase is linear.
+    <p>
+       <table>
+         <tr>
+           <td>
+             <div class="QRFigure">
+               <input class="qrBtn" type="image" src="/estat/eStat/qr/EX120101.png" onclick="window.open(addrStr[37])">
+             </div>
+           </td>
+           <td>
+             <img class="figure50" src="./Figure/Fig050501.png">
+           </td>
+         </tr>
+         <tr>
+           <td></td>
+           <td>
+             <div class="figText">&lt;Figure 5.5.1&gt; Data input in 『eStat』   </div>
+           </td>
+         </tr>
+       </table>
+    <p>
+       <img src="./Figure/Fig050502.png">
+       <div class="figText">&lt;Figure 5.5.2&gt; Scatter plot of sales by advertise</div>
+    <p>
+       To calculate the sample covariance and correlation coefficient, it is convenient to make the following table. 
+       This table can also be used for calculations in regression analysis.
+    <p>
+       <div class="textLeft">Table 5.5.1  A table for calculating the covariance and correlation coefficient</div>
+    <p>
+       <table style="width:600px"> 
+         <tr> 
+           <th>Number</th>
+           <th>\(X\)</th>
+           <th>\(Y\)</th>
+           <th>\(X^2\)</th>
+           <th>\(Y^2\)</th>
+           <th>\(XY\)</th>
+         </tr>
+         <tr> <td class="tdCenter">1</td> <td class="tdCenter"> 4</td> <td class="tdCenter">39</td> <td class="tdCenter">16</td> <td class="tdCenter">1521</td> <td class="tdCenter">156</td> </tr>
+         <tr> <td class="tdCenter">2</td> <td class="tdCenter"> 6</td> <td class="tdCenter">42</td> <td class="tdCenter">36</td> <td class="tdCenter">1764</td> <td class="tdCenter">252</td> </tr>
+         <tr> <td class="tdCenter">3</td> <td class="tdCenter"> 6</td> <td class="tdCenter">45</td> <td class="tdCenter">36</td> <td class="tdCenter">2025</td> <td class="tdCenter">270</td> </tr>
+         <tr> <td class="tdCenter">4</td> <td class="tdCenter"> 8</td> <td class="tdCenter">47</td> <td class="tdCenter">64</td> <td class="tdCenter">2209</td> <td class="tdCenter">376</td> </tr>
+         <tr> <td class="tdCenter">5</td> <td class="tdCenter"> 8</td> <td class="tdCenter">50</td> <td class="tdCenter">64</td> <td class="tdCenter">2500</td> <td class="tdCenter">400</td> </tr>
+         <tr> <td class="tdCenter">6</td> <td class="tdCenter"> 9</td> <td class="tdCenter">50</td> <td class="tdCenter">81</td> <td class="tdCenter">2500</td> <td class="tdCenter">450</td> </tr>
+         <tr> <td class="tdCenter">7</td> <td class="tdCenter"> 9</td> <td class="tdCenter">52</td> <td class="tdCenter">81</td> <td class="tdCenter">2704</td> <td class="tdCenter">468</td> </tr>
+         <tr> <td class="tdCenter">8</td> <td class="tdCenter">10</td> <td class="tdCenter">55</td> <td class="tdCenter">100</td><td class="tdCenter">3025</td> <td class="tdCenter">550</td> </tr>
+         <tr> <td class="tdCenter">9</td> <td class="tdCenter">12</td> <td class="tdCenter">57</td> <td class="tdCenter">144</td><td class="tdCenter">3249</td> <td class="tdCenter">684</td> </tr>
+         <tr> <td class="tdCenter">10</td><td class="tdCenter">12</td> <td class="tdCenter">60</td> <td class="tdCenter">144</td><td class="tdCenter">3600</td> <td class="tdCenter">720</td> </tr>
+         <tr> <td class="tdCenter"><b>Sum</b></td><td class="tdCenter"><b>64</b></td> <td class="tdCenter"><b>497</b></td> <td class="tdCenter"><b>766</b></td><td class="tdCenter"><b>25097</b></td> <td class="tdCenter"><b>4326</b></td> </tr>
+         <tr> <td class="tdCenter"><b>Mean</b></td><td class="tdCenter"><b>8.4</b></td> <td class="tdCenter"><b>49.7</b></td> </tr>
+       </table>
+    <p>
+       Terms which are necessary to calculate the covariance and correlation coefficient are as follows: 
+    <p>
+       \(\small \quad SXX = \sum_{i=1}^{n} (X_i - \overline X )^{2} = \sum_{i=1}^{n} X_{i}^2 - n{\overline X}^{2} = 766 - 10×8.4^2  = 60.4 \)     <br>
+       \(\small \quad SYY = \sum_{i=1}^{n} (Y_i - \overline Y )^{2} = \sum_{i=1}^{n} Y_{i}^2 - n{\overline Y}^{2} = 25097 - 10×49.7^2  = 396.1 \)     <br>
+       \(\small \quad SXY = \sum_{i=1}^{n} (X_i - \overline X )(Y_i - \overline Y ) = \sum_{i=1}^{n} X_{i}Y_{i} - n{\overline X}{\overline Y} = 4326 - 10×8.4×49.7 = 151.2  \)
+    <p>
+       \(\small SXX, SYY, SXY \)represent the sum of squares of \(\small X\), the sum of squares of 
+       \(\small Y\), the sum of squares of \(\small XY\). Hence, the covariance and 
+       correlation coefficient are as follows: 
+    <p>
+       \(\small \quad S_{XY} = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \overline X )(Y_i - \overline Y ) = \frac{151.2}{10-1} = 16.8  \) <br>
+       \(\small \quad r = \frac {\sum_{i=1}^{n} (X_i - \overline X )(Y_i - \overline Y )} { \sqrt{\sum_{i=1}^{n} (X_i - \overline X )^{2} \sum_{i=1}^{n} (Y_i - \overline Y )^{2} } } = \frac{151.2} { \sqrt{ 60.4 × 396.1 } } = 0.978 \)
+    <p>
+       This sample correlation coefficient is consistent with the scatter plot which shows a strong positive 
+       correlation of the two variables.
+       The value of the test statistic \(t_0\) is as follows.
+    <p>
+       \(\qquad \small t_0 = \sqrt{10-2} \frac{0.978}{\sqrt{1 - 0.978^2 }}\) = 13.117
+    <p>
+       Since it is greater than \(t_{8;\; 0.025}\) = 2.306, \(\small H_0 : \rho = 0\) should be rejected. 
+    <p>
+       The correlation analysis can be done using 『eStatU』 by following data input and clicking [Execute] button..
+    <p>
+       <!---   ************ html for Correlation Analysis ************  ---->
+    <p>
+       <b>[<span data-msgid="CorrelationAnalysis"></span>]</b>
+    <p>
+         <iframe class="example140" src="./example/050501.html"> </iframe>
+    <p>
+  </div>
+  <p>
+  <div class="mainTablePink">
+         <b>Practice 5.5.1</b>
+              A professor of statistics argues that a student's final test score can be predicted from his midterm score. 
+              Ten students were randomly selected, and their mid-term and final exam scores are as follows. 
+            <p>
+            <table style="width:300px"> 
+              <tr> 
+                <th>id</th>
+                <th>Mid-term X </th>
+                <th>Final Y</th>
+             </tr>
+             <tr> <td class="tdCenter">1</td> <td class="tdCenter">92</td> <td class="tdCenter">87</td> </tr>
+             <tr> <td class="tdCenter">2</td> <td class="tdCenter">65</td> <td class="tdCenter">71</td> </tr>
+             <tr> <td class="tdCenter">3</td> <td class="tdCenter">75</td> <td class="tdCenter">75</td> </tr>
+             <tr> <td class="tdCenter">4</td> <td class="tdCenter">83</td> <td class="tdCenter">84</td> </tr>
+             <tr> <td class="tdCenter">5</td> <td class="tdCenter">95</td> <td class="tdCenter">93</td> </tr>
+             <tr> <td class="tdCenter">6</td> <td class="tdCenter">87</td> <td class="tdCenter">82</td> </tr>
+             <tr> <td class="tdCenter">7</td> <td class="tdCenter">96</td> <td class="tdCenter">98</td> </tr>
+             <tr> <td class="tdCenter">8</td> <td class="tdCenter">53</td> <td class="tdCenter">42</td> </tr>
+             <tr> <td class="tdCenter">9</td> <td class="tdCenter">77</td> <td class="tdCenter">82</td> </tr>
+             <tr> <td class="tdCenter">10</td><td class="tdCenter">68</td> <td class="tdCenter">60</td> </tr>
+            </table>
+            <p>
+            <div class="textLeft">[Ex]  ⇨ DataScience  ⇨ MidtermFinal.csv.</div>
+            <p>
+            <div class="textL20M20">
+              1) Draw a scatter plot of this data with the X-axis mid-term and Y-axis final scores. What do you think is the relationship between mid-term and final scores?
+            </div>
+            <div class="textL20M20">
+              2) Find the sample correlation coefficient and test the hypothesis that the population correlation 
+                 coefficient is zero with a significance level 0.05.
+            </div>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/PR120101.png" onclick="window.open(addrStr[74])">
+  </div>
+  <p>
+
+  <!--------------------------------------------------------------------------------->
+  <h4 id="050502">5.5.2 Simple linear regression</h4>
+  <p>
+  <div class="mainTable">
+       Data are concentrated around a straight line when two variables show a strong correlation.
+       In this case, <b>linear regression analysis</b> is a statistical model to estimate the straight line 
+       which describes the data's relationship suitably. The estimated model can be applied to the forecasting analysis.
+       For example, a mathematical model of the relationship between 
+       sales (\(\small Y\)) and advertising costs (\(\small X\)) would not only explain the relationship between sales 
+       and advertising costs but would also be able to predict the sales for a given investment for advertisement. 
+       As such, the regression analysis is intended to investigate and predict the degree of relation 
+       between variables and the shape of the relation. 
+    <p>
+       In regression analysis, a mathematical model of 
+       the relation between variables is called a <b>regression equation</b>, and the variable affected 
+       by other related variables is called a <b>dependent variable</b>. The dependent variable is 
+       the variable we would like to describe, which is usually observed in response to other variables, 
+       so it is also called a <b>response variable</b>. In addition, variables that affect the dependent 
+       variable are called <b>independent variables</b>. The independent variable is also referred to 
+       as the <b>explanatory variable</b> because it is used to describe the dependent variable. 
+       In the previous example, if the objective is to analyze the change in sales amounts resulting 
+       from increases and decreases in advertising costs, the sales is a dependent variable, and 
+       the advertising cost is an independent variable. 
+       If the number of independent variables included in the regression equation is one, it is called a 
+       <b>simple linear regression</b>. If the number of independent variables is two or more, it is called a
+       <b>multiple linear regression</b>, explained in section 5.5.3.
+    <p>
+       Simple linear regression analysis has only one independent variable, and the regression equation is 
+       as follows. 
+       $$
+         Y = f(X,\alpha,\beta) = \alpha + \beta X
+       $$
+       In other words, the regression equation is represented by a linear equation of the independent variable,
+       and \(\alpha\) and \(\beta\) are unknown parameters that represent the intercept and slope, respectively. 
+       The \(\alpha\) and \(\beta\) are called the <b>regression coefficients</b>. The above equation represents
+       an unknown linear relationship between \(Y\) and \(X\) in population and is referred to as 
+       the population regression equation.
+    <p>
+       To estimate the regression coefficients \(\alpha\) and \(\beta\), observations of the dependent
+       and independent variables are required, i.e., samples. In general, all of these observations are not 
+       located in a line. It is because, even if the \(Y\) and \(X\) have an exact linear relation, 
+       there may be a measurement error in the observations, or there may not be an exact linear relationship 
+       between \(Y\) and \(X\). Therefore, we can write the regression formula by considering these errors 
+       as follows.
+       $$
+         Y_i = \alpha + \beta X_i + \epsilon_{i}, \quad i=1,2,...,n
+       $$
+       Where \(i\) is the subscript representing the \(i^{th}\) observation, and \(\epsilon_i\) is the 
+       random variable indicating an error with a mean of zero and a variance \(\sigma^2\) which is 
+       independent of each other. The error \(\epsilon_i\) indicates that the observation \(Y_i\) is 
+       how far away from the population regression equation. The above equation includes unknown population 
+       parameters \(\alpha\), \(\beta\), and \(\sigma^2\) and is referred to as a population 
+       regression model. 
+    <p>
+       If \(a\) and \(b\) are the estimated regression coefficients using samples, the fitted regression equation
+       can be written as follows. It is referred to as the sample regression equation.
+       $$
+         {\hat Y}_i = a + b X_i 
+       $$
+       In this expression, \({\hat Y}_i\) represents the estimated value of \(Y\) at \(X=X_i\) as predicted
+       by the appropriate regression equation. These predicted values can not match the actual observed values
+       of \(Y\), and differences between these values are called residuals and denoted as \(e_i\).
+       $$
+         \text{residuals} \qquad e_i = Y_i - {\hat Y}_i , \quad i=1,2,...,n
+       $$
+       The regression analysis makes assumptions about the unobservable error \(\epsilon_i\). 
+       Since the residuals \(e_i\) calculated using the sample values have similar characteristics as 
+       \(\epsilon_i\), they are used to investigate the validity of these assumptions. 
+  </div>
+  <p>
+  <div class="mainTable">
+      When sample data, \(\small (X_1 , Y_1 ) , (X_2 , Y_2 ) , ... , (X_n , Y_n ) \), are given, a straight line 
+      representing it can be drawn in many ways. Since one of the main objectives of a regression analysis is 
+      prediction, we would like to use the estimated regression line that would make the residuals smallest 
+      that the error occurs when predicting the value of Y. However, it is impossible to minimize the residuals'
+      value at all points, and it should be chosen to make the residuals 'totally' smaller. 
+      The most widely used of these methods is a method that minimizes the total sum of squared residuals, 
+      called a <b>method of least squares</b>. 
+  </div>
+  <p>
+  <div class="mainTableYellow">
+       <b>Method of least squares</b>
+    <p>      
+       A method of estimating regression coefficients so that the total sum of the squared errors occurring 
+       in each observation is minimized. i.e., 
+    <p>
+       $$
+       \text{Find} \; \alpha \; \text{and} \; \beta \; \text{which minimize} \quad \sum_{i=1}^{n} \epsilon_{i}^2  =  \sum_{i=1}^{n} ( Y_i - \alpha - \beta X_i  )^2 
+       $$ 
+  </div>
+  <p>
+  <div class="mainTableNoIndent">
+       To obtain the values of \(\alpha\) and \(\beta\) by the least squares method, the sum of squares 
+       above should be differentiated partially with respect to \(\alpha\) and \(\beta\), and equate them zero
+       respectively. If the solution of \(\alpha\) and \(\beta\) of these equations is \(a\) and \(b\), 
+       the equations can be written as follows. 
+       $$
+       \begin{align}
+          a \cdot n + b \sum_{i=1}^{n} X_i  &= \sum_{i=1}^{n} Y_i \\ 
+          a \sum_{i=1}^{n} X_i + b \sum_{i=1}^{n} X_i^2  &= \sum_{i=1}^{n} X_i Y_i \\
+       \end{align}
+       $$
+       The above expression is called a <b>normal equation</b>. The solution \(a\) and \(b\) of this normal
+       equation is called a <b>least squares estimator</b> of \(\alpha\) and \(\beta\), and is given as follows.
+    <p>
+       $$
+       \begin{align}
+          b &= \frac {\sum_{i=1}^{n} (X_i - \overline X ) (Y_i - \overline Y )} { \sum_{i=1}^{n} (X_i - \overline X )^2 } \\ 
+          a &=    \overline Y - b \overline X
+       \end{align}
+       $$
+  </div>
+  <div class="mainTable">
+       After estimating the regression line, how valid it is should be investigated. Since a regression analysis 
+       aims to describe a dependent variable as a function of an independent variable, 
+       it is necessary to find out how much the explanation is. A residual standard error and a coefficient of 
+       determination are used for such validation studies. 
+       Residual standard error \(s\) measures the extent to which observations are scattered around 
+       the estimated line. First, you can define the sample variance of residuals as follows. 
+       $$
+        s^2 = \frac{1}{n-2} \sum_{i=1}^{n} ( Y_i -  {\hat Y}_i )^2 
+       $$
+       The residual standard error \(s\) is the square root of \(s^2\). The \(s^2\) is an estimate of
+       \(\sigma^2\) which is the extent that the observations \(Y\) are spread around the population regression 
+       line. A small value of \(s\) or \(s^2\) indicates that the 
+       observations are close to the estimated regression line, which in turn implies that the regression line represents well the 
+       relationship between the two variables. 
+    <p>
+       However, it is not clear how small the residual standard error \(s\) is, although the smaller the value is, 
+       the better. In addition, the size of the value of \(s\) depends on the unit of \(Y\). A relative measure 
+       called the coefficient of determination is defined to eliminate this shortcoming.  The <b>coefficient 
+       of determination</b> is the ratio of the variation described by the regression line over the total 
+       variation of observation \(Y_i\), so that it is a relative measure that can be used regardless of the 
+       type and unit of a variable.
+       As in the analysis of variance in the previous section, the following partitions of the sum of squares and degrees of 
+       freedom are established in the regression analysis:
+       $$
+       \begin{align}
+         \text{Sum of squares:}  \qquad \;\; SST \;=\; SSE \;+\; SSR \\   	
+         \text{Degrees of freedom:} \quad (n-1) = (n-2) + 1 
+       \end{align}
+       $$
+       Description of the above three sums of squares is as follows.
+  </div>
+  <p>
+  <div class="textL20">
+      <b>Total sum of squares</b>   : \( \small SST = \sum_{i=1}^{n} ( Y_i - {\overline Y} )^2\) <br>
+      The total sum of squares indicating the total variation in observed values of \(\small Y\) is called the 
+      total sum of squares (\(\small SST\)). This \(\small SST\) has the degree of freedom, \(n-1\), and if \(\small SST\) 
+      is divided by the degree of freedom, it becomes the sample variance of \(\small Y_i\). 
+    <p>
+      <b>Error sum of squares</b>    : \( \small SSE = \sum_{i=1}^{n} ( Y_i - {\hat Y}_i )^2\)<br>
+      The error sum of squares (\(\small SSE\)) of the residuals represents the unexplained variation of the 
+      total variation of the \(\small Y\). Since the calculation of this sum of squares requires the estimation of 
+      two parameters \(\alpha\) and \(\beta\), \(\small SSE\) has the degree of freedom \(n-2\). 
+      This is the reason why, in the calculation of the sample variance of residuals \(s^2\), it was divided 
+      by \(n-2\).
+    <p>
+      <b>Regression sum of squares</b> : \( \small SSR = \sum_{i=1}^{n} ( {\hat Y}_i - {\overline Y} )^2 \)<br>	
+      The regression sum of squares (\(\small SSR\)) indicates the variation explained by the regression line 
+      among the total variation of \(\small Y\). This sum of squares has the degree of freedom of 1.
+  </div>
+  <p>
+  <div class="mainTable">
+      If the estimated regression equation fully explains the variation in all samples (i.e., if all 
+      observations are on the sample regression line), the unexplained variation \(\small SSE\) will be zero. Thus, 
+      if the portion of \(\small SSE\) is small among the total sum of squares \(\small SST\), or if the portion of
+      \(\small SSR\) is large, the estimated regression model is more suitable. Therefore, the ratio of \(\small SSR\)
+      to the total variation \(\small SST\), called the <b>coefficient of determination</b>, is defined as a 
+      measure of the suitability of the regression line as follows.
+      $$ \small
+        R^2 = \frac{Explained \;\; Variation}{Total \;\; Variation} = \frac{SSR}{SST}
+      $$
+      The value of the coefficient of determination is always between 0 and 1, and the closer the value is to 1,
+      the more concentrated the samples are around the regression line, which means that the estimated 
+      regression line explains the observations well.
+  </div>
+  <p>
+  <div class="mainTable">
+      If we divide three sums of squares obtained in the above example by their degrees of freedom, each  
+      becomes a variance. For example, if you divide the \(\small SST\) by \(n-1\) degrees of freedom, 
+      then it becomes the sample variance of the observed values \(Y_1 , Y_2 , ... , Y_n\). If you divide 
+      the \(SSE\) by \(n-2\) degrees of freedom, it becomes \(s^2\) which is an estimate of the variance 
+      of error \(\sigma^2\). For this reason, addressing the problems associated with the regression 
+      using the partition of the sum of squares is called the ANOVA of regression. Information required 
+      for ANOVA, such as a calculated sum of squares and degrees of freedom, can be compiled in the ANOVA 
+      table, as shown in Table 5.5.2.
+    <p>
+      <table style="width:650px"> 
+        <tr>
+           <th colspan="5">Table 5.5.2 Analysis of variance table for simple linear regression</th>
+        </tr>
+        <tr> 
+          <th>Source</th>
+          <th>Sum of squares</th>
+          <th>Degrees of freedom</th>
+          <th>Mean Squares</th>
+          <th>F value</th>
+        </tr>
+        <tr>
+          <td class="tdCenter">Regression</td>
+          <td class="tdCenter">SSR</td>
+          <td class="tdCenter">1</td>
+          <td class="tdCenter">MSR =\(\frac{SSR}{1}\)</td>
+          <td class="tdCenter">\(F_0 = \frac{MSR}{MSE}\)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">Error</td>
+          <td class="tdCenter">SSE</td>
+          <td class="tdCenter">\(n-2\)</td>
+          <td class="tdCenter">MSE = \(\frac{SSE}{n-2}\)</td>
+          <td class="tdCenter"></td>
+        </tr>
+        <tr>
+          <td class="tdCenter"><b>Total</b></td>
+          <td class="tdCenter"><b>SST</b></td>
+          <td class="tdCenter">\(n-1\)</td>
+          <td class="tdCenter"></td>
+          <td class="tdCenter"></td>
+        </tr>
+      </table>
+      The sum of squares divided by its degrees of freedom is referred to as mean squares, and Table 5.5.2 
+      defines the regression mean squares (\(\small MSR\)) and error mean squares (\(\small MSE\)) respectively. As the
+      expression indicates, \(\small MSE\) is the same statistic as \(s^2\) which is the estimate of \(\sigma^2\). 
+      The \(\small F\) value given in the last column is used for testing the hypothesis 
+      \(\small H_0: \beta = 0 ,\; H_1 : \beta \ne 0 \). If \(\small \beta\) is not 0, the \(\small F\) value 
+      can be expected to be large because the assumed regression line is valid and the variation of 
+      \(\small Y\) is explained
+      in large part by the regression line. Therefore, we can reversely decide that \(\small \beta\) is not zero
+      if the calculated \(\small F\) ratio is large enough. If the assumptions about the error terms mentioned
+      in the population regression model are valid and if the error terms follow a normal distribution, 
+      the distribution of \(\small F\) value, when the null hypothesis is true, follows \(\small F\) distribution 
+      with 1 and \(n-2\) degrees of freedom. Therefore, if \(\small F_0 > F_{1,n-2;\; &alpha;}\), then we can reject
+      \(\small H_0 : \beta = 0\). 
+      (In  『eStat』, the \(p\)-value for this test is calculated, and the decision can be made using this 
+      \(p\)-value. That is, if the \(p\)-value is less than the significance level, the null hypothesis 
+      \(\small H_0\) is rejected.)
+  </div>
+  <p>
+  <div class="mainTable">
+      One assumption of the error term \(\epsilon\) in the population regression model is that it follows 
+      a normal distribution with a mean of zero and variance of \(\sigma^2\). Under this assumption, 
+      the regression coefficients and other parameters can be estimated and tested. Note that, under the 
+      assumption above, the regression model \(Y = \alpha + \beta X + \epsilon \) follows a normal 
+      distribution with the mean \(\alpha + \beta X \) and variance \(\sigma^2\).
+  </div>
+  <p>
+  <div class="mainTableYellow">
+      <b>1) Inference on the parameter \(\; \beta\)</b><br>
+      The parameter \(\beta\), the slope of the regression line, indicates the existence and extent 
+      of a linear relationship between the dependent and the independent variables. The inference for \(\beta\)
+      can be summarized as follows. The test for hypotheses \(H_0 : \beta = 0\) is used to determine  
+      the independent variable describes the dependent variable significantly or not. The \(F\) test for the hypothesis
+      \(H_0 : \beta = 0\) described in the ANOVA of regression is theoretically the same as in the test below. 
+      <p>
+         Point estimate: \(\small \quad b = \frac {\sum_{i=1}^{n} (X_i - \overline X) (Y_i - \overline Y)} { \sum_{i=1}^{n} (X_i - \overline X)^2 } , \quad b \sim N(\beta, \frac{\sigma^2} {\sum_{i=1}^{n} (X_i - \overline X )^2 } ) \)  <p>
+         Standard error of estimate \(b\):   \(\small \quad SE(b) = \frac{s}{\sqrt {{\sum_{i=1}^{n} (X_i - \overline X)^2} } }\) <p>
+         Confidence interval of \(\; \beta\): \(\quad b \pm t_{n-2; &alpha;/2} \cdot SE(b)\) <p> 
+         Testing hypothesis:  <br>
+         \(\quad\)     Null hypothesis: \(\quad H_0 : \beta = \beta_0\)   <br>
+         \(\quad\)     Test statistic:  \(\quad t = \frac{b -  \beta_0 } { SE (b) }\)   <br>  
+         \(\quad\)     rejection region:  <br>
+         \(\qquad\)      \(H_1 : \beta \lt \beta_0\):  \(\; t < - t_{n-2; &alpha;}\)  <br> 
+         \(\qquad\)      \(H_1 : \beta \gt \beta_0\):  \(\; t > t_{n-2; &alpha;}\)  <br>
+         \(\qquad\)      \(H_1 : \beta \ne \beta_0\):  \(\; |t| > t_{n-2; &alpha;/2}\)  
+  </div>
+
+  <div class="mainTableYellow">
+       <b>2) Inference on the parameter \(\; \alpha\)</b> <br>
+       The inference for the parameter \(\alpha\), which is the intercept of the regression line, can be 
+       summarized below. The parameter \(\alpha\) is not so interesting in most of the analysis 
+       because it represents the average value of the response variable when an independent variable is 0.
+    <p>
+       Point estimate: \(\quad \small a = \overline Y - b  \overline X , \quad a \sim N( \alpha, ( \frac{1}{n} + \frac {{\overline X }^2} { \sum_{i=1}^{n} (X_i - \overline X )^2 } ) \cdot \sigma^2  )  \)  <br>
+       Standard error of estimate \(a\):   \(\small \quad SE(a) = s \cdot \sqrt {\frac{1}{n} + \frac {{\overline X }^2} { \sum_{i=1}^{n} (X_i - \overline X )^2 } ) } \) <br>
+       Confidence interval of \(\; \alpha\): \(\quad a \pm t_{n-2; &alpha;/2} \cdot SE(a)\) <br> 
+       Testing hypothesis:  <br>
+         \(\quad\)     Null hypothesis: \(\quad H_0 : \alpha = \alpha_0\)   <br>
+         \(\quad\)     Test statistic: \(\quad t = \frac{a -  \alpha_0 } { SE (a) }\)   <br>  
+         \(\quad\)     rejection region:  <br>
+         \(\qquad\)      \(H_1 : \alpha \lt \alpha_0\):  \(\; t < - t_{n-2; &alpha;}\)  <br> 
+         \(\qquad\)      \(H_1 : \alpha \gt \alpha_0\):  \(\; t > t_{n-2; &alpha;}\)  <br>
+         \(\qquad\)      \(H_1 : \alpha \ne \alpha_0\):  \(\; |t| > t_{n-2; &alpha;/2}\)  
+  </div>
+
+  <div class="mainTableYellow">
+       <b>3) Inference on the average value \(\; \mu_{Y|x} = \alpha + \beta X_0\)</b><br>
+       At any point in \(X = X_0\), the dependent variable \(Y\) has an average value 
+       \(\mu_{Y|x} = \alpha + \beta X_0\). Estimation of \(\mu_{Y|x}\) is also considered an 
+       important parameter because it means predicting the mean value of \(Y\) .
+    <p>
+         Point estimate: \(\quad {\hat Y}_0 = a + b X_0 \)  <br>
+         Standard error of estimate \({\hat Y}_0\):   \(\small \quad SE({\hat Y}_0) = s \cdot \sqrt { \frac{1}{n} + \frac { (X_0 - \overline X )^2} { \sum_{i=1}^{n} (X_i - \overline X )^2 } } \) <br>
+         Confidence interval of \(\; \mu_{Y|x}\): \(\quad {\hat Y}_0  \pm t_{n-2; &alpha;/2} \cdot SE ({\hat Y}_0  )\)  
+  </div>
+  <p>
+  <div class="mainTable">
+      The confidence interval formula of the mean value \(\mu_{Y|x}\) depends on the value of the \(X\) 
+      given the standard error of the estimate, so the width of the confidence interval depends on the value 
+      of the given \(X\). As the formula for the standard error shows, this width is the narrowest at a time
+      \(\small X = \overline X\), and if \(X\) is the farther away from \(\small \overline X\), the wider it becomes. 
+      If we calculate the confidence interval for the mean value of \(Y\) at each point of \(X\), and then 
+      if we connect the upper and lower limits, we have a <b>confidence band</b> of the 
+      regression line on the above and below of the sample regression line. 
+  </div>
+  <p>
+  <div class="mainTableGrey">
+       <b>Example 5.5.2</b>
+       In Example 5.5.1, find the least squares estimate of the slope and intercept if the sales amount
+       is a dependent variable and the advertising cost is an independent variable. <br>
+       1) Predict the amount of sales when you have spent on advertising by 10.<br>
+       2) Calculate the value of the residual standard error and the coefficient of determination.<br>
+       3) Prepare an ANOVA table and test it using the 5% significance level.
+    <p>
+       <b>Answer</b>
+    <p>
+       1) In Example 5.5.1, the calculation required to obtain the intercept and slope has already been made. 
+       The intercept and slope using this are as follows.
+    <p>
+        \( 
+          \quad b = \small \frac {\sum_{i=1}^{n} (X_i - \overline X ) (Y_i - \overline Y )} { \sum_{i=1}^{n} (X_i - \overline X )^2 } \\
+                  = \frac {151.2}{60.4} = 2.503
+        \) 
+    <br>
+        \(
+          \quad a = \small  \overline Y - b \overline X = 49.7 - 2.503 \times 8.4 = 28.672
+        \)  
+    <p>     
+       Therefore, the fitted regression line is \(\small \hat Y_i = 28.672 + 2.503 X_i \).
+       &lt;Figure 5.5.3&gt; shows the fitted regression line on the original data. 
+       The slope value, 2.5033, means that 
+       if advertising cost increases by one (i.e., one million), sales increase by about 2.5 million.
+    <p>
+       <img class="figure70" src="./Figure/Fig050503.png">
+       <div class="figText">&lt;Figure 5.5.3&gt; Simple linear regression using 『eStat』</div>
+    <p>
+       Prediction of the sales amount of a company with an advertising cost of 10 can be obtained using the 
+       fitted sample regression line as follows.
+    <p>
+        \(\quad \small 28.672  +  (2.503)(10) = 53.702  \)
+    <p>
+       In other words, sales of 53.705 million are expected. That is not to say that all companies with 
+       advertising costs of 10 million USD have sales of 53.705 million USD, but that the average amount of their 
+       sales is about that. Therefore, there may be some differences in individual companies.
+    <p>
+       2) To obtain the residual standard error and the coefficient of determination, it is convenient to make the 
+       following Table 12.2.1. Here, the estimated value \(\small {\hat Y}_i\) of the sales from each value of 
+       \(\small {X}_i\) uses the fitted regression line.
+    <p>
+       \( \qquad \small {\hat Y}_i = 28.672 + 2.503 X_i \)
+    <p>
+      <table style="width:650px"> 
+        <tr> 
+          <th colspan="7">Table 5.5.3  Useful calculations for the residual standard error and coefficient of determination</th>
+        </tr>
+        <tr> 
+          <th>Number</th>
+          <th>\(\small X_i\)</th>
+          <th>\(\small Y_i\)</th>
+          <th>\(\small {\hat Y}_i\)</th>
+          <th>\(\small SST\) <br> \(\small (Y_i - {\overline Y}_i )^2 \)</th>
+          <th>\(\small SSR\) <br> \(\small ({\hat Y}_i - {\overline Y}_i )^2 \)</th>
+          <th>\(\small SSE\) <br> \(\small (Y_i - {\hat Y}_i )^2 \)</th>
+        </tr>
+        <tr> <td class="tdCenter">1</td> <td class="tdCenter"> 4</td> <td class="tdCenter">39</td> <td class="tdCenter">38.639</td> <td class="tdCenter">114.49</td> <td class="tdCenter">122.346</td> <td class="tdCenter">0.130</td </tr>
+        <tr> <td class="tdCenter">2</td> <td class="tdCenter"> 6</td> <td class="tdCenter">42</td> <td class="tdCenter">43.645</td> <td class="tdCenter"> 59.29</td> <td class="tdCenter"> 36.663</td> <td class="tdCenter">2.706</td </tr>
+        <tr> <td class="tdCenter">3</td> <td class="tdCenter"> 6</td> <td class="tdCenter">45</td> <td class="tdCenter">43.645</td> <td class="tdCenter"> 22.09</td> <td class="tdCenter"> 36.663</td> <td class="tdCenter">1.836</td </tr>
+        <tr> <td class="tdCenter">4</td> <td class="tdCenter"> 8</td> <td class="tdCenter">47</td> <td class="tdCenter">48.651</td> <td class="tdCenter">  7.29</td> <td class="tdCenter">  1.100</td> <td class="tdCenter">2.726</td </tr>
+        <tr> <td class="tdCenter">5</td> <td class="tdCenter"> 8</td> <td class="tdCenter">50</td> <td class="tdCenter">48.651</td> <td class="tdCenter">  0.09</td> <td class="tdCenter">  1.100</td> <td class="tdCenter">1.820</td </tr>
+        <tr> <td class="tdCenter">6</td> <td class="tdCenter"> 9</td> <td class="tdCenter">50</td> <td class="tdCenter">51.154</td> <td class="tdCenter">  0.09</td> <td class="tdCenter">  2.114</td> <td class="tdCenter">1.332</td </tr>
+        <tr> <td class="tdCenter">7</td> <td class="tdCenter"> 9</td> <td class="tdCenter">52</td> <td class="tdCenter">51.154</td> <td class="tdCenter">  5.29</td> <td class="tdCenter">  2.114</td> <td class="tdCenter">0.716</td </tr>
+        <tr> <td class="tdCenter">8</td> <td class="tdCenter">10</td> <td class="tdCenter">55</td> <td class="tdCenter">53.657</td> <td class="tdCenter"> 28.09</td> <td class="tdCenter"> 15.658</td> <td class="tdCenter">1.804</td </tr>
+        <tr> <td class="tdCenter">9</td> <td class="tdCenter">12</td> <td class="tdCenter">57</td> <td class="tdCenter">58.663</td> <td class="tdCenter"> 53.29</td> <td class="tdCenter"> 80.335</td> <td class="tdCenter">2.766</td </tr>
+        <tr> <td class="tdCenter">10</td><td class="tdCenter">12</td> <td class="tdCenter">60</td> <td class="tdCenter">58.663</td> <td class="tdCenter">106.09</td> <td class="tdCenter"> 80.335</td> <td class="tdCenter">1.788</td </tr>
+        <tr> <td class="tdCenter"><b>Sum</b></td><td class="tdCenter"><b>64</b></td> <td class="tdCenter"><b>497</b></td> <td class="tdCenter"><b>496.522</b></td> <td class="tdCenter"><b>396.1</b></td> <td class="tdCenter"><b>378.429</b></td> <td class="tdCenter"><b>17.622</b></td </tr>
+        <tr> <td class="tdCenter"><b>Average</td><td class="tdCenter"><b>8.4</b></td> <td class="tdCenter"><b>49.7</b></td> </tr>
+      </table>
+    <p>
+       In Table 12.2.1, \(\small SST\) = 396.1,  \(\small SSR\) = 378.429,  \(\small SSE\) = 17.622. Here, 
+       the relationship of \(\small SST = SSE + SSR\) does not exactly match because number of digits calculation error.
+       The sample variance of residuals is as follows. 
+    <p>
+       \(\qquad \small s^2 = \frac{1}{n-2} \sum_{i=1}^{n} ( Y_i -  {\hat Y}_i )^2 = \frac{17.622}{(10-2)} = 2.203 \)
+    <p>
+       Hence, the residual standard error is \(s\) = 1.484. The coefficient of determination is as follows. 
+    <p>
+       \(\qquad \small R^2 = \frac{SSR}{SST} = \frac{378.429}{396.1} = 0.956\)
+    <p>
+       It means that 95.6% of the total variation in the observed 10 sales amounts can be explained by the 
+       simple linear regression model using a variable of advertising costs, so this regression line is quite 
+       useful. 
+    <p>
+       3) The ANOVA table using the calculated sum of squares is as follows.
+    <p>
+      <table style="width:700px"> 
+        <tr> 
+          <th>Source</th>
+          <th>Sum of squares</th>
+          <th>Degrees of freedom</th>
+          <th>Mean Squares</th>
+          <th>\(\small F\) value</th>
+        </tr>
+        <tr>
+          <td class="tdCenter">Regression</td>
+          <td class="tdCenter">378.42</td>
+          <td class="tdCenter">1</td>
+          <td class="tdCenter">MSR = \(\frac{378.42}{1}\)  = 378.42</td>
+          <td class="tdCenter">\(F_0 = \frac{378.42}{2.20} = 172.0\)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">Error</td>
+          <td class="tdCenter">17.62</td>
+          <td class="tdCenter">10-2</td>
+          <td class="tdCenter">MSE = \(\frac{17.62}{8} = 2.20\)</td>
+          <td class="tdCenter"></td>
+        </tr>
+        <tr>
+          <td class="tdCenter"><b>Total</b></td>
+          <td class="tdCenter"><b>396.04</b></td>
+          <td class="tdCenter"><b>10-1</b></td>
+          <td class="tdCenter"></td>
+          <td class="tdCenter"></td>
+        </tr>
+      </table>
+    <p>
+        Since the calculated \(\small F\) value of 172.0 is much greater than \(\small F_{1,8;\; 0.05} = 5.32 \), 
+        we reject the null hypothesis \(\small H_0 : \beta = 0\) with the significance level \(\alpha\) = 0.05. 
+        Inferences about each parameter with the result of a regression analysis are as follows. 
+    <p>
+       <div class="textL20M20">
+        (a) Inference for \(\beta\)
+       </div>
+    <p>
+       <div class="textL20">
+         The point estimate of \(\beta\) is \(b\) = 2.5033, and the standard error of \(b\) is as follows.
+         <p>
+         \(\quad \small SE(b) = \frac{s}{\sqrt {{\sum_{i=1}^{n} (X_i - \overline X)^2} } } = \frac{1.484}{\sqrt 60.4} = 0.1908\) 
+         <p>
+         Hence, the 95% confidence interval of \(\beta\) using \(t_{8;\; 0.025} \) = 2.056 is as follows. 
+         <p>
+         \(\quad \small 2.5033 \pm (2.056)(0.1908)\) <br>
+         \(\quad \small 2.5033 \pm 0.3922\) <br>
+         \(\quad\)  i.e. the interval (2.1110, 2.8956). 
+         <p>
+         The test statistic for the hypothesis  \(\small H_0 : \beta = 0\), is as follows.
+         <p>
+         \(\quad t= \frac{2.5033 - 0}{0.1908}\)  = 13.12
+         <p>
+         Since \(t_{8; 0.025} \) = 2.056, the null hypothesis \(\small H_0 : \beta = 0\) is rejected with 
+         the significance level of \(\alpha\) = 0.05. This result of the two-sided test can be obtained from 
+         the confidence interval. Since the 95％ confidence interval (1.7720, 3.2346) does not include 0, 
+         the null hypothesis \(\small H_0 : \beta = 0\) can be rejected.
+       </div>
+    <p>
+       <div class="textL20M20">
+         (b) Inference for \(\alpha\)
+       </div>
+    <p>
+       <div class="textL20">
+         The point estimate of \(\alpha\) is \(a\) = 29.672, and its standard error is as follows. 
+         <p>
+          \(\quad \small SE(a) = s \cdot \sqrt {\frac{1}{n} + \frac {{\overline X }^2} { \sum_{i=1}^{n} (X_i - \overline X )^2 }  } = 1.484 \cdot \sqrt { \frac{1}{10} + \frac{8.4^2}{60.4} } \) = 1.670
+         <p>
+         Since the value of \(t\) statistic is \(\frac{29.672}{1.67}\) = 17.1657 and \(t_{8; 0.025}\) = 2.056, 
+         the null hypothesis \(\small H_0 : \alpha = 0\) is also rejected with the significance level 
+         \(\alpha\) = 0.05. 
+       </div>
+    <p>
+       <div class="textL20M20">
+         (c) Inference for the average value of \(\small Y\)
+       </div>
+    <p> 
+       <div class="textL20">
+         In 『eStat』 , the standard error of \(\small \hat Y\), which is the estimate of \(\mu_{Y|x}\), 
+         is calculated at each point of \(\small X\). For example, the point estimate of \(\small Y\) at \(\small X\) = 8 is
+         \(\small \hat Y\) = 28.672 + 2.503 × 8 = 48.696  and its standard error is 0.475. 
+         <p>
+          \(\small  \quad SE({\hat Y}_0) = s \cdot \sqrt { \frac{1}{n} + \frac { (X_0 - \overline X )^2} { \sum_{i=1}^{n} (X_i - \overline X )^2 } } \) <br>
+          \(\small  \qquad \qquad \; = 1.484 \cdot \sqrt { \frac{1}{10} + \frac { (8 - 8.4)^2} {60.4 } }= 0.475 \)
+         <p>
+         Hence, the 95% confidence interval of \(\mu_{Y|x}\) is as follows. 
+         <p>
+          \(\quad \small 48.696 \pm (2.056)×(0.475)\) <br>     
+          \(\quad \small 48.696 \pm 0.978\)     <br>
+          \(\quad\) i.e., the inteval is (47.718, 49.674).    
+         <p>
+         We can calculate the confidence interval for other values of \(\small X\) similarly as follows. 
+         <p>
+          \(\quad \) At \(\small \;X = 4, \quad  38.684 \pm (2.056)×(0.962)  \Rightarrow (36.705, 40.663)\) <br>   
+          \(\quad \) At \(\small \;X = 6, \quad  47.690 \pm (2.056)×(0.656)  \Rightarrow (42.341, 45.039)\) <br>
+          \(\quad \) At \(\small \;X = 9, \quad  51.199 \pm (2.056)×(0.483)  \Rightarrow (50.206, 52.192)\) <br>
+          \(\quad \) At \(\small \;X =12, \quad  58.708 \pm (2.056)×(0.832)  \Rightarrow (56.997, 60.419)\) <br>
+         <p>
+         As we discussed, the confidence interval becomes wider as \(\small X\) is far from \(\small \overline X\). 
+         <p>
+         If you select the [Confidence Band] button from the options below, the regression graph of &lt;Figure 
+         5.5.3&gt;, you can see the confidence band graph on the scatter plot together with the regression line as 
+         &lt;Figure 5.5.4&gt;. If you click the [Correlation and Regression] button, the inference result of each 
+         parameter will appear in the Log Area, as shown in &lt;Figure 5.5.3&gt;.
+       </div>
+    <p>
+       <img class="figure70" src="./Figure/Fig050504.png">
+       <div class="figText">&lt;Figure 5.5.4&gt; Confidence band using 『eStat』 </div>
+    <p>
+       <img class="figure70" src="./Figure/Fig050505.png">
+       <div class="figText">&lt;Figure 5.5.5&gt; Testing hypothesis of regression coefficients</div>
+    <p>
+       <!---   ************ html for Simple Linear Regression Analysis ************  ---->
+       <b>[<span data-msgid="RegressionAnalysis1"></span>]</b>
+    <p>
+       <iframe class="example140" src="./example/050502.html"> </iframe>
+  </div>
+  <p>
+  <div class="mainTablePink">
+       <b>Practice 5.5.2</b>
+       Using the data of [Practice 5.5.1] for the mid-term and final exam scores, find the following: <br>
+       <div class="textL20M20">
+         1) Least squares estimates for the slope and intercept if the final exam score is a dependent variable 
+            and the mid-term scores is an independent variable. <br>
+       </div>
+       <div class="textL20M20">
+         2) Predict the final exam score when you have a mid-term score of 80. <br>
+       </div>
+       <div class="textL20M20">
+         3) Residual standard error and coefficient of determination.  <br>
+       </div>
+       <div class="textL20M20">
+         4) Prepare an ANOVA table and test it using the 5% significance level. <br>
+       </div>
+       <div class="textL20M20">
+         5) Make inferences about each parameter using 『eStat』 and draw the confidence band.
+       </div>
+  </div>
+  <p>
+
+  <!----------------------------------------------------------------------->
+  <h4 id="050503">5.5.3 Multiple linear regression</h4>
+  <p>
+  <div class="mainTable">
+       For actual applications of the regression analysis, the multiple regression models with two or more 
+       independent variables are more frequently used than the simple linear regression with one independent
+       variable. It is rare for a dependent variable to be sufficiently explained by a single
+       independent variable; in most cases, a dependent variable has a relationship with several 
+       independent variables. For example, we can expect that sales will be significantly affected 
+       by advertising costs, examples of simple linear regression, and product quality ratings, 
+       and the number and size of stores sold. The statistical model used to identify
+       the relationship between one dependent variable and several independent variables is called a <b>multiple
+       linear regression analysis</b>. However, the simple linear regression and multiple linear regression 
+       analysis differ only in the number of independent variables involved, and there is no difference in 
+       the analysis method.
+    <p>
+       In the multiple linear regression model, it is assumed that the dependent variable \(Y\) and \(k\) 
+       number of independent variables have the following relational formulas:
+       $$
+          Y_i = \beta_0 + \beta_1 X_{i1} +  \cdots + \beta_k X_{ik} + \epsilon_i
+       $$
+       It means that the dependent variable is represented by the linear function of the independent variables
+       and a random variable that represents the error term as in the simple linear regression model. 
+       The assumption of the error terms is the same as the assumption in the simple linear regression. 
+       In the above equation, \(\beta_0\) is the intercept of \(Y\) axis and \(\beta_i\) is the slope of the Y axis
+       and \(X_i\) which indicates the effect of \(X_i\) to \(Y\) when other independent variables are fixed.
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         <b>Example 5.5.3</b>
+         When logging trees in forest areas, it is necessary to investigate the amount of timber in those areas. 
+         Since it is difficult to measure the volume of a tree directly, we can estimate the 
+         volume using the diameter and height of a tree, which is relatively easy to measure. The data in  
+         Table 5.5.4 showes the values for measuring diameter, height, and volume after sampling 15 trees in a 
+         region. (The diameter was measured 1.5 meters above the ground.) Draw a scatter plot matrix 
+         of this data and consider a regression model for this problem. 
+    <p>
+      <table style="width:400px"> 
+        <tr> 
+          <th colspan="3">Table 5.5.4  Diameter, height and volume of tree</th>
+        </tr>
+        <tr> 
+          <th>Diameter(\(cm\))</th>
+          <th>Height(\(m\))</th>
+          <th>Volume(\(m^3\)) </th>
+        </tr>
+        <tr> <td class="tdCenter">21.0</td> <td class="tdCenter">21.33</td> <td class="tdCenter">0.291</td> </tr>
+        <tr> <td class="tdCenter">21.8</td> <td class="tdCenter">19.81</td> <td class="tdCenter">0.291</td> </tr>
+        <tr> <td class="tdCenter">22.3</td> <td class="tdCenter">19.20</td> <td class="tdCenter">0.288</td> </tr>
+        <tr> <td class="tdCenter">26.6</td> <td class="tdCenter">21.94</td> <td class="tdCenter">0.464</td> </tr>
+        <tr> <td class="tdCenter">27.1</td> <td class="tdCenter">24.68</td> <td class="tdCenter">0.532</td> </tr>
+        <tr> <td class="tdCenter">27.4</td> <td class="tdCenter">25.29</td> <td class="tdCenter">0.557</td> </tr>
+        <tr> <td class="tdCenter">27.9</td> <td class="tdCenter">20.11</td> <td class="tdCenter">0.441</td> </tr>
+        <tr> <td class="tdCenter">27.9</td> <td class="tdCenter">22.86</td> <td class="tdCenter">0.515</td> </tr>
+        <tr> <td class="tdCenter">29.7</td> <td class="tdCenter">21.03</td> <td class="tdCenter">0.603</td> </tr>
+        <tr> <td class="tdCenter">32.7</td> <td class="tdCenter">22.55</td> <td class="tdCenter">0.628</td> </tr>
+        <tr> <td class="tdCenter">32.7</td> <td class="tdCenter">25.90</td> <td class="tdCenter">0.956</td> </tr>
+        <tr> <td class="tdCenter">33.7</td> <td class="tdCenter">26.21</td> <td class="tdCenter">0.775</td> </tr>
+        <tr> <td class="tdCenter">34.7</td> <td class="tdCenter">21.64</td> <td class="tdCenter">0.727</td> </tr>
+        <tr> <td class="tdCenter">35.0</td> <td class="tdCenter">19.50</td> <td class="tdCenter">0.704</td> </tr>
+        <tr> <td class="tdCenter">40.6</td> <td class="tdCenter">21.94</td> <td class="tdCenter">1.084</td> </tr>
+      </table>
+      <p>
+      <div class="textLeft">[Ex]  ⇨ DataScience  ⇨ TreeVolume.csv.</div>
+      <p>
+      <b>Answer</b>
+      <p>
+      Load the data saved at the following location of  『eStat』. 
+      <p>
+      <div class="textLeft">[Ex]  ⇨ DataScience  ⇨ TreeVolume.csv</div>
+      <p>
+      In the variable selection box, which appears by selecting the regression icon, select 'Y variable' 
+      by volume and select ‘by X variable’ as the diameter and height to display a scatter plot matrix, 
+      as shown in &lt;Figure 5.5.6&gt;. It can be observed that there is a high correlation between 
+      volume and diameter, and that volume and height, as well as diameter and height, are also somewhat related.
+      <p>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/EX120301.png" onclick="window.open(addrStr[39])">
+            <img class="figure70" src="./Figure/Fig050506.png">
+            <div class="figText">&lt;Figure 5.5.6&gt; Scatterplot matrix</div>
+         </div>
+      <p>
+        <img class="figure50" src="./Figure/Fig050507.png">
+        <div class="figText">&lt;Figure 5.5.7&gt; Correlation matrix</div>
+      <p>
+        Since the volume is to be estimated using the diameter and height of the tree, the volume is 
+        the dependent variable \(\small Y\), and the diameter and height are independent variables 
+        \(\small X_1 , X_2\) respectively, and we can consider the following regression model.
+      <p>
+        \(\quad Y_i = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \epsilon_i , \quad i=1,2,...,15\)
+      <p>
+      The same analysis of multiple linear regression can be done using 『eStatU』 by following data input and clicking [Execute] button..
+      <p>
+      <!---   ************ html for Multiple Linear Regression Analysis ************  ---->
+      <b>[<span data-msgid="RegressionAnalysis2"></span>]</b>
+      <p>
+         <iframe class="example120" src="./example/050503.html"> </iframe>
+  </div>
+  <p>
+  <div class="mainTablePink">
+           <b>Practice 5.5.3</b>
+              A health scientist randomly selected 20 people to determine the effect of smoking and obesity on 
+              their physical strength and examined the average daily smoking rate (\(x_1\), number/day), 
+              the ratio of weight by height (\(x_2\), kg/m), and the time to continue to exercise with 
+              a certain intensity (\(y\), in hours). Draw a scatter plot matrix of this data and consider 
+              a regression model for this problem. 
+            <p>
+            <table style="width:600px"> 
+              <tr> 
+                <th style="width:200px">smoking rate<br>\(x_1\)</th>
+                <th style="width:200px">ratio of weight by height<br>\(x_2\) </th>
+                <th style="width:200px">time to continue to exercise<br>\(y\)</th>
+              </tr>
+              <tr> <td class="tdCenter">24</td> <td class="tdCenter">53</td> <td class="tdCenter">11</td> </tr>
+              <tr> <td class="tdCenter"> 0</td> <td class="tdCenter">47</td> <td class="tdCenter">22</td> </tr>
+              <tr> <td class="tdCenter">25</td> <td class="tdCenter">50</td> <td class="tdCenter"> 7</td> </tr>
+              <tr> <td class="tdCenter"> 0</td> <td class="tdCenter">52</td> <td class="tdCenter">26</td> </tr>
+              <tr> <td class="tdCenter"> 5</td> <td class="tdCenter">40</td> <td class="tdCenter">22</td> </tr>
+              <tr> <td class="tdCenter">18</td> <td class="tdCenter">44</td> <td class="tdCenter">15</td> </tr>
+              <tr> <td class="tdCenter">20</td> <td class="tdCenter">46</td> <td class="tdCenter"> 9</td> </tr>
+              <tr> <td class="tdCenter"> 0</td> <td class="tdCenter">45</td> <td class="tdCenter">23</td> </tr>
+              <tr> <td class="tdCenter">15</td> <td class="tdCenter">56</td> <td class="tdCenter">15</td> </tr>
+              <tr> <td class="tdCenter"> 6</td> <td class="tdCenter">40</td> <td class="tdCenter">24</td> </tr>
+              <tr> <td class="tdCenter"> 0</td> <td class="tdCenter">45</td> <td class="tdCenter">27</td> </tr>
+              <tr> <td class="tdCenter">15</td> <td class="tdCenter">47</td> <td class="tdCenter">14</td> </tr>
+              <tr> <td class="tdCenter">18</td> <td class="tdCenter">41</td> <td class="tdCenter">13</td> </tr>
+              <tr> <td class="tdCenter"> 5</td> <td class="tdCenter">38</td> <td class="tdCenter">21</td> </tr>
+              <tr> <td class="tdCenter">10</td> <td class="tdCenter">51</td> <td class="tdCenter">20</td> </tr>
+              <tr> <td class="tdCenter"> 0</td> <td class="tdCenter">43</td> <td class="tdCenter">24</td> </tr>
+              <tr> <td class="tdCenter">12</td> <td class="tdCenter">38</td> <td class="tdCenter">15</td> </tr>
+              <tr> <td class="tdCenter"> 0</td> <td class="tdCenter">36</td> <td class="tdCenter">24</td> </tr>
+              <tr> <td class="tdCenter">15</td> <td class="tdCenter">43</td> <td class="tdCenter">12</td> </tr>
+              <tr> <td class="tdCenter">12</td> <td class="tdCenter">45</td> <td class="tdCenter">16</td> </tr>
+            </table>
+            <p>
+              <div class="textLeft">[Ex]  ⇨ DataScience  ⇨ SmokingObesityExercis.csv.</div>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/PR120301.png" onclick="window.open(addrStr[76])">
+  </div>
+  <p>
+  <div class="mainTable">
+      In general, matrices and vectors are used to facilitate the expression of formulas and the calculation of 
+      expressions. For example, if there are \(k\) number of independent variables, the population multiple 
+      regression model at the observation point \(i=1,2,...,n\) is presented as follows.
+      $$
+        \mathbf {Y  = X} \boldsymbol{\beta + \epsilon}
+      $$
+      <p>
+      Here \(\mathbf {Y, X}, \boldsymbol{\beta , \epsilon}\) are defined as follows. 
+      $$
+        {\bf Y} = \left[ \matrix{ Y_1 \\ Y_2 \\ \cdot \\ \cdot \\ Y_n } \right], \quad
+        {\bf X} = \left[ \matrix{ 1 & X_{11} & X_{12} & \cdots & X_{1k} \\
+                                  1 & X_{21} & X_{22} & \cdots & X_{2k} \\ 
+                                    &        &         \cdots \\
+                                    &        &         \cdots \\
+                                  1 & X_{n1} & X_{n2} & \cdots & X_{nk} } \right], \quad
+        {\boldsymbol \beta} = \left[ \matrix{ \beta_0 \\ \beta_1 \\ \cdot \\ \cdot \\ \beta_k } \right], \quad
+        {\boldsymbol \epsilon} = \left[ \matrix{ \epsilon_1 \\ \epsilon_2 \\ \cdot \\ \cdot \\ \epsilon_n } \right]
+      $$
+  </div>
+  <p>
+  <div class="mainTable">
+      In a multiple regression analysis, it is necessary to estimate the \(k+1\) number of regression 
+      coefficients \(\beta_0 , \beta_1 , ... , \beta_k\) using samples. In this case, the least squares method,
+      which minimizes the sum of the squared errors is also used. We find \(\boldsymbol \beta\), which minimizes
+      the following sum of the error squares. 
+      $$
+        S =  \sum_{i=1}^{n} \epsilon_{i}^2 = {\boldsymbol \epsilon ' \boldsymbol \epsilon} = ( \bf Y - \bf X' \boldsymbol \beta )'( \bf Y - \bf X' \boldsymbol \beta )
+      $$
+      As in the simple linear regression, the above error sum of squares is differentiated with respect to 
+      \(\boldsymbol \beta\) and then equate to zero, called a normal equation. The solution of 
+      the equation denoted as \(\bf b\) which is called the least squares estimate of \(\boldsymbol \beta\), 
+      should satisfy the following normal equation. 
+      $$
+        \bf {(X'X) b = X'y} 
+      $$
+      Therefore, if there exists an inverse matrix of \(\bf {X'X}\), the least squares estimator of 
+      \(\boldsymbol \beta\), \(\bf b\), is as follows. 
+      $$
+        \bf {b = (X'X)^{-1} X'y} 
+      $$
+      (Note: Statistical packages uses a different formula, because the above formula causes large amount 
+      of computing error)
+      <p>
+      If the estimated regression coefficients are \({\bf b} = (b_0 , b_1 , ... , b_k )\), the estimate of 
+      the response variable \(Y\) is as follows. 
+      $$
+        {\hat Y}_i = b_0 + b_1 X_{i1} + \cdots + b_k X_{ik}  
+      $$
+      The residuals are as follows.
+      $$
+        \begin{align}
+          e_i &= Y_i - {\hat Y}_i \\
+              &= Y_i - (b_0 + b_1 X_{i1} + \cdots + b_k X_{ik} ) 
+        \end{align}
+      $$
+      using a vector notation, the residual vector \(\bf e\) can be defined as follows. 
+      $$
+        \bf {e = Y - X b} 
+      $$
+      The standardized residual error and coefficient of determination are also used to investigate the validity 
+      of the estimated regression line in the multiple regression analysis. In the simple linear 
+      regression analysis, the computational formula for these measures was given as a function of the residuals,
+       i.e., the observed value of \(Y\) and its predicted value have nothing to do with the number of 
+      independent variables. Therefore, the same formula can be used in the multiple linear regression, and 
+      there is only a difference in the value of the degrees of freedom that each sum of squares has. 
+      In the multiple linear regression analysis, the standard error of residuals is defined as follows.
+      $$
+        s = \sqrt { \frac{1}{n-k-1} \sum_{i=1}^{n} (Y_i - {\hat Y}_i )^2}
+      $$
+      As in simple linear regression, \(s^2\) is a statistic such as the residual mean squares 
+      (\(MSE\)).
+    <p>
+      The coefficient of determination is given in \(R^2 = \frac{SSR}{SST}\) 
+      and its interpretation is as shown in the simple linear regression.
+      The same formula defines the sum of squares as in the simple linear regression, and it can be divided with 
+      corresponding degrees of freedom as follows. The table of the analysis of variance is shown in Table 5.5.5.
+      <p>
+        \(\quad\) Sum of squares     \(\quad \quad \;\;SST = SSE + SSR\) <br>
+        \(\quad\) Degrees of freedom \(\quad (n-1) = (n-k-1) + k\) <br>
+      <p>
+      <table style="width:600px"> 
+        <tr> 
+          <th colspan="5">Table 5.5.5  Analysis of variance table for multiple linear regression analysis</th>
+        </tr>
+        <tr> 
+          <th>Source</th>
+          <th>Sum of squares</th>
+          <th>Degrees of freedom</th>
+          <th>Mean Squares</th>
+          <th>F value</th>
+        </tr>
+        <tr>
+          <td class="tdCenter">Regression</td>
+          <td class="tdCenter">SSR</td>
+          <td class="tdCenter">\(k\)</td>
+          <td class="tdCenter">MSR = \(\frac{SSR}{k}\)</td>
+          <td class="tdCenter">\(F_0 = \frac{MSR}{MSE}\)</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">Error</td>
+          <td class="tdCenter">SSE</td>
+          <td class="tdCenter">\(n-k-1\)</td>
+          <td class="tdCenter">MSE = \(\frac{SSE}{n-k-1}\)</td>
+          <td class="tdCenter"></td>
+        </tr>
+        <tr>
+          <td class="tdCenter"><b>Total</b></td>
+          <td class="tdCenter"><b>SST</b></td>
+          <td class="tdCenter">\(n-1\)</td>
+          <td class="tdCenter"></td>
+          <td class="tdCenter"></td>
+        </tr>
+      </table>
+      The \(F\) value in the above ANOVA table is used to test the significance of the regression equation, 
+      the null hypothesis is that all independent variables are not linearly related to the dependent variables. 
+      $$
+        \begin{align}
+          H_0 &: \beta_1 = \beta_2 = \cdots = \beta_k = 0 \\
+          H_1 &: \text{At least one of } k \text { number of } \beta_i \text{s is not equal to 0}
+        \end{align}
+      $$
+      Since \(F_0\) follows \(F\) distribution with \(k\) and \((n-k-1)\) degrees of freedom under the null 
+      hypothesis, we can reject \(H_0\) at the significance level \(\alpha\) if \(F_0 \gt F_{k,n-k-1 ; &alpha;}\). 
+      Each \(\beta_i\) can also be tested, which is described in the following sections. (Also,  『eStat』  
+      calculates the \(p\)-value for this test, so use this \(p\)-value to test. That is, if the \(p\)-value
+      is less than the significance level, the null hypothesis is rejected.)
+  </div>
+
+  <div class="mainTable">
+      Parameters of interest in multiple linear regression, as in the simple linear regression, are the 
+      expected value of Y and each regression coefficient \(\beta_0 , \beta_1 , \cdots , \beta_k\). The 
+      inference of these parameters \(\beta_0 , \beta_1 , \cdots ,  \beta_k\) is made possible by 
+      obtaining a probability distribution of the point estimates \(b_i\). Under the assumption that the 
+      error terms \(\epsilon_i\) are independent and all have a distribution of \(N(0, \sigma^2 )\), 
+      it can be shown that the distribution of \(b_i\) is as follows.
+      $$
+        b_i \sim N( \beta_i , c_{ii} \cdot \sigma^2 ), \quad i=0,1,2,...,k
+      $$
+      The above \(c_{ii}\) is the \(i^{th}\) diagonal element of the \((k+1)\times (k+1)\) matrix 
+      \(\bf {(X'X)^{-1}}\). In addition, using an estimate \(s^2\) instead of a parameter  \(\sigma^2\), 
+      you can make inferences about each regression coefficient using the \(t\) distribution.
+  </div>
+  <p>
+  <div class="mainTableYellow">
+      <b>Inference on regression coefficient \(\; \beta_i\)</b><br>
+         Point estimate: \(\quad b_i \)  <br>
+         Standard error of estimate \(b\):   \(\quad SE(b_i) = \sqrt c_{ii} \cdot s \) <br>
+         Confidence interval of \(\; \beta_i\): \(\quad b_i \pm t_{n-k-1; &alpha;/2} \cdot SE(b_i)\) <br> 
+         Testing hypothesis:  <br>
+         \(\quad\)     Null hypothesis: \(\quad H_0 : \beta_i = \beta_{i0}\)   <br>
+         \(\quad\)     Test statistic: \(\quad t = \frac{b_i -  \beta_{i0} } { SE (b_i) }\)   <br>  
+         \(\quad\)     Rejection region:  <br>
+         \(\qquad\)      \(\; H_1 : \beta_i \lt \beta_{i0}\): \(\; t < - t_{n-k-1;\; &alpha;}\)  <br> 
+         \(\qquad\)      \(\; H_1 : \beta_i \gt \beta_{i0}\): \(\; t > t_{n-k-1;\; &alpha;}\)  <br>
+         \(\qquad\)      \(\; H_1 : \beta_i \ne \beta_{i0}\): \(\; |t| > t_{n-k-1;\; &alpha;/2}\)  
+  </div>
+  <p>
+  <div class="mainTable">
+      Residual analysis of the multiple linear regression is the same as in the simple linear regression.
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         <b>Example 5.5.4</b>
+         For the tree data of [Example 5.5.3], obtain the least squares estimate of each coefficient of 
+         the proposed regression equation using 『eStat』 and apply the analysis of variance, test for 
+         goodness of fit and test for regression coefficients.
+    <p>
+       <b>Answer</b>
+    <p>
+        In the options window below the scatter plot matrix in &lt;Figure 5.5.6&gt;, click [Regression Analysis] 
+        button. Then, you can find the estimated regression line, ANOVA table, as shown in &lt;Figure 5.5.8&gt; in 
+        the Log Area. The estimated regression equation is as follows. 
+    <p>
+        \(\quad \small {\hat Y}_i = -1.024 + 0.037 X_1 + 0.024 X_2 \)
+    <p>
+        In the above equation, 0.037 represents the increase of the volume of the tree when the diameter
+        (\(\small X_1\)) increases 1(cm). 
+    <p>
+        The \(p\)-value calculated from the ANOVA table in &lt;Figure 5.5.8&gt; at \(\small F\) value of 73.12 
+        is less than 0.0001, so you can reject the null hypothesis \(\small H_0 : \beta_1 = \beta_{2} = 0\)
+        at the significance level \(\alpha\) = 0.05. The coefficient of determination, \(\small R^2\) =  0.924, 
+        implies that 92.4% of the total variances of the dependent variable are explained by the 
+        regression line. Based on the above two results, we can conclude that the diameter and height of 
+        the tree are quite useful in estimating the volume.
+    <p>
+        <img class="figure50" src="./Figure/Fig050508.png">
+        <div class="figText">&lt;Figure 5.5.8&gt;  Result of Multiple Linear Regression</div>
+    <p>
+        Since \(\small {SE}(b_1 ) = 0.003, \; {SE} (b_2 ) = 0.008 \) and \(t_{12; 0.025}\) =  2.179  from 
+        the result in &lt;Figure 5.5.8&gt;, the 95% confidence intervals for each regression 
+        coefficients can be calculated as follows. The difference between this result and the 
+        &lt;Figure 5.5.8&gt; due to the error in the calculation below the decimal point.
+    <p>
+        \(\quad \) 95% confidence interval for \(\beta_1 : \;\; \) 0.037 \(\pm\) (2.179)(0.003) \(\Rightarrow\) (0.029, ~0.045) <br>
+        \(\quad \) 95% confidence interval for \(\beta_2 : \;\; \) 0.024 \(\pm\) (2.179)(0.008) \(\Rightarrow\) (0.006,~ 0.042)
+    <p>
+        In the hypothesis test of \(\small H_0 : \beta_i = 0 , \;\; H_1 : \beta_i \ne 0\) , each \(p\)-value is 
+        less than the significance level of 0.05, so you can reject each null hypothesis. 
+  </div>
+  <p>
+  <div class="mainTablePink">
+      <b>Practice 5.5.4</b>
+        Apply a multiple regression model using 『eStat』 on the regression model of [Practice 5.5.3]. 
+        Obtain the least squares estimate of each coefficient of the proposed regression equation and 
+        apply the analysis of variance, test for goodness of fit, and test for regression coefficients.
+  </div>
+  <p>
+
+
+  <!-------------------------------------------------------------------->
+  <h3 id="0506">5.6  R practice</h3>
+  <p>
+  <h5>R practice</h5>
+  <p>
+  <div class="mainTable">
+       Let us practice testing hypothesess in this chapter using R commands. Since there is no package 
+       for the testing hypothesis in R, we have to calculate test statistic and p-value one by one. 
+       The distribution functions of the normal, t, and F distribution in R will be used to calculate the p-value. 
+    <p>
+       <table style="width:800px;">
+         <tr>
+           <th class="tdLeft" colspan="2">Normal Distribution </th>
+         </tr>
+         <tr>
+           <th class="tdLeft" colspan="2">
+             pnorm(q, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
+           </th>
+         </tr>
+         <tr>
+           <td>q</td>
+           <td>quantile</td>
+         </tr>
+         <tr>
+           <td>mean</td>
+           <td>mean of normal distribution, default = 0.</td>
+         </tr>
+         <tr>
+           <td>sd</td>
+           <td>standard deviation of normal distribution, default = 1.</td>
+         </tr>
+         <tr>
+           <td>lower.tail</td>
+           <td>logical; if TRUE (default), probabilities are P[X≤x], otherwise P[X>x].</td>
+         </tr>
+         <tr>
+           <td>log.p</td>
+           <td>logical; if TRUE, probabilities p are given as log(p).</td>
+         </tr>
+       </table>
+  </div>
+  <p>
+  <div class="mainTable">
+       <table style="width:800px;">
+         <tr>
+           <th class="tdLeft" colspan="2">Student t Distribution </th>
+         </tr>
+         <tr>
+           <th class="tdLeft" colspan="2">
+             pt(q, df, ncp, lower.tail = TRUE, log.p = FALSE)
+           </th>
+         </tr>
+         <tr>
+           <td>q</td>
+           <td>quantile</td>
+         </tr>
+         <tr>
+           <td>df</td>
+           <td>degree of freedom(>0, maybe non-integer). df = Inf is allowed.</td>
+         </tr>
+         <tr>
+           <td>ncp</td>
+           <td>non-centrality parameter δ; currently except for rt(), accurate only for abs(ncp) <= 37.62. If omitted, use the central t distribution.</td>
+         </tr>
+         <tr>
+           <td>lower.tail</td>
+           <td>logical; if TRUE (default), probabilities are P[X≤x], otherwise P[X>x].</td>
+         </tr>
+         <tr>
+           <td>log.p</td>
+           <td>logical; if TRUE, probabilities p are given as log(p).</td>
+         </tr>
+       </table>
+  </div>
+  <p>
+  <div class="mainTable">
+       <table style="width:800px;">
+         <tr>
+           <th class="tdLeft" colspan="2">F Distribution </th>
+         </tr>
+         <tr>
+           <th class="tdLeft" colspan="2">
+             pf(q, df1, df2, ncp, lower.tail = TRUE, log.p = FALSE)
+           </th>
+         </tr>
+         <tr>
+           <td>q</td>
+           <td>quantile</td>
+         </tr>
+         <tr>
+           <td>df1, df2</td>
+           <td>degree of freedom. Inf is allowed.</td>
+         </tr>
+         <tr>
+           <td>ncp</td>
+           <td>non-centrality parameter. If omitted, the central F distribution.</td>
+         </tr>
+         <tr>
+           <td>lower.tail</td>
+           <td>logical; if TRUE (default), probabilities are P[X≤x], otherwise P[X>x].</td>
+         </tr>
+         <tr>
+           <td>log.p</td>
+           <td>logical; if TRUE, probabilities p are given as log(p).</td>
+         </tr>
+       </table>
+  </div>
+  <p>
+  <div class="mainTable">
+    <table style="width:800px;">
+         <tr>
+           <td># Example 5.2.1 Testing hypothesis for a population mean with known population standard deviation. <br>
+               # Enter mu_0, n, xbar, and population standard deviation, then calculate test statistic and p-value.
+           </td>
+         </tr>
+         <tr>
+           <td style="width:650px;">
+             <span style="color:red;">> mu0 <- 1500</span> <br>
+             <span style="color:red;">> n <- 30</span> <br>
+             <span style="color:red;">> xbar <- 1555</span> <br>
+             <span style="color:red;">> sigma <- 200</span> <br>
+             <span style="color:red;">> teststat <- (xbar - mu0) / (sigma / sqrt(n))</span> <br>
+             <span style="color:red;">> teststat</span> <br>
+             [1] 1.506237<br>
+             <span style="color:red;">> pvalue <- pnorm(teststat,0,1,lower.tail = FALSE)</span> <br>
+             <span style="color:red;">> pvalue</span> <br>
+             [1] 0.06600317<br>
+           </td>
+         </tr>
+         <tr>
+           <td># Since p-value is greater than the significance level 5%, we cannot reject the null hypothesis. </td>
+         </tr>
+    </table>
+  </div>
+  <p>
+  <div class="mainTable">
+    <table style="width:800px;">
+         <tr>
+           <td># Example 5.2.2 Testing hypothesis for a population mean with unknown population standard deviation. <br>
+               # Enter mu_0, n, xbar, and sample standard deviation, then calculate test statistic and p-value.
+           </td>
+         </tr>
+         <tr>
+           <td style="width:650px;">
+             <span style="color:red;">> mu0 <- 250</span> <br>
+             <span style="color:red;">> n <- 16</span> <br>
+             <span style="color:red;">> xbar <- 253</span> <br>
+             <span style="color:red;">> s <- 10</span> <br>
+             <span style="color:red;">> teststat <- (xbar - mu0) / (s / sqrt(n))</span> <br>
+             <span style="color:red;">> teststat</span> <br>
+             [1] 1.2<br>
+             <span style="color:red;">> pvalue <- pt(teststat, n-1, lower.tail = FALSE)</span> <br>
+             <span style="color:red;">> pvalue</span> <br>
+             [1]  0.1243749<br>
+           </td>
+         </tr>
+         <tr>
+           <td># Since p-value is greater than the significance level 5%, we cannot reject the null hypothesis. </td>
+         </tr>
+    </table>
+  </div>
+  <p>
+  <div class="mainTable">
+    <table style="width:800px;">
+         <tr>
+           <td># Example 5.3.1 Testing hypothesis for two populations means when population variances are equal. <br>
+               # Enter n1, n2, xbar1, xbar2, s1, and s2, then calculate the pooled variance, test statistic and p-value.
+           </td>
+         </tr>
+         <tr>
+           <td style="width:650px;">
+             <span style="color:red;">> n1 <- 15</span> <br>
+             <span style="color:red;">> n2 <- 14</span> <br>
+             <span style="color:red;">> xbar1 <- 275</span> <br>
+             <span style="color:red;">> xbar2 <- 269</span> <br>
+             <span style="color:red;">> s1 <- 12</span> <br>
+             <span style="color:red;">> s2 <- 10</span> <br>
+             <span style="color:red;">> pooledvar <- ((n1-1)*s1^2 + (n2-1)*s2^2) / (n1+n2-2)</span> <br>
+             <span style="color:red;">> pooledvar</span> <br>
+             [1] 122.8148<br>
+             <span style="color:red;">> teststat <- (xbar1 - xbar2) / sqrt(pooledvar/n1 + pooledvar/n2)</span> <br>
+             <span style="color:red;">> teststat</span> <br>
+             [1] 1.456923<br>
+             <span style="color:red;">> pvalue <- 2 * pt(teststat, n1+n2-2, lower.tail = FALSE)</span> <br>
+             <span style="color:red;">> pvalue</span> <br>
+             [1]   0.1566703<br>
+           </td>
+         </tr>
+         <tr>
+           <td># Since p-value is greater than the significance level 5%, we cannot reject the null hypothesis. </td>
+         </tr>
+    </table>
+  </div>
+  <p>
+  <div class="mainTable">
+       We can use aov() function in R for the analysis of variance.
+    <p>
+       <table style="width:800px;">
+         <tr>
+           <th class="tdLeft" colspan="2">Fit an Analysis of Variance Model using aov()</th>
+         </tr>
+         <tr>
+           <th class="tdLeft" colspan="2">
+             aov(formula, data = NULL, projections = FALSE, qr = TRUE, contrasts = NULL, ...)
+           </th>
+         </tr>
+         <tr>
+           <td>formula</td>
+           <td>A formula specifying the model.</td>
+         </tr>
+         <tr>
+           <td>data</td>
+           <td>A data frame in which the variables specified in the formula will be found. If missing, the variables are searched for in the standard way.</td>
+         </tr>
+         <tr>
+           <td>projections</td>
+           <td>Logical flag: should the projections be returned?</td>
+         </tr>
+         <tr>
+           <td>qr</td>
+           <td>Logical flag: should the QR decomposition be returned?</td>
+         </tr>
+         <tr>
+           <td>contrasts</td>
+           <td>A list of contrasts to be used for some of the factors in the formula. These are not used for any Error term, and supplying contrasts for factors only in the Error term will give a warning.</td>
+         </tr>
+       </table>
+  </div>
+  <p>
+  <div class="mainTable">
+    <table style="width:800px;">
+         <tr>
+           <td># Example 5.4.1 Testing hypothesis for several populations means; one-way ANOVA. <br>
+               # Enter data and change the level as a factor (as.factor()).
+           </td>
+         </tr>
+         <tr>
+           <td style="width:650px;">
+             <span style="color:red;">> y <- c(81,75,69,90,72,83, 65,80,73,79,81,69, 72,67,62,76,80, 89,94,79,88) </span> <br>
+             <span style="color:red;">> f <- c(rep(1,6), rep(2,6), rep(3,5), rep(4,4)) </span> <br>
+             <span style="color:red;">> af <- as.factor(f)</span> <br>
+             <span style="color:red;">> ymean <- tapply(y, af, mean); ymean</span> <br>
+<pre>
+       1        2        3        4 
+78.33333 74.50000 71.40000 87.50000 
+</pre>
+             <span style="color:red;">> boxplot(y ~ af)</span> <br>
+             <img class="figure50" src="./Figure/Fig050601.png">
+             <div class="figText">&lt;Figure 5.6.1&gt; Box plot for each grade</div>
+ 
+             <span style="color:red;">> an1 <- aov(y ~ af)</span> <br>
+             <span style="color:red;">> summary(an1)</span> <br>
+<pre>
+Call:
+   aov(formula = y ~ af)
+
+Terms:
+                      af Residuals
+Sum of Squares  643.6333  839.0333
+Deg. of Freedom        3        17
+
+Residual standard error: 7.025304
+Estimated effects may be unbalanced
+> summary(an1)
+            Df Sum Sq Mean Sq F value Pr(>F)  
+af           3  643.6  214.54   4.347 0.0191 *
+Residuals   17  839.0   49.35                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+</pre>
+           </td>
+         </tr>
+         <tr>
+           <td># Since p-value (Pr(>F) = 0.0191 is less than the significance level 5%, we reject the null hypothesis. </td>
+         </tr>
+    </table>
+  </div>
+  <p>
+  <p>
+  <div class="mainTable">
+       We can use lm() function in R for the regression analysis.
+    <p>
+       <table style="width:800px;">
+         <tr>
+           <th class="tdLeft" colspan="2">Fitting Linear Models using lm()<br>
+               lm is used to fit linear models, including multivariate ones. 
+           </th>
+         </tr>
+         <tr>
+           <th class="tdLeft" colspan="2">
+             lm(formula, data, subset, weights, na.action, method = "qr", model = TRUE, x = FALSE, y = FALSE, qr = TRUE,
+                singular.ok = TRUE, contrasts = NULL, offset, ...)
+           </th>
+         </tr>
+         <tr>
+           <td>formula</td>
+           <td>an object of class "formula": a symbolic description of the model to be fitted. </td>
+         </tr>
+         <tr>
+           <td>data</td>
+           <td>an optional data frame, list or environment containing the variables in the model.</td>
+         </tr>
+         <tr>
+           <td>subset</td>
+           <td>an optional vector specifying a subset of observations to be used in the fitting process. </td>
+         </tr>
+         <tr>
+           <td>weights</td>
+           <td>an optional vector of weights to be used in the fitting process. Should be NULL or a numeric vector. If non-NULL, weighted least squares is used with weights weights (that is, minimizing sum(w*e^2)); otherwise ordinary least squares is used.</td>
+         </tr>
+         <tr>
+           <td>na.action</td>
+           <td>a function which indicates what should happen when the data contain NAs. The default is set by the na.action setting of options, and is na.fail if that is unset. The ‘factory-fresh’ default is na.omit. Another possible value is NULL, no action. Value na.exclude can be useful.</td>
+         </tr>
+         <tr>
+           <td>method</td>
+           <td>the method to be used; for fitting, currently only method = "qr" is supported; method = "model.frame" returns the model frame (the same as with model = TRUE, see below).</td>
+         </tr>
+         <tr>
+           <td>model, x, y, qr</td>
+           <td>logicals. If TRUE the corresponding components of the fit (the model frame, the model matrix, the response, the QR decomposition) are returned.</td>
+         </tr>
+         <tr>
+           <td>singular.ok</td>
+           <td>logical. If FALSE (the default in S but not in R) a singular fit is an error.</td>
+         </tr>
+         <tr>
+           <td>contrasts</td>
+           <td>an optional list. See the contrasts.arg of model.matrix.default.</td>
+         </tr>
+         <tr>
+           <td>offsets</td>
+           <td>this can be used to specify an a priori known component to be included in the linear predictor during fitting. This should be NULL or a numeric vector or matrix of extents matching those of the response. One or more offset terms can be included in the formula instead or as well, and if more than one are specified their sum is used. See model.offset.</td>
+         </tr>
+       </table>
+  </div>
+  <p>
+  <div class="mainTable">
+    <table style="width:800px;">
+         <tr>
+           <td># Example 5.5.1 Regression analysis. <br>
+               # Enter data and change the level as a factor (as.factor()).
+           </td>
+         </tr>
+         <tr>
+           <td style="width:650px;">
+             <span style="color:red;">> x <- c(4,6,6,8,8,9,9,10,12,12) </span> <br>
+             <span style="color:red;">> y <- c(39,42,45,47,50,50,52,55,57,60) </span> <br>
+             <span style="color:red;">> rg <- lm(y ~ x); rg</span> <br>
+<pre> 
+Call:
+lm(formula = y ~ x)
+
+Coefficients:
+(Intercept)            x  
+     28.672        2.503  
+</pre>
+             <span style="color:red;">> plot(x, y); abline(rg)</span> <br>
+             <img class="figure50" src="./Figure/Fig050602.png">
+             <div class="figText">&lt;Figure 5.6.2&gt; Simple linear regression</div>
+             <span style="color:red;">> summary(rg)</span> <br>
+<pre>
+Call:
+lm(formula = y ~ x)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.7119 -1.5695  0.5563  1.2931  1.3079 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  28.6722     1.6703   17.17 1.35e-07 ***
+x             2.5033     0.1908   13.12 1.09e-06 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.483 on 8 degrees of freedom
+Multiple R-squared:  0.9556,    Adjusted R-squared:   0.95 
+F-statistic: 172.1 on 1 and 8 DF,  p-value: 1.085e-06
+</pre>
+           </td>
+         </tr>
+    </table>
+
+  </div>
+  <p>
+  <div class="mainTable">
+    <table style="width:800px;">
+         <tr>
+           <td># Example 5.5.3 Multiple regression analysis. <br>
+               # Enter data and change the level as a factor (as.factor()).
+           </td>
+         </tr>
+         <tr>
+           <td style="width:650px;">
+             <span style="color:red;">> y <- c(0.291,0.291,0.288,0.464,0.532,0.557,0.441,0.515,0.603,0.628,0.956,0.775,0.727,0.704,1.084) </span> <br>
+             <span style="color:red;">> x1 <- c(21.0,21.8,22.3,26.6,27.1,27.4,27.9,27.9,29.7,32.7,32.7,33.7,34.7,35.0,40.6) </span> <br>
+             <span style="color:red;">> x2 <- c(21.33,19.81,19.20,21.94,24.68,25.29,20.11,22.86,21.03,22.55,25.90,26.21,21.64,19.50,21.94) </span> <br>
+             <span style="color:red;">> rg2 <- lm(y ~ x1+x2); rg2</span> <br>
+<pre> 
+Call:
+lm(formula = y ~ x1 + x2)
+
+Coefficients:
+(Intercept)           x1           x2  
+   -1.02357      0.03697      0.02366  
+</pre>
+             <span style="color:red;">> summary(rg2)</span> <br>
+<pre>
+Call:
+lm(formula = y ~ x1 + x2)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.09087 -0.03822 -0.02772  0.03320  0.15786 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -1.023572   0.187535  -5.458 0.000146 ***
+x1           0.036968   0.003491  10.590 1.92e-07 ***
+x2           0.023663   0.008321   2.844 0.014792 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.06947 on 12 degrees of freedom
+Multiple R-squared:  0.9242,    Adjusted R-squared:  0.9115 
+F-statistic: 73.12 on 2 and 12 DF,  p-value: 1.902e-07
+</pre>
+           </td>
+         </tr>
+    </table>
+
+  </div>
+  <p>
+
+  <!--------------------------------------------->
+  <h3 id="0507">5.7 Exercise</h3>
+  <p>
+  <div class="mainTableExercise">
+      <p class="textL30M30">5.1  A psychologist is working on physically disabled workers. Based on experience, 
+        the psychologist believed that the average social (relationship) score of these disabled workers was greater than 80. 
+        Twenty employees were sampled from the score population to obtain the following result:
+        <p class="textLeft">99, 69, 91, 97, 70, 99, 72, 74, 74, 76,  96, 97, 68, 71, 99, 78, 76, 78, 83, 66
+        <p class="textL30">The psychologist wants to know if the average social score of the population is correct. 
+          Assume that the population follows a normal distribution and its standard deviation is 10. 
+          Test with a significance level of 0.05.
+
+      <p class="textL30M30">5.2  The following is the weights of the 10 employees randomly selected who are working in the shipping department of a wholesale food company.
+        <p class="textLeft">154, 154, 186, 243, 159, 174, 183, 163, 192, 181  (unit pound)
+        <p class="textL30">Based on this data, can you say that the average weight of employees working in the shipping department is greater than 160 pound? Use the significance level of 5%.
+
+      <p class="textL30M30">5.3  In a large manufacturer, the company manager claims that the average adaptation score 
+        of all unskilled workers is greater than 60. Forty unskilled workers were selected randomly to check this claim, 
+        and their test scores of adaptation scores were as follows.
+        <p class="textLeft">73 57 96 78 74 42 55 44 91 91  50 65 46 63 82 60 97 79 85 79<br> 
+                            92 50 42 46 86 81 81 83 64 76  40 57 78 66 84 96 94 70 70 81 
+        <p class="textL30">Test the hypothesis at the significance level of 0.05 whether the manager's argument is correct. What is the \(p\)-value?
+
+      <p class="textL30M30">5.4  An analyst studies two types of advertising methods (A and B) retailers tried. The variable is 
+        the sum spent on advertising over the past year. The following are the sample statistics extracted independently from retailers of each type. (Unit million USD)
+        <p class="textLeft">Type A: \(\small n_1 = 60, \; {\overline x}_1 = 14.8, \; s_1^2 = 0.180\)<br>
+                            Type B: \(\small n_1 = 70, \; {\overline x}_2 = 14.5, \; s_2^2 = 0.133\)
+        <p class="textL30">From these data, can you conclude that type A retailers have invested more in advertising than type B retailers? (Significance level = 0.05)
+
+      <p class="textL30M30">5.5  Below are the entrance exam results for selecting new employees at a particular company.  
+        Test whether the male population mean is equal to the female population mean using the significance level 5%. 
+        <p>
+        <table style="width:500px"> 
+          <tr> <th>Male</th> <th>Female</th> </tr>
+          <tr><td class="tdCenter"> 49 86 40 45 48 93 97 58 58 98 <br>
+                                    58 82 52 56 50 85 80 60 62 80 <br>
+                                    62 72 65 60 64 70 78 67 69 88
+              </td> 
+              <td class="tdCenter"> 60 72 66 65 75 78 62 64 74 58 <br>
+                                    68 72 67 61 62 72 79 71 74 73
+              </td>
+          </tr>
+        </table>
+
+      <p class="textL30M30">5.6  An industrial psychologist thinks that the significant factor that workers change jobs is 
+        self-esteem to workers' work. The scholar believes that workers who change jobs frequently (group A) have 
+        lower self-esteem than those who do not (group B). The score data on self-esteem were collected independently by sampling from each group.
+        <p class="textLeft">Group A: 60 45 42 62 68 54 52 55 44 41<br>
+                            Group B: 70 72 74 74 76 91 71 78 78 83 50 52 66 65 53 52
+        <p class="textL30">Can this data support the psychologist's idea? Assume that the population scores are normally 
+           distributed and that the population variance is unknown but the same. (Significance level = 0.01)
+
+      <p class="textL30M30">5.7 A company used four exhibition methods to test customers' responses to new products (A, B, C, and D). 
+        Each exhibition method was used in nine stores by selecting 36 stores that met the company's criteria. 
+        The total sales in USD for the weekend are shown in the following table.
+        <p>
+        <table style="width:400px"> 
+          <tr> 
+            <th>Method A</th>
+            <th>Method B</th>
+            <th>Method C</th>
+            <th>Method D</th>
+          </tr>
+          <tr> <td class="tdCenter">5</td> <td class="tdCenter">2</td> <td class="tdCenter">2</td> <td class="tdCenter">6</td> </tr>
+          <tr> <td class="tdCenter">6</td> <td class="tdCenter">2</td> <td class="tdCenter">2</td> <td class="tdCenter">6</td> </tr>
+          <tr> <td class="tdCenter">7</td> <td class="tdCenter">2</td> <td class="tdCenter">3</td> <td class="tdCenter">7</td> </tr>
+          <tr> <td class="tdCenter">7</td> <td class="tdCenter">3</td> <td class="tdCenter">3</td> <td class="tdCenter">8</td> </tr>
+          <tr> <td class="tdCenter">8</td> <td class="tdCenter">3</td> <td class="tdCenter">2</td> <td class="tdCenter">8</td> </tr>
+          <tr> <td class="tdCenter">6</td> <td class="tdCenter">2</td> <td class="tdCenter">2</td> <td class="tdCenter">8</td> </tr>
+          <tr> <td class="tdCenter">7</td> <td class="tdCenter">3</td> <td class="tdCenter">2</td> <td class="tdCenter">6</td> </tr>
+          <tr> <td class="tdCenter">7</td> <td class="tdCenter">3</td> <td class="tdCenter">3</td> <td class="tdCenter">6</td> </tr>
+          <tr> <td class="tdCenter">6</td> <td class="tdCenter">2</td> <td class="tdCenter">3</td> <td class="tdCenter">6</td> </tr>
+        </table>
+        <div class="textL30M20">
+           1) Draw a scatter plot of sales (y-axis) and exhibition method (x-axis). Mark the average 
+           sales of each exhibition method and connect them with a line. 
+        </div>
+        <div class="textL30M20">
+           2) Test that the sales by each exhibition method are different in the amount of sales with 
+           the 5% significance level. Can you conclude that one of the exhibition methods significantly affects on sales? 
+        </div>
+
+    <p class="textL30M30">5.8  The following table shows mileages in km per liter of gasoline obtained from experiments to compare 
+      three brands of gasoline. In this experiment, seven cars of the same type were used in a 
+      similar situation to reduce the variation of the car. 
+      <p>
+      <table style="width:300px"> 
+         <tr> 
+           <th>Gasoline A</th>
+           <th>Gasoline B</th>
+           <th>Gasoline C</th>
+         </tr>
+         <tr> <td class="tdCenter">14</td> <td class="tdCenter">20</td> <td class="tdCenter">20</td> </tr>
+         <tr> <td class="tdCenter">19</td> <td class="tdCenter">21</td> <td class="tdCenter">26</td> </tr>
+         <tr> <td class="tdCenter">19</td> <td class="tdCenter">18</td> <td class="tdCenter">23</td> </tr>
+         <tr> <td class="tdCenter">16</td> <td class="tdCenter">20</td> <td class="tdCenter">24</td> </tr>
+         <tr> <td class="tdCenter">15</td> <td class="tdCenter">19</td> <td class="tdCenter">23</td> </tr>
+         <tr> <td class="tdCenter">17</td> <td class="tdCenter">19</td> <td class="tdCenter">25</td> </tr>
+         <tr> <td class="tdCenter">20</td> <td class="tdCenter">18</td> <td class="tdCenter">23</td> </tr>
+      </table>
+      <div class="textL30M20">
+        1) Calculate the average mileage of each gasoline brand. Draw a scatter plot of gas mileage 
+        (y-axis) and gasoline brand (x-axis) to compare.
+      </div>
+      <div class="textL30M20">
+        2) From this data, test whether there are differences between gasoline brands for gas mileage 
+        with a 5% significance level.
+      </div>
+
+    <p class="textL30M30">5.9 The result of a survey on job satisfaction of three companies (A, B, and C) is as 
+        follows: Test whether the averages of job satisfaction of the three companies are different 
+        with a 5% significance level. 
+      <p>
+      <table style="width:300px"> 
+         <tr> 
+           <th>Company A</th>
+           <th>Company B</th>
+           <th>Company C</th>
+         </tr>
+         <tr> <td class="tdCenter">69</td> <td class="tdCenter">56</td> <td class="tdCenter">71</td> </tr>
+         <tr> <td class="tdCenter">67</td> <td class="tdCenter">63</td> <td class="tdCenter">72</td> </tr>
+         <tr> <td class="tdCenter">65</td> <td class="tdCenter">55</td> <td class="tdCenter">70</td> </tr>
+         <tr> <td class="tdCenter">59</td> <td class="tdCenter">59</td> <td class="tdCenter">68</td> </tr>
+         <tr> <td class="tdCenter">68</td> <td class="tdCenter">52</td> <td class="tdCenter">74</td> </tr>
+         <tr> <td class="tdCenter">61</td> <td class="tdCenter">57</td> <td class="tdCenter"></td> </tr>
+         <tr> <td class="tdCenter">66</td> <td class="tdCenter"></td>   <td class="tdCenter"></td> </tr>
+      </table>
+   
+    <p class="textL30M30">5.10 The following data shows studying time for a week (\(\small X\)) and the grade (\(\small Y\)) of six students.
+      <p>
+      <table style="width:300px"> 
+         <tr> <th>Studying time (\(\small X\))</th> <th>Grade (\(\small Y\))</th> </tr>
+         <tr> <td class="tdCenter">15</td> <td class="tdCenter">2.0</td> </tr>
+         <tr> <td class="tdCenter">28</td> <td class="tdCenter">2.7</td> </tr>
+         <tr> <td class="tdCenter">13</td> <td class="tdCenter">1.3</td> </tr>
+         <tr> <td class="tdCenter">20</td> <td class="tdCenter">1.9</td> </tr>
+         <tr> <td class="tdCenter"> 4</td> <td class="tdCenter">0.9</td> </tr>
+         <tr> <td class="tdCenter">10</td> <td class="tdCenter">1.7</td> </tr>
+      </table>
+      <p>
+      <div class="textL30M20">         
+        1) Find a regression line. 
+      </div>
+      <div class="textL30M20">         
+        2) Calculate a 95% confidence interval in the average score of a student who studies an average of 12 hours a week.
+      </div>
+      <div class="textL30M20">         
+        3) Test for hypothesis \(\small H_0 : \beta = 0.10 , H_1 : \beta < 0.10\),   (significance level &alpha; = 0.01).
+      </div>
+
+    <p class="textL30M30">5.11  An economist argues that there is a clear relationship between coffee and sugar prices. 
+        'When people buy coffee, they will also buy sugar. Isn't it natural that the higher the 
+        demand, the higher the price?' We collected the following sample data to test his theory.
+      <p>
+      <table style="width:300px"> 
+         <tr> 
+           <th>Year</th>
+           <th>Coffee price</th>
+           <th>Sugar Price</th>
+         </tr>
+         <tr> <td class="tdCenter">1985</td> <td class="tdCenter">0.68</td> <td class="tdCenter">0.245</td> </tr>
+         <tr> <td class="tdCenter">1986</td> <td class="tdCenter">1.21</td> <td class="tdCenter">0.126</td> </tr>
+         <tr> <td class="tdCenter">1987</td> <td class="tdCenter">1.92</td> <td class="tdCenter">0.092</td> </tr>
+         <tr> <td class="tdCenter">1988</td> <td class="tdCenter">1.81</td> <td class="tdCenter">0.086</td> </tr>
+         <tr> <td class="tdCenter">1989</td> <td class="tdCenter">1.55</td> <td class="tdCenter">0.101</td> </tr>
+         <tr> <td class="tdCenter">1990</td> <td class="tdCenter">1.87</td> <td class="tdCenter">0.223</td> </tr>
+         <tr> <td class="tdCenter">1991</td> <td class="tdCenter">1.56</td> <td class="tdCenter">0.212</td> </tr>
+      </table>
+      <div class="textL30M20">         
+        1) Prepare a scatter plot with the coffee price on \(\small X\) axis and the sugar price on \(\small Y\) axis. 
+           Is this data true to this economist's theory?
+      </div>
+      <div class="textL30M20">         
+        2) Test this economist's theory by using a regression analysis. 
+      </div>
+
+    <p class="textL30M30">5.12  A health scientist randomly selected 20 people to determine the effects of smoking and 
+        obesity on their physical strength and examined the average daily smoking rate (\(x_1\), 
+        number/day), the ratio of weight by height (\(x_2\), kg/m), and the time to continue to exercise 
+        with a certain intensity (\(y\), in hours). Test whether smoking and obesity can affect your 
+        exercising time with a certain intensity. Apply a multiple regression model by using   『eStat』.
+      <p>
+      <table style="width:500px"> 
+         <tr> 
+           <th>smoking rate<br>\(x_1\)</th>
+           <th>ratio of weight by height<br>\(x_2\)</th>
+           <th>Atime to continue to exercise<br>\(y\)</th>
+         </tr>
+         <tr> <td class="tdCenter">24</td> <td class="tdCenter">53</td> <td class="tdCenter">11</td> </tr>
+         <tr> <td class="tdCenter"> 0</td> <td class="tdCenter">47</td> <td class="tdCenter">22</td> </tr>
+         <tr> <td class="tdCenter">25</td> <td class="tdCenter">50</td> <td class="tdCenter"> 7</td> </tr>
+         <tr> <td class="tdCenter"> 0</td> <td class="tdCenter">52</td> <td class="tdCenter">26</td> </tr>
+         <tr> <td class="tdCenter"> 5</td> <td class="tdCenter">40</td> <td class="tdCenter">22</td> </tr>
+         <tr> <td class="tdCenter">18</td> <td class="tdCenter">44</td> <td class="tdCenter">15</td> </tr>
+         <tr> <td class="tdCenter">20</td> <td class="tdCenter">46</td> <td class="tdCenter"> 9</td> </tr>
+         <tr> <td class="tdCenter"> 0</td> <td class="tdCenter">45</td> <td class="tdCenter">23</td> </tr>
+         <tr> <td class="tdCenter">15</td> <td class="tdCenter">56</td> <td class="tdCenter">15</td> </tr>
+         <tr> <td class="tdCenter"> 6</td> <td class="tdCenter">40</td> <td class="tdCenter">24</td> </tr>
+         <tr> <td class="tdCenter"> 0</td> <td class="tdCenter">45</td> <td class="tdCenter">27</td> </tr>
+         <tr> <td class="tdCenter">15</td> <td class="tdCenter">47</td> <td class="tdCenter">14</td> </tr>
+         <tr> <td class="tdCenter">18</td> <td class="tdCenter">41</td> <td class="tdCenter">13</td> </tr>
+         <tr> <td class="tdCenter"> 5</td> <td class="tdCenter">38</td> <td class="tdCenter">21</td> </tr>
+         <tr> <td class="tdCenter">10</td> <td class="tdCenter">51</td> <td class="tdCenter">20</td> </tr>
+         <tr> <td class="tdCenter"> 0</td> <td class="tdCenter">43</td> <td class="tdCenter">24</td> </tr>
+         <tr> <td class="tdCenter">12</td> <td class="tdCenter">38</td> <td class="tdCenter">15</td> </tr>
+         <tr> <td class="tdCenter"> 0</td> <td class="tdCenter">36</td> <td class="tdCenter">24</td> </tr>
+         <tr> <td class="tdCenter">15</td> <td class="tdCenter">43</td> <td class="tdCenter">12</td> </tr>
+         <tr> <td class="tdCenter">12</td> <td class="tdCenter">45</td> <td class="tdCenter">16</td> </tr>
+      </table>
+
+  </div>
+
+</div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
+        
+        /* ajust the height when click the toc
+           the code is from https://github.com/twbs/bootstrap/issues/1768
+        */
+        var shiftWindow = function() { scrollBy(0, -50) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+        
+        /*add Bootstrap styles to tables*/
+        var tables = document.getElementsByTagName("table");
+        for(var i = 0; i < tables.length; ++i){
+            tables[i].className += "table table-bordered table-hover";
+        }
+    </script>
+
+</body>
+</html>
+

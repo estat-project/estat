@@ -1,4 +1,4 @@
-﻿      var bar = d3.select("#chart");
+      var bar = d3.select("#chart");
 
       // 초기하분포 초기화면 셋팅
       var i, j, k, sum, nvalue, info;

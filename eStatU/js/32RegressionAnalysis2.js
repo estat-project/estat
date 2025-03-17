@@ -1,4 +1,4 @@
-﻿      var chart     = d3.select("#chart"); 
+      var chart     = d3.select("#chart"); 
       var i, r;
       var svgWidth    = 600;
       var svgHeight   = 600;
@@ -8,91 +8,116 @@
       var graphHeight = svgHeight - margin.top - margin.bottom;
       var checkTitle  = true;
       var mTitle, yTitle, xTitle, yobs, x1obs, x2obs, x3obs, x4obs, x5obs, tobs, numVar;
-      var fontsize = "1em";
+      var ngroup  = 1;
+      var fontsize  = "1em";
+      var linearFunction = 0;
       var statF     = new Array(30);
-      var rowmax    = 200;
-      var colmax    = 6;
-      var xdata     = new Array(rowmax);
-      var ydata     = new Array(rowmax);
-      var yydata    = new Array(rowmax);
-      var x1data    = new Array(rowmax);
-      var x2data    = new Array(rowmax);
-      var x3data    = new Array(rowmax);
-      var x4data    = new Array(rowmax);
-      var x5data    = new Array(rowmax);
-      var avgX      = new Array(colmax);
-      var Cov       = new Array(colmax);
-      var Corr      = new Array(colmax);
-      var D         = new Array(colmax);
-      for (j = 0; j < colmax; j++) {
-        D[j]      = new Array(rowmax);
-        Cov[j]    = new Array(colmax);
-        Corr[j]   = new Array(colmax);
+      var rowMax    = 200;
+      var colMax    = 6;
+      var gdataValue= new Array(rowMax);
+      var xdata     = new Array(rowMax);
+      var ydata     = new Array(rowMax);
+      var yydata    = new Array(rowMax);
+      var x1data    = new Array(rowMax);
+      var x2data    = new Array(rowMax);
+      var x3data    = new Array(rowMax);
+      var x4data    = new Array(rowMax);
+      var x5data    = new Array(rowMax);
+      var avgX      = new Array(colMax);
+      var Cov       = new Array(colMax);
+      var Corr      = new Array(colMax);
+      var D         = new Array(colMax);
+      var Dtrain    = new Array(colMax);
+      for (j = 0; j < colMax; j++) {
+        D[j]      = new Array(rowMax);
+        Cov[j]    = new Array(colMax);
+        Corr[j]   = new Array(colMax);
+        Dtrain[j]   = new Array(rowMax);
       }
-      var yhat     = new Array(rowmax);
-      var stdResidual = new Array(rowmax);
-      var Hii      = new Array(rowmax);
-      var T        = new Array(colmax);
-      var Beta     = new Array(colmax);
-      var Cii      = new Array(colmax);
-      var tdvarName = ["Y", "X1", "X2", "X3", "X4", "X5"];
+      var yhat     = new Array(rowMax);
+      var stdResidual = new Array(rowMax);
+      var Hii      = new Array(rowMax);
+      var T        = new Array(colMax);
+      var Beta     = new Array(colMax);
+      var Cii      = new Array(colMax);
+      var svarName = new Array(colMax);
+      var tdvarName = ["Y", "X\u2081", "X\u2082", "X\u2083", "X\u2084", "X\u2085"];
       var tdvarNameSub = ["Y", "X<sub>1</sub>", "X<sub>2</sub>", "X<sub>3</sub>", "X<sub>4</sub>", "X<sub>5</sub>"];
+      var Xvarname     = ["X\u2081", "X\u2082", "X\u2083", "X\u2084", "X\u2085", "X\u2086"];
 
       chart.selectAll("*").remove();
       // input data control ===================================================
-      d3.select("#data1").on("input", function() {
-        stat = simplestat("#data1");  
+      d3.select("#data321").on("input", function() {
+        stat = simplestat("#data321");  
         yydata = data;  
         yobs = stat.n;
       });
-      d3.select("#data2").on("input", function() {
-        stat = simplestat("#data2");  
+      d3.select("#data322").on("input", function() {
+        stat = simplestat("#data322");  
         x1data = data; 
         x1obs = stat.n;
       });
-      d3.select("#data3").on("input", function() {
-        stat = simplestat("#data3");  
+      d3.select("#data323").on("input", function() {
+        stat = simplestat("#data323");  
         x2data = data; 
         x2obs = stat.n;
       });
-      d3.select("#data4").on("input", function() {
-        stat = simplestat("#data4");  
+      d3.select("#data324").on("input", function() {
+        stat = simplestat("#data324");  
         x3data = data; 
         x3obs = stat.n;
       });
-      d3.select("#data5").on("input", function() {
-        stat = simplestat("#data5");  
+      d3.select("#data325").on("input", function() {
+        stat = simplestat("#data325");  
         x4data = data; 
         x4obs = stat.n;
       });
-      d3.select("#data6").on("input", function() {
-        stat = simplestat("#data6");  
+      d3.select("#data326").on("input", function() {
+        stat = simplestat("#data326");  
         x5data = data; 
         x5obs = stat.n;
       });
 
       updateData = function() {
-        document.getElementById("data1").value = '';
-        document.getElementById("data2").value = '';    
-        document.getElementById("data3").value = '';    
-        document.getElementById("data4").value = '';    
-        document.getElementById("data5").value = '';    
-        document.getElementById("data6").value = '';    
+        document.getElementById("data321").value = '';
+        document.getElementById("data322").value = '';    
+        document.getElementById("data323").value = '';    
+        document.getElementById("data324").value = '';    
+        document.getElementById("data325").value = '';    
+        document.getElementById("data326").value = '';    
       }
 
       // erase Data and Graph
       d3.select("#erase").on("click",function() {
         chart.selectAll("*").remove();
-        document.getElementById("data1").value = "";
-        document.getElementById("data2").value = "";
-        document.getElementById("data3").value = "";
-        document.getElementById("data4").value = "";
-        document.getElementById("data5").value = "";
-        document.getElementById("data6").value = "";
+        document.getElementById("name321").value = "";
+        document.getElementById("name322").value = "";
+        document.getElementById("name323").value = "";
+        document.getElementById("name324").value = "";
+        document.getElementById("name325").value = "";
+        document.getElementById("name326").value = "";
+        document.getElementById("data321").value = "";
+        document.getElementById("data322").value = "";
+        document.getElementById("data323").value = "";
+        document.getElementById("data324").value = "";
+        document.getElementById("data325").value = "";
+        document.getElementById("data326").value = "";
       })
 
       d3.select("#executeRegression").on("click", function(){  
           chart.selectAll("*").remove();  // 전화면 제거
+          // variable name
+          tdvarName[0] = document.getElementById("name321").value;
+          tdvarName[1] = document.getElementById("name322").value;
+          tdvarName[2] = document.getElementById("name323").value;
+          tdvarName[3] = document.getElementById("name324").value;
+          tdvarName[4] = document.getElementById("name325").value;
+          tdvarName[5] = document.getElementById("name326").value;
+          if (tdvarName[0] == "") tdvarName[0] = "Y";
+          for (i = 1; i < colMax; i++) {
+            if (tdvarName[i] == "") tdvarName[i] = Xvarname[i-1];
+          } 
+
           // 입력행이 같은지 체크
           if (yobs == 0 || x1obs == 0 ) {
             chart.append("text").attr("class","mean").attr("x", 250).attr("y", margin.top + 40)
@@ -188,12 +213,15 @@
           }
           tobs = yobs;
 
-          // title
-          mTitle = d3.select("#mtitle").node().value;
-          yTitle = d3.select("#ytitle").node().value;
-          xTitle = d3.select("#xtitle").node().value;
-          // 통계량
-          drawScatterMatrix(numVar, tobs);
+          // scatterplot matrix
+          var iter = 0; // for group color
+//          var numgroup = 1;
+//          drawScatterMatrixByGroup(numVar, tobs, iter, numgroup);
+          for (i = 0; i < numVar; i++) {
+            svarName[i] = tdvarName[i];
+            for (j = 0; j < tobs; j++) Dtrain[i][j] = D[i][j];
+          } 
+          drawScatterMatrixByGroup(numVar, svarName, tobs, ngroup, gdataValue, linearFunction);
           statRegression(numVar, tobs);
           statMultivariate(numVar, tobs);
           multivariateTable(numVar, tobs);
@@ -204,7 +232,8 @@
       d3.select("#scatterplotMatrix").on("click", function() {
           if (tobs < 1) return;
           chart.selectAll("*").remove();  // 전화면 제거
-          drawScatterMatrix(numVar, tobs);
+//          drawScatterMatrixByGroup(numVar, tobs, iter, numgroup);
+          drawScatterMatrixByGroup(numVar, svarName, tobs, ngroup, gdataValue, linearFunction);
       })
        // 회귀분석 잔차와 예측값
       d3.select("#regressResidual").on("click", function() {
@@ -235,256 +264,8 @@
         saveAs(new Blob([head + d3.select("#screenTable").html() + tail]), "eStatULog.html");
       });
 
-// 산점도행렬 그리기 ----------------------------------------------------------------------------------------------
-function drawScatterMatrix(numVar, tobs) {
-    var i, j, k, m, p, q, tx, ty;
-    var subWidth, subHeight;
-    var temp, tempx, tempy, tempw, temph, xstep, maxNormal;
-    var nvaluH, gxminH, gxmaxH, gxrangeH, gyminH, gymaxH, gyrangeH, freqmax, tobs;
-    var tstat = new Array(20);
-    var tdata = new Array(rowmax);
-    var dataValueH = new Array(rowmax);
-    var ninterval = 101;
-    margin = {
-        top: 80,
-        bottom: 50,
-        left: 80,
-        right: 80
-    };
-
-    // 히스토그램 bins    
-    nvalueH = 17;
-    graphWidth = svgWidth - margin.left - margin.right;
-    graphHeight = svgHeight - margin.top - margin.bottom;
-    subWidth = graphWidth / numVar;
-    subHeight = graphHeight / numVar;
-    // 주제목
-    chart.append("text")
-        .style("stroke", "black")
-        .style("font-size", "17px")
-        .style("font-family", "sans-seirf")
-        .style("text-anchor", "middle")
-        .attr("x", margin.left + graphWidth / 2)
-        .attr("y", margin.top / 2)
-        .text(svgStr[89][langNum])
-    // y제목
-    for (i = 0; i < numVar; i++) {
-        chart.append("text") // y 왼쪽
-            .style("stroke", myColor[0])
-            .style("font-size", "8px")
-            .style("font-family", "sans-seirf")
-            .style("text-anchor", "end")
-            .attr("x", margin.left - 5)
-            .attr("y", margin.top + i * subHeight + subHeight / 2)
-            .text(tdvarName[i])
-        chart.append("text") // y 오른쪽
-            .style("stroke", myColor[0])
-            .style("font-size", "8px")
-            .style("font-family", "sans-seirf")
-            .style("text-anchor", "start")
-            .attr("x", margin.left + graphWidth + 5)
-            .attr("y", margin.top + i * subHeight + subHeight / 2)
-            .text(tdvarName[i])
-    }
-    // x제목
-    for (j = 0; j < numVar; j++) {
-        chart.append("text") // x 아래
-            .style("stroke", myColor[0])
-            .style("font-size", "8px")
-            .style("font-family", "sans-seirf")
-            .style("text-anchor", "middle")
-            .attr("x", margin.left + j * subWidth + subWidth / 2)
-            .attr("y", margin.top + graphHeight + 15)
-            .text(tdvarName[j])
-        chart.append("text") // x 위에 
-            .style("stroke", myColor[0])
-            .style("font-size", "8px")
-            .style("font-family", "sans-seirf")
-            .style("text-anchor", "middle")
-            .attr("x", margin.left + j * subWidth + subWidth / 2)
-            .attr("y", margin.top - 10)
-            .text(tdvarName[j])
-    }
-
-    for (i = 0; i < numVar; i++) {
-        for (j = 0; j < numVar; j++) {
-            for (k = 0; k < tobs; k++) {
-                xdata[k] = parseFloat(D[i][k]);
-                ydata[k] = parseFloat(D[j][k]);
-            }
-            // 그래프 화면 정의 
-            xmin = gmin(tobs, xdata);
-            xmax = gmax(tobs, xdata);
-            ymin = gmin(tobs, ydata);
-            ymax = gmax(tobs, ydata);
-            xbuffer = (xmax - xmin) / 5; // 경계점이 보이기위한 완충거리
-            ybuffer = (ymax - ymin) / 3; // 경계점이 보이기위한 완충거리
-            gxmin = xmin - xbuffer;
-            gxmax = xmax + xbuffer;
-            gymin = ymin - ybuffer;
-            gymax = ymax + ybuffer;
-            gxrange = gxmax - gxmin;
-            gyrange = gymax - gymin;
-
-            // 산점도 행렬 박스
-            tx = margin.left + i * subWidth;
-            ty = margin.top + j * subHeight;
-            chart.append("rect")
-                .attr("x", tx)
-                .attr("y", ty)
-                .attr("width", subWidth)
-                .attr("height", subHeight)
-                .attr("fill", "white")
-                .style("stroke", "black")
-                .style("stroke-width", "1px")
-
-            if (i == j) { // 히스토그램
-                TotalStat(tobs, xdata, tstat);
-                // 히스토그램 bins    
-                gxminH = tstat[1] - 4 * tstat[2];
-                gxmaxH = tstat[1] + 4 * tstat[2];
-                gxrangeH = gxmaxH - gxminH;
-                xstep = (gxmaxH - gxminH) / (nvalueH - 1);
-                for (m = 0; m < nvalueH + 1; m++) {
-                    dataValueH[m] = gxminH + m * xstep;
-                }
-                // 구간별 도수구하기
-                for (m = 1; m < nvalueH; m++) tdata[m] = 0;
-                for (k = 0; k < tobs; k++) {
-                    for (m = 1; m < nvalueH; m++) {
-                        if (xdata[k] < dataValueH[m]) {
-                            tdata[m]++;
-                            break;
-                        }
-                    } // endof m
-                } // endof k
-                freqmax = 0;
-                for (m = 1; m < nvalueH; m++) { // 최대도수
-                    if (tdata[m] > freqmax) freqmax = tdata[m];
-                }
-                gyminH = 0;
-                gymaxH = freqmax / (tobs * xstep); // 확률 히스토그램 높이
-                maxNormal = 1 / (tstat[2] * Math.sqrt(2 * Math.PI))
-//                maxNormal = 1 / (std[0] * Math.sqrt(2 * Math.PI))
-                if (maxNormal > gymaxH) gymaxH = maxNormal;
-                gymaxH = gymaxH + (gymaxH / 8);
-                gyrangeH = gymaxH - gyminH;
-                // 정규성 검정을 위한 히스토그램
-                for (m = 0; m < nvalueH - 1; m++) {
-                    temp = tdata[m + 1] / (tobs * xstep);
-                    tempx = tx + subWidth * (dataValueH[m] - gxminH) / gxrangeH;
-                    tempy = ty + subHeight - subHeight * (temp - gyminH) / gyrangeH;
-                    tempw = subWidth * xstep / gxrangeH;
-                    temph = subHeight * (temp - gyminH) / gyrangeH;
-                    chart.append("rect")
-                        .style("fill", myColor[i * numVar + j])
-                        .attr("class", "bar")
-                        .style("stroke", "black")
-                        .style("stroke-width", "1px")
-                        .attr("x", tempx)
-                        .attr("y", tempy)
-                        .attr("width", tempw)
-                        .attr("height", temph)
-                } // endof m
-                // Normal curve
-                var step = (dataValueH[nvalueH - 1] - dataValueH[0]) / ninterval;
-                tx1 = dataValueH[0];
-                ty1 = normal_pdf(tstat[1], tstat[2], tx1);
-                gx1 = tx + subWidth * (tx1 - gxminH) / gxrangeH;
-                gy1 = ty + subHeight - subHeight * (ty1 - gyminH) / gyrangeH;
-                for (k = 1; k < ninterval; k++) {
-                    tx2 = tx1 + step;
-                    ty2 = normal_pdf(tstat[1], tstat[2], tx2);
-                    gx2 = tx + subWidth * (tx2 - gxminH) / gxrangeH;
-                    gy2 = ty + subHeight - subHeight * (ty2 - gyminH) / gyrangeH;
-                    chart.append("line")
-                        .attr("x1", gx1)
-                        .attr("x2", gx2)
-                        .attr("y1", gy1)
-                        .attr("y2", gy2)
-                        .style("stroke", "red")
-                    tx1 = tx2;
-                    ty1 = ty2;
-                    gx1 = gx2;
-                    gy1 = gy2;
-                } // endof k
-            } else { // 산점도
-                for (k = 0; k < tobs; k++) {
-                    str = "(" + xdata[k] + "," + ydata[k] + ")";
-                    chart.append("circle")
-                        .attr("data-sheetrowid", k)
-                        .attr("class", "datapoint")
-                        .style("fill", myColor[i * numVar + j])
-                        .style("stroke", "black")
-                        .attr("r", 4)
-                        .attr("cx", tx + subWidth * (xdata[k] - gxmin) / gxrange)
-                        .attr("cy", ty + subHeight - subHeight * (ydata[k] - gymin) / gyrange)
-                        .append("title")
-                        .text(str)
-                } // endof k
-            }
-        } // endof j
-    } // endof i
-}
-// Statistics for array in tdata[i], i=0,..,tobs-1 
-function TotalStat(tobs, tdata, tstat) {
-    var i;
-    var sum, sqsum, tavg, tvarn, tvarnm1, tstdn, tstdnm1, tmini, tQ1, tmedian, tQ3, tmaxi;
-    var dataA = new Array(tobs);
-
-    for (i = 0; i < tobs; i++) dataA[i] = tdata[i];
-    sortAscend(tobs, dataA);
-    for (i = 0; i < tobs; i++) dataA[i] = parseFloat(dataA[i]);
-
-    sum = dataA[0];
-    for (i = 1; i < tobs; i++) {
-        sum += dataA[i];
-    }
-    if (tobs == 0) tavg = NaN;
-    else tavg = sum / tobs;
-    sqsum = 0;
-    for (i = 0; i < tobs; i++) {
-        temp = dataA[i] - tavg;
-        sqsum += temp * temp;
-    } // endof i
-    if (tobs < 1) {      tvarn = NaN;   tstdn = NaN;              tvarnm1 = NaN; tstdnm1 = NaN;}
-    else if (tobs < 2) { tvarn = sqsum; tstdn = Math.sqrt(tvarn); tvarnm1 = NaN; tstdnm1 = NaN;} 
-    else {tvarn = sqsum / tobs; tstdn = Math.sqrt(tvarn);  tvarnm1 = sqsum / (tobs - 1); tstdnm1 = Math.sqrt(tvarnm1); }
- 
-    tmini    = dataA[0];
-    tmaxi    = dataA[tobs - 1];
-    tQ1      = d3.quantile(dataA, 0.25);
-    tmedian  = d3.quantile(dataA, 0.5);
-    tQ3      = d3.quantile(dataA, 0.75);
-    tstat[0] = tobs;
-    tstat[1] = tavg;
-    tstat[2] = tstdnm1;
-    tstat[3] = tmini;
-    tstat[4] = tQ1;
-    tstat[5] = tmedian;
-    tstat[6] = tQ3;
-    tstat[7] = tmaxi;
-    tstat[8] = tvarn;
-    tstat[9] = tstdn;
-    tstat[10]= tvarnm1;
-}
-// Sorting in ascending 
-function sortAscend(dobs, dataA) {
-    var i, j, temp;
-    var nvalue = 0;
-    for (i = 0; i < dobs - 1; i++) {
-        for (j = i; j < dobs; j++) {
-            if (dataA[i] > dataA[j]) {
-                temp = dataA[i];
-                dataA[i] = dataA[j];
-                dataA[j] = temp;
-            }
-        }
-    }
-}
 // 회귀분석 통계량 ----------------------------------------------------------------------------------------------
 function statRegression(numVar, tobs) {
-
     var i, j, k, nAug;
     var temp, tempx, tempy, sum;
     var SSR, SSE, SST, MSE, info, multpleR, stdErr;

@@ -1,4 +1,4 @@
-﻿      var i, j, k, temp, info;
+      var i, j, k, temp, info;
       var nn, digit;
       var left1, right1, left2, right2, left3, right3;
       var mean, std, mu1, mu2, sigma1, sigma2, rho;

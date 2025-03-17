@@ -10,6 +10,7 @@
     <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
     <script src="/estat/eStat/js/language.js" ></script>
     <script src="/estat/eStat/js/eStatU.js"></script>
+    <script src="/estat/eStat/js/eStatDM.js"></script>
     <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
     <script src="/estat/eStat/lib/convertSVG.js"></script>
 </head>
@@ -27,75 +28,61 @@
     <br>
     <table class="data">
 	<tr>
-          <td> &nbsp; &nbsp;</td>
-	  <td><b>Y <span data-msgid="input data"></span></b></td>
-	  <td colspan="3"><input type="text" size=65 id="data1"></td>
+	  <td colspan="2">&nbsp;&nbsp;<span data-msgid="Variable Name"></span></td>
+	  <td colspan="3">&nbsp;&nbsp;<span data-msgid="input data"></span></td>
 	</tr>
 	<tr>
-          <td> &nbsp; &nbsp;</td>
-	  <td><b>X<sub>1</sub> <span data-msgid="input data"></span></b></td>
-	  <td colspan="3"><input type="text" size=65 id="data2"></td>
+	  <td>&nbsp;&nbsp;<b>Y</b></td>
+          <td><input type="text" size=8 id="name321"></td>
+	  <td colspan="3"><input type="text" size=65 id="data321"></td>
 	</tr>
 	<tr>
-          <td> &nbsp; &nbsp;</td>
-	  <td><b>X<sub>2</sub> <span data-msgid="input data"></span></b></td>
-	  <td colspan="3"><input type="text" size=65 id="data3"></td>
+	  <td>&nbsp;&nbsp;<b>X<sub>1</sub></b></td>
+          <td><input type="text" size=8 id="name322"></td>
+	  <td colspan="3"><input type="text" size=65 id="data322"></td>
 	</tr>
 	<tr>
-          <td> &nbsp; &nbsp;</td>
-	  <td><b>X<sub>3</sub> <span data-msgid="input data"></span></b></td>
-	  <td colspan="3"><input type="text" size=65 id="data4"></td>
+	  <td>&nbsp;&nbsp;<b>X<sub>2</sub></b></td>
+          <td><input type="text" size=8 id="name323"></td>
+	  <td colspan="3"><input type="text" size=65 id="data323"></td>
 	</tr>
 	<tr>
-          <td> &nbsp; &nbsp;</td>
-	  <td><b>X<sub>4</sub> <span data-msgid="input data"></span></b></td>
-	  <td colspan="3"><input type="text" size=65 id="data5"></td>
+	  <td>&nbsp;&nbsp;<b>X<sub>3</sub></b></td>
+          <td><input type="text" size=8 id="name324"></td>
+	  <td colspan="3"><input type="text" size=65 id="data324"></td>
 	</tr>
 	<tr>
-          <td> &nbsp; &nbsp;</td>
-	  <td><b>X<sub>5</sub> <span data-msgid="input data"></span></b></td>
-	  <td colspan="3"><input type="text" size=65 id="data6"></td>
+	  <td>&nbsp;&nbsp;<b>X<sub>4</sub></b></td>
+          <td><input type="text" size=8 id="name325"></td>
+	  <td colspan="3"><input type="text" size=65 id="data325"></td>
 	</tr>
+	<tr>
+	  <td>&nbsp;&nbsp;<b>X<sub>5</sub></b></td>
+          <td><input type="text" size=8 id="name326"></td>
+	  <td colspan="3"><input type="text" size=65 id="data326"></td>
+	</tr>
+    </table> 
+    <table>
         <tr>
-          <td> &nbsp; &nbsp;</td>
-          <td style="text-align: right;"><b><span data-msgid="Main Title">Main Title</span></b>&nbsp;</td>
-          <td colspan="3"><input type="text" size=50 id="mtitle"></td>
+          <td>&nbsp;<button type="button" id="executeRegression" style="width:90px;"><span data-msgid="Execute">Execute</span></button></td>
+	  <td>&nbsp;&nbsp;</td>
+          <td>&nbsp;&nbsp;<button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button></td>
         </tr>
-	<tr>
-          <td> &nbsp; &nbsp;</td>
-          <td style="text-align: right;"><b><span data-msgid="y title">y title</span></b>&nbsp;</td>
-          <td><input type="text" size=15 id="ytitle"></td>
-          <td style="text-align: right;"><b><span data-msgid="x title">x title</span></b>&nbsp;</td>
-          <td><input type="text" size=15 id="xtitle"></td>
- 	</tr>
-    </table>   
-    <br>
-    <button type="button" id="executeRegression" style="width:90px;">
-        <span data-msgid="Execute">Execute</span>
-    </button>
-    &nbsp;&nbsp;
-    <button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button>
-    <br>
+    </table>  
     <svg id="chart" width="600" height="600"> </svg> 
-    <br>
-    &nbsp; 
-    <button type="button" id="scatterplotMatrix" >
-	<span data-msgid="ScatterplotMatrix"></span>
-    </button>
-    &nbsp; &nbsp;
-    <button type="button" id="regressResidual" >
-	<span data-msgid="RegressionResidual">잔차와 예측값 산점도</span>
-    </button>
-    &nbsp;&nbsp;
-    <button type="button" id="regressQQ" >
-	<span data-msgid="RegressionQQ">잔차 Q-Q 산점도</span>
-    </button>
-    &nbsp;&nbsp;
-    <button type="button" id="saveGraphU" >
-	<span class="tooltiptext" data-msgid="Graph Save">Graph Save</span>
-    </button>
-    &nbsp;&nbsp;
-    <button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button>
+    <table>
+      <tr> 
+          <td>&nbsp;<button type="button" id="scatterplotMatrix"><span data-msgid="ScatterplotMatrix"></span></button></td>
+	  <td>&nbsp;&nbsp;</td>
+          <td><button type="button" id="regressResidual"><span data-msgid="RegressionResidual"></span></button></td>
+	  <td>&nbsp;&nbsp;</td>
+          <td><button type="button" id="regressQQ"><span data-msgid="RegressionQQ"></span> </button></td>
+	  <td>&nbsp;&nbsp;</td>
+          <td><button type="button" id="saveGraphU"><span class="tooltiptext" data-msgid="Graph Save"></span></button></td>
+	  <td>&nbsp;&nbsp;</td>
+          <td><button type="button" id="saveTable"><span class="tooltiptext" data-msgid="Table Save"></span></button></td>
+      </tr>
+    </table>
     <p>
     <div> 
       <div id="screenTable">

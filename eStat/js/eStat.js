@@ -36,7 +36,7 @@ var myColor = ["#0055FF", "#FF4500", "#00AA00", "#FFE400", "#FF00DD", "#808000",
 var colors = d3.scaleLinear().domain([0, 1]).range(["yellow", "red"]);
 var h1sign = ["&ne;", ">", "<"];
 // 그래프버튼의 string
-var strGraph = new Array(40);
+var strGraph = new Array(60);
 strGraph[1] = "separate1"; // 수직 분리형 막대
 strGraph[2] = "stack2V"; // 수직 쌓는형 막대
 strGraph[3] = "ratio2V"; // 수직 비율형 막대
@@ -71,6 +71,17 @@ strGraph[32] = "executeTH11"; // 가설검정 sigma12 실행
 strGraph[33] = "anova"; // 가설검정 anova 
 strGraph[34] = "executeTH12"; // 가설검정 anova 실행
 strGraph[35] = "regression"; // 회귀분석
+strGraph[41] = "barMatrix"; // 
+strGraph[42] = "scatterMatrix"; // 
+strGraph[43] = "pca"; // 
+strGraph[44] = "knearest"; // 
+strGraph[45] = "decisionTree"; // 
+strGraph[46] = "bayesClassification"; // 
+strGraph[47] = "logistic"; // 
+strGraph[48] = "heirarchical"; // 
+strGraph[49] = "kmeans"; // 
+strGraph[50] = "naiveBayesClassification"; // 
+
 
 // 한글 체크 
 function is_hangul_char(ch) {
@@ -119,6 +130,15 @@ function graphSubHide() {
     document.getElementById("sub12").style.display = "none"; //가설검정 ANOVA 선택사항 감추기
     document.getElementById("sub15").style.display = "none"; //Two way ANOVA
     document.getElementById("sub16").style.display = "none"; //Simple Linear Regression 감추기
+    document.getElementById("sub21").style.display = "none"; //Bargraph Matrix 감추기
+    document.getElementById("sub22").style.display = "none"; //Scatter Matrix 감추기
+    document.getElementById("sub23").style.display = "none"; //PCA 감추기
+    document.getElementById("sub24").style.display = "none"; //KNN 감추기
+    document.getElementById("sub25").style.display = "none"; //Decision Tree 감추기
+    document.getElementById("sub261").style.display = "none"; //Naive Bayes Classification 감추기
+    document.getElementById("sub26").style.display = "none"; //Bayes Classification 감추기
+    document.getElementById("sub27").style.display = "none"; //Logistic Regression감추기
+    document.getElementById("sub29").style.display = "none"; //K-Means Clustering 감추기
   }
 }
 // Button Color Change
@@ -126,6 +146,7 @@ function buttonColorChange() {
     graphSubHide(); // 그래프 sub 선택사항 감추기
     document.getElementById("SVG").style.width = svgWidth;
     document.getElementById("SVG").style.height = svgHeight;
+    document.getElementById("analysisSelectMain").disabled = false;
     document.getElementById("groupSelectMain").disabled = false;
 
     svgWidth2 = svgWidth;
@@ -193,6 +214,15 @@ function buttonColorChange() {
     document.getElementById("testS12").style.backgroundColor = buttonColorB;
     document.getElementById("anova").style.backgroundColor = buttonColorB;
     document.getElementById("regression").style.backgroundColor = buttonColorB;
+    document.getElementById("barMatrix").style.backgroundColor = buttonColorB;
+    document.getElementById("scatterMatrix").style.backgroundColor = buttonColorB;
+    document.getElementById("pca").style.backgroundColor = buttonColorB;
+    document.getElementById("decisionTree").style.backgroundColor = buttonColorB;
+    document.getElementById("naiveBayesClassification").style.backgroundColor = buttonColorB;
+    document.getElementById("bayesClassification").style.backgroundColor = buttonColorB;
+//    document.getElementById("logistic").style.backgroundColor = buttonColorB;
+    document.getElementById("knearest").style.backgroundColor = buttonColorB;
+    document.getElementById("kmeans").style.backgroundColor = buttonColorB;
   }
     // sub icon menu background
     document.getElementById("separate2V").style.backgroundColor = buttonColorB;
@@ -227,6 +257,15 @@ function buttonColorChange() {
     document.getElementById("testS12").style.width = iconB1;
     document.getElementById("anova").style.width = iconB1;
     document.getElementById("regression").style.width = iconB1;
+    document.getElementById("barMatrix").style.width = iconB1;
+    document.getElementById("scatterMatrix").style.width = iconB1;
+    document.getElementById("pca").style.width = iconB1;
+    document.getElementById("decisionTree").style.width = iconB1;
+    document.getElementById("naiveBayesClassification").style.width = iconB1;
+    document.getElementById("bayesClassification").style.width = iconB1;
+//    document.getElementById("logistic").style.width = iconB1;
+    document.getElementById("knearest").style.width = iconB1;
+    document.getElementById("kmeans").width = iconB1;
   }
     // sub icon menu width
     document.getElementById("separate2V").style.width = iconB2;
@@ -260,6 +299,16 @@ function buttonColorChange() {
     document.getElementById("testS12").style.height = iconB1;
     document.getElementById("anova").style.height = iconB1;
     document.getElementById("regression").style.height = iconB1;
+    document.getElementById("barMatrix").style.height = iconB1;
+    document.getElementById("scatterMatrix").style.height = iconB1;
+    document.getElementById("pca").style.height = iconB1;
+    document.getElementById("decisionTree").style.height = iconB1;
+    document.getElementById("naiveBayesClassification").style.height = iconB1;
+    document.getElementById("bayesClassification").style.height = iconB1;
+//    document.getElementById("logistic").style.height = iconB1;
+    document.getElementById("knearest").style.height = iconB1;
+//    document.getElementById("heirarchical").style.height = iconB1;
+    document.getElementById("kmeans").style.height = iconB1;
   }
     // sub icon menu height
     document.getElementById("separate2V").style.height = iconB2;

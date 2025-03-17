@@ -1,4 +1,4 @@
-﻿      var svg     = d3.select("#chart"); 
+      var svg     = d3.select("#chart"); 
       var i, r;
       var svgWidth    = 600;
       var svgHeight   = 600;
@@ -35,21 +35,21 @@
 
       svg.selectAll("*").remove();
       // input data control ===================================================
-      d3.select("#data1").on("input", function() {
-        stat = simplestat("#data1");  
+      d3.select("#data301").on("input", function() {
+        stat = simplestat("#data301");  
         xdata = data;  
         xobs = stat.n;
       });
 
-      d3.select("#data2").on("input", function() {
-        stat = simplestat("#data2");  
+      d3.select("#data302").on("input", function() {
+        stat = simplestat("#data302");  
         ydata = data; 
         yobs = stat.n;
       });
 
       updateData = function() {
-        document.getElementById("data1").value = '';
-        document.getElementById("data2").value = '';    
+        document.getElementById("data301").value = '';
+        document.getElementById("data302").value = '';    
       }
       // H1 type
       var h1 = document.myForm0.type0;
@@ -62,8 +62,8 @@
       d3.select("#erase").on("click",function() {
         svg.selectAll("*").remove();
         document.myForm0.type0[0].checked = true;
-        document.getElementById("data1").value  = "";
-        document.getElementById("data2").value  = "";
+        document.getElementById("data301").value  = "";
+        document.getElementById("data302").value  = "";
         document.getElementById("nn41").value  = ""; 
         document.getElementById("nn42").value  = "";   
         document.getElementById("xbar41").value  = "";    

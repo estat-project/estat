@@ -1,0 +1,2203 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 3</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="/estat/eStat/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/estat/eStat/css/dashboard.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <style type="text/css">code{white-space: pre;}</style>
+       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
+       <link rel="stylesheet" href="/estat/eStat/css/pandoc.css">
+       <link rel="stylesheet" href="/estat/eStat/css/prism.css">
+       <script src="/estat/eStat/lib/jquery/jquery.min.js"></script>    
+       <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="/estat/eStat/lib/convertSVG.js"></script>
+       <script src="/estat/eStat/js/prism.js"></script>
+       <script src="/estat/eStat/js/eBook.js"></script>
+       <script src="/estat/eStat/js/eStatU.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>
+       <script> setLanguage('en'); </script>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+
+       <script>
+	 $(document).ready(function() {
+  	     toc = $("#sidebar > ul > li > ul");
+  	     sections = toc.children();   // <li>
+  	     for(var i=0; i<sections.length; i++) {
+  		 if ($(sections[i]).children().length == 1) { continue; }
+  		 var first = sections[i].firstElementChild;  // <a>
+  		 var last = sections[i].lastElementChild;
+  		 var li = $("<li>");
+  		 var details = $("<details>");
+  		 var summary = $("<summary>");
+  		 $(summary).append(first)
+  		 $(details).append(summary);
+  		 $(details).append(last);
+  		 $(li).append(details);	
+  		 $(sections[i]).replaceWith(li);
+  	     }
+	 });
+       </script>
+    
+</head>
+
+<body>
+  
+<!-- begin of left sidebar -->
+<div class="container-fluid">
+<div class="row">
+<div id="sidebar" class="col-sm-2 col-md1 sidebar">
+  <ul>
+    <li> <a href="index.html"><b>Table of chapters</b> </a> </li>
+    <li> <a href="chapter01.html"> 1 Data science and artificial intelligence</a> </li>
+    <li> <a href="chapter02.html"> 2 Data visualization</a> </li>
+    <li> <a href="chapter03.html"> 3 Data summary and transformation</a> </li>
+          <ul>
+                <li><a href="#0301">&nbsp;&nbsp; 3.1 Categorical data summary using tables</a></li>
+                <li><a href="#0302">&nbsp;&nbsp; 3.2 Quantitative data summary using measures</a></li>
+                <li><a href="#0303">&nbsp;&nbsp; 3.3 Data manipulation and transformation</a></li> 
+                <li><a href="#0304">&nbsp;&nbsp; 3.4 Dimension reduction: Principal component analysis</a></li> 
+                <li><a href="#0305">&nbsp;&nbsp; 3.5 R practice</a></li> 
+                <li><a href="#0306">&nbsp;&nbsp; 3.6 Exercise</a></li> 
+         </ul>
+    <li> <a href="chapter04.html"> 4 Probability and distribution</a> </li>
+    <li> <a href="chapter05.html"> 5 Estimation, testing hypothesis, and regression analysis</a> </li>
+    <li> <a href="chapter06.html"> 6 Supervised machine learning for categorical data</a> </li>
+    <li> <a href="chapter07.html"> 7 Supervised machine learning for continuous data</a> </li>
+    <li> <a href="chapter08.html"> 8 Unsupervised machine learning</a> </li>
+    <li> <a href="chapter09.html"> 9 Artificial intelligence and other applications</span></a> </li>
+  </ul>
+
+</div>
+</div>
+</div>
+<!-- end of left sidebar -->
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+  <h2>Chapter 3. Data summary and transformation</h2> 
+  <h6>
+      <a href="./pdf/ppt3.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="./pdf/book3.pdf" target="_blank"><u>[book]</u></a>
+  </h6>
+          <ul>
+              <li class="listNone"><a href="#0301">3.1 Categorical data summary using tables</a></li>
+                <li class="listNoneIndent"><a href="#030101">3.1.1 Frequency table for a single variable</a></li>
+                <li class="listNoneIndent"><a href="#030102">3.1.2 Two-dimensional frequency table for two variables</a></li>
+                <li class="listNoneIndent"><a href="#030103">3.1.3 Multi-dimensional frequency table for several variables</a></li>
+              <li class="listNone"><a href="#0302">3.2 Quantitative data summary using measures</a></li>
+                <li class="listNoneIndent"><a href="#030201">3.2.1 Measures for a single quantitative variable</a></li>
+                <li class="listNoneIndent"><a href="#030202">3.2.2 Measures for several quantitative variables</a></li>
+                <li class="listNoneIndent"><a href="#030203">3.2.3 Similarity measures of observations</a></li> 
+              <li class="listNone"><a href="#0303">3.3 Data manipulation and transformation</a></li> 
+              <li class="listNone"><a href="#0304">3.4 Dimension reduction: Principal component analysis</a></li> 
+              <li class="listNone"><a href="#0305">3.5 R practice</a></li> 
+              <li class="listNone"><a href="#0306">3.6 Exercise</a></li> 
+         </ul>
+  <p>
+
+  <h5>CHAPTER OBJECTIVES</h5> 
+  <div class="mainTable">
+       We introduce the following in this chapter.
+    <p>
+       <div class="textL30M20">
+         • Summarizing qualitative data and quantitative data using tables in section 3.1.
+       </div>
+       <div class="textL30M20">
+         • Summarizing quantitative variables using measures in section 3.2.
+       </div>
+       <div class="textL30M20">
+         • How to manipulate and transform data in section 3.3. 
+       </div>
+       <div class="textL30M20">
+         • How to reduce dimension of data using principal component analysis in Section 3.4.
+       </div>
+  </div> 
+  <p>
+  <h3 id="0301">3.1 Categorica data summary using tables</h3>
+  <p>
+  <h4 id="030101">3.1.1 Frequency table for a single variable</h4>
+  <p>
+
+  <!------------------------------------------------------------------------------------------------->
+  <h5>Frequency table for a categorical variable</h5>
+  <p>
+  <div class="mainTable">
+         A frequency table of categorical data summarizes the frequencies of each possible value of categories,
+         and it is the most commonly used tool for analyzing categorical data.  
+         The frequency table also shows relative frequencies (percents), which are calculated by dividing 
+         the frequency of each category by the number of observations belonging to the category 
+         and cumulative relative frequencies accumulated in the order of the categories. We can draw the bar graph, 
+         pie chart, and band graph in Chapter 2 using this frequency table of categorical data.
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         <b>Example 3.1.1</b> <b>(Gender Raw Data)</b>
+      <br>In Example 2.1.1, we drew the bar graph of the gender variable in a class using the raw data
+         as shown in Table 3.1.1. We drew the bar graph using the frequencies of 
+         male and female students. Let's create a frequency table for this raw data of the gender variable using 『eStat』 .
+      <p>
+      <table style="width:300px"> 
+        <tr>
+          <th>Table 3.1.1 Gender raw data</th>
+        </tr>
+        <tr><th>Gender</th></tr>
+        <tr><td class="tdCenter">male</td></tr>
+        <tr><td class="tdCenter">female</td></tr>
+        <tr><td class="tdCenter">male</td></tr>
+        <tr><td class="tdCenter">female</td></tr>
+        <tr><td class="tdCenter">male</td></tr>
+        <tr><td class="tdCenter">male</td></tr>
+        <tr><td class="tdCenter">male</td></tr>
+        <tr><td class="tdCenter">female</td></tr>
+        <tr><td class="tdCenter">male</td></tr>
+        <tr><td class="tdCenter">female</td></tr>
+      </table>
+      <p class="figText">[Ex] ⇨ DataScience ⇨ Gender.csv. 
+      <p>
+      <b>Answer</b>
+      <p>
+         We discussed how to enter the gender data of Table 3.1.1 to 『eStat』 as in &lt;Figure 2.1.1&gt;.
+         If you select the gender variable as the 'Analysis Var' in the variable selection box, 
+         a bar graph of the gender is drawn as in &lt;Figure 3.1.1&gt;. Then, if you click the 
+         Frequency Table icon, <img class="imgIcon" src="/estat/eStat/icon/eStat_icon18_freq.png">,
+         the frequency table of the gender variable will appear in the Log Area, as in &lt;Figure 3.1.2&gt;. 
+         This frequency table is used to draw the bar graph or the pie chart.
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig030101.png">
+         <div class="figText">&lt;Figure 3.1.1&gt; Vertical bar graph of the gender</div>
+      <p>
+         <img class="figure50" src="/estat/eLearning/en/DataScience/figure/Fig030102.png">
+         <div class="figText">&lt;Figure 3.1.2&gt; Frequency table of the gender</div>
+      <p>
+  </div>
+  <p>
+  <div class="mainTablePink">
+         <b>Practice 3.1.1</b> <b>(Vegetable Preference)</b> <br>
+         Data that examined gender (1: male, 2: female) and vegetable preference(1: lettuce, 2: spinach, 3: pumpkin, 4: eggplant) of an elementary school class can be found at the following location of 『eStat』.
+      <p>
+      <p class="textLeft">[Ex] ⇨ DataScience ⇨ VegetablePrefByGender.csv. 
+      <p>
+         By using 『eStat』 , find a frequency table of the vegetable preference.
+         <input class="qrBtn" type="image" src="/estat/eStat/qr/PR040101.png" onclick="window.open(addrStr[56])">     
+  </div>
+  <p>
+
+  <!------------------------------------------------------------------------------------------------->
+  <h5>Frequency table for a quantitative variable</h5>
+  <p>
+  <div class="mainTable">
+         The frequency table can also be used to summarize quantitative data by transforming it into categorical data.
+         Since the quantitative data can have too many possible values, the values of the data are divided 
+         into several intervals which are not overlapped with each other, and the number of observations 
+         belong to each interval is counted to make a frequency table.
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         <b>Example 3.1.2</b><b>(Otter length)</b>
+      <br>Data of 30 otter length can be found at the following location of 『eStat』.
+      <p>
+      <p class="textLeft">[Ex] ⇨ DataScience ⇨ OtterLength.csv. 
+      <p>
+         Find a frequency table of the otter lengths by using the histogram module of  『eStat』.
+      <p>
+         <b>Answer</b>
+      <p>
+         <input class="qrBtn" type="image" src="/estat/eStat/qr/EX040102.png" onclick="window.open(addrStr[19])">
+         Retrieve the data from 『eStat』 as in &lt;Figure 3.1.3&gt;. 
+      <p>
+         <img class="figure30" src="/estat/eLearning/en/DataScience/figure/Fig030103.png">
+         <div class="figText">&lt;Figure 3.1.3&gt; Data of Otter Length </div>
+      <p>
+         Click the Histogram Icon and then select the variable name 'OtterLength' to draw a histogram
+         as shown in &lt;Figure 3.1.4&gt;.
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig030104.png">
+         <div class="figText">&lt;Figure 3.1.4&gt; Histogram of the otter length</div>
+      <p>
+         Click on the [Frequency Table] button in the options window below the histogram (&lt;Figure 3.1.5&gt;). 
+         Then a frequency table of the histogram intervals is shown as in &lt;Figure 3.1.6&gt; in the Log Area.
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig030105.png">
+         <div class="figText">&lt;Figure 3.1.5&gt; Options of the histogram</div>
+      <p>
+         <img class="figure50" src="/estat/eLearning/en/DataScience/figure/Fig030106.png">
+         <div class="figText">&lt;Figure 3.1.6&gt; Frequency table of histogram for otter length</div>
+      <p>
+         If you want to adjust the histogram intervals from 60kg with an interval length of 5kg, 
+         set ‘Interval Start’ to 60 and ‘Interval Width’ to 5 in the graph options. 
+         Press [Execute New Interval] button to display the adjusted histogram as shown in 
+         &lt;Figure 3.1.7&gt;. Click on [Frequency Table] button to reveal a new frequency 
+         table as in &lt;Figure 3.1.8&gt;.
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig030107.png">
+         <div class="figText">&lt;Figure 3.1.7&gt; Adjusted histogram of otter length</div>
+      <p>
+         <img class="figure50" src="/estat/eLearning/en/DataScience/figure/Fig030108.png">
+         <div class="figText">&lt;Figure 3.1.8&gt; Adjusted frequency table of the otter length</div>
+  </div>
+  <p>
+  <div class="mainTablePink">
+        <b>Practice 3.1.2</b> <b>(Age of Library Visitors)</b> <br>
+            The following data is a survey on the age of 30 people who visited a library in the morning. 
+            Draw an appropriate histogram and its frequency table using 『eStat』.
+            <p>
+            <div class="textLeft">28 55 26 35 43 47 47 17 35 36 48 47 34 28 43 </div>  
+            <div class="textLeft">20 30 53 27 32 34 43 18 38 29 44 67 48 45 43 </div>
+            <p>
+            <div class="textLeft">[Ex] ⇨ DataScience ⇨ LibraryVisitorAge.csv. </div> 
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/PR040102.png" onclick="window.open(addrStr[57])">     
+  </div>
+
+  <!------------------------------------------------------------------------------------------------->
+  <p>
+  <h4 id="030102">3.1.2 Two-dimensional frequecy table for two variables</h4>
+  <p>
+  <!------------------------------------------------------------------------------------------------->
+  <h5>Two-dimensional frequency table for two categorical variables</h5>
+  <p>
+  <div class="mainTable">
+         If there are two categorical variables, a two-dimensional frequency table, also called 
+         a contingency table or cross table, summarizes the characteristics of two categorical variables
+         and checks the association between two variables. A two-dimensional table divides a table into 
+         rows and columns to create cells by using possible values of two categorical variables. 
+         Then, the number of observations (frequency) belonging to the corresponding cell is counted. 
+         We can show the percentage of each cell for the sum of rows or the percentage of each cell for the sum of columns
+         in the table for further analysis. We can also show the percentage of each cell for the total number of data 
+         in the table.    
+      <p>
+         The two-dimensional frequency table is usually made for two qualitative variables data. In the case of 
+         two quantitative variables, We can transform the quantitative data into categorical data using interval 
+         transformation in section 3.3. Then, we can create a cross table for data on two categorical variables. 
+      <p>
+         Let us discuss how to create a contingency table from the raw data of two categorical variables 
+         using the following example.
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         <b>Example 3.1.2</b> <b>(Survey on Gender and Marital Status)</b> <br>
+         Table 3.1.2 shows survey data on Gender (1: Male, 2: Female) and Marital Status  
+         (1: Single, 2: Married, 3: Other). Note that the data used the coded values 1, 2 for Gender
+         and 1, 2, 3 for Marital Status to save storage space. This kind of coding is common in practice.
+         Create a two-dimensional contingency table of the marital status by Gender using  『eStat』.
+      <p>
+      <table style="width:400px"> 
+        <tr>
+          <th colspan="2">Table 3.1.2 Survey data on gender and marital status </th>
+        </tr>
+        <tr> 
+          <th style="width:80px">Gender</th>
+          <th style="width:80px">Marital Status</th>
+        </tr>
+        <tr> <td class="tdCenter">1</td> <td class="tdCenter">1</td> </tr>
+        <tr> <td class="tdCenter">2</td> <td class="tdCenter">2</td> </tr>
+        <tr> <td class="tdCenter">1</td> <td class="tdCenter">1</td> </tr>
+        <tr> <td class="tdCenter">2</td> <td class="tdCenter">1</td> </tr>
+        <tr> <td class="tdCenter">1</td> <td class="tdCenter">2</td> </tr>
+        <tr> <td class="tdCenter">1</td> <td class="tdCenter">1</td> </tr>
+        <tr> <td class="tdCenter">1</td> <td class="tdCenter">1</td> </tr>
+        <tr> <td class="tdCenter">2</td> <td class="tdCenter">2</td> </tr>
+        <tr> <td class="tdCenter">1</td> <td class="tdCenter">3</td> </tr>
+        <tr> <td class="tdCenter">2</td> <td class="tdCenter">1</td> </tr>
+      </table>
+      <p class="figText">[Ex] ⇨ DataScience ⇨ MaritalByGender.csv.
+      <p>
+      <b>Answer</b>
+      <p>
+         <input class="qrBtn" type="image" src="/estat/eStat/qr/EX040201.png" onclick="window.open(addrStr[20])">
+         Enter the data of Gender and Marital Status in Table 3.1.2 to the sheet of 『eStat』 
+         as in &lt;Figure 3.1.9&gt;. Use [Edit Var] button to enter a variable name 'Gender' 
+         and value labels 'Male' for 1 and 'Female' for 2. In the same way, enter a variable name 
+         'Marital' and value labels 'Single' for 1, 'Married' for 2 and 'Other' for 3. 
+         The data that were edited for their value labels should be saved in JSON format file 
+         by clicking on the JSON Save icon. If you want to load this file in JSON format, 
+         you must also click on the JSON Open icon to load a file in JSON format.
+      <p>
+         <img class="figure50" src="/estat/eLearning/en/DataScience/figure/Fig030109.png">
+         <div class="figText">&lt;Figure 3.1.9&gt; Data input on gender and marital status</div>
+      <p>
+         Click on the variable name 'Marital' ('Analysis Var'), and then the variable name 
+         'Gender' ('by Group'). Then you will see a bar graph of the marital status by gender 
+         as in &lt;Figure 3.1.10&gt; which is a default graph. Click the Frequency Table icon
+         <img class="imgIcon" src="/estat/eStat/icon/eStat_icon18_freq.png">
+         to display a two-dimensional table of the marital status by gender in the Log window
+         as in &lt;Figure 3.1.11&gt;. In this table, the ‘by Group’ variable becomes 
+         the row variable, and the ‘Analysis Var’ becomes the column variable. This contingency table 
+         was used to draw the bar graph of the marital status by gender, as in &lt;Figure 3.1.10&gt;.
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig030110.png">
+         <div class="figText">&lt;Figure 3.1.10&gt; Bar graph on Marital Status by Gender</div>
+      <p>
+         <img class="figure50" src="/estat/eLearning/en/DataScience/figure/Fig030111.png">
+         <div class="figText">&lt;Figure 3.1.11&gt; Contingency table on Marital Status by Gender</div>
+  </div>
+  <p>
+  <div class="mainTablePink">
+        <b>Practice 3.1.3</b> <b>(Survey on Gender and Vegetable Preference)</b> <br>
+            In an elementary school class, a survey on gender (1: male, 2: female) and favorite vegetable (1: lettuce, 2: spinach, 3: pumpkin, 4: eggplant) was conducted. The survey data can be found at the following location of 『eStat』.
+      <p>
+            <div class="textLeft">[Ex] ⇨ DataScience ⇨ VegetablePrefByGender.csv. </div>
+      <p>
+         Create a contingency table of the favorite vegetable by gender.
+         <input class="qrBtn" type="image" src="/estat/eStat/qr/PR040201.png" onclick="window.open(addrStr[58])">     
+  </div>
+  <p>
+
+  <!------------------------------------------------------------------------------------------------->
+  <h5>Two-dimensional frequency table for two quantitative variables</h5>
+  <p>
+  <div class="mainTable">
+         If one variable is quantitative and the other variable is categorical, we can make a two-dimensional
+         frequency table using the histogram module of  『eStat』 as the following
+         example. We need to divide all possible values of the quantitative variable into 
+         several intervals, as we did when creating a frequency table of a single quantitative variable. 
+      <p>
+         If both variables are quantitative, we need to categorize each quantitative variable by using
+         the 'Categorize' function of the 'EditVar' button. It will be explained in section 3.3. 
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         <b>Example 3.1.3</b> <b>(Teacher’s Age by Gender)</b> <br>
+         In a middle school, the age and gender of all teachers are surveyed. The data are saved at the following location of 『eStat』.
+      <p>
+         <p class="textLeft">[Ex] ⇨ DataScience ⇨ TeacherAgeByGender.csv. 
+      <p>
+         Using the histogram module of 『eStat』 , create a two-dimensional table of Age by Gender.
+      <p>
+         <b>Answer</b>
+      <p>
+         <input class="qrBtn" type="image" src="/estat/eStat/qr/EX040202.png" onclick="window.open(addrStr[21])">
+         Retrieve the data from  『eStat』 as in &lt;Figure 3.1.12&gt; and enter value labels
+         of 'Gender' as 'Male' for 1 and 'Female' for 2. 
+      <p>
+         <img class="figure50" src="/estat/eLearning/en/DataScience/figure/Fig030112.png">
+         <div class="figText">&lt;Figure 3.1.12&gt; Data input on gender and age</div>
+      <p>
+         After clicking the histogram icon, select the ‘Age’ variable as 'Analysis Var', and 
+         then the ‘Gender’ variable as 'by Group'. A histogram will appear as shown in &lt;Figure 3.1.13&gt;. 
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig030113.png">
+         <div class="figText">&lt;Figure 3.1.13&gt; Histogram on age by gender</div>
+      <p>
+         If you click the button of 'Frequency Table' in the options window below the graph,
+         &lt;Figure 3.1.14&gt;, a two-dimensional frequency table will appear in the Log window
+         as shown in &lt;Figure 3.1.15&gt;.
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig030114.png">
+         <div class="figText">&lt;Figure 3.1.14&gt; Options of the histogram</div>
+      <p>
+         <img class="figure50" src="/estat/eLearning/en/DataScience/figure/Fig030115.png">
+         <div class="figText">&lt;Figure 3.1.15&gt; Two-dimensional table of Age by Gender</div>
+      <p>
+         If the intervals of the histogram in &lt;Figure 3.1.13&gt; are to be readjusted, 
+         for example, from 20 to 10 years apart, set 'Interval Start' to 20 and ‘Interval Width’ 
+         to 10 in the graph options and press [Execute New Interval] button. Then, a histogram 
+         with the adjusted intervals appears as in &lt;Figure 3.1.16&gt;. We can obtain a 
+         two-dimensional frequency table with the adjusted intervals 
+         by clicking on [Frequency Table] button as shown in &lt;Figure 3.1.17&gt;.
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig030116.png">
+         <div class="figText">&lt;Figure 3.1.16&gt; Histogram with adjusted intervals</div>
+      <p>
+         <img class="figure50" src="/estat/eLearning/en/DataScience/figure/Fig030117.png">
+         <div class="figText">&lt;Figure 3.1.17&gt; Cross table with adjusted intervals</div>
+  </div>
+  <p>
+  <div class="mainTablePink">
+         <b>Practice 3.1.2</b> <b>(Oral Cleanliness by Brushing Methods)</b> <br>
+         According to the brushing method (1: basic method, 2: rotation method), oral cleanliness scores 
+         are examined and stored at the following location of 『eStat』.
+      <p>
+      <p class="textLeft">[Ex] ⇨ DataScience ⇨ ToothCleanByBrushMethod.csv. 
+      <p>
+         Create a contingency table of oral cleanliness by brushing method.
+         <input class="qrBtn" type="image" src="/estat/eStat/qr/PR040202.png" onclick="window.open(addrStr[59])">     
+  </div>
+  <p>
+
+  <!------------------------------------------------------------------------------------------------->
+  <h4 id="030103">3.1.3 Multi-dimensional frequency table for several variables</h4>
+  <p>
+  <div class="mainTable">
+      If there are several categorical variables, we can use a multi-dimensional frequency table 
+      with the bar graph matrix, which we discussed in section 2.1.
+      If there are \(m\) number of variables, a \(m × m\) matrix of cross tables of each categorical variable,
+      or we can generate a \(m\)-dimensional frequency table of all categorical variables.
+      These frequency tables help decide which variable is useful for classification
+      analysis.         
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         <b>Example 3.1.4 (\(m × m\) matrix of cross tables and \(m\)-dimensional frequency table )</b>
+      <br>
+         Draw a \(m × m\) matrix of cross tables and a \(m\)-dimensional frequency table 
+         using the five variables in Table 2.1.3, gender, age, income, credit and purhase.  
+      <p>
+         <b>Answer</b>
+      <p>
+         After loading the data file of Table 2.1.3, /DataScience/PurchaseByCredit20.csv, 
+         click the bar graph matrix icon 
+         <img class="imgIcon" src="/estat/eStat/img/Azar21BargraphMatrix.png">.
+         Click 'Purchase' as 'Group' variable and select 'Gender', 'Age', 'Income', 'Credit' 
+         as 'Analysis Var'. Then the bar graph matrix, as in &lt;Figure 3.1.17&gt; will appear
+         in the graph window. If you click 'Cross Table Matrix' button below the graph,
+         the cross table matrix, which corresponds to the bar graph matrix will appear
+         in the Log table window as in &lt;Figure 3.1.18&gt;. If you click 'Mult-dim Frequency Table'
+         button, an all possible multi-dimensional frequency table using five variables, 'Purchase',
+         'Gender', 'Age', 'Income', and 'Credit' will appear in the Log table window 
+         as in &lt;Figure 3.1.19&gt;.
+      <p>
+         <img class="figure50" src="/estat/eLearning/en/DataScience/figure/Fig020115.png">
+         <div class="figText">&lt;Figure 3.1.17&gt; Bar graph matrix using the data in Table 2.1.3.</div>            
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig030118.png">
+         <div class="figText">&lt;Figure 3.1.18&gt; Cross table matrix corresponding to the bar graph matrix in &lt;Figure 2.1.16&gt;</div>            
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig030119.png">
+         <div class="figText">&lt;Figure 3.1.19&gt; Multi-dimensional frequency table using five variales in Table 2.1.3</div>            
+      <p>
+         You can practice a multi-dimensional frequency table using 'Bar graph matrix' module in  『eStatU』, 
+         'Ch 2 Bar graph Matrix' as
+         the following example. You will see a bar graph matrix if you click the [Execute] button. 
+         Click [Cross Table Matrix] to see the graph as in &lt;Figure 3.1.18&gt; and click the 
+         [Multi-dimensional Frequency Table] button to see the graph as in &lt;Figure 3.1.19&gt;.
+      <p>
+    <!--*************************---->
+      <b>[Bar Graph Matrix]</b>
+      <iframe class="example140" src="/estat/eLearning/en/DataScience/example/020103.html"> </iframe>  
+    <!--*************************---->
+  </div>
+  <p>
+
+  <!------------------------------------------------------------------------------------------------->
+  <h3 id="0302">3.2 Quantitative data summary using measures</h3>
+  <p>
+  <div class="mainTable">
+         We use frequently the central tendancy and dispersion measures to summarize quantitative data
+         in case of single variable. We can extend these measures to multivariabe variables.
+  </div>
+  <h4 id="030201">3.2.1 Measures for a single quantitative variable</h4>
+  <p>
+  <h5>Measures of central tendency</h5>
+  <p>
+  <div class="mainTable">
+         We can summarize frequently the quantitative data using measures of central tendency
+         and measures of dispersion. 
+         A mean, median, and mode are the most frequently used measures of central tendency 
+         to summarize the quantitative data. 
+         The <b>mean or average</b> is the sum of all data values divided by the number of data. 
+         If data \(x_1 ,x_2 ,\cdots, x_N\) are from a population, the mean of this data is referred to 
+         as a <b>population mean</b> and is usually denoted as \(\mu\) in Greek letter. 
+         The calculation formula is defined as follows.
+      $$
+         \small \mu = \frac{1}{N} \sum_{i=1}^N x_i 
+      $$
+         If data \(x_1 ,x_2 ,\cdots,x_n\) are sampled from a population, the mean of this data
+         is referred to as a <b>sample mean</b> and denoted as \(\small \overline x\)  
+         (read as 'x bar'). then the mean \(\small \overline x\) is defined as follows.
+      $$
+         \small \overline x = \frac{1}{n} \sum_{i=1}^n x_i 
+      $$
+         Note that the population mean and sample mean have the same formula except notation. 
+         Also, note that the mean is heavily influenced by an extreme point where one data value is 
+         far, very large or small, from the data cluster. However, the sample mean has many 
+         good characteristics and is frequently used to estimate the population mean. 
+      <p>
+         A <b>median</b> is the value placed in the middle when data are listed in ascending order
+         of their values,
+         and is denoted as \(median\) if data are sampled from a population. 
+         If the number of sample data, \(n\), is an odd number, the median is the data value located at the \({\left( n+1 \above 1pt 2 \right)}^\text{th}\) when data are arranged in ascending order. 
+         If \(n\) is an even number, then the median is the average of the data values located at the \({\left( n \above 1pt 2 \right)}^\text{th}\) and \({\left( n+2 \above 1pt 2 \right)}^\text{th}\). 
+      <p>
+      $$
+         \begin{align}
+         median &= \left( \frac{n+1}{2}\right)^\text{th} \text{ data } & \text{if $n$ is odd}\\
+           &= \frac{ (\frac{n}{2})^\text{th} + \left(\frac{n+2}{2} \right)^\text{th} \text{ data }}{2} & \text{if $n$ is even}
+         \end{align}
+      $$
+         The median is not sensitive even if there is an extreme point in data, so it is often used as a measure of the central tendency when there is an extreme point.
+      <p>
+         A <b>mode</b> is the most frequently occurring value among data values.
+      $$
+         \textit{mode} = \text{the most frequently occurred value among data values}
+      $$
+         In the case of quantitative data, since there might be so many possible values, it is not reasonable 
+         to set a mode value as the most frequently occurred data value. In this case, we usually transform 
+         the quantitative data into qualitative data by dividing the data values into several not-overlapped 
+         intervals and counting the frequencies of each interval. The middle value of an interval with  
+         the highest frequency is set to the mode.
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         <b>Example 3.2.1</b>  <b>(Quiz scores) </b> <br>
+         Quiz scores of seven students in a statistics class are sampled as follows.
+      <p>
+         <div class="textLeft">   5, 6, 3, 7, 9, 4, 8 </div>
+         <div class="textLeft">[Ex] ⇨ DataScience ⇨ QuizScore.csv. </div>
+      <p>
+         Calculate the mean and median of this data and compare the result with 『eStat』 output. 
+      <p>
+         <b>Answer</b>
+      <p>
+         The sample mean is calculated as follows.
+      <p>
+         \( \qquad \small \overline x ~=~  { {5 + 6 + 3 + 7 + 9 + 4 + 8} \over 7} ~=~ 6 \)
+      <p>
+         In order to find the sample median, first arrange the data in ascending order of data values as follows: 
+      <p>
+         <div class="textLeft"> 3, 4, 5, 6, 7, 8, 9 </div>
+      <p>
+         Since the sample size, 7, is an odd number, the median is \(\small {\left( 7+1 \over 2 \right)}^{th} ~=~4^{th}\) data in the arranged data as above which is 6. 
+      <p>
+         To use 『eStat』, enter the data in column V1 of the sheet as in &lt;Figure 3.2.1&gt;. 
+         Click the Dot Graph icon and click the variable name ‘Quiz’ to see the dot graph of data as 
+         in &lt;Figure 3.2.2&gt;. If you check the option ‘Mean/StdDev’, you can see the location of 
+         the mean, and the interval of the standard deviation. 
+      <p>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/EX040301.png" onclick="window.open(addrStr[22])">
+            <img class="figure50" src="/estat/eLearning/en/DataScience/figure/Fig030201.png">
+            <div class="figText">&lt;Figure 3.2.1&gt; Data input</div>
+         </div>
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig030202.png">
+         <div class="figText">&lt;Figure 3.2.2&gt; Dot graph with mean and standard deviation.</div>
+      <p>
+         If you click the Descriptive Statistics icon, a table of all descriptive statistics will result 
+         in the Log Area as shown in &lt;Figure 3.2.3&gt;. It shows the mean, median, and  
+         other statistics such as the standard deviation, minimum, and maximum, etc. 
+      <p>
+         <img class="figure40" src="/estat/eLearning/en/DataScience/figure/Fig030203.png">
+         <div class="figText">&lt;Figure 3.2.3&gt; Basic statistics of data</div>
+      <p>
+         You can also use 『eStatU』 to calculate the descriptive statistics and simulate the influence
+         of extreme points. Select [Box Plot – Descriptive Statistics] from the menu of 『eStatU』 and 
+         enter data.  『eStatU』 calculates all statistics while you are entering data. 
+      <p>
+         <!--********************************************************************************---->
+         <iframe class="example" src="/estat/eLearning/en/DataScience/example/030201.html"> </iframe>
+         <!--********************************************************************************---->
+      <p>
+         If you click the [Execute] button, two sets of dot graphs and box plots appear. 
+         The first graph is for the data you entered, and the second one is for simulation. 
+         On the second bar graph, you can click a point (circle) using your mouse 
+         and move to the other far side location of the axis (make an extreme point) to check its influence 
+         on the mean and median. You can see that the mean is changed a lot by the extreme point, 
+         but the median is not altered by the extreme point.
+  </div>
+  <p>
+  <div class="mainTablePink">
+         <b>Practice 3.2.1</b>  <b>(Otter Length)</b> <br>
+         The lengths of 30 otters are measured (in cm), and the data are saved at the following location of 『eStat』.
+      <p>
+         <div class="textLeft">[Ex] ⇨ DataScience ⇨ PR040301_Continuous_OtterLength.csv </div>
+      <p>
+         <div class="textL20M20">1) Use 『eStat』 to obtain the mean, median, minimum and maximum of this data. </div>
+         <div class="textL20M20">2) Copy this data to 『eStatU』 and draw a dot graph and a box plot. Simulate the influence of an outlier. </div>
+         <input class="qrBtn" type="image" src="/estat/eStat/qr/PR040301.png" onclick="window.open(addrStr[60])">     
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         <b>Example 3.2.2</b> <b>(Library Visitor)</b> <br> 
+         If a frequency table of visitors’ age in a library is as shown in Table 3.2.1, find the mode of the age based on this frequency table.
+      <p>
+      <table style="width:400px"> 
+        <tr>
+          <th colspan="2">Table 3.2.1 Frequency table of visitor's age in a libray</th>
+        </tr>
+        <tr> 
+          <th>Age Interval</th> <th>Frequency</th>
+        </tr>
+        <tr> <td class="tdCenter">[20.00, 30.00)</td> <td class="tdCenter">2 ( 6.7%)</td> </tr>
+        <tr> <td class="tdCenter">[30.00, 40.00)</td> <td class="tdCenter">7 (23.3%)</td> </tr>
+        <tr> <td class="tdCenter">[40.00, 50.00)</td> <td class="tdCenter">7 (23.3%)</td> </tr>
+        <tr> <td class="tdCenter">[50.00, 60.00)</td> <td class="tdCenter">9 (30.0%)</td> </tr>
+        <tr> <td class="tdCenter">[60.00, 70.00)</td> <td class="tdCenter">3 (10.0%)</td> </tr>
+        <tr> <td class="tdCenter">[70.00, 80.00)</td> <td class="tdCenter">2 ( 6.7%)</td> </tr>
+        <tr> <td class="tdCenter">Total</td>          <td class="tdCenter">30 (100%)</td> </tr>
+      </table>
+      <p>
+         <b>Answer</b>
+      <p>
+         The interval [50.00, 60.00) has the highest frequency, 9, and the median is the mid value 
+         of the interval [50.00, 60.00), which is 55. 
+  </div>
+  <p>
+  <div class="mainTable">
+         There are several variants to compensate for the disadvantage of the mean, one of which
+         is a <b>trimmed mean</b>. We list the data in ascending order and then average the data 
+         except for a fixed number of large and small values to eliminate the extremes. 
+         The trimmed mean is often used to prevent 
+         biased judging by referees in sports, such as gymnastics and figure skating at the Olympics. 
+         You may remove the top few percent data instead of the maximum and the bottom few percent data 
+         instead of the minimum.
+      <p>
+         Another variant is a <b>weighted mean</b> in which each measurement is multiplied 
+         by a constant weight to obtain the mean. The grade point average for college students,
+         which uses the weights of credit hours, is an example of the weighted mean. 
+         The price index. which uses the weights of the total amount of sales 
+         of the goods, is another example of the weighted mean.
+         If \( x_{1} ,x_{2}, \dots , x_{n} \) are the data values and their weights are \( w_{1} , w_{2} ,\dots , w_{n} \), 
+         then the weighted mean is defined as the following. 
+         \[
+         \text{Weighted Mean} ~=~ { {w_{1} x_{1} +w_{2} x_{2} + \cdots + w_{n} x_{n}} \over {w_{1} + w_{2} + \cdots + w_{n}} } ~=~ { {\sum _{i=1} ^{n} w_{i} x_{i}} \over {\sum _{i=1} ^{n} w_{i}} }
+         \]
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         <b>Example 3.2.3</b> <b>(Olympic Gymnastics Game)</b> <br>
+         Eight referees in an Olympic gymnastics Game judged a player as follows: 
+      <p>
+         <div class="textLeft">9.0   9.5   9.3   7.2   10.0   9.1   9.4   9.0</div>
+      <p>
+         Find the mean and median of this data. Also, find the trimmed mean, which excludes the minimum 
+         and the maximum. Compare both results. 
+      <p>
+         <b>Answer</b>
+      <p>
+         This data is not a sample but a population of eight. The mean is as follows.
+      <p>
+         \( \qquad \small \mu ~=~ (9.0 + 9.5 + 9.3 + 7.2 + 10.0 + 9.1 + 9.4 + 9.0) / 8 ~=~ 72.5 / 8 ~=~ 9.063 \)
+      <p>
+         Since the number of data is \( \small N\) = 8 which is an even number, the median is the average of the 4th and the 5th data in the ordered list as follows: 
+      <p>
+         <div class="textLeft">7.2   9.0   9.0   9.1   9.3   9.4   9.5   10.0</div>
+      <p>
+         Therefore, the median is the average of 9.1 and 9.3, which is 9.2.
+         The trimmed mean is the average of the remaining numbers, except the minimum of 7.2 and the maximum of 10.0.
+      <p>
+         \( \qquad \small \text{Trimmed Mean} ~=~ (9.0 + 9.0 + 9.1 + 9.3 + 9.4 + 9.5) / 6 ~=~ 55.3 / 6 ~=~ 9.217\)
+      <p>
+         In this data, the median or the trimmed mean is more representative of the data than the arithmetic mean.
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         <b>Example 3.2.4</b> <b>(Weighted Mean)</b> <br>
+         A student took three courses in History (two credits), Math (four credits), and English (three credits)
+         last semester. He got an A in History, a B in math, and a C in English. Calculate the mean and the weighted mean with the number of credits if A is rated 4 points, B is 3 points, and C is 2 points. 
+      <p>
+         <b>Answer</b>
+      <p>
+         \( \small
+            \qquad \text{Mean = } \frac{4 + 3 + 2 }{3} = 3
+         \)
+      <p>
+         \( \small
+          \qquad \text{Weighted Mean = } \frac { 2×4 + 4×3 + 3×2  } { 2 + 4 + 3  }  = \frac{ 8 + 12 + 6} {9} = 2.89
+         \)
+      <p>
+         The weighted mean is less than the mean because although the grade in History, 
+         which has two credits, was A, the grade in English, which has three credits, 
+         was relatively poor, C.
+  </div>
+  <p>
+  
+  <!---------------------------------------------------------------->
+  <h5>Measures of dispersion</h5>
+  <p>
+  <div class="mainTable">
+         In a gymnastics competition, four judges scored 3, 4, 6, and 7 points for player A and 2, 4, 6, 
+         and 8 points for player B. Both players have the same mean of 5, but player B has a large deviation in the scores compared to player A. The degree of data dispersion 
+         is calculated using a numerical value, called a measure of dispersion, to compare two data sets.
+         The most commonly used measure of dispersion is a variance (or standard deviation). Other measures 
+         include a mean absolute deviation, range, and interquartile range.
+         A <b>variance</b> is an average of all squared distances from each data to the mean. Therefore, if data are 
+         spread widely around their mean, the variance will be large, and if data are concentrated around 
+         the mean, the variance will be small. A population variance is denoted as \(\sigma^2\), and a 
+         sample variance is denoted as \(s^2\). Formulas to calculate the population variance and the sample 
+         variance are slightly different as follows.
+         $$\small 
+           \begin{align}
+             &\text{Population variance} &\quad \sigma^{2} ~&=~ { {1 \over N} {\sum _{i=1} ^{N} (x_{i} - \mu )^{2}}  } ~~~~	(N:~number~ of~ population~ data)  \\
+             &\text{Sample variance} &\quad s^{2} ~&=~ { { 1 \over {n-1} }{\sum _{i=1} ^{n} (x_{i} - {\overline x } )  ^{2}}  } ~~~~    	(n:~ number~ of~ sample~ data)	
+           \end{align}
+         $$
+         There is an important reason for using \(n-1\) instead of \(n\) when calculating the sample variance, 
+         which will be discussed in section 4.4, sampling distribution and estimation. 
+         The meaning of the population variance, which is an average of all 
+         squared distances from each data to the population mean, is illustrated in &lt;Figure 3.2.4&gt;. 
+         In this Figure, a dot mark represents each data value. \(\sigma^2\) = 2.5 is calculated as the sum of 
+         squared distances, 10, divided by the number of data, \(n\) = 4 in this example.
+      <p>
+         <img class="figure50" src="/estat/eLearning/en/DataScience/figure/Fig030204.png">
+         <div class="figText">&lt;Figure 3.2.4&gt; Calculation of a population variance</div>
+      <p>
+         A <b>standard deviation</b> is defined as the square root of the variance. A population standard deviation 
+         is denoted as \(\sigma\), and a sample standard deviation is denoted as \(\s\). The variance is not 
+         easy to interpret because it is an average of the squared distances. However, since the standard 
+         deviation is the square root of the variance, it is interpreted as an average distance from each 
+         data value to the mean.
+         $$
+           \begin{align}
+             \sigma &=~ \sqrt {\sigma^2} \\
+             s &=~ \sqrt {s^2}
+           \end{align}
+         $$
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         <b>Example 3.2.5</b> <b>(Quiz scores) </b> <br>
+         In Example 3.2.1, the mean of the following sample data was 6. 
+      <p>
+         <div class="textLeft">5, 6, 3, 7, 9, 4 and 8 </div>
+      <p>
+         Calculate a sample variance and a sample standard deviation of this data.
+      <p>
+         <b>Answer</b>
+      <p>
+         The sample mean was calculated as follows.
+      <p>
+         \( \small \qquad
+           \overline x ~=~ { { 5 + 6 + 3 + 7 + 9 + 4 + 8 } \over  7 } ~=~ 6.
+         \)
+      <p>
+         Since this data is sampled, the sample variance is calculated as follows. Note that it is divided by (7-1).
+      <p>
+         \( \small \qquad
+           s^{2} ~=~ { {(5-6)^{2} +(6-6)^{2} +(3-6)^{2} +(7-6)^{2} +(9-6)^{2} +(4-6)^{2} +(8-6)^{2}} \over {(7-1)} } =~ { {28} \over {6} } ~=~4.667
+         \)
+      <p>
+         The sample standard deviation is the square root of the sample variance. 
+      <p>
+         \( \small \qquad
+           s~=~ \sqrt {s ^{2}} ~=~ \sqrt {4.667} ~=~2.16
+         \)
+      <p>
+         These values coincide with the output of 『eStat』 in &lt;Figure 3.2.3&gt; and the output of 『eStatU』.
+  </div>
+  <p>
+  <div class="mainTable">
+         When there are more than two quantitative variables and units of data measurement are different
+         from each other, comparing their standard deviations is meaningless. In this case, a coefficient of variation which is a division of the standard deviation by the mean, is used to compare several variables. The coefficient of variation is usually calculated as a percent value of the standard deviation to its mean.
+         $$\small  
+           \begin{align}
+             &\text{Population coefficient of variation} &C = \frac{\sigma}{\mu} \times 100	\quad \text{(unit %)} \\
+             &\text{Sample coefficient of variation}  &c = \frac {s}  {\overline {x}} \times 100  \quad \text {(unit %)}  
+           \end{align}
+         $$
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         <b>Example 3.2.6</b> <b>(Sales data)</b> <br>
+         A company's average weekly sales was 1.36 billion dollars, and its standard deviation
+         was 0.28 billion dollars. If the same data were made in monthly sales, the average
+         was 5.44 billion dollars, and its standard deviation was 0.5 billion dollars. 
+         Calculate a coefficient of variation for each case and compare.
+      <p>
+         <b>Answer</b>
+      <p>
+         The coefficient of variation in weekly sales is as follows.
+      <p>
+         \( \qquad \small
+           \frac{0.28}{1.36} \times 100  ~=~ 20.6\%, 
+         \)
+      <p>The coefficient of variation in monthly sales is as follows.
+      <p>
+         \( \qquad \small
+           \frac{0.50}{5.44} \times 100  ~=~ 9.2\%.
+         \)
+      <p>
+         Therefore, we can see that the variation in monthly sales is smaller than the variation in weekly sales.
+  </div>
+  <p>
+  <div class="mainTable">
+         A <b>range</b> is the difference between the maximum and the minimum value of data. 
+         The range is easy to calculate, but it is not a good measure of dispersion 
+         if extreme points exist.
+         $$ 
+           \text{range = maximum - minimum}
+         $$
+      <p>
+         A \(p\)-percentile implies roughly the percent data when data are arranged in ascending order from small to large. 
+         $$ 
+           p\text{-percentile} = p\%~ \text{of observations} \le \text{to this value and} ~(100-p)\% ~\ge~ \text{this value.}
+         $$
+         Note that if the data size is small, a single observation may fall into several percentiles according to this definition.
+         An <b>interquartile range</b> is a measure to complement the disadvantage of the range. The 25 percentile of the data is called the 1st quartile (Q1), the 50 percentile is called the 2nd quartile (Q2) or median, and the 75 percentile is called the 3rd quartile (Q3). The interquartile range (IQR) is the range between the 3rd quartile and the 1st quartile.
+         $$
+           \text{interquartile range  (IQR)  = Q3 - Q1 }
+         $$
+         One simple way to calculate Q1 and Q3 is to arrange the data in ascending order 
+         and divide it into two pieces with an equal number of data. 
+         If there is an odd number of data points, we add the median to the data, 
+         making the number of data points even. Q1 is the median of the first half of the data,
+         and Q3 is the median of the second point.
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         <b>Example 3.2.7</b>
+         If you have data 5, 3, 7, 9, find a range and an interquartile range.
+      <p>
+         <b>Answer</b>
+      <p>
+         The maximum of the data is 9, and the minimum is 3. Therefore, range is as follows.
+      <p>
+         \( \qquad \small
+           \text{Range} ~=~ 9 \;–\; 3 ~=~ 6 
+         \)
+      <p>
+         To find the quartiles of the data, first arrange the data in ascending order as follows.
+      <p>
+         <div class="textLeft"> 3, 5, 7, 9 </div>
+      <p>
+         The median of these numbers is the average of \( ({4 \over 2})^\text{th} \)  and \( ({4 \over 2 + 1})^\text{th} \) data.
+      <p>
+         \( \qquad \small
+           \text{Median} ~=~ \frac{(5 + 7)}{2} ~=~ 6 
+         \)
+      <p>
+         To calculate quartiles, since the number of data is even, we divide data into two pieces as follows: 
+      <p>
+         <div class="textLeft"> 3, 5 </div>
+         <div class="textLeft"> 7, 9 </div>  
+      <p>
+         The first quartile Q1 is the median of {3, 5}, which is Q1 = 4. The third quartile Q3 is 
+         the median of {7. 9}, which is Q3 = 8. So, the interquartile range IQR is as follows.
+      <p>
+         \( \qquad \small
+           \text{IQR = Q3} \;-\; \text{Q1 = 8} \;-\; 4 = 4
+         \)
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         <b>Example 3.2.8</b>
+         Using the data of Example 3.2.1 which are as follows, calculate a range and an interquartile range and compare it with the output of 『eStat』.
+      <p>
+         <div class="textLeft">5, 6, 3, 7, 9, 4, 8</div>
+      <p>
+         <b>Answer</b>
+      <p>
+         The maximum of the data is 9 and the minimum is 3. Therefore, the range is as follows.
+      <p>
+         \( \qquad \small
+           \text{Range} ~=~ 9 ~–~ 3 ~=~ 6. 
+         \)
+      <p>
+         In order to find quartiles of data, first arrange the data in ascending order as follows.
+      <p>
+         <div class="textLeft">3, 4, 5, 6, 7, 8, 9</div> 
+      <p>
+         The median of the data is the data value of \( ({{7+1} \over 2})^\text{th} ~=~4^\text{th} \) which is 6. 
+      <p>
+         In order to calculate the quartiles, since the number of data is odd, we insert the median
+         into the data, and divide the data into two pieces as follows. 
+      <p>
+         <div class="textLeft"> 3, 4, 5, 6 </div>
+         <div class="textLeft"> 6, 7, 8, 9 </div>  
+      <p>
+         The first quartile Q1 is the median of {3, 4, 5, 6} which is Q1 = 4.5. The third quartile Q3 is the median of [6, 7. 8, 9] which is Q3 = 7.5.
+         So, the interquartile range IQR is as follows.
+      <p>
+         \( \qquad \small
+           \text{IQR = Q3 - Q1 = 7.5} \;–\; 4.5 \;=\; 3 
+         \)
+      <p>
+         These values of Q1, Q3 and IQR coincide with the output of 『eStat』 in &lt;Figure 3.2.3&gt;, 
+         and the output of 『eStatU』.
+  </div>
+  <p>
+  <div class="mainTable">
+         <img class="imgIcon" src="/estat/eStat/icon/eStat_icon16_box.png">
+         A <b>box plot</b> is a graph to show the minimum, the 1st quartile, the median, the 3rd quartile, and the maximum of the data simultaneously that has been used recently. 
+         The box plot first marks the 1st quartile (Q1) and the 3rd quartile (Q3) at a horizontal line and connects with a square box. Then displays the median (Q2) at the location proportional to Q1 and Q3 in the box and connects the box with the minimum and the maximum. 
+         Also, draw a vertical line at  (minimum - 1.5 IQR) and at (maximum + 1.5 IQR) as in &lt;Figure 3.2.3&gt;. Using the box plot, you can check the symmetry of the data, the central location of data (median), and the degree of dispersion (IQR).
+         Data that are less than the line (minimum - 1.5 IQR) or greater than (maximum + 1.5 IQR) are considered extremes (marked * in &lt;Figure 3.2.5&gt;). 
+         Some statistical packages display the left line, which is to check an extreme point, 
+         as Max(minimum, Q1 - 1.5 IQR) and the right line as Min( maximum, Q3 + 1.5 IQR).
+      <p>
+         <img class="figure" src="/estat/eLearning/en/DataScience/figure/Fig030205.png">
+         <div class="figText">&lt;Figure 3.2.5&gt; box plot</div>
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         <b>Example 3.2.9</b>
+         Using the following data, draw a dot plot and a box plot using 『eStatU』.
+      <p>
+         <div class="textLeft">5, 6, 3, 7, 9, 4, 15</div>
+      <p>
+         <b>Answer</b>
+      <p>
+         Using the menu [Box Plot – Descriptive Statistics] in 『eStatU』 , if you enter the data and click the [Execute] button, the dot plot and the box plot appear as in &lt;Figure 3.2.6&gt;. 
+      <p>
+         <!--**********************************************************************************--->
+         <iframe  class="example" src="/estat/eLearning/en/DataScience/example/030201.html"> </iframe>
+         <!--**********************************************************************************--->
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         <b>Example 3.2.10</b>  <b>(Ages of teachers by gender)</b> <br>
+         In a middle school, the ages of all teachers with their gender were surveyed,
+         and the data can be found at the following location of 『eStat』.
+      <p>
+         <p class="textLeft">[Ex] ⇨ DataScience ⇨ TeacherAgeByGender.csv
+      <p>
+         <div class="textL20M20">1) Draw a box plot of the age using 『eStat』 and examine a median, a range,
+             a quartile, and an interquartile range.</div>
+         <div class="textL20M20">2) Draw a box plot of the age by gender using 『eStat』 and compare medians, 
+             ranges, quartiles, and IQRs by gender.</div>
+      <p>
+         <b>Answer</b>
+      <p>
+         <div class="textL20M20">
+              1) After loading the data to 『eStat』 , enter the value labels of ‘Gender’ as ‘Male’ for 1 
+              and ‘Female’ for 2 using [EditVar] button. Click on the box plot icon  and then 'Age' variable, 
+              then the horizontal box plot appears as in &lt;Figure 3.2.7&gt;. If you select ‘Vertical’ 
+              from the options below the graph, the vertical box plot shown as in &lt;Figure 3.2.8&gt; appears. 
+              Based on this box plot, we can see that the upper half of the data is more scattered than the lower half 
+              of data, which implies there are more aged teachers.
+         </div>
+      <p>
+         <div class="QRFigure">
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/EX040310.png" onclick="window.open(addrStr[23])">
+            <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig030207.png">
+            <div class="figText">&lt;Figure 3.2.7&gt; Horizontal box plot of age variable</div>
+         </div>
+      <p>
+        <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig030208.png">
+        <div class="figText">&lt;Figure 3.2.8&gt; Vertical box plot of age variable</div>
+      <p>
+        <div class="textL20">
+          If you click button of [Descriptive Statistics] in the options, the basic statistics of the age is displayed as shown in &lt;Figure 3.2.9&gt;.
+        </div> 
+     <p>
+        <img class="figure40" src="/estat/eLearning/en/DataScience/figure/Fig030209.png">
+        <div class="figText">&lt;Figure 3.2.9&gt; Descriptive statistics of age variable</div>
+      <p>
+        <div class="textL20M20">
+          2) If you click on 'Gender' after 'Age' variable, the horizontal box plot by gender appears as shown 
+          in &lt;Figure 3.2.10&gt;. If you select ‘Vertical’ from the options below the graph, the vertical 
+          box plot by gender appears as shown in &lt;Figure 3.2.11&gt;. You can observe that the dispersion 
+          of female teachers' ages is greater than that of male teachers’.
+        </div>
+      <p>
+        <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig030210.png">
+        <div class="figText">&lt;Figure 3.2.10&gt; Horizontal box plot of age by gender</div>
+      <p>
+        <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig030211.png">
+        <div class="figText">&lt;Figure 3.2.11&gt; Vertical box plot of age by gender</div>
+      <p>
+        <div class="textL20">
+          If you click the button of [Basic Statistics] in the options, the basic statistics of the age by gender is displayed in the Log Area as in &lt;Figure 3.2.12&gt;.
+        </div>
+      <p>
+        <img class="figure50" src="/estat/eLearning/en/DataScience/figure/Fig030212.png">
+        <div class="figText">&lt;Figure 3.2.12&gt; Descriptive statistics of age by gender</div>
+  </div>
+  <p>
+  <div class="mainTablePink">
+         <b>Practice 3.2.2</b> <b>(Effect of Vitamin C on Tooth Growth in Guinea Pigs)</b> <br>
+         We examined the effect of Vitamin C on tooth growth in Guinea Pigs. The response is 
+         the length of odontoblasts (cells responsible for tooth growth) in 60 guinea pigs. 
+         Each animal received one of three dose levels of vitamin C (0.5, 1, and 2 mg/day) 
+         by one of two delivery methods: orange juice or ascorbic acid (a form of vitamin C coded as VC). 
+         Data can be found at the following location of 『eStat』.
+      <p>
+         <p class="textLeft">[Ex] ⇨ DataScience ⇨ ToothGrowth.csv
+         <p>Data format:
+            <table style="width:400px">
+              <tr>
+                <td class="tdLeft">V1</td>
+                <td class="tdLeft">length</td>
+                <td class="tdLeft">numeric</td>
+                <td class="tdLeft">Tooth length</td>
+              </tr>
+              <tr>
+                <td class="tdLeft">V2</td>
+                <td class="tdLeft">supp</td>
+                <td class="tdLeft">factor</td>
+                <td class="tdLeft">Supplement type (VC or OJ).</td>
+              </tr>
+              <tr>
+                <td class="tdLeft">V3</td>
+                <td class="tdLeft">dose</td>
+                <td class="tdLeft">numeric</td>
+                <td class="tdLeft">Dose in milligrams/day</td>
+              </tr>
+            </table>
+      <p>
+         <div class="textL20M20">1) Draw a box plot of the length using 『eStat』 and find the median, the range, 
+           the quartiles, and the IQR. Analyze the graph and the basic statistics.</div>
+         <div class="textL20M20">2) Draw a box plot of the length by the supplement using 『eStat』,
+           and find the median, the range, the quartiles, and the IQR by the supplement. Analyze the graphs and the basic statistics.</div>
+         <div class="textL20M20">3) Draw a box plot of the length by the dose using 『eStat』,
+           and find the median, the range, the quartiles, and the IQR by the dose. Analyze the graphs 
+           and the basic statistics.</div>
+         <input class="qrBtn" type="image" src="/estat/eStat/qr/PR040302.png" onclick="window.open(addrStr[61])">     
+  </div>
+  <p>
+
+  <!------------------------------------------------------------------------------------------------->
+  <h4 id="030202">3.2.2 Measures for several quantitative variables</h4>
+  <p>
+  <h5>Two quantitative variables</h5>
+  <p>
+  <div class="mainTable">
+      <p>
+         Suppose there are two quantitative variables denoted as \(X\) and \(Y\) with  
+         means \(\mu_X\), \(\mu_Y\), and variances \(\sigma_X^2 , \sigma_Y^2 \) respectively.
+         Suppose \(n\) number of sample data of each variable are observed and denoted as
+         \( (x_1 , y_1 ), (x_2 , y_2 ), ... , (x_n , y_n ) \).
+         We observe the data using a scatter plot where each data is considered as points in a two-dimensional X-Y plane, 
+         Means of the data, \( (\overline{x}, \overline{y} ) \), are the center of the data in the plane.
+         Sample variances, \(s_x^2\) and \(s_y^2 \) are measures of dispersion in each variable. 
+      <p>
+         Since data can be scattered around the X-Y plane, which implies two variables are not related 
+         or can be concentrated around a line, which implies two variables have a strong relation, 
+         a <b>covariance</b> measure, \(\sigma_{XY}\) in case of population, is used to measure a relation 
+         between two variables. The <b>sample covariance</b>, \( s_{xy}\), is defined by the following formula.
+         $$
+           s_{xy} ~ =~ \frac{1}{n-1} \sum _{i=1} ^{n} (x_{i} - \overline x ) (y_{i} - \overline y )
+         $$
+         The covariance implies the total average of the values obtained by multiplying the 
+         x-axis distance and the y-axis distance from each data point to the data mean point 
+         \( (\overline{x}, \overline{y} ) \) in the X-Y plane. Therefore, if many points are on the upper right and lower left of
+         the mean point, the covariance has a positive value, indicating a positive correlation. 
+         If many points are on the upper left and lower right of the mean point, 
+         the covariance has a negative value, indicating a negative correlation. However, 
+         since covariance can increase in value depending on the unit of data, the  
+         <b>correlation coefficient</b>, denoted as \(\rho_{XY}\) in case of population, is used as a measure of relation and 
+         defined as follows.
+         $$
+            \rho_{XY} ~=~ \frac {\sigma_{XY}}{\sigma_X \sigma_Y } 
+         $$
+         The <b>sample correlation coefficient</b>, \( s_{xy} \) is defined as follows.
+         $$
+            r_{xy} ~=~ \frac{s_{xy}}{s_x s_y} ~=~ \frac {\sum _{i=1} ^{n} (x_{i} - \overline{x} )(y_{i} - \overline{y} )} {\sqrt {\sum _{i=1} ^{n} (x_{i} - \overline{x} ) ^{2} \sum _{i=1} ^{n} (y_{i} - \overline{y} )  ^{2}}} 
+         $$
+         The correlation coefficient is a variation of the covariance and can only have 
+         values between -1 and +1. When the correlation coefficient is close to +1, 
+         the two variables are said to have a strong positive correlation. When the 
+         correlation coefficient is close to -1, the two variables are said to have a strong negative correlation. 
+         When the correlation coefficient is close to 0, there is no correlation between 
+         the two variables.
+      <p>
+         The characteristics of the correlation coefficient are as follows.
+         <div class="textL20M20">1) \(\rho_{XY}\) has a value between -1 and +1, and 
+              the closer the value of \(\rho_{XY}\) is to +1, 
+              the stronger the positive linear relationship is, and the closer it is to -1, 
+              the stronger the negative correlation is, and the closer the value of \(\rho_{XY}\) is to 0,
+              the weaker the linear relationship is.
+         </div>      
+         <div class="textL20M20">2) If all data are located on a straight line, the value of \(\rho_{XY}\) has a value of 
+              1 (if the slope of the straight line is positive) or -1 (if the slope of the straight line is negative).
+         </div>      
+         <div class="textL20M20">3) \(\rho_{XY}\) is a measure that only indicates the linear relationship 
+              between two variables. Therefore, in the case of \(\rho_{XY}\) = 0, the two variables 
+              have no linear correlation, but they can have other relationships.
+         </div>      
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         <b>Example 3.2.11</b>
+         Based on the survey of advertising costs and sales for 10 companies that make the same product, 
+         we obtained the following data, as in Table 3.2.2. 
+         Find the sample covariance and correlation coefficient for the advertising costs and sales.
+      <p>
+      <table style="width:300px"> 
+        <tr>
+          <th colspan="3">Table 3.2.2  Advertising costs and sales (unit: 1 million USD)</th>
+        </tr>
+        <tr> 
+          <th>Company</th>
+          <th>Advertise (x)</th>
+          <th>Sales (y)</th>
+       </tr>
+        <tr> <td class="tdCenter">1</td> <td class="tdCenter"> 4</td> <td class="tdCenter">39</td> </tr>
+        <tr> <td class="tdCenter">2</td> <td class="tdCenter"> 6</td> <td class="tdCenter">42</td> </tr>
+        <tr> <td class="tdCenter">3</td> <td class="tdCenter"> 6</td> <td class="tdCenter">45</td> </tr>
+        <tr> <td class="tdCenter">4</td> <td class="tdCenter"> 8</td> <td class="tdCenter">47</td> </tr>
+        <tr> <td class="tdCenter">5</td> <td class="tdCenter"> 8</td> <td class="tdCenter">50</td> </tr>
+        <tr> <td class="tdCenter">6</td> <td class="tdCenter"> 9</td> <td class="tdCenter">50</td> </tr>
+        <tr> <td class="tdCenter">7</td> <td class="tdCenter"> 9</td> <td class="tdCenter">52</td> </tr>
+        <tr> <td class="tdCenter">8</td> <td class="tdCenter">10</td> <td class="tdCenter">55</td> </tr>
+        <tr> <td class="tdCenter">9</td> <td class="tdCenter">12</td> <td class="tdCenter">57</td> </tr>
+        <tr> <td class="tdCenter">10</td><td class="tdCenter">12</td> <td class="tdCenter">60</td> </tr>
+      </table>
+      <p>
+         <div class="textLeft">[Ex]  ⇨ DataScience  ⇨ SalesByAdvertise.csv.</div>
+      <p>
+         <b>Answer</b>
+      <p>
+         It is convenient to make the following table to calculate the sample covariance
+         and correlation coefficient.
+         We can also use this table for calculations in regression analysis.
+      <p>
+      <table style="width:600px"> 
+        <tr>
+          <th colspan="6">Table 3.2.3  A table for calculating the covariance</th>
+        </tr>
+        <tr> 
+          <th>Number</th>
+          <th>\(x\)</th>
+          <th>\(y\)</th>
+          <th>\(x^2\)</th>
+          <th>\(y^2\)</th>
+          <th>\(xy\)</th>
+        </tr>
+        <tr> <td class="tdCenter">1</td> <td class="tdCenter"> 4</td> <td class="tdCenter">39</td> <td class="tdCenter">16</td> <td class="tdCenter">1521</td> <td class="tdCenter">156</td> </tr>
+        <tr> <td class="tdCenter">2</td> <td class="tdCenter"> 6</td> <td class="tdCenter">42</td> <td class="tdCenter">36</td> <td class="tdCenter">1764</td> <td class="tdCenter">252</td> </tr>
+        <tr> <td class="tdCenter">3</td> <td class="tdCenter"> 6</td> <td class="tdCenter">45</td> <td class="tdCenter">36</td> <td class="tdCenter">2025</td> <td class="tdCenter">270</td> </tr>
+        <tr> <td class="tdCenter">4</td> <td class="tdCenter"> 8</td> <td class="tdCenter">47</td> <td class="tdCenter">64</td> <td class="tdCenter">2209</td> <td class="tdCenter">376</td> </tr>
+        <tr> <td class="tdCenter">5</td> <td class="tdCenter"> 8</td> <td class="tdCenter">50</td> <td class="tdCenter">64</td> <td class="tdCenter">2500</td> <td class="tdCenter">400</td> </tr>
+        <tr> <td class="tdCenter">6</td> <td class="tdCenter"> 9</td> <td class="tdCenter">50</td> <td class="tdCenter">81</td> <td class="tdCenter">2500</td> <td class="tdCenter">450</td> </tr>
+        <tr> <td class="tdCenter">7</td> <td class="tdCenter"> 9</td> <td class="tdCenter">52</td> <td class="tdCenter">81</td> <td class="tdCenter">2704</td> <td class="tdCenter">468</td> </tr>
+        <tr> <td class="tdCenter">8</td> <td class="tdCenter">10</td> <td class="tdCenter">55</td> <td class="tdCenter">100</td><td class="tdCenter">3025</td> <td class="tdCenter">550</td> </tr>
+        <tr> <td class="tdCenter">9</td> <td class="tdCenter">12</td> <td class="tdCenter">57</td> <td class="tdCenter">144</td><td class="tdCenter">3249</td> <td class="tdCenter">684</td> </tr>
+        <tr> <td class="tdCenter">10</td><td class="tdCenter">12</td> <td class="tdCenter">60</td> <td class="tdCenter">144</td><td class="tdCenter">3600</td> <td class="tdCenter">720</td> </tr>
+        <tr> <td class="tdCenter"><b>Sum</b></td><td class="tdCenter"><b>64</b></td> <td class="tdCenter"><b>497</b></td> <td class="tdCenter"><b>766</b></td><td class="tdCenter"><b>25097</b></td> <td class="tdCenter"><b>4326</b></td> </tr>
+        <tr> <td class="tdCenter"><b>Mean</b></td><td class="tdCenter"><b>8.4</b></td> <td class="tdCenter"><b>49.7</b></td> </tr>
+      </table>
+      <p>
+         The number of data \(n\) = 10, and the terms that are necessary to calculate the covariance 
+         and correlation coefficient are as follows: 
+      <p>
+         \(\small \quad SXX = \sum_{i=1}^{n} (x_i - \overline x )^{2} = \sum_{i=1}^{n} x_{i}^2 - n{\overline x}^{2} = 766 - 10×8.4^2  = 60.4 \)     <br>
+         \(\small \quad SYY = \sum_{i=1}^{n} (y_i - \overline y )^{2} = \sum_{i=1}^{n} y_{i}^2 - n{\overline y}^{2} = 25097 - 10×49.7^2  = 396.1 \)     <br>
+         \(\small \quad SXY = \sum_{i=1}^{n} (x_i - \overline x )(y_i - \overline y ) = \sum_{i=1}^{n} x_{i}y_{i} - n{\overline x}{\overline y} = 4326 - 10×8.4×49.7 = 151.2  \)
+      <p>
+         \(\small SXX, SYY, SXY \)represent the sum of squares of \(\small x_{i}\), the sum of squares of 
+         \(\small y_{i}\), the sum of squares of \(\small x_{i}, y_{i}\). Hence, the sample covariance and 
+         correlation coefficient are as follows: 
+      <p>
+         \(\small \quad s_{xy} = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \overline x )(y_i - \overline y ) = \frac{151.2}{10-1} = 16.8  \) <br>
+         \(\small \quad r = \frac {\sum_{i=1}^{n} (x_i - \overline x )(y_i - \overline y )} { \sqrt{\sum_{i=1}^{n} (x_i - \overline x )^{2} \sum_{i=1}^{n} (y_i - \overline y )^{2} } } = \frac{151.2} { \sqrt{ 60.4 × 396.1 } } = 0.978 \)
+      <p>
+         This value of the correlation coefficient is consistent with the scatter plot which shows a strong positive 
+         correlation of the two variables.
+      <p>
+      <!---   ************ html for Correlation Analysis ************  ---->
+      <b>[<span data-msgid="CorrelationAnalysis"></span>]</b>
+      <p>
+         <iframe class="example140" src="./example/030211.html"> </iframe>
+      <p>
+  </div>
+  <p>
+
+  <!------------------------------------------------------------------------>
+  <h5>Several quantitative variables</h5>
+  <div class="mainTable">
+      <p>
+         Suppose there are \(m\) quantitative variables denoted as \(X_1 , X_2 , ... , X_m \) with  
+         a mean vector 
+         $$
+            \left [ \matrix {\mu_1 \cr \mu_2 \cr ... \cr \mu_m } \right ]
+         $$
+         and a \(m \times m \) variance-covariance matrix as follows.
+         $$
+           \left [ \matrix {\sigma_{1}^2 & \sigma_{12}  & ... & \sigma_{1m} \cr 
+                            \sigma_{21}  & \sigma_{2}^2 & ... & \sigma_{2m} \cr
+                             ...         & ...          & ... & ... \cr
+                            \sigma_{m1}  & \sigma_{m2}  & ... & \sigma_{m}^2 } 
+           \right ]
+         $$
+         Suppose \(n\) number of sample data of each variable are observed and denoted as \(n \times m \) matrix as follows.
+         $$
+           \left [ \matrix {x_{11} & x_{12} & ... & x_{1m} \cr 
+                            x_{21} & x_{22} & ... & x_{2m} \cr
+                             ...   & ...    & ... & ... \cr
+                            x_{n1} & x_{m2} & ... & x_{mm} } 
+           \right ]
+         $$
+         We usually observe the data using a scatter plot matrix. The sample mean vector is 
+         $$
+            \overline {\boldsymbol x} = \left [ \matrix {\overline x_1 \;\; \overline x_2 \;\; ... \;\; \overline x_m } \right ]
+         $$
+         and the \(m \times m \) sample variance-covariance matrix \(S\) is as follows.
+         $$
+           S = \left [ 
+                   \matrix {s_{1}^2 & s_{12}  & ... & s_{1m} \cr 
+                            s_{21}  & s_{2}^2 & ... & s_{2m} \cr
+                             ...    & ...     & ... & ...    \cr
+                            s_{m1}  & s_{m2}  & ... & s_{m}^2 } 
+               \right ]
+         $$
+         Note that the sample variance-covariance matrix \(S\) is symmetric. The sample correlation matrix \(R\) is denoted
+         as follows.
+         $$
+           R = \left [ 
+                   \matrix {1       & r_{12}  & ... & r_{1m} \cr 
+                            r_{21}  & 1       & ... & r_{2m} \cr
+                             ...    & ...     & ... & ...    \cr
+                            r_{m1}  & r_{m2}  & ... & 1 } 
+               \right ]
+         $$
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         <b>Example 3.2.12</b>
+         Consider the iris data saved in  『eStat』 system at Ex -> /DataScience/Iris150.csv.
+         Use Species as a group variable and the other four variables as analysis variables. Draw a scatter plot matrix
+         and find the sample mean vector, sample variance-covariance matrix, and sample correlation coefficient for each group
+         and total data. 
+      <p>
+         <b>Answer</b>
+      <p>
+         You can easily find all statistics using the below 'Scatter Plot Matrix] module in 『eStatU』.
+         After you enter 'Species' data to Y variable and other data to X<sub>1</sub>, X<sub>2</sub>,
+         X<sub>3</sub>, X<sub>4</sub> variables, click [Execute] button. 
+         Then, the scatter plot matrix will appear in the graph window. 
+         If you click [Multivariate Stat] button below the graph, 
+         then basic statistics, covariances and correlations on four quantitative variables of each group and total data 
+         will appear in the table window.
+      <p>
+      <!--********************************------------------->
+        <b>[Scatter Plot Matrix / Parallel Coordinate Plot / Multivariate Stat]</b>
+        <iframe class="example140" src="/estat/eLearning/en/DataScience/example/030212.html"> </iframe>  
+      <!--********************************------------------->
+  </div>
+  <p>
+
+  <!------------------------------------------------------------------------------------------------->
+  <h4 id="030203">3.2.3 Similarity measures of observations</h4>
+  <p>
+  <div class="mainTable">
+         Data of a single variable, a column in the data set, can be explored using figures, 
+         tables, or statistical measures 
+         to see the overall shape or structure, as discussed in the previous sections. 
+         Another way to explore is to examine the <b>similarity or dissimilarity</b> 
+         between data of observation (a row in the data set) to see which observations are similar. 
+         Clustering analysis in Chapter 8 is a method of clustering similar data 
+         based on the similarity/dissimilarity of observations. 
+      <p>
+         Suppose there are two observations \(\boldsymbol x = (x_1 , x_2 , ... , x_m )\) and 
+         \(\boldsymbol y = (y_1 , y_2 , ... , y_m )\)
+         which have \(m\) variables. Since the dissimilarity measure is a kind of <b>distance</b>, 
+         it is usually denoted as \(d(\boldsymbol x , \boldsymbol y)\). 
+         The covariance or correlation coefficient in the previous section is 
+         a distance measure between data of variables (column). 
+         Commonly used distance measures between data of observations (rows) are summarized in Table 3.2.4 
+         according to the data type. A simple match coefficient for the qualitative data is used 
+         to validate the accuracy of a classification model.
+      <p>
+      <table style="width:800px"> 
+        <tr>
+          <th colspan="3">Table 3.2.4  Distance measures between data of observations</th>
+        </tr>
+        <tr> 
+          <th>Data type</th>
+          <th>Distance</th>
+          <th>Note</th>
+        </tr>
+        <tr> 
+          <td class="tdCenter">Qualitative</td>
+          <td>
+             \(
+               d(\boldsymbol x , \boldsymbol y) = \frac {f_{00} + f_{11}}{f_{00}+f_{01}+f_{10}+f_{11}} 
+             \)
+          </td> 
+          <td>
+            Simple match coefficient<br>
+            \(f_{00}\) : number of variables such as \(x_j = 0\) and \(y_j = 0 \) <br>
+            \(f_{01}\) : number of variables such as \(x_j = 0\) and \(y_j = 1 \) <br>
+            \(f_{10}\) : number of variables such as \(x_j = 1\) and \(y_j = 0 \) <br>
+            \(f_{11}\) : number of variables such as \(x_j = 1\) and \(y_j = 1 \) 
+          </td> 
+        </tr>
+        <tr> 
+          <td class="tdCenter">Quantitative</td>
+          <td>
+             \(
+                d(\boldsymbol x , \boldsymbol y) = \left ( \sum _{j=1} ^{m} |x_{j} - y_{j} | ^{r} \right )  ^{1/r} 
+             \)
+          </td> 
+          <td>Minkowski distance</td>
+        <tr> 
+          <td></td>
+          <td class="tdLeft">if \(r\) = 1, it is called \(L_1 \) distance. <br>
+             \( 
+                d(\boldsymbol x , \boldsymbol y) = \sum _{j=1} ^{m} |x_{j} - y_{j} |  
+             \)
+          </td> 
+          <td>Manhattan distance or city block distance</td>
+        </tr>
+        <tr> 
+          <td></td>
+          <td>if \(r\) = 2, it is called \(L_2 \) distance. <br>
+             \( 
+                d(\boldsymbol x , \boldsymbol y) = \left ( \sum _{j=1} ^{m} |x_{j} - y_{j} | ^{2} \right )  ^{1/2} 
+             \)
+          </td> 
+          <td>Euclid distance</td>
+        </tr>
+        <tr> 
+          <td></td>
+          <td>if \(r\) = ∞, it is called \(L_∞ \) distance. <br>
+             \( 
+                d(\boldsymbol x , \boldsymbol y) = max _{j=1} ^{m} |x_{j} - y_{j} |  
+             \)
+          </td> 
+          <td>Maximum distance</td>
+        </tr>
+      </table>
+      <p>
+         If there are \(n\) number of observations \( {\boldsymbol x}_1 , {\boldsymbol x}_2 , ... , {\boldsymbol x}_n \) 
+         for each of \(m\) variables, all distances between \(n\) number of observations can be expressed 
+         as a \(n \times n \) matrix \(D\) as follows. Here, \(d_{ij} \) is the distance 
+         \(d({\boldsymbol x}_{i} , {\boldsymbol x}_{j} )\) between \(i^{th}\) observation 
+         and \(j^{th} \) observation.
+         $$
+           D = \left [ 
+                   \matrix {d_{11}  & d_{12}  & ... & d_{1n} \cr 
+                            d_{21}  & d_{22}  & ... & d_{2n} \cr
+                             ...    & ...     & ... & ...    \cr
+                            d_{n1}  & d_{n2}  & ... & d_{nn} } 
+               \right ]
+         $$
+      <p>
+         『eStatU』 provides a module to calculate a distance matrix using the square of Euclid distance
+         or Manhattan distance as following example.
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         <b>Example 3.2.13</b>
+         Consider 30 observations of the iris data saved in  『eStat』 system at Ex -> /DataScience/Iris30.csv.
+         Find a distance matrix using the square of Euclid distance with four variables,
+         Sepal.Length, Sepal.Width, Petal.Length, and Petal.Width. 
+      <p>
+         <b>Answer</b>
+      <p>
+         You can easily find a distance matrix using the below 'Similarity Measure] module in 『eStatU』.
+         After you enter data of four variables to X<sub>1</sub>, X<sub>2</sub>,
+         X<sub>3</sub>, X<sub>4</sub, click [Execute] button. 
+         Then, the scatter plot matrix will appear in the graph window and the distance matrix
+         will appear in the below of the graph.
+      <p>
+      <!---********************************------------------->
+        <b>[Similarity Measure]</b>
+        <iframe class="example120" src="/estat/eLearning/en/DataScience/example/030213.html"> </iframe>  
+      <!---********************************------------------->
+  </div>
+  <p>
+
+  <!------------------------------------------------------------------------------------------------->
+  <h3 id="0303">3.3  Data manipulation and transformation</h3>
+  <p>
+  <div class="mainTable">
+         It is sometimes necessary to refine data suitable for applying a specific data analysis 
+         technique called <b>preprocessing</b>. 
+         The preprocessing can be data manipulation
+         or data transformation. 『eStat』 has various data manipulation and transformation functions 
+         like Excel or other statistical packages.
+         Let us practice data manipulation and transformation using the file in &lt;Figure 3.3.1&gt;.
+  </div>
+  <div class="mainTableGrey">
+         The data is stored at the following location of 『eStat』. 
+      <p>
+         [Ex] > DataScience > Survey.csv.
+      <p>
+         This data comprises 40 observations (rows) and 6 variables (columns). Data of categorical variables
+         such as Gender, Marital Status, Job, and Education level are coded using numbers, and the meaning 
+         of each coded value are as follows:
+      <p>
+            V1 Gender 1:Men, 2:Female <br>
+            V2 Marital Status 1: single, 2: married, 3: other<br>
+            V3 Age<br>
+            V4 Job 1: Office worker, 2: Civil servant, 3: Labor worker, 4: Politician, 5: Student,<br>
+               &nbsp;&nbsp;&nbsp;&nbsp; 6: Entrepreneur, 7: Housewife, 8: Other <br>
+            V5 Education Level 1: No Education, 2: Elementary, 3: Middle School, 4: High School, 5: University<br>
+            V6 Income
+      <p>
+         <img class="figure40" src="/estat/eLearning/en/DataScience/figure/Fig030301.png">
+         <br><span class="figText">&lt;Figure 3.3.1&gt; Survey.csv Data</span>
+  </div>
+
+  <!-------------------------------------------->
+  <h5>Assigning value label to the coded data</h5> 
+  <div class="mainTableGrey">
+         The Gender data in &lt;Figure 3.3.1&gt; have coded values, such as 1 for male 2 for female,
+         and the coded data are frequently
+         used to process the data with less storage space using a statistical package.
+         In this case, we need to assign variable names and value labels to have an understandable final result. 
+         In 『eStat』, if you click the [EditVar] button on the sheet, 
+         a dialog box for <b>[Value Label]</b>, as shown in &lt;Figure 3.3.2&gt; appears.
+      <p>
+         <img class="figure90" src="/estat/eLearning/en/DataScience/figure/Fig030302.png"><br>
+         <span class="figText">&lt;Figure 3.3.2&gt; [EditVar] dialog box</span>
+      <p>
+         On the screen, 'V1: Gender' is selected, and value labels 1 and 2 are displayed. On the right side of the screen, 
+         input 'male' and 'female' as the name of the value label. Select another categorical variable,
+         and enter the variable name and value labels similarly. We can enter value labels up to 9 categories
+         of a variable.
+      <p>
+         After the input is finished, press the [Save] button and then the [Exit] button. The system memorizes the value labels, 
+         but you have to save it in json format using the icon
+         <img class="icon" src="/estat/eStat/icon/eStat_icon07_jsonSave.png"> 
+         and you have to use the json load using the icon 
+         <img class="icon" src="/estat/eStat/icon/eStat_icon05_jsonOpen.png"> 
+         when you open the saved file. 
+  </div>
+
+  <!-------------------------------------------->
+  <h5>Mathematical transformation</h5> 
+  <p>
+  <div class="mainTable">
+         In the case of continuous data, a transformation using a mathematical function is used to use 
+         some data analysis models. For example, a neural network model uses a mathematical transformation
+         such as [0-1] transformation or standardization to make the units of several variables the same
+         when they are different. <b>[0-1] transformation</b> is to transform the value of a variable to a value 
+         between 0 and 1. If \(x\) is the value of a variable, \(min\) is the minimum value of the variable
+         and \(max\) is the maximum value of the variable, [0-1] transformation, \(y\), of \(x\)
+         means the relative position between the minimum and maximum values ​​of the variable.
+         $$
+           [0-1] \text{ transformation:} \quad y = \frac {x - min}{max - min}
+         $$
+      <p>
+         <b>Standardization</b> is to transform the original data into data with a mean of 0 and a variance of 1. 
+         If \(x\) is the value of a variable, \(\mu\) is the mean of the variable
+         and \(\sigma\) is the standard deviation of the variable, a standardized variable \(z\) is to subtracts the mean 
+         from each data and divide it by the variable's standard deviation as follows.  
+         $$
+           \text{Standardization:} \quad z = \frac {x - \mu}{\sigma}
+         $$
+      <p>
+         Models for data analysis often make statistical assumptions, which may not be satisfied by the data. 
+         In such cases, exponential transformation(\(exp(x)\)), log transformation(\(exp(x)\)), 
+         reciprocal transformation(\(exp(x)\)), square root transformation(\(exp(x)\)), or 
+         Box-Cox transformation of data is frequently used.
+         $$
+           \text{Box-Cox transformation:} \quad \Big[ \; \matrix { \frac {x^p - 1}{p} , \,\, \text{if} \,\, p \ne\ 0 \cr
+                                                        log(x), \,\, \text{if} \,\, p = 0  }
+         $$
+      <p>
+         The mathematical transformation mentioned above can be done by using <b>Compute</b> module in 『eStat』. 
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         In 『eStat』, click the [EditVar] button on the sheet and then click [<b>Compute</b>] in the menu 
+         to display a dialog box like &lt;Figure 3.3.3&gt;.
+      <p>
+         <img class="figure90" src="/estat/eLearning/en/DataScience/figure/Fig030303.png"><br>
+         <span class="figText">&lt;Figure 3.3.3&gt; Compute dialog box</span>
+      <p>
+         Suppose the population mean of Income is 130, and its standard deviation is 70.
+         The Standardized Income, called StdIncome, can be calculated by creating a
+         formula (V6-130)/70 using the buttons on variables, numbers, arithmetic operators (+, -, *, /),
+         and parenthesis. You can use buttons of LOG, EXP, SQRT functions on the Compute dialog box
+         to make a new variable for other mathematical transformations. Give a new name to the
+         newly created variable, such as 'StdIncome', and then click [Execute] button.
+         The newly created data is automatically placed on the far right of the sheet, as &lt;Figure 3.3.4&gt. 
+         In this example, there are currently 6 variables, so a new computed variable is created in V7,  
+         as shown in &lt;Figure 3.3.4&gt;.
+      <p>
+         <img class="figure50" src="/estat/eLearning/en/DataScience/figure/Fig030304.png"><br>
+         <span class="figText">&lt;Figure 3.3.4&gt; Newly computed standardized data of Income</span>
+  </div>
+  <p>
+
+  <!-------------------------------------------->
+  <h5>Categorization</h5> 
+  <p>
+  <div class="mainTable">
+         There are some models, such as Decision Tree, that can be applied to only categorical variables. 
+         In such cases, we must convert the continuous variables into  categorical variables,
+         and it is called a [<b>categorization</b>].  
+         One common example of categorization is converting an age variable into categorical data such as 10s, 20s, etc.
+         When converting continuous data into categorical data, the most important question is 
+         ‘how many categories should we divide them into?’. Analysis may be difficult if the number of categories
+         is too small or too large. Usually, the analyst determines the number of categories 
+         after examining the data distribution. There are two methods: one is to divide 
+         the category intervals into equal intervals (equal width) and the other is to divide 
+         them into equal frequencies (equal frequency). In addition, you can consider a method of 
+         first dividing the number of intervals into many and then merging them one by one with adjacent intervals.
+         A decision tree model applies statistical methods to divide intervals using uncertainty measures 
+         such as the entropy coefficient.
+      <p>
+         Categorization of continuous data can be easily done using [<b>Recode: Category</b>] module
+         in [EditVar] of 『eStat』 as follows. 
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         Suppose we want to create a new categorical variable for Age. In 『eStat』, click the [EditVar] button on the sheet 
+         and click [<b>Recode: Category</b>] in the menu, then a dialog box like &lt;Figure 3.3.5&gt; appears.
+         Enter a new variable name, e.g., 'AgeCategory', and select the variable to categorize, 'V3: Age'.
+         Then, the minimum 20 and maximum 59 of Age data are shown on the right-hand side for your information.
+         If you decide to use 20 for the 'Interval Start' and 10 for the 'Interval Width', enter these values
+         and click the [Category List Check] button to view the intervals of new categorical variables. 
+         as in &lt;Figure 3.3.5&gt;.
+      <p>
+         <img class="figure90" src="/estat/eLearning/en/DataScience/figure/Fig030305.png"><br>
+         <span class="figText">&lt;Figure 3.3.5&gt; Dialogue box of 'Recode: Category' module</span>
+      <p>
+         The newly created data of the categorized variable, AgeCategory, is automatically placed on the far right of the sheet.
+         In this example, there were 7 variables, so new categorized variable is located at V8
+         as shown in &lt;Figure 3.3.6&gt;.
+      <p>
+         <img class="figure50" src="/estat/eLearning/en/DataScience/figure/Fig030306.png"><br>
+         <span class="figText">&lt;Figure 3.3.6&gt; New created data of 'AgeCategory' </span>
+  </div>
+  <p>
+
+  <!-------------------------------------------->
+  <h5>Recoding a value of the variable</h5> 
+  <p>
+  <div class="mainTable">
+         Sometimes, we need to change the value of the variable. For example, we found the frequency of
+         Entrepreneur of Job variable in Survey.csv data, and we want to merge it into another category, 
+         it is called a <b>recoding value</b>. This kind of recoding value can be easily done 
+         using <b>Recode: Value</b> module in [EditVar] of 『eStat』 as follows. 
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         In 『eStat』, click the [EditVar] button on the sheet and then click [<b>Recode: Value</b>] in the menu 
+         to display a dialog box like &lt;Figure 3.3.7&gt;. 
+         Enter a new variable name, e.g., 'JobNew', and select the variable to rename the value, 'V4: Job'.
+         Then, the current eight Job values are shown in the 'Current Value' column. 
+         Since the value of Entrepreneur is 6 now, we will change 6 to 8, which is Other category, 
+         and values of the other categories stay the same as &lt;Figure 3.3.7&gt;.
+      <p>
+         <img class="figure90" src="/estat/eLearning/en/DataScience/figure/Fig030307.png"><br>
+         <span class="figText">&lt;Figure 3.3.7&gt; Recode: Value dialog box</span>
+      <p>
+         If you click the [Execute] button, the newly recoded variable is automatically placed on the far right of the sheet. 
+         There are currently 8 variables in this example, so a new variable is created in V9, as shown in &lt;Figure 3.3.8&gt;.
+      <p>
+         <img class="figure50" src="/estat/eLearning/en/DataScience/figure/Fig030308.png"><br>
+         <span class="figText">&lt;Figure 3.3.8&gt; Recoded value data</span>
+  </div>
+  <p>
+
+  <!-------------------------------------------->
+  <h5>Sorting</h5> 
+  <p>
+  <div class="mainTable">
+         <b>Sorting</b> arranges the data set in ascending or descending order of one variable,
+         called a key variable. It is a standard data processing in many databases and statistical packages.
+         The sorting can be easily done using [<b>Sorting</b>] module in [EditVar] of 『eStat』,
+         which allows up to 3 key variables.
+         Let us practice sorting using the survey.csv data with age as a key variable.
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         In 『eStat』, click the [EditVar] button on the sheet and then click [<b>Sorting</b>] in the popup menu 
+         to display a dialog box like &lt;Figure 3.3.9&gt;.
+      <p>
+         <img class="figure90" src="/estat/eLearning/en/DataScience/figure/Fig030309.png"><br>
+         <span class="figText">&lt;Figure 3.3.9&gt; Sorting dialog box</span>
+      <p>
+         Select the first 'Sorting Variable' as Age, and 'Sorting Method' as 'Ascending', 
+         and click the [Execute] button to display the sorted data on the sheet.
+         You can select up to three sorting key variables. After the first variable sorts the data, 
+         the second variable is sorted, and again, the first and second variables are sorted, 
+         and the third variable is sorted within sorted.
+      <p>
+         Data sorted in ascending order of Age is shown in &lt;Figure 3.3.10&gt;. 
+      <p>
+         <img class="figure50" src="/estat/eLearning/en/DataScience/figure/Fig030310.png"><br>
+         <span class="figText">&lt;Figure 3.3.10&gt; Data sorted in ascending order of age</span>
+  </div>
+  <p>
+
+  <!-------------------------------------------->
+  <h5>Conditional selection of data: Select If</h5>
+  <p> 
+  <div class="mainTable">
+         Sometimes, we need to select data that satisfy only certain conditions, called
+         a <b>conditional selection</b>. For example, we need to analyze data that are male and
+         age greater than or equal to 30. This kind of conditional selection can be easily done 
+         using [<b>Select If</b>] module in [EditVar] of 『eStat』 as the following example. 
+         『eStat』 allows up to three conditions. 
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         In 『eStat』, click the [EditVar] button on the sheet and click [<b>Select If</b>] from the menu, 
+         then a dialog box like &lt;Figure 3.3.11&gt; appears.
+      <p>
+         <img class="figure90" src="/estat/eLearning/en/DataScience/figure/Fig030311.png"><br>
+         <span class="figText">&lt;Figure 3.3.11&gt; 'Select If' dialog box</span>
+      <p>
+         Select a variable, select a relational operator (=, <, ≤, >, ≥, ≠), and enter a value 
+         to complete the conditional expression.
+         You can create conditional expressions for up to three variables. Here, select male 
+         in 'V1: Gender' and '30 years or older in V3: Age'. 
+         After creating the conditional expression, click the [Execute] button.
+      <p>
+         The data selected for males, and over 30 years of age are shown in &lt;Figure 3.3.12&gt;.
+      <p>
+         <img class="figure50" src="/estat/eLearning/en/DataScience/figure/Fig030312.png"><br>
+         <span class="figText">&lt;Figure 3.3.12&gt; Data selected for male and over 30 years of age</span>
+  </div>
+  <p>
+
+  <!-------------------------------------------------------------------->
+  <h3 id="0304">3.4  Dimension reduction: Principal component analysis</h3>
+  <p>
+  <div class="mainTable">
+         Recent data in data analysis can be so large that data processing takes a long time.
+         When applying a model, the number of variables is too large to apply to the model. 
+         In such cases, you can consider a reduction of data size by sampling an appropriate number of data or
+         discarding unnecessary variables or using principal component analysis to reduce the number of variables. 
+  </div>
+  <p>
+
+  <!-------------------------------------------------------------------->
+  <h5>Reducing data size using sampling</h5>
+  <p>
+  <div class="mainTable">
+         When an entire population is unknown, the characteristics of the population are studied using samples 
+         in inferential statistics. If the data used in data analysis is too big to handle, we can collect some samples of the big data to reduce the time and cost of data processing. In addition, sampling can also be applicable
+         for exploratory data analysis by extracting only some data to identify the characteristics of the entire data. 
+         A suitable sampling method in big data analysis is to extract a sample that sufficiently represents 
+         the whole data and has similar characteristics. There are various sampling methods, but only 
+         two basic ones are widely used in big data analysis.
+      <p> 
+         <b>Simple random sampling</b> extracts a sample so that all data in the whole data set have 
+         the same probability of being selected as a sample. Both with replacement sampling 
+         and without replacement sampling can be applied, but in reality, almost all sampling is done without replacement. 
+         We can use a random number table to ensure that each data in the population has the same probability of being selected as a sample. A random number table is a table in which numbers from 0 to 9 
+         are scattered without regularity or bias, and most programming languages ​​provide it as a function. 
+         <b>Stratified sampling</b> is a method of dividing the entire data set into an appropriate number of 
+         homogeneous strata and extracting a fixed-size sample from each strata. For example, 
+         suppose you are interested in the average wage in a population of men and women. In that case, 
+         you can divide the population into two strata, men and women, and extract a sample from each strata 
+         using simple random sampling to estimate the overall average wage. In this stratified sampling method, 
+         making the data in each stratum as homogeneous as possible is good. In this case, 
+         the variance of the estimated value is smaller than in simple random sampling. 
+  </div>
+  <p>
+
+  <!-------------------------------------------------------------------->
+  <h5>Reducing variable size using principle component analysis</h5>
+  <p>
+  <div class="mainTable">
+         When there are many variables, analyzing all of them can cause various complicated problems. 
+         In such cases, if you create a small number of new variables using the correlations of the variables, 
+         the analysis becomes more straightforward, and you can also find new relationships between the variables. 
+         <b>Principal component analysis</b> uses the covariance matrix or correlation matrix 
+         of the variables to find a new small number of variables. New variables, called principal components, 
+         are found by a linear combination of the existing variables, so they are not correlated.
+        <p>
+         Assume that a random vector \(\boldsymbol X = (X_1 , X_2 , ... , X_m )\) has a mean vector
+         \(\boldsymbol \mu\) and a covariance matrix \(\boldsymbol \Sigma\). The diagonal elements of
+         \(\boldsymbol \Sigma\) are the variances \(\sigma_1^2 , \sigma_2^2 , ... , \sigma_m^2 \) of 
+         each random variable. Let the eigenvalues ​​of the covariance matrix  \(\boldsymbol \Sigma\) 
+         be \(\lambda_1 , \lambda_2 , ... , \lambda_m \), which are arranged in descending order of magnitude,
+         and let the eigenvectors corresponding to each eigenvalue be \(\boldsymbol  e_1 ,\boldsymbol  e_2 , ... , \boldsymbol e_m \). 
+         If \(\boldsymbol E\) is a \(m \times m\) matrix with these eigenvectors as columns such as 
+         \( \boldsymbol E = [ \boldsymbol e_1 , \boldsymbol e_2 , ... , \boldsymbol e_m ]\), the linear transformation 
+         \(\boldsymbol {Y = EX } \) creates new variables \(\boldsymbol Y = (Y_1 , Y_2 , ... , Y_m )\), 
+         which are called <b>principal components</b>. The principal component \(Y_j \) is a linear combination
+         of \( X_1 , X_2 , ... , X_m \) with coefficients of the eigenvectors. 
+      <p>
+         The covariance matrix \(\boldsymbol \Sigma _Y\) of the principal components 
+         \(\boldsymbol Y = (Y_1 , Y_2 , ... , Y_m )\)
+         can be shown as follows by the properties of the eigenvalues ​​and eigenvectors.
+         $$
+           \boldsymbol {\Sigma _Y = E' \Sigma E } = 
+              \left [ 
+                   \matrix {\lambda_{1}  & 0           & ... & 0 \cr 
+                            0            & \lambda_{2} & ... & 0 \cr
+                             ...         & ...         & ... & ... \cr
+                            0            & 0           & ... & \lambda_{m} } 
+               \right ]
+         $$
+         \(\boldsymbol \Sigma _Y\) is a diagonal matrix whose diagonal elements are eigenvalues 
+         \(\lambda_1 , \lambda_2 , ... , \lambda_m \) of \(\boldsymbol \Sigma \). 
+         This means that the principal components are independent and they are orthogonal to each other geometrically.
+         It also shows that the variance of the principal component \(Y_j\) is \(\lambda_j\).
+         Since the eigenvalues ​​are assumed to be \(\lambda_1 \ge \lambda_2 \ge ... \ge \lambda_m \),
+         the first principal component \(Y_1\) has the largest variance among the linear combinations of variables
+         \(X_1 , X_2 , ... , X_m \), and the last principal component \(Y_m\) has the smallest variance.
+         It can be also shown that the sum of the diagonal elements of the covariance matrix 
+         \(\boldsymbol \Sigma \) (i.e., the sum of the variances of \(X_i \)'s ) is equal to 
+         the sum of all eigenvalues ​​(i.e., the sum of the variances of the principal components \(Y_i\)'s) as follows.
+         $$
+           \sigma_1^2 + \sigma_2^2 + ... + \sigma_m^2 = \lambda_1 + \lambda_2 + ... + \lambda_m 
+         $$
+         Since the eigenvalues ​​are sorted in descending order of value, the variances of a few
+         principal components can explain a large portion of the sum of the variances of \(X_1 , X_2 , ... , X_m\) variables. 
+         In other words, the variances of a small \(k\) number of principal components,
+         \(Y_1 , Y_2 , ... , Y_k\) can explain the variances of the entire variables, 
+         \( \sigma_1^2 + \sigma_2^2 + ... + \sigma_m^2 \).
+      <p>
+         The principal component analysis often uses a correlation matrix rather than a covariance matrix
+         because if all variables \(X_1 , X_2 , ... , X_m\) are standardized, the covariance matrix 
+         becomes the correlation matrix and the sum of the variances of the principal components 
+         \(Y_1 , Y_2 , ... , Y_m \) becomes \(m\). In this case, if the variance (eigenvalue) of 
+         a principal component is greater than 1, the contribution of this principal component
+         is greater than the average 1. The principal component analysis uses usually \(k\) principal components,
+           \(Y_1 , Y_2 , ... , Y_k \) whose contribution is greater than the average, instead of using all variables.
+         Therefore, the analysis is performed by reducing the dimension to a small number of principal components.
+         Let us practice the principal component analysis using a module in 『eStat』.
+  </div>
+  <p>
+  <div class="mainTableGrey">
+      <!---*************************************************---->
+         <b>[Principal Component Analysis]</b> (Iris data)<br> 
+         Consider the iris data, which has four variables, Sepal.Length, Sepal.Width, Petal.Length, Petal.Width.
+         Let us find principal components and how many of them can explain total variances.
+         If you click [Execute] button, a scatter plot matrix of the four variables will appear on
+         the graph window with a statistics table of principal components below the graph.<br>
+         The eigenvalue of the first principal component, \(\small Y_1 = -0.521 X_1 + 0.269 X_2 - 0.580 X_3 - 0.565 X_4\),
+         is 2.918 which explains 72.96% of the total variance. The eigenvalue of the second principal component,
+         \(\small Y_2 = 0.377 X_1 + 0.923 X_2 + 0.024 X_3 -0.067 X_4\), is 0.914 which explains 22.85% of total variance.
+         Therefore, the variances of two principal components explain 95.81% of the total variance 
+         and only these two principal components can be used for further analysis. 
+         If you click [Principal Component Table] button, you can see the data of principal components.
+         In this case, you can use the first two components for further analysis.
+      <p>
+      <iframe class="example140" src="/estat/eLearning/en/DataScience/example/030401PCA.html"> </iframe>  
+      <!---*************************************************---->
+  </div>
+
+  <!-------------------------------------------------------------------->
+  <h3 id="0305">3.5  R practice</h3>
+  <p>
+  <h5>R practice</h5>
+  <p>
+  <div class="mainTable">
+       Let us practice R commands using the data saved at C:\Rwork\PurchaseByCredit40.csv. 
+       The file format is a comma separated value (csv) type. You can find this file
+       from 『eStat』 system. Click Ex > DataScience and then click the data 'PurchaseByCredit40.csv'.
+       After this file is loaded to 『eStat』, save it using 'csv Save' button. It will be
+       saved at the Download folder on your PC. Copy this file to C:\Rwork\ folder.
+    <p>
+       You need to change first the working directory of R to use this data as follows.
+    <p>
+       File > Change Directory > C: > Rwork<br>
+    <p>
+  </div>
+  <div class="mainTable">
+    <table style="width:800px;">
+         <tr>
+           <td># read the data file</td>
+         </tr>
+         <tr>
+           <td style="width:650px;"><span style="color:red;">> card <- read.csv("PurchaseByCredit40.csv", header=T, as.is=FALSE)</span></td>
+           <td class="tdCenter" style="width:150px;"><button onclick="rFunction(1)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> card</span>
+<pre>
+   ï..id Gender Age Income Credit Purchase
+1      1   male 20s LT2000   Fair      Yes
+2      2 female 30s GE2000   Good       No
+3      3 female 20s GE2000   Fair       No
+4      4 female 20s GE2000   Fair      Yes
+5      5 female 20s LT2000    Bad       No
+6      6 female 30s GE2000   Fair       No
+7      7 female 30s GE2000   Good      Yes
+8      8   male 20s LT2000   Fair       No
+9      9 female 20s GE2000   Good       No
+10    10   male 30s GE2000   Fair      Yes
+11    11 female 30s GE2000   Good      Yes
+12    12 female 20s LT2000   Fair       No
+13    13   male 30s GE2000   Fair       No
+14    14   male 30s LT2000   Fair      Yes
+15    15 female 30s GE2000   Good      Yes
+16    16 female 30s GE2000   Fair       No
+17    17 female 20s GE2000    Bad       No
+18    18   male 20s GE2000    Bad       No
+19    19   male 30s GE2000   Good      Yes
+20    20   male 20s LT2000   Fair       No
+21    21   male 20s LT2000   Fair      Yes
+22    22 female 30s GE2000   Good       No
+23    23 female 20s GE2000   Fair       No
+24    24 female 20s GE2000   Fair      Yes
+25    25 female 20s LT2000    Bad       No
+26    26 female 30s GE2000   Fair       No
+27    27 female 30s GE2000   Good      Yes
+28    28   male 20s LT2000   Fair       No
+29    29 female 20s GE2000   Good       No
+30    30   male 30s GE2000   Fair      Yes
+31    31 female 30s GE2000   Good      Yes
+32    32 female 20s LT2000   Fair       No
+33    33   male 30s GE2000   Fair       No
+34    34   male 30s LT2000   Fair      Yes
+35    35 female 30s GE2000   Good      Yes
+36    36 female 30s GE2000   Fair       No
+37    37 female 20s GE2000    Bad       No
+38    38   male 20s GE2000    Bad       No
+39    39   male 30s GE2000   Good      Yes
+40    40   male 20s LT2000   Fair       No
+</pre>
+           </td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> attach(card)</span></td>
+           <td class="tdCenter"><button onclick="rFunction(2)">copy r command</button></td>          
+         </tr>
+    </table>
+  </div>
+  <p>
+  <div class="mainTable">
+    <table style="width:800px;">
+         <tr>
+           <td># 1 dim frequency table</td>
+         </tr>
+         <tr>
+           <td style="width:650px;"><span style="color:red;">> table(Gender)</span></td>
+           <td class="tdCenter" style="width:150px;"><button onclick="rFunction(3)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td>
+<pre>
+Gender 
+female   male
+    24     16
+</pre>
+           </td>
+         </tr>
+         <tr>
+           <td># 2-dim frequency table</td>
+         </tr>
+         <tr>
+           <td style="width:650px;"><span style="color:red;">> table(Gender,Purchase)</span></td>
+           <td class="tdCenter" style="width:150px;"><button onclick="rFunction(4)">copy r command</button></td>
+         <tr>
+           <td style="width:650px;">
+<pre>
+        Purchase 
+Gender   No Yes
+  female 16   8
+  male    8   8
+</pre>
+           </td>
+         </tr>
+    </table>
+    <table style="width:800px;">
+         <tr>
+           <td># 3-dim frequency table</td>
+         </tr>
+         <tr>
+           <td style="width:650px;"><span style="color:red;">> table(Gender,Age,Purchase)</span></td>
+           <td class="tdCenter" style="width:150px;"><button onclick="rFunction(5)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td>
+<pre>
+, , Purchase = No
+        Age
+Gender   20s 30s
+  female  10   6
+  male     6   2
+
+, , Purchase = Yes
+        Age
+Gender   20s 30s
+  female   2   6
+  male     2   6
+</pre>
+           </td>
+         </tr>
+    </table>
+  </div>
+  <p>
+  <div class="mainTable">
+    <table style="width:800px;">
+         <tr>
+           <td># Continuous Data Basic Statistics<br>
+               # Read iris data
+           </td>
+         </tr>
+         <tr>
+           <td style="width:650px;"><span style="color:red;">> iris <- read.csv("iris150.csv", header=T, as.is=FALSE)</span></td>
+           <td class="tdCenter"><button onclick="rFunction(9)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td style="width:650px;"><span style="color:red;">> attach(iris)</span></td>
+           <td class="tdCenter"><button onclick="rFunction(10)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td># mean</td>
+         </tr>
+         <tr>
+           <td>
+               <span style="color:red;">> mean(Sepal.Length)</span>
+           </td>
+           <td class="tdCenter"><button onclick="rFunction(11)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td>
+<pre>
+[1] 5.843333
+</pre>
+           </td>
+         </tr>
+         <tr>
+           <td># median</td>
+         </tr>
+         <tr>
+           <td style="width:650px;"><span style="color:red;">> median(Sepal.Length)</span></td>
+           <td class="tdCenter"><button onclick="rFunction(12)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td>
+<pre>
+[1] 5.8
+</pre>
+           </td>
+         </tr>
+         <tr>
+           <td># variance</td>
+         </tr>
+         <tr>
+           <td style="width:650px;"><span style="color:red;">> var(Sepal.Length)</span></td>
+           <td class="tdCenter"><button onclick="rFunction(13)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td>
+<pre>
+[1] 0.6856935
+</pre>
+           </td>
+         </tr>
+         <tr>
+           <td># standard deviation</td>
+         </tr>
+         <tr>
+           <td style="width:650px;"><span style="color:red;">> sd(Sepal.Length)</span></td>
+           <td class="tdCenter"><button onclick="rFunction(14)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td>
+<pre>
+[1] 0.8280661
+</pre>
+           </td>
+         </tr>
+         <tr>
+           <td># range: min, max</td>
+         </tr>
+         <tr>
+           <td style="width:650px;"><span style="color:red;">> range(Sepal.Length)</span></td>
+           <td class="tdCenter" style="width:150px;"><button onclick="rFunction(15)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td>
+<pre>
+[1] 4.3 7.9
+</pre>
+           </td>
+         </tr>
+         <tr>
+           <td># summary of basic statistics</td>
+         </tr>
+         <tr>
+           <td style="width:650px;"><span style="color:red;">> summary(iris)</span>
+           <td class="tdCenter"><button onclick="rFunction(16)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td>
+<pre>
+     ï..id         Sepal.Length    Sepal.Width     Petal.Length  
+ Min.   :  1.00   Min.   :4.300   Min.   :2.000   Min.   :1.000  
+ 1st Qu.: 38.25   1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600  
+ Median : 75.50   Median :5.800   Median :3.000   Median :4.350  
+ Mean   : 75.50   Mean   :5.843   Mean   :3.057   Mean   :3.758  
+ 3rd Qu.:112.75   3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100  
+ Max.   :150.00   Max.   :7.900   Max.   :4.400   Max.   :6.900  
+  Petal.Width          Species  
+ Min.   :0.100   setosa    :50  
+ 1st Qu.:0.300   versicolor:50  
+ Median :1.300   virginica :50  
+ Mean   :1.199                  
+ 3rd Qu.:1.800                  
+ Max.   :2.500
+</pre>
+           </td>
+         </tr>
+    </table>
+  </div>
+  <p>
+
+  <h3 id="0306">3.6 Exercise</h3>
+  <p>
+  <div class="mainTableExercise">
+    <p class="textL30M30">3.1 The following sample survey showed on the living standard and education level of 25 adults. 
+      In the living standard, 1 implies ‘high income’, 2 implies ‘average’, and 3 implies ‘low income’, 
+      and in the education level, 1 implies middle school or lower, 2 implies high school, and 3 implies college or higher.
+    <p>
+      <table style="width:500px"> 
+        <tr><th>id</th><th>Living standard</th><th>Education level</th></tr>
+        <tr><td class="tdCenter"> 1</td> <td class="tdCenter">3</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter"> 2</td> <td class="tdCenter">1</td> <td class="tdCenter">1</td> </tr>
+        <tr><td class="tdCenter"> 3</td> <td class="tdCenter">2</td> <td class="tdCenter">2</td> </tr>
+        <tr><td class="tdCenter"> 4</td> <td class="tdCenter">3</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter"> 5</td> <td class="tdCenter">1</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter"> 6</td> <td class="tdCenter">3</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter"> 7</td> <td class="tdCenter">1</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter"> 8</td> <td class="tdCenter">2</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter"> 9</td> <td class="tdCenter">2</td> <td class="tdCenter">2</td> </tr>
+        <tr><td class="tdCenter">10</td> <td class="tdCenter">3</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter">11</td> <td class="tdCenter">2</td> <td class="tdCenter">2</td> </tr>
+        <tr><td class="tdCenter">12</td> <td class="tdCenter">1</td> <td class="tdCenter">1</td> </tr>
+        <tr><td class="tdCenter">13</td> <td class="tdCenter">3</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter">14</td> <td class="tdCenter">2</td> <td class="tdCenter">2</td> </tr>
+        <tr><td class="tdCenter">15</td> <td class="tdCenter">2</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter">16</td> <td class="tdCenter">2</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter">17</td> <td class="tdCenter">3</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter">18</td> <td class="tdCenter">3</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter">19</td> <td class="tdCenter">1</td> <td class="tdCenter">1</td> </tr>
+        <tr><td class="tdCenter">20</td> <td class="tdCenter">2</td> <td class="tdCenter">2</td> </tr>
+        <tr><td class="tdCenter">21</td> <td class="tdCenter">1</td> <td class="tdCenter">1</td> </tr>
+        <tr><td class="tdCenter">22</td> <td class="tdCenter">1</td> <td class="tdCenter">2</td> </tr>
+        <tr><td class="tdCenter">23</td> <td class="tdCenter">2</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter">24</td> <td class="tdCenter">3</td> <td class="tdCenter">1</td> </tr>
+        <tr><td class="tdCenter">25</td> <td class="tdCenter">1</td> <td class="tdCenter">2</td> </tr>
+      </table>
+      <div class="textL30M20">1) Create a frequency table for each of the living standard and education level.</div>
+      <div class="textL30M20">2) Create a cross table of the living standard and education level.</div>
+
+    <p class="textL30M30">3.2  The following data shows the highest temperature (degree in Celcius) in a city on a single day in August. 
+       Find all summary measures of this data using eStat and R. 
+      <table style="width:500px"> 
+        <tr><td class="tdLeft"> 29, 29, 34, 35, 35, 31, 32, 34, 38, 34, 33, 31, 31, 30, 34, 35,</td> </tr>
+        <tr><td class="tdLeft"> 34, 32, 32, 29, 28, 30, 29, 31, 29, 28, 30, 29, 29, 27, 28</td> </tr>
+      </table>
+
+    <p class="textL30M30">3.3 Below are the entrance exam results for selecting new employees at a particular company.  
+       Find all summary measures of this data by gender using eStat and R. 
+      <table style="width:500px"> 
+        <tr> <th>Male</th> <th>Female</th> </tr>
+        <tr><td class="tdCenter"> 49 86 40 45 48 93 97 58 58 98 <br>
+                                  58 82 52 56 50 85 80 60 62 80 <br>
+                                  62 72 65 60 64 70 78 67 69 88
+            </td> 
+            <td class="tdCenter"> 60 72 66 65 75 78 62 64 74 58 <br>
+                                  68 72 67 61 62 72 79 71 74 73
+            </td>
+        </tr>
+      </table>
+
+    <p class="textL30M30">3.4  The age and purchasing status (Y: purchase, N: non-purchase) of 10 people 
+        visiting a particular store were investigated as follows.
+      <table style="width:500px"> 
+        <tr> <th>Age</th> <th>Purchasing</th> </tr>
+        <tr> <td class="tdCenter">23</td> <td class="tdCenter">Y</td> </tr>
+        <tr> <td class="tdCenter">29</td> <td class="tdCenter">N</td> </tr>
+        <tr> <td class="tdCenter">34</td> <td class="tdCenter">Y</td> </tr>
+        <tr> <td class="tdCenter">44</td> <td class="tdCenter">Y</td> </tr>
+        <tr> <td class="tdCenter">58</td> <td class="tdCenter">N</td> </tr>
+        <tr> <td class="tdCenter">50</td> <td class="tdCenter">Y</td> </tr>
+        <tr> <td class="tdCenter">46</td> <td class="tdCenter">Y</td> </tr>
+        <tr> <td class="tdCenter">21</td> <td class="tdCenter">Y</td> </tr>
+        <tr> <td class="tdCenter">22</td> <td class="tdCenter">N</td> </tr>
+        <tr> <td class="tdCenter">30</td> <td class="tdCenter">N</td> </tr>
+      </table>
+      <div class="textL30M20">1) Create a new variable of age using 'Recode: Category' in eStat.</div>
+      <div class="textL30M20">2) Using the variable in 1), create a cross table between age and purchasing status.</div>
+
+    <p class="textL30M30">3.5  The results of observing the typing speed (X) and number of errors (Y) that 10 typists  
+                     input a certain amount of documents into a computer are as follows.
+      <table style="width:500px"> 
+        <tr> <th>Gender</th> <th>X (typing speed, unit: seconds)</th> <th>Y (number of errors)</th> </tr>
+        <tr> <td class="tdCenter">M</td> <td class="tdCenter">65</td> <td class="tdCenter">6</td> </tr>
+        <tr> <td class="tdCenter">M</td> <td class="tdCenter">60</td> <td class="tdCenter">9</td> </tr>
+        <tr> <td class="tdCenter">F</td> <td class="tdCenter">70</td> <td class="tdCenter">2</td> </tr>
+        <tr> <td class="tdCenter">F</td> <td class="tdCenter">73</td> <td class="tdCenter">4</td> </tr>
+        <tr> <td class="tdCenter">M</td> <td class="tdCenter">55</td> <td class="tdCenter">9</td> </tr>
+        <tr> <td class="tdCenter">M</td> <td class="tdCenter">65</td> <td class="tdCenter">3</td> </tr>
+        <tr> <td class="tdCenter">M</td> <td class="tdCenter">61</td> <td class="tdCenter">7</td> </tr>
+        <tr> <td class="tdCenter">M</td> <td class="tdCenter">59</td> <td class="tdCenter">1</td> </tr>
+        <tr> <td class="tdCenter">F</td> <td class="tdCenter">75</td> <td class="tdCenter">4</td> </tr>
+        <tr> <td class="tdCenter">M</td> <td class="tdCenter">64</td> <td class="tdCenter">2</td> </tr>
+      </table>
+      <div class="textL30M20">1) Find a frequency table of typing speed and the number of errors using the histogram module of eStat. </div>
+      <div class="textL30M20">2) Create two new variables of typing speed and the number of errors using 'Recode: Category' in eStat. 
+                                 Find a cross table between typing speed and the number of errors using eStat.
+      </div>
+      <div class="textL30M20">3) Find summary measures, including covariance and correlation between typing speed and the number of errors. </div>
+      <div class="textL30M20">4) Find summary measures, including covariance and correlation between typing speed and the number of errors by gender. </div>
+
+    <p class="textL30M30">3.6 <b>(Motor Trend Car Road Tests)</b>  <br>
+            We extracted 32 observation data from the 1974 Motor Trend US magazine, which comprised fuel consumption 
+            and 10 aspects of automobile design and performance. The data have 11 variables as follows.
+            <p>
+            <table style="width:500px">
+              <tr> <td>V1</td>  <td>mpg</td>  <td>Miles/(US) per gallon</td> </tr>
+              <tr> <td>V2</td>  <td>cyl</td>  <td>Number of cylinders</td> </tr>
+              <tr> <td>V3</td>  <td>disp</td> <td>Displacement (cu.in.)</td> </tr>
+              <tr> <td>V4</td>  <td>hp</td>   <td>Gross horsepower</td> </tr>
+              <tr> <td>V5</td>  <td>drat</td> <td>Rear axle ratio</td> </tr>
+              <tr> <td>V6</td>  <td>wt</td>   <td>Weight (1000 lbs)</td> </tr>
+              <tr> <td>V7</td>  <td>qsec</td> <td>1/4 mile time</td> </tr>
+              <tr> <td>V8</td>  <td>vs</td>   <td>Engine (0 = V-shaped, 1 = straight)</td> </tr>
+              <tr> <td>V9</td>  <td>am</td>   <td>Transmission (0 = automatic, 1 = manual)</td> </tr>
+              <tr> <td>V10</td> <td>gear</td> <td>Number of forward gears</td> </tr>
+              <tr> <td>V11</td> <td>carb</td> <td>Number of carburetors</td> </tr>
+            </table>
+            <p class="figText">(Source: Henderson and Velleman (1981), Building multiple regression models interactively. Biometrics, 37, 391–411.) 
+            <p>
+            <p class="textL30">This data are saved at the following location of 『eStat』.
+            <p>
+            <p class="textLeft">[Ex] ⇨ DataScience ⇨ Mtcars.csv
+            <p>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/PR030303.png" onclick="window.open(addrStr[55])">     
+      <div class="textL30M20">1) Find frequecy tables of all categorical variables.</div> 
+      <div class="textL30M20">2) Find cross tables of all categorical variables.</div> 
+      <div class="textL30M20">3) Find summary measures of all continuous variables.</div> 
+      <div class="textL30M20">4) Find summary measures of all continuous variables using Engine and Transmission as a group variable</div> 
+
+    <p class="textL30M30">3.6 Data collected by selecting 12 sub-areas and 5 different variables from a city in the United States
+           are as follows. The five variables are regional population (Population), years of education (School), total employment (Employment), 
+           number of professional services (Service), and housing prices (House). Examine 
+           socioeconomic damage through principal component analysis.
+           <p>
+           <table style="width:500px">
+             <tr> <th style="width:100px">Population</th> <th style="width:100px">School</th> <th style="width:100px">Employment</th> <th style="width:100px">Service</th> <th style="width:100px">House</th> </tr>
+             <tr> <td class="tdRight">5700</td> <td class="tdRight">12.8</td> <td class="tdRight">2500</td> <td class="tdRight">270</td> <td class="tdRight">25000</td> </tr>
+             <tr> <td class="tdRight">3400</td> <td class="tdRight"> 8.8</td> <td class="tdRight">1000</td> <td class="tdRight"> 10</td> <td class="tdRight"> 9000</td> </tr>
+             <tr> <td class="tdRight">4000</td> <td class="tdRight">12.8</td> <td class="tdRight">1600</td> <td class="tdRight">140</td> <td class="tdRight">25000</td> </tr>
+             <tr> <td class="tdRight">1200</td> <td class="tdRight">11.4</td> <td class="tdRight"> 400</td> <td class="tdRight"> 10</td> <td class="tdRight">16000</td> </tr>
+             <tr> <td class="tdRight">9900</td> <td class="tdRight">12.5</td> <td class="tdRight">3400</td> <td class="tdRight">180</td> <td class="tdRight">18000</td> </tr>
+             <tr> <td class="tdRight">9600</td> <td class="tdRight"> 9.6</td> <td class="tdRight">3300</td> <td class="tdRight"> 80</td> <td class="tdRight">12000</td> </tr>
+             <tr> <td class="tdRight">1000</td> <td class="tdRight">10.9</td> <td class="tdRight"> 600</td> <td class="tdRight"> 10</td> <td class="tdRight">10000</td> </tr>
+             <tr> <td class="tdRight">3800</td> <td class="tdRight">13.6</td> <td class="tdRight">1700</td> <td class="tdRight">140</td> <td class="tdRight">25000</td> </tr>
+             <tr> <td class="tdRight">8200</td> <td class="tdRight"> 8.3</td> <td class="tdRight">2600</td> <td class="tdRight"> 60</td> <td class="tdRight">12000</td> </tr>
+             <tr> <td class="tdRight">9100</td> <td class="tdRight">11.5</td> <td class="tdRight">3300</td> <td class="tdRight"> 60</td> <td class="tdRight">14000</td> </tr>
+             <tr> <td class="tdRight">9600</td> <td class="tdRight">13.7</td> <td class="tdRight">3600</td> <td class="tdRight">390</td> <td class="tdRight">25000</td> </tr>
+             <tr> <td class="tdRight">9400</td> <td class="tdRight">11.4</td> <td class="tdRight">4000</td> <td class="tdRight">100</td> <td class="tdRight">13000</td> </tr>
+            </table>
+
+  </div>
+
+</div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/estat/eLearning/en/eStatU/estat/eLearning/en/eStatU//estat/eLearning/en/eStatU/estat/eLearning/en/eStatU/assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
+        
+        /* ajust the height when click the toc
+           the code is from https://github.com/twbs/bootstrap/issues/1768
+        */
+        var shiftWindow = function() { scrollBy(0, -50) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+        
+        /*add Bootstrap styles to tables*/
+        var tables = document.getElementsByTagName("table");
+        for(var i = 0; i < tables.length; ++i){
+            tables[i].className += "table table-bordered table-hover";
+        }
+    </script>
+
+</body>
+</html>
+

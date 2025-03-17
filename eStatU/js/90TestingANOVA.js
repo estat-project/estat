@@ -1,4 +1,4 @@
-﻿      var bar = d3.select("#chart");
+      var bar = d3.select("#chart");
       var svgWidth, svgHeight, margin, graphWidth, graphHeight;
       var svgWidth2, svgHeight2, graphWidth2, graphHeight2;
       svgWidth2   = 600;
@@ -20,36 +20,36 @@
       document.getElementById("alpha2").disabled = true;  
 
      // input data control ===================================================
-      d3.select("#data1").on("input", function() {
-        stat = simplestat("#data1");  
+      d3.select("#data901").on("input", function() {
+        stat = simplestat("#data901");  
         document.getElementById("nn71").value   = stat.n;    
         document.getElementById("xbar71").value = f2(stat.xbar);
         document.getElementById("var71").value  = f2(stat.var);    
       });
-      d3.select("#data2").on("input", function() {
-        stat = simplestat("#data2");   
+      d3.select("#data902").on("input", function() {
+        stat = simplestat("#data902");   
         document.getElementById("nn72").value   = stat.n;    
         document.getElementById("xbar72").value = f2(stat.xbar);
         document.getElementById("var72").value  = f2(stat.var);    
       });
-      d3.select("#data3").on("input", function() {
-        stat = simplestat("#data3");   
+      d3.select("#data903").on("input", function() {
+        stat = simplestat("#data903");   
         document.getElementById("nn73").value   = stat.n;    
         document.getElementById("xbar73").value = f2(stat.xbar);
         document.getElementById("var73").value  = f2(stat.var);    
       });
-      d3.select("#data4").on("input", function() {
-        stat = simplestat("#data4");   
+      d3.select("#data904").on("input", function() {
+        stat = simplestat("#data904");   
         document.getElementById("nn74").value   = stat.n;    
         document.getElementById("xbar74").value = f2(stat.xbar);
         document.getElementById("var74").value  = f2(stat.var);    
       });
 
       updateData = function() {
-        document.getElementById("data1").value = '';
-        document.getElementById("data2").value = '';  
-        document.getElementById("data3").value = '';    
-        document.getElementById("data4").value = '';      
+        document.getElementById("data901").value = '';
+        document.getElementById("data902").value = '';  
+        document.getElementById("data903").value = '';    
+        document.getElementById("data904").value = '';      
       }
 
       d3.select("#nn71").on("input", updateData);
@@ -68,10 +68,10 @@
       // erase Data and Graph
       d3.select("#erase").on("click",function() {
         bar.selectAll("*").remove();
-        document.getElementById("data1").value  = "";
-        document.getElementById("data2").value  = "";
-        document.getElementById("data3").value  = "";
-        document.getElementById("data4").value  = "";
+        document.getElementById("data901").value  = "";
+        document.getElementById("data902").value  = "";
+        document.getElementById("data903").value  = "";
+        document.getElementById("data904").value  = "";
         document.getElementById("nn71").value   = "";
         document.getElementById("nn72").value   = "";
         document.getElementById("nn73").value   = "";
@@ -105,7 +105,7 @@
         document.getElementById("rangeAlpha").value = alpha*1000;
 
         // input value
-        stat = simplestat("#data1");
+        stat = simplestat("#data901");
         if (stat.n > 0) {
           nn7[0]    = stat.n;
           xbar7[0]  = stat.xbar;
@@ -116,7 +116,7 @@
           xbar7[0] = parseFloat(d3.select("#xbar71").node().value);
           var7[0]  = parseFloat(d3.select("#var71").node().value);
         }
-        stat = simplestat("#data2");
+        stat = simplestat("#data902");
         if (stat.n > 0) {
           nn7[1]    = stat.n;
           xbar7[1]  = stat.xbar;
@@ -127,7 +127,7 @@
           xbar7[1] = parseFloat(d3.select("#xbar72").node().value);
           var7[1]  = parseFloat(d3.select("#var72").node().value);
         }
-        stat = simplestat("#data3");
+        stat = simplestat("#data903");
         if (stat.n > 0) {
           nn7[2]    = stat.n;
           xbar7[2]  = stat.xbar;
@@ -138,7 +138,7 @@
           xbar7[2] = parseFloat(d3.select("#xbar73").node().value);
           var7[2]  = parseFloat(d3.select("#var73").node().value);
         }
-        stat = simplestat("#data4");
+        stat = simplestat("#data904");
         if (stat.n > 0) {
           nn7[3]    = stat.n;
           xbar7[3]  = stat.xbar;

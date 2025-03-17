@@ -1,4 +1,4 @@
-﻿      var chart = d3.select("#chart");
+      var chart = d3.select("#chart");
       var colr = ["#FF0000","#FF8000","#FFFF00","#32CD32","#00FFFF","#BF00FF","#FF00FF","#0080FF","#00BFFF","#8000FF"];
       var i, j, x, temp, info;
       var avg1, avg2, avg3, std1, std2, std3;

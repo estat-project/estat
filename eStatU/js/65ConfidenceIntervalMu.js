@@ -1,4 +1,4 @@
-﻿      var bar = d3.select("#chart");
+      var bar = d3.select("#chart");
       var svgWidth, svgHeight, margin, graphWidth, graphHeight;
       var margin      = {top: 10, bottom: 10, left: 10, right: 10};
       var svgWidth2   = 600;
@@ -62,8 +62,8 @@
       a[1].onclick = function() { confidence = 0.99;  alpha = 1 - confidence; clearText();} 
 
       // data input control =====================================
-      d3.select("#data1").on("input", function() {
-        stat = simplestat("#data1");  
+      d3.select("#data651").on("input", function() {
+        stat = simplestat("#data651");  
         document.getElementById("nn").value   = stat.n;    
         document.getElementById("xbar").value = f2(stat.xbar);
         document.getElementById("variS").value  = f2(stat.var);  
@@ -80,7 +80,7 @@
       });
 
       updateData = function() {
-        document.getElementById("data1").value = ''; 
+        document.getElementById("data651").value = ''; 
       }
 
       d3.select("#nn").on("input", updateData);
@@ -91,7 +91,7 @@
       d3.select("#erase").on("click",function() {
         bar.selectAll("*").remove();
         document.myForm2.type2[0].checked = true;
-        document.getElementById("data1").value  = "";
+        document.getElementById("data651").value  = "";
         document.getElementById("nn").value     = "";
         document.getElementById("nn2").value    = "";
         document.getElementById("xbar").value   = "";
@@ -109,7 +109,7 @@
         bar.selectAll("*").remove();
 
         // input value
-        stat = simplestat("#data1");
+        stat = simplestat("#data651");
         if (stat.n > 0) {
           nn    = stat.n;
           xbar  = stat.xbar;

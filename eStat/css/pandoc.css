@@ -446,12 +446,15 @@ table td {
   margin-left: 1.4em;  
   text-indent: -1.2em;
 }
-.textL40 { /* 예제 수식 시작 */
-  margin-left: 2.8em;
-}
 .textL30M10 { /* 각장 설명 예제 */
   margin-left: 2em;
   text-indent: -0.7em;
+  text-align: left;
+}
+.textL30M20 { /* 각장 설명 예제 */
+  margin-left: 2em;
+  text-indent: -1.1em;
+  text-align: left;
 }
 .textL30M30 { /* 연습문제 번호*/
   margin-left: 2.2em;
@@ -460,6 +463,9 @@ table td {
 }
 .textL30 { /* 연습문제 내용 */ 
   margin-left: 2.2em;
+}
+.textL40 { /* 예제 수식 시작 */
+  margin-left: 2.8em;
 }
 .textL50M30 { /* 연습문제 1) */
   margin-left: 4.4em;
@@ -477,11 +483,27 @@ table td {
   margin-left: auto;
   margin-right: auto; 
 }
+.listNone {  list-style-type: none;  }
+.listNoneIndent { 
+  list-style-type: none; 
+  text-indent: 1.8em; 
+}
+.mainTable {
+  border: collapse;
+  width: 100%;
+  text-indent: 1.5em;
+  text-align: justify;
+}
+.mainTableNoIndent {
+  border: collapse;
+  width: 100%;
+  text-align: justify;
+}
 .mainTableYellow {
   border: collapse;
   width: 100%;
   background-color: lightyellow;
-  text-align: left;
+  text-align: justify;
   padding: 1em;
 }
 .mainTableGrey {
@@ -491,7 +513,7 @@ table td {
   border: collapse;
   width: 100%;
   background-color: #f2f2f2;
-  text-align: left;
+  text-align: justify;
   margin-left: 1em;
   padding: 1em;
 }
@@ -502,7 +524,18 @@ table td {
   border: collapse;
   width: 100%;
   background-color: #ffe6e6;
-  text-align: left;
+  text-align: justify;
+  margin-left: 1em;
+  padding: 1em;
+}
+.mainTableCyan {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-size: 0.9em;
+  line-height: 1.2;
+  border: collapse;
+  width: 100%;
+  background-color: #d6eaf8;
+  text-align: justify;
   margin-left: 1em;
   padding: 1em;
 }
@@ -513,16 +546,31 @@ table td {
   border: collapse;
   width: 100%;
   background-color: #ffe6e6;
-  text-align: left;
-
+  text-align: justify;
   padding: 1em;
 }
-
+.Reference {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-size: 0.9em;
+  line-height: 1.2;
+  border: collapse;
+  width: 100%;
+  text-align: left;
+  margin-left: 3em;
+  text-indent: -2em;
+  padding: 1em;
+}
 iframe.example {
     display: block;
     border: none;
     width: 100vw;
     height: 100vh;
+}
+iframe.example140 {
+    display: block;
+    border: none;
+    width: 100vw;
+    height: 140vh;
 }
 iframe.example120 {
     display: block;

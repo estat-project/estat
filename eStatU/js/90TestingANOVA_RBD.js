@@ -1,4 +1,4 @@
-﻿      var chart = d3.select("#chart");
+      var chart = d3.select("#chart");
       var svgWidth    = 600;
       var svgHeight   = 400;
       var margin      = {top: 80, bottom: 60, left: 80, right: 80};
@@ -98,6 +98,7 @@
       // erase Data and Graph
       d3.select("#erase").on("click",function() {
         chart.selectAll("*").remove();
+        for (i=0; i< maxblock+1; i++) kobs[i] = 0;
         document.getElementById("data1").value  = "";
         document.getElementById("data2").value  = "";
         document.getElementById("data3").value  = "";

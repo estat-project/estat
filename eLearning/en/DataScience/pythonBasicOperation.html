@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Python basic operation</title>
+  <style>
+   .icon     { width:40px; height:40px; display: block; margin-left: auto; margin-right: auto;}
+   .qrBtn    { width:100px; height:100px; display: block; margin-left: auto; margin-right: auto;}  
+   .mainLeft { width:100px; }
+   .mainRight{ width:700px; }
+   .figure   { margin-left: 20px; width:100%; }
+   .figure10 { margin-left: 20px; width:10%; }
+   .figure30 { margin-left: 20px; width:30%; }
+   .figure50 { margin-left: 20px; width:50%; }
+   .figure70 { margin-left: 20px; width:70%; }
+   .figure90 { margin-left: 20px; width:90%; }
+   .figText  { margin-left: 20px;}
+   .textCenter{ text-align: center;}
+   table     { table-layout: fixed; width:800px;}
+   .rtable   { margin-left:1em; width:750px; font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; font-size:0.9em; line-height:1.2; background-color:#f2f2f2; padding:0.5em;}
+   .mainTable         { border:collapse; width:100%; text-indent:1em; text-align:justify; }
+   .mainTableNoIndent { border:collapse; width:100%; text-align:justify; }
+   .mainTableYellow   { border:collapse; width:100%; background-color:lightyellow; text-align:justify; padding:1em; }
+   .mainTableGrey     { font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; font-size:0.9em; line-height:1.2;
+          border:collapse; width:100%; background-color:#f2f2f2; text-align:justify; margin-left:1em; padding:1em;}
+  </style>
+  <script src="/estat/eStat/js/eBook.js"></script>
+</head>
+<body>
+
+<div style="position: relative; left: 10px; width:800px;">
+  <h1 style="color:blue;">Python installation and basic operation</h1>
+  <a href="rBasicOperation.pdf" target="_blank"><u>R basic operation pdf</u></a>&nbsp;&nbsp;&nbsp;
+  <b>Author: Professo Jung Jin Lee, Soongsil University, Korea (jjlee@ssu.ac.kr) </b>
+  <p>
+  <div class="mainTable" style="color:blue;">
+       Statistical packages such as SPSS and SAS are software programs that include many graphical analysis and statistical analysis,
+       and most of them are expensive commercial products. However, R is a software that is developed and maintained by the R Foundation, 
+       which is sponsored by various institutions around the world, and is provided free of charge to individuals.
+    <p>
+       R is a software based on S, which was developed by Chambers and others at Bell Laboratories in 1976, and Robert Gentleman and 
+       Ross Ihaka at the University of Auckland, New Zealand, released the source code in 1995. Currently, many people around the world
+       are contributing to the development of R software. We introduce the installation procedure of R and explain the basic operation of 
+       R for use in this book. Further appropriate R commands are introduced at the end of each each chapter for practice. 
+       For other detailed R commands, please download and refer to various manuals from ‘Manuals’ on the left side of ‘Documentation’ 
+       at http://www.r-project.org. The ‘An Introduction to R’ manual is useful for beginners.
+  </div>
+ 
+  <ol>
+    <li> <a href="#chapter1">Installation of R</li>
+      <ul>
+        <li> <a href="#section11"> Entering  『eStat』 System</a>
+        <li> <a href="#section12"> Data Input / Save / Open</a>
+        <li> <a href="#section13"> Data Analysis</a>
+        <li> <a href="#section14"> Save Graph and Print</a>
+        <li> <a href="#section15"> Exit  『eStat』  System</a>
+      </ul>
+    <p>
+    <li> <a href="#chapter2">Basic operation of R</li>
+      <ul>
+        <li> <a href="#section21"> Variable Name and Value Label</a>
+        <li> <a href="#section22"> Sorting</a>
+        <li> <a href="#section23"> Categorize</a>
+        <li> <a href="#section24"> Recode</a>
+        <li> <a href="#section25"> Compute</a>
+        <li> <a href="#section26"> Select If</a>
+      </ul>
+  </ol>
+
+  <h3 id="chapter1"><h3>1. Installation of R</h3> 
+  <p>
+  <div class="mainTable">
+       Here is how to download and install the latest version of R for Windows.
+    <p>
+       <table style="width:800px;">
+         <tr>
+           <td>1) If you enter http://cran.r-project.org/bin/windows/base/ in the Internet address bar, the following screen will appear.
+             <p>
+             <img class="figure70" src="./figure/rFig0101.png">
+           </td>
+         </tr>
+         <tr>
+           <td>2) Click ‘Download R-4.4.2 for Windows’ to download the R-4.4.2-win.exe file and run it. </td>
+         </tr>
+         <tr>
+           <td>3) Select the language 'English' to use during the installation
+             <p>
+             <img class="figure30" src="./figure/rFig0102.png">
+           </td>
+         </tr>
+         <tr>
+           <td>4) Click the ‘OK’ button to start the installation. <br>&nbsp;&nbsp;&nbsp;
+                  When the installation information appears, click the ‘Next’ button several times until you see the following screen
+               <p>
+                  <img class="figure50" src="./figure/rFig0103.png">
+               <p>&nbsp;&nbsp;&nbsp;Click 'Finish' button.
+           </td>
+         </tr>
+         <tr>
+           <td>5) Double-click the shortcut icon created on your desktop as shown below:
+               <p><img class="figure10" src="./figure/rFig0104.png">
+           </td>
+         </tr>
+         <tr>
+           <td>5) Double-click the shortcut icon created on your desktop as shown below:
+               <p><img class="figure70" src="./figure/rFig0105.png">
+           </td>
+         </tr>
+       </table>
+  </div>
+  <p>
+
+  <h3 id="chapter2"><h3>2. Basic operation of R</h3> 
+  <p>
+  <div class="mainTable">
+       R is basically a command-based software in which the system interprets the user's input commands and performs 
+       the desired statistical analysis. Recently, many Windows application softwares use a convenient menu-based system
+       such as SPSS and MINITAB. However, for creative analysis rather than general statistical analysis, 
+       the command-based method has more advantage. R basically uses the command-based method so that users can easily 
+       install new analysis methods they have developed themselves. However, R can also be used in the Windows menu method 
+       by installing additional packages.
+    <p>
+       Learning R in the command-based method means learning the commands and related grammar provided by R. 
+       If the user already has knowledge of C or other programming languages, R can be easily learned. 
+       Even if the user has little knowledge of programming languages ​​at all, it is easier than learning 
+       a programming language. 
+  </div>
+  <p>
+
+  <h5>A. Start and end of R</h5>
+  <div class="mainTable">
+       You can start R by double-clicking the R icon on the Windows desktop. The symbol on the initial screen
+       ‘>’ is called a <b>prompt</b>, and you enter commands from the next column.
+       Enter an appropriate R command and click the [Enter] key, and the system will execute it. For example,
+       if you enter the following arithmetic command and click the [Enter] key, the result of the sum of the two numbers,
+       11, will appear on the next line with square brackets [1]. '#' means a comment line and it will not executed in R.
+    <p>
+       <table class="rtable">
+         <tr>
+           <td><span style="color:red;">> 3+8</span><br>
+              [1] 11
+           </td>
+         </tr>
+         <tr>
+           <td># [1] means the first result for the command, and some commands may show multiple lines of results.</td>
+         </tr>
+       </table>
+    <p>
+       To quit R, type the following and press the [Enter] key. 
+    <p>
+       <table class="rtable">
+         <tr>
+           <td><span style="color:red;">> q()</span></td>
+         </tr>
+         <tr>
+           <td># Parentheses ( ) which indicates a function are required, and an error occurs if they are not present. </td>
+         </tr>
+       </table>
+    <p>  
+       Then, a message will appear asking, “Save the workspace image?” Select “Yes,” “No,” or “Cancel” as needed. 
+       Usually, workspace images are not saved, but they are saved only when absolutely necessary.
+  </div>
+  <p>
+
+  <h5>B. Arithmetic Operations</h5>
+  <div class="mainTable">
+       R can also be used as a simple calculator for arithmetic operations. Addition, subtraction, multiplication, division, 
+       and exponentiation can be performed using arithmetic operators such as +, -, *, /, ^, as in the following example. 
+       When multiple arithmetic operators are present, the order of precedence is as in mathematics: ^ has the highest priority, 
+       followed by * and /, and then + and -. Spaces between R commands are ignored, and # indicates the start of a comment.
+    <p>
+       <table class="rtable">
+         <tr>
+           <td>
+             <span style="color:red;">> 3 - 5</span><br>
+             [1] -2<br>
+             <span style="color:red;">> 8 + 3 * 5</span> &nbsp;&nbsp;&nbsp;# 3 * 5 is calculated first<br>
+             [1] 23<br>
+             <span style="color:red;">> 1 + 6 / 3</span> &nbsp;&nbsp;&nbsp;# 6 / 3 is calculated first<br>
+             [1] 3<br>
+             <span style="color:red;">> 3 ^ 2 + 2</span>
+             [1] 11<br>
+           </td>
+         </tr>
+       </table>
+    <p>
+       There is also a modular operator %% that calculates the remainder. For example, the remainder of 3 when dividing 24 by 7,
+       i.e. 24 (mod 7), is as follows:
+    <p>
+       <table class="rtable">
+         <tr>
+           <td><span style="color:red;">> 24 %% 7</span><br>
+               [1] 3
+           </td>
+         </tr>
+         <tr>
+           <td># Parentheses ( ) which indicates a function are required, and an error occurs if they are not present. </td>
+         </tr>
+       </table>
+  </div>
+  <p>
+
+  <h5>C. Storage of numbers using variables</h5>
+  <div class="mainTable">
+       In R, it is convenient to store numbers or calculated values ​​in a certain storage location and use them when needed.
+        For example, the operation that adds 3 and 5 to 8 can be performed as follows.
+    <p>
+       <table class="rtable">
+         <tr>
+           <td>
+             <span style="color:red;">> a = 3</span><br>
+             <span style="color:red;">> b = 5</span><br>
+             <span style="color:red;">> c = a + b</span><br>
+           </td>
+         </tr>
+       </table>
+    <p>
+       The meaning of the above operation is to store 3 in a storage location named a, store 5 in a storage location named b, 
+       and add the two numbers stored in a and b and store them in a storage location named c. The R system only performs 
+       the operation and does not give any answer, but to see the value stored in c, type c after the prompt and click 
+       the [Enter] key.
+    <p>
+       <table class="rtable">
+         <tr>
+           <td><span style="color:red;">> c</span><br>
+               [1] 8
+           </td>
+         </tr>
+       </table>
+    <p>
+       In the expression a = 3, the operator = can be replaced with <-. This operator is preferred by many people 
+       as it means assigning a number to a storage location, and this book also uses the operator <-.
+    <p>
+       Storage location names such as a, b, and c are called <b>variable names</b>, and can be named using 
+       a combination of letters and numbers, distinguishing between uppercase and lowercase letters. 
+       Variables created by users in the R system are called <b>objects</b>, and you can view all objects 
+       in the workspace you are currently working on using the <b>objects( )</b> or <b>list( )</b> functions as follows.
+    <p>
+       <table class="rtable">
+         <tr>
+           <td><span style="color:red;">> objects( )</span><br>
+               [1] "a", "b", "c"
+           </td>
+         </tr>
+       </table>
+    <p>
+       Not only variables that store a number, but also vectors and matrices that we will learn next are objects.
+  </div>
+  <p>
+
+  <h5>D. Vector</h5>
+  <div class="mainTable">
+       In R, you can define and operate on a mathematical vector, which is a collection of numbers or characters, 
+       using the <b>c( )</b> function. A vector is also an object in R.
+    <p>
+       <table class="rtable">
+         <tr>
+           <td>
+             <span style="color:red;">> x <- c(1, 3, 5)</span>&nbsp;&nbsp;&nbsp; # Definition of vector x with three numbers 1,3,5<br>
+             <span style="color:red;">> x</span> &nbsp;&nbsp;&nbsp; # to see the elements in x<br>
+                 [1] 1 3 5<br>
+             <span style="color:red;">> s <- c("a", "b", "c")</span> &nbsp;&nbsp;&nbsp; # Definition of vector s with three characters "a","b","c"<br>
+             <span style="color:red;">> s</span> &nbsp;&nbsp;&nbsp; # to see the elements in s<br>
+                 [1] "a" "b" "c"
+           </td>
+         </tr>
+       </table>
+    <p>
+       Vectors defined as above are recognized as column vectors. When giving initial values ​​to vector elements as numbers 
+       that increase (decrease) regularly, it is convenient to use ":"
+    <p>
+       <table class="rtable">
+         <tr>
+           <td><span style="color:red;">> y <- 5:10</span>  &nbsp;&nbsp;&nbsp; # assign numbers from 5 to 10 with increment 1<br>
+               <span style="color:red;">> y</span><br>
+               [1] 5 6 7 8 9 10
+           </td>
+         </tr>
+       </table>
+    <p>
+       You can also create a new vector by combining (joining or concatenating) the elements of two vectors.
+    <p>
+       <table class="rtable">
+         <tr>
+           <td><span style="color:red;">> z <- c(x, y)</span>  &nbsp;&nbsp;&nbsp; # combine two vectors x and y defined above<br>
+               <span style="color:red;">> z</span><br>
+               [1] 1 3 5 5 6 7 8 9 10
+           </td>
+         </tr>
+       </table>
+    <p>
+       It is also possible to see only some elements of a vector.
+    <p>
+       <table class="rtable">
+         <tr>
+           <td>
+               <span style="color:red;">> y[2]</span>  &nbsp;&nbsp;&nbsp; # second element of y vector<br>
+               [1] 2<br>
+               <span style="color:red;">> y[c(2,4)]</span> &nbsp;&nbsp;&nbsp; # second and 4th elements of y vector<br><br>
+               [1] 2 8
+           </td>
+         </tr>
+       </table>
+    <p>
+       Vector operations can also be performed as follows:
+    <p>
+       <table class="rtable">
+         <tr>
+           <td>
+               <span style="color:red;">> x * 3</span>  &nbsp;&nbsp;&nbsp; # multiply 3 to each element of x vector<br>
+               [1] 3 9 15<br>
+               <span style="color:red;">> w <- x - 3</span>  &nbsp;&nbsp;&nbsp; # subtract 3 from each element of x vector, and assign it to w vector<br>
+               [1] -2 0 2<br>
+               <span style="color:red;">> x^2</span>  &nbsp;&nbsp;&nbsp; # square each element of x vector<br>
+               [1] 1 9 25
+           </td>
+         </tr>
+       </table>
+  </div>
+  <p>
+
+  <h5>E. Matrix and array</h5>
+  <div class="mainTable">
+       In R, you can use a matrix of numbers consisting of rows and columns. A matrix is ​​also an object in R.
+    <p>
+       <table class="rtable">
+         <tr>
+           <td>
+             <span style="color:red;">> m <- matrix(1:6, nrow=2, ncol=3)</span>&nbsp;&nbsp;&nbsp; # Define a 2 by 3 matrix m with 6 numbers from 1 to 6 <br>
+             <span style="color:red;">> m </span><br>
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    [,1] [,2] [,3]<br>
+               &nbsp;&nbsp;[1,]&nbsp; 1 &nbsp;&nbsp;&nbsp;&nbsp;3 &nbsp;&nbsp;&nbsp;&nbsp;5<br>
+               &nbsp;&nbsp;[2,]&nbsp; 2 &nbsp;&nbsp;&nbsp;&nbsp;4 &nbsp;&nbsp;&nbsp;&nbsp;6<br>
+           </td>
+         </tr>
+       </table>
+    <p>
+       The elements of a matrix or the notation of rows and columns is as follows:
+    <p>
+       <table class="rtable">
+         <tr>
+           <td><br>
+               <span style="color:red;">> m[1,2]</span>  &nbsp;&nbsp;&nbsp; # 1st row, 2nd column element<br>
+               [1] 3<br>
+               <span style="color:red;">> m[1,]</span>  &nbsp;&nbsp;&nbsp; # all elements at the 1st row<br>
+               [1] 1 3 5<br>
+               <span style="color:red;">> m[,]</span>  &nbsp;&nbsp;&nbsp; #  # all elements at the 1st column<br>
+               [1] 1 2
+           </td>
+         </tr>
+       </table>
+    <p>
+       Three dimensional array is possible using <b>array</b>.
+    <p>
+       <table class="rtable">
+         <tr>
+           <td>
+             <span style="color:red;">> a <- array(1:24, c(3,4,2))</span>&nbsp;&nbsp;&nbsp; # Define array which consists of 3 rows by 2 columns matrix two times using from 1 to 24<br>
+             <span style="color:red;">> a </span><br>
+               ..1<br>
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    [,1] [,2] [,3] [,4]<br>
+               &nbsp;&nbsp;[1,]&nbsp; 1 &nbsp;&nbsp;&nbsp;&nbsp;4 &nbsp;&nbsp;&nbsp;&nbsp;7 &nbsp;&nbsp;&nbsp;&nbsp;10<br>
+               &nbsp;&nbsp;[2,]&nbsp; 2 &nbsp;&nbsp;&nbsp;&nbsp;5 &nbsp;&nbsp;&nbsp;&nbsp;8 &nbsp;&nbsp;&nbsp;&nbsp;11<br>
+               &nbsp;&nbsp;[3,]&nbsp; 3 &nbsp;&nbsp;&nbsp;&nbsp;6 &nbsp;&nbsp;&nbsp;&nbsp;9 &nbsp;&nbsp;&nbsp;&nbsp;12<br>
+               ..2<br>
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    [,1] [,2] [,3] [,4]<br>
+               &nbsp;&nbsp;[1,]&nbsp; 13 &nbsp;&nbsp;&nbsp;&nbsp;16 &nbsp;&nbsp;&nbsp;&nbsp;19 &nbsp;&nbsp;&nbsp;&nbsp;22<br>
+               &nbsp;&nbsp;[2,]&nbsp; 14 &nbsp;&nbsp;&nbsp;&nbsp;17 &nbsp;&nbsp;&nbsp;&nbsp;20 &nbsp;&nbsp;&nbsp;&nbsp;23<br>
+               &nbsp;&nbsp;[3,]&nbsp; 15 &nbsp;&nbsp;&nbsp;&nbsp;18 &nbsp;&nbsp;&nbsp;&nbsp;21 &nbsp;&nbsp;&nbsp;&nbsp;24<br>
+           </td>
+         </tr>
+       </table>
+  </div>
+  <p>
+
+  <h5>F. Data frame and basic analysis</h5>
+  <div class="mainTable">
+       Consider the following table-like data consisting of rows and columns is saved in a file called sample.txt 
+       in a folder called c:\Rwork. The columns are separated by 'spaces', and the first row contains the names of each column.
+       The text file imported into R must have a last line without any data.
+    <p>
+       <table class="rtable">
+         <tr>
+           <td>
+               &nbsp;&nbsp;name age income<br>
+               &nbsp;&nbsp;kim 28 200<br>
+               &nbsp;&nbsp;lee 33 300<br>
+               &nbsp;&nbsp;park 41 400<br>
+           </td>
+         </tr>
+       </table>
+    <p>
+       Columns can also be separated by commas (,), which is called a CSV file. The space, comma, or tab 
+       that separates columns is called a column <b>delimiter</b>.
+    <p>
+       In R, you can use the function called <b>data.frame( )</b> to load and save this data to the system. 
+       To read the data saved in the C:\Rwork folder, from the R main menu, select 
+       ‘File’ => ‘Change Directory’ => At the file browser, select ‘Local Disk (C:)’ => ‘Rwork’ folder, 
+       and then click the ‘OK’ button. The R command that reads the sample.txt file and creates a data frame 
+       called test is as follows. The related function <b>names( )</b> is a useful command when looking at variable names,
+       and <b>attach( )</b> is a useful command when using variable names in other commands.
+    <p>
+       <table class="rtable">
+         <tr>
+           <td>
+               <span style="color:red;">> test <- read.table("sample.txt", header=T)</span>  &nbsp;&nbsp;&nbsp; # read data file<br>
+               <span style="color:red;">> test</span>  &nbsp;&nbsp;&nbsp; # list the data in test data frame<br>
+               name age income<br>
+               1 kim 28 200<br>
+               2 lee 33 300<br>
+               3 park 41 400<br>
+               <span style="color:red;">> names(test)</span>  &nbsp;&nbsp;&nbsp; #  list variable name in test data frame<br>
+               [1] "name" "age" "income"<br>
+               <span style="color:red;">> attach(test)</span>  &nbsp;&nbsp;&nbsp; #  variable name of test can be used in other R commands<br>
+           </td>
+         </tr>
+       </table>
+    <p>
+       The data frame function is similar to matrix, but the difference is that the first row contains the names of each column.
+       A data frame called test created in R becomes an object, like a variable, vector, or matrix.
+    <p>
+       Once you have created a data frame, you can do some simple basic analysis. The R command to find the average of 
+       all variables in an object called test is as follows:
+    <p>
+       <table class="rtable">
+         <tr>
+           <td>
+             <span style="color:red;">> mean(test)</span><br>
+             name age income<br>
+             NA 34 300<br>
+           </td>
+         </tr>
+       </table>
+    <p>
+       Since name is character data, it outputs NA and gives a warning that the average cannot be calculated.
+       You can see that the average of age is 34 and the average of income is 300.
+    <p>
+       You can draw various figures using the <b>plot( )</b> function. The R command and results for drawing 
+       a scatter plot of age and income are as follows. The scatter plot of age and income appears in a new window.
+       plot( ) function has various options, and you can see it by typing ‘? plot’ for more information
+       to see the webpage that appears. For other R commands, type ‘? command’ to see detailed options.
+       <table class="rtable">
+         <tr>
+           <td>
+             <span style="color:red;">> plot(age, income)</span>
+             <p>
+             <img class="figure50" src="./figure/rFig0201.png">
+           </td>
+         </tr>
+       </table>
+  </div>
+  <p>
+
+  <h5>G. Using R package</h5>
+  <div class="mainTable">
+       Statistical analysis application software that can be used in R is called a <b>package</b>. 
+       Basically, you can use the provided package by selecting it from the main menu, installing it, and then using it. 
+       For example, in order to draw a parallel coordinate plot described in Chapter 2, you must first install 
+       the package called <b>MASS</b>. To install the package, select ‘Package’ => ‘Install package’ from the R main menu,
+       select '0-Clud(https) and click 'OK',adn when the ‘Packages’ window appears, select ‘MASS’ and click ‘OK’.
+    <p>
+       <img class="figure30" src="./figure/rFig0202.png">
+    <p>
+       You can use a simple R command such as "install.packages('MASS')" to install a R package. 
+    <p>
+       <table class="rtable">
+         <tr>
+           <td>
+               <span style="color:red;">> install.packages('MASS')</span> <br>
+Installing package into ‘C:/Users/jlee/AppData/Local/R/win-library/4.4’<br>
+(as ‘lib’ is unspecified)<br>
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.4/MASS_7.3-61.zip'<br>
+Content type 'application/zip' length 1174216 bytes (1.1 MB)<br>
+downloaded 1.1 MB<br>
+package ‘MASS’ successfully unpacked and MD5 sums checked<br>
+The downloaded binary packages are in<br>
+        C:\Users\jlee\AppData\Local\Temp\Rtmp6X3BAj\downloaded_packages<br>
+               <span style="color:red;">> library(MASS)</span>  &nbsp;&nbsp;&nbsp; # it enables to use all function in MASS<br>
+           </td>
+         </tr>
+       </table>
+    <p>
+       In order to see detail functions of MASS package, enter '??MASS', then a web page appears.
+       Select 'MASS::enlist Internal MASS functions' which shows detail function argument as follows.
+    <p>
+        <img class="figure50" src="./figure/rFig0203.png">
+  </div>
+  <p>
+
+</div>
+</body>
+</html>
+

@@ -1,4 +1,4 @@
-﻿      var chart = d3.select("#chart")
+      var chart = d3.select("#chart")
       var svgWidth    = 640;
       var svgHeight   = 400;  // 모집단 그래프 영역
       var margin, graphWidth, graphHeight;

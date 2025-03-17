@@ -1,4 +1,4 @@
-﻿      function showValueP(newValue) {document.getElementById("pp").value = f2(newValue/100); initialize();}
+      function showValueP(newValue) {document.getElementById("pp").value = f2(newValue/100); initialize();}
       function showValueE(newValue) {document.getElementById("epsi").value = f2(newValue/100);  initialize();}
 
       var chart = d3.select("#chart")

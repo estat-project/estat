@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title data-msgid="Logistic"></title>
+    <link rel="stylesheet" href="/estat/eStat/css/eStatU.css">
+    <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/estat/eStat/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+    <script src="/estat/eStat/js/language.js" ></script>
+    <script src="/estat/eStat/js/eStatU.js"></script>
+    <script src="/estat/eStat/js/eStatDM.js"></script>
+    <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+    <script src="/estat/eStat/lib/convertSVG.js"></script>
+</head>
+
+<body>
+
+  <div width="600" height="600" style="position:absolute; left:10px; top:0px">
+    <br>
+    <div class="title">
+      <b>&nbsp; <span data-msgid="Logistic"></span></b>
+      <button class="menu" onclick="menuLoc()" >
+        <b><span data-msgid="Menu">Menu</span></b>
+      </button>
+    </div>
+    <br>
+    <table class="data">
+	<tr>
+	  <td colspan="2">&nbsp;&nbsp;<span data-msgid="Variable Name"></span></td>
+	  <td colspan="3">&nbsp;&nbsp;<span data-msgid="input data"></span></td>
+	</tr>
+	<tr>
+	  <td>&nbsp;&nbsp;<b>Y</b></td>
+          <td><input type="text" size=8 id="name1"></td>
+	  <td colspan="3"><input type="text" size=65 id="data1"></td>
+	</tr>
+	<tr>
+	  <td>&nbsp;&nbsp;<b>X<sub>1</sub></b></td>
+          <td><input type="text" size=8 id="name2"></td>
+	  <td colspan="3"><input type="text" size=65 id="data2"></td>
+	</tr>
+	<tr>
+	  <td>&nbsp;&nbsp;<b>X<sub>2</sub></b></td>
+          <td><input type="text" size=8 id="name3"></td>
+	  <td colspan="3"><input type="text" size=65 id="data3"></td>
+	</tr>
+	<tr>
+	  <td>&nbsp;&nbsp;<b>X<sub>3</sub></b></td>
+          <td><input type="text" size=8 id="name4"></td>
+	  <td colspan="3"><input type="text" size=65 id="data4"></td>
+	</tr>
+	<tr>
+	  <td>&nbsp;&nbsp;<b>X<sub>4</sub></b></td>
+          <td><input type="text" size=8 id="name5"></td>
+	  <td colspan="3"><input type="text" size=65 id="data5"></td>
+	</tr>
+	<tr>
+	  <td>&nbsp;&nbsp;<b>X<sub>5</sub></b></td>
+          <td><input type="text" size=8 id="name6"></td>
+	  <td colspan="3"><input type="text" size=65 id="data6"></td>
+	</tr>
+    </table> 
+    <table>
+        <tr>
+          <td colspan="5">&nbsp;&nbsp;<b><span data-msgid="DataPartition"></span></b>
+              (<span data-msgid="Training"></span>    
+              <input type="number" min=30 max=100 step=10 value=50 size=2 id="training27" style="text-align: center;" onchange="showTestData(this.value)"> % : 
+              <span data-msgid="Testing"></span> <input type="text" value=50 size=3 id="testing27" style="text-align: center;"> %)
+              &nbsp;&nbsp;&nbsp;
+<!---
+              <b><span data-msgid="Simulation"></span> <span data-msgid="Repetition"></span></b>
+               = <input type="number" min=1 max=30 value=1 size=3 id="repeat" style="text-align: center;"> 
+--->
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right;">&nbsp;&nbsp;<b><span data-msgid="PriorProb"></span></b></td>
+          <td colspan="3">
+            <form name="myForm0"> 
+              <input type="radio" name = "type0" value="1" checked> <span data-msgid="SampleProp"></span> &nbsp;&nbsp;
+              <input type="radio" name = "type0" value="2" ><span data-msgid="EqualProp"></span>     
+            </form>
+          </td>
+        </tr>
+    </table>  
+    <table>
+        <tr>
+          <td>&nbsp;<button type="button" id="executeKmeans" style="width:90px;"><span data-msgid="Execute">Execute</span></button></td>
+	  <td>&nbsp;&nbsp;</td>
+          <td>&nbsp;<button type="button" id="scatterPlot" style="width:130px;"><span data-msgid="ScatterplotMatrix"></span></button></td>
+	  <td>&nbsp;&nbsp;</td>
+          <td>&nbsp;<button type="button" id="parallelGraph" style="width:130px;"><span data-msgid="ParallelGraph"></span></button></td>
+	  <td>&nbsp;&nbsp;</td>
+          <td>&nbsp;&nbsp;<button type="button" id="erase" style="width:90px;"><span data-msgid="Erase All"></span></button></td>
+        </tr>
+    </table>  
+
+    <svg id="chart" width="600" height="600"> </svg> 
+
+    <table>
+        <tr>
+          <td>&nbsp;<button type="button" id="saveGraphU" style="width:100px;"><span class="tooltiptext" data-msgid="Graph Save">Graph Save</span></button></td>
+	  <td>&nbsp;&nbsp;</td>
+          <td>&nbsp;<button type="button" id="classificationTable" style="width:130px;"><span data-msgid="BayesTable"></span></button></td>
+	  <td>&nbsp;&nbsp;</td>
+          <td>&nbsp;<button type="button" id="saveTable"  style="width:100px;"><span class="tooltiptext" data-msgid="Table Save">Table Save</span></button></td>
+        </tr>
+    </table>  
+    <p>
+    <div> 
+      <div id="screenTable">
+        <div id="loc">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+   <script src="/estat/eStatU/js/27LogisticRegression.js"> </script>
+   <script src="/estat/eStatU/js/27LogisticRegPHJ.js"> </script>
+   <script>
+/*
+      // init example 1
+      document.getElementById("data1").value = "setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,setosa,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,versicolor,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica,virginica";
+        stat = simpledata("#data1");  
+        yydata = data;  
+        yobs = stat.n;
+      document.getElementById("data2").value = "5.1,4.9,4.7,4.6,5,5.4,4.6,5,4.4,4.9,5.4,4.8,4.8,4.3,5.8,5.7,5.4,5.1,5.7,5.1,5.4,5.1,4.6,5.1,4.8,5,5,5.2,5.2,4.7,4.8,5.4,5.2,5.5,4.9,5,5.5,4.9,4.4,5.1,5,4.5,4.4,5,5.1,4.8,5.1,4.6,5.3,5,7,6.4,6.9,5.5,6.5,5.7,6.3,4.9,6.6,5.2,5,5.9,6,6.1,5.6,6.7,5.6,5.8,6.2,5.6,5.9,6.1,6.3,6.1,6.4,6.6,6.8,6.7,6,5.7,5.5,5.5,5.8,6,5.4,6,6.7,6.3,5.6,5.5,5.5,6.1,5.8,5,5.6,5.7,5.7,6.2,5.1,5.7,6.3,5.8,7.1,6.3,6.5,7.6,4.9,7.3,6.7,7.2,6.5,6.4,6.8,5.7,5.8,6.4,6.5,7.7,7.7,6,6.9,5.6,7.7,6.3,6.7,7.2,6.2,6.1,6.4,7.2,7.4,7.9,6.4,6.3,6.1,7.7,6.3,6.4,6,6.9,6.7,6.9,5.8,6.8,6.7,6.7,6.3,6.5,6.2,5.9";
+        stat = simpledata("#data2");  
+        x1data = data;  
+        x1obs = stat.n;
+      document.getElementById("data3").value = "3.5,3,3.2,3.1,3.6,3.9,3.4,3.4,2.9,3.1,3.7,3.4,3,3,4,4.4,3.9,3.5,3.8,3.8,3.4,3.7,3.6,3.3,3.4,3,3.4,3.5,3.4,3.2,3.1,3.4,4.1,4.2,3.1,3.2,3.5,3.6,3,3.4,3.5,2.3,3.2,3.5,3.8,3,3.8,3.2,3.7,3.3,3.2,3.2,3.1,2.3,2.8,2.8,3.3,2.4,2.9,2.7,2,3,2.2,2.9,2.9,3.1,3,2.7,2.2,2.5,3.2,2.8,2.5,2.8,2.9,3,2.8,3,2.9,2.6,2.4,2.4,2.7,2.7,3,3.4,3.1,2.3,3,2.5,2.6,3,2.6,2.3,2.7,3,2.9,2.9,2.5,2.8,3.3,2.7,3,2.9,3,3,2.5,2.9,2.5,3.6,3.2,2.7,3,2.5,2.8,3.2,3,3.8,2.6,2.2,3.2,2.8,2.8,2.7,3.3,3.2,2.8,3,2.8,3,2.8,3.8,2.8,2.8,2.6,3,3.4,3.1,3,3.1,3.1,3.1,2.7,3.2,3.3,3,2.5,3,3.4,3";
+        stat = simpledata("#data3");  
+        x2data = data;  
+        x2obs = stat.n;
+      document.getElementById("data4").value = "1.4,1.4,1.3,1.5,1.4,1.7,1.4,1.5,1.4,1.5,1.5,1.6,1.4,1.1,1.2,1.5,1.3,1.4,1.7,1.5,1.7,1.5,1,1.7,1.9,1.6,1.6,1.5,1.4,1.6,1.6,1.5,1.5,1.4,1.5,1.2,1.3,1.4,1.3,1.5,1.3,1.3,1.3,1.6,1.9,1.4,1.6,1.4,1.5,1.4,4.7,4.5,4.9,4,4.6,4.5,4.7,3.3,4.6,3.9,3.5,4.2,4,4.7,3.6,4.4,4.5,4.1,4.5,3.9,4.8,4,4.9,4.7,4.3,4.4,4.8,5,4.5,3.5,3.8,3.7,3.9,5.1,4.5,4.5,4.7,4.4,4.1,4,4.4,4.6,4,3.3,4.2,4.2,4.2,4.3,3,4.1,6,5.1,5.9,5.6,5.8,6.6,4.5,6.3,5.8,6.1,5.1,5.3,5.5,5,5.1,5.3,5.5,6.7,6.9,5,5.7,4.9,6.7,4.9,5.7,6,4.8,4.9,5.6,5.8,6.1,6.4,5.6,5.1,5.6,6.1,5.6,5.5,4.8,5.4,5.6,5.1,5.1,5.9,5.7,5.2,5,5.2,5.4,5.1";
+        stat = simpledata("#data4");  
+        x3data = data;  
+        x3obs = stat.n;
+      document.getElementById("data5").value = "0.2,0.2,0.2,0.2,0.2,0.4,0.3,0.2,0.2,0.1,0.2,0.2,0.1,0.1,0.2,0.4,0.4,0.3,0.3,0.3,0.2,0.4,0.2,0.5,0.2,0.2,0.4,0.2,0.2,0.2,0.2,0.4,0.1,0.2,0.2,0.2,0.2,0.1,0.2,0.2,0.3,0.3,0.2,0.6,0.4,0.3,0.2,0.2,0.2,0.2,1.4,1.5,1.5,1.3,1.5,1.3,1.6,1,1.3,1.4,1,1.5,1,1.4,1.3,1.4,1.5,1,1.5,1.1,1.8,1.3,1.5,1.2,1.3,1.4,1.4,1.7,1.5,1,1.1,1,1.2,1.6,1.5,1.6,1.5,1.3,1.3,1.3,1.2,1.4,1.2,1,1.3,1.2,1.3,1.3,1.1,1.3,2.5,1.9,2.1,1.8,2.2,2.1,1.7,1.8,1.8,2.5,2,1.9,2.1,2,2.4,2.3,1.8,2.2,2.3,1.5,2.3,2,2,1.8,2.1,1.8,1.8,1.8,2.1,1.6,1.9,2,2.2,1.5,1.4,2.3,2.4,1.8,1.8,2.1,2.4,2.3,1.9,2.3,2.5,2.3,1.9,2,2.3,1.8";
+        stat = simpledata("#data5");  
+        x4data = data;  
+        x4obs = stat.n;
+
+        document.getElementById("name1").value = "Species";
+        document.getElementById("name2").value = "Sepal.Length";
+        document.getElementById("name3").value = "Sepal.Width";
+        document.getElementById("name4").value = "Petal.Length";
+        document.getElementById("name5").value = "Petal.Width";
+*/
+      // init example 2
+      document.getElementById("data1").value = "Yes,No,No,Yes,No,No,Yes,No,No,Yes,Yes,No,No,Yes,Yes,No,No,No,Yes,No";
+        stat = simpledata("#data1");  
+        yydata = data;  
+        yobs = stat.n;
+      document.getElementById("data2").value = "25,34,27,28,21,31,36,20,29,32,37,24,33,30,38,32,28,22,39,26";
+        stat = simpledata("#data2");  
+        x1data = data;  
+        x1obs = stat.n;
+      document.getElementById("data3").value = "150,220,210,250,100,220,300,100,220,250,400,120,350,180,350,250,240,220,450,150";
+        stat = simpledata("#data3");  
+        x2data = data;  
+        x2obs = stat.n;
+
+        document.getElementById("name1").value = "Purchase";
+        document.getElementById("name2").value = "Age";
+        document.getElementById("name3").value = "Income";
+
+    </script>
+</body>
+</html>

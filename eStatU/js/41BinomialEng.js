@@ -1,4 +1,4 @@
-﻿      function showValueBinomial1(newValue) {document.getElementById("nn").value  = newValue;}
+      function showValueBinomial1(newValue) {document.getElementById("nn").value  = newValue;}
       function showValueBinomial2(newValue) {document.getElementById("pp").value  = newValue / 100;  }
       function showValueBinomial3(newValue) {document.getElementById("nn2").value = newValue;}
       function showValueBinomial4(newValue) {document.getElementById("pp2").value = newValue / 100;  }

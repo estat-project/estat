@@ -1,4 +1,4 @@
-﻿      // 유의수준
+      // 유의수준
       var aa = document.myForm.type;
       var alpha = 0.05;
       var p = 1 - alpha;

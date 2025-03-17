@@ -136,7 +136,7 @@ var screenTablePixelHeight = 10000;
 var exampleDataNo = 10
 var menuColor = new Array(exampleDataNo + 1);
 var i, j, k, m, temp, tempi;
-var freqMin, freqMax, numVar, numVarY, numVarX, rawData, checkNumeric;
+var freqMin, freqMax, freqMaxDM, numVar, numVarY, numVarX, rawData, checkNumeric;
 var svgWidth, svgHeight, margin, graphWidth, graphHeight;
 var svgWidth2, svgHeight2;
 var title, graphNum;
@@ -144,7 +144,7 @@ var str, gstr, xstr, ystr, varListStr;
 var str1, str2, str3, str4 ;
 var langNum = 0;
 var rowMax = 9999; // 시트행 최대
-var colMax = 20; // 시트열 최대
+var colMax = 30; // 시트열 최대
 var buffer = 20; // 우측 y선과 범례와  간격
 var bothBarGap = 35; // 양쪽막대의 갭
 var maxNumEdit = 9; // 변량편집시 최대 변량값 수
@@ -175,6 +175,7 @@ var tdobs        = new Array(colMax);
 var missing      = new Array(colMax); // missing data
 var mdobs        = new Array(colMax); // missing data 제거후 obs
 var tdvarNumber  = new Array(colMax);
+var svarName     = new Array(colMax);
 var tdvarName    = new Array(colMax);
 var tdvalueNum   = new Array(colMax);
 var tdvar        = new Array(colMax); // 2차원 배열로 아래에 정의
@@ -184,6 +185,7 @@ var mdvalueNum   = new Array(colMax);
 var mdvar        = new Array(colMax); //***** 2차원 배열로 tdvar에서 missing 제거한 배열 
 var mdvalue      = new Array(colMax); // 2차원 배열로 아래에 정의
 var mdvalueLabel = new Array(colMax); // 2차원 배열로 아래에 정의
+var mdvalueFreq  = new Array(colMax); // 2차원 배열로 아래에 정의
 for (j = 0; j < colMax; j++) {
     rvarName[j] = "V" + (j + 1).toString();
     rvar[j]         = new Array(rowMax);
@@ -195,6 +197,7 @@ for (j = 0; j < colMax; j++) {
     mdvar[j]        = new Array(rowMax); //***** 2차원 배열로 tdvar에서 missing 제거한 배열 
     mdvalue[j]      = new Array(rowMax);
     mdvalueLabel[j] = new Array(rowMax);
+    mdvalueFreq[j]  = new Array(rowMax);
     for (i = 0; i < rowMax; i++) {
         rvalueLabel[j][i] = null;
         tdvalueLabel[j][i] = null;
@@ -245,7 +248,8 @@ var stat = new Array(30);
 var xmin, xmax, ymin, ymax, xbuffer, ybuffer;
 var gxmin, gxmax, gxrange, gymin, gymax, gyrange;
 // 그룹 변량 정의
-var ngroupMax = 50;
+var ngroupMax   = 50;
+var nclusterMax = 10;
 var nobs        = new Array(ngroupMax);
 var nobs2       = new Array(ngroupMax);
 var dataSet     = new Array(ngroupMax);
@@ -338,6 +342,241 @@ for (j=0; j<colMax; j++) {
    Corr[j]   = new Array(colMax);
    invXPX[j] = new Array(colMax);
 }
+// Array for Data Mining
+  var iprior, linearFunction, tnumVar, numfreqDM; 
+  var training, mindata, methodType, testobs, numK, method29, method292, maxiter, epsi, Kgroup, SSE;
+  var icluster;
+  var istandard = 0;
+  var maxlevel  = 9; 
+  var rulenum   = 0;
+  var maxfreqDM = 1000; // nvalue1*nvalue2* ... *nvaluek
+  var freqDM    = new Array(maxfreqDM);
+  var yydata    = new Array(rowMax);
+  var yydataN   = new Array(rowMax);
+  var ytrain    = new Array(rowMax);
+  var ytrainN   = new Array(rowMax); // numbered
+  var ytrainH   = new Array(rowMax); // estimated
+  var ytest     = new Array(rowMax);
+  var ytestN    = new Array(rowMax); // numbered
+  var ytestH    = new Array(rowMax); // estimated
+  var yhat      = new Array(rowMax);
+  var yhatTrain = new Array(rowMax);
+  var yclass      = new Array(rowMax);
+  var yclassTrain = new Array(rowMax);
+  var yclassTest  = new Array(rowMax);
+  var D         = new Array(colMax);
+  var Y         = new Array(colMax);
+  var Yavg      = new Array(colMax);
+  var Ystd      = new Array(colMax);
+  var Ycov      = new Array(colMax);
+  var Ycorr     = new Array(colMax);
+  var A         = new Array(colMax);
+  var V         = new Array(colMax);
+  var curS      = new Array(colMax);
+  var eigen     = new Array(colMax);
+  var index     = new Array(colMax);
+  var vector    = new Array(colMax);
+  var Dnormal   = new Array(colMax);
+  var Dtrain    = new Array(colMax);
+  var Dtest     = new Array(colMax);
+  var DDtrain   = new Array(colMax);
+  var DDtest    = new Array(colMax);
+  var tavg      = new Array(colMax);
+  var tstd      = new Array(colMax);
+  var distance  = new Array(colMax);
+
+  // Decision Tree
+    var tree    = new Array(rowMax);
+    var tidx    = new Array(rowMax);
+    var coeff   = new Array(rowMax);
+    var workD   = new Array(colMax); //***** 2차원 배열로 tdvar에서 missing 제거한 배열 
+    var work2   = new Array(colMax); //***** 2차원 배열로 tdvar에서 missing 제거한 배열 
+    var work3   = new Array(colMax); //***** 2차원 배열로 tdvar에서 missing 제거한 배열 
+    var work4   = new Array(colMax); //***** 2차원 배열로 tdvar에서 missing 제거한 배열 
+    var work5   = new Array(colMax); //***** 2차원 배열로 tdvar에서 missing 제거한 배열 
+    var work6   = new Array(colMax); //***** 2차원 배열로 tdvar에서 missing 제거한 배열 
+    var work7   = new Array(colMax); //***** 2차원 배열로 tdvar에서 missing 제거한 배열 
+    var work8   = new Array(colMax); //***** 2차원 배열로 tdvar에서 missing 제거한 배열 
+    var work9   = new Array(colMax); //***** 2차원 배열로 tdvar에서 missing 제거한 배열 
+    var entropy = new Array(colMax);
+    var jjold   = new Array(colMax);
+
+  var gobsD     = new Array(colMax);
+  var gobsH        = new Array(colMax);
+  var gavg      = new Array(colMax);
+  var gstd      = new Array(colMax);
+  var gcov      = new Array(colMax);
+  var gcorr     = new Array(colMax);
+  var ginv      = new Array(colMax);
+  var dim2Freq  = new Array(colMax);
+  var Davg      = new Array(ngroupMax);
+  var Dcov      = new Array(ngroupMax);
+  var Dcorr     = new Array(ngroupMax);
+  var Bcoeff    = new Array(ngroupMax);
+  var classValue= new Array(ngroupMax);
+  var prior     = new Array(ngroupMax);
+  var classTrain= new Array(ngroupMax+1);
+  var classTest = new Array(ngroupMax+1);
+  for (j = 0; j < colMax; j++) {
+      D[j]      = new Array(rowMax);
+      Y[j]      = new Array(rowMax);
+      Ycov[j]   = new Array(colMax);
+      Ycorr[j]  = new Array(colMax);
+      A[j]      = new Array(colMax);
+      V[j]      = new Array(colMax);
+      curS[j]   = new Array(colMax);
+      vector[j] = new Array(colMax);
+      Dnormal[j]= new Array(rowMax);
+      Dtrain[j] = new Array(rowMax);
+      Dtest[j]  = new Array(rowMax);
+      DDtrain[j]= new Array(rowMax);
+      DDtest[j] = new Array(rowMax);
+      workD[j]  = new Array(rowMax);
+      work2[j]  = new Array(rowMax);
+      work3[j]  = new Array(rowMax);
+      work4[j]  = new Array(rowMax);
+      work5[j]  = new Array(rowMax);
+      work6[j]  = new Array(rowMax);
+      work7[j]  = new Array(rowMax);
+      work8[j]  = new Array(rowMax);
+      work9[j]  = new Array(rowMax);
+      gcov[j]   = new Array(colMax);
+      gcorr[j]  = new Array(colMax);
+      ginv[j]   = new Array(colMax);
+      dim2Freq[j] = new Array(colMax);
+      distance[j] = new Array(rowMax);
+  }
+  for (k = 0; k < ngroupMax; k++) {
+      Davg[k]       = new Array(colMax);
+      Dcov[k]       = new Array(colMax);
+      Dcorr[k]      = new Array(colMax);
+      Bcoeff[k]     = new Array(ngroupMax);
+      classValue[k] = new Array(ngroupMax);
+  }
+  for (k = 0; k < ngroupMax; k++) {
+    classTrain[k] = new Array(ngroupMax+1);
+    classTest[k]  = new Array(ngroupMax+1);
+    for (j = 0; j < colMax; j++) {
+      Dcov[k][j] = new Array(colMax);
+      Dcorr[k][j]= new Array(colMax);
+    }
+  }
+  for (k = 0; k < ngroupMax; k++) 
+    for (j = 0; j < ngroupMax; j++) Bcoeff[k][j] = new Array(colMax+1); 
+  // decision tree
+  var tree        = new Array(rowMax);
+  var tidx        = new Array(rowMax);
+  var coeff       = new Array(rowMax);
+  for (j = 0; j < rowMax; j++) {
+      tree[j]  = new Array(2*maxlevel);
+      tidx[j]  = new Array(2*maxlevel);
+      coeff[j] = new Array(2*maxlevel);
+  }
+  for (j = 0; j < rowMax; j++) {
+    for (k = 0; k < 2*maxlevel; k++) tidx[j][k] = 0;
+  }
+
+  // multidimension frequency table
+  var workD4 = new Array(colMax); //***** 4차원 배열로 tdvar에서 missing 제거한 배열 
+  for (i = 0; i < colMax; i++) { 
+      workD4[i] = new Array(colMax); 
+      for (j = 0; j < colMax; j++) {
+        workD4[i][j] = new Array(ngroupMax); 
+        for (k = 0; k < ngroupMax; k++) workD4[i][j][k] = new Array(ngroupMax);
+      }
+  }
+  // K-means clustering
+  var Kavg       = new Array(ngroupMax);
+  var Kcov       = new Array(ngroupMax);
+  var Kcorr      = new Array(ngroupMax);
+  for (k = 0; k < ngroupMax; k++) {
+        Kavg[k]      = new Array(colMax);
+        Kcov[k]      = new Array(colMax);
+        Kcorr[k]     = new Array(colMax);
+  }
+  for (k = 0; k < ngroupMax; k++) {
+    for (j = 0; j < colMax; j++) {
+        Kcov[k][j] = new Array(colMax);
+        Kcorr[k][j]= new Array(colMax);
+    }
+  }
+  var iterMax   = 11;
+  var SSE       = new Array(iterMax);
+  var kSSE      = new Array(ngroupMax);
+  var BIC       = new Array(ngroupMax);
+  var XvarNameSub = ["X\u2081", "X\u2082", "X\u2083", "X\u2084", "X\u2085", "X\u2086"];
+  var YvarNameSub = ["Y\u2081", "Y\u2082", "Y\u2083", "Y\u2084", "Y\u2085", "Y\u2086"];
+  var evarNameSub = ["e\u2081", "e\u2082", "e\u2083", "e\u2084", "e\u2085", "e\u2086"];
+
+// naive Bayes Classification
+  var likelihood  = new Array(colMax); // 3차원 likelihood prob numvar*ngropMax*ngroupMax
+  var posterior   = new Array(rowMax);
+  var posteriorTrain = new Array(rowMax);
+  var posteriorTest  = new Array(rowMax);
+  var posteriorPrintTrain = new Array(rowMax);
+  var posteriorPrintTest  = new Array(rowMax);
+  for (j = 0; j < colMax; j++) {
+    likelihood[j] = new Array(ngroupMax+1);
+    for (k = 0; k < ngroupMax+1; k++) likelihood[j][k] = new Array(ngroupMax+1);
+  }
+  for (i = 0; i < rowMax; i++) {
+    posterior[i] = new Array(ngroupMax)
+    posteriorPrintTrain[i] = new Array(ngroupMax)
+    posteriorPrintTest[i]  = new Array(ngroupMax)
+  }
+  // Lift chart
+    var yyposteriorTrain = new Array(rowMax);
+    for (i = 0; i < rowMax; i++) {
+      yyposteriorTrain[i] = new Array(3);
+    }
+    var responseTrain = new Array(rowMax);
+    var numResponseCategory   = 10;
+    for (i = 0; i < rowMax; i++) {
+      responseTrain[i] = new Array(numResponseCategory);
+    }  
+  // Confusion table  
+    var confusionTrain = new Array(rowMax);
+    var numConfusionCategory  = 10;
+    for (i = 0; i < rowMax; i++) {
+      confusionTrain[i] = new Array(numResponseCategory);
+    }
+  // ROC chart
+    var rocTrain = new Array(rowMax);
+    var numRocCategory  = 10;
+    for (i = 0; i < rowMax; i++) {
+      rocTrain[i] = new Array(numRocCategory);
+    }
+// knn
+    var maxnumK24 = 20;
+    var accuracy24    = new Array(maxnumK24);
+    var sensitivity24 = new Array(maxnumK24);
+    var specificity24 = new Array(maxnumK24);
+    // nearest K selection method
+      var method240 = document.myForm240.type240;
+      var methodType240 = method240.value; 
+      document.getElementById("numK").disabled       = true;
+      document.getElementById("training24").disabled = true;
+      document.getElementById("testing24").disabled  = true;
+      document.getElementById("dm24classificationTable").disabled  = true;
+      method240[0].onclick = function() { // Search K
+        methodType240 = method240.value; 
+        document.getElementById("numK").disabled       = true;
+        document.getElementById("training24").disabled = true;
+        document.getElementById("testing24").disabled  = true;
+        document.getElementById("dm24classificationTable").disabled  = true;
+      }  
+      method240[1].onclick = function() { // Fixed K
+        methodType240 = method240.value; 
+        document.getElementById("numK").disabled       = false;
+        document.getElementById("training24").disabled = false;
+        document.getElementById("testing24").disabled  = false;
+        document.getElementById("dm24classificationTable").disabled  = false;
+      }  
+          // distance selection method
+          var method24 = document.myForm24.type24;
+          methodType24 = parseInt(method24.value); 
+          method24[0].onclick = function() { methodType24 = method24.value; }  // Euclid^2
+          method24[1].onclick = function() { methodType24 = method24.value; }  // Manhattan
 
 // 그래프 종류, 체크버튼	블린 변량들
 var VerticalBar, HorizontalBar;
@@ -358,6 +597,15 @@ var checkNumVar;
 var checkAlphabetic;
 var checkRBD, checkDataRBD; // Radomized Block Design
 var checkScatterMatrix;
+var checkBarMatrix;
+var checkScatterMatrixParallel;
+var checkPCA;
+var checkKNN;
+var checkDecisionTree;
+var checkBayesClassification;
+var checkLogisticRegression;
+var checkHierarchical;
+var checkKmeans;
 //var eStatVersion = new Date('2021-12-25');
 // localStorage['installDate'] = eStatVersion;
 
@@ -391,7 +639,7 @@ if (levelNum == "1") { // 초등
     document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
     document.getElementById("statTable").style.display = "block"; // 기초통계량
     document.getElementById("tool-group-testing").style.display = "none"; // 가설검정 감추기
-    document.getElementById("estatM").style.display = "block"; // 즁둥 모듈
+    document.getElementById("estatM").style.display = "block"; // 중둥 모듈
     document.getElementById("estatH").style.display = "none"; // 고등 모듈 감추기
     document.getElementById("estatU").style.display = "none"; // 대학 모듈 감추기
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
@@ -401,7 +649,7 @@ if (levelNum == "1") { // 초등
     document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
     document.getElementById("statTable").style.display = "block"; // 기초통계량
     document.getElementById("tool-group-testing").style.display = "none"; // 가설검정
-    document.getElementById("estatM").style.display = "block"; // 즁둥 모듈
+    document.getElementById("estatM").style.display = "block"; // 중둥 모듈
     document.getElementById("estatH").style.display = "block"; // 고등모듈 보이기
     document.getElementById("estatU").style.display = "none"; // 대학 모듈 감추기
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
@@ -411,7 +659,8 @@ if (levelNum == "1") { // 초등
     document.getElementById("bothstem2").style.display = "block"; // 양쪽형 줄기
     document.getElementById("statTable").style.display = "block"; // 기초통계량
     document.getElementById("tool-group-testing").style.display = "inline-block"; // 가설검정
-    document.getElementById("estatM").style.display = "block"; // 즁둥 모듈
+    document.getElementById("tool-group-DM").style.display = "inline-block"; // DM
+    document.getElementById("estatM").style.display = "block"; // 중둥 모듈
     document.getElementById("estatH").style.display = "block"; // 고등모듈 보이기
     document.getElementById("estatU").style.display = "block"; // 대학 모듈
     document.getElementById("estatE").style.display = "block"; // 예제 보이기
@@ -659,8 +908,17 @@ function initEventControl(datasheet) {
             if (checkVarSame == false && checkNumVar == true) {
               numVar += numOfSelectedColumns;
 
+              if (graphNum == 43 || graphNum == 49) {
+                  // 분석변량
+                  document.getElementById("groupSelectMain").value = tdvarNumber[0];
+		  estatapp.groupVars = tdvarNumber.slice(0, numVar);
+                  // 선택변수 리스트
+                  varListStr = "V" + tdvarNumber[0].toString() + ",";
+                  for (i = 1; i < numVar; i++) varListStr += "V" + tdvarNumber[i].toString() + ",";
+                  d3.select("#selectedVars").node().value = varListStr;
+              }
               // Select box에 표시
-              if (numVar == 1) {
+              else if (numVar == 1) {
                   // 분석변량
                   document.getElementById("analysisSelectMain").value = tdvarNumber[0];
 		  estatapp.analysisVar = tdvarNumber[0];
@@ -746,7 +1004,7 @@ d3.select("#icon_openExample").on("click", function() {
 });
 $(document).ready(function() {
     $("#exampleFileListing").fileTree({
-        root: '../Example/'
+        root: '/estat/Example/'
     }, function(file) {
 	examplePath = file.substring(11);
 	openExample(examplePath);
@@ -754,7 +1012,7 @@ $(document).ready(function() {
     });
 });
 function openExample(examplePath, callback = undefined) {
-    url = "../Example/" + examplePath;
+    url = "/estat/Example/" + examplePath;
     estatapp.dataURL = url;
     readFromURL(url, callback);
 }
@@ -3223,7 +3481,7 @@ d3.select("#anova").on("click", function() {
   if (numVar == 2) { // 1원 분산분석
     dataClassifyM();
     if (checkNumeric == false) return;
-    if (ngroup > 9) { 
+    if (ngroup > 9) { // too many groups
        alert(alertMsg[5][langNum]);
        return;
     }
@@ -3687,6 +3945,714 @@ d3.select("#regressQQ").on("click", function() {
     document.getElementById("regressBand").disabled = true;
     regressionQQ(tobs,yhat,stdResidual);
 })
+// Data Mining modules
+// bar matrix 버튼 클릭 -------------------------------------------------------------------------------
+d3.select("#barMatrix").on("click", function() {
+  graphNum = 41;
+  buttonColorChange();
+//  variableSelectClear();
+  document.getElementById("sub21").style.display = "block"; // 옵션 표시
+  document.getElementById("barMatrix").style.backgroundColor = buttonColorH;
+  document.getElementById("barMatrix").style.width  = iconH1;
+  document.getElementById("barMatrix").style.height = iconH1;
+  document.getElementById("analysisVar").innerHTML = svgStr[18][langNum]; // 그룹
+  document.getElementById("groupVar").innerHTML    = svgStr[26][langNum]; // 분석변량
+  document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[80][langNum]+")";
+  dataClassifyDMbyGroup();
+  tobs = dobs;
+  // check numVar <= 1    
+  if (numVar < 2) return;
+  if (ngroup > 9) { // too many groups
+       alert(alertMsg[5][langNum]);
+       return;
+  }
+  // data copy
+  for (j = 0; j < tobs; j++) {
+   for (i = 0; i < numVar; i++) {
+       Dtrain[i][j] = mdvar[i][j];
+       for (k = 0; k < mdvalueNum[i]; k++) {
+         if (mdvar[i][j] == mdvalue[i][k]) {
+           D[i][j] = k;    
+           break;
+         }
+       } // endof 
+    } // endof i
+  } // endof j
+
+  // draw barchart matrix
+  var icrossTable = 1;  // to print cross table
+  chart.selectAll("*").remove();
+  drawBarChartMatrix(numVar, tobs, freqMaxDM, icrossTable);
+})
+      // cross table matrix
+      d3.select("#dm21crossTable").on("click", function() {
+          crossTable(numVar);
+      })
+
+      // multidimension frequency table
+      d3.select("#dm21freqTable").on("click", function() {
+          numfreqDM = multidimFreq(numVar, tobs);
+          multidimFreqTable(numVar, tobs, numfreqDM, freqDM); 
+      })
+
+// scatter matrix 버튼 클릭 -------------------------------------------------------------------------------
+d3.select("#scatterMatrix").on("click", function() {
+  graphNum = 42;
+  buttonColorChange();
+//  variableSelectClear();
+  document.getElementById("sub22").style.display = "block"; // 회귀선 옵션 표시
+  document.getElementById("scatterMatrix").style.backgroundColor = buttonColorH;
+  document.getElementById("scatterMatrix").style.width  = iconH1;
+  document.getElementById("scatterMatrix").style.height = iconH1;
+  document.getElementById("analysisVar").innerHTML = svgStr[18][langNum]; // 그룹
+  document.getElementById("groupVar").innerHTML    = svgStr[26][langNum]; // 분석변량
+  document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[80][langNum]+")";
+  dataClassifyDMbyGroup();
+  yobs = dobs;
+  tobs = dobs;
+  if (numVar < 1) return; // no data
+  if (ngroup > 9) { // too many groups
+       alert(alertMsg[5][langNum]);
+       return;
+  }
+  training = 1;
+  dataPartition();
+  tnumVar = numVar;
+  if (yobs == tobs) tnumVar = numVar - 1; 
+  iprior = 0;       // no prior needed
+  linearFunction = 0; // no linear function needed
+  for (i = 0; i < numVar-1; i++) svarName[i] = tdvarName[i+1];
+  statMultivariateDM(ngroup, tnumVar, tobs);
+  chart.selectAll("*").remove();
+  drawScatterMatrixByGroup(tnumVar, svarName, tobs, ngroup, gdataValue, linearFunction);
+
+/*
+    // 점과 시트의 연결
+    d3.selectAll(".datapoint").on("click", function() {
+        if (mobs > 0) return;
+        k = $(this).data('sheetrowid');	
+	datasheet.selectCell(k, 0, k, 0, true);
+	datasheet.selectRows(k);
+	d3.selectAll(".highlight_datapoint")
+          .attr("class", "datapoint")
+          .attr("r", wdata[k])
+          .style("stroke", "black")
+          .style("stroke-width", 1)          
+	d3.select(this)
+          .attr("class", "datapoint highlight_datapoint")
+          .attr("r", wdata[k] + 5)
+          .style("stroke", "orange")
+          .style("stroke-width", 5) 
+    })
+*/
+})
+
+      // print multivariate statistics
+      d3.select("#dm22statMultivariate").on("click", function() {
+          if (tobs < 1) return;
+          printMultivariate(iprior);
+      })
+      // scatter plot 
+      d3.select("#dm22scatterPlot").on("click", function() {
+          if (tobs < 1) return;
+          drawScatterMatrixByGroup(tnumVar, svarName, tobs, ngroup, gdataValue, linearFunction);
+      })
+      // parallel graph
+      d3.select("#dm22parallelGraph").on("click", function() {
+          if (tobs < 1) return;
+          parallelGraphByGroup(tnumVar, svarName, tobs, ngroup, gdataValue);
+      })
+
+// PCA 버튼 클릭 -------------------------------------------------------------------------------
+d3.select("#pca").on("click", function() {
+  graphNum = 43;
+  buttonColorChange();
+//  variableSelectClear();
+  document.getElementById("analysisSelectMain").disabled = true;
+  document.getElementById("sub23").style.display = "block"; // 회귀선 옵션 표시
+  document.getElementById("pca").style.backgroundColor = buttonColorH;
+  document.getElementById("pca").style.width  = iconH1;
+  document.getElementById("pca").style.height = iconH1;
+  document.getElementById("analysisVar").innerHTML = svgStr[18][langNum]; // 그룹
+  document.getElementById("groupVar").innerHTML    = svgStr[26][langNum]; // 분석변량
+  document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[80][langNum]+")";
+  dataClassifyDMbyGroup();
+  if (numVar < 1) return; // no data
+  ngroup = 1;
+  yobs = dobs;
+  tobs = dobs;
+  istandard = 0;
+  tnumVar = numVar;
+  iprior = 0;       // no prior needed
+  linearFunction = 0; // no linear function needed
+  for (i = 0; i < numVar; i++) {
+     svarName[i] = tdvarName[i];
+     for (j = 0; j < tobs; j++) Dtrain[i][j] = mdvar[i][j];
+  } 
+  chart.selectAll("*").remove();
+  drawScatterMatrixByGroup(tnumVar, svarName, tobs, ngroup, gdataValue, linearFunction);
+})
+      // scatter plot 
+      d3.select("#dm23scatterPlot").on("click", function() {
+          if (tobs < 1) return;
+          for (i = 0; i < numVar; i++) {
+            svarName[i] = tdvarName[i];
+            for (j = 0; j < tobs; j++) Dtrain[i][j] = mdvar[i][j];
+          } 
+          drawScatterMatrixByGroup(tnumVar, svarName, tobs, ngroup, gdataValue, linearFunction);
+      })
+      // parallel graph
+      d3.select("#dm23parallelGraph").on("click", function() {
+          if (tobs < 1) return;
+          for (i = 0; i < numVar; i++) {
+            svarName[i] = tdvarName[i];
+            for (j = 0; j < tobs; j++) Dtrain[i][j] = mdvar[i][j];
+          } 
+          parallelGraphByGroup(tnumVar, svarName, tobs, ngroup, gdataValue);
+      })
+      // PCA statistics
+      d3.select("#dm23pcaStatTable").on("click", function() {
+          if (tobs < 1) return;
+          statPCA(numVar, tobs);
+          pcaStatTable();
+      })
+      // eigenvalue plot 
+      d3.select("#dm23eigenvaluePlot").on("click", function() {
+          if (tobs < 1) return;
+          drawEigenvalue();
+      })
+      // PCA Scatterplot
+      d3.select("#dm23pcaScatterPlot").on("click", function() {
+          if (tobs < 1) return;
+          for (i = 0; i < numVar; i++) {
+            svarName[i] = YvarNameSub[i];
+            for (j = 0; j < tobs; j++) Dtrain[i][j] = Y[i][j];
+          } 
+          drawScatterMatrixByGroup(numVar, svarName, tobs, ngroup, gdataValue, linearFunction);
+      })
+      // PCA table
+      d3.select("#dm23pcaTable").on("click", function() {
+          if (tobs < 1) return;
+          pcaTable(numVar, tobs);
+      })
+
+//  버튼 클릭 -------------------------------------------------------------------------------
+d3.select("#knearest").on("click", function() {
+  graphNum = 44;
+  buttonColorChange();
+//  variableSelectClear();
+  document.getElementById("sub24").style.display = "block"; // 옵션 표시
+  document.getElementById("knearest").style.backgroundColor = buttonColorH;
+  document.getElementById("knearest").style.width  = iconH1;
+  document.getElementById("knearest").style.height = iconH1;
+  document.getElementById("analysisVar").innerHTML = svgStr[18][langNum]; // 그룹
+  document.getElementById("groupVar").innerHTML    = svgStr[26][langNum]; // 분석변량
+  document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[80][langNum]+")";
+  training = 1;
+  istandard = 1;
+  // data classify
+  dataClassifyDMbyGroup();
+  yobs = dobs;
+  if (ngroup > 9) { // too many groups
+       alert(alertMsg[5][langNum]);
+       return;
+  }
+  dataPartition();
+  tnumVar = numVar - 1; 
+  if (numVar < 2) return;
+  // if gobsD[] < 2, cannot calculte covariance matrix
+  for (k = 0; k < ngroup; k++) {
+      if (gobsD[k] < 2) {
+         chart.append("text").attr("x", 50).attr("y", margin.top + 40)
+              .text(alertMsg[64][langNum]).style("stroke","red").style("font-size","1em");
+         return;
+      }
+  }
+
+  linearFunction = 0; // no linear function needed
+  for (i = 0; i < tnumVar; i++) svarName[i] = tdvarName[i+1];
+  statMultivariateDM(ngroup, tnumVar, tobs);
+  chart.selectAll("*").remove();
+  drawScatterMatrixByGroup(tnumVar, svarName, tobs, ngroup, gdataValue, linearFunction);
+})
+      // scatter plot 
+      d3.select("#dm24scatterPlot").on("click", function() {
+          if (tobs < 1) return;
+          tnumVar = numVar - 1; 
+          drawScatterMatrixByGroup(tnumVar, svarName, tobs, ngroup, gdataValue, linearFunction);
+      })
+      // parallel graph
+      d3.select("#dm24parallelGraph").on("click", function() {
+          if (tobs < 1) return;
+          tnumVar = numVar - 1; 
+          parallelGraphByGroup(tnumVar, svarName, tobs, ngroup, gdataValue);
+      })
+      // print multivariate statistics
+      d3.select("#dm24statMultivariate").on("click", function() {
+          if (tobs < 1) return;
+          iprior = 0;
+          printMultivariate(iprior);
+      })
+      // knn classification
+      d3.select("#dm24knnClassification").on("click", function() {
+        if (tobs < 1) return;
+        if (methodType240 == 1) { // search K
+            training = 1; // use 100% training
+            istandard = 1;
+            tobs = yobs;
+            testobs = yobs;
+            tnumVar = numVar;
+            maxnumK24 = Math.ceil(tobs/2) + 1;
+            if (maxnumK24 > 20) maxnumK24 = 20; 
+            for (k = 0; k < maxnumK24; k++) { 
+              numK = k + 1;
+              kNN(tnumVar, tobs, testobs, ngroup);
+              accuracy24[k] = 0;
+              for (i = 0; i < ngroup; i++) {
+                accuracy24[k] += classTest[i][i];
+              }
+              accuracy24[k] /= classTest[ngroup][ngroup]
+              if (ngroup == 2) {
+                sensitivity24[k] = classTest[0][0] / classTest[0][ngroup]
+                specificity24[k] = classTest[1][1] / classTest[1][ngroup]
+              }
+            }
+            drawKmeanSearch();
+            printAccuracyKNN();
+        }
+        else { // fixed K
+          training = parseFloat(document.getElementById("training24").value) / 100;
+          numK = parseInt(document.getElementById("numK").value);
+          // standardization
+          if (document.getElementById("istandard").checked == true) istandard = 1
+          else istandard = 0;
+          dataClassifyDMbyGroup();
+          dataPartition();
+          tnumVar = numVar - 1;
+          drawScatterMatrixByGroup(tnumVar, svarName, tobs, ngroup, gdataValue, linearFunction);
+          kNN(tnumVar, tobs, testobs, ngroup);
+          printClassification();
+        }
+      })
+      // classification table
+      d3.select("#dm24classificationTable").on("click", function() {
+          if (tobs < 1) return;
+          classificationTableKNN(tnumVar, tobs, testobs); 
+      })
+
+// Decision Tree 버튼 클릭 -------------------------------------------------------------------------------
+d3.select("#decisionTree").on("click", function() {
+  graphNum = 45;
+  buttonColorChange();
+//  variableSelectClear();
+  document.getElementById("sub25").style.display = "block"; // 옵션 표시
+  document.getElementById("decisionTree").style.backgroundColor = buttonColorH;
+  document.getElementById("decisionTree").style.width  = iconH1;
+  document.getElementById("decisionTree").style.height = iconH1;
+  document.getElementById("analysisVar").innerHTML = svgStr[18][langNum]; // 그룹
+  document.getElementById("groupVar").innerHTML    = svgStr[26][langNum]; // 분석변량
+  document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[80][langNum]+")";
+
+  training = 1;
+  // data classify
+  dataClassifyDMbyGroup();
+  yobs = dobs;
+  // check numVar <= 1    
+  if (numVar < 2) return;
+  if (ngroup > 9) { // too many groups
+       alert(alertMsg[5][langNum]);
+       return;
+  }
+  // data copy
+  for (j = 0; j < tobs; j++) {
+   for (i = 0; i < numVar; i++) {
+       for (k = 0; k < mdvalueNum[i]; k++) {
+         if (mdvar[i][j] == mdvalue[i][k]) {
+           D[i][j] = k;    
+           break;
+         }
+       } // endof 
+    } // endof i
+  } // endof j
+  // Data partician
+  dataPartitionDT();
+  tnumVar = numVar;
+  // draw barchart matrix
+  var icrossTable = 0;  // to print cross table
+  chart.selectAll("*").remove();
+  drawBarChartMatrix(numVar, tobs, freqMaxDM, icrossTable);
+})
+      // decision tree
+      d3.select("#dm25decisionTree").on("click", function() {
+          // Variable selection method
+          var method25 = document.myForm25.type25;
+          methodType25 = method25.value; 
+          method25[0].onclick = function() { methodType25 = method25.value; }  // Entropy
+          method25[1].onclick = function() { methodType25 = method25.value; }  // Gini
+          method25[2].onclick = function() { methodType25 = method25.value; }  // Classification error
+          method25[3].onclick = function() { methodType25 = method25.value; }  // Chi-square
+          // training %, max depth and min data of branch
+          maxlevel = parseInt(document.getElementById("maxlevel").value);
+          mindata  = parseInt(document.getElementById("mindata").value);
+          training = parseFloat(document.getElementById("training25").value) / 100;
+          dataPartitionDT();
+          tnumVar = numVar;
+          // draw barchart matrix
+          var icrossTable = 0;  // to print cross table
+          chart.selectAll("*").remove();
+          drawBarChartMatrix(numVar, tobs, freqMaxDM, icrossTable);
+          decisionTree(numVar, tobs);
+          decisionTreeTable();
+      })
+      // decision rule and classification results
+      d3.select("#dm25decisionRule").on("click", function() {
+          decisionRule();
+          classificationDT(ngroup, rulenum);
+      })
+      // classificationr table
+      d3.select("#dm25classificationTable").on("click", function() {
+          if (tobs < 1) return;
+          classificationTableDT(numVar, tobs, testobs); 
+      })
+
+// Naive Bayes Classification 버튼 클릭 -------------------------------------------------------------------------------
+d3.select("#naiveBayesClassification").on("click", function() {
+  graphNum = 50;
+  buttonColorChange();
+//  variableSelectClear();
+  document.getElementById("sub261").style.display = "block"; // 옵션 표시
+  document.getElementById("naiveBayesClassification").style.backgroundColor = buttonColorH;
+  document.getElementById("naiveBayesClassification").style.width  = iconH1;
+  document.getElementById("naiveBayesClassification").style.height = iconH1;
+  document.getElementById("analysisVar").innerHTML = svgStr[18][langNum]; // 그룹
+  document.getElementById("groupVar").innerHTML    = svgStr[26][langNum]; // 분석변량
+  document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[80][langNum]+")";
+  document.getElementById("testing261").disabled = true;   
+  // prior prob selection method
+  var method261 = document.myForm261.type261;
+  var methodType261 = method261.value; 
+  method261[0].onclick = function() { methodType261 = method.value; }  
+  method261[1].onclick = function() { methodType261 = method.value; }  
+  training = parseFloat(document.getElementById("training261").value) / 100;
+  // data classify
+  dataClassifyDMbyGroup();
+  yobs = dobs;
+  // check numVar <= 1    
+  if (numVar < 2) return;
+  if (ngroup > 9) { // too many groups
+       alert(alertMsg[5][langNum]);
+       return;
+  }
+  // data copy
+  for (j = 0; j < tobs; j++) {
+   for (i = 0; i < numVar; i++) {
+       for (k = 0; k < mdvalueNum[i]; k++) {
+         if (mdvar[i][j] == mdvalue[i][k]) {
+           D[i][j] = k;    
+           break;
+         }
+       } // endof 
+    } // endof i
+  } // endof j
+  // Data partician
+  dataPartitionDT();
+  tnumVar = numVar;
+  if (numVar < 2) return;
+  // if gobsD[] < 2, cannot calculte covariance matrix
+  for (k = 0; k < ngroup; k++) {
+      if (gobsD[k] < 2) {
+         chart.append("text").attr("x", 50).attr("y", margin.top + 40)
+              .text(alertMsg[64][langNum]).style("stroke","red").style("font-size","1em");
+         return;
+      }
+      if (methodType261 == 1) prior[k] = gobsD[k] / tobs;
+      else prior[k] = 1 / ngroup;
+  }
+  // draw barchart matrix
+  var icrossTable = 0;  // to print cross table
+  chart.selectAll("*").remove();
+  drawBarChartMatrix(numVar, tobs, freqMaxDM, icrossTable);
+})
+      // execute naive Bayes classification
+      d3.select("#dm261naiveBayesClassification").on("click", function() {
+//          drawBarChartMatrix(numVar, tobs, freqMaxDM, icrossTable);
+          naiveBayesClassification();
+          printClassification();
+      })
+      // lift chart
+      d3.select("#liftChart261").on("click", function() {
+          if (tobs < 1) return;
+          liftChart(tobs, testobs); 
+          liftTable();
+          drawLiftChart();
+      })
+      // confusion matrix
+      d3.select("#confusion261").on("click", function() {
+          if (tobs < 1) return;
+          confusion(tobs, testobs); 
+          confusionTable();
+          drawConfusion();
+      })
+      // ROC chart
+      d3.select("#roc261").on("click", function() {
+          if (tobs < 1) return;
+          roc(tobs, testobs); 
+          rocTable();
+          drawROC();
+      })
+      // classificationr table
+      d3.select("#dm261classificationTable").on("click", function() {
+          if (tobs < 1) return;
+          classificationTableNaiveBayes(numVar, tobs, testobs); 
+      })
+
+//  Bayes Classification 버튼 클릭 -------------------------------------------------------------------------------
+d3.select("#bayesClassification").on("click", function() {
+  graphNum = 46;
+  buttonColorChange();
+//  variableSelectClear();
+  document.getElementById("sub26").style.display = "block"; // 옵션 표시
+  document.getElementById("bayesClassification").style.backgroundColor = buttonColorH;
+  document.getElementById("bayesClassification").style.width  = iconH1;
+  document.getElementById("bayesClassification").style.height = iconH1;
+  document.getElementById("analysisVar").innerHTML = svgStr[18][langNum]; // 그룹
+  document.getElementById("groupVar").innerHTML    = svgStr[26][langNum]; // 분석변량
+  document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[80][langNum]+")";
+  document.getElementById("testing26").disabled = true;   
+
+  // data classify
+  training = 1;
+  dataClassifyDMbyGroup();
+  yobs = dobs;
+  if (ngroup > 9) { // too many groups
+       alert(alertMsg[5][langNum]);
+       return;
+  }
+  dataPartition();
+  tnumVar = numVar - 1; 
+  linearFunction = 0; // no linear function needed
+  for (i = 0; i < tnumVar; i++) svarName[i] = tdvarName[i+1];
+  statMultivariateDM(ngroup, tnumVar, tobs);
+  chart.selectAll("*").remove();
+  drawScatterMatrixByGroup(tnumVar, svarName, tobs, ngroup, gdataValue, linearFunction);
+})
+      // scatter plot 
+      d3.select("#dm26scatterPlot").on("click", function() {
+          if (tobs < 1) return;
+          drawScatterMatrixByGroup(tnumVar, svarName, tobs, ngroup, gdataValue, linearFunction);
+      })
+      // parallel graph
+      d3.select("#dm26parallelGraph").on("click", function() {
+          if (tobs < 1) return;
+          parallelGraphByGroup(tnumVar, svarName, tobs, ngroup, gdataValue);
+      })
+      // print multivariate statistics
+      d3.select("#dm26statMultivariate").on("click", function() {
+          if (tobs < 1) return;
+          iprior = 1;
+          printMultivariate(iprior);
+      })
+      // bayes classification
+      d3.select("#dm26bayesClassification").on("click", function() {
+          if (tobs < 1) return;
+
+          training = parseFloat(document.getElementById("training26").value) / 100;
+          // prior prob selection method
+          var method26 = document.myForm26.type26;
+          var methodType26 = method26.value; 
+          method26[0].onclick = function() { methodType26 = method26.value; }  // sample prop
+          method26[1].onclick = function() { methodType26 = method26.value; }  // equal prop
+
+          dataPartition();
+          tnumVar = numVar - 1; 
+          if (numVar < 2) return;
+          // if gobsD[] < 2, cannot calculte covariance matrix
+          for (k = 0; k < ngroup; k++) {
+            if (gobsD[k] < 2) {
+               chart.append("text").attr("x", 50).attr("y", margin.top + 40)
+                    .text(alertMsg[64][langNum]).style("stroke","red").style("font-size","1em");
+               return;
+            }
+            if (methodType26 == 1) prior[k] = gobsD[k] / tobs;
+            else prior[k] = 1 / ngroup;
+          }
+
+          discriminant(tnumVar, tobs, testobs);
+          if (tnumVar == 2 && ngroup == 2) linearFunction = 1;
+          chart.selectAll("*").remove();
+          drawScatterMatrixByGroup(tnumVar, svarName, tobs, ngroup, gdataValue, linearFunction);
+          printBayesClassificationFunction()
+          printClassification();
+      })
+      // classification table
+      d3.select("#dm26classificationTable").on("click", function() {
+          if (tobs < 1) return;
+          classificationTable(tnumVar, tobs, testobs); 
+      })
+
+//  버튼 클릭 -------------------------------------------------------------------------------
+d3.select("#logistic").on("click", function() {
+  graphNum = 47;
+  buttonColorChange();
+//  variableSelectClear();
+  document.getElementById("sub27").style.display = "block"; // 회귀선 옵션 표시
+  document.getElementById("logistic").style.backgroundColor = buttonColorH;
+  document.getElementById("logistic").style.width  = iconH1;
+  document.getElementById("logistic").style.height = iconH1;
+  document.getElementById("analysisVar").innerHTML = svgStr[18][langNum]; // 그룹
+  document.getElementById("groupVar").innerHTML    = svgStr[26][langNum]; // 분석변량
+  document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[80][langNum]+")";
+  training = parseFloat(document.getElementById("training27").value) / 100;
+  document.getElementById("testing27").disabled = true;   
+  dataClassifyRegression();
+  // check numVar <= 1 && numVar > 2    
+  if (numVar < 1) return;
+  chart.selectAll("*").remove();
+  tobs = mdobs[0];
+})
+
+//  버튼 클릭 -------------------------------------------------------------------------------
+d3.select("#kmeans").on("click", function() {
+  graphNum = 49;
+  buttonColorChange();
+//  variableSelectClear();
+  document.getElementById("analysisSelectMain").disabled = true;
+  document.getElementById("sub29").style.display = "block"; // 옵션 표시
+  document.getElementById("kmeans").style.backgroundColor = buttonColorH;
+  document.getElementById("kmeans").style.width  = iconH1;
+  document.getElementById("kmeans").style.height = iconH1;
+  document.getElementById("analysisVar").innerHTML = svgStr[18][langNum]; // 그룹
+  document.getElementById("groupVar").innerHTML    = svgStr[26][langNum]; // 분석변량
+  document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[80][langNum]+")";
+  document.getElementById("dm29scatterPlot").disabled  = false; 
+  document.getElementById("dm29parallelGraph").disabled  = false; 
+  document.getElementById("dm29kmeansScatterPlot").disabled = true; 
+  document.getElementById("dm29kmeansTable").disabled   = true; 
+
+  dataClassifyDMbyGroup();
+  if (numVar < 1) return; // no data
+  ngroup = 1;
+  yobs = dobs;
+  tobs = dobs;
+  tnumVar = numVar;
+
+  linearFunction = 0; // no linear function needed
+  for (i = 0; i < numVar; i++) {
+     svarName[i] = tdvarName[i];
+     for (j = 0; j < tobs; j++) Dtrain[i][j] = mdvar[i][j];
+  } 
+  chart.selectAll("*").remove();
+  drawScatterMatrixByGroup(tnumVar, svarName, tobs, ngroup, gdataValue, linearFunction);
+})
+      // scatter plot 
+      d3.select("#dm29scatterPlot").on("click", function() {
+          if (tobs < 1) return;
+          chart.selectAll("*").remove();
+          ngroup = 1;
+          for (i = 0; i < numVar; i++) {
+            svarName[i] = tdvarName[i];
+            for (j = 0; j < tobs; j++) Dtrain[i][j] = mdvar[i][j];
+          } 
+          drawScatterMatrixByGroup(tnumVar, svarName, tobs, ngroup, gdataValue, linearFunction);
+      })
+      // parallel graph
+      d3.select("#dm29parallelGraph").on("click", function() {
+          if (tobs < 1) return;
+          chart.selectAll("*").remove();
+          ngroup = 1;
+          for (i = 0; i < numVar; i++) {
+            svarName[i] = tdvarName[i];
+            for (j = 0; j < tobs; j++) Dtrain[i][j] = mdvar[i][j];
+          } 
+          parallelGraphByGroup(tnumVar, svarName, tobs, ngroup, gdataValue);
+      })
+      // kmeans classification
+      d3.select("#dm29kmeansCluster").on("click", function() {
+          if (tobs < 1) return;
+
+  // distance selection method
+  method29 = document.myForm29.type29;
+  idistance = method29.value; 
+  method29[0].onclick = function() { idistance = method29.value; }  // Euclid^2
+  method29[1].onclick = function() { idistance = method29.value; }  // Manhattan
+  // number of clusters
+  method292 = document.myForm292.type292;
+  icluster = method292.value; 
+  method292[0].onclick = function() { icluster = method292.value; }  // Find K
+  method292[1].onclick = function() { icluster = method292.value; }  // Fixed K
+  maxiter  = parseInt(document.getElementById("maxiter").value);
+  epsi     = parseFloat(document.getElementById("epsi").value);
+  iprior = 0;       // no prior needed
+
+  // data standardization
+  d3.select("#istandard").on("click",function() {
+      if(this.checked) istandard = 1
+      else istandard = 0;
+  })
+          // Data standardization 
+          if (istandard == 1) { // standardize data
+            for (i = 0; i < numVar; i++) {
+              for (j = 0; j < tobs; j++) {
+                Dtrain[i][j]  = Dnormal[i][j];
+              }
+            }
+          }
+          else { // no data standardization
+            for (i = 0; i < numVar; i++) {
+              for (j = 0; j < tobs; j++) {
+                Dtrain[i][j]  = Dnormal[i][j];
+              }
+            }
+          }
+          chart.selectAll("*").remove();
+          if (icluster == 1) { // Observe ESS by K
+            document.getElementById("dm29scatterPlot").disabled  = false; 
+            document.getElementById("dm29parallelGraph").disabled  = false; 
+            document.getElementById("dm29kmeansScatterPlot").disabled = true; 
+            document.getElementById("dm29kmeansTable").disabled   = true; 
+            for (Kgroup = 2; Kgroup < nclusterMax; Kgroup++) {
+              iter = kmeansCluster(numVar, tobs)
+              kmeansProcessTable(iter);
+              kmeansTable();
+            }
+            drawLineESS();
+            kmeansESS();
+          }
+          else { // fixed K
+            Kgroup   = parseInt(document.getElementById("Kgroup").value);
+            document.getElementById("dm29scatterPlot").disabled  = true; 
+            document.getElementById("dm29parallelGraph").disabled  = true; 
+            document.getElementById("dm29kmeansScatterPlot").disabled = false; 
+            document.getElementById("dm29kmeansTable").disabled   = false; 
+            iter = kmeansCluster(numVar, tobs)
+            for (i = 0; i < Kgroup; i++) gdataValue[i] = "Cluster " + (i+1).toString();
+            drawScatterMatrixByGroup(numVar, svarName, tobs, Kgroup, gdataValue, linearFunction);
+            kmeansProcessTable(iter);
+            kmeansTable();
+          }
+
+/*
+
+          iter = kmeansCluster(numVar, tobs)
+          kmeansProcessTable(iter);
+          kmeansTable();
+          for (i = 0; i < Kgroup; i++) gdataValue[i] = "Cluster " + (i+1).toString();
+          drawScatterMatrixByGroup(numVar, svarName, tobs, Kgroup, gdataValue, linearFunction);
+*/
+      })
+      // kmeans Cluster Scatterplot
+      d3.select("#dm29kmeansScatterPlot").on("click", function() {
+          if (tobs < 1) return;
+          for (i = 0; i < Kgroup; i++) gdataValue[i] = "Cluster " + (i+1).toString();
+          drawScatterMatrixByGroup(numVar, svarName, tobs, Kgroup, gdataValue, linearFunction);
+      })
+      // cluster table
+      d3.select("#dm29kmeansTable").on("click", function() {
+          if (tobs < 1) return;
+          kmeansClusterTable(numVar, tobs);
+      })
+
+
 // eStatM 메뉴
 d3.select("#estatM").on("click", function() {
     window.open("../eStatM/index.html");
@@ -3719,12 +4685,16 @@ d3.select("#estat").on("click", function() {
 d3.select("#home").on("click", function() {
     window.open(appStr[0][langNum]);
 })
-// eStaLecture 메뉴
+// eStat Lecture 메뉴
 d3.select("#estatLecture").on("click", function() {
 var levelNum = localStorage.getItem("level");
     if (levelNum == "2") {window.open(appStr[6][langNum]);}
     else if (levelNum == "3") {window.open(appStr[7][langNum]);}
     else {window.open(appStr[8][langNum]);}
+})
+// eDataScience Lecture 메뉴
+d3.select("#eDataLecture").on("click", function() {
+    window.open(appStr[9][langNum]);
 })
 // language Button
 d3.select("#langBtn").on("click", function() {

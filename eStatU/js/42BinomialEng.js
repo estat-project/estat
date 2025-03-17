@@ -1,4 +1,4 @@
-﻿      var bar = d3.select("#chart");
+      var bar = d3.select("#chart");
 
       // 이항분포 시뮬레이션 초기화면 셋팅
       var i, j, k, sum, temp, info;

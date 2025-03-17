@@ -1,4 +1,4 @@
-﻿      function showValue(newValue) {
+      function showValue(newValue) {
         var newV = (newValue - 100)/100;
         document.getElementById("initCorr").value=newV;  
       }

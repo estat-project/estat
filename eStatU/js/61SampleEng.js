@@ -1,4 +1,4 @@
-﻿      var dot = d3.select("#chart")
+      var dot = d3.select("#chart")
       var totalHeight = 640;
       var svgWidth    = 600;
       var svgHeight   = 320;  // 모집단 그래프 영역

@@ -34,7 +34,7 @@
 
 // eStat link address
     var temp      = "http://www.estat.me/estat/eStat/indexU.html?json=";
-    var nString   = 200;
+    var nString   = 250;
     var addrStr   = new Array(nString);
     addrStr[0]   = "/estat/eStat/indexU.html";
     addrStr[1]   = "/estat/eStatH/index.html";
@@ -218,8 +218,239 @@
     addrStr[175] = "/estat/eStatU/30ScatterPlotU.htm";
     addrStr[176] = "/estat/eStatU/32RegressionAnalysis.htm";
     addrStr[177] = "/estat/eStatU/32RegressionAnalysis2.htm";
+
 // eStatM
     addrStr[181] = "/estat/eStatM/index.html";
     addrStr[182] = "/estat/eStat/indexM.html";
     addrStr[183] = "/estat/eStat/indexH.html";
+
+// eStatDM
+    addrStr[191] = "/estat/eLearning/en/DataScience/rBasicOperation.html";
+    addrStr[192] = "/estat/eLearning/en/DataScience/pythonBasicOperation.html";
+    addrStr[193] = "";
+    addrStr[194] = "";
+    addrStr[195] = "";
+    addrStr[196] = "";
+    addrStr[197] = "";
+    addrStr[198] = "";
+    addrStr[199] = "";
+    addrStr[200] = "/estat/eLearning/en/DataScience/index.html";
+    addrStr[201] = "/estat/eStatU/21ScatterBar.htm";
+    addrStr[202] = "/estat/eStatU/222SimilarityMeasure.htm";
+    addrStr[203] = "/estat/eStatU/22ScatterMatrixParallel.htm";
+    addrStr[204] = "/estat/eStatU/23PCA.htm";
+    addrStr[205] = "/estat/eStatU/24KNNClassification.htm";
+    addrStr[206] = "/estat/eStatU/25DecisionTree.htm";
+    addrStr[207] = "/estat/eStatU/261NaiveBayesClassification.htm";
+    addrStr[208] = "/estat/eStatU/26BayesClassification.htm";
+    addrStr[209] = "/estat/eStatU/27LogisticRegression.htm";
+    addrStr[210] = "/estat/eStatU/272NeuralNetwork.htm";
+    addrStr[211] = "/estat/eStatU/28HierarchicalClsuster.htm";
+    addrStr[212] = "/estat/eStatU/29KmeansClsuster.htm";
+    addrStr[213] = "";
+    addrStr[214] = "";
+    addrStr[215] = "";
+    addrStr[216] = "";
+    addrStr[217] = "";
+    addrStr[218] = "";
+    addrStr[219] = "";
+    addrStr[220] = "";
+
+
+// Data Mining R script
+function rFunction(num) {
+   navigator.clipboard.writeText(stringR[num]);
+}
+
+var stringR = new Array(200);
+stringR[0]  = "card <- read.csv('PurchaseByCredit20.csv', header=TRUE, as.is=FALSE)";
+stringR[1]  = "card <- read.csv('PurchaseByCredit40.csv', header=TRUE, as.is=FALSE)";
+stringR[2]  = "attach(card)";
+stringR[3]  = "table(Gender)";
+stringR[4]  = "table(Gender,Purchase)";
+stringR[5]  = "table(Gender,Age,Purchase)";
+stringR[6]  = "plot(Purchase, main='Bar Graph', ylab='frequency', ylim=c(0,30))";
+stringR[7]  = "freq <- table(Purchase)";
+stringR[8]  = "pie(freq, main='Pie Chart')";
+stringR[9]  = "iris <- read.csv('iris150.csv', header=T, as.is=FALSE)";
+stringR[10]  = "attach(iris)";
+stringR[11]  = "mean(Sepal.Length)";
+stringR[12]  = "median(Sepal.Length)";
+stringR[13]  = "var(Sepal.Length)";
+stringR[14]  = "sd(Sepal.Length)";
+stringR[15]  = "range(Sepal.Length)";
+stringR[16]  = "summary(iris)";
+stringR[17]  = "hist(Sepal.Length, col='lightgray', ylim=c(0,30), main='Histogram') ";
+stringR[18]  = "plot(Sepal.Length, Sepal.Width, main='Scatter Plot')";
+stringR[19]  = "pairs(~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width, data=iris)";
+stringR[20]  = "quantData <- iris[, 2:5]";
+stringR[21]  = "groupData <- iris[, 6]";
+stringR[22]  = "library(MASS)";
+stringR[23]  = "parcoord(quantData)";
+stringR[24]  = "cols <- as.numeric(groupData)";
+stringR[25]  = "parcoord(quantData, col = cols)";
+stringR[26]  = "";
+stringR[27]  = "";
+stringR[28]  = "";
+stringR[29]  = "";
+stringR[31]  = "";
+stringR[32]  = "";
+stringR[33]  = "";
+stringR[34]  = "";
+stringR[35]  = "";
+stringR[36]  = "";
+stringR[37]  = "";
+stringR[38]  = "";
+stringR[39]  = "";
+stringR[40]  = "";
+stringR[41]  = "";
+stringR[42]  = "";
+stringR[43]  = "";
+stringR[44]  = "";
+stringR[45]  = "";
+stringR[46]  = "";
+stringR[47]  = "";
+stringR[48]  = "install.packages('rpart')";
+stringR[49]  = "library(rpart)";
+stringR[50]  = "fit <- rpart(Purchase ~ Gender + Age + Income + Credit, data = card)";
+stringR[51]  = "fit";
+stringR[52]  = "fit2 <- rpart(Purchase ~ Gender + Age + Income + Credit, data = card, control = rpart.control(minsplit = 6))";
+stringR[53]  = "fit2";
+stringR[54]  = "plot(fit2,compress=T,uniform=T,margin=0.1)";
+stringR[55]  = "text(fit2,use.n=T,col='blue')";
+stringR[56]  = "";
+stringR[57]  = "";
+stringR[58]  = "";
+stringR[59]  = "";
+stringR[60]  = "install.packages('naivebayes')";
+stringR[61]  = "library(naivebayes)";
+stringR[62]  = "nbfit <- naive_bayes(Purchase ~ Gender + Age + Income + Credit, data = card)"
+stringR[63]  = "nbfit";
+stringR[64]  = "pred <- predict(nbfit, card, type = 'prob')";
+stringR[65]  = "pred";
+stringR[66]  = "pred2 <- predict(nbfit, card)";
+stringR[67]  = "pred2";
+stringR[68]  = "classtable <- table(Purchase, pred2))";
+stringR[69]  = "classtable";
+stringR[70]  = "sum(diag(classtable)) / sum(classtable)";
+// Bayes classification
+stringR[71]  = "install.packages('MASS')";
+stringR[72]  = "library(MASS)";
+stringR[73]  = "ldamodel <- lda(Purchase ~ ., customer)";
+stringR[74]  = "ldamodel";
+stringR[75]  = "pred <- predict(ldamodel, customer)";
+stringR[76]  = "pred$class";
+stringR[77]  = "classtable <- table(Purchase,pred$class)";
+stringR[78]  = "sum(diag(classtable)) / sum(classtable)";
+stringR[79]  = "";
+// Logistic regression
+stringR[80]  = "customer <- read.csv('PurchaseByCredit20_Continuous.csv', header=T, as.is=FALSE)";
+stringR[81]  = "attach(customer)";
+stringR[82]  = "Purchase";
+stringR[83]  = "logitmodel <- glm(Purchase ~.,family=binomial(link='logit'),data=card)";
+stringR[84]  = "logitmodel";
+stringR[85]  = "";
+// k-nearest neighbor
+stringR[86]  = "install.packages('DMwR2')";
+stringR[87]  = "library(DMwR2)";
+stringR[88]  = "nn <- kNN(Purchase ~ ., customer, customer, k=5)";
+stringR[89]  = "nn";
+stringR[90]  = "classtable <- table(Purchase, nn)";
+// neural network
+stringR[91]  = "install.packages('nnet')";
+stringR[92]  = "library(nnet)";
+stringR[93]  = "singleNNdata <- read.csv('singleNN.csv', header=T, as.is=FALSE)";
+stringR[94]  = "attach(singleNNdata)";
+stringR[95]  = "singleNNdata";
+stringR[96]  = "train <- singleNNdata[1:8,]";
+stringR[97]  = "test <- singleNNdata[1:8,]";
+stringR[98]  = "train.nnet = nnet(y~x1+x2+x3,data=train, size=2, rang=0.1, decay=5e-4, maxit=100)";
+stringR[99]  = "summary(train.nnet)"
+stringR[100] = "predict(train.nnet,test)";
+stringR[101] = "nnetpred <- (predict(train.nnet,test) >= 0.01)";
+stringR[102] = "table(nnetpred,y)";
+stringR[103] = "";
+stringR[104] = "";
+stringR[105] = "install.packages('e1071')";
+stringR[106] = "library(e1071)";
+stringR[107] = "svmdata <- read.csv('svmdata.csv', header=T, as.is=FALSE)";
+stringR[108] = "attach(svmdata)";
+stringR[109] = "svmdata";
+stringR[110] = "train <- svmdata[1:8,]";
+stringR[111] = "test <- svmdata[1:8,]";
+stringR[112] = "train.svm = svm(y~x1+x2,type='C-classification', data=train)";
+stringR[113] = "train.svm";
+stringR[114] = "svmpred = predict(train.svm,test)";
+stringR[115] = "z = table(svmpred,y)";
+stringR[116] = "z";
+stringR[117] = "plot(x1,x2,pch=y)";
+stringR[118] = "abline(500,-10)";
+stringR[119] = "";
+// bagging
+stringR[120] = "install.packages('adbag')";
+stringR[121] = "library(adabag)";
+stringR[122] = "data(iris)";
+stringR[123] = "bagging(Species~., data=iris, mfinal = 10))";
+stringR[124] = "iris.bagging$importance";
+stringR[125] = "iris.bagging$trees";
+stringR[126] = "plot(iris.bagging$trees[[10]])";
+stringR[127] = "text(iris.bagging$trees[[10]])";
+stringR[128] = "baggingpred <- predict(iris.bagging, newdata=iris)";
+stringR[129] = "table(baggingpred$class, iris[,5])";
+stringR[130] = "baggingtb <- table(baggingpred$class, iris[,5])";
+stringR[131] = "baggingerror.rpart <- 1-(sum(diag(baggingtb))/sum(baggingtb))";
+stringR[132] = "baggingerror.rpart";
+// adaboosting
+stringR[133] = "iris.adaboost <- boosting(Species~., data = iris, boos = TRUE, mfinal = 10)";
+stringR[134] = "iris.adaboost$importance";
+stringR[135] = "iris.adaboost$trees";
+stringR[136] = "plot(iris.adaboost$trees[[10]])";
+stringR[137] = "text(iris.adaboost$trees[[10]])";
+stringR[138] = "adaboostpred <- predict(iris.adaboost, newdata=iris)";
+stringR[139] = "table(adaboostpred$class, iris[,5])";
+stringR[140] = "adaboosttb <- table(adaboostpred$class, iris[,5])";
+stringR[141] = "adaboosterror <- 1-(sum(diag(adaboosttb))/sum(adaboosttb))";
+stringR[142] = "adaboosterror";
+stringR[143] = "";
+stringR[144] = "";
+// random forest
+stringR[145] = "install.packages('randomForest')";
+stringR[146] = "library(randomForest)";
+stringR[147] = "iris.forest <- randomForest(Species~., data=iris, ntree = 100, proximity=TRUE)";
+stringR[148] = "table(predict(iris.forest), iris[,5])";
+stringR[149] = "foresttb <- table(predict(iris.forest), iris[,5])";
+stringR[150] = "foresterror <- 1-(sum(diag(foresttb))/sum(foresttb))";
+stringR[151] = "foresterror";
+stringR[152] = "";
+stringR[153] = "";
+stringR[154] = "";
+stringR[155] = "";
+stringR[156] = "";
+stringR[157] = "";
+stringR[158] = "";
+stringR[159] = "";
+stringR[160] = "";
+stringR[161] = "";
+stringR[162] = "";
+stringR[163] = "";
+stringR[164] = "";
+stringR[165] = "";
+stringR[166] = "";
+stringR[167] = "";
+stringR[168] = "";
+stringR[169] = "";
+// kmeans clustering
+stringR[170] = "library(stats)";
+stringR[171] = "iris <- read.csv('iris150.csv', header=T, as.is=FALSE)";
+stringR[172] = "attach(iris)";
+stringR[173] = "iris4 <-  iris[, c(2,3, 4, 5)]";
+stringR[174] = "iriskmeans <- kmeans(iris4, centers = 3, iter.max = 1000)";
+stringR[175] = "iriskmeans";
+stringR[176] = "iriskmeans$cluster";
+stringR[177] = "classtable <- table(Species, iriskmeans$cluster)";
+stringR[178] = "distIris4 <- dist(iris4, method = 'euclidean')";
+// hierarchical clustering
+stringR[179] = "hclustIris4 <-hclust(distIris4, method = 'ward.D')";
+stringR[180] = "hclustIris4";
+stringR[181] = "plot(hclustIris4)";
 

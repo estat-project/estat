@@ -6768,5 +6768,6 @@ function regressionQQ(tobs, yhat, residual) {
             .attr("cx", margin.left + graphWidth * (normalQ[j] - gxmin) / gxrange)
             .attr("cy", margin.top + graphHeight - graphHeight * (tdata[j] - gymin) / gyrange)
     }
-
 }
+
+

@@ -1,0 +1,1995 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Chapter 2</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="/estat/eStat/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/estat/eStat/css/dashboard.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <style type="text/css">code{white-space: pre;}</style>
+       <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
+       <link rel="stylesheet" href="/estat/eStat/css/pandoc.css">
+       <link rel="stylesheet" href="/estat/eStat/css/prism.css">
+       <script src="/estat/eStat/lib/jquery/jquery.min.js"></script>    
+       <script src="/estat/eStat/lib/d3/d3.v4.min.js"></script>   
+       <script src="/estat/eStat/lib/DistributionsUtil.js" ></script>
+       <script src="/estat/eStat/lib/FileSaver.min.js" ></script>
+       <script src="/estat/eStat/lib/convertSVG.js"></script>
+       <script src="/estat/eStat/js/prism.js"></script>
+       <script src="/estat/eStat/js/eBook.js"></script>
+       <script src="/estat/eStat/js/eStatU.js"></script>
+       <script src="/estat/eStat/js/language.js" ></script>
+       <script> setLanguage('en'); </script>
+       <script type="text/javascript" id="MathJax-script" async
+	       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+       </script>
+
+       <script>
+	 $(document).ready(function() {
+  	     toc = $("#sidebar > ul > li > ul");
+  	     sections = toc.children();   // <li>
+  	     for(var i=0; i<sections.length; i++) {
+  		 if ($(sections[i]).children().length == 1) { continue; }
+  		 var first = sections[i].firstElementChild;  // <a>
+  		 var last = sections[i].lastElementChild;
+  		 var li = $("<li>");
+  		 var details = $("<details>");
+  		 var summary = $("<summary>");
+  		 $(summary).append(first)
+  		 $(details).append(summary);
+  		 $(details).append(last);
+  		 $(li).append(details);	
+  		 $(sections[i]).replaceWith(li);
+  	     }
+	 });
+       </script>
+    
+</head>
+
+<body>
+  
+<!-- begin of left sidebar -->
+<div class="container-fluid">
+<div class="row">
+<div id="sidebar" class="col-sm-2 col-md1 sidebar">
+  <ul>
+    <li> <a href="index.html"><b>Table of chapters</b> </a> </li>
+    <li> <a href="chapter01.html"> 1 Data science and artificial intelligence</a> </li>
+    <li> <a href="chapter02.html"> 2 Data visualization</a> </li>
+         <ul>
+                <li><a href="#0201">&nbsp;&nbsp; 2.1 Visualization of qualitative data</a></li>
+                <li><a href="#0202">&nbsp;&nbsp; 2.2 Visualization of quantitative data</a></li>
+                <li><a href="#0203">&nbsp;&nbsp; 2.3 R practice</a></li> 
+                <li><a href="#0204">&nbsp;&nbsp; 2.4 Exercise</a></li> 
+         </ul>
+    <li> <a href="chapter03.html"> 3 Data summary and transformation</a> </li>
+    <li> <a href="chapter04.html"> 4 Probability and distribution</a> </li>
+    <li> <a href="chapter05.html"> 5 Estimation, testing hypothesis, and regression analysis</a> </li>
+    <li> <a href="chapter06.html"> 6 Supervised machine learning for categorical data</a> </li>
+    <li> <a href="chapter07.html"> 7 Supervised machine learning for continuous data</a> </li>
+    <li> <a href="chapter08.html"> 8 Unsupervised machine learning</a> </li>
+    <li> <a href="chapter09.html"> 9 Artificial intelligence and other applications</span></a> </li>
+</div>
+</div>
+</div>
+<!-- end of left sidebar -->
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+  <h2>Chapter 2. Data visualization</h2> 
+  <h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="./pdf/ppt2.pdf" target="_blank"><u>[presentation]</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="./pdf/book2.pdf" target="_blank"><u>[book]</u></a>
+  </h6>
+         <ul>
+                <li class="listNone"><a href="#0201">2.1 Visualization of qualitative data</a></li>
+                <li class="listNoneIndent"><a href="#020101">2.1.1 Visualization of raw data of a categorical variable</a></li>
+                <li class="listNoneIndent"><a href="#020102">2.1.2 Visualization of frequency data of a categorical variable</a></li>
+                <li class="listNoneIndent"><a href="#020103">2.1.3 Visualization of text data</a></li>
+                <li class="listNone"><a href="#0202">2.2 Visualization of quantitative data</a></li>
+                <li class="listNoneIndent"><a href="#020201">2.2.1 Visualization of a single quantitative variable</a></li>
+                <li class="listNoneIndent"><a href="#020202">2.2.2 Visualization of two or more quantitative variables</a></li>
+                <li class="listNone"><a href="#0203">2.3 R practice</a></li> 
+                <li class="listNone"><a href="#0204">2.4 Exercise</a></li> 
+         </ul>
+  <p>
+  <h5>CHAPTER OBJECTIVES</h5> 
+  <div class="mainTable">
+       In this chapter, we introduce the following.
+    <p>
+       <div class="textL30M20">
+         • Visualization of qualitative data in Section 2.1. <br>
+         If data is categorical, 
+         bar graph, pie chart, band graph, and line graph are used to visualize data.  『eStat』 can visualize the raw data
+         of a categorical variable. If a frequency table summarizes the raw data of a categorical variable, 
+         『eStat』 can plot similar graphs using the frequency table. Categorical data by a group variable is also 
+         discussed. If there are two or more qualitative variables, a bar graph matrix is used
+         to visualize data. We can visualize text data using a word cloud. 
+       </div>
+       <div class="textL30M20">
+         • Visualization of quantitative data in Section 2.2.<br>
+         If there is a single quantitative variable, dot graph, histogram,
+         stem and leaf plot are used to visualize data. If there are two or more quantitative variables, scatterplot and scatterplot matrix are used
+         to visualize data. If a quantitative variable is observed over time, line graph or time series plot can be used to visualize data. 
+       </div>
+  </div>
+  <p>
+
+  <h3 id="0201">2.1 Visualization of qualitative data</h3>
+  <p>
+  <div class="mainTable">
+         Data on gender for students in a classroom who are either male or female are referred to as qualitative and categorical data. 
+         Data on marital status for company employees who are either single or married are also qualitative and categorical. 
+         Bar graph, pie chart, band graph, and line graph are used to visualize the categorical data for an exploratory data analysis. 
+      <p>
+         <img class="imgIcon" src="/estat/eStat/icon/eStat_icon09_bar.png"> 
+         A bar graph is a graph that presents qualitative data with rectangular bars. Each bar height is proportional to the frequency of the bar category. Therefore, the frequencies of all categories in a categorical variable 
+         can be easily compared by watching the bars' heights. We usually put some space between
+         the rectangular bars to emphasize that they represent the distinct categories of a variable. 
+         The bar chart's rectangular bars can be plotted vertically or horizontally. One axis of the chart shows 
+         all categories of a variable, and the other axis represents the frequencies of each category. If the frequency of 
+         each category is represented as the vertical height of a bar drawn up and down in the bar graph, 
+         it is called a vertical bar graph. A bar can also be drawn left and right, and its length is proportional to the frequency of each category. It is called a horizontal bar graph. 
+      <p> 
+         <img class="imgIcon" src="/estat/eStat/icon/eStat_icon10_pie.png">
+         <img class="imgIcon" src="/estat/eStat/icon/eStat_icon45_Doughnut.png">
+         A pie chart is a graph that shows frequencies of all categories of the analysis variable by dividing a pie (circle) 
+         into pieces with different colors depending on the angle, which is proportional to the frequency of each category. 
+         We usually draw the largest piece in a clockwise order starting from 12 o'clock so that the ratio can be compared well.
+         A doughnut chart that removes a center circle from the pie chart can also be used.
+      <p>
+         <img class="imgIcon" src="/estat/eStat/icon/eStat_icon11_band.png">
+         A band graph is similar to the ratio bar graph that shows frequencies of all categories of the analysis variable 
+         by dividing a rectangle into square pieces with different colors, which are proportional to frequencies of all categories. 
+         It is also similar to the pie chart. The square pieces can be sorted in descending order by the frequencies of 
+         each category, but 『eStat』 draws the square pieces in the order of category values of a categorical variable. 
+      <p>
+        <img class="imgIcon" src="/estat/eStat/icon/eStat_icon12_line.png">
+        A line graph shows frequencies (or values) of all categories of an analysis variable in a two-dimensional graph. 
+        The X-axis shows the names of categories, and the Y-axis represents the scale of frequencies (or values) of all categories. 
+        Each pair of the values, the category name and its frequency, is marked as a point in a two-dimensional coordinate plane,
+        and two adjacent points are connected with a line. The line graph may be similar to the vertical bar graph, 
+        which connects only the top centers of each bar. The line graph is usually used to visualize time-dependent data 
+        to watch its trend over time. For example, the yearly amount of exports in a country can be visualized using the line graph.
+  </div>
+  <p>
+  <div class="mainTable">
+         Gender is a typical categorical variable with two categories, 'male' and 'female.' 
+         Suppose you investigated 10 students based on their gender in a class and reported the result as follows.
+      <p>
+      <p class="textLeft">male, female, male, female, male. male, male, female, male, female
+      <p>
+  </div>
+  <div>
+         This data is called the <b>raw data</b> of the gender variable.  
+         For statistical packages, the raw data are usually arranged in columns, as shown in Table 2.1.1.
+      <p>
+      <table style="width:200px"> 
+        <tr>
+          <th>Table 2.1.1 Raw data of the gender in a class</th>
+        </tr>
+        <tr><th>Gender</th></tr>
+        <tr><td class="tdCenter">male</td></tr>
+        <tr><td class="tdCenter">female</td></tr>
+        <tr><td class="tdCenter">male</td></tr>
+        <tr><td class="tdCenter">female</td></tr>
+        <tr><td class="tdCenter">male</td></tr>
+        <tr><td class="tdCenter">male</td></tr>
+        <tr><td class="tdCenter">male</td></tr>
+        <tr><td class="tdCenter">female</td></tr>
+        <tr><td class="tdCenter">male</td></tr>
+        <tr><td class="tdCenter">female</td></tr>
+      </table>
+      <p>
+         Numeric coded values such as 1 for male and 2 for female can be used for convenience because some packages do not
+         allow characters on data values.  『eStat』 system allows the raw data of both with and without coding.
+  </div>
+  <div class="mainTable">
+         If you counted the number of ‘male’ and ‘female’ students in the above raw data, 6 males and 4 females, 
+         the result of frequencies is usually reported, as shown in Table 2.1.2. 
+      <p>
+      <table style="width:600px"> 
+        <tr>
+          <th colspan="2">Table 2.1.2 Frequency data of the gender in a class</th>
+        </tr>
+        <tr> 
+          <th>Gender</th>
+          <th>Students</th>
+        </tr>
+        <tr>
+          <td class="tdCenter">Male</td>
+          <td class="tdCenter">6</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">Female</td>
+          <td class="tdCenter">4</td>
+        </tr>
+      </table>
+         This data is called the <b>frequency data</b> of the gender variable. If the raw data of a categorical variable are summarized
+         by frequency data, 『eStat』 can plot the graphs using both raw and frequency data.  
+  </div>
+  <p>
+  <div class="mainTable">
+         If the number of data increases, counting the number of cases in each category from the raw data 
+         of a categorical variable to make the frequency data is not easy. One of the essential 
+         functions of a statistical package is to organize the raw data into frequency data 
+         by counting the number of cases in each category. Since generating the frequency data from the massive raw data
+         is so difficult for non-expert people, most governmental institutions usually provide the census statistics
+         to the public in the form of frequency data such as population by gender or 
+         population by region. We can download these frequency data from the governmental web pages
+         as an Excel file. 
+         An Excel file can be saved as a text file in CSV (comma-separated value) format which can be loaded by 『eStat』 for data processing and analysis (refer Appendix A). 
+      <p>
+         This section discusses the visualization of the raw data of a categorical variable without a group and with a group
+         variable. Section 2.1.2 discusses the visualization of frequency data without a group and with a group variable,
+         which can be found in textbooks of elementary, middle school, high school, and in governmental publications. 
+         Section 2.1.3 discusses the visualization of several categorical variables. Text data is a special case of qualitative data. 
+         Section 2.1.4 discusses the visualization of text data using word cloud.  
+  </div>
+  <p>
+  <h4 id="020101">2.1.1 Visualization of raw data of a categorical variable</h4>
+  <p>
+  <h5>Visualization of raw data of a single variable</h5>
+  <div class="mainTable">
+         Consider the following example to visualize the raw data of the gender variable in Table 2.1.1 using  『eStat』. 
+  </div>
+  <p>
+  <div class="mainTableGrey">
+      <b>Example 2.1.1</b> <b>(Visualization of raw data on gender variable)</b> 
+      <br>
+         Enter the raw data of Table 2.1.1 to the sheet of 『eStat』 and save it as a file in CSV format. 
+         Then, visualize the data with a bar graph, pie chart, band graph, and line graph using 『eStat』. 
+         Analyze the graphs and prepare a report using MS Word (or any word processor you prefer). 
+      <p>
+      <b>Answer</b>
+      <p>
+         Enter the data of Table 2.1.1 to the sheet of  『eStat』 as in &lt;Figure 2.1.1&gt; 
+         and enter a variable name of V1 as ‘Gender’ using [Edit Var] button above the sheet. 
+         Save this file as Gender.csv by clicking [csv Save] button above the sheet.
+      <p>
+         <img class="figure50" src="/estat/eLearning/en/DataScience/figure/Fig020101.png">
+         <div class="figText">&lt;Figure 2.1.1&gt; Data input in 『eStat』 </div>
+      <p>
+         Click the Gender variable name, then the selected variable (V1 is the name of the 1st variable) 
+         will appear in the 'Selected Var' box above the sheet. You can also select 
+         the variable ‘1: Gender’ using the 'Analysis Var' combo box.
+         above the sheet as shown in &lt;Figure 2.1.1&gt;.
+      <p>
+         When a variable is selected, a vertical bar graph, the default graph of 『eStat』, is drawn
+         as in &lt;Figure 2.1.2&gt;. The height of each bar (rectangle) is proportional to the frequency 
+         of each category in the gender variable. Therefore the frequencies of both the male and 
+         the female categories can be easily compared by looking the heights of the bars. 
+         The bar graph shows that the number of male students is larger than that of female students. 
+      <p>
+         A vertical bar graph that draws bars up and down, as in &lt;Figure 2.1.2&gt; is widely used, 
+         but a horizontal bar graph that draws bars from left to right is often used if there are many categories. 
+         By clicking on the horizontal bar graph icon above the Graph window, a horizontal bar graph, 
+         as in &lt;Figure 2.1.3&gt; will appear in the Graph window. 
+         The frequency of each bar is displayed by checking the ‘Frequency’ box below the graph.
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020102.png">
+         <div class="figText">&lt;Figure 2.1.2&gt; Vertical bar graph of the number of male and female students. </div>            
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020103.png">
+         <div class="figText">&lt;Figure 2.1.3&gt; Horizontal bar graph of the number of male and female students. </div>
+      <p>
+         By clicking the ‘Graph Save’ icon 
+         <img class="imgIcon" src="/estat/eStat/icon/eStat_icon47_graphSave.png">
+         above the Graph window, the current graph of the Graph window will be saved with a file name
+         ‘eStatGraph.png’ after showing on the main screen for a short time. If you click the 'Frequency Table' 
+         button on the main menu icon, the frequency table corresponding to the bar graph appears
+         on the right-hand side of the main screen. 
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020104.png">
+         <div class="figText">&lt;Figure 2.1.4&gt;  Graph is saved by clicking the ‘Graph Save’ icon </div>
+      <p>
+         The location of the saved graph file is the download folder specified in your computer system. 
+         If you save another graph, eStatGraph(1).png will be created in the download folder.
+         The number in parentheses of the file name will be increased whenever you save a new graph. 
+      <p>
+         You can copy this graph file from the download folder and paste it into MS Word
+         <img class="imgIcon" src="/estat/eStat/icon/Word.jpg">
+         as in &lt;Figure 2.1.5&gt;. You can copy the frequency table of the main screen and paste it 
+         into Word. You can also write comments about the graph if necessary. 
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020105.png">
+         <div class="figText">&lt;Figure 2.1.5&gt;  Copied graph file of 『eStat』 to MS Word</div>
+      <p>
+         Click on the pie chart icon <img class="imgIcon" src="/estat/eStat/icon/eStat_icon10_pie.png">
+         to display a pie chart as in &lt;Figure 2.1.6&gt; 
+         and click on the doughnut graph icon <img class="imgIcon" src="/estat/eStat/icon/eStat_icon45_Doughnut.png">
+         to display a doughnut graph, which is a pie chart, but a small middle circle is cut off. 
+         The pie chart shows frequencies of the number of male and female students by dividing a pie (circle) into pieces 
+         with two colors depending on angles that are proportional to each category's frequencies.
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020106.png">
+         <div class="figText">&lt;Figure 2.1.6&gt; Pie chart of the number of male and female students.</div>
+      <p>
+         Click on the band graph icon <img class="imgIcon" src="/estat/eStat/icon/eStat_icon11_band.png">
+         to display a band graph as in &lt;Figure 2.1.7&gt;. A band graph is a variant of the pie chart 
+         that divides a rectangle into square pieces proportional to each category's frequencies.
+         It is named after a rectangular shape with multiple square pieces which look like a band.
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020107.png">
+         <div class="figText">&lt;Figure 2.1.7&gt; Band graph of the number of male and female students.</div>
+  </div>
+  <p>
+  <div class="mainTable">
+         We can draw a bar graph after counting the frequencies of all variable categories.  
+         If there is another categorical variable, called a group variable, we can count the frequencies 
+         of all categories of 
+         the first categorical variable for each category of the second (group) categorical variable. 
+         the first categorical variable can be counted for each category of the second (group) categorical variable. 
+         For example, we can count the number of single and married employees in the  
+         male and female categories. We can draw two bar graphs of the marital status for both the male 
+         and the female categories so that both graphs have the same scale of the Y-axis to compare easily the frequencies 
+         of the male category with the frequencies of the female category. This graph is called 
+         a separate bar graph 
+         <img class="imgIcon" src="/estat/eStat/icon/eStat_icon35_VbarSeparated.png">
+         of the marital status by gender variable. In this case, the gender variable is called a group variable,
+         and the marital status is called an analysis variable. 
+      <p>
+         If a variable is analyzed by using a group variable, there are many variants of bar graphs 
+         which visually compares all categories of the group variable. A stacked bar graph
+         <img class="imgIcon" src="/estat/eStat/icon/eStat_icon36_VbarStacked.png"> 
+         divides a single bar, which represents the frequency of a category of the analysis variable, 
+         into pieces with different colors, which are proportional to the frequency of each category 
+         of the group variable. A ratio bar graph
+         <img class="imgIcon" src="/estat/eStat/icon/eStat_icon37_VbarRatio.png"> 
+         draws that all bars (rectangles) of each category of the analysis variable have the same height 
+         and divides each bar into pieces with different colors, which are proportional to the frequencies
+         of each category of the group variable. A side-by-side bar graph
+         <img class="imgIcon" src="/estat/eStat/icon/eStat_icon38_VbarSide.png"> 
+         is that in each category of the analysis variable rectangular bars of all categories of 
+         the group variable are drawn side-by-side ways for comparison using the same scale. 
+         If there are only two categories of the group variable, a two-sided bar graph (or a bi-lateral bar graph) 
+         <img class="imgIcon" src="/estat/eStat/icon/eStat_icon39_VbarBilateral.png">
+         can be used, which draws bars of one category of the group variable 
+         in one side and bars of the other category of the group variable in the opposite direction. 
+         The direction can be either the left and right side of the Y-axis or the above and below of the X-axis.
+  </div>
+  <p>
+
+  <h5>Visualization of raw data with a group variable</h5>
+  <div class="mainTable">
+         Consider an example to visualize one categorical variable by using the other group variable.
+  </div>
+  <p>  
+  <div class="mainTableGrey">
+      <b>Example 2.1.2</b> <b>(Customer survey data of a computer store)</b> 
+      <br>
+         Twenty customers who visited a computer store were surveyed, and the results of the survey 
+         on the gender, age, monthly income, credit status, and whether to purchase were summarized 
+         as in [Table 2.1.3]. 
+      <table style="width:500px"> 
+        <tr>
+          <th colspan="6">Table 2.1.3 Survey on twenty customers of a computer store</th>
+        </tr>
+        <tr><th>id</th><th>Gender</th><th>Age</th><th>Income</th><th>Credit</th><th>Purchase</th></tr>
+        <tr><td class="tdCenter">1</td><td class="tdCenter">male</td>  <td class="tdCenter">20s</td><td class="tdCenter">LT2000</td><td class="tdCenter">Fair</td><td class="tdCenter">Yes</td></tr>
+        <tr><td class="tdCenter">2</td><td class="tdCenter">female</td><td class="tdCenter">30s</td><td class="tdCenter">GE2000</td><td class="tdCenter">Good</td><td class="tdCenter">No</td></tr>
+        <tr><td class="tdCenter">3</td><td class="tdCenter">female</td><td class="tdCenter">20s</td><td class="tdCenter">GE2000</td><td class="tdCenter">Fair</td><td class="tdCenter">No</td></tr>
+        <tr><td class="tdCenter">4</td><td class="tdCenter">female</td><td class="tdCenter">20s</td><td class="tdCenter">GE2000</td><td class="tdCenter">Fair</td><td class="tdCenter">Yes</td></tr>
+        <tr><td class="tdCenter">5</td><td class="tdCenter">female</td><td class="tdCenter">20s</td><td class="tdCenter">LT2000</td><td class="tdCenter">Bad</td><td class="tdCenter">No</td></tr>
+        <tr><td class="tdCenter">6</td><td class="tdCenter">female</td><td class="tdCenter">30s</td><td class="tdCenter">GE2000</td><td class="tdCenter">Fair</td><td class="tdCenter">No</td></tr>
+        <tr><td class="tdCenter">7</td><td class="tdCenter">female</td><td class="tdCenter">30s</td><td class="tdCenter">GE2000</td><td class="tdCenter">Good</td><td class="tdCenter">Yes</td></tr>
+        <tr><td class="tdCenter">8</td><td class="tdCenter">male</td>  <td class="tdCenter">20s</td><td class="tdCenter">LT2000</td><td class="tdCenter">Fair</td><td class="tdCenter">No</td></tr>
+        <tr><td class="tdCenter">9</td><td class="tdCenter">female</td><td class="tdCenter">20s</td><td class="tdCenter">GE2000</td><td class="tdCenter">Good</td><td class="tdCenter">No</td></tr>
+        <tr><td class="tdCenter">10</td><td class="tdCenter">male</td>  <td class="tdCenter">30s</td><td class="tdCenter">GE2000</td><td class="tdCenter">Fair</td><td class="tdCenter">Yes</td></tr>
+        <tr><td class="tdCenter">11</td><td class="tdCenter">female</td><td class="tdCenter">30s</td><td class="tdCenter">GE2000</td><td class="tdCenter">Good</td><td class="tdCenter">Yes</td></tr>
+        <tr><td class="tdCenter">12</td><td class="tdCenter">female</td><td class="tdCenter">20s</td><td class="tdCenter">LT2000</td><td class="tdCenter">Fair</td><td class="tdCenter">No</td></tr>
+        <tr><td class="tdCenter">13</td><td class="tdCenter">male</td>  <td class="tdCenter">30s</td><td class="tdCenter">GE2000</td><td class="tdCenter">Fair</td><td class="tdCenter">No</td></tr>
+        <tr><td class="tdCenter">14</td><td class="tdCenter">male</td>  <td class="tdCenter">30s</td><td class="tdCenter">LT2000</td><td class="tdCenter">Fair</td><td class="tdCenter">Yes</td></tr>
+        <tr><td class="tdCenter">15</td><td class="tdCenter">female</td><td class="tdCenter">30s</td><td class="tdCenter">GE2000</td><td class="tdCenter">Good</td><td class="tdCenter">Yes</td></tr>
+        <tr><td class="tdCenter">16</td><td class="tdCenter">female</td><td class="tdCenter">30s</td><td class="tdCenter">GE2000</td><td class="tdCenter">Fair</td><td class="tdCenter">No</td></tr>
+        <tr><td class="tdCenter">17</td><td class="tdCenter">female</td><td class="tdCenter">20s</td><td class="tdCenter">GE2000</td><td class="tdCenter">Bad</td><td class="tdCenter">No</td></tr>
+        <tr><td class="tdCenter">18</td><td class="tdCenter">male</td>  <td class="tdCenter">20s</td><td class="tdCenter">GE2000</td><td class="tdCenter">Bad</td><td class="tdCenter">No</td></tr>
+        <tr><td class="tdCenter">19</td><td class="tdCenter">male</td>  <td class="tdCenter">30s</td><td class="tdCenter">GE2000</td><td class="tdCenter">Good</td><td class="tdCenter">Yes</td></tr>
+        <tr><td class="tdCenter">20</td><td class="tdCenter">male</td>  <td class="tdCenter">20s</td><td class="tdCenter">LT2000</td><td class="tdCenter">Fair</td><td class="tdCenter">No</td></tr>
+      </table>
+      <p>
+         Enter the data of Table 2.1.3 to the sheet of 『eStat』 and save it as a file in CSV format. 
+         Using this data, draw bar graph variants on the purchase variable (called '<b>analysis variable</b>')
+         by the gender variable (called a '<b>group variable</b>') with  『eStat』. 
+         Find a frequency table corresponding to these graphs.
+      <p>
+      <b>Answer</b>
+      <p>
+         We entered the data of Table 2.1.3 to the sheet of 『eStat』 as in &lt;Figure 2.1.8&gt; and 
+         assigned variable names of V1, V2, V3, V4, V6 as 'id', ‘Gender’, 'Age', 'income', 'Credit', 'Purchase'
+         respectively using [Edit Var] button above the sheet. The data is saved in 『eStat』 system at
+         Ex -> /DataScience/PurchaseByCredit20.csv. 
+      <p>
+         <img class="figure" src="/estat/eLearning/en/DataScience/figure/fig020108.png">
+         <div class="figText">&lt;Figure 2.1.8&gt; Data input in 『eStat』 </div>
+      <p>
+         Click the first variable name 'Purchase' and then the second variable name 'Gender'. 
+         Selected variables will appear in the 'Selected Var' box above the sheet. 
+         You can select the variable ‘6: Purchase’ using the combo box of the 'Analysis Var' 
+         and the variable ‘2: Gender’ using the combo box of the 'By Group' above 
+         the sheet.
+      <p>
+         When variables are selected, a vertical bar graph with a group, the default graph of  『eStat』, is drawn 
+         as in &lt;Figure 2.1.9&gt;. The bar graphs for males and females are drawn separately, called 
+         a 'Separate bar graph'. By clicking the ‘Frequency’ box below the graph,
+         the frequency of each bar will be displayed as in &lt;Figure 2.1.10&gt;.
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020109.png">
+         <div class="figText">&lt;Figure 2.1.9&gt; Vertical separate bar graph on Purchase by male and female group. </div>            
+      <p>
+         <img class="figure50" src="/estat/eLearning/en/DataScience/figure/Fig020110.png">
+         <div class="figText">&lt;Figure 2.1.10&gt; Two-dimensional frequency table on Purchase by male and female group. </div>            
+      <p>
+         The sub-icon menu above of the graph shows several variants of bar graph when there is a group
+         variable. They are vertical 'Separate', 'Stacked' as in &lt;Figure 2.1.11&gt;, 'Ratio' as in &lt;Figure 2.1.12&gt;,
+         'Side-by-side' as in &lt;Figure 2.1.13&gt;, 'Two-sided' as in &lt;Figure 2.1.14&gt; and horizontal bar graphs.
+      <p> 
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020111.png">
+         <div class="figText">&lt;Figure 2.1.11&gt; Vertical stacked bar graph on Purchase by male and female group. </div>            
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020112.png">
+         <div class="figText">&lt;Figure 2.1.12&gt; Vertical ratio bar graph on Purchase by male and female group. </div>            
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020113.png">
+         <div class="figText">&lt;Figure 2.1.13&gt; Vertical side-by-side bar graph on Purchase by male and female group. </div>            
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020114.png">
+         <div class="figText">&lt;Figure 2.1.14&gt; Vertical bi-lateral bar graph on Purchase by male and female group. </div>            
+  </div>
+  <p>
+  <div class="mainTablePink">
+        <b>Practice 2.1.1</b> <b>(Preference of Mathematics by Gender)</b> <br>
+               In an elementary school, the gender (1: male, 2: female) and math preference (1: good, 2: ordinary, 3: no) of students were surveyed and saved at the following location of  『eStat』 system. 
+            <p>
+               <div class="textLeft">[Ex] ⇨ DataScience ⇨ MathPreferenceByGender.csv. </div>
+            <p>
+               Draw a bar graph, a pie chart and a band graph of the math preference by gender.
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/PR020301.png" onclick="window.open(addrStr[46])">        
+  </div>
+  <p>
+  <!-------------------------------------------------------------------->
+  <h5>Visualization of raw data of several varaibles</h5>
+  <div class="mainTable">
+      If there are two or more qualitative variables, a bar graph matrix is used to visualize data.
+      If there are \(m\) number of variables, \(m × m\) matrix of bar graphs is visualized. In each column variable,
+      bar graph is visualized based on the frequencies of each value of the column variable by using the row variable 
+      as a group variable. The bar graph matrix is useful for deciding which variable is useful for classification
+      analysis.     
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         <b>Example 2.1.3 (Bar graph matrix)</b>
+      <br>
+         Draw a bar graph matrix using the five variables in Table 2.1.3, gender, age, income, credit 
+         and purchase.  
+      <p>
+         <b>Answer</b>
+      <p>
+         After you load the data file of Table 2.1.3, /DataScience/PurchaseByCredit20.csv, 
+         click the bar graph matrix icon 
+         <img class="imgIcon" src="/estat/eStat/img/Azar21BargraphMatrix.png">.
+         Click 'Purchase' as 'Group' variable and select 'Gender', 'Age', 'Income', 'Credit' 
+         as 'Analysis Var'. Then, the bar graph matrix, as in &lt;Figure 2.1.15&gt;, will appear
+         in the graph window. 
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020115.png">
+         <div class="figText">&lt;Figure 2.1.15&gt; Bar graph matrix using the data in Table 2.1.3.</div>            
+      <p>
+         You can practice a 'Bar graph matrix' using the module in  『eStatU』, 'Ch 2 Bar graph Matrix' as
+         following example.
+      <p>
+    <!--*************************---->
+      <b>[Bar Graph Matrix]</b>
+      <iframe class="example110" src="/estat/eLearning/en/DataScience/example/020103.html"> </iframe>  
+    <!--*************************---->
+  </div>
+
+  <p>
+  <h4 id="020102">2.1.2 Visualization of frequency data of a categorical variable</h4>
+  <p>
+  <h5>Visualization of frequency data of a single categorical variable</h5>
+  <div class="mainTable">
+          If you counted the number of ‘male’ and ‘female’ students in the raw data, as in Table 2.1.1, 
+          the frequency result is reported in Table 2.1.4. 
+       <p>
+      <table style="width:600px"> 
+        <tr>
+          <th colspan="2">Table 2.1.4 Frequency data of the gender in a class</th>
+        </tr>
+        <tr> 
+          <th>Gender</th>
+          <th>Frequency</th>
+        </tr>
+        <tr>
+          <td class="tdCenter">Male</td>
+          <td class="tdCenter">6</td>
+        </tr>
+        <tr>
+          <td class="tdCenter">Female</td>
+          <td class="tdCenter">4</td>
+        </tr>
+      </table>
+      <p>
+         『eStat』 can also plot the graphs using this frequency data of the gender variable 
+         as the following example. 
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         <b>Example 2.1.4</b> <b>(Frequency data of gender)</b> 
+      <br>Enter the frequency data of Table 2.1.4 to the sheet of 『eStat』 and save it as a file 
+         in CSV format. Using this data, draw a bar graph, a pie chart and a band graph with 『eStat』. 
+         Analyze the graphs. 
+      <p>
+      <b>Answer</b>
+      <p>
+         Enter the data of Table 2.1.4 to the sheet of 『eStat』 as in &lt;Figure 2.1.16&gt; and 
+         enter a variable name of V1 as ‘Gender’ and of V2 as ‘Frequency’ using [Edit Var] button 
+         above the sheet.
+      <p>
+         <img class="figure50" src="/estat/eLearning/en/DataScience/figure/Fig020116.png">
+         <div class="figText">&lt;Figure 2.1.16&gt; Data input of frequency data in Table 2.1.4</div>
+      <p>
+         Click the first variable name 'Gender', and then the second variable name 'Frequency'. 
+         Selected variables will appear in the 'Selected Var' box above the sheet. 
+         You can select the variable ‘1: Gender’ using the combo box of the 'Analysis Var' 
+         and the variable ‘2: Frequency’ using the combo box of the 'By Group' 
+         above the sheet as shown in &lt;Figure 2.1.16&gt;.
+      <p>
+         When variables are selected, a vertical bar graph, which is the default graph of 『eStat』 
+         is drawn as in &lt;Figure 2.1.17&gt;. The height of each bar (rectangle) is proportional
+         to the frequency of each category in the gender variable. Therefore, the frequencies 
+         of both the male and the female categories can be easily compared by watching the heights of the bars.
+         The bar graph shows that the number of male students is larger than that of female students. 
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020117.png">
+         <div class="figText">&lt;Figure 2.1.17&gt; Vertical bar graph using the frequency data in Table 2.1.4</div>
+      <p>
+         A vertical bar graph that draws bars up and down, as in &lt;Figure 2.1.17&gt; is widely used, 
+         but a horizontal bar graph, that draws bars from left to right is often used 
+         if there are many categories. By clicking on the horizontal bar graph icon 
+         above the Graph window, a horizontal bar graph, 
+         as in &lt;Figure 2.1.18&gt; will appear in the Graph window. 
+         By checking the
+         'Frequency’ box below the graph, the frequency of each bar, will be displayed.
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020118.png">
+         <div class="figText">&lt;Figure 2.1.18&gt; Horizontal bar graph using the frequency data in Table 2.1.4</div>
+      <p>
+        Click on the pie chart icon <img class="imgIcon" src="/estat/eStat/icon/eStat_icon10_pie.png">
+        to display a pie chart. Click on the band graph icon <img class="imgIcon" src="/estat/eStat/icon/eStat_icon11_band.png">
+        to display a band graph.
+  </div>
+  <p>
+  <h5>Visualization of frequency table of several groups</h5>
+  <div class="mainTable">
+      Many governmental institutions such as the UN, OECD, and EU release their statistics to the public 
+      as frequency data, which can be downloaded as an Excel file or a 
+      text file in CSV format. The following example shows how to download a file from the OECD 
+      and how to draw graphs using this file.
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         <b>Example 2.1.5 (Life Expectancy at Birth : Source OECD)</b>
+      <br>From the home page of the OECD, https://www.oecd.org, download a data file of the life expectancy at birth. 
+         Copy the columns of the country name and 2017 data at the last column to 『eStat』 system and save it as a file in CSV format. 
+         Using this data, draw a vertical bar graph and a horizontal bar graph in descending order of the life expectancy. Analyze the graphs.
+      <p>
+         <b>Answer</b>
+      <p>
+         The main screen of the OECD website, https://www.oecd.org,  as of September 2024
+         is in &lt;Figure 2.1.19&gt;.
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020119.png">
+         <div class="figText">&lt;Figure 2.1.19&gt; OECD home page</div>
+      <p>
+         Select the menu at the top right-hand corner (three lines) and select <b>Data &gt; Key Indicators</b>,
+         then select <b>Health</b> in <b>Policy areas</b> of <b>Filters</b>. If you choose 
+         <b>Life expectancy at birth</b>, you can see the graph of Life expectancy at birth.
+         You can find <b>Access now</b> button below the graph at the section on
+         <b>Access the source dataset in Data Explorer</b>. If you click on ‘Access now’ button, 
+         the OECD Data Explorer screen, as in &lt;Figure 2.1.20&gt; will appear. 
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020120.png">
+         <div class="figText">&lt;Figure 2.1.20&gt; OECD Data Explorer screen for life expectancy at birth</div>
+      <p>
+         If you click on <b>Download</b> button, and then select <b>Table in Excel</b>,
+         an Excel file of Life expectancy, OECD.ELS.HD,DSD_HEALTH_STAT@DF_LE,,filtered,2024-09-13 13-50-12.xlsx,
+         is downloaded. If you open the Excel file, it looks like, as in &lt;Figure 2.1.21&gt;. 
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020121.png">
+         <div class="figText">&lt;Figure 2.1.21&gt; Excel file of OECD life expectancy at birth</div>
+      <p>
+         It includes Life expectations at birth for the total population, male and female population 
+         from the year 2015 to 2023. Since some of the data are missing in 2022 and 2023, let us 
+         draw graphs using only the data in 2021 for the total, female, and male population.
+         The downloaded file is modified after removing missing data in U.K. 
+         as in &lt;Figure 2.1.22&gt; to make a file in CSV format and it is saved 
+         with a file name 'OECD_life_expectancy_at_birth_2021.csv'
+      <p>
+         <img class="figure30" src="/estat/eLearning/en/DataScience/figure/Fig020122.png">
+         <div class="figText">&lt;Figure 2.1.22&gt; Modified OECD file for data processing</div>
+      <p>
+         If you load the file, OECD_life_expectancy_at_birth_2021.csv, to  『eStat』 system
+         and select 'Analysis Var' as 'Country' and select 'by Group' as 'Total', a vertical
+         bar graph will appear in the Graph window. To compare the life expectancy by country,
+         select an option in Sorting as 'Descending' below the graph. A vertical 
+         bar graph sorted in descending order of life expectancy appears in &lt;Figure 2.1.23&gt;.
+      <p>
+         <img class="figure" src="/estat/eLearning/en/DataScience/figure/Fig020123.png">
+         <div class="figText">&lt;Figure 2.1.23&gt; Bar graph sorted in descending order of life expectancy</div>
+      <p>
+         You can easily check that Japan has the highest life expectancy and Latvia has the
+         lowest. If you click the variable names 'Country', ‘Female’ and ‘Male’ 
+         after erasing the current variable selection and clicking the horizontal 'Side-by-side' bar graph button,
+         a bar graph, as in &lt;Figure 2.1.24&gt; appears in the Graph window. You can check
+         the difference in life expectancy between female and male by country. Latvia has
+         the largest discrepancy. If the characters of the country name are too small to see, 
+         you can enlarge the screen by holding the [Ctrl] key and rolling up the wheel mouse. 
+         You can click the horizontal bar graph icon above the Graph window 
+         to draw a horizontal bar graph as in &lt;Figure 2.1.24&gt;.
+      <p>
+         <img class="figure" src="/estat/eLearning/en/DataScience/figure/Fig020124.png">
+         <div class="figText">&lt;Figure 2.1.24&gt; Horizontal bar graph for life expectancy by country</div>
+  </div>
+  <p>
+  <div class="mainTablePink">
+        <b>Practice 2.1.2</b> <b>(Alcohol Expenditure: OECD)</b>
+            <p>Draw a bar graph using the following data in 『eStat』 system and analyze the graph.
+            <p>
+            <p class="textLeft"> [Ex] ⇨ DataScience ⇨ OECD_AlcoholExpenditure_2013.csv            
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/PR020201.png" onclick="window.open(addrStr[40])">     
+  </div>
+  <p>
+  <div class="mainTablePink">
+        <b>Practice 2.1.3</b> <b>(Obesity Ratio: World)</b>
+            <p>Draw a bar graph using the following data in 『eStat』 system and analyze the graph. 
+            <p>
+            <p class="textLeft"> [Ex] ⇨ DataScience ⇨ WORLD_ObesityRatio_Age15over__2017 
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/PR020202.png" onclick="window.open(addrStr[41])">     
+  </div>
+  <p>
+  <!------------------------------------------------------------->
+  <div class="mainTableGrey">
+       <b>Example 2.1.6 (Male and Female Population by Age Groups)</b>
+    <br>
+       In 2015, the male and female populations by age groups in Korea are shown in Table 2.1.5. 
+       Using this data, draw a vertical bar graph by age group and find appropriate graphs 
+       to quickly analyze this data's characteristics. 
+    <p>
+       <table style="width:600px"> 
+        <tr>
+          <th colspan="3">Table 2.1.5  male and female populations by age group in Korea<br> 
+               (KOSTAT Census 2015, unit 10,000 persons)
+          </th>
+        </tr>
+         <tr> 
+           <th>Age Interval</th>
+           <th>2015 Male</th>
+           <th>2015 Female</th>
+         </tr>
+         <tr>
+           <td class="tdCenter">00 - 04</td>
+           <td class="tdCenter">115</td>
+           <td class="tdCenter">109</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">05 - 09</td>
+           <td class="tdCenter">116</td>
+           <td class="tdCenter">109</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">10 - 14</td>
+           <td class="tdCenter">126</td>
+           <td class="tdCenter">116</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">15 - 19</td>
+           <td class="tdCenter">166</td>
+           <td class="tdCenter">151</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">20 - 24</td>
+           <td class="tdCenter">181</td>
+           <td class="tdCenter">158</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">25 - 29</td>
+           <td class="tdCenter">158</td>
+           <td class="tdCenter">145</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">30 - 34</td>
+           <td class="tdCenter">158</td>
+           <td class="tdCenter">176</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">35 - 39</td>
+           <td class="tdCenter">193</td>
+           <td class="tdCenter">186</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">40 - 44</td>
+           <td class="tdCenter">214</td>
+           <td class="tdCenter">207</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">45 - 49</td>
+           <td class="tdCenter">215</td>
+           <td class="tdCenter">212</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">50 - 54</td>
+           <td class="tdCenter">209</td>
+           <td class="tdCenter">205</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">55 - 59</td>
+           <td class="tdCenter">192</td>
+           <td class="tdCenter">194</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">60 - 64</td>
+           <td class="tdCenter">134</td>
+           <td class="tdCenter">141</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">65 - 69</td>
+           <td class="tdCenter">102</td>
+           <td class="tdCenter">110</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">70 - 74</td>
+           <td class="tdCenter">79</td>
+           <td class="tdCenter">97</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">75 - 79</td>
+           <td class="tdCenter">55</td>
+           <td class="tdCenter">80</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">80 - 84</td>
+           <td class="tdCenter">28</td>
+           <td class="tdCenter">54</td>
+         </tr>
+         <tr>
+           <td class="tdCenter">over 85</td>
+           <td class="tdCenter">13</td>
+           <td class="tdCenter">39</td>
+         </tr>
+       </table>
+    <p> 
+       <b>Answer</b>
+    <p>
+       The data of Table 2.1.6 can be loaded from 『eStat』 using the following address.
+       <input class="qrBtn" type="image" src="/estat/eStat/qr/EX020204.png" onclick="window.open(addrStr[10])">
+    <p>
+       <div class="textLeft"> [Ex] ⇨ DataScience ⇨ PopulationByGender.csv. </div>
+    <p> 
+       Click on the variable name of the first variable, 'AgeInterval' followed by the second variable
+       ‘2015_Male’ and the third variable ‘2015_Female'. 
+       You may select the ’AgeInterval’ variable from the 'Analysis Var' box and ‘2015_Male' and 
+       ’2015_Female’ variables sequentially from the 'By Group box. When these variables are selected, 
+       a separate vertical bar graph 
+       <img class="imgIcon" src="/estat/eStat/icon/eStat_icon35_VbarSeparated.png">
+       which separates the male and 
+       female populations with the same scale of the Y-axis will appear in the Graph window. 
+    <p> 
+       Among ten possible bar graphs, a side-by-side bar graph  
+       <img class="imgIcon" src="/estat/eStat/icon/eStat_icon38_VbarSide.png">
+       would be useful because it shows the comparison of the number of male 
+       and female populations in each age interval. Or ratio bar graph
+       <img class="imgIcon" src="/estat/eStat/icon/eStat_icon42_HbarRatio.png">
+       which shows directly the proportions of male and female populations in each age interval 
+       can also be useful. In each of the graphs, you can easily see that the female population is getting larger than 
+       the male population after the age interval of 50s and more. 
+       An overall distribution of the male and female populations by age group can be observed by using 
+       a two-sided (bi-lateral) horizontal bar graph 
+       <img class="imgIcon" src="/estat/eStat/icon/eStat_icon44_HbarBilateral.png">
+       as in &lt;Figure 2.1.25&gt; usually called a population pyramid. Currently, 
+       Korea has an age-specific population structure that looks like a jar. In other words, 
+       the population in age intervals of 40 to 50 is higher than the population in age intervals of 30 
+       or less, which is gradually decreasing. It would cause many problems in the future society 
+       such as a population decrease, a medicare budget increase, etc.
+    <p>
+       <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020125.png">
+       <div class="figText">&lt;Figure 2.1.25&gt; Population pyramid (Bi-lateral graph of the population by age group and by gender</div>
+    <p>
+       A line graph <img class="imgIcon" src="/estat/eStat/icon/eStat_icon12_line.png">
+       as in &lt;Figure 2.1.26&gt; can also be used to see this kind of pattern.
+    <p>
+       <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020126.png">
+       <div class="figText">&lt;Figure 2.1.26&gt; Line graph of population by age and by gender</div>
+  </div>
+  <p>
+  <div class="mainTablePink">
+        <b>Practice 2.1.4</b>
+            <b>(Death rates in Virginia)</b>
+            <p>For each of five age groups (50–54, 55–59, 60–64, 65–69, 70–74), death rates are measured per 1000 population per year
+               in Virginia. They are cross-classified by population group, such as Rural/Male, Rural/Female, Urban/Male and 
+               Urban/Female. These data are saved at the following location of 『eStat』system. 
+            <p>
+            <p class="textLeft"> [Ex] ⇨ DataScience ⇨ VADeaths.csv 
+            <p>
+            <p> Draw appropriate graphs to analyze the characteristics of the data. 
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/PR020203.png" onclick="window.open(addrStr[42])">     
+  </div>
+  <p>
+
+  <div class="mainTable">
+      In general, if there are many groups (columns) on the frequency data, you can compare the difference 
+      between groups for each category of the analysis variable using different kinds of graphs. 
+      If there are many groups, it is recommended that you draw several kinds of graphs because each graph 
+      can show you different data characteristics.
+      <p>If data are observed over time, it is called a time series, and a line graph is usually used 
+      to observe a trend over time. The X-axis includes values of a time variable, which are spaced equally, 
+      and the Y-axis represents a scale of all time series data. Each data pair, time and value, is marked 
+      as a point in a two-dimensional coordinate plane, and two adjacent points are connected with a line. 
+  </div>
+  <p>
+  <div class="mainTablePink">
+        <b>Practice 2.1.5</b>
+            <b>(Average Temperatures by Season in Korea)</b>
+            <p>Average temperatures of each season were observed from 1973 to 2016 in Korea,
+               and data are saved at the following location of 『eStat』 system. 
+            <p>
+            <p class="textLeft"> [Ex] ⇨ DataScience ⇨ Summary_TemperatureBySeason.csv  
+            <p>
+            <p>Draw a line graph of the temperatures by season and observe their characteristics.     </td>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/PR020205.png" onclick="window.open(addrStr[44])">     
+  </div>
+  <p>
+
+  <!-------------------------------------------------------------------->
+  <h4 id="020103">2.1.3 Visualization of text data</h4>
+  <p>
+  <div class="mainTable">
+      A word cloud is a visual representation of text data. It visualizes the word frequency
+      in a given text as a weighted list. The importance of each word is shown in the word cloud 
+      by font size or color. Bigger term means greater weight.
+      The word cloud is useful for quickly perceiving the most prominent words to determine their
+      relative prominence. Recently, it has been used to visualize the topical content of political speeches. 
+      It can be used as a website navigation aid to determine hyperlinks to items associated with the words
+      in social software. The keyword in the cloud is sometimes used as a search engine marketing term 
+      that refers to a group of keywords relevant to a specific website. 
+      Many algorithms generate a word cloud. 『eStat』 adopted the algorithm of d3 open software. 
+      There are evolving approaches to constructing a word cloud by applying word co-occurrences in documents.  
+  </div>
+  <p>
+
+  <div class="mainTableGrey">
+      <p>
+        <b>Example 2.1.9 (Word Cloud)</b>
+      <br>Generate a word cloud on the following description on data science and analyze important words. 
+      <p>
+      <table style="width:650px"> 
+        <tr>
+          <td>
+            The development of these technologies has created massive data, called ‘Big Data’, 
+            that was unimaginable in the past. Typical examples of big data include data from Google's 
+            search records, social media messages by mobile phones, weblogs by internet connections, 
+            and telephone records of global telecom companies. The big data are expected to grow
+            and increase exponentially in the future, and hyper-forecasting is also expected to be possible. 
+            The success or failure of each individual, group, company and even country depend on 
+            how to utilize big data efficiently.
+            <p>The analysis of big data that emerged this century is so enormous and diverse 
+            in the amount of data that it can not be fully utilized just by traditional statistical approaches. 
+            To analyze and utilize big data, we must apply theories of statistics, computer science, 
+            mathematics, management. or related disciplines simultaneously. Data science is a new area 
+            of study in which statistics, mathematics, computer science and other disciplines are fused 
+            to analyze and utilize big data, which emerged this century.
+          </td>
+        </tr>
+      </table>
+      <p>
+      <b>Answer</b>
+      <p>
+         Click the eStaU icon and click [Word Cloud] in the menu, or you can use the QR code below. 
+      <br>Copy the sample text to [Data Input] text area and click [Execute] button. Then, a word cloud on data science is drawn. 
+      <br>'Data' is the highest frequency word in the word cloud,‘big’ is the next in this word cloud.   
+      <p>
+    <!--*************************---->
+      <b>[Word Cloud]</b>
+      <iframe class="example110" src="/estat/eLearning/en/DataScience/example/020109WordCloud.html"> </iframe>  
+    <!--*************************---->
+  </div>
+  <p>
+  <div class="mainTablePink">
+        <b>Practice 2.1.6</b>
+            <b>(Inaugural Address of US President: Jonh F. Kennedy))</b>
+            <p>Generate a word cloud on the following part of the inaugural address by US President John F. Kennedy and analyze important words. 
+            <p>
+                  In the long history of the world, only a few generations have been granted the role of defending 
+                  freedom in its hour of maximum danger. I do not shrink from this responsibility--I welcome it. 
+                  I do not believe that any of us would exchange places with any other people or any other generation.
+                  The energy, the faith, and the devotion which we bring to this endeavor will light our country and all who serve it--and the glow from that fire can truly light the world.
+                  <br>And so, my fellow Americans: ask not what your country can do for you--ask what you can do for your country.
+                  <br>My fellow citizens of the world: ask not what America will do for you, but what together we can do for the freedom of man.
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU050.png" onclick="window.open(addrStr[124])">
+  </div>
+  <p>
+
+  <!-------------------------------------------------------------------->
+  <h3 id="0202">2.2 Visualization of quantitative data</h4>
+  <p>
+  <div class="mainTable">
+      Visualizing the quantitative data is a basic statistical analysis step, 
+      an exploratory data analysis before you get into some statistical analysis. 
+      Based on this exploratory analysis, you can apply an estimation for a single population parameter
+      in section 4.4, a testing hypothesis for two populations in section 5.2, and 
+      a testing hypothesis for several populations in section 5.3. We can also apply a regression analysis
+      for two quantitative variables in section 5.4. 
+  </div>
+  <h4 id="020201">2.2.1 Visualization of a single quantitative variable</h4>
+  <p>
+  <div class="mainTable">
+      In the case of the quantitative data, raw data are directly used to visualize the data. Visualization of the quantitative data is discussed by separating cases of the data without group and with group. 
+      In this section, we introduce visualization of the quantitative data by separating cases of the data 
+      without group and with group.
+  </div>
+  <h5>Visualization of a single quantitative variable without a group variable</h5>
+  <div class="mainTable">
+      Data such as height and weight, whose possible values are real numbers, are called quantitative data. 
+      To visualize the quantitative data of a variable, dot graph, histogram, stem and leaf plot are used. 
+      To visualize the quantitative data of two variables, a scatter plot that utilizes a two-dimensional 
+      coordinates is used. 
+    <p>
+      <img class="imgIcon" src="/estat/eStat/icon/eStat_icon13_dot.png">
+      A dot graph is used to visualize the quantitative data with fewer data counts. 
+      To draw the dot graph, we first draw the horizontal line and set its scale so that all data can be 
+      displayed on the horizontal line by considering the minimum and maximum of the data, 
+      then mark each data value in the dot corresponding to its scale. The dot graph makes it easy 
+      to see distribution patterns and anomalies in the data. 
+    <p>
+      <img class="imgIcon" src="/estat/eStat/icon/eStat_icon14_histo.png">
+      If there are too many observations of the quantitative data and too many 
+      possible data values, the dot graph may not have enough space to show all the data. In such cases, 
+      we divide all possible data values into several intervals, and count the number of data 
+      belonging to each interval. Using the frequencies of each interval, we draw a histogram 
+      similar to the bar graph with no spacing between bars. 
+      You might ask, 'How many intervals do I need to have?' There is no exact answer for 
+      the number of intervals, but 5 ± 2 number of intervals is usually used when there is 
+      a small number of data. A square root of the number of data is also often used as 
+      the number of intervals, but if the number of intervals is too many, it is not easy to analyze 
+      the data sometimes. As far as the number of intervals is concerned, it depends on the analyst's judgment. 
+    <p>
+      <img class="imgIcon" src="/estat/eStat/icon/eStat_icon15_stem.png">
+      A stem and leaf plot is a variation of the histogram recently used to visualize the quantitative data. 
+      The stem and leaf plot can quickily tell the range of observations, shape of distribution, and concentration. 
+      The name shows the data in the form of stems and leaves by considering the digits of data values: 
+      For each number in the data, we first investigate where it belongs to a stem and then 
+      write down the last digit of the number as a leaf corresponding to the stem. After investigating 
+      all numbers in the data, we rearrange the values of the leaves on each stem in ascending order. 
+      The stem and leaf plot has been commonly used in recent years as both an interval-specific 
+      frequency distribution and a histogram for the quantitative data. 
+    <p>
+      <img class="imgIcon" src="/estat/eStat/icon/eStat_icon17_scatter.png">
+      A scatter plot is to visualize data of two quantitative variables using two-dimensional coordinates. 
+      The scatter plot can be considered as an extension of the dot graph for the single quantitative variable. 
+      Each pair of the data of two quantitative variables is expressed as a dot with one value on the X-axis 
+      and the other value on the Y-axis in the XY plane. We can observe the relationship between 
+      two quantitative variables efficiently using the scatter plot.
+  </div>
+  <p>
+  <div class="mainTable">
+      If the quantitative data are the sample data from a population, visualization of this sample data 
+      is used as a basic exploratory data analysis for estimation and testing hypothesis.
+  </div>
+  <p>
+  <div class="mainTableGrey">
+      <b>Example 2.2.1 (Otter Length)</b> <br>
+         The following data show the lengths of 30 otters. Use 『eStat』 to draw a dot graph, a histogram, a stem and leaf plot. (unit cm)
+      <p>
+      <div class="textLeft">63.2  65.3  67.6  68.7  69.7  60.7  72.4  75.2  64.4  76.5 </div>
+      <div class="textLeft">68.3  69.3  70.2  71.3  74.2  63.6  66.1  67.9  68.7  70.5 </div>
+      <div class="textLeft">72.3  72.8  77.6  78.1  69.7  69.4  68.6  68.2  67.2  61.7 </div>
+      <p>
+      <b>Answer</b>
+      <p>
+         <input class="qrBtn" type="image" src="/estat/eStat/qr/EX030201.png" onclick="window.open(addrStr[14])">
+         Enter all 30 data into V1 column of the sheet in 『eStat』 system and specify the variable name of V1 as ‘OtterLength’. This data can also be found at the following location 
+      <p>
+         <p class="textLeft">[Ex] ⇨ DataScience ⇨OtterLength.csv
+      <p>
+         Click on the dot graph icon <img class="imgIcon" src="/estat/eStat/icon/eStat_icon13_dot.png">.
+         Click the variable name, 'OtterLength', then a dot graph of the otter length will appear 
+         in the Graph window as in &lt;Figure 2.2.1&gt;. You can also select 'OtterLength' variable 
+         in the selection box of the Analysis Variable. Checking the 'Mean/Std Dev' in the options window 
+         below the graph shows the average of the data and the (average) &plusmn; (one standard deviation) interval 
+         as in &lt;Figure 2.2.1&gt;. We can observe that a large number of data can be found around the average,
+         and the data are distributed symmetrically around the average.
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020201.png">
+         <div class="figText">&lt;Figure 2.2.1&gt; Dot graph of otter lengths with Mean/StdDev interval</div>
+      <p>
+         Click on the histogram icon <img class="imgIcon" src="/estat/eStat/icon/eStat_icon14_histo.png"> 
+         to display the graph as in &lt;Figure 2.2.2&gt;. If you check the options of ‘Mean’, ‘Frequency’ 
+         and ‘Frequency Polygon’ below the graph, the histogram is changed as in &lt;Figure 2.2.3&gt;. 
+         You can also observe that there are large amounts of data near the mean, and the data are distributed 
+         in almost symmetrical form around the mean.
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020202.png">
+         <div class="figText">&lt;Figure 2.2.2&gt; Histogram of otter length</div>
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020203.png">
+         <div class="figText">&lt;Figure 2.2.3&gt; Histogram polygon of otter lengths with mean, frequency and polygon</div>
+      <p>
+         Click on the [Frequency Table] button <img class="imgIcon" src="/estat/eStat/icon/eStat_icon14_histo.png"> 
+         in the options window below the graph to output a frequency table by intervals based on 
+         the histogram currently drawn in the Log Area as in &lt;Figure 2.2.4&gt;.
+      <p>
+         <img class="figure50" src="/estat/eLearning/en/DataScience/figure/Fig020204.png">
+         <div class="figText">&lt;Figure 2.2.4&gt; Frequency table of the histogram</div>
+      <p>
+         The number and the width of the intervals in the histogram are automatically calculated 
+         by 『eStat』 system, but you can redraw them by specifying the ‘Interval Start’ and ‘Interval Width’ 
+         from the option below the graph and then clicking [Execute New Interval] button.
+      <p>
+         Click on the stem and leaf plot icon <img class="imgIcon" src="/estat/eStat/icon/eStat_icon15_stem.png">
+         to display the graph shown in &lt;Figure 2.2.5&gt;. This graph is a variant of the histogram 
+         where intervals are [60, 61), [61, 62), ... , [78, 79). After finding the number of data belonging
+         to each interval, the digits of 60, 61, ... , 78 become the stem of the graph and the last digits 
+         of all data values belonging to each interval become the leaves of each stem. The leaves (last digits) 
+         of each stem are sorted in ascending order from small to large. 
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020205.png">
+         <div class="figText">&lt;Figure 2.2.5&gt; Stem and leaf plot of otter length</div>
+  </div>
+  <p>
+  <div class="mainTablePink">
+        <b>Practice 2.2.1</b> <b>(Bicycle Road in Seoul)</b> <br>
+               The following data are the lengths of bike-only roads in Seoul's 25 administrative districts as of 2016. Use 『eStat』 to draw a dot graph, a histogram, a stem and leaf plot. Analyze the graphs.
+            <p>
+            <div class="textLeft">0.0  0.0  1.5  0.6  0.0  1.4  3.1  0.3  0.1  0.7  0.8  0.0  0.4  2.8  16.1 </div>
+            <div class="textLeft">8.1  1.5  3.8  4.6  0.0  2.9  0.0  4.4 18.4  3.3 </div>
+            <div class="textLeft">(unit km, Seoul City information system, 2016) </div>
+            <p> 
+            <p class="textLeft">Saved at [Ex] ⇨ DataScience ⇨ BikeRoad.csv
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/PR030201.png" onclick="window.open(addrStr[47])">     
+  </div>
+  <p>
+  <div class="mainTablePink">
+        <b>Practice 2.2.2</b> <b>(Lengths of Major North American Rivers)</b> <br>
+            The lengths (in miles) of 141 major rivers in North America compiled by the US Ecological Survey are saved at the following location of 『eStat』. 
+            <p>
+            <p class="textLeft">[Ex] ⇨ DataScience ⇨ rivers.csv
+            <p>
+            <p>Use 『eStat』 to draw a dot graph, a histogram, a stem and leaf plot. Analyze the graphs. 
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/PR030202.png" onclick="window.open(addrStr[48])">     
+  </div>
+  <p>
+  <div class="mainTablePink">
+        <b>Practice 2.2.3</b> <b>(Annual Precipitation in US Cities)</b> <br>
+            The average amount of precipitation (rainfall) in inches for each of 70 United States (and Puerto Rico)
+            cities is saved at the following location of 『eStat』.
+            <p>
+            <p class="textLeft">[Ex] ⇨ DataScience ⇨ Precip.csv 
+            <p>
+            <p>Use 『eStat』 to draw a dot graph, a histogram, a stem and leaf plot. Analyze the graphs.
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/PR030203.png" onclick="window.open(addrStr[49])">     
+  </div>
+  <p>
+
+  <!-------------------------------------------------------------------------->
+  <h5>Visualization of a single quantitative variable with a group variable</h5>
+  <div class="mainTable">
+      If you can visualize the quantitative data by several groups using the same scale, comparing 
+      the characteristics of groups is easy. Suppose the data are the sample data from two or more populations (groups). 
+      In that case, this comparison by visualization can be used as a basic exploratory data analysis for a testing hypothesis 
+      in Chapter 5. 
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         <b>Example 2.2.2 (Teacher’s Age by Gender)</b> <br>
+         In a middle school, the age and gender of all teachers are surveyed. The data are saved at the following location of 『eStat』.
+      <p>
+        <p class="textLeft">[Ex] ⇨ DataScience ⇨ TeacherAgeByGender.csv. 
+      <p>
+        Using this data, draw a dot graph, a histogram, a stem and leaf plot of the age by  gender.
+      <p>
+      <b>Answer</b>
+      <p>
+         <input class="qrBtn" type="image" src="/estat/eStat/qr/EX030202.png" onclick="window.open(addrStr[15])">
+         Select the file from 『eStat』 by clicking 
+         <p>
+         <p class="textLeft">[Ex] ⇨ DataScience ⇨ TeacherAgeByGender.csv.
+         <p>
+         or scan the QR.
+      <p>Click on the dot graph icon  <img class="imgIcon" src="/estat/eStat/icon/eStat_icon13_dot.png">
+         and click the variable names 'age' and 'gender' to draw the dot graph of the age by gender 
+         as in &lt;Figure 2.2.6&gt;. You can select ‘Age’ from the selection box of 'Analysis Var' and ‘Gender’ 
+         from the selection box of ‘By Group’ variable. 
+         By checking the 'Mean/StdDev’ in the options window below the graph, the mean line and (average) &plusmn; 
+         (one standard deviation) intervals are shown on the graph.
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020206.png">
+         <div class="figText">&lt;Figure 2.2.6&gt; Dot graph of the age by gender with interval of mean / std dev </div>
+      <p>
+         Looking at the dot graph in &lt;Figure 2.2.6&gt;, the average age of female teachers is higher
+         than that of male teachers. We can apply statistical analysis, such as a testing hypothesis, to compare 
+         two population means if these data are samples from two populations. It will be discussed in Chapter 5.
+      <p>
+         If you click on the histogram icon <img class="imgIcon" src="/estat/eStat/icon/eStat_icon14_histo.png">, 
+         the histogram as in &lt;Figure 2.2.7&gt; appears in the Graph window. 
+         You can draw the mean lines, frequencies, and frequency polygons on the histogram by checking the options
+         below the graph.  
+         If you click [Frequency Table] button, the frequency table of the histogram can be displayed in the Log Area.
+         『eStat』 calculates the number and the width of the intervals automatically, but you can redraw them 
+         by specifying the ‘Interval Start’ and ‘Interval Width’ in the options window below the graph.
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020207.png">
+         <div class="figText">&lt;Figure 2.2.7&gt; Histogram of age by gender: Group 1 is for male and Group 2 for female</div>
+      <p>
+         If you click on the stem and leaf plot icon <img class="imgIcon" src="/estat/eStat/icon/eStat_icon15_stem.png">,
+         the graph as in &lt;Figure 2.2.8&gt; will be displayed in the Graph window. This stem and leaf plot 
+         is a variant of the histogram in which the age data are divided into intervals as [20, 30), [30, 40), ... [60,70) 
+         by using the possible decimal digits of 10s as the stem. The age data belonging to each interval are investigated
+         and displayed using the age's last digit as the leaf. The last digits (leaf) of the age are sorted in ascending order from small to large. 
+         In the case of two groups, a bi-lateral stem and leaf plot as in &lt;Figure 2.2.9&gt; can be drawn 
+         by clicking on the bi-lateral stem and leaf icon 
+         <img class="imgIcon" src="/estat/eStat/icon/eStat_icon46_stemBilateral.png">.
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020208.png">
+         <div class="figText">&lt;Figure 2.2.8&gt; Stem and leaf plot of age by sex</div>
+      <p>
+        <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020209.png">
+        <div class="figText">&lt;Figure 2.2.9&gt; Bi-lateral stem and leaf plot of age by sex </div>
+  </div>
+  <p>
+  <div class="mainTablePink">
+        <b>Practice 2.2.4</b>  <b>(Oral Cleanliness by Brushing Methods)</b> <br>
+            According to the brushing method (1:basic method, 2: rotation method), oral cleanliness scores are examined 
+            and stored at the following location of 『eStat』.
+            <p>
+            <p class="textLeft">[Ex] ⇨ DataScience ⇨ ToothCleanByBrushMethod.csv. 
+            <p>
+            <p>Using 『eStat』 , draw a dot graph, a histogram, a stem and leaf plot of oral cleanliness by brushing.    
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/PR030204.png" onclick="window.open(addrStr[50])">     
+  </div>
+  <p>
+  <div class="mainTablePink">
+        <b>Practice 2.2.5</b> <b>(Plant Growth by Condition)</b> <br>
+            Results from an experiment to compare yields (as measured by the dried weight of plants) are obtained 
+            under control (leveled ‘ctrl’) and two different treatment conditions (leveled ‘trt1’ and ‘trt2’). 
+            The weights data with 30 observations on each control and two treatments (‘crtl’, ‘trt1’, ‘trt2’) are saved at the following location of  『eStat』. 
+            <p>
+            <p class="textLeft">[Ex] ⇨ DataScience ⇨ PlantGrowth.csv
+            <p>
+            <p>Use  『eStat』  to draw a dot graph, a histogram, a stem and leaf plot of the weights by three groups.
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/PR030205.png" onclick="window.open(addrStr[51])">     
+  </div>
+  <p>
+  <div class="mainTablePink">
+        <b>Practice 2.2.6</b> <b>(Effectiveness of Insect Sprays)</b> <br>
+              The counts of insects in agricultural experimental units were treated with six different insecticides. Data with 72 observations on 2 variables, insect count and sprays (A, B, C, D, E, F), are saved at the following location of 『eStat』. (Source: Beall, G., (1942) The Transformation of data from entomological field experiments, Biometrika, 29, 243–262.)
+            <p>
+            <p class="textLeft">[Ex] ⇨ DataScience ⇨ InsectSprays.csv
+            <p>
+            <p>Use 『eStat』 to draw a dot graph, a histogram, a stem and leaf plot of the insect counts by the types of sprays.
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/PR030206.png" onclick="window.open(addrStr[52])">     
+  </div>
+
+  <p>
+  <!-------------------------------------------------------------------------->
+  <h4 id="020202">2.2.2 Visualization of two or more quantitative variables</h4>
+  <p>
+  <div class="mainTable">
+         In general, we investigate several characteristics from one subject or one observation. For example, 
+         when we investigate students in an elementary school, we examine their gender, height, and weight 
+         simultaneously, which are one categorical and two quantitative variables. 
+      <p>
+         If you have data on two quantitative variables, we can use a scatter plot to analyze the data. 
+         A scatter plot displays the data on a two-dimensional plane with values for one variable being the X-axis
+         and values for the other being the Y-axis. If a categorical variable such as gender is also collected together, 
+         we can draw a scatter plot by differentiating the colors of the dots by gender. 
+         If data are a sample from a population, we can use the scatter plot to analyze correlation 
+         and regression. 
+      <p>
+         If you have data on several quantitative variables and qualitative variables, we can use a scatter plot matrix
+         to analyze a relation between quantitative variables.
+  </div>
+  <p>
+  <h5>Visualization of two quantitative variables</h5>
+  <div class="mainTableGrey">
+      <b>Example 2.2.3 (Height and Weight by Gender)</b> <br>
+      Data on gender, height, and weight of 10 elementary school students are saved at the following location of 『eStat』.
+      <p>
+        <p class="textLeft">[Ex] ⇨ DataScience ⇨ HeightWeightByGender.csv. 
+      <p>
+        1) Draw a scatter plot of height and weight using 『eStat』. <br>
+        2) Draw a scatter plot of height and weight by gender using 『eStat』.
+      <p>
+      <b>Answer</b>
+      <p>
+         <input class="qrBtn" type="image" src="/estat/eStat/qr/EX030301.png" onclick="window.open(addrStr[17])">
+         Retrieve the file from 『eStat』 by clicking 
+      <p>
+         <p class="textLeft">[Ex] ⇨ DataScience ⇨ HeightWeightByGender.csv. 
+      <p>
+         or scan the QR on the left.
+      <p>
+         Clicking on the scatter plot icon <img class="imgIcon" src="/estat/eStat/icon/eStat_icon17_scatter.png">
+         and clicking on the 'weight' and 'height’ variable names, a scatter plot with the weight on 
+         the Y-axis (the first selected variable) and the height on the X-axis (the second selected variable) will appear 
+         in the Graph window as in &lt;Figure 2.2.10&gt;. 
+         You can also select 'weight' in the 'Y-variable' selection box and 'height in the 'by X-variable' selection box. 
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020210.png">
+         <div class="figText">&lt;Figure 2.2.10&gt; Scatter plot of height and weight with a regression line</div>
+      <p>
+         Checking the 'Regression' in the options window below the graph, a scatter plot with 
+         a regression line appears. This regression line indicates a relationship between weight and height.
+         If you look at the scatter plot, you can see that the larger the height, the heavier the weight is. 
+         See Chapter 4 for more discussion on the regression analysis.
+      <p>
+         To draw a scatter plot by gender, select 'Gender' in the 'Group' box of options. It shows 
+         a scatter plot with different colors depending on the gender as in &lt;Figure 2.2.11&gt;. 
+         Checking the 'Regression' in the options will show the regression lines for each gender. 
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020211.png">
+         <div class="figText">&lt;Figure 2.2.11&gt; Scatter plot of height and weight by gender groups</div>
+      <p>
+         If you select the height as a 'Size Var' in the option, the dots in the scatter plot are proportional to the height 
+         as in &lt;Figure 2.2.12&gt;. 
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020212.png">
+         <div class="figText">&lt;Figure 2.2.12&gt; Scatter plot of height and weight by gender with size variable of height </div>
+  </div>
+  <p>
+  <div class="mainTablePink">
+        <b>Practice 2.2.7</b> <b>(Old Faithful Geiser)</b> <br>
+            Waiting time between eruptions and the eruption duration for the Old Faithful geyser 
+            in Yellowstone National Park, Wyoming, USA were collected. There are 272 observations on 2 variables,
+            time between eruptions (in seconds) and waiting time for next eruption (in mins). The data are saved 
+            at the following location of 『eStat』. 
+            <p>
+            <p class="textLeft">[Ex] ⇨ DataScience ⇨ Faithful.csv 
+            <br class="textLeft">(Source: Applied Statistics, 39, 357–365. doi: 10.2307/2347385) 
+            <p>
+            <p>Draw a scatter plot of the time between eruptions and the waiting time for the next eruption.
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/PR030301.png" onclick="window.open(addrStr[53])">     
+  </div>
+  <p>
+  <div class="mainTablePink">
+        <b>Practice 2.2.8</b> <b>(Age and Income by Gender)</b> <br>
+            A survey of age, monthly income, and gender (1: man, 2: woman) was conducted, and the data are saved 
+            at the following location of 『eStat』.
+            <p>
+            <p class="textLeft">[Ex] ⇨ DataScience ⇨ IncomeAge.csv. 
+            <p>
+            <p>Draw a scatter plot of the age and the monthly income by gender.
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/PR030302.png" onclick="window.open(addrStr[54])">     
+  </div>
+  <p>
+  <h5>Visualization of several quantitative variables</h5>
+  <div class="mainTable">
+         If there are two or more quantitative variables,  we can use a <b>scatter plot matrix</b> to visualize data.
+         Suppose there are \(m\) number of quantitative variables. In that case, we can use \(m × m\) matrix of scatter plots using 
+         combinations of all quantitative variables in each column and row of the matrix. A histogram of each
+         quantitative variable is drawn at the matrix's diagonal element with the same variable named
+         row and column.
+         A qualitative variable can be used as a group variable in the scatter plot matrix to visualize each data
+         with different colors depending on its group value. The scatter plot matrix is useful for checking
+         the relation between quantitative variables and is used for correlation and regression analysis.
+      <p> 
+         A <b>parallel coordinate plot</b> (parallel graph) is an effective way 
+         to observe multiple quantitative variables
+         and find out their relationships simultaneously. We create as many parallel coordinate lines as the number of variables, 
+         mark the values ​​of each variable as points on the corresponding coordinate lines, and then connect them with lines.
+         A qualitative variable can be used as a group variable in the parallel coordinate plot to visualize each line (data)
+         with different colors depending on its group value.
+  </div>
+  <p>
+  <div class="mainTableGrey">
+         <b>Example 2.2.4 (Scatter plot matrix)</b>
+      <br>
+         Draw a scatter plot matrix and a parallel coordinate plot using four variables Sepal.Length, Sepal.Width, Petal.Length, Petal.Width, 
+         and Species is the group variable in Table 2.2.1. The data is saved in 『eStat』 system at
+         Ex -> /DataScience/Iris30.csv. 
+      <p>
+      <table style="width:600px"> 
+         <tr>
+          <th colspan="5">Table 2.2.1  Iris data</th>
+         </tr>
+         <tr><th>id</th><th>Sepal.Length</th><th>Sepal.Width</th><th>Petal.Length</th><th>Petal.Width</th><th>Species</th></tr>
+         <tr><td class="tdCenter"> 1</td><td class="tdCenter">5.1</td><td class="tdCenter">3.5</td><td class="tdCenter">1.4</td><td class="tdCenter">0.2</td><td class="tdCenter">setosa</td>  </tr>
+         <tr><td class="tdCenter"> 2</td><td class="tdCenter">4.9</td><td class="tdCenter">3.0</td><td class="tdCenter">1.4</td><td class="tdCenter">0.2</td><td class="tdCenter">setosa</td>  </tr>
+         <tr><td class="tdCenter"> 3</td><td class="tdCenter">4.7</td><td class="tdCenter">3.2</td><td class="tdCenter">1.3</td><td class="tdCenter">0.2</td><td class="tdCenter">setosa</td>  </tr>
+         <tr><td class="tdCenter"> 4</td><td class="tdCenter">4.6</td><td class="tdCenter">3.1</td><td class="tdCenter">1.5</td><td class="tdCenter">0.2</td><td class="tdCenter">setosa</td>  </tr>
+         <tr><td class="tdCenter"> 5</td><td class="tdCenter">5.0</td><td class="tdCenter">3.6</td><td class="tdCenter">1.4</td><td class="tdCenter">0.2</td><td class="tdCenter">setosa</td>  </tr>
+         <tr><td class="tdCenter"> 6</td><td class="tdCenter">5.4</td><td class="tdCenter">3.9</td><td class="tdCenter">1.7</td><td class="tdCenter">0.4</td><td class="tdCenter">setosa</td>  </tr>
+         <tr><td class="tdCenter"> 7</td><td class="tdCenter">4.6</td><td class="tdCenter">3.4</td><td class="tdCenter">1.4</td><td class="tdCenter">0.3</td><td class="tdCenter">setosa</td>  </tr>
+         <tr><td class="tdCenter"> 8</td><td class="tdCenter">5.0</td><td class="tdCenter">3.4</td><td class="tdCenter">1.5</td><td class="tdCenter">0.2</td><td class="tdCenter">setosa</td>  </tr>
+         <tr><td class="tdCenter"> 9</td><td class="tdCenter">4.4</td><td class="tdCenter">2.9</td><td class="tdCenter">1.4</td><td class="tdCenter">0.2</td><td class="tdCenter">setosa</td>  </tr>
+         <tr><td class="tdCenter">10</td><td class="tdCenter">4.9</td><td class="tdCenter">3.1</td><td class="tdCenter">1.5</td><td class="tdCenter">0.1</td><td class="tdCenter">setosa</td>  </tr>
+         <tr><td class="tdCenter">11</td><td class="tdCenter">7.0</td><td class="tdCenter">3.2</td><td class="tdCenter">4.7</td><td class="tdCenter">1.4</td><td class="tdCenter">versicolor</td></tr>
+         <tr><td class="tdCenter">12</td><td class="tdCenter">6.4</td><td class="tdCenter">3.2</td><td class="tdCenter">4.5</td><td class="tdCenter">1.5</td><td class="tdCenter">versicolor</td></tr>
+         <tr><td class="tdCenter">13</td><td class="tdCenter">6.9</td><td class="tdCenter">3.1</td><td class="tdCenter">4.9</td><td class="tdCenter">1.5</td><td class="tdCenter">versicolor</td></tr>
+         <tr><td class="tdCenter">14</td><td class="tdCenter">5.5</td><td class="tdCenter">2.3</td><td class="tdCenter">4.0</td><td class="tdCenter">1.3</td><td class="tdCenter">versicolor</td></tr>
+         <tr><td class="tdCenter">15</td><td class="tdCenter">6.5</td><td class="tdCenter">2.8</td><td class="tdCenter">4.6</td><td class="tdCenter">1.5</td><td class="tdCenter">versicolor</td></tr>
+         <tr><td class="tdCenter">16</td><td class="tdCenter">5.7</td><td class="tdCenter">2.8</td><td class="tdCenter">4.5</td><td class="tdCenter">1.3</td><td class="tdCenter">versicolor</td></tr>
+         <tr><td class="tdCenter">17</td><td class="tdCenter">6.3</td><td class="tdCenter">3.3</td><td class="tdCenter">4.7</td><td class="tdCenter">1.6</td><td class="tdCenter">versicolor</td></tr>
+         <tr><td class="tdCenter">18</td><td class="tdCenter">4.9</td><td class="tdCenter">2.4</td><td class="tdCenter">3.3</td><td class="tdCenter">1.0</td><td class="tdCenter">versicolor</td></tr>
+         <tr><td class="tdCenter">19</td><td class="tdCenter">6.6</td><td class="tdCenter">2.9</td><td class="tdCenter">4.6</td><td class="tdCenter">1.3</td><td class="tdCenter">versicolor</td></tr>
+         <tr><td class="tdCenter">20</td><td class="tdCenter">5.2</td><td class="tdCenter">2.7</td><td class="tdCenter">3.9</td><td class="tdCenter">1.4</td><td class="tdCenter">versicolor</td></tr>
+         <tr><td class="tdCenter">21</td><td class="tdCenter">6.3</td><td class="tdCenter">3.3</td><td class="tdCenter">6.0</td><td class="tdCenter">2.5</td><td class="tdCenter">virginica</td> </tr>
+         <tr><td class="tdCenter">22</td><td class="tdCenter">5.8</td><td class="tdCenter">2.7</td><td class="tdCenter">5.1</td><td class="tdCenter">1.9</td><td class="tdCenter">virginica</td> </tr>
+         <tr><td class="tdCenter">23</td><td class="tdCenter">7.1</td><td class="tdCenter">3.0</td><td class="tdCenter">5.9</td><td class="tdCenter">2.1</td><td class="tdCenter">virginica</td> </tr>
+         <tr><td class="tdCenter">24</td><td class="tdCenter">6.3</td><td class="tdCenter">2.9</td><td class="tdCenter">5.6</td><td class="tdCenter">1.8</td><td class="tdCenter">virginica</td> </tr>
+         <tr><td class="tdCenter">25</td><td class="tdCenter">6.5</td><td class="tdCenter">3.0</td><td class="tdCenter">5.8</td><td class="tdCenter">2.2</td><td class="tdCenter">virginica</td> </tr>
+         <tr><td class="tdCenter">26</td><td class="tdCenter">7.6</td><td class="tdCenter">3.0</td><td class="tdCenter">6.6</td><td class="tdCenter">2.1</td><td class="tdCenter">virginica</td> </tr>
+         <tr><td class="tdCenter">27</td><td class="tdCenter">4.9</td><td class="tdCenter">2.5</td><td class="tdCenter">4.5</td><td class="tdCenter">1.7</td><td class="tdCenter">virginica</td> </tr>
+         <tr><td class="tdCenter">28</td><td class="tdCenter">7.3</td><td class="tdCenter">2.9</td><td class="tdCenter">6.3</td><td class="tdCenter">1.8</td><td class="tdCenter">virginica</td> </tr>
+         <tr><td class="tdCenter">29</td><td class="tdCenter">6.7</td><td class="tdCenter">2.5</td><td class="tdCenter">5.8</td><td class="tdCenter">1.8</td><td class="tdCenter">virginica</td> </tr>
+         <tr><td class="tdCenter">30</td><td class="tdCenter">7.2</td><td class="tdCenter">3.6</td><td class="tdCenter">6.1</td><td class="tdCenter">2.5</td><td class="tdCenter">virginica</td> </tr>
+      </table>
+      <p>
+         <b>Answer</b>
+      <p>
+         After you load the data file of Table 2.2.1, /DataScience/Iris30.csv, 
+         click the scatter plot matrix icon 
+         <img class="imgIcon" src="/estat/eStat/img/Azar22ScatterplotMatrix.png">.
+         Click 'Species' as the 'Group' variable and select 'Sepal.Length', 'Sepal.Width', 'Petal.Length', 'Petal.Width' 
+         as the 'Analysis Var'. Then the scatter plot matrix, as in &lt;Figure 2.2.13&gt;, will appear
+         in the graph window. If you click the 'Parallel Graph' button below the graph,
+         the parallel coordinate plot will appear as in &lt;Figure 2.2.14&gt;. 
+         If you click the 'Multivariate Stat' button below the graph, then basic statistics, 
+         covariances and correlations on four quantitative variables of each group 
+          will appear in the Log table window as in &lt;Figure 2.2.15&gt;.
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020213.png">
+         <div class="figText">&lt;Figure 2.2.13&gt; Scatter plot matrix using the data in Table 2.2.1</div>            
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020214.png">
+         <div class="figText">&lt;Figure 2.2.14&gt; Parallel graph using the data in Table 2.2.1</div>            
+      <p>
+         <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020215.png">
+         <div class="figText">&lt;Figure 2.2.15&gt; Multivariate statistics using four quantitative variales in Table 2.2.1</div>            
+      <p>
+         You can practice scatter plot matrix, parallel coordinate plot and multivariate statistics 
+         using the module in  『eStatU』, 'Ch 2 Scatter Plot Matrix' as following example.
+      <p>
+    <!--*************************---->
+      <b>[Scatter Plot Matrix and Parallel Coordinate Plot]</b>
+      <iframe class="example110" src="/estat/eLearning/en/DataScience/example/020204.html"> </iframe>  
+    <!--*************************---->
+  </div>
+  <p>
+  <!-------------------------------------------------------------------------->
+  <h3 id="0203">2.3  R and Python practice</h3>
+  <p>
+  <!-------------------------------------------------------------------------->
+  <h5>R Practice</h5>
+  <p>
+  <div class="mainTable">
+       Let us practice R commands using the data saved at C:\Rwork\PurchaseByCredit40.csv. 
+       The file format is a comma-separated value (csv) type. You can find this file
+       from 『eStat』 system. Click Ex > DataScience and then click the data 'PurchaseByCredit40.csv'.
+       After this file is loaded to 『eStat』, save it using 'csv Save' button. It will be
+       saved in the Download folder on your PC. Copy this file to C:\Rwork\ folder.
+    <p>
+       You need to change first the working directory of R to use this data as follows.
+    <p>
+       File > Change Directory > C: > Rwork<br>
+    <p>
+  </div>
+  <div class="mainTable">
+    <table style="width:800px">
+         <tr>
+           <td># read the data file</td>
+         </tr>
+         <tr>
+           <td style="width:650px;"><span style="color:red;">> card <- read.csv("PurchaseByCredit40.csv", header=TRUE, as.is=FALSE)</span></td>
+           <td style="width:150px;" class="tdCenter"><button onclick="rFunction(1)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> card</span>
+<pre>
+      id Gender Age Income Credit Purchase
+1      1   male 20s LT2000   Fair      Yes
+2      2 female 30s GE2000   Good       No
+3      3 female 20s GE2000   Fair       No
+4      4 female 20s GE2000   Fair      Yes
+5      5 female 20s LT2000    Bad       No
+6      6 female 30s GE2000   Fair       No
+7      7 female 30s GE2000   Good      Yes
+8      8   male 20s LT2000   Fair       No
+9      9 female 20s GE2000   Good       No
+10    10   male 30s GE2000   Fair      Yes
+11    11 female 30s GE2000   Good      Yes
+12    12 female 20s LT2000   Fair       No
+13    13   male 30s GE2000   Fair       No
+14    14   male 30s LT2000   Fair      Yes
+15    15 female 30s GE2000   Good      Yes
+16    16 female 30s GE2000   Fair       No
+17    17 female 20s GE2000    Bad       No
+18    18   male 20s GE2000    Bad       No
+19    19   male 30s GE2000   Good      Yes
+20    20   male 20s LT2000   Fair       No
+21    21   male 20s LT2000   Fair      Yes
+22    22 female 30s GE2000   Good       No
+23    23 female 20s GE2000   Fair       No
+24    24 female 20s GE2000   Fair      Yes
+25    25 female 20s LT2000    Bad       No
+26    26 female 30s GE2000   Fair       No
+27    27 female 30s GE2000   Good      Yes
+28    28   male 20s LT2000   Fair       No
+29    29 female 20s GE2000   Good       No
+30    30   male 30s GE2000   Fair      Yes
+31    31 female 30s GE2000   Good      Yes
+32    32 female 20s LT2000   Fair       No
+33    33   male 30s GE2000   Fair       No
+34    34   male 30s LT2000   Fair      Yes
+35    35 female 30s GE2000   Good      Yes
+36    36 female 30s GE2000   Fair       No
+37    37 female 20s GE2000    Bad       No
+38    38   male 20s GE2000    Bad       No
+39    39   male 30s GE2000   Good      Yes
+40    40   male 20s LT2000   Fair       No
+</pre>
+           </td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> attach(card)</span></td>
+           <td class="tdCenter"><button onclick="rFunction(2)">copy r command</button></td>          
+         </tr>
+    </table>
+  </div>
+  <p>
+  <div class="mainTable">
+    <table style="width:800px">
+         <tr>
+           <td># Bar graph</td>
+         </tr>
+         <tr>
+           <td style="width:650px;"><span style="color:red;">> plot(Purchase, main="Bar Graph", ylab="frequency", ylim=c(0,30))<span></td>
+           <td class="tdCenter"  style="width:150px;"><button onclick="rFunction(6)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td>
+             <img class="figure50" src="/estat/eLearning/en/DataScience/figure/Fig020301.png">
+           </td>
+         </tr>
+         <tr>
+           <td># Pie chart</td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> freq <- table(Purchase)</span>
+<pre>
+ freq
+Purchase
+ No Yes 
+ 24  16 
+</pre>
+           </td>
+           <td class="tdCenter"><button onclick="rFunction(7)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> pie(freq, main="Pie Chart")</span></td>
+           <td class="tdCenter"><button onclick="rFunction(8)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td>
+             <img class="figure50" src="/estat/eLearning/en/DataScience/figure/Fig020302.png">
+           </td>
+         </tr>
+    </table>
+  </div>
+  <p>
+  <div class="mainTable">
+    <table style="width:800px">
+         <tr>
+           <td># Continuous Data <br>
+               # Read iris data
+           </td>
+         </tr>
+         <tr>
+           <td style="width:650px;"><span style="color:red;">> iris <- read.csv("iris150.csv", header=T)</span></td>
+           <td style="width:150px"class="tdCenter"><button onclick="rFunction(9)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> attach(iris)</span></td>
+           <td class="tdCenter"><button onclick="rFunction(10)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td># Continuous Data Histogram, Scatter plot<br>
+               # Histogram
+           </td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> hist(Sepal.Length, col="lightgray", ylim=c(0,30), main="Histogram")</span></td>
+           <td class="tdCenter"><button onclick="rFunction(17)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td>
+             <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020303.png">
+           </td>
+         </tr>
+         <tr>
+           <td># Scatter plot</td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> plot(Sepal.Length, Sepal.Width, main="Scatter Plot")</span></td>
+           <td class="tdCenter"><button onclick="rFunction(18)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td>
+             <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020304.png">
+           </td>
+         </tr>
+         <tr>
+           <td># Scatter plot matrix</td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> pairs(~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width, data=iris)</span><br>
+           </td>
+           <td class="tdCenter"><button onclick="rFunction(19)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td>
+             <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020305.png">
+           </td>
+         </tr>
+         <tr>
+           <td># Continuous Data Paralle Coordinate Plot<br>
+               # Divide iris data between the numerical and the categorical variable. <br>
+           </td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> quantData <- iris[, 2:5]</span></td>
+           <td class="tdCenter"><button onclick="rFunction(20)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> groupData <- iris[, 6]</span></td>
+           <td class="tdCenter"><button onclick="rFunction(21)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td># install MASS  package. <br>
+               # In the main menu, click Packages > Load Package > select MASS package <br>
+               # The parcoord function from MASS package can be used to create a parallel coordinates plot in base R based on the matplot function. You can input a matrix or a data frame.<br>
+           </td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> library(MASS)</span></td>
+           <td class="tdCenter"><button onclick="rFunction(22)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> parcoord(quantData)</span></td>
+           <td class="tdCenter"><button onclick="rFunction(23)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td>
+              <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020306.png">
+           </td>
+         </tr>
+         <tr>
+           <td># Categorical variable as colors<br>
+             <span style="color:red;">> cols <- as.numeric(groupData)</span>
+           </td>
+           <td class="tdCenter"><button onclick="rFunction(24)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> parcoord(quantData, col = cols)</span></td>
+           <td class="tdCenter"><button onclick="rFunction(25)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td>
+             <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020307.png">
+           </td>
+         </tr>
+    </table>
+  </div>
+  <p>
+
+  <!-------------------------------------------------------------------------->
+  <h5>Python Practice</h5>
+  <p>
+  <div class="mainTable">
+       Let us practice R commands using the data saved at C:\Rwork\PurchaseByCredit40.csv. 
+       The file format is a comma separated value (csv) type. You can find this file
+       from 『eStat』 system. Click Ex > DataScience and then click the data 'PurchaseByCredit40.csv'.
+       After this file is loaded to 『eStat』, save it using 'csv Save' button. It will be
+       saved at the Download folder on your PC. Copy this file to C:\Rwork\ folder.
+    <p>
+       You need to change first the working directory of R to use this data as follows.
+    <p>
+       File > Change Directory > C: > Rwork<br>
+    <p>
+  </div>
+  <div class="mainTable">
+    <table style="width:800px">
+         <tr>
+           <td># read the data file</td>
+         </tr>
+         <tr>
+           <td style="width:650px;"><span style="color:red;">> card <- read.csv("PurchaseByCredit40.csv", header=T)</span></td>
+           <td style="width:150px;" class="tdCenter"><button onclick="rFunction(1)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td>
+ card <br>
+   ï..id Gender Age Income Credit Purchase<br>
+1      1   male 20s LT2000   Fair      Yes<br>
+2      2 female 30s GE2000   Good       No<br>
+3      3 female 20s GE2000   Fair       No<br>
+4      4 female 20s GE2000   Fair      Yes<br>
+5      5 female 20s LT2000    Bad       No<br>
+6      6 female 30s GE2000   Fair       No<br>
+7      7 female 30s GE2000   Good      Yes<br>
+8      8   male 20s LT2000   Fair       No<br>
+9      9 female 20s GE2000   Good       No<br>
+10    10   male 30s GE2000   Fair      Yes<br>
+11    11 female 30s GE2000   Good      Yes<br>
+12    12 female 20s LT2000   Fair       No<br>
+13    13   male 30s GE2000   Fair       No<br>
+14    14   male 30s LT2000   Fair      Yes<br>
+15    15 female 30s GE2000   Good      Yes<br>
+16    16 female 30s GE2000   Fair       No<br>
+17    17 female 20s GE2000    Bad       No<br>
+18    18   male 20s GE2000    Bad       No<br>
+19    19   male 30s GE2000   Good      Yes<br>
+20    20   male 20s LT2000   Fair       No<br>
+21    21   male 20s LT2000   Fair      Yes<br>
+22    22 female 30s GE2000   Good       No<br>
+23    23 female 20s GE2000   Fair       No<br>
+24    24 female 20s GE2000   Fair      Yes<br>
+25    25 female 20s LT2000    Bad       No<br>
+26    26 female 30s GE2000   Fair       No<br>
+27    27 female 30s GE2000   Good      Yes<br>
+28    28   male 20s LT2000   Fair       No<br>
+29    29 female 20s GE2000   Good       No<br>
+30    30   male 30s GE2000   Fair      Yes<br>
+31    31 female 30s GE2000   Good      Yes<br>
+32    32 female 20s LT2000   Fair       No<br>
+33    33   male 30s GE2000   Fair       No<br>
+34    34   male 30s LT2000   Fair      Yes<br>
+35    35 female 30s GE2000   Good      Yes<br>
+36    36 female 30s GE2000   Fair       No<br>
+37    37 female 20s GE2000    Bad       No<br>
+38    38   male 20s GE2000    Bad       No<br>
+39    39   male 30s GE2000   Good      Yes<br>
+40    40   male 20s LT2000   Fair       No<br>
+           </td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> attach(card)</span></td>
+           <td class="tdCenter"><button onclick="rFunction(2)">copy r command</button></td>          
+         </tr>
+    </table>
+  </div>
+  <p>
+  <div class="mainTable">
+    <table style="width:800px">
+         <tr>
+           <td># Bar graph</td>
+         </tr>
+         <tr>
+           <td style="width:650px;"><span style="color:red;">> plot(Purchase, main="Bar Graph", ylab="frequency", ylim=c(0,30))<span></td>
+           <td class="tdCenter"  style="width:150px;"><button onclick="rFunction(6)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td>
+             <img class="figure50" src="/estat/eLearning/en/DataScience/figure/Fig020301.png">
+           </td>
+         </tr>
+         <tr>
+           <td># Pie chart</td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> freq <- table(Purchase)</span><br>
+ freq<br>
+Purchase<br>
+ No Yes <br>
+ 24  16 <br>
+           </td>
+           <td class="tdCenter"><button onclick="rFunction(7)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> pie(freq, main="Pie Chart")</span></td>
+           <td class="tdCenter"><button onclick="rFunction(8)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td>
+             <img class="figure50" src="/estat/eLearning/en/DataScience/figure/Fig020302.png">
+           </td>
+         </tr>
+    </table>
+  </div>
+  <p>
+  <div class="mainTable">
+    <table style="width:800px">
+         <tr>
+           <td># Continuous Data <br>
+               # Read iris data
+           </td>
+         </tr>
+         <tr>
+           <td style="width:650px;"><span style="color:red;">> iris <- read.csv("iris150.csv", header=T)</span></td>
+           <td style="width:150px"class="tdCenter"><button onclick="rFunction(9)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> attach(iris)</span></td>
+           <td class="tdCenter"><button onclick="rFunction(10)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td># Continuous Data Histogram, Scatter plot<br>
+               # Histogram
+           </td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> hist(Sepal.Length, col="lightgray", ylim=c(0,30), main="Histogram")</span></td>
+           <td class="tdCenter"><button onclick="rFunction(17)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td>
+             <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020303.png">
+           </td>
+         </tr>
+         <tr>
+           <td># Scatter plot</td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> plot(Sepal.Length, Sepal.Width, main="Scatter Plot")</span></td>
+           <td class="tdCenter"><button onclick="rFunction(18)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td>
+             <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020304.png">
+           </td>
+         </tr>
+         <tr>
+           <td># Scatter plot matrix</td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> pairs(~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width, data=iris)</span><br>
+           </td>
+           <td class="tdCenter"><button onclick="rFunction(19)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td>
+             <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020305.png">
+           </td>
+         </tr>
+         <tr>
+           <td># Continuous Data Paralle Coordinate Plot<br>
+               # Divide iris data between the numerical and the categorical variable. <br>
+           </td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> quantData <- iris[, 2:5]</span></td>
+           <td class="tdCenter"><button onclick="rFunction(20)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> groupData <- iris[, 6]</span></td>
+           <td class="tdCenter"><button onclick="rFunction(21)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td># install MASS  package. <br>
+               # In the main menu, click Packages > Load Package > select MASS package <br>
+               # The parcoord function from MASS package can be used to create a parallel coordinates plot in base R based on the matplot function. You can input a matrix or a data frame.<br>
+           </td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> library(MASS)</span></td>
+           <td class="tdCenter"><button onclick="rFunction(22)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> parcoord(quantData)</span></td>
+           <td class="tdCenter"><button onclick="rFunction(23)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td>
+              <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020306.png">
+           </td>
+         </tr>
+         <tr>
+           <td># Categorical variable as colors<br>
+             <span style="color:red;">> cols <- as.numeric(groupData)</span>
+           </td>
+           <td class="tdCenter"><button onclick="rFunction(24)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td><span style="color:red;">> parcoord(quantData, col = cols)</span></td>
+           <td class="tdCenter"><button onclick="rFunction(25)">copy r command</button></td>
+         </tr>
+         <tr>
+           <td>
+             <img class="figure70" src="/estat/eLearning/en/DataScience/figure/Fig020307.png">
+           </td>
+         </tr>
+    </table>
+  </div>
+  <p>
+
+  <h3 id="0204">2.4 Exercise</h3>
+  <p>
+  <div class="mainTableExercise">
+
+    <p class="textL30M30">2.1 The following sample survey showed on the living standard and education level of 25 adults. 
+      In the living standard, 1 means ‘high income’, 2 means ‘average’, and 3 means ‘low income’, 
+      and in the education level, 1 means middle school or lower, 2 means high school, and 3 means college or higher.
+    <p>
+      <table style="width:500px"> 
+        <tr><th>id</th><th>Living standard</th><th>Education level</th></tr>
+        <tr><td class="tdCenter"> 1</td> <td class="tdCenter">3</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter"> 2</td> <td class="tdCenter">1</td> <td class="tdCenter">1</td> </tr>
+        <tr><td class="tdCenter"> 3</td> <td class="tdCenter">2</td> <td class="tdCenter">2</td> </tr>
+        <tr><td class="tdCenter"> 4</td> <td class="tdCenter">3</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter"> 5</td> <td class="tdCenter">1</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter"> 6</td> <td class="tdCenter">3</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter"> 7</td> <td class="tdCenter">1</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter"> 8</td> <td class="tdCenter">2</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter"> 9</td> <td class="tdCenter">2</td> <td class="tdCenter">2</td> </tr>
+        <tr><td class="tdCenter">10</td> <td class="tdCenter">3</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter">11</td> <td class="tdCenter">2</td> <td class="tdCenter">2</td> </tr>
+        <tr><td class="tdCenter">12</td> <td class="tdCenter">1</td> <td class="tdCenter">1</td> </tr>
+        <tr><td class="tdCenter">13</td> <td class="tdCenter">3</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter">14</td> <td class="tdCenter">2</td> <td class="tdCenter">2</td> </tr>
+        <tr><td class="tdCenter">15</td> <td class="tdCenter">2</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter">16</td> <td class="tdCenter">2</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter">17</td> <td class="tdCenter">3</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter">18</td> <td class="tdCenter">3</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter">19</td> <td class="tdCenter">1</td> <td class="tdCenter">1</td> </tr>
+        <tr><td class="tdCenter">20</td> <td class="tdCenter">2</td> <td class="tdCenter">2</td> </tr>
+        <tr><td class="tdCenter">21</td> <td class="tdCenter">1</td> <td class="tdCenter">1</td> </tr>
+        <tr><td class="tdCenter">22</td> <td class="tdCenter">1</td> <td class="tdCenter">2</td> </tr>
+        <tr><td class="tdCenter">23</td> <td class="tdCenter">2</td> <td class="tdCenter">3</td> </tr>
+        <tr><td class="tdCenter">24</td> <td class="tdCenter">3</td> <td class="tdCenter">1</td> </tr>
+        <tr><td class="tdCenter">25</td> <td class="tdCenter">1</td> <td class="tdCenter">2</td> </tr>
+      </table>
+
+    <div class="textL30M20">1) Classify the two variables of this data.</div>
+    <div class="textL30M20">2) Draw a bar graph and pie chart for each of the living standard and education level.</div>
+    <div class="textL30M20">3) Draw a bar graph on the living standard using the education level as a group variable.
+                               Draw several variations of bar graph using eStat.</div>
+
+    <p class="textL30M30">2.2  The following data shows the highest temperature (degree in Celcius) in a city on a single day in August. 
+       Draw a dot graph, histogram, and stem and leaf plot. 
+      <table style="width:500px"> 
+        <tr><td class="tdLeft"> 29, 29, 34, 35, 35, 31, 32, 34, 38, 34, 33, 31, 31, 30, 34, 35,</td> </tr>
+        <tr><td class="tdLeft"> 34, 32, 32, 29, 28, 30, 29, 31, 29, 28, 30, 29, 29, 27, 28</td> </tr>
+      </table>
+
+    <p class="textL30M30">2.3 Below are the entrance exam results for selecting new employees at a particular company.  
+        Using this data, draw and analyze histograms and boxplots by gender using eStat and R.
+      <table style="width:500px"> 
+        <tr> <th>Male</th> <th>Female</th> </tr>
+        <tr><td class="tdCenter"> 49 86 40 45 48 93 97 58 58 98 <br>
+                                  58 82 52 56 50 85 80 60 62 80 <br>
+                                  62 72 65 60 64 70 78 67 69 88
+            </td> 
+            <td class="tdCenter"> 60 72 66 65 75 78 62 64 74 58 <br>
+                                  68 72 67 61 62 72 79 71 74 73
+            </td>
+        </tr>
+      </table>
+
+    <p class="textL30M30">2.4  The results of observing the typing speed (X) and number of errors (Y) that 10 typists  
+                     input a certain amount of documents into a computer are as follows.
+      <table style="width:500px"> 
+        <tr> <th>Gender</th> <th>X (typing speed, unit: seconds)</th> <th>Y (number of errors)</th> </tr>
+        <tr> <td class="tdCenter">M</td> <td class="tdCenter">65</td> <td class="tdCenter">6</td> </tr>
+        <tr> <td class="tdCenter">M</td> <td class="tdCenter">60</td> <td class="tdCenter">9</td> </tr>
+        <tr> <td class="tdCenter">F</td> <td class="tdCenter">70</td> <td class="tdCenter">2</td> </tr>
+        <tr> <td class="tdCenter">F</td> <td class="tdCenter">73</td> <td class="tdCenter">4</td> </tr>
+        <tr> <td class="tdCenter">M</td> <td class="tdCenter">55</td> <td class="tdCenter">9</td> </tr>
+        <tr> <td class="tdCenter">M</td> <td class="tdCenter">65</td> <td class="tdCenter">3</td> </tr>
+        <tr> <td class="tdCenter">M</td> <td class="tdCenter">61</td> <td class="tdCenter">7</td> </tr>
+        <tr> <td class="tdCenter">M</td> <td class="tdCenter">59</td> <td class="tdCenter">1</td> </tr>
+        <tr> <td class="tdCenter">F</td> <td class="tdCenter">75</td> <td class="tdCenter">4</td> </tr>
+        <tr> <td class="tdCenter">M</td> <td class="tdCenter">64</td> <td class="tdCenter">2</td> </tr>
+      </table>
+      <div class="textL30M20">1) Draw a scatter plot showing the relationship between typing speed and the number of errors. Find a regression line.</div>
+      <div class="textL30M20">2) Draw a scatter plot showing the relationship between typing speed and the number of errors using the gender as a group variable. Find a regression line.</div>
+
+    <p class="textL30M30">2.5 A particular company's annual sales and net income for the past 10 years 
+            are as follows. Draw a line graph of this data and analyze the graph.
+      <table style="width:500px"> 
+        <tr> <th>Year</th> <th>Sales (unit: million dollars)</th> <th>Net profit (unit: million dollars)</th> </tr>
+        <tr> <td class="tdCenter">2015</td> <td class="tdCenter">210</td> <td class="tdCenter">10</td> </tr>
+        <tr> <td class="tdCenter">2016</td> <td class="tdCenter">235</td> <td class="tdCenter">11</td> </tr>
+        <tr> <td class="tdCenter">2017</td> <td class="tdCenter">280</td> <td class="tdCenter">25</td> </tr>
+        <tr> <td class="tdCenter">2018</td> <td class="tdCenter">350</td> <td class="tdCenter">20</td> </tr>
+        <tr> <td class="tdCenter">2019</td> <td class="tdCenter">355</td> <td class="tdCenter">18</td> </tr>
+        <tr> <td class="tdCenter">2020</td> <td class="tdCenter">360</td> <td class="tdCenter">20</td> </tr>
+        <tr> <td class="tdCenter">2021</td> <td class="tdCenter">450</td> <td class="tdCenter">30</td> </tr>
+        <tr> <td class="tdCenter">2022</td> <td class="tdCenter">560</td> <td class="tdCenter">40</td> </tr>
+        <tr> <td class="tdCenter">2023</td> <td class="tdCenter">600</td> <td class="tdCenter">45</td> </tr>
+        <tr> <td class="tdCenter">2024</td> <td class="tdCenter">620</td> <td class="tdCenter">40</td> </tr>
+      </table>
+
+    <p class="textL30M30">2.6  The age and purchasing status (Y: purchase, N: non-purchase) of 10 people 
+        visiting a particular store were investigated as follows.
+      <table style="width:500px"> 
+        <tr> <th>Age</th> <th>Purchasing</th> </tr>
+        <tr> <td class="tdCenter">23</td> <td class="tdCenter">Y</td> </tr>
+        <tr> <td class="tdCenter">29</td> <td class="tdCenter">N</td> </tr>
+        <tr> <td class="tdCenter">34</td> <td class="tdCenter">Y</td> </tr>
+        <tr> <td class="tdCenter">44</td> <td class="tdCenter">Y</td> </tr>
+        <tr> <td class="tdCenter">58</td> <td class="tdCenter">N</td> </tr>
+        <tr> <td class="tdCenter">50</td> <td class="tdCenter">Y</td> </tr>
+        <tr> <td class="tdCenter">46</td> <td class="tdCenter">Y</td> </tr>
+        <tr> <td class="tdCenter">21</td> <td class="tdCenter">Y</td> </tr>
+        <tr> <td class="tdCenter">22</td> <td class="tdCenter">N</td> </tr>
+        <tr> <td class="tdCenter">30</td> <td class="tdCenter">N</td> </tr>
+      </table>
+      <div class="textL30M20">1) Create a cross table of purchasing status by dividing the ages into under 30 and over 30.</div>
+      <div class="textL30M20">2) Create a cross table of purchasing status by dividing the ages into under 40 and over 40.</div>
+      <div class="textL30M20">3) Decide which of the two dividing methods above is better.</div>
+
+    <p class="textL30M30">2.7 <b>(Motor Trend Car Road Tests)</b>  <br>
+            We extracted 32 observation data from the 1974 Motor Trend US magazine, which comprised fuel consumption 
+            and 10 aspects of automobile design and performance. The data have 11 variables as follows.
+            <p>
+            <table style="width:500px">
+              <tr> <td>V1</td>  <td>mpg</td>  <td>Miles/(US) per gallon</td> </tr>
+              <tr> <td>V2</td>  <td>cyl</td>  <td>Number of cylinders</td> </tr>
+              <tr> <td>V3</td>  <td>disp</td> <td>Displacement (cu.in.)</td> </tr>
+              <tr> <td>V4</td>  <td>hp</td>   <td>Gross horsepower</td> </tr>
+              <tr> <td>V5</td>  <td>drat</td> <td>Rear axle ratio</td> </tr>
+              <tr> <td>V6</td>  <td>wt</td>   <td>Weight (1000 lbs)</td> </tr>
+              <tr> <td>V7</td>  <td>qsec</td> <td>1/4 mile time</td> </tr>
+              <tr> <td>V8</td>  <td>vs</td>   <td>Engine (0 = V-shaped, 1 = straight)</td> </tr>
+              <tr> <td>V9</td>  <td>am</td>   <td>Transmission (0 = automatic, 1 = manual)</td> </tr>
+              <tr> <td>V10</td> <td>gear</td> <td>Number of forward gears</td> </tr>
+              <tr> <td>V11</td> <td>carb</td> <td>Number of carburetors</td> </tr>
+            </table>
+            <p class="figText">(Source: Henderson and Velleman (1981), Building multiple regression models interactively. Biometrics, 37, 391–411.) 
+            <p>
+            <p class="textL30">This data are saved at the following location of 『eStat』.
+            <p>
+            <p class="textLeft">[Ex] ⇨ DataScience ⇨ Mtcars.csv
+            <p>
+            <input class="qrBtn" type="image" src="/estat/eStat/qr/PR030303.png" onclick="window.open(addrStr[55])">     
+      <div class="textL30M20">1) Draw a scatter plot of the miles per gallon and the weight of a car by the number of cylinders.</div> 
+      <div class="textL30M20">2) Draw a scatter plot matrix of all continuous variable. Use Engine and Transmission as a group variable</div> 
+      <div class="textL30M20">3) Draw a parallel graph of all continuous variable. Use Engine and Transmission as a group variable</div> 
+
+  </div>
+
+
+</div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/estat/eLearning/en/eStatU/estat/eLearning/en/eStatU//estat/eLearning/en/eStatU/estat/eLearning/en/eStatU/assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
+        
+        /* ajust the height when click the toc
+           the code is from https://github.com/twbs/bootstrap/issues/1768
+        */
+        var shiftWindow = function() { scrollBy(0, -50) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+        
+        /*add Bootstrap styles to tables*/
+        var tables = document.getElementsByTagName("table");
+        for(var i = 0; i < tables.length; ++i){
+            tables[i].className += "table table-bordered table-hover";
+        }
+    </script>
+
+</body>
+</html>
+
