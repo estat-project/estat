@@ -782,7 +782,7 @@ Residual Deviance: 20.68        AIC: 26.68
        the 1-nearest neighbor (innermost circle), 2-nearest neighbor (middle circle), and 7-nearest neighbor 
        (outer circle) data points using the two-dimensional Euclidean distance.
     <p>
-       <img class="figure50" src="./Figure/Fig070301.png">
+       <img class="figure50" src="./figure/Fig070301.png">
        <div class="figText">&lt;Figure 7.3.1&gt; 1-nearest, 2-nearest, 7-nearest neighbor data for given data marked with \(\small X\)</div>
     <p>
        If only 1-nearest neighbor is used for classification, there is one - group, and the data \(\small X\)
@@ -1076,7 +1076,7 @@ Purchase No Yes
        by multiple neurons is synthesized to make a decision. The neural network model connects multiple nodes 
        into a network similar to the human brain and makes decisions to classify data, as in &lt;Figure 7.4.1&gt;.
     <p>
-       <img class="figure50" src="./Figure/Fig070401.png">
+       <img class="figure50" src="./figure/Fig070401.png">
        <div class="figText">&lt;Figure 7.4.1&gt; Neural network model connects multiple nodes into a network</div>
     <p>
        The artificial neural network model is a model that uses a generalized nonlinear function as a classification function.
@@ -1084,7 +1084,7 @@ Purchase No Yes
        as in &lt;Figure 7.4.2&gt;. This data cannot be separated into two groups o and x by a single straight line 
        (not linearly separable), and can only be separated by two straight lines or nonlinear functions.
     <p>
-       <img class="figure50" src="./Figure/Fig070402.png">
+       <img class="figure50" src="./figure/Fig070402.png">
        <div class="figText">&lt;Figure 7.4.2&gt; Two-dimensional data which cannot be separated into two groups o and x by a single straight line</div>
   </div>
   <p>
@@ -1156,7 +1156,7 @@ Purchase No Yes
        it is as in &lt;Figure 7.4.3&gt;. This is called a <b>single-layer neural network</b> or 
        <b>perceptron</b>.
     <p>
-       <img class="figure50" src="./Figure/Fig070403.png">
+       <img class="figure50" src="./figure/Fig070403.png">
        <div class="figText">&lt;Figure 7.4.3&gt; Single layer neural network which is a linear classification model</div>
     <p>
        As you can see in the figure, there is an <b>input node</b> to display the value of three variables 
@@ -1214,7 +1214,7 @@ Purchase No Yes
          <tr><td class="tdCenter">\(Gauss\) function</td>  <td class="tdCenter">\(y = e^{-\frac{x^2}{2}}\)</td>                    <td class="tdCenter">(0, 1)</td>  </tr>
        </table>
     <p>
-       <img class="figure70" src="./Figure/Fig070404.png">
+       <img class="figure70" src="./figure/Fig070404.png">
        <div class="figText">&lt;Figure 7.4.4&gt; Shapes of activation functions</div>
   </div>
   <p>
@@ -1424,7 +1424,7 @@ Purchase No Yes
        &lt;Figure 7.4.5&gt; has only one hidden layer, but can create multiple hidden layers, and each layer 
        can have multiple nodes, so various types of networks can appear.
     <p>
-       <img class="figure70" src="./Figure/Fig070405.png">
+       <img class="figure70" src="./figure/Fig070405.png">
        <div class="figText">&lt;Figure 7.4.5&gt; Example of multilayer neural network</div>
     <p>
        The neural network in &lt;Figure 7.4.5&gt; can be expressed as a formula as follows. Let the weight coefficients 
@@ -2103,7 +2103,7 @@ nnetpred -1 1
        Linear SVM is a method to determine a linear classification function so that the distance, such as 
        \(d_{1}\), is maximized.
     <p>
-       <img class="figure50" src="./Figure/Fig070501.png">
+       <img class="figure50" src="./figure/Fig070501.png">
        <div class="figText">&lt;Figure 7.5.1&gt; Comparison of two lines for classification<br>
            The distance \(d_{1}\) of \(L_{1}\) is larger than \(d_{2}\) of \(L_{2}\), 
            so \(L_{1}\) has less possibility of misclassification.
@@ -2157,7 +2157,7 @@ nnetpred -1 1
        and the one that has the largest distance of margin between 
        the data on the boundaries of the two groups on the hyperplane can minimize misclassification error.
     <p>
-       <img class="figure50" src="./Figure/Fig070502.png">
+       <img class="figure50" src="./figure/Fig070502.png">
        <div class="figText">&lt;Figure 7.5.2&gt; A hyperplane that can classify two groups in data. 
          <br>The hyperplane that maximizes the distance (margin \(d\)) is likely to have less misclassification 
              in actual classification.
@@ -2253,7 +2253,7 @@ nnetpred -1 1
        as in &lt;Figure 7.5.3&gt;. In the figure, o means + group and r means - group, and we can see that 
        there are many straight lines that can classify the two groups.
     <p>
-       <img class="figure50" src="./Figure/Fig070503.png">
+       <img class="figure50" src="./figure/Fig070503.png">
        <div class="figText">&lt;Figure 7.5.3&gt; Linearly separable data.</div>
     <p>
        If we find the solution to the quadratic programming of the linear support vector, the classification function is
@@ -2281,7 +2281,7 @@ nnetpred -1 1
          }
        $$
     <p>
-       <img class="figure50" src="./Figure/Fig070504.png">
+       <img class="figure50" src="./figure/Fig070504.png">
        <div class="figText">&lt;Figure 7.5.4&gt; Linearly not separable data and a slack variable.</div>
     <p>
        In &lt;Figure 7.5.4&gt;, the slack variable \(\xi\) means that the hyperplane 
@@ -2580,7 +2580,7 @@ svmpred -1 1
          </tr>    
          <tr>
            <td style="width:650px;"><span style="color:red;">> abline(500,-10)</span><br>
-       <img class="figure50" src="./Figure/Fig070505.png">
+       <img class="figure50" src="./figure/Fig070505.png">
            </td>
            <td class="tdCenter"><button onclick="rFunction(118)">copy r command</button></td>
          </tr>
@@ -3101,7 +3101,7 @@ node), split, n, loss, yval, (yprob)
          </tr>
          <tr>
            <td><span style="color:red;">> text(iris.bagging$trees[[10]])</span><br>
-               <img class="figure50" src="./Figure/Fig070601.png">
+               <img class="figure50" src="./figure/Fig070601.png">
            </td>
            <td class="tdCenter"><button onclick="rFunction(127)">copy r command</button></td>
          </tr>
@@ -3828,7 +3828,7 @@ node), split, n, loss, yval, (yprob)
          </tr>
          <tr>
            <td><span style="color:red;">> text(iris.adaboost$trees[[10]])</span> <br>
-               <img class="figure90" src="./Figure/Fig070602.png">
+               <img class="figure90" src="./figure/Fig070602.png">
            </td>
            <td class="tdCenter"><button onclick="rFunction(137)">copy r command</button></td>
          </tr>
