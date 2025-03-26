@@ -141,7 +141,8 @@ var svgWidth, svgHeight, margin, graphWidth, graphHeight;
 var svgWidth2, svgHeight2;
 var title, graphNum;
 var str, gstr, xstr, ystr, varListStr;
-var str1, str2, str3, str4 ;
+var str1, str2, str3, str4;
+var titleStr = "";
 var langNum = 0;
 var rowMax = 9999; // 시트행 최대
 var colMax = 30; // 시트열 최대
@@ -343,6 +344,10 @@ for (j=0; j<colMax; j++) {
    invXPX[j] = new Array(colMax);
 }
 // Array for Data Mining
+  var method240, methodType240; 
+  var method25,  methodType25; 
+  var method26,  methodType26; 
+  var method261, methodType261;
   var iprior, linearFunction, tnumVar, numfreqDM; 
   var training, mindata, methodType, testobs, numK, method29, method292, maxiter, epsi, Kgroup, SSE;
   var icluster;
@@ -552,8 +557,8 @@ for (j=0; j<colMax; j++) {
     var sensitivity24 = new Array(maxnumK24);
     var specificity24 = new Array(maxnumK24);
     // nearest K selection method
-      var method240 = document.myForm240.type240;
-      var methodType240 = method240.value; 
+      method240 = document.myForm240.type240;
+      methodType240 = method240.value; 
       document.getElementById("numK").disabled       = true;
       document.getElementById("training24").disabled = true;
       document.getElementById("testing24").disabled  = true;
@@ -573,7 +578,7 @@ for (j=0; j<colMax; j++) {
         document.getElementById("dm24classificationTable").disabled  = false;
       }  
           // distance selection method
-          var method24 = document.myForm24.type24;
+          method24 = document.myForm24.type24;
           methodType24 = parseInt(method24.value); 
           method24[0].onclick = function() { methodType24 = method24.value; }  // Euclid^2
           method24[1].onclick = function() { methodType24 = method24.value; }  // Manhattan
@@ -4173,6 +4178,7 @@ d3.select("#knearest").on("click", function() {
   for (i = 0; i < tnumVar; i++) svarName[i] = tdvarName[i+1];
   statMultivariateDM(ngroup, tnumVar, tobs);
   chart.selectAll("*").remove();
+  titleStr = " - (Total Data)";
   drawScatterMatrixByGroup(tnumVar, svarName, tobs, ngroup, gdataValue, linearFunction);
 })
       // scatter plot 
@@ -4229,6 +4235,7 @@ d3.select("#knearest").on("click", function() {
           dataClassifyDMbyGroup();
           dataPartition();
           tnumVar = numVar - 1;
+          titleStr = " - (Training Data)";
           drawScatterMatrixByGroup(tnumVar, svarName, tobs, ngroup, gdataValue, linearFunction);
           kNN(tnumVar, tobs, testobs, ngroup);
           printClassification();
@@ -4280,12 +4287,14 @@ d3.select("#decisionTree").on("click", function() {
   // draw barchart matrix
   var icrossTable = 0;  // to print cross table
   chart.selectAll("*").remove();
+  titleStr = " - (Total Data)";
   drawBarChartMatrix(numVar, tobs, freqMaxDM, icrossTable);
+  titleStr = "";
 })
       // decision tree
       d3.select("#dm25decisionTree").on("click", function() {
           // Variable selection method
-          var method25 = document.myForm25.type25;
+          method25 = document.myForm25.type25;
           methodType25 = method25.value; 
           method25[0].onclick = function() { methodType25 = method25.value; }  // Entropy
           method25[1].onclick = function() { methodType25 = method25.value; }  // Gini
@@ -4300,9 +4309,13 @@ d3.select("#decisionTree").on("click", function() {
           // draw barchart matrix
           var icrossTable = 0;  // to print cross table
           chart.selectAll("*").remove();
+          titleStr = " - (Training Data)";
           drawBarChartMatrix(numVar, tobs, freqMaxDM, icrossTable);
+          titleStr = "";
           decisionTree(numVar, tobs);
           decisionTreeTable();
+          decisionRule();
+          classificationDT(ngroup, rulenum);
       })
       // decision rule and classification results
       d3.select("#dm25decisionRule").on("click", function() {
@@ -4329,11 +4342,12 @@ d3.select("#naiveBayesClassification").on("click", function() {
   document.getElementById("groupVarMsg").innerHTML = "("+svgStrU[80][langNum]+")";
   document.getElementById("testing261").disabled = true;   
   // prior prob selection method
-  var method261 = document.myForm261.type261;
-  var methodType261 = method261.value; 
+  method261 = document.myForm261.type261;
+  methodType261 = method261.value; 
   method261[0].onclick = function() { methodType261 = method.value; }  
   method261[1].onclick = function() { methodType261 = method.value; }  
-  training = parseFloat(document.getElementById("training261").value) / 100;
+
+  training = 1;
   // data classify
   dataClassifyDMbyGroup();
   yobs = dobs;
@@ -4357,25 +4371,34 @@ d3.select("#naiveBayesClassification").on("click", function() {
   // Data partician
   dataPartitionDT();
   tnumVar = numVar;
-  if (numVar < 2) return;
-  // if gobsD[] < 2, cannot calculte covariance matrix
-  for (k = 0; k < ngroup; k++) {
-      if (gobsD[k] < 2) {
-         chart.append("text").attr("x", 50).attr("y", margin.top + 40)
-              .text(alertMsg[64][langNum]).style("stroke","red").style("font-size","1em");
-         return;
-      }
-      if (methodType261 == 1) prior[k] = gobsD[k] / tobs;
-      else prior[k] = 1 / ngroup;
-  }
   // draw barchart matrix
   var icrossTable = 0;  // to print cross table
   chart.selectAll("*").remove();
+  titleStr = " - (Total Data)";
   drawBarChartMatrix(numVar, tobs, freqMaxDM, icrossTable);
+  titleStr = "";
 })
       // execute naive Bayes classification
       d3.select("#dm261naiveBayesClassification").on("click", function() {
-//          drawBarChartMatrix(numVar, tobs, freqMaxDM, icrossTable);
+          training = parseFloat(document.getElementById("training261").value) / 100;
+          dataPartitionDT();
+          tnumVar = numVar;
+          if (numVar < 2) return;
+          for (k = 0; k < ngroup; k++) {
+            if (gobsD[k] < 2) {
+              chart.append("text").attr("x", 50).attr("y", margin.top + 40)
+                   .text(alertMsg[64][langNum]).style("stroke","red").style("font-size","1em");
+              return;
+            }
+            if (methodType261 == 1) prior[k] = gobsD[k] / tobs;
+            else prior[k] = 1 / ngroup;
+          }
+          // draw barchart matrix
+          var icrossTable = 0;  // to print cross table
+          chart.selectAll("*").remove();
+          titleStr = " - (Training Data)";
+          drawBarChartMatrix(numVar, tobs, freqMaxDM, icrossTable);
+          titleStr = "";
           naiveBayesClassification();
           printClassification();
       })
@@ -4422,6 +4445,12 @@ d3.select("#bayesClassification").on("click", function() {
 
   // data classify
   training = 1;
+  // prior prob selection method
+  method26 = document.myForm26.type26;
+  methodType26 = method26.value; 
+  method26[0].onclick = function() { methodType26 = method26.value; }  // sample prop
+  method26[1].onclick = function() { methodType26 = method26.value; }  // equal prop
+
   dataClassifyDMbyGroup();
   yobs = dobs;
   if (ngroup > 9) { // too many groups
@@ -4429,11 +4458,22 @@ d3.select("#bayesClassification").on("click", function() {
        return;
   }
   dataPartition();
+          for (k = 0; k < ngroup; k++) {
+            if (gobsD[k] < 2) {
+               chart.append("text").attr("x", 50).attr("y", margin.top + 40)
+                    .text(alertMsg[64][langNum]).style("stroke","red").style("font-size","1em");
+               return;
+            }
+            if (methodType26 == 1) prior[k] = gobsD[k] / tobs;
+            else prior[k] = 1 / ngroup;
+          }
+
   tnumVar = numVar - 1; 
   linearFunction = 0; // no linear function needed
   for (i = 0; i < tnumVar; i++) svarName[i] = tdvarName[i+1];
   statMultivariateDM(ngroup, tnumVar, tobs);
   chart.selectAll("*").remove();
+  titleStr = " - (Total Data)";
   drawScatterMatrixByGroup(tnumVar, svarName, tobs, ngroup, gdataValue, linearFunction);
 })
       // scatter plot 
@@ -4455,18 +4495,23 @@ d3.select("#bayesClassification").on("click", function() {
       // bayes classification
       d3.select("#dm26bayesClassification").on("click", function() {
           if (tobs < 1) return;
+          tnumVar = numVar - 1; 
 
+          // data classify
           training = parseFloat(document.getElementById("training26").value) / 100;
           // prior prob selection method
-          var method26 = document.myForm26.type26;
-          var methodType26 = method26.value; 
+          method26 = document.myForm26.type26;
+          methodType26 = method26.value; 
           method26[0].onclick = function() { methodType26 = method26.value; }  // sample prop
           method26[1].onclick = function() { methodType26 = method26.value; }  // equal prop
 
+          dataClassifyDMbyGroup();
+          yobs = dobs;
+          if (ngroup > 9) { // too many groups
+            alert(alertMsg[5][langNum]);
+            return;
+          }
           dataPartition();
-          tnumVar = numVar - 1; 
-          if (numVar < 2) return;
-          // if gobsD[] < 2, cannot calculte covariance matrix
           for (k = 0; k < ngroup; k++) {
             if (gobsD[k] < 2) {
                chart.append("text").attr("x", 50).attr("y", margin.top + 40)
@@ -4480,6 +4525,7 @@ d3.select("#bayesClassification").on("click", function() {
           discriminant(tnumVar, tobs, testobs);
           if (tnumVar == 2 && ngroup == 2) linearFunction = 1;
           chart.selectAll("*").remove();
+          titleStr = " - (Training Data)";
           drawScatterMatrixByGroup(tnumVar, svarName, tobs, ngroup, gdataValue, linearFunction);
           printBayesClassificationFunction()
           printClassification();

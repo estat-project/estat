@@ -151,8 +151,8 @@ function dataPartition() {
                   if (istandard == 0 ) Dtrain[i][tobs] = mdvar[i+1][j]
                   else Dtrain[i][tobs] = Dnormal[i+1][j];
                 }
-                tobs++;
                 gobsD[ytrainN[tobs]]++;
+                tobs++;
               }
               else { // testing data
                 ytest[testobs]  = yydata[j];
@@ -547,7 +547,7 @@ function drawBarChartMatrix(numVar, tobs, freqMaxDM, icrossTable) {
         .style("text-anchor", "middle")
         .attr("x", margin.left + graphWidth / 2)
         .attr("y", margin.top / 2)
-        .text(svgStr[129][langNum])
+        .text(svgStr[129][langNum]+titleStr)
     // y제목
     for (i = 0; i < numVar; i++) {
         chart.append("text") // y 왼쪽
@@ -1816,7 +1816,7 @@ function drawScatterMatrixByGroup(tnumVar,svarName, tobs, ngroup, gdataValue, li
         .style("text-anchor", "middle")
         .attr("x", margin.left + graphWidth / 2)
         .attr("y", margin.top / 2)
-        .text(svgStr[89][langNum])
+        .text(svgStr[89][langNum]+titleStr)
     // y제목
     for (i = 0; i < tnumVar; i++) {
         chart.append("text") // y 왼쪽
@@ -2059,7 +2059,7 @@ function parallelGraphByGroup(tnumVar, svarName, tobs, ngroup, gdataValue) {
         .style("text-anchor", "middle")
         .attr("x", margin.left + graphWidth / 2)
         .attr("y", margin.top / 2)
-        .text(svgStrU[141][langNum])
+        .text(svgStrU[141][langNum]+titleStr)
     // 범례
     if (ngroup > 1) {
         for (k = 0; k < ngroup; k++) {
@@ -2612,10 +2612,10 @@ function printClassification() {
     temp = 0;
     for (k = 0; k < ngroup; k++) temp += classTrain[k][k];
     temp /= classTrain[ngroup][ngroup];
-    cell[1].innerHTML = f2(100 * temp) + "%"; // Accuracy
+    cell[1].innerHTML = f2(100 * temp) + " %"; // Accuracy
     cell[1].style.textAlign = "right";
     cell[2].innerHTML = svgStrU[146][langNum]; // Misclassification
-    cell[3].innerHTML = f2(100 * (1-temp)) + "%"; // Misclassification
+    cell[3].innerHTML = f2(100 * (1-temp)) + " %"; // Misclassification
     cell[3].style.textAlign = "right";
 
     // 다음 표와의 공백을 위한 것
@@ -2684,10 +2684,10 @@ function printClassification() {
     temp = 0;
     for (k = 0; k < ngroup; k++) temp += classTest[k][k];
     temp /= classTest[ngroup][ngroup];
-    cell[1].innerHTML = f2(100 * temp) + "%"; // Accuracy
+    cell[1].innerHTML = f2(100 * temp) + " %"; // Accuracy
     cell[1].style.textAlign = "right";
     cell[2].innerHTML = svgStrU[146][langNum]; // Misclassification
-    cell[3].innerHTML = f2(100 * (1-temp)) + "%"; // Misclassification
+    cell[3].innerHTML = f2(100 * (1-temp)) + " %"; // Misclassification
     cell[3].style.textAlign = "right";
   }
     // 다음 표와의 공백을 위한 것
@@ -3374,7 +3374,7 @@ function minEntropyVar(entropy) {
     return tindex;
 }
 // Sorting in ascending 
-function sortAscend(dobs, dataA) {
+function sortAscendDM(dobs, dataA) {
     var i, j, temp;
     var nvalue = 0;
     for (i = 0; i < dobs - 1; i++) {
@@ -4815,8 +4815,8 @@ function covarianceInv(tnumVar) {
 
 //    console.log("i="+i+" "+L[i][0]+" "+L[i][1]+" "+L[i][2]+" "+L[i][3]+" "+L[i][4]+" "+L[i][5]);
 //    console.log("k="+k+" "+L[k][0]+" "+L[k][1]+" "+L[k][2]+" "+L[k][3]+" "+L[k][4]+" "+L[k][5]);  
-    console.log("k="+k+" "+L[0][0]+" "+L[0][1]+" "+L[0][2]+" "+L[0][3]+" "+L[0][4]+" "+L[0][5]);  
-    console.log("k="+k+" "+L[1][0]+" "+L[1][1]+" "+L[1][2]+" "+L[1][3]+" "+L[1][4]+" "+L[1][5]);  
+//    console.log("k="+k+" "+L[0][0]+" "+L[0][1]+" "+L[0][2]+" "+L[0][3]+" "+L[0][4]+" "+L[0][5]);  
+//    console.log("k="+k+" "+L[1][0]+" "+L[1][1]+" "+L[1][2]+" "+L[1][3]+" "+L[1][4]+" "+L[1][5]);  
 //    console.log("k="+k+" "+L[2][0]+" "+L[2][1]+" "+L[2][2]+" "+L[2][3]+" "+L[2][4]+" "+L[2][5]);  
  
 }

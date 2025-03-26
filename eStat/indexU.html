@@ -921,6 +921,9 @@
 
 	    <div id="sub24" class="option-group"> <!--- KNN --->
               <br>
+              &nbsp;&nbsp;<button type="button" id="dm24scatterPlot" style="width:130px;"><span data-msgid="ScatterplotMatrix"></span></button>
+              &nbsp;&nbsp;<button type="button" id="dm24parallelGraph" style="width:130px;"><span data-msgid="ParallelGraph"></span></button>
+              &nbsp;&nbsp;<button type="button" id="dm24statMultivariate" style="width:130px;"><span data-msgid="StatMultivariate"></span></button>
               <form name="myForm240"> 
                 &nbsp;&nbsp;<b><span data-msgid="numKNN"></span></b>&nbsp;
                 <label><input type="radio" name = "type240" value="1" checked> Search K (max=n/20 or 20)</label> &nbsp;
@@ -935,13 +938,9 @@
               </form>
               &nbsp;&nbsp;<b><span data-msgid="DataPartition"></span></b>
                       (<span data-msgid="Training"></span>    
-                      <input type="number" min=30 max=100 step=10 value=100 size=1 id="training24" style="text-align: center;" onchange="showTestData24(this.value)"> % : 
+                      <input type="number" min=30 max=100 step=10 value=50 size=1 id="training24" style="text-align: center;" onchange="showTestData24(this.value)"> % : 
                       <span data-msgid="Testing"></span> <input type="text" value=0 size=3 id="testing24" style="text-align: center;"> %)
-              &nbsp;&nbsp;<button type="button" id="dm24knnClassification" style="width:230px;"><span data-msgid="KNN"></span></button>
-              <p>
-              &nbsp;&nbsp;<button type="button" id="dm24scatterPlot" style="width:130px;"><span data-msgid="ScatterplotMatrix"></span></button>
-              &nbsp;&nbsp;<button type="button" id="dm24parallelGraph" style="width:130px;"><span data-msgid="ParallelGraph"></span></button>
-              &nbsp;&nbsp;<button type="button" id="dm24statMultivariate" style="width:130px;"><span data-msgid="StatMultivariate"></span></button>
+              &nbsp;&nbsp;<button type="button" id="dm24knnClassification" style="width:140px;"><span data-msgid="KNN"></span></button>
               &nbsp;&nbsp;<button type="button" id="dm24classificationTable" style="width:130px;"><span data-msgid="BayesTable"></span></button>
 	    </div>
 
@@ -961,16 +960,22 @@
                   <td><b><span data-msgid="MinData">Minimum Data of Branch</span></b>&nbsp;=&nbsp;
                       <input type="number" min=3 max=30 value=5 size=3 id="mindata" style="text-align: center;">
                   </td>
-                  <td>&nbsp;&nbsp;<b><span data-msgid="DataPartition"></span></b>
+                </tr>
+              </table>
+              <table>
+                <tr>
+                  <td><b><span data-msgid="DataPartition"></span></b>
                       (<span data-msgid="Training"></span>    
                       <input type="number" min=30 max=100 step=10 value=50 size=2 id="training25" style="text-align: center;" onchange="showTestData25(this.value)"> % : 
                       <span data-msgid="Testing"></span> <input type="text" value=50 size=3 id="testing25" style="text-align: center;"> %)
                   </td>
-                </tr>
-                <tr>
-	          <td style="textAlign:left;"><button type="button" id="dm25decisionTree"><span class="tooltiptext" data-msgid="DecisionTree"></span></button></td>
+	          <td>
+                    <button type="button" id="dm25decisionTree"><span class="tooltiptext" data-msgid="DecisionTree"></span></button> &nbsp;&nbsp;
+                    <button type="button" id="dm25classificationTable" style="width:130px;"><span data-msgid="BayesTable"></span></button>
+                  </td>
+<!--
                   <td style="textAlign:left;"><button type="button" id="dm25decisionRule"><span data-msgid="StatClassification"></span></button></td>
-                  <td style="textAlign:left;"><button type="button" id="dm25classificationTable" style="width:130px;"><span data-msgid="BayesTable"></span></button></td>
+-->
                 </tr>
               </table>  
 	    </div>
@@ -996,19 +1001,20 @@
 
 	    <div id="sub26" class="option-group"> <!--- Bayes Classification --->
               <br>
+              &nbsp;&nbsp;<button type="button" id="dm26scatterPlot" style="width:130px;"><span data-msgid="ScatterplotMatrix"></span></button>
+              &nbsp;&nbsp;<button type="button" id="dm26parallelGraph" style="width:130px;"><span data-msgid="ParallelGraph"></span></button>
+              &nbsp;&nbsp;<button type="button" id="dm26statMultivariate" style="width:130px;"><span data-msgid="StatMultivariate"></span></button>
+              <br>
               <form name="myForm26"> 
                 &nbsp;&nbsp;<b><span data-msgid="PriorProb"></span></b>
                 <label><input type="radio" name = "type26" value="1" checked> <span data-msgid="SampleProp"></span></label> 
-                <label><input type="radio" name = "type26" value="2" ><span data-msgid="EqualProp"></span></label>     
+                <label><input type="radio" name = "type26" value="2" ><span data-msgid="EqualProp"></span></label> 
+                <br>    
                 &nbsp;&nbsp;<b><span data-msgid="DataPartition"></span></b>
                       (<span data-msgid="Training"></span>    
                       <input type="number" min=30 max=100 step=10 value=50 size=1 id="training26" style="text-align: center;" onchange="showTestData26(this.value)"> % : 
                       <span data-msgid="Testing"></span> <input type="text" value=50 size=3 id="testing26" style="text-align: center;"> %)
               </form>
-              <br>
-              &nbsp;&nbsp;<button type="button" id="dm26scatterPlot" style="width:130px;"><span data-msgid="ScatterplotMatrix"></span></button>
-              &nbsp;&nbsp;<button type="button" id="dm26parallelGraph" style="width:130px;"><span data-msgid="ParallelGraph"></span></button>
-              &nbsp;&nbsp;<button type="button" id="dm26statMultivariate" style="width:130px;"><span data-msgid="StatMultivariate"></span></button>
               <br>
               &nbsp;&nbsp;<button type="button" id="dm26bayesClassification" style="width:200px;"><span data-msgid="Discriminant"></span></button>
               &nbsp;&nbsp;<button type="button" id="dm26classificationTable" style="width:130px;"><span data-msgid="BayesTable"></span></button>
