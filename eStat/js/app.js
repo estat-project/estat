@@ -1009,7 +1009,7 @@ d3.select("#icon_openExample").on("click", function() {
 });
 $(document).ready(function() {
     $("#exampleFileListing").fileTree({
-        root: '/estat/Example/'
+        root: '../Example/'
     }, function(file) {
 	examplePath = file.substring(11);
 	openExample(examplePath);
@@ -1017,7 +1017,7 @@ $(document).ready(function() {
     });
 });
 function openExample(examplePath, callback = undefined) {
-    url = "/estat/Example/" + examplePath;
+    url = "../Example/" + examplePath;
     estatapp.dataURL = url;
     readFromURL(url, callback);
 }
