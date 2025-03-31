@@ -1,5 +1,6 @@
 // ScatterMatrix - Parallel Graph
       var chart     = d3.select("#chart"); 
+      var titleStr    = "";
       var svgWidth    = 600;
       var svgHeight   = 600;
       var margin      = {top: 80, bottom: 80, left: 80, right: 80};

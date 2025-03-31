@@ -1,5 +1,6 @@
 // Bayes Classification
       var chart     = d3.select("#chart"); 
+      var titleStr    = " - (Training Data)";
       var svgWidth    = 600;
       var svgHeight   = 600;
       var margin      = {top: 80, bottom: 80, left: 80, right: 80};

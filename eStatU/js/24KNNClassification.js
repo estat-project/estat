@@ -1,5 +1,6 @@
 // KNN Classification
       var chart     = d3.select("#chart"); 
+      var titleStr    = " - (Total data)";
       var svgWidth    = 600;
       var svgHeight   = 600;
       var margin      = {top: 80, bottom: 80, left: 80, right: 80};
@@ -415,6 +416,7 @@
           tnumVar = numVar;
           statMultivariateDM(ngroup, tnumVar, tobs);
           kNN(tnumVar, tobs, testobs, ngroup);
+          titleStr    = " - (Training Data)";
           drawScatterMatrixByGroup(tnumVar, svarName, tobs, ngroup, gdataValue, linearFunction);
           printMultivariate(iprior);
           printClassification();
@@ -424,11 +426,13 @@
       // scatter plot cluster
       d3.select("#scatterPlot").on("click", function() {
           if (tobs < 1) return;
+          titleStr    = " - (Training Data)";
           drawScatterMatrixByGroup(numVar, svarName, tobs, ngroup, gdataValue, linearFunction);
       })
       // parallel graph
       d3.select("#parallelGraph").on("click", function() {
           if (tobs < 1) return;
+          titleStr    = " - (Training Data)";
           parallelGraphByGroup(numVar, svarName, tobs, ngroup, gdataValue);
       })
       // classificationr table

@@ -3,6 +3,7 @@
     chart.selectAll("*").remove();
 
     var i, r, str0, str1, str2;
+    var titleStr    = "";
     var svgWidth    = 600;
     var svgHeight   = 600;
     var margin      = {top: 80, bottom: 80, left: 80, right: 80};

@@ -4,6 +4,7 @@
     chart.selectAll("*").remove();
 
     var i, r, str0, str1, str2;
+    var titleStr    = " - (Training Data)";
     var svgWidth    = 600;
     var svgHeight   = 600;
     var margin      = {top: 80, bottom: 80, left: 20, right: 140};
