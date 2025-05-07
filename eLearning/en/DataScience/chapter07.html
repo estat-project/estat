@@ -104,27 +104,27 @@
   </h6>
 	      <ul>
                 <li class="listNone"><a href="#0701">7.1 Bayes classification model - Continous data</a></li>
-                <li class="listNoneIndent"><a href="#070101">7.1.1  R practice - Bayes classification</a></li>
+                <li class="listNoneIndent"><a href="#070101">7.1.1  R and Python practice - Bayes classification</a></li>
                 <li class="listNone"><a href="#0702">7.2 Logistic regression model</a></li>
-                <li class="listNoneIndent"><a href="#070201">7.2.1  R practice - Logistic regression</a></li>
+                <li class="listNoneIndent"><a href="#070201">7.2.1  R and Python practice - Logistic regression</a></li>
                 <li class="listNone"><a href="#0703">7.3 Nearest neighbor classification model</a></li>
-                <li class="listNoneIndent"><a href="#070301">7.3.1  R practice - Nearest neighbor classification</a></li>
+                <li class="listNoneIndent"><a href="#070301">7.3.1  R and Python practice - Nearest neighbor classification</a></li>
                 <li class="listNone"><a href="#0704">7.4 Neural network model</a></li>
                 <li class="listNoneIndent"><a href="#070401">7.4.1  Single-layer neural network</a></li>
                 <li class="listNoneIndent"><a href="#070402">7.4.2  Multilayer neural network</a></li>
                 <li class="listNoneIndent"><a href="#070403">7.4.3  Artificial intelligence</a></li>
-                <li class="listNoneIndent"><a href="#070405">7.4.5  R practice - Neural network</a></li>
+                <li class="listNoneIndent"><a href="#070405">7.4.5  R and Python practice - Neural network</a></li>
                 <li class="listNone"><a href="#0705">7.5 Support vector machine model</a></li>
                 <li class="listNoneIndent"><a href="#070501">7.5.1  Linear support vector machine</a></li>
                 <li class="listNoneIndent"><a href="#070502">7.5.2  Nonlinear support vector machine</a></li>
-                <li class="listNoneIndent"><a href="#070503">7.5.3  R practice - Support vector machine</a></li>
+                <li class="listNoneIndent"><a href="#070503">7.5.3  R and Python practice - Support vector machine</a></li>
                 <li class="listNone"><a href="#0706">7.6 Ensemble model</a></li>
                 <li class="listNoneIndent"><a href="#070601">7.6.1  Bagging</a></li>
-                <li class="listNoneIndent"><a href="#070602">7.6.2  R practice - Bagging</a></li>
+                <li class="listNoneIndent"><a href="#070602">7.6.2  R and Python practice - Bagging</a></li>
                 <li class="listNoneIndent"><a href="#070603">7.6.3  Boosting</a></li>
-                <li class="listNoneIndent"><a href="#070604">7.6.4  R practice - Boosting</a></li>
+                <li class="listNoneIndent"><a href="#070604">7.6.4  R and Python practice - Boosting</a></li>
                 <li class="listNoneIndent"><a href="#070605">7.6.5  Random Forest</a></li>
-                <li class="listNoneIndent"><a href="#070606">7.6.6  R practice - Random forest</a></li>
+                <li class="listNoneIndent"><a href="#070606">7.6.6  R and Python practice - Random forest</a></li>
                 <li class="listNone"><a href="#0707">7.7 Classification of multiple groups</a></li>
                 <li class="listNone"><a href="#0708">7.8 Exercise</a></li>
 	      </ul>
@@ -379,7 +379,11 @@
   <p>
 
   <!--------------------------------------------------------->
-  <h4 id="070101">7.1.1 R practice - Bayes classification</h4>
+  <h4 id="070101">7.1.1 R and Python practice - Bayes classification</h4>
+  <p>
+  <h5>R practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter7_1_1_R.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
   <p>
   <div class="mainTable">
        To analyze Bayes classification using R, we need to install a package called <b>MASS</b>. 
@@ -450,37 +454,31 @@ lda(x, grouping, ..., subset, na.action)<br>
     <p>
        <table style="width:800px;">
          <tr>
-           <td style="width:600px;"><span style="color:red;">> install.packages('MASS')</span></td>
-           <td class="tdCenter"><button onclick="rFunction(71)">copy r command</button></td>
+           <td style="width:600px;"><span style="color:red;"> install.packages('MASS')</span></td>
          </tr>
          <tr>
-           <td style="width:600px;"><span style="color:red;">> library(MASS)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(72)">copy r command</button></td>
+           <td style="width:600px;"><span style="color:red;"> library(MASS)</span></td>
          </tr>
          <tr>
-           <td style="width:600px;"><span style="color:red;">> customer <- read.csv('PurchaseByCredit20_Continuous.csv', header=T, as.is=FALSE)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(80)">copy r command</button></td>
+           <td style="width:600px;"><span style="color:red;"> customer <- read.csv('http://estat.me/estat/Example/DataScience/PurchaseByCredit20_Continuous.csv', header=T, as.is=FALSE)</span></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> attach(customer)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(81)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> attach(customer)</span></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> Purchase</span><br>
+           <td style="width:650px;"><span style="color:red;"> Purchase</span><br>
 <pre>
 [1] Yes No  No  Yes No  No  Yes No  No  Yes Yes No  No  Yes Yes No  No  No  Yes
 [20] No 
 Levels: No Yes
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(82)">copy r command</button></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> ldamodel <- lda(Purchase ~ ., customer)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(73)">copy r command</button></td>
+           <td><span style="color:red;"> ldamodel <- lda(Purchase ~ ., customer)</span></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> ldamodel</span>
+           <td><span style="color:red;"> ldamodel</span>
 <pre>
 Call: lda(Purchase ~ ., data = customer)
 Prior probabilities of groups:
@@ -496,7 +494,6 @@ Coefficients of linear discriminants:
 Income 0.001994526
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(74)">copy r command</button></td>
          </tr>
        </table>
        If we want to classify the group of the customer data using the Bayes model,
@@ -504,11 +501,10 @@ Income 0.001994526
     <p>
        <table style="width:800px;">
          <tr>
-           <td style="width:650px;"><span style="color:red;">> pred <- predict(ldamodel, customer)"</span></td>
-           <td class="tdCenter"><button onclick="rFunction(75)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> pred <- predict(ldamodel, customer)"</span></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> pred$class</span>
+           <td><span style="color:red;"> pred$class</span>
 <pre>
 $class
  [1] No  Yes No  No  No  No  Yes No  No  No  Yes No  Yes No  Yes No  No  No  Yes
@@ -516,7 +512,6 @@ $class
 Levels: No Yes
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(76)">copy r command</button></td>
          </tr>
        </table>
        To make a classification cross table, we can use a vector of prediction, pred$class, and 
@@ -526,27 +521,103 @@ Levels: No Yes
     <p>
        <table style="width:800px;">
          <tr>
-           <td style="width:650px;"><span style="color:red;">> classtable <- table(Purchase,pred$class)</span>
+           <td style="width:650px;"><span style="color:red;"> classtable <- table(Purchase,pred$class)</span>
 <pre>
 Purchase No Yes
      No  10   2
      Yes  4   4
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(77)">copy r command</button></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> sum(diag(classtable)) / sum(classtable)</span>
+           <td style="width:650px;"><span style="color:red;"> sum(diag(classtable)) / sum(classtable)</span>
 <pre>
 [1] 0.7
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(78)">copy r command</button></td>
          </tr>
        </table>
   </div>
   <p>
 
+  <h5>Python practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter7_1_1_Python.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
+  <div class="mainTable">
+    <table style="width:800px">
+         <tr>
+           <td>
+# Import required libraries <br>
+<span style="color:red;">
+import pandas as pd <br>
+customer = pd.read_csv('https://raw.githubusercontent.com/ogut77/DataScience/refs/heads/main/PurchaseByCredit20_Continuous.csv') <br>
+</span>
+<pre>
+    Age  Income Purchase
+0    25     150      Yes
+1    34     220       No
+2    27     210       No
+3    28     250      Yes
+4    21     100       No
+5    31     220       No
+6    36     300      Yes
+7    20     100       No
+8    29     220       No
+9    32     250      Yes
+10   37     400      Yes
+11   24     120       No
+12   33     350       No
+13   30     180      Yes
+14   38     350      Yes
+15   32     250       No
+16   28     240       No
+17   22     220       No
+18   39     450      Yes
+19   26     150       No
+</pre>
+
+<span style="color:red;">
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis <br>
+</span>
+# Separate features (X) and target variable (y) <br>
+<span style="color:red;">
+X = customer.drop('Purchase', axis=1) <br>
+y = customer['Purchase'] <br>
+</span>
+<br>
+# Initialize and train the Linear Discriminant Analysis model <br>
+<span style="color:red;">
+lda = LinearDiscriminantAnalysis() <br>
+lda.fit(X, y) <br>
+</span>
+
+# Make predictions on the test set <br>
+<span style="color:red;">
+y_pred = lda.predict(X) <br>
+</span>
+<br>
+# Evaluate the model (example: accuracy) <br>
+# You would typically use more comprehensive evaluation metrics <br>
+# depending on your specific needs. <br>
+<span style="color:red;">
+from sklearn.metrics import accuracy_score <br>
+from sklearn.metrics import confusion_matrix <br>
+accuracy = accuracy_score(y, y_pred) <br>
+cm=confusion_matrix(y, y_pred) <br>
+print(f"Accuracy: {accuracy}") <br>
+print(f"Confusion Matrix: \n{cm}") <br>
+</span>
+<pre>
+Accuracy: 0.7
+Confusion Matrix: 
+[[10  2]
+ [ 4  4]]
+</pre>
+           </td>
+         </tr>
+    </table>
+  </div>
+  <p>
 
   <!------------------------------------------------------------->
   <h3 id="0702">7.2 Logistic regression model</h3>
@@ -679,11 +750,15 @@ Purchase No Yes
   <p>
 
   <!--------------------------------------------------------->
-  <h4 id="070201">7.2.1 R practice - Logistic regression</h4>
+  <h4 id="070201">7.2.1 R and Python practice - Logistic regression</h4>
+  <p>
+  <h5>R practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter7_2_1_R.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
   <p>
   <div class="mainTable">
        Let us practice the logistic regression using R commands with the data saved at 
-       C:\Rwork\PurchaseByCredit20_Continuous.csv. 
+       http://estat.me/estat/Example/DataScience/PurchaseByCredit20_Continuous.csv. 
        In order to practice the decision tree using this data, we need to change first the working directory of R 
        as follows.
     <p>
@@ -696,11 +771,10 @@ Purchase No Yes
            <td># read the data file</td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> customer <- read.csv('PurchaseByCredit20_Continuous.csv', header=T, as.is=FALSE)</span></td>
-           <td class="tdCenter" style="width:150px;"><button onclick="rFunction(80)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> customer <- read.csv('http://estat.me/estat/Example/DataScience/PurchaseByCredit20_Continuous.csv', header=T, as.is=FALSE)</span></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> customer</span>
+           <td><span style="color:red;"> customer</span>
 <pre>
       Age Income Purchase
 1      25    150      Yes
@@ -727,26 +801,23 @@ Purchase No Yes
            </td>
          </tr>
          <tr>
-           <td><span style="color:red;">> attach(customer)</span>
+           <td><span style="color:red;"> attach(customer)</span>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(81)">copy r command</button></td>          
          </tr>
          <tr>
-           <td><span style="color:red;">> Purchase</span>
+           <td><span style="color:red;"> Purchase</span>
 <pre>
  [1] Yes No  No  Yes No  No  Yes No  No  Yes Yes No  No  Yes Yes No  No  No  Yes
 [20] No 
 Levels: No Yes
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(82)">copy r command</button></td>          
          </tr>
          <tr>
-           <td><span style="color:red;">> logitmodel <- glm(Purchase ~.,family=binomial(link='logit'),data=card)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(83)">copy r command</button></td>          
+           <td><span style="color:red;"> logitmodel <- glm(Purchase ~.,family=binomial(link='logit'),data=card)</span></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> logitmodel</span>
+           <td><span style="color:red;"> logitmodel</span>
 <pre>
 Call:  glm(formula = Purchase ~ ., family = binomial(link = "logit"), data = card)
 Coefficients:
@@ -757,7 +828,59 @@ Null Deviance:      26.92
 Residual Deviance: 20.68        AIC: 26.68
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(84)">copy r command</button></td>          
+         </tr>
+    </table>
+  </div>
+  <p>
+
+  <h5>Python practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter7_2_1_Python.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
+  <div class="mainTable">
+    <table style="width:800px">
+         <tr>
+           <td>
+# Import required libraries <br>
+<span style="color:red;">
+import pandas as pd <br>
+from sklearn.linear_model import LogisticRegression <br>
+from sklearn.model_selection import train_test_split <br>
+from sklearn.metrics import accuracy_score, confusion_matrix <br>
+</span>
+# Load the dataset (assuming it's already loaded as 'customer') <br>
+# If not, uncomment the line below <br>
+<span style="color:red;">
+customer = pd.read_csv('https://raw.githubusercontent.com/ogut77/DataScience/refs/heads/main/PurchaseByCredit20_Continuous.csv') <br>
+</span>
+<br>
+# Separate features (X) and target variable (y) <br>
+<span style="color:red;">
+X = customer.drop('Purchase', axis=1) <br>
+y = customer['Purchase'] <br>
+</span>
+<br>
+# Initialize and train the Logistic Regression model <br>
+<span style="color:red;">
+logreg = LogisticRegression()  # Specify a solver <br>
+logreg.fit(X, y) <br>
+print(logreg) <br>
+</span>
+<br>
+# Make predictions on the test set <br>
+<span style="color:red;">
+y_pred = logreg.predict(X) <br>
+</span>
+<br>
+# Evaluate the model <br>
+<span style="color:red;">
+accuracy = accuracy_score(y, y_pred) <br>
+cm = confusion_matrix(y, y_pred) <br>
+
+print(f"Accuracy: {accuracy}") <br>
+print(f"Confusion Matrix:\n{cm}") <br>
+</span>     
+
+           </td>
          </tr>
     </table>
   </div>
@@ -949,8 +1072,13 @@ Residual Deviance: 20.68        AIC: 26.68
   <p>
 
   <!--------------------------------------------------------->
-  <h4 id="070301">7.3.1 R practice - Nearest neighbor classification</h4>
+  <h4 id="070301">7.3.1 R and Python practice - Nearest neighbor classification</h4>
   <p>
+  <h5>R practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter7_3_1_R.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
+  <p>
+
   <div class="mainTable">
        To use k-nearest neighbor (KNN) classification using R, we need to install a package called <b>DMwR2</b>. 
        From the main menu of R,
@@ -997,43 +1125,36 @@ Residual Deviance: 20.68        AIC: 26.68
     <p>
        <table style="width:800px;">
          <tr>
-           <td style="width:650px;"><span style="color:red;">> install.packages('DMwR2')</span></td>
-           <td class="tdCenter"><button onclick="rFunction(86)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> install.packages('DMwR2')</span></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> library(DMwR2)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(87)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> library(DMwR2)</span></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> customer <- read.csv('PurchaseAgeIncome_Continuous.csv', header=T, as.is=FALSE)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(80)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> customer <- read.csv('http://estat.me/estat/Example/DataScience/PurchaseAgeIncome_Continuous.csv', header=T, as.is=FALSE)</span></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> attach(customer)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(81)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> attach(customer)</span></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> Purchase</span>
+           <td style="width:650px;"><span style="color:red;"> Purchase</span>
 <pre>
 [1] Yes No  No  Yes No  No  Yes No  No  Yes Yes No  No  Yes Yes No  No  No  Yes
 [20] No 
 Levels: No Yes
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(82)">copy r command</button></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> nn <- kNN(Purchase ~ ., customer, customer, k=5)<span></td>
-           <td class="tdCenter"><button onclick="rFunction(88)">copy r command</button></td>
+           <td><span style="color:red;"> nn <- kNN(Purchase ~ ., customer, customer, k=5)<span></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> nn</span>
+           <td><span style="color:red;"> nn</span>
 <pre>
  [1] No  No  No  No  No  No  Yes No  No  No  Yes No  Yes No  Yes No  No  No  Yes No 
 Levels: No Yes
-<pre>
+</pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(89)">copy r command</button></td>
          </tr>
        </table>
     <p>
@@ -1044,25 +1165,69 @@ Levels: No Yes
     <p>
        <table style="width:800px;">
          <tr>
-           <td style="width:650px;"><span style="color:red;">> classtable <- table(Purchase, nn)</span>
+           <td style="width:650px;"><span style="color:red;"> classtable <- table(Purchase, nn)</span>
 <pre>
 Purchase No Yes
-     No  10   2
+     No  11   1
      Yes  4   4
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(90)">copy r command</button></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> sum(diag(classtable)) / sum(classtable)</span>
+           <td style="width:650px;"><span style="color:red;"> sum(diag(classtable)) / sum(classtable)</span>
 <pre>
 [1] 0.75
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(91)">copy r command</button></td>
          </tr>
        </table>
 
+  </div>
+  <p>
+
+  <h5>Python practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter7_3_1_Python.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
+  <div class="mainTable">
+    <table style="width:800px">
+         <tr>
+           <td>
+# Import required libraries <br>
+<span style="color:red;">
+import pandas as pd <br>
+from sklearn.metrics import accuracy_score, confusion_matrix <br>
+from sklearn.neighbors import KNeighborsClassifier <br>
+customer = pd.read_csv('https://raw.githubusercontent.com/ogut77/DataScience/refs/heads/main/PurchaseByCredit20_Continuous.csv') <br>
+</span>
+<br>     
+# Separate features (X) and target variable (y) <br>
+<span style="color:red;">
+X = customer.drop('Purchase', axis=1) <br>
+y = customer['Purchase'] <br>
+</span>
+<br>
+# Initialize and train the KNN model <br>
+<span style="color:red;">
+knn = KNeighborsClassifier(n_neighbors=5) # You can adjust the number of neighbors <br>
+knn.fit(X, y) <br>
+</span>
+</br>
+# Make predictions on the test set <br>
+<span style="color:red;">
+y_pred = knn.predict(X) <br>
+</span>
+<br>     
+# Evaluate the model <br>
+<span style="color:red;">
+accuracy = accuracy_score(y, y_pred) <br>
+cm = confusion_matrix(y, y_pred) <br>
+
+print(f"KNN Accuracy: {accuracy}") <br>
+print(f"KNN Confusion Matrix:\n{cm}") <br>
+</span>     
+           </td>
+         </tr>
+    </table>
   </div>
   <p>
 
@@ -1817,8 +1982,13 @@ Purchase No Yes
   <p>
 
   <!--------------------------------------------------------->
-  <h4 id="070403">7.4.3 R practice - Neural network</h4>
+  <h4 id="070403">7.4.3 R and Python practice - Neural network</h4>
   <p>
+  <h5>R practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter7_4_3_R.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
+  <p>
+
   <div class="mainTable">
        To use the neural network model using R, we need to install a package called <b>nnet</b>. 
        From the main menu of R,
@@ -1944,23 +2114,19 @@ Purchase No Yes
     <p>
        <table style="width:800px;">
          <tr>
-           <td style="width:650px;"><span style="color:red;">> install.packages('nnet')</span></td>
-           <td class="tdCenter"><button onclick="rFunction(91)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> install.packages('nnet')</span></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> library(nnet)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(92)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> library(nnet)</span></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> singleNNdata <- read.csv('singleNN.csv', header=T, as.is=FALSE)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(93)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> singleNNdata <- read.csv('http://estat.me/estat/Example/DataScience/SingleNN.csv', header=T, as.is=FALSE)</span></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> attach(signleNNdata)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(94)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> attach(signleNNdata)</span></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> singleNNdata</span>
+           <td style="width:650px;"><span style="color:red;"> singleNNdata</span>
 <pre>
   x1 x2 x3 y
 1  0  0  0 -1
@@ -1973,20 +2139,17 @@ Purchase No Yes
 8  1  1  1  1
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(95)">copy r command</button></td>
          </tr>
          <tr>
            <td># create a training data using the 8 data.<br>
-               <span style="color:red;">> train <- singleNNdata[1:8,]<span></td>
-           <td class="tdCenter"><button onclick="rFunction(96)">copy r command</button></td>
+               <span style="color:red;"> train <- singleNNdata[1:8,]<span></td>
          </tr>
          <tr>
            <td># create a testing data using the same 8 data<br>
-               <span style="color:red;">> test <- singleNNdata[1:8,]<span></td>
-           <td class="tdCenter"><button onclick="rFunction(97)">copy r command</button></td>
+               <span style="color:red;"> test <- singleNNdata[1:8,]<span></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> train.nnet <- nnet(y~x1+x2+x3,data=train, size=2, rang=0.1, decay=5e-4, maxit=100)<span>
+           <td><span style="color:red;"> train.nnet <- nnet(y~x1+x2+x3,data=train, size=2, rang=0.1, decay=5e-4, maxit=100)<span>
 <pre>
 # weights:  11
 initial  value 10.068006 
@@ -2002,10 +2165,9 @@ final  value 4.129595
 converged
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(98)">copy r command</button></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> summary(train.nnet)</span>
+           <td style="width:650px;"><span style="color:red;"> summary(train.nnet)</span>
 <pre>
 a 3-2-1 network with 11 weights
 options were - decay=5e-04
@@ -2017,7 +2179,6 @@ options were - decay=5e-04
  4.63 -7.37 -7.17 
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(99)">copy r command</button></td>
          </tr>
        </table>
     <br>
@@ -2034,7 +2195,7 @@ options were - decay=5e-04
     <p>
        <table style="width:800px;">
          <tr>
-           <td style="width:650px;"><span style="color:red;">> predict(train.nnet,test)</span>
+           <td style="width:650px;"><span style="color:red;"> predict(train.nnet,test)</span>
 <pre>
           [,1]
 1 0.0000619568
@@ -2047,19 +2208,17 @@ options were - decay=5e-04
 8 0.9893836166
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(100)">copy r command</button></td>
          </tr>
        </table>
        If we observe this and classify the data using 0.1 as the reference value, all data will be classified accurately.
     <p>
        <table>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> nnetpred <- (predict(train.nnet,test) >= 0.01)</span>
+           <td style="width:650px;"><span style="color:red;"> nnetpred <- (predict(train.nnet,test) >= 0.01)</span>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(101)">copy r command</button></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> table(nnetpred,y)</span>
+           <td style="width:650px;"><span style="color:red;"> table(nnetpred,y)</span>
 <pre>
         y
 nnetpred -1 1
@@ -2067,12 +2226,81 @@ nnetpred -1 1
    TRUE   0 4
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(102)">copy r command</button></td>
          </tr>
        </table>
   </div>
   <p>
 
+  <h5>Python practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter7_4_3_Python.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
+  <div class="mainTable">
+    <table style="width:800px">
+         <tr>
+           <td>
+# Import required libraries <br>
+<span style="color:red;">
+import pandas as pd <br>
+import numpy as np <br>
+from sklearn.neural_network import MLPClassifier <br>
+</span>
+<br>
+# Load data <br>
+<span style="color:red;">
+singleNNdata = pd.read_csv('https://raw.githubusercontent.com/ogut77/DataScience/refs/heads/main/singleNN.csv') <br>
+</span>     
+<br>
+# Create training and testing data using the first 8 rows <br>
+<span style="color:red;">
+train = singleNNdata.iloc[:8] <br>
+test = singleNNdata.iloc[:8] <br>
+</span>
+<br>
+# Prepare features and target for training <br>
+<span style="color:red;">
+X_train = train[['x1', 'x2', 'x3']] <br>
+y_train = train['y'] <br>
+</span>
+<br>     
+
+# Initialize and train the neural network <br>
+# size=2 (2 hidden neurons), decay=5e-4 (weight decay), maxit=100 (max iterations) <br>
+<span style="color:red;">
+nn_model = MLPClassifier(hidden_layer_sizes=(2,),
+                         alpha=5e-4,
+                         max_iter=100,
+                         random_state=0,
+                         learning_rate_init=0.1)  # rang=0.1 maps to initial learning rate <br>
+nn_model.fit(X_train, y_train) <br>
+</span>     
+<br>
+# Print model summary <br>
+<span style="color:red;">
+print("Number of layers:", nn_model.n_layers_) <br>
+print("Number of neurons in hidden layer:", nn_model.hidden_layer_sizes) <br>
+print("Output layer activation:", nn_model.out_activation_) <br>
+print("Loss:", nn_model.loss_) <br>
+print("Number of iterations:", nn_model.n_iter_) <br>
+print("Weights:", nn_model.coefs_) <br>
+print("Biases:", nn_model.intercepts_) <br>
+</span>     
+<br>
+
+# Neural Network - Predictions and Confusion Matrix
+<span style="color:red;">
+y_pred_nn = nn_model.predict(X_test)
+y_pred_prob = nn_model.predict_proba(X_test)
+accuracy_nn = accuracy_score(y_test, y_pred_nn)
+cm_nn = confusion_matrix(y_test, y_pred_nn)
+print(f"Neural Network Probability Prediction:\n {y_pred_prob}")
+print(f"Neural Network Accuracy: {accuracy_nn}")
+print(f"Neural Network Confusion Matrix:\n{cm_nn}")
+</span>     
+           </td>
+         </tr>
+    </table>
+  </div>
+  <p>
 
   <!------------------------------------------------------------->
   <h3 id="0705">7.5 Support vector machine model</h3>
@@ -2344,8 +2572,13 @@ nnetpred -1 1
   <p>
 
   <!--------------------------------------------------------->
-  <h4 id="070503">7.5.3 R practice - Support vector machine</h4>
+  <h4 id="070503">7.5.3 R and Python practice - Support vector machine</h4>
   <p>
+  <h5>R practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter7_5_3_R.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
+  <p>
+
   <div class="mainTable">
        To use the suport vector machine model using R, we need to install a package called <b>e1071</b>. 
        From the main menu of R,
@@ -2475,23 +2708,19 @@ nnetpred -1 1
     <p>
        <table style="width:800px;">
          <tr>
-           <td style="width:650px;"><span style="color:red;">> install.packages('e1071')</span></td>
-           <td class="tdCenter"><button onclick="rFunction(105)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> install.packages('e1071')</span></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> library(e1071)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(106)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> library(e1071)</span></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> svmdata <- read.csv('svmdata.csv', header=T, as.is=FALSE)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(107)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> svmdata <- read.csv('http://estat.me/estat/Example/DataScience/Svmdata.csv', header=T, as.is=FALSE)</span></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> attach(svmdata)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(108)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> attach(svmdata)</span></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> svmdata</span>
+           <td style="width:650px;"><span style="color:red;"> svmdata</span>
 <pre>
   x1  x2  y
 1 25 150 -1
@@ -2504,25 +2733,21 @@ nnetpred -1 1
 8 20 100 -1
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(109)">copy r command</button></td>
          </tr>
          <tr>
            <td># create a training data using the 8 data.<br>
-               <span style="color:red;">> train <- svmdata[1:8,]<span></td>
-           <td class="tdCenter"><button onclick="rFunction(110)">copy r command</button></td>
+               <span style="color:red;"> train <- svmdata[1:8,]<span></td>
          </tr>
          <tr>
            <td># create a testing data using the same 8 data<br>
-               <span style="color:red;">> test <- svmdata[1:8,]<span></td>
-           <td class="tdCenter"><button onclick="rFunction(111)">copy r command</button></td>
+               <span style="color:red;"> test <- svmdata[1:8,]<span></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> train.svm = svm(y~x1+x2,type="C-classification", data=train)<span><br>
+           <td><span style="color:red;"> train.svm = svm(y~x1+x2,type="C-classification", data=train)<span><br>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(112)">copy r command</button></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> train.svm</span>
+           <td style="width:650px;"><span style="color:red;"> train.svm</span>
 <pre>
 Call: 
 svm(formula = y ~ x1 + x2, data = train, type = "C-classification")
@@ -2533,7 +2758,6 @@ Parameters:
 Number of Support Vectors:  6
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(113)">copy r command</button></td>
          </tr>
        </table>
     <p>
@@ -2542,7 +2766,7 @@ Number of Support Vectors:  6
     <p>
        <table style="width:800px;">
          <tr>
-           <td style="width:650px;"><span style="color:red;">> svmpred = predict(train.svm,test)<br>
+           <td style="width:650px;"><span style="color:red;"> svmpred = predict(train.svm,test)<br>
                                                             > svmpred</span>
 <pre>
  1  2  3  4  5  6  7  8 
@@ -2550,15 +2774,13 @@ Number of Support Vectors:  6
 Levels: -1 1
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(114)">copy r command</button></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> z = table(svmpred,y)</span>
+           <td style="width:650px;"><span style="color:red;"> z = table(svmpred,y)</span>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(115)">copy r command</button></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> z</span>
+           <td style="width:650px;"><span style="color:red;"> z</span>
 <pre>
        y
 svmpred -1 1
@@ -2566,7 +2788,6 @@ svmpred -1 1
       1  0 4
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(116)">copy r command</button></td>
          </tr>
        </table>
     <p>
@@ -2575,16 +2796,99 @@ svmpred -1 1
     <p>
        <table>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> plot(x1,x2,pch=y)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(117)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> plot(x1,x2,pch=y)</span></td>
          </tr>    
          <tr>
-           <td style="width:650px;"><span style="color:red;">> abline(500,-10)</span><br>
+           <td style="width:650px;"><span style="color:red;"> abline(500,-10)</span><br>
        <img class="figure50" src="./figure/Fig070505.png">
            </td>
-           <td class="tdCenter"><button onclick="rFunction(118)">copy r command</button></td>
          </tr>
        </table>
+  </div>
+  <p>
+
+  <h5>Python practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter7_5_3_Python.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
+  <div class="mainTable">
+    <table style="width:800px">
+         <tr>
+           <td>
+# Import required libraries <br>
+<span style="color:red;">
+import pandas as pd <br>
+import numpy as np <br>
+from sklearn.svm import SVC <br>
+import matplotlib.pyplot as plt <br>
+</span>
+<br>
+
+# Load data <br>
+<span style="color:red;">
+svmdata = pd.read_csv('https://raw.githubusercontent.com/ogut77/DataScience/refs/heads/main/svmdata.csv') <br>
+</span> <br>
+# Create training and testing data using the first 8 rows <br>
+<span style="color:red;">
+train = svmdata.iloc[:8] <br>
+test = svmdata.iloc[:8] <br>
+</span> <br>
+# Prepare features and target for training <br>
+<span style="color:red;">
+X_train = train[['x1', 'x2']] <br>
+y_train = train['y'] <br>
+X_test = test[['x1', 'x2']] <br>
+y_test = test['y'] <br>
+</span> <br>
+# Train SVM model (C-classification) <br>
+<span style="color:red;">
+svm_model = SVC(kernel='linear')  # R's svm with type="C-classification" defaults to linear kernel <br>
+svm_model.fit(X_train, y_train) <br>
+</span> <br>
+# Print model details <br>
+<span style="color:red;">
+print("Support Vectors:", svm_model.support_vectors_) <br>
+print("Number of Support Vectors:", svm_model.n_support_) <br>
+</span> <br>
+# Predict on test data <br>
+<span style="color:red;">
+svm_pred = svm_model.predict(X_test) <br>
+print("Predictions:", svm_pred) <br>
+</span> <br>
+# Create confusion matrix <br>
+<span style="color:red;">
+z = pd.crosstab(svm_pred, y_test, rownames=['Predicted'], colnames=['Actual']) <br>
+print("Confusion Matrix:\n", z) <br>
+</span> <br>
+# Plot data points with class labels <br>
+<span style="color:red;">
+plt.scatter(X_train['x1'], X_train['x2'], c=y_train, cmap='bwr', marker='o') <br>
+plt.xlabel('x1') <br>
+plt.ylabel('x2') <br>
+</span> <br>
+# Plot the line abline(500, -10), which in Python is y = 500 - 10x <br>
+<span style="color:red;">
+x = np.linspace(min(X_train['x1']), max(X_train['x1']), 100) <br>
+y = 500 - 10 * x <br>
+plt.plot(x, y, 'k-') <br>
+plt.show() <br>
+</span>
+<pre>
+Support Vectors: [[ 26. 210.]
+ [ 31. 220.]]
+Number of Support Vectors: [1 1]
+Predictions: [-1  1 -1  1 -1  1  1 -1]
+Confusion Matrix:
+ Actual     -1   1
+Predicted        
+-1          4   0
+ 1          0   4
+</pre>
+<br>
+             <img class="figure50" src="./figure/Fig070506.png">
+
+           </td>
+         </tr>
+    </table>
   </div>
   <p>
 
@@ -2955,8 +3259,13 @@ svmpred -1 1
   <p>
 
   <!--------------------------------------------------------->
-  <h4 id="070602">7.6.2 R practice - Bagging</h4>
+  <h4 id="070602">7.6.2 R and Python practice - Bagging</h4>
   <p>
+  <h5>R practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter7_6_2_R.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
+  <p>
+
   <div class="mainTable">
        To use the bagging ensemble model using R, we need to install a package called <b>adabag</b>. 
        From the main menu of R,
@@ -3037,35 +3346,30 @@ svmpred -1 1
     <p>
        <table style="width:800px;">
          <tr>
-           <td style="width:650px;"><span style="color:red;">> install.packages('adbag')</span></td>
-           <td class="tdCenter"><button onclick="rFunction(120)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> install.packages('adbag')</span></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> library(adabag)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(121)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> library(adabag)</span></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> data(iris)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(122)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> data(iris)</span></td>
          </tr>
          <tr>
            <td style="width:650px;"># mfinal is an integer which is the number of iterations for which boosting is run <br> 
-             <span style="color:red;">> iris.bagging <- bagging(Species~., data=iris, mfinal = 10))</span></td>
-           <td class="tdCenter"><button onclick="rFunction(123)">copy r command</button></td>
+             <span style="color:red;"> iris.bagging <- bagging(Species~., data=iris, mfinal = 10))</span></td>
          </tr>
          <tr>
            <td style="width:650px;"># list the importance of variable in the classification<br>
-             <span style="color:red;">> iris.bagging$importance</span>
+             <span style="color:red;"> iris.bagging$importance</span>
 <pre>
 Petal.Length  Petal.Width Sepal.Length  Sepal.Width
     79.46481     20.53519      0.00000      0.00000
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(124)">copy r command</button></td>
          </tr>
          <tr>
            <td># list the trees grown along the iterations.<br>
-               <span style="color:red;">> iris.bagging$trees</span>
+               <span style="color:red;"> iris.bagging$trees</span>
 <pre>
 [[1]]
 n= 150 
@@ -3092,18 +3396,15 @@ node), split, n, loss, yval, (yprob)
     7) Petal.Length>=4.75 46  7 virginica (0.00000000 0.15217391 0.84782609) *
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(125)">copy r command</button></td>
          </tr>
          <tr>
            <td># plot the decision tree after iteration 10 data <br>
-               <span style="color:red;">> plot(iris.bagging$trees[[10]])</span></td>
-           <td class="tdCenter"><button onclick="rFunction(126)">copy r command</button></td>
+               <span style="color:red;"> plot(iris.bagging$trees[[10]])</span></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> text(iris.bagging$trees[[10]])</span><br>
+           <td><span style="color:red;"> text(iris.bagging$trees[[10]])</span><br>
                <img class="figure50" src="./figure/Fig070601.png">
            </td>
-           <td class="tdCenter"><button onclick="rFunction(127)">copy r command</button></td>
          </tr>
        </table>
     <p>
@@ -3112,12 +3413,11 @@ node), split, n, loss, yval, (yprob)
        <table style="width:800px;">
          <tr>
            <td style="width:650px;"># classify the iris data using the bagging model<br>
-               <span style="color:red;">> baggingpred <- predict(iris.bagging, newdata=iris)</span>
+               <span style="color:red;"> baggingpred <- predict(iris.bagging, newdata=iris)</span>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(128)">copy r command</button></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> table(baggingpred$class, iris[,5])</span>
+           <td><span style="color:red;"> table(baggingpred$class, iris[,5])</span>
 <pre>
               setosa versicolor virginica 
   setosa         50          0         0
@@ -3125,27 +3425,120 @@ node), split, n, loss, yval, (yprob)
   virginica       0          3        49
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(129)">copy r command</button></td>
          </tr>
          <tr>
            <td># calculate the misclassification error<br>
-               <span style="color:red;">> baggingtb <- table(baggingpred$class, iris[,5])</span></td>
-           <td class="tdCenter"><button onclick="rFunction(130)">copy r command</button></td>
+               <span style="color:red;"> baggingtb <- table(baggingpred$class, iris[,5])</span></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> baggingerror.rpart <- 1-(sum(diag(baggingtb))/sum(baggingtb))</span></td>
-           <td class="tdCenter"><button onclick="rFunction(131)">copy r command</button></td>
+           <td><span style="color:red;"> baggingerror.rpart <- 1-(sum(diag(baggingtb))/sum(baggingtb))</span></td>
          </tr>
          <tr>
            <td># misclassification error is 2.67%<br>
-               <span style="color:red;">> baggingerror.rpart</span>
+               <span style="color:red;"> baggingerror.rpart</span>
 <pre>
 [1] 0.02666667
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(132)">copy r command</button></td>
          </tr>
        </table>
+  </div>
+  <p>
+
+  <h5>Python practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter7_6_2_Python.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
+  <div class="mainTable">
+    <table style="width:800px">
+         <tr>
+           <td>
+# Import required libraries <br>
+<span style="color:red;">
+import pandas as pd <br>
+import numpy as np <br>
+from sklearn.ensemble import AdaBoostClassifier <br>
+from sklearn.tree import DecisionTreeClassifier, plot_tree <br>
+from sklearn.metrics import confusion_matrix <br>
+import matplotlib.pyplot as plt <br>
+from sklearn.datasets import load_iris <br>
+</span>
+<br>
+
+# Load iris dataset <br>
+<span style="color:red;">
+iris = load_iris() <br>
+iris_df = pd.DataFrame(data=iris.data, columns=iris.feature_names) <br>
+iris_df['Species'] = iris.target <br>
+species_map = {0: 'setosa', 1: 'versicolor', 2: 'virginica'} <br>
+iris_df['Species'] = iris_df['Species'].map(species_map) <br>
+</span> <br>
+# Bagging with decision trees (mfinal=10 iterations) <br>
+<span style="color:red;">
+bagging_model = AdaBoostClassifier(n_estimators=10, random_state=0) <br>
+X = iris_df.drop('Species', axis=1) <br>
+y = iris_df['Species'] <br>
+bagging_model.fit(X, y) <br>
+</span> <br>
+# Feature importance <br>
+<span style="color:red;">
+importance = bagging_model.feature_importances_ <br>
+feature_names = iris.feature_names <br>
+importance_df = pd.Series(importance, index=feature_names) <br>
+print("Feature Importance:\n", importance_df) <br>
+</span> <br>
+# List of trees (equivalent to iris.bagging$trees) <br>
+<span style="color:red;">
+trees = bagging_model.estimators_ <br>
+print("Number of trees:", len(trees)) <br>
+</span> <br>
+# Plot the decision tree for the 10th iteration <br>
+<span style="color:red;">
+plt.figure(figsize=(10, 6)) <br>
+plot_tree(trees[9], feature_names=feature_names, class_names=list(species_map.values()), filled=True) <br>
+plt.title("Decision Tree for Iteration 10") <br>
+plt.show() <br>
+</span> <br>
+# Predict on the iris dataset <br>
+<span style="color:red;">
+bagging_pred = bagging_model.predict(X) <br>
+</span> <br>
+# Confusion matrix <br>
+<span style="color:red;">
+conf_matrix = confusion_matrix(y, bagging_pred, labels=['setosa', 'versicolor', 'virginica']) <br>
+conf_matrix_df = pd.DataFrame(conf_matrix, index=['setosa', 'versicolor', 'virginica'],
+                              columns=['setosa', 'versicolor', 'virginica']) <br>
+print("Confusion Matrix:\n", conf_matrix_df) <br>
+</span> <br>
+# Calculate misclassification error <br>
+<span style="color:red;">
+bagging_error = 1 - (np.diag(conf_matrix).sum() / conf_matrix.sum()) <br>
+print("Misclassification Error:", bagging_error) <br>
+print("Misclassification Error (%):", bagging_error * 100, "%") <br>
+</span>
+<pre>     
+Feature Importance:
+ sepal length (cm)    0.000000
+sepal width (cm)     0.000000
+petal length (cm)    0.599859
+petal width (cm)     0.400141
+dtype: float64
+Number of trees: 10
+</pre>
+<br>
+             <img class="figure50" src="./figure/Fig070603.png">
+<pre>
+Confusion Matrix:
+             setosa  versicolor  virginica
+setosa          50           0          0
+versicolor       0          47          3
+virginica        0           2         48
+Misclassification Error: 0.033333333333333326
+Misclassification Error (%): 3.3333333333333326 %
+</pre>
+
+           </td>
+         </tr>
+    </table>
   </div>
   <p>
 
@@ -3663,9 +4056,14 @@ node), split, n, loss, yval, (yprob)
   <p>
 
   <!--------------------------------------------------------->
-  <h4 id="070604">7.6.4 R practice - Adaboosting</h4>
-  <h5>R practice</h5>
+  <h4 id="070604">7.6.4 R and Python practice - Adaboosting</h4>
+  <h5>R and Python practice</h5>
   <p>
+  <h5>R practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter7_6_4_R.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
+  <p>
+
   <div class="mainTable">
        To use the adaboosting ensemble model using R, we need to install a package called <b>adabag</b>. 
        From the main menu of R,
@@ -3750,35 +4148,30 @@ node), split, n, loss, yval, (yprob)
     <p>
        <table style="width:800px;">
          <tr>
-           <td style="width:650px;"><span style="color:red;">> install.packages('adbag')</span></td>
-           <td class="tdCenter"><button onclick="rFunction(120)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> install.packages('adbag')</span></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> library(adabag)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(121)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> library(adabag)</span></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> data(iris)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(122)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> data(iris)</span></td>
          </tr>
          <tr>
            <td style="width:650px;"># mfinal is an integer which is the number of iterations for which boosting is run <br> 
-             <span style="color:red;">> iris.adaboost <- boosting(Species~., data = iris, boos = TRUE, mfinal = 10)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(133)">copy r command</button></td>
+             <span style="color:red;"> iris.adaboost <- boosting(Species~., data = iris, boos = TRUE, mfinal = 10)</span></td>
          </tr>
          <tr>
            <td style="width:650px;"># list the importance of variable in the classification<br>
-             <span style="color:red;">> iris.adaboost$importance</span>
+             <span style="color:red;"> iris.adaboost$importance</span>
 <pre>
 Petal.Length  Petal.Width Sepal.Length  Sepal.Width 
    61.558263    26.329296     5.586443     6.525997 
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(134)">copy r command</button></td>
          </tr>
          <tr>
            <td># list the trees grown along the iterations.<br>
-               <span style="color:red;">> iris.adaboost$trees</span>
+               <span style="color:red;"> iris.adaboost$trees</span>
 <pre>
 [[1]]
 n= 150 
@@ -3819,18 +4212,15 @@ node), split, n, loss, yval, (yprob)
      7) Petal.Length>=5.15 37  0 virginica (0.0000000 0.0000000 1.0000000) * 
 </pre>
           </td>
-           <td class="tdCenter"><button onclick="rFunction(135)">copy r command</button></td>
          </tr>
          <tr>
            <td># plot the decision tree after iteration 10 data <br>
-               <span style="color:red;">> plot(iris.adaboost$trees[[10]])</span></td>
-           <td class="tdCenter"><button onclick="rFunction(136)">copy r command</button></td>
+               <span style="color:red;"> plot(iris.adaboost$trees[[10]])</span></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> text(iris.adaboost$trees[[10]])</span> <br>
+           <td><span style="color:red;"> text(iris.adaboost$trees[[10]])</span> <br>
                <img class="figure90" src="./figure/Fig070602.png">
            </td>
-           <td class="tdCenter"><button onclick="rFunction(137)">copy r command</button></td>
          </tr>
        </table>
     <p>
@@ -3839,11 +4229,10 @@ node), split, n, loss, yval, (yprob)
        <table style="width:800px;">
          <tr>
            <td style="width:650px;"># classify the iris data using the adaboosting model <br>
-               <span style="color:red;">> adaboostpred <- predict(iris.adaboost, newdata=iris)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(138)">copy r command</button></td>
+               <span style="color:red;"> adaboostpred <- predict(iris.adaboost, newdata=iris)</span></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> table(adaboostpred$class, iris[,5])</span>
+           <td><span style="color:red;"> table(adaboostpred$class, iris[,5])</span>
 <pre>
               setosa versicolor virginica 
   setosa         50          0         0
@@ -3851,27 +4240,98 @@ node), split, n, loss, yval, (yprob)
   virginica       0          0        50
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(139)">copy r command</button></td>
          </tr>
          <tr>
            <td># calculate the misclassification error <br>
-               <span style="color:red;">> adaboosttb <- table(adaboostpred$class, iris[,5])</span></td>
-           <td class="tdCenter"><button onclick="rFunction(140)">copy r command</button></td>
+               <span style="color:red;"> adaboosttb <- table(adaboostpred$class, iris[,5])</span></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> adaboosterror <- 1-(sum(diag(adaboosttb))/sum(adaboosttb))</span></td>
-           <td class="tdCenter"><button onclick="rFunction(141)">copy r command</button></td>
+           <td><span style="color:red;"> adaboosterror <- 1-(sum(diag(adaboosttb))/sum(adaboosttb))</span></td>
          </tr>
          <tr>
            <td># misclassification error is 2.67%<br>
-               <span style="color:red;">> adaboosterror</span><br>
+               <span style="color:red;"> adaboosterror</span><br>
 <pre>
 [1] 0
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(142)">copy r command</button></td>
          </tr>
        </table>
+  </div>
+  <p>
+
+  <h5>Python practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter7_6_4_Python.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
+  <div class="mainTable">
+    <table style="width:800px">
+         <tr>
+           <td>
+# Import required libraries <br>
+<span style="color:red;">
+import pandas as pd <br>
+import numpy as np <br>
+from sklearn.ensemble import AdaBoostClassifier <br>
+from sklearn.tree import DecisionTreeClassifier, plot_tree <br>
+from sklearn.metrics import confusion_matrix <br>
+import matplotlib.pyplot as plt <br>
+from sklearn.datasets import load_iris <br>
+</span> <br>
+
+# Load iris dataset <br>
+<span style="color:red;">
+iris = load_iris() <br>
+iris_df = pd.DataFrame(data=iris.data, columns=iris.feature_names) <br>
+iris_df['Species'] = iris.target <br>
+species_map = {0: 'setosa', 1: 'versicolor', 2: 'virginica'} <br>
+iris_df['Species'] = iris_df['Species'].map(species_map) <br>
+</span> <br>
+     
+# AdaBoost with decision trees (mfinal=10 iterations, boos=TRUE) <br>
+<span style="color:red;">
+adaboost_model = AdaBoostClassifier( <br>
+                                    n_estimators=10,
+                                    random_state=0) <br>
+X = iris_df.drop('Species', axis=1) <br>
+y = iris_df['Species'] <br>
+adaboost_model.fit(X, y) <br>
+</span> <br>
+# Feature importance <br>
+<span style="color:red;">
+importance = adaboost_model.feature_importances_ <br>
+feature_names = iris.feature_names <br>
+importance_df = pd.Series(importance, index=feature_names) <br>
+print("Feature Importance:\n", importance_df) <br>
+</span> <br>
+# List of trees (equivalent to iris.adaboost$trees) <br>
+<span style="color:red;">
+trees = adaboost_model.estimators_ <br>
+print("List of Trees (number of trees):", len(trees)) <br>
+for i, tree in enumerate(trees, 1): <br>
+    print(f"Tree {i}:", tree) <br>
+</span>
+<pre>
+Feature Importance:
+ sepal length (cm)    0.000000
+sepal width (cm)     0.000000
+petal length (cm)    0.599859
+petal width (cm)     0.400141
+dtype: float64
+List of Trees (number of trees): 10
+Tree 1: DecisionTreeClassifier(max_depth=1, random_state=209652396)
+Tree 2: DecisionTreeClassifier(max_depth=1, random_state=398764591)
+Tree 3: DecisionTreeClassifier(max_depth=1, random_state=924231285)
+Tree 4: DecisionTreeClassifier(max_depth=1, random_state=1478610112)
+Tree 5: DecisionTreeClassifier(max_depth=1, random_state=441365315)
+Tree 6: DecisionTreeClassifier(max_depth=1, random_state=1537364731)
+Tree 7: DecisionTreeClassifier(max_depth=1, random_state=192771779)
+Tree 8: DecisionTreeClassifier(max_depth=1, random_state=1491434855)
+Tree 9: DecisionTreeClassifier(max_depth=1, random_state=1819583497)
+Tree 10: DecisionTreeClassifier(max_depth=1, random_state=530702035)
+</pre>
+           </td>
+         </tr>
+    </table>
   </div>
   <p>
 
@@ -3936,8 +4396,13 @@ node), split, n, loss, yval, (yprob)
   <p>
 
   <!--------------------------------------------------------->
-  <h4 id="070606">7.6.6 R practice - Random forest</h4>
+  <h4 id="070606">7.6.6 R and Python practice - Random forest</h4>
   <p>
+  <h5>R practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter7_6_6_R.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
+  <p>
+
   <div class="mainTable">
        This is a method that adds a random process to bagging.
        The process of extracting bootstrap samples from the original data and forming a tree for each bootstrap sample is similar 
@@ -4166,20 +4631,16 @@ node), split, n, loss, yval, (yprob)
     <p>
        <table style="width:800px;">
          <tr>
-           <td style="width:650px;"><span style="color:red;">> install.packages('randomForest')</span></td>
-           <td class="tdCenter"><button onclick="rFunction(145)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> install.packages('randomForest')</span></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> library(randomForest)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(146)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> library(randomForest)</span></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> data(iris)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(122)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> data(iris)</span></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> iris.forest <- randomForest(Species~., data=iris, ntree = 100, proximity=TRUE)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(147)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> iris.forest <- randomForest(Species~., data=iris, ntree = 100, proximity=TRUE)</span></td>
          </tr>
        </table>
     <p>
@@ -4188,7 +4649,7 @@ node), split, n, loss, yval, (yprob)
        <table>
          <tr>
            <td># classify the iris data using the bagging model<br>
-               <span style="color:red;">> table(predict(iris.forest), iris[,5])</span>
+               <span style="color:red;"> table(predict(iris.forest), iris[,5])</span>
 <pre>
               setosa versicolor virginica 
   setosa         50          0         0
@@ -4196,27 +4657,90 @@ node), split, n, loss, yval, (yprob)
   virginica       0          3        44
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(148)">copy r command</button></td>
          </tr>
          <tr>
            <td># calculate the misclassification error<br>
-               <span style="color:red;">> foresttb <- table(predict(iris.forest), iris[,5])</span></td>
-           <td class="tdCenter"><button onclick="rFunction(149)">copy r command</button></td>
+               <span style="color:red;"> foresttb <- table(predict(iris.forest), iris[,5])</span></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> foresterror <- 1-(sum(diag(foresttb))/sum(foresttb))</span></td>
-           <td class="tdCenter"><button onclick="rFunction(150)">copy r command</button></td>
+           <td><span style="color:red;"> foresterror <- 1-(sum(diag(foresttb))/sum(foresttb))</span></td>
          </tr>
          <tr>
            <td># misclassification error is 2.67%<br>
-               <span style="color:red;">> foresterror</span><br>
+               <span style="color:red;"> foresterror</span><br>
 <pre>
 [1] 0.06
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(151)">copy r command</button></td>
          </tr>
        </table>
+  </div>
+  <p>
+
+  <h5>Python practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter7_6_6_Python.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
+  <div class="mainTable">
+    <table style="width:800px">
+         <tr>
+           <td>
+# Import required libraries <br>
+<span style="color:red;">
+import pandas as pd <br>
+import numpy as np <br>
+from sklearn.ensemble import RandomForestClassifier <br>
+from sklearn.metrics import confusion_matrix <br>
+from sklearn.datasets import load_iris <br>
+</span> <br>
+
+# Load iris dataset <br>
+<span style="color:red;">
+iris = load_iris() <br>
+iris_df = pd.DataFrame(data=iris.data, columns=iris.feature_names) <br>
+iris_df['Species'] = iris.target <br>
+species_map = {0: 'setosa', 1: 'versicolor', 2: 'virginica'} <br>
+iris_df['Species'] = iris_df['Species'].map(species_map) <br>
+</span> <br>
+
+# Random Forest with 100 trees and proximity <br>
+<span style="color:red;">
+rf_model = RandomForestClassifier(n_estimators=100,
+                                  random_state=0,
+                                  oob_score=True)  # oob_score approximates proximity <br>
+X = iris_df.drop('Species', axis=1) <br>
+y = iris_df['Species'] <br>
+rf_model.fit(X, y) <br>
+</span> <br>
+# Predict on the iris dataset <br>
+<span style="color:red;">
+rf_pred = rf_model.predict(X) <br>
+</span> <br>
+# Confusion matrix
+<span style="color:red;">
+conf_matrix = confusion_matrix(y, rf_pred, labels=['setosa', 'versicolor', 'virginica']) <br>
+conf_matrix_df = pd.DataFrame(conf_matrix,
+                              index=['setosa', 'versicolor', 'virginica'],
+                              columns=['setosa', 'versicolor', 'virginica']) <br>
+print("Confusion Matrix:\n", conf_matrix_df) <br>
+</span> <br>
+# Calculate misclassification error <br>
+<span style="color:red;">
+forest_error = 1 - (np.diag(conf_matrix).sum() / conf_matrix.sum()) <br>
+print("Misclassification Error:", forest_error) <br>
+print("Misclassification Error (%):", forest_error * 100, "%") <br>
+</span>
+<pre>
+Confusion Matrix:
+             setosa  versicolor  virginica
+setosa          50           0          0
+versicolor       0          50          0
+virginica        0           0         50
+Misclassification Error: 0.0
+Misclassification Error (%): 0.0 %
+</pre>
+           </td>
+         </tr>
+    </table>
   </div>
   <p>
 

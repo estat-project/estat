@@ -544,27 +544,21 @@
   <div class="mainTable">
       <p>
          If we expand the variance of a discrete random variable, \(V(X) = \sigma^2 = \sum_{i=1}^{n} (x_i - \mu)^2 p_i\), it becomes as follows:
-      <p>
-      <div class="textLeft">
-         \(V(X) = (x_{1} - \mu )^{2} p_{1} + (x_{2} - \mu )^{2} p_{2} + \cdots +(x_{n}- \mu )^{2} p_{n} \) <br>
-         \( = (x_{1}^{2} p_{1} -2 \mu x_{1} p_{1} + \mu^{2} p_{i} )+(x_{2}^{2} p_{2} -2 \mu x_{2} p_{2} + \mu^{2} p_{2} )+ \cdots +(x_{n}^{2} p_{2} -2 \mu x_{n} p_{n} + \mu^{2} p_{n} ) \) <br>
-         \( = (x_{1}^{2} p_{1} +x_{2}^{2} p_{2} + \cdots +x_{n} ^{2} p_{n} )-2 \mu (x_{1} p_{1} +x_{2} p_{2} + \cdots +x_{n} p_{n} )+ \mu^{2} (p_{1} +p_{2} + \cdots +p_{n} ) \) <br>
-         \( = E(X^{2} )-2 \mu^{2} + \mu^{2} \) <br>
-         \( = E(X^{2} )- \mu^{2} \) <br>
-         \( = E(X^{2} )-E(X)^{2} \)
-      </div>
-      <p>
+      <br><br>
+         \(\qquad\) \(V(X) = (x_{1} - \mu )^{2} p_{1} + (x_{2} - \mu )^{2} p_{2} + \cdots +(x_{n}- \mu )^{2} p_{n} \) <br>
+         \(\qquad\)\( = (x_{1}^{2} p_{1} -2 \mu x_{1} p_{1} + \mu^{2} p_{i} )+(x_{2}^{2} p_{2} -2 \mu x_{2} p_{2} + \mu^{2} p_{2} )+ \cdots +(x_{n}^{2} p_{2} -2 \mu x_{n} p_{n} + \mu^{2} p_{n} ) \) <br>
+         \(\qquad\)\( = (x_{1}^{2} p_{1} +x_{2}^{2} p_{2} + \cdots +x_{n} ^{2} p_{n} )-2 \mu (x_{1} p_{1} +x_{2} p_{2} + \cdots +x_{n} p_{n} )+ \mu^{2} (p_{1} +p_{2} + \cdots +p_{n} ) \) <br>
+         \(\qquad\)\( = E(X^{2} )-2 \mu^{2} + \mu^{2} \) <br>
+         \(\qquad\)\( = E(X^{2} )- \mu^{2} \) <br>
+         \(\qquad\)\( = E(X^{2} )-E(X)^{2} \)
+      <br><br>
          Therefore, the variance of a random variable \(X\) can be calculated using a short cut formula as follows:
-      <p>
-      <div class="textLeft">
-         \(V(X) = E(X^{2} )-E(X)^{2} \)
-      </div>
-      <p>
+      <br><br>
+         \(\qquad V(X) = E(X^{2} )-E(X)^{2} \)
+      <br><br>
          Using this short cut formula, the variance of [Example 3.3] can be calculated as follows: 
-      <p>
-      <div class="textLeft">
-         \(V(X) = (0^{2} × \frac{3}{10} + 1^{2} ×\frac{6}{10} + 2^{2} ×\frac{1}{10} ) - (0.8)^2 = 0.36 \)
-      </div>
+      <br><br>
+         \(\qquad V(X) = (0^{2} × \frac{3}{10} + 1^{2} ×\frac{6}{10} + 2^{2} ×\frac{1}{10} ) - (0.8)^2 = 0.36 \)
   </div>
   <p>
   <div class="mainTableYellow">
@@ -1081,10 +1075,10 @@
          P(X=x) = {}_3 C_x  (0.1)^x (0.9)^{3-x} \quad (x=0,1,2,3)
       $$
          Similar examples as the above problem, which examines the number of defective products by inspecting the product, are observed frequently around us.
-      <p>
-         - Toss a coin five times to count the number of heads.<br>
-         - Count the number of voters in favor of a particular candidate in an election.
-      <p>
+      <br><br>
+         \(\qquad\)- Toss a coin five times to count the number of heads.<br>
+         \(\qquad\)- Count the number of voters in favor of a particular candidate in an election.
+      <br><br>
          Another example can be found at the following instrument as &lt;Figure 3.12&gt; 
          in science museums. This instrument drops a ball from the top and,  if the ball hit a bar,
          it may fall to the left (0 point) or to the right (1 point) with a half chance. 
@@ -1476,56 +1470,67 @@
            &= P \left [ n( \frac{1}{6} - \epsilon )< X < n( \frac{1}{6} + \epsilon ) \right]
         \end{align}
       $$
-      <div class="textLeft">
-      </div>
-      <p>
          If \(\epsilon\) = 0.1, the above formula becomes as follows:
       $$ 
            P ( \left | \frac{X}{n} - \frac{1}{6} \right | < 0.1 ) =  P \left [ n( \frac{1}{6} - 0.1 ) < X < n( \frac{1}{6} + 0.1 ) \right]
       $$
          If the number of rolls \(n\) is 10, 20, 50, 100, then the above formula becomes 
          as follows and its probability can be calculated using  \(B(n, \frac{1}{6})\)  in 『eStatH』.
-      <p>
-            <div class="textLeft">
+      <table>
+        <tr>
+          <td>
                \(n = 10\)<p>
                \(P \left [ 10( \frac{1}{6} - 0.1 ) < X < 10( \frac{1}{6} + 0.1 ) \right] \)<br>
                \(= P(0.6667 < X < 2.6667) \)  <br>
                \(= P(X=1) + P(X=2) \) <br>
                \(= 0.6137 \)
-            </div>
+          </td>
+          <td>
             <img class="figure" src="./Figure/Fig0317.png">
             <div class="textLeft">&lt;Figure 3.17&gt;  『eStatH』 \(B(10,0.1667)\)</div>
-      <p>
-            <div class="textLeft">
-               \(n = 20\)<p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+               \(n = 20\)<br>
                \(P \left [ 20( \frac{1}{6} - 0.1 ) < X < 20( \frac{1}{6} + 0.1 ) \right] \)<br>
                \(= P(1.3333 < X < 5.3333) \)  <br>
                \(= P(X=2)+P(X=3)+ P(X=4)+P(X=5) \)  <br>
                \(= 0.7677 \)
-            </div>
+          </td>
+          <td>
             <img class="figure" src="./Figure/Fig0318.png">
             <div class="textLeft">&lt;Figure 3.18&gt;  『eStatH』 \(B(20,0.1667)\)</div>
-      <p>
-            <div class="textLeft">
+          </td>
+        </tr>
+        <tr>
+          <td>
                \(n = 50\)<p>
                \(P \left [ 50( \frac{1}{6} - 0.1 ) < X < 50( \frac{1}{6} + 0.1 ) \right] \)<br>
                \(= P(3.3333 < X < 13.33333) \)  <br>
                \(= P(X=4) + P(X=5) + \cdots + P(X=13) \) <br>
                \(= 0.9454 \)
-            </div>
+          </td>
+          <td>
             <img class="figure" src="./Figure/Fig0319.png">
             <div class="textLeft">&lt;Figure 3.19&gt;  『eStatH』 \(B(50,0.1667)\)</div>
-      <p>
-            <div class="textLeft">
+          </td>
+        </tr>
+        <tr>
+          <td>
                \(n = 100\)<p>
                \(P \left [ 100( \frac{1}{6} - 0.1 ) < X < 100( \frac{1}{6} + 0.1 ) \right] \)<br>
                \(= P(6.6667 < X < 26.6667) \)  <br>
                \(= P(X=7) + P(X=8) + \cdots + P(X=26) \) <br>
                \(= 0.9925 \)
-            </div>
+          </td>
+          <td>
             <img class="figure" src="./Figure/Fig0320.png">
             <div class="textLeft">&lt;Figure 3.20&gt;  『eStatH』 \(B(100,0.1667)\)</div>
-      <p>
+          </td>
+        </tr>
+      </table>
+
          As you noticed here, the probability \( P ( \left | \frac{X}{n} - \frac{1}{6} \right | < 0.1 )\)
          is close to 1 as \(n\) increases. 
       <p>
@@ -1584,7 +1589,8 @@
             $$
               f(x) = \frac{1}{\sqrt{ 2\pi} \sigma } e^{ \left[ - \frac{(x-\mu)^2}{2 \sigma^2} \right]} \qquad  - ∞ < x < ∞ 
             $$
-            where \(\mu\) is a constant, \(\sigma\) is a positive constant, \(e\) is the irrational number as 
+            where \(\mu\) is a constant, \(\sigma\) is a positive constant, and \(e\) is the irrational number. 
+      <p>
             <img class="figure" src="./Figure/Fig0323.png">
             <div class="textLeft">&lt;Figure 3.23&gt; Probability distribution function of the normal distribution </div>
       <p>

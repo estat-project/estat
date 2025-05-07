@@ -80,7 +80,7 @@
                 <li><a href="#0503">&nbsp;&nbsp; 5.3 Testing hypothesis for two populations means</a></li>
                 <li><a href="#0504">&nbsp;&nbsp; 5.4 Testing hypothesis for several population means: ANOVA</a></li>
                 <li><a href="#0505">&nbsp;&nbsp; 5.5 Regression analysis</a></li>
-                <li><a href="#0506">&nbsp;&nbsp; 5.6 R practice</a></li>
+                <li><a href="#0506">&nbsp;&nbsp; 5.6 R and Python practice</a></li>
                 <li><a href="#0507">&nbsp;&nbsp; 5.7 Exercise</a></li>
           </ul>
     <li> <a href="chapter06.html"> 6 Supervised machine learning for categorical data</a> </li>
@@ -112,7 +112,7 @@
                 <li class="listNoneIndent"><a href="#050501">5.5.1 Correlation analysis</a></li>
                 <li class="listNoneIndent"><a href="#050502">5.5.2 Simple linear regression</a></li>
                 <li class="listNoneIndent"><a href="#050503">5.5.3 Multiple linear regression</a></li>
-              <li class="listNone"><a href="#0506">5.6 R practice</a></li>
+              <li class="listNone"><a href="#0506">5.6 R and Python practice</a></li>
               <li class="listNone"><a href="#0507">5.7 Exercise</a></li>
           </ul>
   <p>
@@ -2566,9 +2566,11 @@
 
 
   <!-------------------------------------------------------------------->
-  <h3 id="0506">5.6  R practice</h3>
+  <h3 id="0506">5.6  R and Python practice</h3>
   <p>
-  <h5>R practice</h5>
+  <h5>R practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter5_6_R.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
   <p>
   <div class="mainTable">
        Let us practice testing hypothesess in this chapter using R commands. Since there is no package 
@@ -2682,15 +2684,15 @@
          </tr>
          <tr>
            <td style="width:650px;">
-             <span style="color:red;">> mu0 <- 1500</span> <br>
-             <span style="color:red;">> n <- 30</span> <br>
-             <span style="color:red;">> xbar <- 1555</span> <br>
-             <span style="color:red;">> sigma <- 200</span> <br>
-             <span style="color:red;">> teststat <- (xbar - mu0) / (sigma / sqrt(n))</span> <br>
-             <span style="color:red;">> teststat</span> <br>
+             <span style="color:red;"> mu0 <- 1500</span> <br>
+             <span style="color:red;"> n <- 30</span> <br>
+             <span style="color:red;"> xbar <- 1555</span> <br>
+             <span style="color:red;"> sigma <- 200</span> <br>
+             <span style="color:red;"> teststat <- (xbar - mu0) / (sigma / sqrt(n))</span> <br>
+             <span style="color:red;"> teststat</span> <br>
              [1] 1.506237<br>
-             <span style="color:red;">> pvalue <- pnorm(teststat,0,1,lower.tail = FALSE)</span> <br>
-             <span style="color:red;">> pvalue</span> <br>
+             <span style="color:red;"> pvalue <- pnorm(teststat,0,1,lower.tail = FALSE)</span> <br>
+             <span style="color:red;"> pvalue</span> <br>
              [1] 0.06600317<br>
            </td>
          </tr>
@@ -2709,15 +2711,15 @@
          </tr>
          <tr>
            <td style="width:650px;">
-             <span style="color:red;">> mu0 <- 250</span> <br>
-             <span style="color:red;">> n <- 16</span> <br>
-             <span style="color:red;">> xbar <- 253</span> <br>
-             <span style="color:red;">> s <- 10</span> <br>
-             <span style="color:red;">> teststat <- (xbar - mu0) / (s / sqrt(n))</span> <br>
-             <span style="color:red;">> teststat</span> <br>
+             <span style="color:red;"> mu0 <- 250</span> <br>
+             <span style="color:red;"> n <- 16</span> <br>
+             <span style="color:red;"> xbar <- 253</span> <br>
+             <span style="color:red;"> s <- 10</span> <br>
+             <span style="color:red;"> teststat <- (xbar - mu0) / (s / sqrt(n))</span> <br>
+             <span style="color:red;"> teststat</span> <br>
              [1] 1.2<br>
-             <span style="color:red;">> pvalue <- pt(teststat, n-1, lower.tail = FALSE)</span> <br>
-             <span style="color:red;">> pvalue</span> <br>
+             <span style="color:red;"> pvalue <- pt(teststat, n-1, lower.tail = FALSE)</span> <br>
+             <span style="color:red;"> pvalue</span> <br>
              [1]  0.1243749<br>
            </td>
          </tr>
@@ -2736,20 +2738,20 @@
          </tr>
          <tr>
            <td style="width:650px;">
-             <span style="color:red;">> n1 <- 15</span> <br>
-             <span style="color:red;">> n2 <- 14</span> <br>
-             <span style="color:red;">> xbar1 <- 275</span> <br>
-             <span style="color:red;">> xbar2 <- 269</span> <br>
-             <span style="color:red;">> s1 <- 12</span> <br>
-             <span style="color:red;">> s2 <- 10</span> <br>
-             <span style="color:red;">> pooledvar <- ((n1-1)*s1^2 + (n2-1)*s2^2) / (n1+n2-2)</span> <br>
-             <span style="color:red;">> pooledvar</span> <br>
+             <span style="color:red;"> n1 <- 15</span> <br>
+             <span style="color:red;"> n2 <- 14</span> <br>
+             <span style="color:red;"> xbar1 <- 275</span> <br>
+             <span style="color:red;"> xbar2 <- 269</span> <br>
+             <span style="color:red;"> s1 <- 12</span> <br>
+             <span style="color:red;"> s2 <- 10</span> <br>
+             <span style="color:red;"> pooledvar <- ((n1-1)*s1^2 + (n2-1)*s2^2) / (n1+n2-2)</span> <br>
+             <span style="color:red;"> pooledvar</span> <br>
              [1] 122.8148<br>
-             <span style="color:red;">> teststat <- (xbar1 - xbar2) / sqrt(pooledvar/n1 + pooledvar/n2)</span> <br>
-             <span style="color:red;">> teststat</span> <br>
+             <span style="color:red;"> teststat <- (xbar1 - xbar2) / sqrt(pooledvar/n1 + pooledvar/n2)</span> <br>
+             <span style="color:red;"> teststat</span> <br>
              [1] 1.456923<br>
-             <span style="color:red;">> pvalue <- 2 * pt(teststat, n1+n2-2, lower.tail = FALSE)</span> <br>
-             <span style="color:red;">> pvalue</span> <br>
+             <span style="color:red;"> pvalue <- 2 * pt(teststat, n1+n2-2, lower.tail = FALSE)</span> <br>
+             <span style="color:red;"> pvalue</span> <br>
              [1]   0.1566703<br>
            </td>
          </tr>
@@ -2803,20 +2805,20 @@
          </tr>
          <tr>
            <td style="width:650px;">
-             <span style="color:red;">> y <- c(81,75,69,90,72,83, 65,80,73,79,81,69, 72,67,62,76,80, 89,94,79,88) </span> <br>
-             <span style="color:red;">> f <- c(rep(1,6), rep(2,6), rep(3,5), rep(4,4)) </span> <br>
-             <span style="color:red;">> af <- as.factor(f)</span> <br>
-             <span style="color:red;">> ymean <- tapply(y, af, mean); ymean</span> <br>
+             <span style="color:red;"> y <- c(81,75,69,90,72,83, 65,80,73,79,81,69, 72,67,62,76,80, 89,94,79,88) </span> <br>
+             <span style="color:red;"> f <- c(rep(1,6), rep(2,6), rep(3,5), rep(4,4)) </span> <br>
+             <span style="color:red;"> af <- as.factor(f)</span> <br>
+             <span style="color:red;"> ymean <- tapply(y, af, mean); ymean</span> <br>
 <pre>
        1        2        3        4 
 78.33333 74.50000 71.40000 87.50000 
 </pre>
-             <span style="color:red;">> boxplot(y ~ af)</span> <br>
+             <span style="color:red;"> boxplot(y ~ af)</span> <br>
              <img class="figure50" src="./figure/Fig050601.png">
              <div class="figText">&lt;Figure 5.6.1&gt; Box plot for each grade</div>
  
-             <span style="color:red;">> an1 <- aov(y ~ af)</span> <br>
-             <span style="color:red;">> summary(an1)</span> <br>
+             <span style="color:red;"> an1 <- aov(y ~ af)</span> <br>
+             <span style="color:red;"> summary(an1)</span> <br>
 <pre>
 Call:
    aov(formula = y ~ af)
@@ -2911,9 +2913,9 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
          </tr>
          <tr>
            <td style="width:650px;">
-             <span style="color:red;">> x <- c(4,6,6,8,8,9,9,10,12,12) </span> <br>
-             <span style="color:red;">> y <- c(39,42,45,47,50,50,52,55,57,60) </span> <br>
-             <span style="color:red;">> rg <- lm(y ~ x); rg</span> <br>
+             <span style="color:red;"> x <- c(4,6,6,8,8,9,9,10,12,12) </span> <br>
+             <span style="color:red;"> y <- c(39,42,45,47,50,50,52,55,57,60) </span> <br>
+             <span style="color:red;"> rg <- lm(y ~ x); rg</span> <br>
 <pre> 
 Call:
 lm(formula = y ~ x)
@@ -2922,10 +2924,10 @@ Coefficients:
 (Intercept)            x  
      28.672        2.503  
 </pre>
-             <span style="color:red;">> plot(x, y); abline(rg)</span> <br>
+             <span style="color:red;"> plot(x, y); abline(rg)</span> <br>
              <img class="figure50" src="./figure/Fig050602.png">
              <div class="figText">&lt;Figure 5.6.2&gt; Simple linear regression</div>
-             <span style="color:red;">> summary(rg)</span> <br>
+             <span style="color:red;"> summary(rg)</span> <br>
 <pre>
 Call:
 lm(formula = y ~ x)
@@ -2960,10 +2962,10 @@ F-statistic: 172.1 on 1 and 8 DF,  p-value: 1.085e-06
          </tr>
          <tr>
            <td style="width:650px;">
-             <span style="color:red;">> y <- c(0.291,0.291,0.288,0.464,0.532,0.557,0.441,0.515,0.603,0.628,0.956,0.775,0.727,0.704,1.084) </span> <br>
-             <span style="color:red;">> x1 <- c(21.0,21.8,22.3,26.6,27.1,27.4,27.9,27.9,29.7,32.7,32.7,33.7,34.7,35.0,40.6) </span> <br>
-             <span style="color:red;">> x2 <- c(21.33,19.81,19.20,21.94,24.68,25.29,20.11,22.86,21.03,22.55,25.90,26.21,21.64,19.50,21.94) </span> <br>
-             <span style="color:red;">> rg2 <- lm(y ~ x1+x2); rg2</span> <br>
+             <span style="color:red;"> y <- c(0.291,0.291,0.288,0.464,0.532,0.557,0.441,0.515,0.603,0.628,0.956,0.775,0.727,0.704,1.084) </span> <br>
+             <span style="color:red;"> x1 <- c(21.0,21.8,22.3,26.6,27.1,27.4,27.9,27.9,29.7,32.7,32.7,33.7,34.7,35.0,40.6) </span> <br>
+             <span style="color:red;"> x2 <- c(21.33,19.81,19.20,21.94,24.68,25.29,20.11,22.86,21.03,22.55,25.90,26.21,21.64,19.50,21.94) </span> <br>
+             <span style="color:red;"> rg2 <- lm(y ~ x1+x2); rg2</span> <br>
 <pre> 
 Call:
 lm(formula = y ~ x1 + x2)
@@ -2972,7 +2974,7 @@ Coefficients:
 (Intercept)           x1           x2  
    -1.02357      0.03697      0.02366  
 </pre>
-             <span style="color:red;">> summary(rg2)</span> <br>
+             <span style="color:red;"> summary(rg2)</span> <br>
 <pre>
 Call:
 lm(formula = y ~ x1 + x2)
@@ -2999,6 +3001,342 @@ F-statistic: 73.12 on 2 and 12 DF,  p-value: 1.902e-07
 
   </div>
   <p>
+
+  <h5>Python practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter5_6_Python.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
+  <div class="mainTable">
+    <table style="width:800px">
+         <tr>
+           <td>
+# Example 5.2.1 Testing hypothesis for a population mean with known population standard deviation. <br>
+# # Enter mu_0, n, xbar, and population standard deviation, then calculate test statistic and p-value. <br>
+<span style="color:red;">
+import math <br>
+from scipy.stats import norm <br>
+
+mu0 = 1500 <br>
+n = 30 <br>
+xbar = 1555 <br>
+sigma = 200 <br>
+
+teststat = (xbar - mu0) / (sigma / math.sqrt(n)) <br>
+print(f"Test statistic: {teststat}") <br>
+
+pvalue = norm.sf(teststat) # Survival function (1 - CDF) <br>
+print(f"P-value: {pvalue}") <br>
+</span>
+<pre>
+Test statistic: 1.5062370331392068 
+P-value: 0.06600316790918383 
+</pre>
+           </td>
+         </tr>
+    </table>
+  </div>
+  <p>
+
+  <div class="mainTable">
+    <table style="width:800px">
+         <tr>
+           <td>
+# Example 5.2.2 Testing hypothesis for a population mean with unknown population standard deviation. <br>
+# Enter mu_0, n, xbar, and sample standard deviation, then calculate test statistic and p-value. <br>
+
+<span style="color:red;">
+import math <br>
+from scipy.stats import  <br>
+</span>
+# Example 5.2.2 Testing hypothesis for a population mean with unknown population standard deviation. <br>
+# Enter mu_0, n, xbar, and sample standard deviation, then calculate test statistic and p-value. <br>
+<span style="color:red;">
+mu0 = 250 <br>
+n = 16 <br>
+xbar = 253 <br>
+s = 10
+
+teststat = (xbar - mu0) / (s / math.sqrt(n)) <br>
+print(f"Test statistic: {teststat}") <br>
+
+pvalue = t.sf(teststat, n-1) # Survival function (1 - CDF) <br>
+print(f"P-value: {pvalue}") <br>
+</span>
+<pre>
+Test statistic: 1.2
+P-value: 0.12437489369401128
+</pre>
+           </td>
+         </tr>
+    </table>
+  </div>
+  <p>
+
+  <div class="mainTable">
+    <table style="width:800px">
+         <tr>
+           <td>
+# prompt: # Example 5.3.1 Testing hypothesis for two populations means when population variances are equal. <br>
+# # Enter n1, n2, xbar1, xbar2, s1, and s2, then calculate the pooled variance, test statistic and p-value. <br>
+
+<span style="color:red;">
+import math <br>
+from scipy.stats import norm <br>
+from scipy.stats import t <br>
+</span>
+
+# Example 5.3.1 Testing hypothesis for two populations means when population variances are equal. <br>
+# Enter n1, n2, xbar1, xbar2, s1, and s2, then calculate the pooled variance, test statistic and p-value. <br>
+<span style="color:red;">
+n1 = 15 <br>
+n2 = 14 <br>
+xbar1 = 275 <br>
+xbar2 = 269 <br>
+s1 = 12 <br>
+s2 = 10 <br>
+
+pooledvar = ((n1 - 1) * s1**2 + (n2 - 1) * s2**2) / (n1 + n2 - 2) <br>
+print(f"Pooled Variance: {pooledvar}") <br>
+
+teststat = (xbar1 - xbar2) / math.sqrt(pooledvar / n1 + pooledvar / n2) <br>
+print(f"Test statistic: {teststat}") <br>
+
+pvalue = 2 * t.sf(abs(teststat), n1 + n2 - 2) # Use abs for two-tailed test, sf for survival function <br>
+print(f"P-value: {pvalue}") <br>
+</span>
+
+<pre>
+Pooled Variance: 122.81481481481481
+Test statistic: 1.4569227333394668
+P-value: 0.15667027233049496
+</pre>
+           </td>
+         </tr>
+    </table>
+  </div>
+  <p>
+
+  <div class="mainTable">
+    <table style="width:800px">
+         <tr>
+           <td>
+
+# prompt: # Example 5.4.1 Testing hypothesis for several populations means; one-way ANOVA. <br>
+# # Enter data and change the level as a factor (as.factor()). <br>
+# y <- c(81,75,69,90,72,83, 65,80,73,79,81,69, 72,67,62,76,80, 89,94,79,88) <br>
+# f <- c(rep(1,6), rep(2,6), rep(3,5), rep(4,4)) <br>
+# af <- as.factor(f) <br>
+# ymean <- tapply(y, af, mean) <br>
+# ymean <br>
+<span style="color:red;">
+import statsmodels.formula.api as sm <br>
+</span>
+# Import the correct module for anova_lm <br>
+from statsmodels.stats.anova import anova_lm <br>
+
+# Example 5.4.1 Testing hypothesis for several populations means; one-way ANOVA. <br>
+<span style="color:red;">
+y = [81,75,69,90,72,83, 65,80,73,79,81,69, 72,67,62,76,80, 89,94,79,88] <br>
+f = [1,1,1,1,1,1, 2,2,2,2,2,2, 3,3,3,3,3, 4,4,4,4] <br>
+</span>
+<br>
+# Create a pandas DataFrame <br>
+<span style="color:red;">
+import pandas as pd <br>
+df = pd.DataFrame({'y': y, 'f': f}) <br>
+</span>
+
+# Fit the one-way ANOVA model <br>
+<span style="color:red;">
+model = sm.ols('y ~ C(f)', data=df).fit() <br>
+</span>
+<br>
+
+# Print the ANOVA table <br>
+# Call anova_lm directly from the imported module <br>
+<span style="color:red;">
+print(anova_lm(model, typ=2)) <br>
+</span>
+<pre>
+              sum_sq    df         F    PR(>F)
+C(f)      643.633333   3.0  4.346973  0.019054
+Residual  839.033333  17.0       NaN       NaN
+</pre>
+
+
+# Create the boxplot <br>
+<span style="color:red;">
+plt.figure(figsize=(8, 6))  # Adjust figure size if needed <br>
+df.boxplot(column='y', by='af') <br>
+plt.title('Boxplot of y by af') <br>
+plt.suptitle('') # Remove default suptitle <br>
+plt.xlabel('af') <br>
+plt.ylabel('y') <br>
+plt.show() <br>
+</span>
+<br>
+<img class="figure50" src="./figure/Fig050603.png">
+<p>
+<span style="color:red;">
+import statsmodels.formula.api as sm <br>
+from statsmodels.stats.anova import anova_lm <br>
+import pandas as pd <br>
+</span>
+#Fit the model <br>
+<span style="color:red;">
+model = sm.ols('y ~ C(af)', data=df).fit() <br>
+</span>
+# Perform ANOVA <br>
+<span style="color:red;">
+anova_table = anova_lm(model, typ=2) <br>
+anova_table <br>
+</span>
+<pre>
+sum_sq	df	F	PR(>F)
+C(af)	643.633333	3.0	4.346973	0.019054
+Residual	839.033333	17.0	NaN	NaN
+</pre>
+<br>
+
+<span style="color:red;">
+import math <br>
+from scipy.stats import norm <br>
+from scipy.stats import t <br>
+import statsmodels.formula.api as sm <br>
+from statsmodels.stats.anova import anova_lm <br>
+import pandas as pd <br>
+import matplotlib.pyplot as plt <br>
+</span>
+
+           </td>
+         </tr>
+    </table>
+  </div>
+  <p>
+
+  <div class="mainTable">
+      <table style="width:800px">
+         <tr>
+           <td>
+
+# Example 5.5.1 Regression analysis. <br>
+# Enter data and change the level as a factor (as.factor()). <br>
+<span style="color:red;">
+x = [4,6,6,8,8,9,9,10,12,12] <br>
+y = [39,42,45,47,50,50,52,55,57,60] <br>
+</span>
+# Create a pandas DataFrame <br>
+<span style="color:red;">
+df = pd.DataFrame({'x': x, 'y': y})
+</span>
+# Fit the linear regression model <br>
+<span style="color:red;">
+rg = sm.ols('y ~ x', data=df).fit() <br>
+</span>
+# Print the regression summary <br>
+<span style="color:red;">
+print(rg.summary()) <br>
+</span>
+<pre>
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.956
+Model:                            OLS   Adj. R-squared:                  0.950
+Method:                 Least Squares   F-statistic:                     172.1
+Date:                Sat, 19 Apr 2025   Prob (F-statistic):           1.09e-06
+Time:                        13:32:00   Log-Likelihood:                -17.016
+No. Observations:                  10   AIC:                             38.03
+Df Residuals:                       8   BIC:                             38.64
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept     28.6722      1.670     17.166      0.000      24.820      32.524
+x              2.5033      0.191     13.117      0.000       2.063       2.943
+==============================================================================
+Omnibus:                        6.181   Durbin-Watson:                   3.388
+Prob(Omnibus):                  0.045   Jarque-Bera (JB):                1.423
+Skew:                          -0.309   Prob(JB):                        0.491
+Kurtosis:                       1.258   Cond. No.                         31.5
+==============================================================================
+</pre>
+
+# Plot the data and regression line <br>
+<span style="color:red;">
+plt.figure(figsize=(8, 6)) <br>
+plt.scatter(x, y) <br>
+plt.plot(x, rg.predict(), color='red') <br>
+plt.xlabel('x') <br>
+plt.ylabel('y') <br>
+plt.title('Regression Analysis') <br>
+plt.show() <br>
+</span>
+<img class="figure50" src="./figure/Fig050604.png">
+<p>
+           </td>
+         </tr>
+    </table>
+  </div>
+  <p>
+
+  <div class="mainTable">
+    <table style="width:800px">
+         <tr>
+           <td>
+
+# Example 5.5.3 Multiple regression analysis. <br>
+# Enter data and change the level as a factor (as.factor()). <br>
+<span style="color:red;">
+import pandas as pd <br>
+import statsmodels.formula.api as sm <br>
+
+y = [0.291,0.291,0.288,0.464,0.532,0.557,0.441,0.515,0.603,0.628,0.956,0.775,0.727,0.704,1.084] <br>
+x1 = [21.0,21.8,22.3,26.6,27.1,27.4,27.9,27.9,29.7,32.7,32.7,33.7,34.7,35.0,40.6] <br>
+x2 = [21.33,19.81,19.20,21.94,24.68,25.29,20.11,22.86,21.03,22.55,25.90,26.21,21.64,19.50,21.94] <br>
+</span>
+# Create a pandas DataFrame <br>
+<span style="color:red;">
+df = pd.DataFrame({'y': y, 'x1': x1, 'x2': x2}) <br>
+</span>
+# Fit the multiple linear regression model <br>
+<span style="color:red;">
+rg2 = sm.ols('y ~ x1 + x2', data=df).fit() <br>
+</span>
+# Print the regression summary <br>
+<span style="color:red;">
+print(rg2.summary()) <br>
+</span>
+<pre>
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.924
+Model:                            OLS   Adj. R-squared:                  0.912
+Method:                 Least Squares   F-statistic:                     73.12
+Date:                Sat, 19 Apr 2025   Prob (F-statistic):           1.90e-07
+Time:                        13:32:28   Log-Likelihood:                 20.392
+No. Observations:                  15   AIC:                            -34.78
+Df Residuals:                      12   BIC:                            -32.66
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept     -1.0236      0.188     -5.458      0.000      -1.432      -0.615
+x1             0.0370      0.003     10.590      0.000       0.029       0.045
+x2             0.0237      0.008      2.844      0.015       0.006       0.042
+==============================================================================
+Omnibus:                        4.763   Durbin-Watson:                   2.566
+Prob(Omnibus):                  0.092   Jarque-Bera (JB):                2.434
+Skew:                           0.953   Prob(JB):                        0.296
+Kurtosis:                       3.511   Cond. No.                         389.
+==============================================================================
+</pre>
+
+           </td>
+         </tr>
+    </table>
+  </div>
+
 
   <!--------------------------------------------->
   <h3 id="0507">5.7 Exercise</h3>

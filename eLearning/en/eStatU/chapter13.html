@@ -138,7 +138,7 @@
 -->
   <p>
 
-    <div class="mainTable">
+  <div class="mainTable">
       <b>Time series</b> refers to data recorded according to changes in time. In general, observations are made at regular time intervals such as year, season, month, or day, and this is called a <b>discrete time series</b>. There may be time series that are continuously observed, but this book will only deal with the analysis of discrete time series.
       <p>
       An example of a discrete time series is the population of Korea as shown in [Table 13.1.1]. This data is from the census conducted every five years in Korea from 1925 to 2020 (except for 1944 and 1949). 
@@ -214,7 +214,6 @@
       the time series in this way, trends, change points, and outliers can be observed, which is helpful in selecting an analysis model or method suitable for the data.
       <p>
       Time series that we frequently encounter include monthly sales of department stores and companies, daily composite stock index, annual crop production, yearly export and import time series, and yearly national income and economic growth rate, and so on.
-      <p>
       [Table 13.1.2] shows the percent increase in monthly sales of the US toy/game industry for the past 6 years, and &lt;Figure 13.1.2&gt; is a plot of this time series. As it is the rate of change from the previous month, it can be observed that it is seasonal data showing a large increase in November and December every year, moving up and down based on 0. However, May 2020 is an extreme with an increase rate of 211% unlike other years. For time series, you can better examine the characteristics of the data by converting the raw time series into the rate of change.
       <p>
       <div class="textLeft">[Table 13.1.2]  Percent Increase, Monthly Sales of Toy/Game in US(%) (Source: Bureau of Census, US)</div>
@@ -406,14 +405,16 @@
       <p>
       Other factors that cannot be explained by trend, season, or cyclical factors are called <b>irregular</b>
       or <b>random</b> factors, which refer to variable factors that appear due to random causes regardless of regular movement over time.
+  </div>
+  <p>
 
-    </div>
-    <p>
-
-    <h4>13.1.1 Time Series Model</h4>
+  <h4>13.1.1 Time Series Model</h4>
+  <div class="mainTable">
       By observing the time series, you can predict how this time series will change in the future by building a time series model that fits the probabilistic characteristics of this data. Because the time series observed in reality has a very diverse form, the time series model is also very diverse, from simple to very complex. In general, time series models for a single variable can be divided into the following four categories.
-    <p>
-    <h6>A. Regression Model</h6>
+  </div>
+  <p>
+  <h6>A. Regression Model</h6>
+  <div class="mainTable">
       A model that explains data or predicts the future by expressing a time series in the form of 
       a function related to time is the most intuitive and easy to understand model. That is, 
       when a time series is an observation of a random variable, \(Y_1 , Y_2 , ... , Y_n\), 
@@ -425,27 +426,33 @@
       In general \(\epsilon_t\)  is assumed independent, \(E(\epsilon_t ) = 0\) , and 
       \(Var(\epsilon_t ) = \sigma^2)\) which is called a white noise. For example, the following model 
       can be applied to a time series in which the data is horizontal or has a linear trend.
-    <p>
+      <br><br>
       \( \qquad \text{Horizontal:} \qquad Y_t \;=\; \mu \;+\; \epsilon _ t \)
       <br>
       \( \qquad \text{Linear Trend:}\quad Y_t \;=\; a \;+\; b\, t \;+\; \epsilon _ t \)
-    <p>
-    <h6>B. Decomposition Model</h6>
+  </div>
+  <p>
+  <h6>B. Decomposition Model</h6>
+  <div class="mainTable">
       The model that decomposes the time series into four factors, i.e., trend(\(T_t\)), cycle(\(C_t\)), 
       seasonal(\(S_t\)), and irregular(\(I_t\)), is an analysis method that has been used for a long time based on empirical facts. It can be divided into additive model and multiplicative model.
-    <p>
-    \( \qquad \text{Additive Model:}     \qquad \qquad Y_t \;=\; T_t \;+\; C_t \;+\; S_t \;+\; I_t \)
-    <br>
-    \( \qquad \text{Multiplicative Model:}\qquad Y_t \;=\; T_t \;\times\; C_t \;\times\; S_t \;\times \; I_t \)
-    <p>
+      <br><br>
+      \( \qquad \text{Additive Model:}     \qquad \qquad Y_t \;=\; T_t \;+\; C_t \;+\; S_t \;+\; I_t \)
+      <br>
+      \( \qquad \text{Multiplicative Model:}\qquad Y_t \;=\; T_t \;\times\; C_t \;\times\; S_t \;\times \; I_t \)
+      <br><br>
       Here \(T_t\), \(C_t\), \(S_t\) are deterministic function, \(I_t\)  is a random variable. 
       If we take the logarithm of a multiplicative model, it becomes an additive model. 
       If the number of data is not enough, the cycle factor can be omitted in the model.
-    <p>
-    <h6>C. Exponential Smoothing Model</h6>
+  </div>
+  <p>
+  <h6>C. Exponential Smoothing Model</h6>
+  <div class="mainTable">
       Time series data are often more related to recent data than to past data. The above two types of models are models that do not take into account the relationship between the past time series data and the recent time series data. Models using moving averages and exponential smoothing are often used to explain and predict data using the fact that time series forecasting is more related to recent data.
-
-    <h6>D. Box-Jenkins ARIMA Model</h6>
+  </div>
+  <p>
+  <h6>D. Box-Jenkins ARIMA Model</h6>
+  <div class="mainTable">
       The above models are not methods that can be applied to all types of time series, and the analyst selects and applies them according to the type of data. Box and Jenkins presented the following general ARIMA model that can be applied to all time series of stationary or nonstationary type as follows:
     $$
       Y _{t} \,=\, \mu \,+\,  \phi_{1} \, Y  _{t-1} \,+\, \phi  _{2} \, Y_{t-2} \,+\, \cdots \,+\,  \epsilon  _{t} \,+\, \theta  _{1} \, \epsilon  _{t-1} \,+\, \theta  _{2} \, \epsilon  _{t-2} \,+\, \cdots   
@@ -455,10 +462,12 @@
       In the above time series model, the regression model and ARIMA model are systematic models based on statistical theory, and the decomposition model and exponential smoothing model are methods based on experience and intuition. In general, regression models using mathematical functions and models using decomposition are known to be suitable for predicting slow-changing time series, whereas exponential smoothing and ARIMA models are known to be effective in predicting very rapidly changing time series.
     <p>
       For all time series models, it is impossible to predict due to sudden changes. And because time series has so many different forms, it cannot be said that one time series model is always superior to another. Therefore, rather than applying only one model to a time series, it is necessary to establish and compare several models, combine different models, or make an effort to determine the final model by combining opinions of experts familiar with the time series.
-    <p>
+  </div>
+  <p>
 
-    <h4>13.1.2 Evaluation of Time Series Model</h4>
-    <p>
+  <h4>13.1.2 Evaluation of Time Series Model</h4>
+  <p>
+  <div class="mainTable">
        Let the time series be the observed values of the random variables  \(Y_1 , Y_2 , ... , Y_n\)
        and  \(\hat Y_1 , \hat Y_2 , ... , \hat Y_n\) be the values predicted by the model. 
        If the model agrees exactly, the observed and predicted values are the same, and the model 
@@ -475,7 +484,7 @@
     $$
       {RMSE} \,=\, \sqrt{MSE  }     
     $$
-
+  </div>
   <p>
 
   <h3 id="1302">13.2 Smoothing of Time Series </h3>
@@ -487,15 +496,14 @@
   </h6>
 --->
   <p>
-
-    <div class="mainTable">
+  <div class="mainTable">
       Original time series data can be used to make a time series model by observing trends, but in many cases, 
       time series can be observed after smoothing to unerstand better. In a time series such as stock price, it is often difficult to find a trend because of temporary or short-term fluctuations due to accidental coincidences or cyclical factors. In this case, smoothing techniques are used as a method to effectively grasp the overall long-term trend by removing temporary or short-term fluctuations. The centered moving average method and the exponential smoothing method are widely used. 
-    </div>
-    <p>
-    <h4>13.2.1 Centered Moving Average</h4>
-    <p>
-    <div class="mainTable">
+  </div>
+  <p>
+  <h4>13.2.1 Centered Moving Average</h4>
+  <p>
+  <div class="mainTable">
       The time series in [Table 13.2.1] is the world crude oil price based on the closing price every year from 1987 to 2022. Looking at &lt;Figure 13.2.1&gt;, it can be seen that the short-term fluctuations in the time series are large. However, causes such as oil shocks are short-term and not continuous, so if we are interested in the long-term trend of gasoline consumption, it would be more effective to look at the fluctuations caused by short-term causes.
       <p>
       <div class="textLeft">[Table 13.2.1]  Price of Crude Oil (End of Year Price, US$) and 5-point Centered Moving Average</div>
@@ -584,8 +592,8 @@
              106.95<br>
           </td> 
            <td class="tdCenter">
-             <br>
-             <br>
+             ---<br>
+             ---<br>
              20.666<br>
              21.216<br>
              20.630<br>
@@ -618,8 +626,8 @@
              53.804<br>
              58.096<br>
              67.394<br>
-             <br>
-             <br>
+             ---<br>
+             ---<br>
           </td> 
          </tr>
       </table>
@@ -641,7 +649,7 @@
         M_t = \frac{Y_{t-2} \,+\, Y_{t-1} \,+\, Y_{t} \,+\, Y_{t+1} \,+\,  Y_{t+2} } {5 }   
       $$
         For example, the 5-point centered moving average for 1989 is as follows.
-      <p>
+      <br><br>
         \(\qquad M_{1989} \,=\, \frac {Y_{1987} + Y_{1988} +Y_{1989} + Y_{1990} + Y_{1991} } {5 } \)
       <br>
         \( \qquad \qquad \quad =\, \frac {16.74 + 17.12 + 21.84 + 28.48 + 19.15} {5} \,=\, 20.6660 \)
@@ -660,30 +668,26 @@
         with the same number of data on both sides of the base year. For example, the center of the 
         four-point moving average from 1987 to 1990 is between 1988 and 1989. If you denote this as 
         \(M_{1988.5}\), it can be calculated as follows:
-      <p>
-        \( \qquad M_{1988.5} \,=\, \frac {Y_{1987} + Y_{1988} +Y_{1989} + Y_{1990} } {4 } \)
-      <br>
-        \( \qquad \qquad \quad \,=\, \frac {16.74 + 17.12 + 21.84 + 28.48 } {4} \,=\, 21.045 \)
-      <p>
+      <br><br>
+        \( \qquad M_{1988.5} \,=\, \frac {Y_{1987} + Y_{1988} +Y_{1989} + Y_{1990} } {4 }  
+           \,=\, \frac {16.74 + 17.12 + 21.84 + 28.48 } {4} \,=\, 21.045 \)
+      <br><br>
         The 4-point moving average obtained in this way is called a non-central 4-points moving average. 
         In the case of this even number N, the non-central moving average does not match the observation 
         year of the original data, which is inconvenient. In the case of this even number N, it is 
         calculated as the average of the noncentral moving average values of two adjacent non-central
         moving averages. In other words, the central four-point moving average in 1989 is the average 
         of  \(M_{1988.5}\) and  \(M_{1989.5}\)  as follows:
-      <p>
-        \( \qquad M_{1989} \,=\, \frac {M_{1988.5} \,+\, M_{1989.5} } {2 } \)
-      <br>
-        \( \qquad \qquad \quad =\, \frac {21.0450 \,+\, 21.6475 } {2} \,=\, 21.3463 \)
-      <p>
+      <br><br>
+        \( \qquad M_{1989} \,=\, \frac {M_{1988.5} \,+\, M_{1989.5} } {2 } \,=\, \frac {21.0450 \,+\, 21.6475 } {2} \,=\, 21.3463 \)
+      <br><br>
         If the time series is quarterly or monthly, a 4-point central moving average or a 12-point central moving average is an average of one year, so it is often used to observe data without seasonality.
-    </div>
-    <p>
+  </div>
+  <p>
   
   <h4>13.2.2 Exponential Smoothing</h4>
   <p>
-    <div class="mainTable">
-      <p>
+  <div class="mainTable">
         3-point moving average can be considered the weighted average of three data with each weight 
         \(\frac{1}{3}\) as follows:
       $$
@@ -701,13 +705,13 @@
         smaller weights as it is farther from the present is called <b>exponential smoothing</b>. 
         The exponential smoothing method is determined by an <b>exponential smoothing constant</b> \(\alpha\)
         that has a value between 0 and 1. The exponentially smoothed data \(E_t\) is calculated as follows:
-      <p>
+      <br><br>
         \( \qquad E_{1} \,=\, \alpha \,Y_{1} \,+\, (1- \alpha)\, E_{0} \)      <br>
         \( \qquad E_{2} \,=\, \alpha \,Y_{2} \,+\, (1- \alpha)\, E_{1} \)      <br>
         \( \qquad E_{3} \,=\, \alpha \,Y_{3} \,+\, (1- \alpha)\, E_{2} \)      <br>
         \( \qquad \cdots \)      <br>
-        \( \qquad E_{t} \,=\, \alpha \,Y_{t} \,+\, (1- \alpha)\, E_{t-1} \)      <br>
-      <p>
+        \( \qquad E_{t} \,=\, \alpha \,Y_{t} \,+\, (1- \alpha)\, E_{t-1} \)      
+      <br><br>
         Here, an initial value \(E_{0}\) is required, and \(Y_1\) is usually used a lot, and the average 
         value of the data can also be used. The exponentially smoothed value \(E_t\) at the point in time 
         \(t\) gives weight \(\alpha\) to the current data, and the \(1-\alpha\)  weight to the previous 
@@ -721,11 +725,11 @@
       <p>
         Exponential smoothing of the crude oil price in [Table 13.2.1] with the initial value 
         \(E _{1986} = Y _{1987}   \) and exponential smoothing constant \(\alpha\) = 0.3 is as follows.
-      <p>
+      <br><br>
         \( \qquad E_{1986} \,=\, E_{1987} = 16.74 \)      <br>
         \( \qquad E_{1987} \,=\, 0.3  \,Y_{1987} \,+\, (1- 0.3)\, E_{1986} \,=\, (0.3)(16.74)+(0.7)(16.74)=16.74  \)      <br>
-        \( \qquad E_{1988} \,=\, 0.3  \,Y_{1988} \,+\, (1- 0.3)\, E_{1987} \,=\, (0.3)(17.12)+(0.7)(16.74)=16.854  \)      <br>
-      <p>
+        \( \qquad E_{1988} \,=\, 0.3  \,Y_{1988} \,+\, (1- 0.3)\, E_{1987} \,=\, (0.3)(17.12)+(0.7)(16.74)=16.854  \)      
+      <br><br>
         All data exponentially smoothed with \(\alpha\) = 0.3 are given in [Table 13.2.2]. It can be seen that,
         in the exponential smoothing method, there is no loss of data at both ends, unlike the moving average method. 
         The crude oil price time series and exponentially smoothed data are shown in &lt;Figure 13.2.2&gt;. 
@@ -866,22 +870,21 @@
             <img class="figure70" src="./Figure/Fig130202.png">
             <div class="figText">&lt;Figure 13.2.2&gt; Price of Crude Oil and Exponential Smoothing with &alpha;=0.3 </div>
          </div>
-    </div>
+  </div>
   <p>
   <h4>13.2.3 Filtering by Moving Median</h4>
   <p>
-    <div class="mainTable">
+  <div class="mainTable">
         The N-point <b>centered moving median</b> of a time series refers to the median of N data from a single point 
         in time \(t\). For example, in crude oil price data, the value of a five-point moving median for a specific 
         year is the median of data for two years before a certain year, that year, and data for two years thereafter. 
         If data are denoted by \(Y_{t-2} ,Y_{t-1} , Y_{t}  , Y_{t+1} ,   Y_{t+2}   \), and the data are sorted from
         smallest to largest, and expressed as \(Y_{(t-2)} ,Y_{(t-1)} , Y_{(t)} , Y_{(t+1)} , Y_{(t+2)} \), 
         the median value is \(Moving Median_t \,=\, Y_{(t)}\).
-      <p>
-        For example, the 1989 5-point central moving median for crude oil prices in [Table 13.2.3] is as follows:
-      <p>
+        For example, the 5-point central moving median in 1989 for crude oil prices in [Table 13.2.3] is as follows:
+      <br><br>
         \(\qquad MovingMedian_{1989} \,=\, median \{ Y_{1987} , Y_{1988} ,Y_{1989} , Y_{1990} , Y_{1991} \} \)
-        \(\qquad \qquad \qquad \qquad \qquad \;\;=\, median \{16.74, 17.12 , 21.84 , 28.48,19.15 \}  \,=\, 19.15 \)
+        \(\qquad \qquad \qquad \qquad \qquad \;\;\;=\, median \{16.74, 17.12 , 21.84 , 28.48,19.15 \}  \,=\, 19.15 \)
       <p>
         [Table 13.2.3] and &lt;Figure 13.2.3&gt; show all the five-point moving median values obtained in this way and their graphs. Note that the moving median for the first two years and the last two years are not available here. Because the centered moving medians remove extreme values, it is called a filtering and the time series is much smoother than the original data.
       <p>
@@ -1021,19 +1024,18 @@
         the same number of data on both sides of the base year. For example, the center of the four-point moving 
         median from 1987 to 1990 is between 1988 and 1989. If you denote this as \(Median_{1988.5}\), it can be 
         calculated as follows:
-      <p>
-        \(\qquad MovingMedian_{1988.5} \,=\, median \{Y_{1987} , Y_{1988} , Y_{1989} , Y_{1990} \} \)
-        \(\qquad \qquad \qquad \qquad \qquad \;=\,  median \{16.74 , 17.12 , 21.84 , 28.48 \}  \,=\, \frac {17.12 +21.84} {2} = 19.48 \)
-      <p>
+      <br><br>
+        \(\qquad MovingMedian_{1988.5} \,=\, median \{Y_{1987} , Y_{1988} , Y_{1989} , Y_{1990} \} \) <br>
+        \(\qquad \qquad \qquad \qquad \qquad \quad \;\;=\,  median \{16.74 , 17.12 , 21.84 , 28.48 \}  \,=\, \frac {17.12 +21.84} {2} = 19.48 \)
+      <br><br>
         The 4-point moving median obtained in this way is called the non-central 4-point moving median. 
         As such, the non-central moving average in the case of this even number N does not match the 
         observation year of the original data, which is inconvenient. In the case of this even number, 
         it is calculated as the average of the values of the two non-central moving medians that are 
         adjacent to each other. In other words, the central four-point moving median in 1989 is the mean of
         \(MovingMedian_{1988.5}\)  and \(MovingMedian_{1989.5}\).
-    </div>
-    <p>
-
+  </div>
+  <p>
   <h3 id="1303">13.3 Transformation of Time Series</h3>
   <p>
 <!---
@@ -1042,14 +1044,13 @@
       <a href="https://youtu.be/wn0Dl3dLgko" target="_blank"><u>[video]</u></a>
   </h6>
 --->
-  <p>
-    <div class="mainTable">
+  <div class="mainTable">
       Time series can be viewed by drawing the raw data directly, but in order to examine various characteristics, change in percentage increase or decrease is examined, and an index that is a percentage with respect to base time is alse examined. In addition, in order to examine the relation of the previous data, it is compared with a time lag or converted into horizontal data using the difference. When the variance of the time series increases with time, it is sometimes converted into a form suitable for applying the time series model by using logarithmic, square root, or Box-Cox transformation.   
-    </div>
-    <p>
+  </div>
+  <p>
   <h4>13.3.1 Percentage Change</h4>
-    <p>
-    <div class="mainTable">
+  <p>
+  <div class="mainTable">
       <h6>A. Percent Change</h6>    
       In a time series, you can examine the increase or decrease of a value, but you can easily observe
       the change by calculating the percentage increase or decrease. When the time series is expressed as
@@ -1066,7 +1067,7 @@
       <p>
       \(\qquad P_{2014} \,=\, \frac{19161.2 - 18742.1} {18742.1}  \times 100 \,=\, 2.23  \)
       <p>
-      <div class="textLeft">[Table 13.3.1] Number of Houses in Korea and Percent Change <br>(Korea National Statistical Office, unit 1000)</div>
+      <div class="textLeft">[Table 13.3.1] Number of Houses in Korea and Percent Change (Korea National Statistical Office, unit 1000)</div>
       <p>
       <table style="width:400px"> 
         <tr> 
@@ -1124,12 +1125,12 @@
          <iframe class="example" src="./example/130301.html"> </iframe>
          <div class="figText">&lt;Figure 13.3.1&gt; Number of Houses in Korea and Transformation</div>
       <p>
-    </div>
-    <p>
+  </div>
+  <p>
 
   <h4>B. Simple Index</h4>
   <p>
-    <div class="mainTable">
+  <div class="mainTable">
        Another way to use percentages to easily characterize changes over time is to calculate an index number. 
        An <b>index</b> \(I_t\) is a number that indicates the change over time of a time series. The index number
        \(Index_t\)  of a time series at a certain point in time is the percentage of the total time series data 
@@ -1147,9 +1148,9 @@
        time being 2010. If you look at the figure for the index, you can see that in this case, there is no significant change from the original time series and trend. It can be seen that there is a 22.18% increase in the number of houses in 2020 compared to 2010.
      <p>
        \(\qquad Index_{2020} \,=\, \frac{Y _{2020}} {Y_{2010}} \times 100  \,=\, \frac{21673.5} {17738.8} \times 100 \,=\, 122.18    \)
+     <br><br>
+       <div class="textLeft">[Table 13.3.2] Simple Index of Number of Houses in Korea (Korea National Statistical Office, unit 1000)</div>
      <p>
-       <div class="textLeft">[Table 13.3.2] Simple Index of Number of Houses in Korea <br>(Korea National Statistical Office, unit 1000)</div>
-      <p>
       <table style="width:400px"> 
         <tr> 
           <th style="width:100px">Year</th>
@@ -1204,12 +1205,11 @@
             <img class="figure70" src="./Figure/Fig130302.png">
             <div class="figText">&lt;Figure 13.3.2&gt; Simple Index of Number of Houses in Korea</div>
          </div>
-    </div>
+  </div>
   <p>
   <h4>C. Composite Index</h4>
   <p>
-
-    <div class="mainTable">
+  <div class="mainTable">
         <b>Composite index</b> is a method in which the change in price or quantity of several goods is set at a specific time point as the base period, and then the data at each time point is calculated as a percentage value compared to the base period. An example of the most used composite index is the consumer price index, which reflects price fluctuations of about 500 products in Korea that affect consumer prices. Other commonly used composite indices include the comprehensive stock index, which examines the price fluctuations of all listed stocks traded in the stock market.
       <p>
         For the composite index, a weighted composite index that is calculated by weighting the price of each 
@@ -1221,13 +1221,13 @@
         Assuming that \(P_{1t} , \cdots , P_{kt} \) are the prices of \(k\) number of products at the time point \(t\), 
         and \(Q_{1t_0} , \cdots , Q_{kt_0} \) are the quantities of each product consumpted at the base time, 
         the formula for calculating each composite index is as follows:
-      <p>
+      <br><br>
         \( \qquad \text{Laspeyres Index:} \quad  Index_t \,=\, \frac { Q_{1t_0} P_{1t} + \cdots + Q_{kt_0} P_{kt} } {Q_{1t_0} P_{1t_0}+ \cdots + Q_{kt_0} P_{kt_0} } \times 100  \) <br>
         \( \qquad \text{Paasche Index:}   \qquad Index_t \,=\, \frac { Q_{1t} P_{1t} + \cdots + Q_{kt} P_{kt} } {Q_{1t} P_{1t_0} + \cdots + Q_{kt} P_{kt_0} } \times 100      	\)
-      <p>
+      <br><br>
         The data in [Table 13.3.3] shows the price and quantity of three metals by month in 2020.
       <p>
-      <div class="textLeft">[Table 13.3.3]  Composite Index of three Metal Prices($/ton) and Production Quantity(ton)</div>
+      <div class="textLeft">[Table 13.3.3]  Composite Index of three Metal Prices($/ton) and Production Quantity (ton)</div>
       <p>
       <table style="width:660px"> 
         <tr> 
@@ -1312,18 +1312,18 @@
        </table>
       <p>
         In [Table 13.3.3], the Laspeyres index for the data for February with January as the base time is as follows.
-      <p>
-        \( \qquad   Index_t \,=\, \frac { Q_{1t_0} P_{1t} + \cdots + Q_{kt_0} P_{kt} } {Q_{1t_0} P_{1t_0}+ \cdots + Q_{kt_0} P_{kt_0} } \times 100  \) <br>
-        \( \qquad   \quad \,=\, \frac {(100.7)(1399.0)+(4311)(213)+(46.1)(520) } {(100.7)(1361.6)+(4311)(213)+(46.1)(530) } \,=\, 100  .31       	\)
-      <p>
+      <br><br>
+        \( \qquad   Index_t \,=\, \frac { Q_{1t_0} P_{1t} + \cdots + Q_{kt_0} P_{kt} } {Q_{1t_0} P_{1t_0}+ \cdots + Q_{kt_0} P_{kt_0} } \times 100  
+           \,=\, \frac {(100.7)(1399.0)+(4311)(213)+(46.1)(520) } {(100.7)(1361.6)+(4311)(213)+(46.1)(530) } \,=\, 100  .31       	\)
+      <br><br>
         Similarly, Paasche index is as follows:
-      <p>
-        \( \qquad  Index_t \,=\, \frac { Q_{1t} P_{1t} + \cdots + Q_{kt} P_{kt} } {Q_{1t} P_{1t_0} + \cdots + Q_{kt} P_{kt_0} } \times 100      	\) <br>
-        \( \qquad   \quad \,=\, \frac {(95.1)(1399.0)+(4497)(213)+(47.0)(520) } {(95.1)(1361.6)+(4497)(213)+(47.0)(530) } \,=\, 100.28 \)   
-      <p>
+      <br><br>
+        \( \qquad  Index_t \,=\, \frac { Q_{1t} P_{1t} + \cdots + Q_{kt} P_{kt} } {Q_{1t} P_{1t_0} + \cdots + Q_{kt} P_{kt_0} } \times 100  
+         \,=\, \frac {(95.1)(1399.0)+(4497)(213)+(47.0)(520) } {(95.1)(1361.6)+(4497)(213)+(47.0)(530) } \,=\, 100.28 \)   
+      <br><br>
         In [Table 13.3.3], it can be seen that the production quantity of iron and lead in the last 4 quarters is significantly different from the production quantity in January, which is the base time. In this way, when the quantity fluctuates greatly and the quantity at each time is known, the Pasche index can be said to be the best index because it appropriately reflects the price change at that time.
-    </div>
-    <p>
+  </div>
+  <p>
 
     <h4>13.3.2 Time Lag and Difference</h4>
 
@@ -1588,11 +1588,11 @@
             <img class="figure70" src="./Figure/Fig130303.png">
             <div class="figText">&lt;Figure 13.3.3&gt; Autocorrelation Function Graph</div>
          </div>
-    </div>
-    <p>
-    <h6>B. Differencing </h6>
-    <p>
-    <div class="mainTable">
+  </div>
+  <p>
+  <h6>B. Differencing </h6>
+  <p>
+  <div class="mainTable">
         Since the price index in [Table 13.3.4] has a linear trend, a model for this trend can be built, 
         but in some cases, a model can be created by changing the time series to a horizontal trend. 
         The way to transform a linear trend into a horizontal trend is to use a <b>differencing</b>. 
@@ -1617,16 +1617,16 @@
          </div>
       <p>
 
-    </div>
-    <p>
+  </div>
+  <p>
 
 
-    <!------------------------------------------------------------------------------------------------->
-    <h4>13.3.3 Mathematical Transformation</h4>
+  <!------------------------------------------------------------------------------------------------->
+  <h4>13.3.3 Mathematical Transformation</h4>
 
-    <div class="mainTable">
+  <div class="mainTable">
       If the original data of the time series is used as it is, modeling may not be easy or it may not satisfy various assumptions. In this case, we can fit the model we want by performing an appropriate functional transformation, such as log transformation. The functions commonly used for mathematical transformations are as follows.
-      <p>
+      <br><br>
       \( \qquad  \text{Log function	}     \qquad\qquad \qquad   W = log(Y)   \) <br>
       \( \qquad  \text{Square root function}  \qquad\quad W = \sqrt(Y) \) <br>
       \( \qquad  \text{Square function }      \qquad\quad \qquad  W = Y^2      \) <br>
@@ -1726,8 +1726,7 @@
          </div>
       <p>
         The square root transform is used for a similar purpose to the log transform, and the square transform can be used when the variance decreases with time. The Box-Cox transform is a general transformation. 
-    </div>
- 
+  </div>
   <p>
 
   <h3 id="1304">13.4 Regression Model and Forecasting</h3>
@@ -1738,9 +1737,8 @@
       <a href="https://youtu.be/wn0Dl3dLgko" target="_blank"><u>[video]</u></a>
   </h6>
 --->
-  <p>
 
-    <div class="mainTable">
+  <div class="mainTable">
        If there is a trend factor that shows a continuous increase or decrease in the time series,
        the regression model learned in Chapter 12 can be applied. For example, if the time series 
        shows a linear trend, the linear regression model is applied with the time series as 
@@ -1774,12 +1772,12 @@
        As explained in Chapter 12, since it is difficult to determine the absolute criteria for adequacy of 
        the standard error or the coefficient of determination, a hypothesis test is used to determine whether 
        the trend parameter \(\beta_1\) is zero or not.
-     <p>
+     <br><br>
         \(\small  \qquad \text{Hypothesis: }  \qquad \,\, H_0 : \beta_1 = 0, H_1: \beta_1 \ne 0\) <br>
         \(\small  \qquad \text{Test statistic:} \qquad t_{obs} = \frac {{\hat \beta}_1 } { SE ({{\hat \beta}_1 }) } \) , 
              Here, \( SE( \hat{ \beta_1} ) \,=\, \frac{ s} { \sqrt { \sum_{i=1}^ n (i - \overline t  )^2 } }     \) <br>
-        \(\small  \qquad \text{Rejection region:} \quad If \,\; |t_{obs}| \,>\, t_{n-2,\alpha/2}, \,\,reject\,\, H_0     \) with significance level \(\alpha\) <br>
-     <p>
+        \(\small  \qquad \text{Rejection region:} \quad If \,\; |t_{obs}| \,>\, t_{n-2,\alpha/2}, \,\,reject\,\, H_0     \) with significance level \(\alpha\) 
+     <br><br>
        If the null hypothesis \(H_0\) is not rejected, the model cannot be considered valid.
      <p>
        The assumption for error \(\epsilon_t\) is tested using the residual, which is the difference between the observed time series value and the predicted value which is called residual analysis. Residual analysis usually examines whether assumptions about error terms such as independence and equal variance between errors are satisfied by drawing a scatter plot of the residuals over time or a scatter plot of the residuals and predicted values. In the scatterplots, if the residuals do not show a specific trend around 0 and appear randomly, it means that each assumption is valid. To examine the normality assumption of the error term, draw a normal probability plot of the residuals, and if the points on the figure show the shape of a straight line, it is judged that the assumption of the normal distribution is appropriate.
@@ -1793,28 +1791,28 @@
      $$
      <p>
        If the trend is in the form of a quadratic, cubic or higher polynomial, the following multiple linear regression model can be assumed.
-     <p>
+     <br><br>
        \( \qquad \text{Quadratic}  \qquad   Y_t = \beta_0  + \beta_1 \cdot t + \beta_2 \cdot t^2  + \epsilon _t \) <br>
        \( \qquad \text{Cubic}  \qquad \qquad   Y_t = \beta_0  + \beta_1 \cdot t + \beta_2 \cdot t^2 + \beta_3 \cdot  t^3 + \epsilon _t  \)  
-     <p>		
+     <br><br>
        The prediction method is similar to the above simple linear regression model.
      <p>
        If the trend is not a polynomial model as above, the following model can also be considered.
-     <p>
+     <br><br>
        \( \qquad \text{Square root} \qquad   Y_t = \beta_0  + \beta_1 \cdot \sqrt{t} + \epsilon _t \) <br>
        \( \qquad \text{Log}  \qquad \qquad \quad \; Y_t = \beta_0  + \beta_1 \cdot log(t) + \epsilon _t  \)  
-     <p>		
+     <br><br>
        These models are the same as the linear regression model if \(\sqrt{t}\) or \(log(t)\) 
        are replaced with the independent variable X in the simple linear regression and the prediction method is similar.
      <p>
        In addition, the function types to which the linear regression model can be applied by transformation are as follows.
-     <p>
+     <br><br>
        \( \qquad \text{Power} \qquad \qquad  Y _{t} = \beta_{0} \cdot t ^{\beta _{1}} +  \epsilon  _{t}  \) <br>
        \( \qquad \text{Exponential}  \quad  \;\; Y_t = \beta_0  \cdot e^ {( \beta_1  t)}  + \epsilon _t  \)  
-     <p>		
+     <br><br>
        In the case of these two models, the parameters should be estimated using the nonlinear regression model, 
        but if the error term is ignored, the linear model can be estimated approximately as follows:
-     <p>
+     <br><br>
        \( \qquad \text{Power} \qquad \qquad  log(Y_{t}) = log(\beta_{0}) +{\beta _{1}} \cdot log(t)  \) <br>
        \( \qquad \text{Exponential}  \quad  \;\; log(Y_t) = log(\beta_0) + \beta_1 \cdot t  \)  
      <p>		
@@ -1904,7 +1902,8 @@
          <iframe class="example" src="./example/130401.html"> </iframe>
          <div class="figText">&lt;Figure 13.4.1&gt; Korea GDP data and regression model</div>
       <p>
-
+  </div>
+  <p>
   <h3 id="1305">13.5 Exponential Smoothing Model and Forecasting</h3>
   <p>
 <!---
@@ -1914,14 +1913,13 @@
   </h6>
 --->
   <p>
-
-    <div class="mainTable">
+  <div class="mainTable">
       When the time series moves in a trend, the future can be predicted well with the regression model. However, it may not be appropriate to predict a time series that is dynamically moving hourly, daily, etc. In this case, a moving average model or an exponential smoothing model can be used. The time series model is explained into two cases where the trend is stationary and linear.
-    </div>
-    <p>
-    <h4>13.5.1 Stationary Time Series</h4>
-    <p>
-    <div class="mainTable">
+  </div>
+  <p>
+  <h4>13.5.1 Stationary Time Series</h4>
+  <p>
+  <div class="mainTable">
       A time series is called <b>stationary</b> if the statistical properties such as mean, variance and covariance
       are consistent over time. When a time series is the observed values of random variables 
       \(Y_1 , Y_2 , ... , Y_T\), a stationary time series is the following model that changes around 
@@ -1930,13 +1928,13 @@
         Y_i \;=\; \mu \;+\; \epsilon_i , \quad i=1,2,..., T    
       $$
       Here \(\mu\) is unknown parameter and \(\epsilon_i\) is an error term which is independent with mean 0 and variance \(\sigma^2\).
-    </div>
-    <p>
+  </div>
+  <p>
 
   <h6>A. Single Moving Average Model</h6>
   <p>
 
-    <div class="mainTable">
+  <div class="mainTable">
         In a stationary time series model, the estimated value of \(\mu\), \(\hat \mu\), is the mean of the data. .
       $$
         {\hat \mu} \;=\; \frac{1}{T} \sum_{ i=1}^T Y_i      
@@ -1971,14 +1969,14 @@
       <p>
         Using the single moving average model at the time point \(T\), the predicted value and the mean 
         and variance of the predicted value at the time point \(T+\tau\) are as follows.
-      <p>
+      <br><br>
         \(\qquad {\hat Y}_{T+\tau} \;=\; M_T , \quad \tau=1,2, ...  \) <br>
         \(\qquad E( {\hat Y}_{T+\tau} ) \;=\; E(M_T ) \;=\; \mu   \)  <br>	
-        \(\qquad Var({\hat Y}_{T+\tau} )\;=\; Var(M_t ) \;=\; \frac{ \sigma ^2} {N }  \)   <br> 
-      <p>
+        \(\qquad Var({\hat Y}_{T+\tau} )\;=\; Var(M_t ) \;=\; \frac{ \sigma ^2} {N }  \)    
+      <br><br>
         When the single moving average model is used, the 95% confidence interval estimation of the 
         predicted value is approximately as follows.
-      <p>
+      <br><br>
         \(\qquad {\hat{Y}}  _{T+ \tau } \;±\; 1.96 \sqrt {Var( {\hat{Y}}  _{T+ \tau } )}  \) <br>
         \(\qquad M_{T} \;±\; 1.96 \sqrt{ \frac{MSE} {N} } \)  <br>	
       <p>
@@ -1987,7 +1985,6 @@
         by obtaining a six-point moving average. &lt;Figure 13.5.1&gt; shows the time series for this. 
         This time series fluctuates up and down based on approximately 95, and such a time series is 
         called a stationary time series.
-      <p>
         When \(N\) = 6, the moving average for the first 5 time points cannot be obtained. 
         The moving average at time 6 is as follows:
       $$
@@ -2004,7 +2001,7 @@
       $$
         Sales for the next three months are the last moving average \(M_{24}\), and the 95% confidence 
         interval for the forecast is as follows:
-      <p>
+      <br><br>
         \(\qquad {\hat Y}_{24+1} \;=\; {\hat Y}_{24+2} \;=\; {\hat Y}_{24+3} \;=\; M_{24} \;=\; 104.67    \)<br>
         \(\qquad  M_T \;±\; 1.96 \sqrt \frac{MSE}{N }              \)<br>
         \(\qquad   104.67 \;±\; 1.96 \sqrt \frac{331.22}{6}            \)<br>
@@ -2160,24 +2157,27 @@
          <iframe class="example90" src="./example/130501.html"> </iframe>
          <div class="figText">&lt;Figure 13.5.1&gt; Montly Sales of a Furniture Company and 6-point Moving Average and One Time Forecast</div>
       <p>
-
-      <h6>※ Moving average at initial period</h6>
+  </div>
+  <p>
+  <h6>※ Moving average at initial period</h6>
+  <div class="mainTable">
         Since the \(N\)-point single moving average cannot be obtained before the time point \(N\),
         the prediction model cannot be applied. When there are many time series, this may not be 
         a big problem, but when the number of data is small, it can affect the prediction. In order to
         solve this problem, the moving average at initial period can be obtained as follows until 
         the time point \(N-1\).
-      <p>
+      <br><br>
         \(\qquad   t=1   \qquad \quad M_1 = Y_1  \)<br>
         \(\qquad   t=2   \qquad \quad M_2 = \frac{Y_1 + Y_2 } {2}     \)<br>
         \(\qquad   \cdots  \)<br>
         \(\qquad   t=N-1  \quad M_{N-1} = \frac{Y_1 + Y_2 + \cdots + Y_{N-1} } {N - 1}      \)<br>
       <p>
- 
+  </div>
+  <p>
   <h6>B. Single Exponential Smoothing Model</h6>
   <p>
 
-    <div class="mainTable">
+  <div class="mainTable">
         In the single moving average model, the same weight \(\frac{1}{N}\) is given to only the latest 
         \(N\)  observations, and the previous observations are completely ignored by setting the weight to 0. 
         The <b>single exponential smoothing method</b> compensates for the shortcomings of the moving average 
@@ -2190,23 +2190,23 @@
         value \(Y_t\) at the time point \(t\). Assuming that the exponential smoothing estimated value 
         at the time point \(t\) is \(S_t \;=\; {\hat \mu}_t \) and \(\alpha\) is a real number 
         between 0 and 1, the single exponential smoothing value \(S_t\) is defined as follows:
-      <p>
+      <br><br>
         \(\qquad   S_1 \;=\; \alpha \;Y_1 \;+\; (1-\alpha) S_0  \)<br>
         \(\qquad   S_2 \;=\; \alpha \;Y_2 \;+\; (1-\alpha) S_1  \)<br>
         \(\qquad   \cdots  \)<br>
-        \(\qquad   S_t \;=\; \alpha \;Y_t \;+\; (1-\alpha) S_{t-1}  \)<br>
-      <p>
+        \(\qquad   S_t \;=\; \alpha \;Y_t \;+\; (1-\alpha) S_{t-1}  \)
+      <br><br>
         Here, \(\alpha\) is called the <b>smoothing constant</b>, and the single exponential smoothing value 
         \(S_t\) is the weighted average value given the weight \(\alpha\) of the most recent observation 
         \(Y_t\) and the weight (1-\(\alpha\)) of the exponential smoothing value \(S_{t-1}\) at the time \(t-1\). 
         You can better understand the meaning of exponential smoothing if you write down the recursive 
         equation as follows:
-      <p>
+      <br><br>
         \(\qquad   S_t \;=\; \alpha \;Y_t \;+\; (1-\alpha) S_{t-1}   \)<br>
         \(\qquad   \;=\; \alpha \; Y_t + (1- \alpha )\;( \alpha Y_{t-1} + (1- \alpha ) S_{t-2} )      \)<br>
         \(\qquad   \;=\; \alpha Y_t + \alpha (1- \alpha ) Y_{t-1} + (1- \alpha )^2 S_{t-2}     \)<br>
         \(\qquad   \;=\; \alpha Y_t + \alpha (1- \alpha ) Y_{t-1} + \alpha(1- \alpha )^2 Y_{t-2} \;+\cdots\; + \alpha (1- \alpha )^{(t-1)} Y_1 +(1- \alpha )^t S_0        \)
-      <p>
+      <br><br>
         In other words, for the single exponential smoothing value \(S_t\), the most recent observation
         \(Y_t\) is given a weight \(\alpha\), and the next most recent observation is given \(\alpha(1-\alpha)\), 
         the next is \(\alpha(1-\alpha)^2\) and so on, a gradually smaller weight. Therefore, 
@@ -2225,45 +2225,45 @@
       <p>
         The predicted value, average and variance of the predicted value at the time point \(T+\tau\) using the 
         single exponential smoothing model are as follows:
-      <p>
+      <br><br>
         \(\qquad   {\hat Y}_{T+\tau} \;=\;S_T     \)<br>
         \(\qquad   E( {\hat Y}_{T+\tau} )\;=\;E(S_T )\;=\; \mu         \)<br>
-        \(\qquad   Var( {\hat{Y}}_{T+ \tau } )\;=\; Var(S_{T} )\;=\; \frac{\alpha } {2- \alpha }  \sigma^{2}  \)<br>
-      <p>
+        \(\qquad   Var( {\hat{Y}}_{T+ \tau } )\;=\; Var(S_{T} )\;=\; \frac{\alpha } {2- \alpha }  \sigma^{2}  \)
+      <br><br>
         Therefore, when the single exponential smoothing model is used, the 95% interval estimation in the predicted value is approximately as follows.
-      <p>
+      <br><br>
         \(\qquad   {\hat Y}_{T+\tau} \;±\;  1.96 \sqrt { Var ({\hat Y}_{T+\tau})}          \)<br>
         \(\qquad   S_{T} \;±\;1.96\; \sqrt { \frac{\alpha } {2- \alpha } MSE}        \)<br>
       <p>
         To the data of [Table 13.5.1], predict sales for the next three months by a single exponential 
         smoothing model with smoothing constant \(\alpha\) = 0.1. Lets use the first observed value 
         for the initial value of exponential smoothing, that is \(S_0 = Y_1 = 95\). The exponential smoothing value for the first three time series are as follows:
-      <p>
+      <br><br>
         \(\qquad   S_{1} \;=\;0.1\; \times \;Y  _{1} \;+\;(1-0.1\;)\; \times \;S  _{0} \;=\;\;0.1\; \times \;95\;+\;0.9\; \times \;95\;=\;95     \)<br>
         \(\qquad   S_{2} \;=\;0.1\; \times\;Y_2 \;+\; (1-0.1\;)\;\times\; S_1 \;=\; \;0.1\;\times\;100\;+\;0.9 \;\times \;95 \;=\; 95.50             \)<br>
         \(\qquad   S_{3} \;=\;0.1\; \times \;Y  _{3} \;+\;(1-0.1\;)\; \times \;S  _{2} \;=\;\;0.1\; \times \;87\;+\;0.9\; \times \;95.5\;=\;94.65  \)<br>
-        \(\qquad   \cdots   \)<br>
-      <p>
+        \(\qquad   \cdots   \)
+      <br><br>
         At each time point, the prediction after one point in time is as follows:
-      <p>
+      <br><br>
         \(\qquad   {\hat Y}_{0+1} \;=\; S_0 \;=\;95.00      \)<br>
         \(\qquad   {\hat Y}_{1+1} \;=\; S_1 \;=\;95.00      \)<br>
-        \(\qquad   {\hat Y}_{2+1} \;=\; S_2 \;=\;95.50      \)<br>
-      <p>
+        \(\qquad   {\hat Y}_{2+1} \;=\; S_2 \;=\;95.50      \)
+      <br><br>
         Hence the residuals using the above estimated values are as follows:
-      <p>
+      <br><br>
         \(\qquad   e_1 \;=\; Y_1\;-\;{\hat Y}_{0+1} \;=\; 95.00 - 95.00 \;=\; 0       \)<br>
         \(\qquad   e_2 \;=\; Y_2\;-\;{\hat Y}_{1+1} \;=\; 100.00 - 95.00 \;=\; 5.00           \)<br>
-        \(\qquad   e_3 \;=\; Y_3\;-\;{\hat Y}_{2+1} \;=\; 87.00-95.50\;=\;-8.50  \)<br>
+        \(\qquad   e_3 \;=\; Y_3\;-\;{\hat Y}_{2+1} \;=\; 87.00-95.50\;=\;-8.50  \)
       <p>
         In the same way, the single exponential smoothing of the remaining time points, the predicted values after one time point, and the residuals are as shown in [Table 13.5.2]. Therefore, the mean square error is as follows:
-      <p>
-        \(\qquad   {MSE} \;= \; \frac{1}{24} \sum_{i=1}^{24} \; ( Y_i \;-{\hat Y}_i )^{2}    \;=\;269.72             \)<br>
-      <p>
+      <br><br>
+        \(\qquad   {MSE} \;= \; \frac{1}{24} \sum_{i=1}^{24} \; ( Y_i \;-{\hat Y}_i )^{2}    \;=\;269.72             \)
+      <br><br>
         In terms of mean square error, the MSE of the 6-point single moving average model is 331.22, so it can be said that the exponential smoothing model has better fit.
       <p>
         Sales for the next three months are the last moving average \(S_{24}\), and the 95% confidence interval for the forecast is as follows:
-      <p>
+      <br><br>
         \(\qquad   {\hat Y}_{24+1} \;=\; {\hat Y}_{24+2} \;=\; {\hat Y}_{24+3} \;=\; S_{24} \;=\; 98.66       \)<br>
         \(\qquad   S_{T} \;±\; 1.96\; \sqrt { \frac{\alpha } {2- \alpha} } MSE          \)<br>
         \(\qquad   98.66 \;±\; 1.96 \; \sqrt { \frac{0.1} {2-0.1} 269.72  }        \)<br>
@@ -2423,30 +2423,35 @@
             <div class="figText">&lt;Figure 13.5.2&gt; Exponential Smoothing with &alpha; = 0.1 and One Time Forecast </div>
          </div>
       <p>
-    <h6>※ Initial value of exponential smoothing</h6>
+  </div>
+  <p>
+  <h6>※ Initial value of exponential smoothing</h6>
+  <div class="mainTable">
       Since the initial exponential smoothing value \(S_0\) at the time point \(t=1\) cannot be obtained, 
       the following three methods are commonly used.
-    <p>
+    <br><br>
       1) The first observation, i.e., \(S_0 \;=\; Y_1\)    <br>
       2) Partial average using the initial \(n\) observation values, i.e.,   <br>
          \(\qquad S_0 \;=\; \frac{1}{n} ({Y_1 + Y_2 + \cdots + Y_n })   \) <br>
       3) The mean up to the entire time point \(T\), i.e.,  <br>
          \(\qquad S_0 \;=\; \frac{1}{T} ({Y_1 + Y_2 + \cdots + Y_T })       \)
     <p>   
-    <h6>※ Initial smoothing constant</h6>
+  </div>
+  <p>
+  <h6>※ Initial smoothing constant</h6>
+  <div class="mainTable">
       The same smoothing constant \(\alpha\) can be applied to all time series, but the following 
       method is also used to reduce the effect of the initial value \(S_0\).
     <p>
       \(\qquad  \alpha_t \;=\; \frac{1}{t}    , \quad until \; \alpha_t \; reaches\; \alpha \)
     <p>
-
-    </div>
-    <p>
-    <h4>13.5.2 Linear Trend Time Series</h4>
-    <p>
-    <h6>A. Double Moving Average Model</h6>
-    <p>
-    <div class="mainTable">
+  </div>
+  <p>
+  <h4>13.5.2 Linear Trend Time Series</h4>
+  <p>
+  <h6>A. Double Moving Average Model</h6>
+  <p>
+  <div class="mainTable">
         In the previous section, we examined that the single moving average model can be applied 
         to a stationary time series. What would happen if the single moving average model was applied 
         to a time series with a linear trend? That is, for a time series with a linear trend 
@@ -2868,8 +2873,7 @@
             <img class="figure70" src="./Figure/Fig130505.png">
             <div class="figText">&lt;Figure 13.5.5&gt;  Forecasting using Holt Double Exponential Smoothing Model of CPI</div>
          </div>
-    </div>
-
+  </div>
   <p>
 
   <h3 id="1306">13.6 Seasonal Model and Forecasting</h3>
@@ -2881,29 +2885,27 @@
   </h6>
 --->
   <p>
-
-    <div class="mainTable">
+  <div class="mainTable">
       As a seasonal time series model, a multiplicative model using a central moving average and a Holt-Winters model are introduced.
-    </div>
-    <p>
-    <h4>13.6.1 Seasonal Multiplicative Model</h4>
-    <p>
-    <div class="mainTable">
+  </div>
+  <p>
+  <h4>13.6.1 Seasonal Multiplicative Model</h4>
+  <p>
+  <div class="mainTable">
         Assume that a time series \(Y_t\) with a seasonal period \(L\) can be expressed as the product of 
         a trend (\(T\)), a seasonal (\(S\)), and an irregular component (\(I\)) as follows:
       $$
         Y_t \;=\; T_t  \cdot S_t \cdot I_t     
       $$
         The <b>ratio to moving average method</b> removes the trend and irregular components to obtain the seasonal component as follows
-      <p>
+      <br><br>
         (Step 1) For the time series, find the \(L\)-point centered moving average. This moving average 
         represents the trend component \(T_t\) after removing seasonal component and irregular component 
         from the time series.
-      <p>
+      <br>
         (Step 2) Divide the time series \(Y_t\) by the trend component \(T_t\) obtained in Step 1. This value 
         implies the seasonal component and the irregular component \({S_t \cdot I_t}\), and is called the 
         seasonal ratio. 
-      <p>
       $$
         \frac{Y_t} {T_t  } \;=\; S_t \cdot I_t    
       $$
@@ -2915,7 +2917,7 @@
         index. The results is called a <b>deseasonal time series</b>.
       <p>
          \( \qquad \text{Deseasonal time series:} \qquad  D_t \;=\; \frac{Y_t} {S_t } = T \cdot I      \)
-      <p> 
+      <br><br>
         This deseasonal time series \(D_t\) implies \(T \cdot I\). An appropriate time series model 
         is applied to this deseasonal data and predict the future vaules. Then multiply the corresponding 
         seasonal index to obtain the final predicted value of the desired season.
@@ -3163,13 +3165,11 @@
          <iframe class="example" src="./example/130601.html"> </iframe>
          <div class="figText">&lt;Figure 13.6.1&gt; Forcasting Model of Deseasonal Sales of a Company</div>
       <p>
-    </div>
-
+  </div>
   <p>
   <h4>13.6.2 Holt-Winters Model</h4>
   <p>
-
-    <div class="mainTable">
+  <div class="mainTable">
       Assume that a time series with a seasonal period \(L\) is observed over \(m\) cycles  as follows:
       <p>
        <table style="width:720px"> 
@@ -3212,7 +3212,6 @@
           </td> 
         </tr>
       </table>
-      <p>
          The <b>Holt-Winters model</b> is an extension of Holt's linear double exponential smoothing method 
          studied in the previous section to a seasonal model. It consists of a level component \(l_t\), 
          a trend component \(b_t\), and a seasonal component \(s_t\). There are additive model and

@@ -426,7 +426,7 @@
     <p>
       <div class="textLeft">Table 9.1.2  Notation of the one-way ANOVA</div>  
     <p>
-      <table style="width:400px"> 
+      <table style="width:450px"> 
          <tr> 
            <th style="width:100px">Factor</th>
            <th>Observed values of sample</th>
@@ -512,24 +512,22 @@
     <div class="mainTable">
        The three sum of squares for the analysis of variances can be described as follows: For an explanation, first define 
        the following statistics:
-       <p>
-       <div class="textL20">
-          \({\overline Y}_{i \cdot}     \; \) Mean of observations at the \(i^{th}\) level <br>
-          \({\overline Y}_{\cdot \cdot} \; \) Mean of total observations 
-       </div>
-       <p>
+       <br><br>
+          \({\qquad \overline Y}_{i \cdot}     \; \) Mean of observations at the \(i^{th}\) level <br>
+          \({\qquad \overline Y}_{\cdot \cdot} \; \) Mean of total observations 
+       <br><br>
        <b>SST</b> = \(\sum_{i=1}^{k} \sum_{j=1}^{n_i} ( Y_{ij} - {\overline Y}_{\cdot \cdot} )^2 \;\) : <br>
        The sum of squared distances between observed values of the response variable and the mean of total observations 
        is called the <b>total sum of squares</b> (SST). 
-       <p>
+       <br>
        <b>SSTr</b> = \(\sum_{i=1}^{k} \sum_{j=1}^{n_i} ( {\overline Y}_{i \cdot} - {\overline Y}_{\cdot \cdot} )^2 \;\) : <br>
        The sum of squared distances between the mean of each level and the mean of total observations is called the 
        <b>treatment sum of squares</b> (SSTr). It represents the variation between level means. 
-       <p>
+       <br>
        <b>SSE</b> = \(\sum_{i=1}^{k} \sum_{j=1}^{n_i} ( {Y}_{ij} - {\overline Y}_{i \cdot} )^2 \;\) : <br>
        The sum of squared distances between observations of the \(i^{th}\) level and the mean of the \(i^{th}\) level is referred to as 
        'within variation', and is called the <b>error sum of squares</b> (SSE).
-       <p>
+       <br><br>
        The degree of freedom of each sum of squares is determined by the following logic: 
        The SST consists of \(n\) number of squares, \(( Y_{ij} - {\overline Y}_{\cdot \cdot} )^2\), 
        but \( {\overline Y}_{\cdot \cdot} \) should be calculated first, before SST is calculated,
@@ -640,15 +638,14 @@
       There are many multiple comparisons tests, but Tukey's Honestly Significant Difference (HSD) test is most commonly 
       used. The statistic for Tukey's HSD test to compare means \(\mu_i\) and \(\mu_j\) is the sample mean 
       difference \({\overline y}_{i \cdot} - {\overline y}_{j \cdot}\) and the decision rule to test \(H_0 : \mu_i = \mu_j\) is as follows:
-      <p>
-      <div class="textL20">
-        If \(|{\overline y}_{i\cdot} - {\overline y}_{j\cdot} | > HSD_{ij}\), then reject \(H_0\) <br>
-        where \(HSD_{ij} = q_{k,n-k; &alpha;} \cdot \sqrt{\frac{1}{2} ( \frac{1}{n_i } + \frac{1}{n_j} ) MSE }\),
-        \(n_i\) and \(n_j\) are the number of samples (repetitions) in \(i^{th}\) level and \(j^{th}\) level, 
-        \(MSE\) is the mean squared error, \(q_{k,n-k; &alpha;}\) is the right tail 100\(\times \alpha\) 
-        percentile of the studentized range distribution with parameter \(k\) and \(n-k\) degrees of freedom. 
-        (It can be found at 『eStatU』 (&lt;Figure 9.1.8&gt;)).
-      </div>
+      <br><br>
+        \(\qquad\)If \(|{\overline y}_{i\cdot} - {\overline y}_{j\cdot} | > HSD_{ij}\), then reject \(H_0\)
+      <br><br>
+      where \(HSD_{ij} = q_{k,n-k; &alpha;} \cdot \sqrt{\frac{1}{2} ( \frac{1}{n_i } + \frac{1}{n_j} ) MSE }\),
+      \(n_i\) and \(n_j\) are the number of samples (repetitions) in \(i^{th}\) level and \(j^{th}\) level, 
+      \(MSE\) is the mean squared error, \(q_{k,n-k; &alpha;}\) is the right tail 100\(\times \alpha\) 
+      percentile of the studentized range distribution with parameter \(k\) and \(n-k\) degrees of freedom. 
+      (It can be found at 『eStatU』 (&lt;Figure 9.1.8&gt;).
       <p>
          <div class="QRFigure">
             <input class="qrBtn" type="image" src="/estat/eStat/qr/eStatU995_StudentRangeD.svg" onclick="window.open(addrStr[120])">
@@ -827,14 +824,13 @@
       <a href="https://youtu.be/wj_uwiO1JVg" target="_blank"><u>[video]</u></a>
   </h6>
   <p>
-
-    <div class="mainTable">
+  <div class="mainTable">
        Data such as English scores by the grade in [Example 9.1.1] are not so difficult to collect samples from each of 
        the grade population. However, obtaining samples through experiments such as engineering, medicine, or 
        agriculture are often difficult to collect a large number of samples due to the influence of many other external 
        factors, and should be very cautious about sampling. This section discusses how to design experiments for 
        collecting small number of data from experiments. 
-    <div class="mainTable">
+  </div>
        
   <h4>9.2.1 Completely Randomized Design</h4> 
     <p>
@@ -922,22 +918,22 @@
       $$    
       If you square both sides of the equation above and then combine for all \(i\) and \(j\), you can obtain 
       several sums of squares as in the one-way analysis of variance as follows: 
-      <p>
+      <br><br>
       <b>Total sum of squares</b> : <br>
-      <b>SST</b> = \(\sum_{i=1}^{k} \sum_{j=1}^{b} ( Y_{ij} - {\overline Y}_{\cdot \cdot} )^2 \) , 
+      \(\qquad\)<b>SST</b> = \(\sum_{i=1}^{k} \sum_{j=1}^{b} ( Y_{ij} - {\overline Y}_{\cdot \cdot} )^2 \) , 
          &nbsp;&nbsp; degrees of freedom ; \(bk - 1\) 
-      <p>
+      <br>
       <b>Error sum of squares</b> : <br>
-      <b>SSE</b> = \(\sum_{i=1}^{k} \sum_{j=1}^{b} ( {Y}_{ij} - {\overline Y}_{i \cdot} - {\overline Y}_{\cdot j} + {\overline Y}_{\cdot \cdot})^2 \) , 
+      \(\qquad\)<b>SSE</b> = \(\sum_{i=1}^{k} \sum_{j=1}^{b} ( {Y}_{ij} - {\overline Y}_{i \cdot} - {\overline Y}_{\cdot j} + {\overline Y}_{\cdot \cdot})^2 \) , 
          &nbsp;&nbsp; degrees of freedom ; \((b-1)(k-1)\) 
-      <p>
+      <br>
       <b>Treatment sum of squares</b> : <br>
-      <b>SSTr</b> = \(\sum_{i=1}^{k} \sum_{j=1}^{b} ( {\overline Y}_{i \cdot} - {\overline Y}_{\cdot \cdot} )^2 \)
+      \(\qquad\)<b>SSTr</b> = \(\sum_{i=1}^{k} \sum_{j=1}^{b} ( {\overline Y}_{i \cdot} - {\overline Y}_{\cdot \cdot} )^2 \)
          = \(b\sum_{i=1}^{k} ( {\overline Y}_{i \cdot} - {\overline Y}_{\cdot \cdot} )^2 \) ,
          &nbsp;&nbsp; degrees of freedom ; \(k - 1\) 
-      <p>
+      <br>
       <b>Block sum of squares</b> : <br>
-      <b>SSB</b> = \(\sum_{i=1}^{k} \sum_{j=1}^{b} ( {\overline Y}_{\cdot j} - {\overline Y}_{\cdot \cdot} )^2 \) 
+      \(\qquad\)<b>SSB</b> = \(\sum_{i=1}^{k} \sum_{j=1}^{b} ( {\overline Y}_{\cdot j} - {\overline Y}_{\cdot \cdot} )^2 \) 
          = \(k \sum_{j=1}^{b} ( {\overline Y}_{\cdot j} - {\overline Y}_{\cdot \cdot} )^2 \),
          &nbsp;&nbsp; degrees of freedom ; \(b - 1\) 
       <p> 
@@ -947,7 +943,7 @@
     <p>
     <div class="mainTableYellow">
       <b>Division of the sum of squares and degrees of freedom
-        <p>
+        <br><br>
          Sum of squares :    SST  = SSE + SSTr + SSB <br>  
          Degrees of freedom : \(bk -1 = (b-1)(k-1) + (k-1) + (b-1) \)
       </b>
@@ -998,20 +994,18 @@
                   <td class="tdCenter"></td>
                 </tr>
              </table>
-           <p>
+      <br>
       In the randomized block design, the entire experiments are not randomized unlike the completely randomized 
       design, but only the experiments in each block are randomized. 
-      <p>
       Another important thing to note in the randomized block design is that, although the variation of the block 
       variable was separated from the error variation, the main objective is to test the difference between levels of a 
       factor as in the one-way analysis of variance. The test for differences between the levels of the block variable 
       is not important, because the block variable is used to reduce the error variation and to make the test for 
       differences between the levels of the factor more accurate. 
-      <p>
       In addition, the error mean square (MSE) does not always decrease, because  although the block variation is 
       separated from the error variation of the one-way analysis of variance, the degrees of freedom are also reduced.
     </div>
-       
+    <p>  
     <!------------------------------------------------------------------------------------------------->
     <div class="mainTableGrey">
       <p>
@@ -1214,9 +1208,14 @@
       <p>
       <div class="textLeft"> Table 9.2.7 Notation for row means, column means and treatment averages of  ×  Latin squre data</div>
       <p>
-      <table style="width:600px"> 
+      <table style="width:650px"> 
          <tr> 
-           <th style="width:130px"></th> <th>Column 1 </th> <th>Column 2 </th> <th>\(\cdots \)</th> <th>Column r</th> <th>Row Average</th>
+           <th style="width:150px"></th> 
+           <th style="width:100px">Column 1</th>
+           <th style="width:100px">Column 2</th>
+           <th style="width:100px">\(\cdots \)</th>
+           <th style="width:100px">Column r</th>
+           <th style="width:100px">Row Average</th>
          </tr>
          <tr> <td class="tdCenter">Row 1 </td>      <td class="tdCenter"></td> <td class="tdCenter"></td> <td class="tdCenter"></td> <td class="tdCenter"></td> <td class="tdCenter">\({\overline Y}_{ 1 \cdot \cdot} \)</td></tr>
          <tr> <td class="tdCenter">Row 2 </td>      <td class="tdCenter"></td> <td class="tdCenter"></td> <td class="tdCenter"></td> <td class="tdCenter"></td> <td class="tdCenter">\({\overline Y}_{ 2 \cdot \cdot} \)</td></tr>
@@ -1231,12 +1230,12 @@
          </tr>
       </table>
       <p>
-      <table style="width:600px"> 
-         <tr> <td class="tdCenter">Treatment Average</td> 
-              <td class="tdCenter">\({\overline Y}_{ \cdot \cdot 1} \)</td>
-              <td class="tdCenter">\({\overline Y}_{ \cdot \cdot 2} \)</td> 
-              <td class="tdCenter">\(\cdots\)</td>
-              <td class="tdCenter">\({\overline Y}_{ \cdot \cdot r} \)</td>
+      <table style="width:550px"> 
+         <tr> <td class="tdCenter" style="width:150px">Treatment Average</td> 
+              <td class="tdCenter" style="width:100px">\({\overline Y}_{ \cdot \cdot 1} \)</td>
+              <td class="tdCenter" style="width:100px">\({\overline Y}_{ \cdot \cdot 2} \)</td> 
+              <td class="tdCenter" style="width:100px">\(\cdots\)</td>
+              <td class="tdCenter" style="width:100px">\({\overline Y}_{ \cdot \cdot r} \)</td>
          </tr>
       </table>
       <p>
@@ -1246,27 +1245,27 @@
       $$    
       If you square both sides of the equation above and then combine for all \(i , j\) and \(k\), you can obtain 
       the following sums of squares: 
-      <p>
+      <br><br>
       <b>Total sum of squares</b> : <br>
       <b>SST</b> = \(\sum_{i=1}^{r} \sum_{j=1}^{r} \sum_{k=1}^{r} ( Y_{ijk} - {\overline Y}_{\cdot \cdot \cdot} )^2 \) , 
          &nbsp;&nbsp; degrees of freedom ; \(r^2 - 1\) 
-      <p>
+      <br>
       <b>Error sum of squares</b> : <br>
       <b>SSE</b> = \(\sum_{i=1}^{r} \sum_{j=1}^{r} \sum_{k=1}^{r} ( {Y}_{ijk} - {\overline Y}_{i \cdot \cdot} - {\overline Y}_{\cdot j \cdot}  - {\overline Y}_{\cdot \cdot k} + 2 {\overline Y}_{\cdot \cdot \cdot})^2 \) , 
          &nbsp;&nbsp; degrees of freedom ; \((r-1)(r-2)\) 
-      <p>
+      <br>
       <b>Row sum of squares</b> : <br>
       <b>SSR</b> = \(\sum_{i=1}^{r} \sum_{j=1}^{r} \sum_{k=1}^{r} ( {\overline Y}_{i \cdot \cdot} - {\overline Y}_{\cdot \cdot \cdot} )^2 \)
          &nbsp;&nbsp; degrees of freedom ; \(r - 1\) 
-      <p>
+      <br>
       <b>Column sum of squares</b> : <br>
       <b>SSC</b> = \(\sum_{i=1}^{r} \sum_{j=1}^{r} \sum_{k=1}^{r} ( {\overline Y}_{\cdot j \cdot} - {\overline Y}_{\cdot \cdot \cdot} )^2 \) 
          &nbsp;&nbsp; degrees of freedom ; \(r - 1\) 
-      <p> 
+      <br> 
       <b>Treatment sum of squares</b> : <br>
       <b>SSTr</b> = \(\sum_{i=1}^{r} \sum_{j=1}^{r} \sum_{k=1}^{r} ( {\overline Y}_{\cdot \cdot k} - {\overline Y}_{\cdot \cdot \cdot} )^2 \)
          &nbsp;&nbsp; degrees of freedom ; \(r - 1\) 
-      <p>
+      <br><br>
       The following facts are always established in the Latin square design.  
     </div>      
     <p>
@@ -1768,41 +1767,38 @@
       Let \(Y_{ijk}\) be the random variable representing the \(k^{th}\) observation at the \(i^{th}\)
       level of factor A, which has \(a\) number of levels, and \(j^{th}\) level of factor B, which has
       \(b\) number of levels. A statistical model of the two-way analysis of variances is as follows:
-        $$
+      $$
           Y_{ijk} = \mu + \alpha_i + \beta_j + \gamma_{ij} + \epsilon_{ijk} , \quad i=1,2, ... ,a ; \;  j=1,2, ... , b ; \;  k=1,2, ... , r
-        $$
-      <div class="textL20">
-         \(\quad \mu\)  : total mean <br>
-         \(\quad \alpha_i\)  : effect of \(i^{th}\) level of factor A<br>
-         \(\quad \beta_j\)  : effect of \(j^{th}\) level of factor B<br>
-         \(\quad \gamma_{ij}\)  : interaction effect of \(i^{th}\) level of factor A and \(j^{th}\) level of factor B<br>
-         \(\quad \epsilon_{ijk}\)  : error terms which are independent and follow N(0,\(\sigma^{2}\)).
-      </div>
-      <p>
+      $$
+         \(\qquad \mu\)  : total mean <br>
+         \(\qquad \alpha_i\)  : effect of \(i^{th}\) level of factor A<br>
+         \(\qquad \beta_j\)  : effect of \(j^{th}\) level of factor B<br>
+         \(\qquad \gamma_{ij}\)  : interaction effect of \(i^{th}\) level of factor A and \(j^{th}\) level of factor B<br>
+         \(\qquad \epsilon_{ijk}\)  : error terms which are independent and follow N(0,\(\sigma^{2}\)).
+      <br><br>
         Assume that experiments are repeated \(r\) times equally at the \(i^{th}\) level of factor A and 
         \(j^{th}\) level of factor B. Therefore, the total number of observations is \(n = abr\).
-      <p>
         The total sum of squared distances from each observation to the total mean  can be partitioned as following sum 
         of squares similar to the one-way analysis of variance.  
-      <p>
+      <br><br>
       <b>Total sum of squares</b> : <br>
-      <b>SST</b> = \(\sum_{i=1}^{a} \sum_{j=1}^{b} \sum_{k=1}^{r}( Y_{ijk} - {\overline Y}_{\cdot \cdot \cdot} )^2 \) , 
+      \(\qquad\)<b>SST</b> = \(\sum_{i=1}^{a} \sum_{j=1}^{b} \sum_{k=1}^{r}( Y_{ijk} - {\overline Y}_{\cdot \cdot \cdot} )^2 \) , 
          &nbsp;&nbsp; degrees of freedom ; \(n - 1\) 
-      <p>
+      <br>
       <b>Factor A sum of squares</b> : <br>
-      <b>SSA</b> = \(br \sum_{i=1}^{a} ( {\overline Y}_{i \cdot \cdot} - {\overline Y}_{\cdot \cdot \cdot} )^2 \) ,
+      \(\qquad\)<b>SSA</b> = \(br \sum_{i=1}^{a} ( {\overline Y}_{i \cdot \cdot} - {\overline Y}_{\cdot \cdot \cdot} )^2 \) ,
          &nbsp;&nbsp; degrees of freedom ; \(a - 1\) 
-      <p>
+      <br>
       <b>Factor B sum of squares</b> : <br>
-      <b>SSB</b> = \(ar \sum_{j=1}^{b} ( {\overline Y}_{\cdot j \cdot} - {\overline Y}_{\cdot \cdot \cdot} )^2 \) ,
+      \(\qquad\)<b>SSB</b> = \(ar \sum_{j=1}^{b} ( {\overline Y}_{\cdot j \cdot} - {\overline Y}_{\cdot \cdot \cdot} )^2 \) ,
          &nbsp;&nbsp; degrees of freedom ; \(b - 1\) 
-      <p>
+      <br>
       <b>Interaction sum of squares</b> : <br>
-      <b>SSAB</b> = \(r \sum_{i=1}^{a} \sum_{j=1}^{b} ( {\overline Y}_{ij \cdot} - {\overline Y}_{i \cdot \cdot} - {\overline Y}_{\cdot j \cdot} + {\overline Y}_{\cdot \cdot \cdot} )^2 \) ,
+      \(\qquad\)<b>SSAB</b> = \(r \sum_{i=1}^{a} \sum_{j=1}^{b} ( {\overline Y}_{ij \cdot} - {\overline Y}_{i \cdot \cdot} - {\overline Y}_{\cdot j \cdot} + {\overline Y}_{\cdot \cdot \cdot} )^2 \) ,
          &nbsp;&nbsp; degrees of freedom ; \((a - 1)(b - 1)\) 
-      <p>
+      <br>
       <b>Error sum of squares</b> : <br>
-      <b>SSE</b> = \(\sum_{i=1}^{a} \sum_{j=1}^{b} \sum_{k=1}^{r} ( {Y}_{ijk} - {\overline Y}_{ij \cdot})^2 \) , 
+      \(\qquad\)<b>SSE</b> = \(\sum_{i=1}^{a} \sum_{j=1}^{b} \sum_{k=1}^{r} ( {Y}_{ijk} - {\overline Y}_{ij \cdot})^2 \) , 
          &nbsp;&nbsp; degrees of freedom ; \(n-ab\) 
       <p>   
     </div>
@@ -1885,24 +1881,17 @@
       test of each factor can be different.  
       <p>
       1) Test for the interaction effect: 
-         <div class="textL20">
-           \(H_0 : \gamma_{ij} = 0,\; i=1,2,...,a;\; j=1,2,...,b \) <br>
-           If \(\frac{MSAB}{MSE} \gt F_{(a-1)(b-1),n-ab; &alpha;} \), then reject \(H_0\)
-         </div>  
+           \(\quad\)\(H_0 : \gamma_{ij} = 0,\; i=1,2,...,a;\; j=1,2,...,b \) <br>
+           \(\qquad\quad \)If \(\frac{MSAB}{MSE} \gt F_{(a-1)(b-1),n-ab; &alpha;} \), then reject \(H_0\)
          <p>   
       2)  Test for the main effect of factor A:
-         <div class="textL20">
-           \(H_0 : \alpha_1 = \alpha_2 = \cdots = \alpha_a = 0 \) <br>
-           If \(\frac{MSA}{MSE} \gt F_{(a-1),n-ab; &alpha;} \), then reject \(H_0\)
-         </div>  
+           \(\quad\)\(H_0 : \alpha_1 = \alpha_2 = \cdots = \alpha_a = 0 \) <br>
+           \(\qquad\quad\)If \(\frac{MSA}{MSE} \gt F_{(a-1),n-ab; &alpha;} \), then reject \(H_0\)
          <p>   
       3)  Test for the main effect of factor B:
-         <div class="textL20">
-           \(H_0 : \beta_1 = \beta_2 = \cdots = \beta_b = 0 \) <br>
-           If \(\frac{MSB}{MSE} \gt F_{(b-1),n-ab; &alpha;} \), then reject \(H_0\)
-         </div>  
-         <p>   
-       <p>
+           \(\quad\)\(H_0 : \beta_1 = \beta_2 = \cdots = \beta_b = 0 \) <br>
+           \(\qquad\quad\)If \(\frac{MSB}{MSE} \gt F_{(b-1),n-ab; &alpha;} \), then reject \(H_0\)
+      <br><br>   
       (『eStat』 calculates the \(p\)-value for each of these tests and tests them using it. That is, 
          for each test, if the \(p\)-value is less than the significance level, the null hypothesis 
          \(H_0\) is rejected.)

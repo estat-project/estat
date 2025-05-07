@@ -797,19 +797,19 @@
 
     <div class="mainTable">
       Description of the above three sums of squares is as follows:
-      <p>
+      <br><br>
       <b>Total Sum of Squares</b>   : \( \small SST = \sum_{i=1}^{n} ( Y_i - {\overline Y} )^2\) <br>
       The total sum of squares indicating the total variation in observed values of \(Y\) is called the 
       total sum of squares (\(SST\)). This \(SST\) has the degree of freedom, \(n-1\), and if \(SST\) 
       is divided by the the degree of freedom, it becomes the sample variance of \(Y_i\). 
-      <p>
+      <br>
       <b>Error Sum of Squares</b>    : \( \small SSE = \sum_{i=1}^{n} ( Y_i - {\hat Y}_i )^2\)<br>
       The error sum of squares (\(SSE\)) of the residuals represents the unexplained variation of the 
       total variation of the \(Y\). Since the calculation of this sum of squares requires the estimation of 
       two parameters \(\alpha\) and \(\beta\), \(SSE\) has the degree of freedom \(n-2\). 
       This is the reason why, in the calculation of the sample variance of residuals \(s^2\), it was divided 
       by \(n-2\).
-      <p>
+      <br>
       <b>Regression Sum of Squares</b> : \( \small SSR = \sum_{i=1}^{n} ( {\hat Y}_i - {\overline Y} )^2 \)<br>	
       The regression sum of squares (\(SSR\)) indicates the variation explained by the regression line 
       among the total variation of \(Y\). This sum of squares has the degree of freedom of 1.
@@ -1262,7 +1262,7 @@
       <p>
       First, let's look at the assumptions in the regression model.
       <p>
-        \(\quad \) Assumptions in regression model <br>
+        <b> Assumptions in regression model</b> <br>
         \(\quad \;\; A_1\): The assumed model \(Y = \alpha + \beta X + \epsilon\) is correct. <br>
         \(\quad \;\; A_2\): The expectation of error terms \(\epsilon_i\) is 0.  <br>
         \(\quad \;\; A_3\): (Homoscedasticity) The variance of \(\epsilon_i\) is \(\sigma^2\) which is the same for all \(X\).  <br>
@@ -1272,20 +1272,18 @@
       Review the references for the meaning of these assumptions. The validity of these assumptions is generally 
       investigated using scatter plots of the residuals. The following scatter plots used primarily for each 
       assumption:
-      <p>
+      <br><br>
         \(\quad \)1) Residuals versus predicted values (i.e., \(e_i\) vs \(\hat Y_i\))   : \(\quad A_3\)   <br>
         \(\quad \)2) Residuals versus independent variables (i.e., \(e_i\) vs \(X_i\)) : \(\quad A_1\)  <br>
-        \(\quad \)3) Residuals versus observations (i.e., \(e_i\) vs \(i\))   :  \(\quad A_2 , A4\)  <br>
-      <p>
+        \(\quad \)3) Residuals versus observations (i.e., \(e_i\) vs \(i\))   :  \(\quad A_2 , A4\)  
+      <br><br>
       In the above scatter plots, if the residuals show no particular trend around zero, and appear randomly, 
       then each assumption is valid.
-      <p>
       The assumption that the error term \(\epsilon\) follows a normal distribution can be investigated 
       by drawing a histogram of the residuals in case of a large amount of data to see if the distribution
       is similar to the shape of the normal distribution. Another method is to use the quantile–quantile (Q-Q)
       scatter plot of the residuals. In general, if the Q-Q scatter plot of the residuals forms a straight line,
       it can be considered as a normal distribution.
-      <p>
       Since residuals are also dependent on the unit of the dependent variable, standardized values of 
       the residuals are used for consistent analysis of the residuals, which are called standardized residuals.
       Both the scatter plots of the residuals described above and the Q-Q scatter plot are created using 
@@ -1506,7 +1504,7 @@
       $$
         \mathbf {Y  = X} \boldsymbol{\beta + \epsilon}
       $$
-      <p>
+      <br><br>
       Here \(\mathbf {Y, X}, \boldsymbol{\beta , \epsilon}\) are defined as follows: 
       $$
         {\bf Y} = \left[ \matrix{ Y_1 \\ Y_2 \\ \cdot \\ \cdot \\ Y_n } \right], \quad
@@ -1591,7 +1589,7 @@
       <p>
       The sum of squares is defined by the same formula as in the simple linear regression, and can be divided with 
       corresponding degrees of freedom as follows and the table of the analysis of variance is shown in Table 12.3.2.
-      <p>
+      <br><br>
         \(\quad\) Sum of squares     \(\quad \quad \;\;SST = SSE + SSR\) <br>
         \(\quad\) Degrees of freedom \(\quad (n-1) = (n-k-1) + k\) <br>
       <p>

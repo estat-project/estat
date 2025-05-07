@@ -108,12 +108,12 @@
                 <li class="listNoneIndent"><a href="#060202">6.2.2  Selection of a variable for branching</a></li>
                 <li class="listNoneIndent"><a href="#060203">6.2.3  Categorization of a continuous variable</a></li>
                 <li class="listNoneIndent"><a href="#060204">6.2.4  Overfitting and pruning decision tree</a></li>
-                <li class="listNoneIndent"><a href="#060205">6.2.5  R practice - decision tree</a></li>
+                <li class="listNoneIndent"><a href="#060205">6.2.5  R and Python practice - Decision tree</a></li>
               <li class="listNone"><a href="#0603">6.3 Naive Bayes classification model</a></li>
                 <li class="listNoneIndent"><a href="#060301">6.3.1  Bayes classification model</a></li>
                 <li class="listNoneIndent"><a href="#060302">6.3.2  Naive Bayes classification model for categorical data</a></li>
                 <li class="listNoneIndent"><a href="#060303">6.3.3  Stepwise variable selection</a></li>
-                <li class="listNoneIndent"><a href="#060304">6.3.4  R practice - Naive Bayes classification</a></li>
+                <li class="listNoneIndent"><a href="#060304">6.3.4  R and Python practice - Naive Bayes classification</a></li>
               <li class="listNone"><a href="#0604">6.4 Evaluation and comparison of classification model</a></li>
                 <li class="listNoneIndent"><a href="#060401">6.4.1  Evaluation of classification model</a></li>
                 <li class="listNoneIndent"><a href="#060402">6.4.2  Comparison of classification models</a></li>
@@ -2121,10 +2121,13 @@
   <p>
 
   <!------------------------------------------------------------->
-  <h4 id="060205">6.2.5 R practice</h4>
+  <h4 id="060205">6.2.5 R and Python practice</h4>
   <p>
+  <h5>R practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter6_2_5_R.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
   <div class="mainTable">
-       Let us practice R commands using the data saved at C:\Rwork\PurchaseByCredit20.csv. 
+       Let us practice R commands using the data saved at http://estat.me/estat/Example/DataScience/PurchaseByCredit20.csv. 
        The file format is a comma separated value (csv) type. You can find this file
        from 『eStat』 system. Click Ex > DataScience and then click the data 'PurchaseByCredit20.csv'.
        After this file is loaded to 『eStat』, save it using 'csv Save' button. It will be
@@ -2141,12 +2144,11 @@
            <td># read the data file</td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> card <- read.csv("PurchaseByCredit20.csv", header=T, as.is=FALSE)</span></td>
-           <td class="tdCenter" style="width:150px;"><button onclick="rFunction(0)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> card <- read.csv("http://estat.me/estat/Example/DataScience/PurchaseByCredit20.csv", header=T, as.is=FALSE)</span></td>
          </tr>
          <tr>
            <td>
-             <span style="color:red;">> card</span>
+             <span style="color:red;"> card</span>
 <pre>
       id Gender Age Income Credit Purchase
 1      1   male 20s LT2000   Fair      Yes
@@ -2173,8 +2175,7 @@
            </td>
          </tr>
          <tr>
-           <td><span style="color:red;">> attach(card)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(2)">copy r command</button></td>          
+           <td><span style="color:red;"> attach(card)</span></td>
          </tr>
     </table>
   </div>
@@ -2257,19 +2258,16 @@
     <p>
        <table style="width:800px;">
          <tr>
-           <td style="width:600px;"><span style="color:red;">> install.packages('rpart')</span></td>
-           <td class="tdCenter"><button onclick="rFunction(48)">copy r command</button></td>
+           <td style="width:600px;"><span style="color:red;"> install.packages('rpart')</span></td>
          </tr>
          <tr>
-           <td style="width:600px;"><span style="color:red;">> library(rpart)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(49)">copy r command</button></td>
+           <td style="width:600px;"><span style="color:red;"> library(rpart)</span></td>
          </tr>
          <tr>
-           <td style="width:600px;"><span style="color:red;">> fit <- rpart(Purchase ~ Gender + Age + Income + Credit, data = card)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(50)">copy r command</button></td>
+           <td style="width:600px;"><span style="color:red;"> fit <- rpart(Purchase ~ Gender + Age + Income + Credit, data = card)</span></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> fit</span>
+           <td><span style="color:red;"> fit</span>
 <pre>
 n= 20 
 node), split, n, loss, yval, (yprob)
@@ -2279,7 +2277,6 @@ node), split, n, loss, yval, (yprob)
   3) Age=30s 10 4 Yes (0.4000000 0.6000000) 
 </pre> 
            </td>
-           <td class="tdCenter"><button onclick="rFunction(51)">copy r command</button></td>
          </tr>
        </table>
     <br>
@@ -2290,11 +2287,10 @@ node), split, n, loss, yval, (yprob)
     <p>
        <table style="width:800px;">
          <tr>
-           <td style="width:600px;"><span style="color:red;">> fit2 <- rpart(Purchase ~ Gender + Age + Income + Credit, data = card, control = rpart.control(minsplit = 6))</span></td>
-           <td class="tdCenter"><button onclick="rFunction(52)">copy r command</button></td>
+           <td style="width:600px;"><span style="color:red;"> fit2 <- rpart(Purchase ~ Gender + Age + Income + Credit, data = card, control = rpart.control(minsplit = 6))</span></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> fit2</span>
+           <td><span style="color:red;"> fit2</span>
 <pre>
 n= 20 
 node), split, n, loss, yval, (yprob)
@@ -2306,7 +2302,6 @@ node), split, n, loss, yval, (yprob)
     7) Credit=Good 5 1 Yes (0.2000000 0.8000000) *
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(53)">copy r command</button></td>
          </tr>
        </table>
        To draw a decision tree as a graph, use the plot and text commands below.
@@ -2317,15 +2312,13 @@ node), split, n, loss, yval, (yprob)
     <p>
        <table style="width:800px;">
          <tr>
-           <td style="width:600px;"><span style="color:red;">> plot(fit2,compress=T,uniform=T,margin=0.1)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(54)">copy r command</button></td>
+           <td style="width:600px;"><span style="color:red;"> plot(fit2,compress=T,uniform=T,margin=0.1)</span></td>
          </tr>
          <tr>
-           <td style="width:600px;"><span style="color:red;">> text(fit2,use.n=T,col='blue')</span><br>
+           <td style="width:600px;"><span style="color:red;"> text(fit2,use.n=T,col='blue')</span><br>
              <img class="figure50" src="./figure/Fig060212.png">
              <div class="figText">&lt;Figure 6.2.12&gt; Decision tree using R</div>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(55)">copy r command</button></td>
          </tr>
        </table>
        In the decision tree diagram above, age=a is the condition of the left branch, and 'a' means the first variable value '20s',
@@ -2335,6 +2328,126 @@ node), split, n, loss, yval, (yprob)
        is too small, pruning is determined by merging with adjacent variable values.
   </div>
   <p>
+
+  <h5>Python practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter6_2_5_Python.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
+  <div class="mainTable">
+    <table style="width:800px">
+         <tr>
+           <td>
+
+# Import required libraries <br>
+<span style="color:red;">
+import pandas as pd <br>
+import matplotlib.pyplot as plt <br>
+</span>
+
+# Read the data file <br>
+<span style="color:red;">
+url = 'https://raw.githubusercontent.com/ogut77/DataScience/refs/heads/main/PurchaseByCredit40.csv' <br>
+card = pd.read_csv(url) <br>
+</span>
+
+# Display the data <br>
+<span style="color:red;">
+print(card) <br>
+</span>
+<pre>
+    id  Gender  Age  Income Credit Purchase
+0    1    male  20s  LT2000   Fair      Yes
+1    2  female  30s  GE2000   Good       No
+2    3  female  20s  GE2000   Fair       No
+3    4  female  20s  GE2000   Fair      Yes
+4    5  female  20s  LT2000    Bad       No
+5    6  female  30s  GE2000   Fair       No
+6    7  female  30s  GE2000   Good      Yes
+7    8    male  20s  LT2000   Fair       No
+8    9  female  20s  GE2000   Good       No
+9   10    male  30s  GE2000   Fair      Yes
+10  11  female  30s  GE2000   Good      Yes
+11  12  female  20s  LT2000   Fair       No
+12  13    male  30s  GE2000   Fair       No
+13  14    male  30s  LT2000   Fair      Yes
+14  15  female  30s  GE2000   Good      Yes
+15  16  female  30s  GE2000   Fair       No
+16  17  female  20s  GE2000    Bad       No
+17  18    male  20s  GE2000    Bad       No
+18  19    male  30s  GE2000   Good      Yes
+19  20    male  20s  LT2000   Fair       No
+20  21    male  20s  LT2000   Fair      Yes
+21  22  female  30s  GE2000   Good       No
+22  23  female  20s  GE2000   Fair       No
+23  24  female  20s  GE2000   Fair      Yes
+24  25  female  20s  LT2000    Bad       No
+25  26  female  30s  GE2000   Fair       No
+26  27  female  30s  GE2000   Good      Yes
+27  28    male  20s  LT2000   Fair       No
+28  29  female  20s  GE2000   Good       No
+29  30    male  30s  GE2000   Fair      Yes
+30  31  female  30s  GE2000   Good      Yes
+31  32  female  20s  LT2000   Fair       No
+32  33    male  30s  GE2000   Fair       No
+33  34    male  30s  LT2000   Fair      Yes
+34  35  female  30s  GE2000   Good      Yes
+35  36  female  30s  GE2000   Fair       No
+36  37  female  20s  GE2000    Bad       No
+37  38    male  20s  GE2000    Bad       No
+38  39    male  30s  GE2000   Good      Yes
+39  40    male  20s  LT2000   Fair       No
+</pre>
+
+# Prepare the data <br>
+<span style="color:red;">
+y=card['Purchase'] <br>
+X=card.drop(['Purchase'], axis=1) <br>
+</span>
+# X=pd.get_dummies(X,drop_first=True) <br>
+# Prepare the data <br>
+<span style="color:red;">
+for column in X.select_dtypes(include=['object']).columns:
+    X[column] = label_encoder.fit_transform(X[column]) <br>
+</span>
+# Create and train the decision tree model <br>
+<span style="color:red;">
+dt = DecisionTreeClassifier() <br>
+fit = dt.fit(X, y) <br>
+fit <br>
+     
+DecisionTreeClassifier() <br>
+</span>
+In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>
+On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org. <br>
+<span style="color:red;">
+dt = DecisionTreeClassifier(min_samples_split=6, random_state=42) #Added random_state for reproducibility <br>
+fit2 = dt.fit(X, y) #Fit on the training data <br>
+fit2 <br>
+     
+DecisionTreeClassifier(min_samples_split=6, random_state=42) <br>
+</span>
+In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>
+On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org. <br>
+
+# prompt: plot(fit2,compress=T,uniform=T,margin=0.1) <br>
+# text(fit2,use.n=T,col='blue') in python <br>
+<span style="color:red;">
+import matplotlib.pyplot as plt <br>
+from sklearn.tree import plot_tree <br>
+</span>
+<br>
+# Assuming 'fit2' is your trained DecisionTreeClassifier object and X, y are defined as in your previous code <br>
+<span style="color:red;">
+plt.figure(figsize=(20,10)) # Adjust figure size as needed <br>
+plot_tree(fit2, filled=True, feature_names=X.columns, class_names=True, rounded=True) #filled=True is similar to compress=T, rounded=True is similar to uniform=T <br>
+plt.show() <br>
+</span>
+             <img class="figure90" src="./figure/Fig060213.png">
+
+
+           </td>
+         </tr>
+    </table>
+  </div>
 
   <!------------------------------------------------------------->
   <h3 id="0603">6.3 Naive Bayes classification model</h3>
@@ -2898,7 +3011,11 @@ node), split, n, loss, yval, (yprob)
   <p>
 
   <!------------------------------------------------------------->
-  <h4 id="060304">6.3.4 R practice - Naive Bayes classification</h4>
+  <h4 id="060304">6.3.4 R and Python practice - Naive Bayes classification</h4>
+  <p>
+  <h5>R practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter6_3_4_R.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
   <p>
   <div class="mainTable">
        To analyze naive Bayes classification using R, you need to install a package called <b>naivebayes</b>. 
@@ -2970,19 +3087,16 @@ node), split, n, loss, yval, (yprob)
     <p>
        <table style="width:800px;">
          <tr>
-           <td style="width:600px;"><span style="color:red;">> install.packages('naivebayes')</span></td>
-           <td class="tdCenter"><button onclick="rFunction(60)">copy r command</button></td>
+           <td style="width:600px;"><span style="color:red;"> install.packages('naivebayes')</span></td>
          </tr>
          <tr>
-           <td style="width:600px;"><span style="color:red;">> library(naivebayes)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(61)">copy r command</button></td>
+           <td style="width:600px;"><span style="color:red;"> library(naivebayes)</span></td>
          </tr>
          <tr>
-           <td style="width:600px;"><span style="color:red;">> nbfit <- naive_bayes(Purchase ~ Gender + Age + Income + Credit, data = card)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(62)">copy r command</button></td>
+           <td style="width:600px;"><span style="color:red;"> nbfit <- naive_bayes(Purchase ~ Gender + Age + Income + Credit, data = card)</span></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> nbfit</span>
+           <td><span style="color:red;"> nbfit</span>
 <pre>
 Call: 
 naive_bayes.formula(formula = Purchase ~ Gender + Age + Income + Credit, data = card) 
@@ -3022,7 +3136,6 @@ Credit        No       Yes
 -------------------------------------------------------- 
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(63)">copy r command</button></td>
          </tr>
        </table>
        If you want to classify the group of the card data using this naive Bayes model with posterior probabilities,
@@ -3030,11 +3143,10 @@ Credit        No       Yes
     <p>
        <table style="width:800px;">
          <tr>
-           <td style="width:600px;"><span style="color:red;">> pred <- predict(nbfit, card, type = 'prob')"</span></td>
-           <td class="tdCenter"><button onclick="rFunction(64)">copy r command</button></td>
+           <td style="width:600px;"><span style="color:red;"> pred <- predict(nbfit, card, type = 'prob')"</span></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> pred</span>
+           <td><span style="color:red;"> pred</span>
 <pre>
             No          Yes 
  [1,] 0.8057554 0.1942446043 
@@ -3059,7 +3171,6 @@ Credit        No       Yes
 [20,] 0.8057554 0.1942446043 
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(65)">copy r command</button></td>
          </tr>
        </table>
        To make a classification crosstable, you can create a vector of prediction and 
@@ -3068,25 +3179,22 @@ Credit        No       Yes
     <p>
        <table style="width:800px;">
          <tr>
-           <td style="width:600px;"><span style="color:red;">> pred2 <- predict(nbfit, card)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(66)">copy r command</button></td>
+           <td style="width:600px;"><span style="color:red;"> pred2 <- predict(nbfit, card)</span></td>
          </tr>
          <tr>
-           <td style="width:600px;"><span style="color:red;">> pred2</span>
+           <td style="width:600px;"><span style="color:red;"> pred2</span>
 <pre>
  [1] No  Yes No  No  No  Yes Yes No  No  Yes Yes No  Yes Yes Yes Yes No  No  Yes 
 [20] No 
 Levels: No Yes 
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(67)">copy r command</button></td>
          </tr>
          <tr>
-           <td style="width:600px;"><span style="color:red;">> classtable <- table(Purchase, pred2)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(68)">copy r command</button></td>
+           <td style="width:600px;"><span style="color:red;"> classtable <- table(Purchase, pred2)</span></td>
          </tr>
          <tr>
-           <td style="width:600px;"><span style="color:red;">> classtable</span>
+           <td style="width:600px;"><span style="color:red;"> classtable</span>
 <pre>
         pred2 
 Purchase No Yes 
@@ -3094,20 +3202,220 @@ Purchase No Yes
      Yes  2   6 
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(69)">copy r command</button></td>
          </tr>
          <tr>
-           <td style="width:600px;"><span style="color:red;">> sum(diag(classtable)) / sum(classtable)</span>
+           <td style="width:600px;"><span style="color:red;"> sum(diag(classtable)) / sum(classtable)</span>
 [1] 0.7
            </td>
-           <td class="tdCenter"><button onclick="rFunction(70)">copy r command</button></td>
          </tr>
        </table>
 
   </div>
   <p>
 
+  <h5>Python practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter6_3_4_Python.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
+  <div class="mainTable">
+    <table style="width:800px">
+         <tr>
+           <td>
+# Import required libraries <br>
+<span style="color:red;">
+import pandas as pd <br>
+from sklearn.naive_bayes import GaussianNB <br>
+from sklearn import preprocessing <br>
+label_encoder = preprocessing.LabelEncoder() <br>
+</span>
+<br>
+# Load the dataset <br>
+<span style="color:red;">
+url = 'https://raw.githubusercontent.com/ogut77/DataScience/refs/heads/main/PurchaseByCredit40.csv' <br>
+card = pd.read_csv(url) <br>
+</span>
+<br>
+# Prepare the data <br>
+<span style="color:red;">
+X = card.drop('Purchase', axis=1) <br>
+y = card['Purchase'] <br>
+</span>
+<br>
+# X = pd.get_dummies(X, drop_first=True) <br>
+<span style="color:red;">
+for column in X.select_dtypes(include=['object']).columns:
+    X[column] = label_encoder.fit_transform(X[column])
+</span>
+<br>
+# Create and train the Naive Bayes model <br>
+<span style="color:red;">
+nbfit = GaussianNB() <br>
+nbfit.fit(X, y) <br>
+</span>
+</br>
+# Now you can use nbfit to make predictions: <br>
+# predictions = nbfit.predict(X_test) <br>
+<span style="color:red;">
+nbfit <br>
+GaussianNB() <br>
+</span>
+<br>
+In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>
+On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org. <br>
+<span style="color:red;">
+X
+</span>
+<pre>
+id	Gender	Age	Income	Credit
+0	1	1	0	1	1
+1	2	0	1	0	2
+2	3	0	0	0	1
+3	4	0	0	0	1
+4	5	0	0	1	0
+5	6	0	1	0	1
+6	7	0	1	0	2
+7	8	1	0	1	1
+8	9	0	0	0	2
+9	10	1	1	0	1
+10	11	0	1	0	2
+11	12	0	0	1	1
+12	13	1	1	0	1
+13	14	1	1	1	1
+14	15	0	1	0	2
+15	16	0	1	0	1
+16	17	0	0	0	0
+17	18	1	0	0	0
+18	19	1	1	0	2
+19	20	1	0	1	1
+20	21	1	0	1	1
+21	22	0	1	0	2
+22	23	0	0	0	1
+23	24	0	0	0	1
+24	25	0	0	1	0
+25	26	0	1	0	1
+26	27	0	1	0	2
+27	28	1	0	1	1
+28	29	0	0	0	2
+29	30	1	1	0	1
+30	31	0	1	0	2
+31	32	0	0	1	1
+32	33	1	1	0	1
+33	34	1	1	1	1
+34	35	0	1	0	2
+35	36	0	1	0	1
+36	37	0	0	0	0
+37	38	1	0	0	0
+38	39	1	1	0	2
+39	40	1	0	1	1
+</pre>
+<br>
+# prompt: pred <- predict(nbfit, card, type = 'prob') <br>
+# pred in python <br>
+# Predict probabilities using the trained Naive Bayes model <br>
+<span style="color:red;">
+pred = nbfit.predict_proba(X) <br>
+</span>
+# Print or further process the predictions <br>
+<span style="color:red;">
+pred <br>
+</span>
+<pre>
+array([[0.84828263, 0.15171737],
+       [0.16545941, 0.83454059],
+       [0.86877169, 0.13122831],
+       [0.86893468, 0.13106532],
+       [0.99576268, 0.00423732],
+       [0.45305897, 0.54694103],
+       [0.16658356, 0.83341644],
+       [0.84973975, 0.15026025],
+       [0.61725121, 0.38274879],
+       [0.2831043 , 0.7168957 ],
+       [0.16797331, 0.83202669],
+       [0.9236716 , 0.0763284 ],
+       [0.28492091, 0.71507909],
+       [0.41739315, 0.58260685],
+       [0.16980815, 0.83019185],
+       [0.46020741, 0.53979259],
+       [0.99268741, 0.00731259],
+       [0.98470712, 0.01529288],
+       [0.08941323, 0.91058677],
+       [0.85496654, 0.14503346],
+       [0.85555067, 0.14444933],
+       [0.17412572, 0.82587428],
+       [0.87604521, 0.12395479],
+       [0.87661948, 0.12338052],
+       [0.99606019, 0.00393981],
+       [0.47219023, 0.52780977],
+       [0.1781103 , 0.8218897 ],
+       [0.86023739, 0.13976261],
+       [0.63794767, 0.36205233],
+       [0.30223529, 0.69776471],
+       [0.18186659, 0.81813341],
+       [0.93044127, 0.06955873],
+       [0.30658426, 0.69341574],
+       [0.44384514, 0.55615486],
+       [0.18615261, 0.81384739],
+       [0.48903735, 0.51096265],
+       [0.99350584, 0.00649416],
+       [0.98645826, 0.01354174],
+       [0.10032986, 0.89967014],
+       [0.87048142, 0.12951858]])
+</pre>
+<br>
+# prompt: pred2 <- predict(nbfit, card) <br>
+# pred2 in python <br>
+# Predict probabilities using the trained Naive Bayes model <br>
+<span style="color:red;">
+pred2 = nbfit.predict(X) <br>
+</span>
+# Print or further process the predictions <br>
+<span style="color:red;">
+pred2 <br>
+</span>
+<pre>
+array(['No', 'Yes', 'No', 'No', 'No', 'Yes', 'Yes', 'No', 'No', 'Yes',
+       'Yes', 'No', 'Yes', 'Yes', 'Yes', 'Yes', 'No', 'No', 'Yes', 'No',
+       'No', 'Yes', 'No', 'No', 'No', 'Yes', 'Yes', 'No', 'No', 'Yes',
+       'Yes', 'No', 'Yes', 'Yes', 'Yes', 'Yes', 'No', 'No', 'Yes', 'No'],
+      dtype='U3')
+</pre>
 
+<span style="color:red;">
+from sklearn.metrics import confusion_matrix <br>
+import seaborn as sns <br>
+</span>
+# Assuming 'y' contains the true labels and 'pred2' contains the predicted labels <br>
+<span style="color:red;">
+cm = confusion_matrix(y, pred2) <br>
+</span>
+<br>
+# Plot the confusion matrix using seaborn <br>
+<span style="color:red;">
+plt.figure(figsize=(8, 6)) <br>
+sns.heatmap(cm, annot=True, fmt="d", cmap="Blues") <br>
+plt.xlabel("Predicted") <br>
+plt.ylabel("Actual") <br>
+plt.title("Confusion Matrix") <br>
+plt.show() <br>
+</span>  
+            <img class="figure70" src="./figure/Fig060301.png">
+<p>
+<span style="color:red;">
+from sklearn.metrics import accuracy_score <br>
+</span>
+# Assuming 'y' contains the true labels and 'pred2' contains the predicted labels <br>
+<span style="color:red;">
+accuracy = accuracy_score(y, pred2) <br>
+print(f"Accuracy: {accuracy}") <br>
+</span>
+<pre>
+Accuracy: 0.7
+</pre>
+
+           </td>
+         </tr>
+    </table>
+  </div>
+  <p>
 
   <!------------------------------------------------------------->
   <h3 id="0604">6.4 Evaluation and comparison of a classification model</h3>

@@ -74,7 +74,7 @@
          <ul>
                 <li><a href="#0201">&nbsp;&nbsp; 2.1 Visualization of qualitative data</a></li>
                 <li><a href="#0202">&nbsp;&nbsp; 2.2 Visualization of quantitative data</a></li>
-                <li><a href="#0203">&nbsp;&nbsp; 2.3 R practice</a></li> 
+                <li><a href="#0203">&nbsp;&nbsp; 2.3 R and Python practice</a></li> 
                 <li><a href="#0204">&nbsp;&nbsp; 2.4 Exercise</a></li> 
          </ul>
     <li> <a href="chapter03.html"> 3 Data summary and transformation</a> </li>
@@ -104,7 +104,7 @@
                 <li class="listNone"><a href="#0202">2.2 Visualization of quantitative data</a></li>
                 <li class="listNoneIndent"><a href="#020201">2.2.1 Visualization of a single quantitative variable</a></li>
                 <li class="listNoneIndent"><a href="#020202">2.2.2 Visualization of two or more quantitative variables</a></li>
-                <li class="listNone"><a href="#0203">2.3 R practice</a></li> 
+                <li class="listNone"><a href="#0203">2.3 R and Python practice</a></li> 
                 <li class="listNone"><a href="#0204">2.4 Exercise</a></li> 
          </ul>
   <p>
@@ -1374,7 +1374,9 @@
   <h3 id="0203">2.3  R and Python practice</h3>
   <p>
   <!-------------------------------------------------------------------------->
-  <h5>R Practice</h5>
+  <h5>R practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter2_3_R.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
   <p>
   <div class="mainTable">
        Let us practice R commands using the data saved at C:\Rwork\PurchaseByCredit40.csv. 
@@ -1394,11 +1396,10 @@
            <td># read the data file</td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> card <- read.csv("PurchaseByCredit40.csv", header=TRUE, as.is=FALSE)</span></td>
-           <td style="width:150px;" class="tdCenter"><button onclick="rFunction(1)">copy r command</button></td>
+           <td><span style="color:red;"> card <- read.csv("http://estat.me/estat/Example/DataScience/PurchaseByCredit40.csv", header=TRUE, as.is=FALSE)</span></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> card</span>
+           <td><span style="color:red;"> card</span>
 <pre>
       id Gender Age Income Credit Purchase
 1      1   male 20s LT2000   Fair      Yes
@@ -1445,8 +1446,7 @@
            </td>
          </tr>
          <tr>
-           <td><span style="color:red;">> attach(card)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(2)">copy r command</button></td>          
+           <td><span style="color:red;"> attach(card)</span></td>
          </tr>
     </table>
   </div>
@@ -1457,8 +1457,7 @@
            <td># Bar graph</td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> plot(Purchase, main="Bar Graph", ylab="frequency", ylim=c(0,30))<span></td>
-           <td class="tdCenter"  style="width:150px;"><button onclick="rFunction(6)">copy r command</button></td>
+           <td><span style="color:red;"> plot(Purchase, main="Bar Graph", ylab="frequency", ylim=c(0,30))<span></td>
          </tr>
          <tr>
            <td>
@@ -1469,7 +1468,7 @@
            <td># Pie chart</td>
          </tr>
          <tr>
-           <td><span style="color:red;">> freq <- table(Purchase)</span>
+           <td><span style="color:red;"> freq <- table(Purchase)</span>
 <pre>
  freq
 Purchase
@@ -1477,11 +1476,9 @@ Purchase
  24  16 
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(7)">copy r command</button></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> pie(freq, main="Pie Chart")</span></td>
-           <td class="tdCenter"><button onclick="rFunction(8)">copy r command</button></td>
+           <td><span style="color:red;"> pie(freq, main="Pie Chart")</span></td>
          </tr>
          <tr>
            <td>
@@ -1499,12 +1496,10 @@ Purchase
            </td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> iris <- read.csv("iris150.csv", header=T)</span></td>
-           <td style="width:150px"class="tdCenter"><button onclick="rFunction(9)">copy r command</button></td>
+           <td><span style="color:red;"> iris <- read.csv("http://estat.me/estat/Example/DataScience/Iris150.csv", header=T)</span></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> attach(iris)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(10)">copy r command</button></td>
+           <td><span style="color:red;"> attach(iris)</span></td>
          </tr>
          <tr>
            <td># Continuous Data Histogram, Scatter plot<br>
@@ -1512,8 +1507,7 @@ Purchase
            </td>
          </tr>
          <tr>
-           <td><span style="color:red;">> hist(Sepal.Length, col="lightgray", ylim=c(0,30), main="Histogram")</span></td>
-           <td class="tdCenter"><button onclick="rFunction(17)">copy r command</button></td>
+           <td><span style="color:red;"> hist(Sepal.Length, col="lightgray", ylim=c(0,30), main="Histogram")</span></td>
          </tr>
          <tr>
            <td>
@@ -1524,8 +1518,7 @@ Purchase
            <td># Scatter plot</td>
          </tr>
          <tr>
-           <td><span style="color:red;">> plot(Sepal.Length, Sepal.Width, main="Scatter Plot")</span></td>
-           <td class="tdCenter"><button onclick="rFunction(18)">copy r command</button></td>
+           <td><span style="color:red;"> plot(Sepal.Length, Sepal.Width, main="Scatter Plot")</span></td>
          </tr>
          <tr>
            <td>
@@ -1536,13 +1529,21 @@ Purchase
            <td># Scatter plot matrix</td>
          </tr>
          <tr>
-           <td><span style="color:red;">> pairs(~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width, data=iris)</span><br>
+           <td><span style="color:red;"> pairs(~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width, data=iris)</span><br>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(19)">copy r command</button></td>
          </tr>
          <tr>
            <td>
              <img class="figure70" src="./figure/Fig020305.png">
+           </td>
+         </tr>
+         <tr>
+           <td><span style="color:red;"> plot(iris[2:5], col=unclass(iris[,6])))</span><br>
+           </td>
+         </tr>
+         <tr>
+           <td>
+             <img class="figure70" src="./figure/Fig0203052.png">
            </td>
          </tr>
          <tr>
@@ -1551,12 +1552,10 @@ Purchase
            </td>
          </tr>
          <tr>
-           <td><span style="color:red;">> quantData <- iris[, 2:5]</span></td>
-           <td class="tdCenter"><button onclick="rFunction(20)">copy r command</button></td>
+           <td><span style="color:red;"> quantData <- iris[, 2:5]</span></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> groupData <- iris[, 6]</span></td>
-           <td class="tdCenter"><button onclick="rFunction(21)">copy r command</button></td>
+           <td><span style="color:red;"> groupData <- iris[, 6]</span></td>
          </tr>
          <tr>
            <td># install MASS  package. <br>
@@ -1565,12 +1564,10 @@ Purchase
            </td>
          </tr>
          <tr>
-           <td><span style="color:red;">> library(MASS)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(22)">copy r command</button></td>
+           <td><span style="color:red;"> library(MASS)</span></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> parcoord(quantData)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(23)">copy r command</button></td>
+           <td><span style="color:red;"> parcoord(quantData)</span></td>
          </tr>
          <tr>
            <td>
@@ -1579,13 +1576,11 @@ Purchase
          </tr>
          <tr>
            <td># Categorical variable as colors<br>
-             <span style="color:red;">> cols <- as.numeric(groupData)</span>
+             <span style="color:red;"> cols <- as.numeric(groupData)</span>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(24)">copy r command</button></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> parcoord(quantData, col = cols)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(25)">copy r command</button></td>
+           <td><span style="color:red;"> parcoord(quantData, col = cols)</span></td>
          </tr>
          <tr>
            <td>
@@ -1596,222 +1591,201 @@ Purchase
   </div>
   <p>
 
+
   <!-------------------------------------------------------------------------->
-  <h5>Python Practice</h5>
-  <p>
-  <div class="mainTable">
-       Let us practice R commands using the data saved at C:\Rwork\PurchaseByCredit40.csv. 
-       The file format is a comma separated value (csv) type. You can find this file
-       from 『eStat』 system. Click Ex > DataScience and then click the data 'PurchaseByCredit40.csv'.
-       After this file is loaded to 『eStat』, save it using 'csv Save' button. It will be
-       saved at the Download folder on your PC. Copy this file to C:\Rwork\ folder.
-    <p>
-       You need to change first the working directory of R to use this data as follows.
-    <p>
-       File > Change Directory > C: > Rwork<br>
-    <p>
-  </div>
-  <div class="mainTable">
-    <table style="width:800px">
-         <tr>
-           <td># read the data file</td>
-         </tr>
-         <tr>
-           <td style="width:650px;"><span style="color:red;">> card <- read.csv("PurchaseByCredit40.csv", header=T)</span></td>
-           <td style="width:150px;" class="tdCenter"><button onclick="rFunction(1)">copy r command</button></td>
-         </tr>
-         <tr>
-           <td>
- card <br>
-   ï..id Gender Age Income Credit Purchase<br>
-1      1   male 20s LT2000   Fair      Yes<br>
-2      2 female 30s GE2000   Good       No<br>
-3      3 female 20s GE2000   Fair       No<br>
-4      4 female 20s GE2000   Fair      Yes<br>
-5      5 female 20s LT2000    Bad       No<br>
-6      6 female 30s GE2000   Fair       No<br>
-7      7 female 30s GE2000   Good      Yes<br>
-8      8   male 20s LT2000   Fair       No<br>
-9      9 female 20s GE2000   Good       No<br>
-10    10   male 30s GE2000   Fair      Yes<br>
-11    11 female 30s GE2000   Good      Yes<br>
-12    12 female 20s LT2000   Fair       No<br>
-13    13   male 30s GE2000   Fair       No<br>
-14    14   male 30s LT2000   Fair      Yes<br>
-15    15 female 30s GE2000   Good      Yes<br>
-16    16 female 30s GE2000   Fair       No<br>
-17    17 female 20s GE2000    Bad       No<br>
-18    18   male 20s GE2000    Bad       No<br>
-19    19   male 30s GE2000   Good      Yes<br>
-20    20   male 20s LT2000   Fair       No<br>
-21    21   male 20s LT2000   Fair      Yes<br>
-22    22 female 30s GE2000   Good       No<br>
-23    23 female 20s GE2000   Fair       No<br>
-24    24 female 20s GE2000   Fair      Yes<br>
-25    25 female 20s LT2000    Bad       No<br>
-26    26 female 30s GE2000   Fair       No<br>
-27    27 female 30s GE2000   Good      Yes<br>
-28    28   male 20s LT2000   Fair       No<br>
-29    29 female 20s GE2000   Good       No<br>
-30    30   male 30s GE2000   Fair      Yes<br>
-31    31 female 30s GE2000   Good      Yes<br>
-32    32 female 20s LT2000   Fair       No<br>
-33    33   male 30s GE2000   Fair       No<br>
-34    34   male 30s LT2000   Fair      Yes<br>
-35    35 female 30s GE2000   Good      Yes<br>
-36    36 female 30s GE2000   Fair       No<br>
-37    37 female 20s GE2000    Bad       No<br>
-38    38   male 20s GE2000    Bad       No<br>
-39    39   male 30s GE2000   Good      Yes<br>
-40    40   male 20s LT2000   Fair       No<br>
-           </td>
-         </tr>
-         <tr>
-           <td><span style="color:red;">> attach(card)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(2)">copy r command</button></td>          
-         </tr>
-    </table>
-  </div>
+  <h5>Python practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter2_3_Python.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
   <p>
   <div class="mainTable">
     <table style="width:800px">
          <tr>
-           <td># Bar graph</td>
-         </tr>
-         <tr>
-           <td style="width:650px;"><span style="color:red;">> plot(Purchase, main="Bar Graph", ylab="frequency", ylim=c(0,30))<span></td>
-           <td class="tdCenter"  style="width:150px;"><button onclick="rFunction(6)">copy r command</button></td>
-         </tr>
-         <tr>
            <td>
-             <img class="figure50" src="./figure/Fig020301.png">
-           </td>
-         </tr>
-         <tr>
-           <td># Pie chart</td>
-         </tr>
-         <tr>
-           <td><span style="color:red;">> freq <- table(Purchase)</span><br>
- freq<br>
-Purchase<br>
- No Yes <br>
- 24  16 <br>
-           </td>
-           <td class="tdCenter"><button onclick="rFunction(7)">copy r command</button></td>
-         </tr>
-         <tr>
-           <td><span style="color:red;">> pie(freq, main="Pie Chart")</span></td>
-           <td class="tdCenter"><button onclick="rFunction(8)">copy r command</button></td>
-         </tr>
-         <tr>
-           <td>
-             <img class="figure50" src="./figure/Fig020302.png">
-           </td>
-         </tr>
-    </table>
-  </div>
-  <p>
-  <div class="mainTable">
-    <table style="width:800px">
-         <tr>
-           <td># Continuous Data <br>
-               # Read iris data
-           </td>
-         </tr>
-         <tr>
-           <td style="width:650px;"><span style="color:red;">> iris <- read.csv("iris150.csv", header=T)</span></td>
-           <td style="width:150px"class="tdCenter"><button onclick="rFunction(9)">copy r command</button></td>
-         </tr>
-         <tr>
-           <td><span style="color:red;">> attach(iris)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(10)">copy r command</button></td>
-         </tr>
-         <tr>
-           <td># Continuous Data Histogram, Scatter plot<br>
-               # Histogram
-           </td>
-         </tr>
-         <tr>
-           <td><span style="color:red;">> hist(Sepal.Length, col="lightgray", ylim=c(0,30), main="Histogram")</span></td>
-           <td class="tdCenter"><button onclick="rFunction(17)">copy r command</button></td>
-         </tr>
-         <tr>
-           <td>
-             <img class="figure70" src="./figure/Fig020303.png">
-           </td>
-         </tr>
-         <tr>
-           <td># Scatter plot</td>
-         </tr>
-         <tr>
-           <td><span style="color:red;">> plot(Sepal.Length, Sepal.Width, main="Scatter Plot")</span></td>
-           <td class="tdCenter"><button onclick="rFunction(18)">copy r command</button></td>
-         </tr>
-         <tr>
-           <td>
-             <img class="figure70" src="./figure/Fig020304.png">
-           </td>
-         </tr>
-         <tr>
-           <td># Scatter plot matrix</td>
-         </tr>
-         <tr>
-           <td><span style="color:red;">> pairs(~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width, data=iris)</span><br>
-           </td>
-           <td class="tdCenter"><button onclick="rFunction(19)">copy r command</button></td>
-         </tr>
-         <tr>
-           <td>
-             <img class="figure70" src="./figure/Fig020305.png">
-           </td>
-         </tr>
-         <tr>
-           <td># Continuous Data Paralle Coordinate Plot<br>
-               # Divide iris data between the numerical and the categorical variable. <br>
-           </td>
-         </tr>
-         <tr>
-           <td><span style="color:red;">> quantData <- iris[, 2:5]</span></td>
-           <td class="tdCenter"><button onclick="rFunction(20)">copy r command</button></td>
-         </tr>
-         <tr>
-           <td><span style="color:red;">> groupData <- iris[, 6]</span></td>
-           <td class="tdCenter"><button onclick="rFunction(21)">copy r command</button></td>
-         </tr>
-         <tr>
-           <td># install MASS  package. <br>
-               # In the main menu, click Packages > Load Package > select MASS package <br>
-               # The parcoord function from MASS package can be used to create a parallel coordinates plot in base R based on the matplot function. You can input a matrix or a data frame.<br>
-           </td>
-         </tr>
-         <tr>
-           <td><span style="color:red;">> library(MASS)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(22)">copy r command</button></td>
-         </tr>
-         <tr>
-           <td><span style="color:red;">> parcoord(quantData)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(23)">copy r command</button></td>
-         </tr>
-         <tr>
-           <td>
-              <img class="figure70" src="./figure/Fig020306.png">
-           </td>
-         </tr>
-         <tr>
-           <td># Categorical variable as colors<br>
-             <span style="color:red;">> cols <- as.numeric(groupData)</span>
-           </td>
-           <td class="tdCenter"><button onclick="rFunction(24)">copy r command</button></td>
-         </tr>
-         <tr>
-           <td><span style="color:red;">> parcoord(quantData, col = cols)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(25)">copy r command</button></td>
-         </tr>
-         <tr>
-           <td>
-             <img class="figure70" src="./figure/Fig020307.png">
-           </td>
-         </tr>
+# Import required libraries <br>
+<span style="color:red;">
+import pandas as pd <br>
+import matplotlib.pyplot as plt <br>
+</span>
+<br>
+# Read the data file <br>
+<span style="color:red;">
+url = 'https://raw.githubusercontent.com/ogut77/DataScience/refs/heads/main/PurchaseByCredit40.csv' <br>
+card = pd.read_csv(url) <br>
+</span> <br>
+# Display the data <br>
+<span style="color:red;">print(card)</span>  <br>
+<pre>
+    id  Gender  Age  Income Credit Purchase
+0    1    male  20s  LT2000   Fair      Yes
+1    2  female  30s  GE2000   Good       No
+2    3  female  20s  GE2000   Fair       No
+3    4  female  20s  GE2000   Fair      Yes
+4    5  female  20s  LT2000    Bad       No
+5    6  female  30s  GE2000   Fair       No
+6    7  female  30s  GE2000   Good      Yes
+7    8    male  20s  LT2000   Fair       No
+8    9  female  20s  GE2000   Good       No
+9   10    male  30s  GE2000   Fair      Yes
+10  11  female  30s  GE2000   Good      Yes
+11  12  female  20s  LT2000   Fair       No
+12  13    male  30s  GE2000   Fair       No
+13  14    male  30s  LT2000   Fair      Yes
+14  15  female  30s  GE2000   Good      Yes
+15  16  female  30s  GE2000   Fair       No
+16  17  female  20s  GE2000    Bad       No
+17  18    male  20s  GE2000    Bad       No
+18  19    male  30s  GE2000   Good      Yes
+19  20    male  20s  LT2000   Fair       No
+20  21    male  20s  LT2000   Fair      Yes
+21  22  female  30s  GE2000   Good       No
+22  23  female  20s  GE2000   Fair       No
+23  24  female  20s  GE2000   Fair      Yes
+24  25  female  20s  LT2000    Bad       No
+25  26  female  30s  GE2000   Fair       No
+26  27  female  30s  GE2000   Good      Yes
+27  28    male  20s  LT2000   Fair       No
+28  29  female  20s  GE2000   Good       No
+29  30    male  30s  GE2000   Fair      Yes
+30  31  female  30s  GE2000   Good      Yes
+31  32  female  20s  LT2000   Fair       No
+32  33    male  30s  GE2000   Fair       No
+33  34    male  30s  LT2000   Fair      Yes
+34  35  female  30s  GE2000   Good      Yes
+35  36  female  30s  GE2000   Fair       No
+36  37  female  20s  GE2000    Bad       No
+37  38    male  20s  GE2000    Bad       No
+38  39    male  30s  GE2000   Good      Yes
+39  40    male  20s  LT2000   Fair       No
+</pre>
+
+# Create a bar plot <br>
+<span style="color:red;">
+plt.figure(figsize=(6, 6))  # Set figure size for better visibility <br>
+card['Purchase'].value_counts().plot(kind='bar', title='Bar Graph', ylabel='frequency', ylim=(0, 30)) <br>
+plt.show() <br>
+</span>
+<img class="figure70" src="./figure/Fig020308.png">
+<p>
+
+# Plot a pie chart <br>
+<span style="color:red;">
+freq = card['Purchase'].value_counts() <br>
+print(freq) <br>
+plt.pie(freq, labels=freq.index) <br>
+plt.title("Pie Chart") <br>
+plt.show() <br>
+</span> 
+<img class="figure70" src="./figure/Fig020309.png">
+<p>
+<pre>     
+Purchase
+No     24
+Yes    16
+Name: count, dtype: int64
+</pre>
+
+# prompt: load iris data  in colab <br>
+<span style="color:red;">import pandas as pd</span> <br>
+<br>
+# Load Iris dataset from UCI Machine Learning Repository <br>
+<span style="color:red;">
+url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
+columns = ['Sepal.Length', 'Sepal.Width', 'Petal.Length', 'Petal.Width', 'Species']
+iris= pd.read_csv(url, header=None, names=columns)
+</span>
+<br>
+#Display the data <br>
+<span style="color:red;">iris</span> <br>
+<pre>
+Sepal.Length	Sepal.Width	Petal.Length	Petal.Width	Species
+0	5.1	3.5	1.4	0.2	Iris-setosa
+1	4.9	3.0	1.4	0.2	Iris-setosa
+2	4.7	3.2	1.3	0.2	Iris-setosa
+3	4.6	3.1	1.5	0.2	Iris-setosa
+4	5.0	3.6	1.4	0.2	Iris-setosa
+...	...	...	...	...	...
+145	6.7	3.0	5.2	2.3	Iris-virginica
+146	6.3	2.5	5.0	1.9	Iris-virginica
+147	6.5	3.0	5.2	2.0	Iris-virginica
+148	6.2	3.4	5.4	2.3	Iris-virginica
+149	5.9	3.0	5.1	1.8	Iris-virginica
+150 rows × 5 columns
+</pre>
+<br>
+# prompt: Create histogram charts with  'sepal length (cm)' <br>
+# Create a histogram for 'sepal length (cm)' <br>
+<span style="color:red;">
+plt.figure(figsize=(8, 6)) <br>
+plt.hist(iris['Sepal.Length'], bins=10, edgecolor='black')  # Adjust bins as needed <br>
+plt.xlabel('Sepal Length (cm)') <br>
+plt.ylabel('Frequency') <br>
+plt.title('Histogram of Sepal Length') <br>
+plt.show() <br>
+</span>
+<img class="figure70" src="./figure/Fig020310.png">
+<p>
+# prompt: convert to python plot(Sepal.Length, Sepal.Width, main="Scatter Plot") <br>
+<span style="color:red;">import matplotlib.pyplot as plt</span> <br>
+<br>
+# Assuming iris_df is already defined as in the previous code <br>
+<span style="color:red;">
+plt.figure(figsize=(8, 6)) <br>
+plt.scatter(iris['Sepal.Length'], iris['Sepal.Width']) <br>
+plt.xlabel('Sepal Length (cm)') <br>
+plt.ylabel('Sepal Width (cm)') <br>
+plt.title('Scatter Plot') <br>
+plt.show() <br>
+</span>
+<img class="figure70" src="./figure/Fig020311.png">
+<p>
+<span style="color:red;">
+sns.pairplot(iris, vars=['Sepal.Length', 'Sepal.Width', 'Petal.Length', 'Petal.Width'])
+</span> <br>
+# Show the plot <br>
+<span style="color:red;">plt.show()</span> <br>
+<img class="figure70" src="./figure/Fig020312.png">
+<p>     
+<span style="color:red;">
+import seaborn as sns <br>
+sns.pairplot(iris, vars=['Sepal.Length', 'Sepal.Width', 'Petal.Length', 'Petal.Width'], hue='Species') <br>
+</span>
+<br>
+# Show the plot <br>
+<span style="color:red;">plt.show()</span> <br>
+<img class="figure70" src="./figure/Fig020313.png">
+<p>     
+<span style="color:red;">
+import pandas as pd <br>
+import matplotlib.pyplot as plt <br>
+from sklearn.datasets import load_iris <br>
+import plotly.express as px <br>
+</span>
+<br>
+# Create parallel coordinates plot using Plotly <br>
+<span style="color:red;">
+fig = px.parallel_coordinates(iris,
+                             dimensions=['Sepal.Length', 'Sepal.Width', 'Petal.Length', 'Petal.Width'],
+                            ) <br>
+fig.show()
+</span> <br>
+<img class="figure70" src="./figure/Fig020314.png">
+<p>     
+
+<span style="color:red;">import plotly.express as px</span> <br>
+# Assuming 'iris' DataFrame is already loaded as in the previous code <br>
+# Create parallel coordinates plot using Plotly <br>
+<span style="color:red;">
+species_map = {'Iris-setosa': 0, 'Iris-versicolor': 1, 'Iris-virginica': 2}
+iris['Species_numeric'] = iris['Species'].map(species_map)
+fig = px.parallel_coordinates(iris,
+                             dimensions=['Sepal.Length', 'Sepal.Width', 'Petal.Length', 'Petal.Width'],
+                             color="Species_numeric",
+                             color_continuous_scale=px.colors.qualitative.Plotly)  # Use a qualitative colorscale for categorical data <br>
+fig.show() <br>
+</span>
+
+        </td>
+      </tr>
     </table>
   </div>
   <p>

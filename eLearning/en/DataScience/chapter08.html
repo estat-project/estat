@@ -102,9 +102,9 @@
                 <li class="listNone"><a href="#0801">&nbsp;&nbsp; 8.1 Basic concepts of unsupervised learning and clustering</a></li>
                 <li class="listNone"><a href="#0802">&nbsp;&nbsp; 8.2 Hierarchical clustering model</a></li>
                   <li class="listNoneIndent"><a href="#080201">8.2.1  Method of linkage</a></li>
-                  <li class="listNoneIndent"><a href="#080202">8.2.2  R practice - Hierarchical clustering</a></li>
+                  <li class="listNoneIndent"><a href="#080202">8.2.2  R and Python practice - Hierarchical clustering</a></li>
                 <li class="listNone"><a href="#0803">&nbsp;&nbsp; 8.3 \(\small K\)-means clustering model</a></li>
-                  <li class="listNoneIndent"><a href="#080301">8.3.1  R practice - \(\small K\)-Means clustering</a></li>
+                  <li class="listNoneIndent"><a href="#080301">8.3.1  R and Python practice - \(\small K\)-Means clustering</a></li>
                 <li class="listNone"><a href="#0804">&nbsp;&nbsp; 8.4 Exercise</a></li>
 	      </ul>
   <p>
@@ -958,8 +958,13 @@
   <p>
 
   <!--------------------------------------------------------->
-  <h4 id="080202">8.2.2 R practice - Hierarchical clustering</h4>
+  <h4 id="080202">8.2.2 R and Python practice - Hierarchical clustering</h4>
   <p>
+  <h5>R practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter8_2_2_R.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
+  <p>
+
   <div class="mainTable">
        You must install a package called <b>stats</b> to use Hierarchical clustering using R. 
        From the main menu of R,
@@ -1027,37 +1032,31 @@
     <p>
        <table style="width:800px;">
          <tr>
-           <td style="width:650px;"><span style="color:red;">> library(stats)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(170)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> library(stats)</span></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> iris <- read.csv('iris30.csv', header=T, as.is=FALSE)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(171)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> iris <- read.csv('http://estat.me/estat/Example/DataScience/Iris30.csv', header=T, as.is=FALSE)</span></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> attach(iris)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(172)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> attach(iris)</span></td>
          </tr>
          <tr>
            <td style="width:650px;">
              # select Sepal.Length, Sepal.Width, Petal.Length, Petal.Width from iris data<br>
-             <span style="color:red;">> iris4 <-  iris[, c(2,3, 4, 5)]</span><br>
+             <span style="color:red;"> iris4 <-  iris[, c(2,3, 4, 5)]</span><br>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(173)">copy r command</button></td>
          </tr>
          <tr>
            <td style="width:650px;">
              # calculate distance matrix using squared Euclid distance<br>
-             <span style="color:red;">> dist(iris4, method = 'euclidean')</span><br>
+             <span style="color:red;"> dist(iris4, method = 'euclidean')</span><br>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(178)">copy r command</button></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> hclustIris4 <-hclust(distIris4, method = "ward.D")<span></td>
-           <td class="tdCenter"><button onclick="rFunction(179)">copy r command</button></td>
+           <td><span style="color:red;"> hclustIris4 <-hclust(distIris4, method = "ward.D")<span></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> hclustIris4</span>
+           <td><span style="color:red;"> hclustIris4</span>
 <pre>
 Call: hclust(d = distIris4, method = "ward.D")
 Cluster method   : ward.D 
@@ -1065,16 +1064,65 @@ Distance         : euclidean
 Number of objects: 30  
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(180)">copy r command</button></td>
          <tr>
            <td># plot hierarchical clusters<br>
-               <span style="color:red;">> plot(hclustIris4)<span><br>
+               <span style="color:red;"> plot(hclustIris4)<span><br>
        <img class="figure90" src="./figure/Fig080208.png">
        <div class="figText">&lt;Figure 8.2.8&gt; Hierarchical clustering dendrogram using R</div>      
-           <td class="tdCenter"><button onclick="rFunction(181)">copy r command</button></td>
          </tr>
        </table>
 
+  </div>
+  <p>
+
+  <h5>Python practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter8_2_2_Python.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
+  <div class="mainTable">
+    <table style="width:800px">
+         <tr>
+           <td>
+# Import required libraries <br>
+<span style="color:red;">
+import pandas as pd <br>
+import numpy as np <br>
+from scipy.cluster.hierarchy import dendrogram, linkage <br>
+from scipy.spatial.distance import pdist <br>
+import matplotlib.pyplot as plt <br>
+from sklearn.datasets import load_iris <br>
+</span> <br>
+
+# Load iris dataset <br>
+<span style="color:red;">
+iris = load_iris() <br>
+iris_df = pd.DataFrame(data=iris.data, columns=iris.feature_names) <br>
+</span> <br>
+# Select the four features (equivalent to Sepal.Length, Sepal.Width, Petal.Length, Petal.Width) <br>
+<span style="color:red;">
+iris4 = iris_df.iloc[:, [0, 1, 2, 3]] <br>
+</span> <br>
+# Calculate distance matrix using squared Euclidean distance <br>
+<span style="color:red;">
+dist_matrix = pdist(iris4, metric='euclidean') <br>
+</span> <br>
+# Perform hierarchical clustering using Ward's method <br>
+<span style="color:red;">
+hclust = linkage(dist_matrix, method='ward') <br>
+</span> <br>
+# Plot dendrogram <br>
+<span style="color:red;">
+plt.figure(figsize=(10, 6)) <br>
+dendrogram(hclust, labels=iris_df.index) <br>
+plt.title('Hierarchical Clustering Dendrogram (Ward)') <br>
+plt.xlabel('Sample Index') <br>
+plt.ylabel('Distance') <br>
+plt.show() <br>
+</span>     
+             <img class="figure90" src="./figure/Fig080209.png">
+
+           </td>
+         </tr>
+    </table>
   </div>
   <p>
 
@@ -1321,8 +1369,13 @@ Number of objects: 30
   <p>
 
   <!--------------------------------------------------------->
-  <h4 id="080301">8.3.1 R practice - \(\small K\)-means clustering</h4>
+  <h4 id="080301">8.3.1 R and Python practice - \(\small K\)-means clustering</h4>
   <p>
+  <h5>R practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter8_3_1_R.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
+  <p>
+
   <div class="mainTable">
        To use \(\small K\)-means clustering using R, you need to install a package called <b>stats</b>. 
        From the main menu of R,
@@ -1367,30 +1420,25 @@ Number of objects: 30
     <p>
        <table style="width:800px;">
          <tr>
-           <td style="width:650px;"><span style="color:red;">> library(stats)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(170)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> library(stats)</span></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> iris <- read.csv('iris150.csv', header=T, as.is=FALSE)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(171)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> iris <- read.csv('http://estat.me/estat/Example/DataScience/Iris150.csv', header=T, as.is=FALSE)</span></td>
          </tr>
          <tr>
-           <td style="width:650px;"><span style="color:red;">> attach(iris)</span></td>
-           <td class="tdCenter"><button onclick="rFunction(172)">copy r command</button></td>
+           <td style="width:650px;"><span style="color:red;"> attach(iris)</span></td>
          </tr>
          <tr>
            <td style="width:650px;">
              # select Sepal.Length, Sepal.Width, Petal.Length, Petal.Width from iris data<br>
-             <span style="color:red;">> iris4 <-  iris[, c(2,3, 4, 5)]</span><br>
+             <span style="color:red;"> iris4 <-  iris[, c(2,3, 4, 5)]</span><br>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(173)">copy r command</button></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> iriskmeans <- kmeans(iris4, centers = 3, iter.max = 1000)<span></td>
-           <td class="tdCenter"><button onclick="rFunction(174)">copy r command</button></td>
+           <td><span style="color:red;"> iriskmeans <- kmeans(iris4, centers = 3, iter.max = 1000)<span></td>
          </tr>
          <tr>
-           <td><span style="color:red;">> iriskmeans</span>
+           <td><span style="color:red;"> iriskmeans</span>
 <pre>
 K-means clustering with 3 clusters of sizes 38, 62, 50
 Cluster means:
@@ -1413,11 +1461,10 @@ Available components:
 [6] "betweenss"    "size"         "iter"         "ifault"   
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(175)">copy r command</button></td>
          <tr>
            <td># the cluster vector only can be seen as follows. <br>
                1: verginica, 2: versicolor, 3: setosa<br>
-               <span style="color:red;">> iriskmeans$cluster<span>
+               <span style="color:red;"> iriskmeans$cluster<span>
 <pre>
   [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
  [38] 3 3 3 3 3 3 3 3 3 3 3 3 3 2 2 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
@@ -1426,7 +1473,6 @@ Available components:
 [149] 1 2
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(176)">copy r command</button></td>
          </tr>
          </tr>
        </table>
@@ -1439,7 +1485,7 @@ Available components:
          <tr>
            <td style="width:650px;">
               # 1: verginica, 2: versicolor, 3: setosa<br>
-              <span style="color:red;">> classtable <- table(Species, iriskmeans$cluster)</span>
+              <span style="color:red;"> classtable <- table(Species, iriskmeans$cluster)</span>
 <pre>
 Species       1  2  3
   setosa      0  0 50
@@ -1447,9 +1493,81 @@ Species       1  2  3
   virginica  36 14  0
 </pre>
            </td>
-           <td class="tdCenter"><button onclick="rFunction(177)">copy r command</button></td>
          </tr>
        </table>
+  </div>
+  <p>
+
+  <h5>Python practice
+     <a href="https://github.com/ogut77/estat.me/blob/main/Chapter8_3_1_Python.ipynb" target="_blank"><b><u>[Colab]</u></b></a><br>
+  </h5>
+  <div class="mainTable">
+    <table style="width:800px">
+         <tr>
+           <td>
+# Import required libraries <br>
+<span style="color:red;">
+import pandas as pd <br>
+import numpy as np <br>
+from sklearn.datasets import load_iris <br>
+from sklearn.cluster import KMeans <br>
+</span> <br>
+
+# Load iris dataset <br>
+<span style="color:red;">
+iris = load_iris() <br>
+iris_df = pd.DataFrame(data=iris.data, columns=iris.feature_names) <br>
+iris_df['Species'] = pd.Categorical.from_codes(iris.target, iris.target_names) <br>
+</span> <br>
+# Select the four features (Sepal Length, Sepal Width, Petal Length, Petal Width) <br>
+<span style="color:red;">
+iris4 = iris_df.iloc[:, [0, 1, 2, 3]] <br>
+</span> <br>
+# Perform k-means clustering <br>
+<span style="color:red;">
+kmeans = KMeans(n_clusters=3, max_iter=1000, random_state=123) <br>
+iriskmeans = kmeans.fit(iris4) <br>
+</span> <br>
+# Get cluster assignments <br>
+<span style="color:red;">
+cluster_labels = iriskmeans.labels_ <br>
+</span> <br>
+# Print k-means resultsv
+<span style="color:red;">
+print("K-means clustering results:") <br>
+print(f"Cluster centers:\n{iriskmeans.cluster_centers_}") <br>
+print(f"Cluster assignments:\n{cluster_labels}") <br>
+</span> <br>
+# Create classification table (cross-tabulation of Species and clusters) <br>
+<span style="color:red;">
+classtable = pd.crosstab(iris_df['Species'], cluster_labels,
+                        rownames=['Species'], colnames=['Cluster']) <br>
+print("\nClassification table:") <br>
+print(classtable) <br>
+</span>     
+<pre>
+K-means clustering results:
+Cluster centers:
+[[6.85       3.07368421 5.74210526 2.07105263]
+ [5.006      3.428      1.462      0.246     ]
+ [5.9016129  2.7483871  4.39354839 1.43387097]]
+Cluster assignments:
+[1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 0 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+ 2 2 2 0 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 0 2 0 0 0 0 2 0 0 0 0
+ 0 0 2 2 0 0 0 0 2 0 2 0 2 0 0 2 2 0 0 0 0 0 2 0 0 0 0 2 0 0 0 2 0 0 0 2 0
+ 0 2]
+
+Classification table:
+Cluster      0   1   2
+Species               
+setosa       0  50   0
+versicolor   2   0  48
+virginica   36   0  14
+</pre>
+           </td>
+         </tr>
+    </table>
   </div>
   <p>
 
