@@ -1657,10 +1657,10 @@
        When data of two continuous variables are highly correlated, if we draw a three-dimensional histogram, 
        the data are concentrated around the mean, and  
        the shape is a bent bell to both sides. We use a model for such data with a <b>bivariate normal distribution</b> 
-       If two variables \(X_1\) and \(X_2\) have means \(\mu_1\) and \(\mu_2\), 
-       variances \(\sigma_1^2\) and \(\sigma_2^2 \) respectively, and correlation \(\rho\), the distribution function is as follows.
+       If two variables \(X\) and \(Y\) have means \(\mu_x\) and \(\mu_y\), 
+       variances \(\sigma_x^2\) and \(\sigma_y^2 \) respectively, and correlation \(\rho\), the distribution function is as follows.
        $$ \small
-          f( x_1 , x_2 ) = \frac {1}{2 \pi \sigma_1 \sigma_2 \sqrt{1- \rho^2 } } exp \left \lbrace \frac{1}{2(1-\rho^2 )} \left [ \left ( \frac{x_1 - \mu_1 }{\sigma_1 } \right )^2 -2 \rho \left ( \frac{x_1 - \mu_1}{\sigma_1} \right ) \left ( \frac{x_2 - \mu_2}{\sigma_2 } \right ) + \left ( \frac{x_2 - \mu_2}{\sigma_2 } \right )^2 \right ] \right \rbrace 
+          f( x , y ) = \frac {1}{2 \pi \sigma_1 \sigma_2 \sqrt{1- \rho^2 } } exp \left \lbrace \frac{1}{2(1-\rho^2 )} \left [ \left ( \frac{x - \mu_x }{\sigma_x } \right )^2 -2 \rho \left ( \frac{x - \mu_x}{\sigma_x} \right ) \left ( \frac{y - \mu_y}{\sigma_y } \right ) + \left ( \frac{y - \mu_y}{\sigma_y } \right )^2 \right ] \right \rbrace 
        $$
        Several snapshots of the bivariate normal with means (0, 0) and variances (1, 1) for different 
        correlations are as follows.
@@ -1683,6 +1683,15 @@
        <img class="figure40" src="./figure/Fig040212.png">
        <div class="figText">&lt;Figure 4.3.3&gt; Bivariate normal distribution with mean (0, 0), variance (1, 1) and \(\rho\) = 0.9</div>
     <p>
+  </div>
+  <p>
+  <div class="mainTableGrey">  
+       <!--------*** html for Bivariate Normal Distribution ***-------------------------->
+       <b>[Bivariate Normal Distribution]</b>  by Anar Allahverdiyev
+       <iframe class="example90" src="./example/040301.html"> </iframe>
+  </div>
+  <p>
+  <div class="mainTableGrey">  
        If there are \(m\) random variables such as
        \(\boldsymbol X = ( X_1 , X_2 , ... , X_m ) \) whose mean is \(\boldsymbol \mu \) and 
        \(m \times m\) covariance matrix is \(\boldsymbol \Sigma \), the <b>multivariate normal distribution function</b>
