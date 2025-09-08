@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bivariate Normal Distribution</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+  <b>Bivariate Normal Parameters:</b>
+  <br>
+  <!-- Input controls -->
+  &nbsp;&nbsp;<label>μ<sub>x</sub>: <input id="mux" type="number" value="0" step="0.1" style="width:100px"></label> &nbsp;&nbsp;
+  <label>σ<sub>x</sub>: <input id="sigmax" type="number" value="1" step="0.1" style="width:100px"></label>
+  <br>&nbsp;
+  &nbsp;&nbsp;<label>μ<sub>y</sub>: <input id="muy" type="number" value="0" step="0.1" style="width:100px"></label> &nbsp;&nbsp;
+  <label>σ<sub>y</sub>: <input id="sigmay" type="number" value="1" step="0.1" style="width:100px"></label> &nbsp;&nbsp;
+  <label>ρ: <input id="rho" type="number" value="0.5" step="0.1" min="-0.9" max="0.9" style="width:100px"></label> &nbsp;&nbsp;
+  <button onclick="updatePlot()">Update</button>
+  <br>
+  <div id="plot" style="width: 800px; height: 600px;"></div>
+
+  <script>
+    // Bivariate normal PDF function
+    function bivariateNormalPDF(x, y, mux, muy, sigmax, sigmay, rho) {
+      const coeff = 1 / (2 * Math.PI * sigmax * sigmay * Math.sqrt(1 - rho**2));
+      const z = ((x - mux)**2 / sigmax**2)
+              - (2 * rho * (x - mux) * (y - muy)) / (sigmax * sigmay)
+              + ((y - muy)**2 / sigmay**2);
+      return coeff * Math.exp(-z / (2 * (1 - rho**2)));
+    }
+
+    // Generate grid and plot
+    function generateSurface(mux, muy, sigmax, sigmay, rho) {
+      let xs = [], ys = [];
+      const n = 50;
+      for (let i = -4; i <= 4; i += 6/n) xs.push(i);
+      for (let j = -4; j <= 4; j += 6/n) ys.push(j);
+
+      let zs = [];
+      for (let xi = 0; xi < xs.length; xi++) {
+        let row = [];
+        for (let yi = 0; yi < ys.length; yi++) {
+          row.push(bivariateNormalPDF(xs[xi], ys[yi], mux, muy, sigmax, sigmay, rho));
+        }
+        zs.push(row);
+      }
+      return {xs, ys, zs};
+    }
+
+    // Draw plot
+    function updatePlot() {
+      const mux = parseFloat(document.getElementById('mux').value);
+      const muy = parseFloat(document.getElementById('muy').value);
+      const sigmax = parseFloat(document.getElementById('sigmax').value);
+      const sigmay = parseFloat(document.getElementById('sigmay').value);
+      const rho = parseFloat(document.getElementById('rho').value);
+
+      const {xs, ys, zs} = generateSurface(mux, muy, sigmax, sigmay, rho);
+
+      const data = [{
+        x: xs,
+        y: ys,
+        z: zs,
+        type: 'surface'
+      }];
+
+      const layout = {
+        title: '',
+        scene: {xaxis:{title:'x'}, yaxis:{title:'y'}, zaxis:{title:'f(x,y)'}}
+      };
+
+      Plotly.newPlot('plot', data, layout);
+    }
+
+    // Initial plot
+    updatePlot();
+  </script>
+</body>
+</html>

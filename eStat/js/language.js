@@ -187,7 +187,7 @@ $message.ko = {
     "MiddleStat": "초등/중학: 통계",
     "HighStat":   "고등: 확률 및 통계",
     "UnivStat":   "통계 데이터과학",
-    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using 『eStat』 and R",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using 『eStat』, R and Python",
     "ebookLink":  "전자책 링크",
     "Menu": "메뉴",
     "Binomial Experiment": "이항분포실험",
@@ -1106,7 +1106,7 @@ $message.en = {
     "MiddleStat": "Elementary / Middle School",
     "HighStat":   "High School Statistics",
     "UnivStat":   "Introduction to Statistics using 『eStat』",
-    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using 『eStat』 and R",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using 『eStat』, R and Python",
     "ebookLink":  "webBook",
     "Menu": "Menu",
     "Binomial Experiment": "Binomial Experiment",
@@ -2012,7 +2012,7 @@ $message.ja = {
     "MiddleStat": "中統計",
     "HighStat":   "高統計",
     "UnivStat":   "統計データサイエンス",
-    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』, R and Python",
     "ebookLink":  "電子書籍リンク (English)",
     "Menu": "メニュー",
     "Binomial Experiment": "二項分布シミュレーション",
@@ -2909,7 +2909,7 @@ $message.zhTW = {
     "MiddleStat": "中統計",
     "HighStat":   "高統計",
     "UnivStat":   "Statistics and Data Science",
-    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』, R and Python",
     "ebookLink":  "電子書連結 (English)",
     "Menu": "選單",
     "Binomial Experiment": "二項式分佈實驗",
@@ -3805,7 +3805,7 @@ $message.fr = {
     "MiddleStat": "Statistiques du collège",
     "HighStat":   "Statistiques du lycée",
     "UnivStat":   "Statistics and Data Science",
-    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』, R and Python",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Menu",
     "Binomial Experiment": "Essai binomialt",
@@ -4704,7 +4704,7 @@ $message.de = {
     "MiddleStat": "Statistik Mittelschule",
     "HighStat":   "Statistik des Gymnasiums",
     "UnivStat":   "Statistics and Data Science",
-    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』, R and Python",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Menü",
     "Binomial Experiment": "Binomialexperiment",
@@ -5598,7 +5598,7 @@ $message.es = {
     "MiddleStat": "Estadísticas de la escuela intermedia",
     "HighStat":   "Estadísticas de la escuela secundaria",
     "UnivStat":   "Statistics and Data Science",
-    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』, R and Python",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Menú",
     "Binomial Experiment": "Experimento Binomial",
@@ -6495,7 +6495,7 @@ $message.vi = {
     "MiddleStat": "Trường trung học thống kê",
     "HighStat":   "thống kê trường trung học",
     "UnivStat":   "Statistics and Data Science",
-    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』, R and Python",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Menu",
     "Binomial Experiment": "Thí nghiệm nhị thức",
@@ -7388,7 +7388,7 @@ $message.id = {
     "MiddleStat": "Statistik Sekolah Menengah",
     "HighStat":   "Statistik SMA",
     "UnivStat":   "Statistics and Data Science",
-    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』, R and Python",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Menu",
     "Binomial Experiment": "Percobaan Binomial",
@@ -8285,7 +8285,7 @@ $message.mn = {
     "MiddleStat": "Дунд сургуулийн статистик",
     "HighStat":   "Ахлах сургуулийн статистик",
     "UnivStat":   "Statistics and Data Science",
-    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』, R and Python",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Цэс",
     "Binomial Experiment": "Бином туршилт",
@@ -9180,7 +9180,7 @@ $message.zh = {
     "MiddleStat": "中学统计",
     "HighStat":   "高中统计",
     "UnivStat":   "Statistics and Data Science",
-    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』, R and Python",
     "ebookLink":  "韩文电子书连结",
     "Menu": "选择",
     "Binomial Experiment": "二项式分布试验",
@@ -9838,7 +9838,33 @@ svgStrU[29][10] = "[方差分析]";
 svgStrU[30][10] = "输入相关系数后按确认";
 svgStrU[31][10] = "回归分析";
 svgStrU[32][10] = "列变量";
-svgStrU[33][10] = "行变量";svgStrU[34][10] = "平均"svgStrU[35][10] = "标准差"svgStrU[36][10] = "<h3> 直方图<br>频数分布表</h3>";svgStrU[37][10] = "群组名称";svgStrU[38][10] = "阶级区间";svgStrU[39][10] = "叶";svgStrU[40][10] = "叶";svgStrU[41][10] = "群组1 叶";svgStrU[42][10] = "群组2 叶";svgStrU[43][10] = "<h3>基本统计量</h3>";svgStrU[44][10] = "资料数";  svgStrU[45][10] = "最小值";  svgStrU[46][10] = "中位数"; svgStrU[47][10] = "最大值";  svgStrU[48][10] = "全体";svgStrU[49][10] = "指数分布";svgStrU[50][10] = "均匀分布";svgStrU[51][10] = "估计准确率";svgStrU[52][10] = "- 单击鼠标添加观察点，eStat会计算出回归线。";svgStrU[53][10] = "- 移动或者删除一个观察点，观看回归线的变化。";svgStrU[54][10] = "[样本统计量] ";svgStrU[55][10] = "[样本 1 统计量] ";svgStrU[56][10] = "[样本 2 统计量] ";svgStrU[57][10] = "显著性水平";svgStrU[58][10] = "列行独立";svgStrU[59][10] = "列行不独立";
+svgStrU[33][10] = "行变量";
+svgStrU[34][10] = "平均"
+svgStrU[35][10] = "标准差"
+svgStrU[36][10] = "<h3> 直方图<br>频数分布表</h3>";
+svgStrU[37][10] = "群组名称";
+svgStrU[38][10] = "阶级区间";
+svgStrU[39][10] = "叶";
+svgStrU[40][10] = "叶";
+svgStrU[41][10] = "群组1 叶";
+svgStrU[42][10] = "群组2 叶";
+svgStrU[43][10] = "<h3>基本统计量</h3>";
+svgStrU[44][10] = "资料数";  
+svgStrU[45][10] = "最小值";  
+svgStrU[46][10] = "中位数"; 
+svgStrU[47][10] = "最大值";  
+svgStrU[48][10] = "全体";
+svgStrU[49][10] = "指数分布";
+svgStrU[50][10] = "均匀分布";
+svgStrU[51][10] = "估计准确率";
+svgStrU[52][10] = "- 单击鼠标添加观察点，eStat会计算出回归线。";
+svgStrU[53][10] = "- 移动或者删除一个观察点，观看回归线的变化。";
+svgStrU[54][10] = "[样本统计量] ";
+svgStrU[55][10] = "[样本 1 统计量] ";
+svgStrU[56][10] = "[样本 2 统计量] ";
+svgStrU[57][10] = "显著性水平";
+svgStrU[58][10] = "列行独立";
+svgStrU[59][10] = "列行不独立";
 svgStrU[60][10] = "观测分布";
 svgStrU[61][10] = "理论分布";
 svgStrU[62][10] = "观测频率的拟合优度检验";
@@ -10055,7 +10081,7 @@ $message.pt = {
     "MiddleStat": "Estatísticas do ensino médio",
     "HighStat":   "Estatísticas do ensino médio",
     "UnivStat":   "Statistics and Data Science",
-    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』, R and Python",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Menu",
     "Binomial Experiment": "Experimento Binomial",
@@ -10955,7 +10981,7 @@ $message.gr = {
     "MiddleStat": "Στατιστικά Γυμνασίου",
     "HighStat":   "Στατιστικά Λυκείου",
     "UnivStat":   "Statistics and Data Science",
-    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』, R and Python",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Μενού",
     "Binomial Experiment": "Διωνυμικό Πείραμα",
@@ -11854,7 +11880,7 @@ $message.ro = {
     "MiddleStat": "Statistica gimnaziului",
     "HighStat":   "Statistica liceului",
     "UnivStat":   "Statistics and Data Science",
-    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』, R and Python",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Meniu",
     "Binomial Experiment": "Experiment Binomial",
@@ -12755,7 +12781,7 @@ $message.th = {
     "MiddleStat": "สถิติมัธยมต้น",
     "HighStat":   "สถิติมัธยมปลาย",
     "UnivStat":   "Statistics and Data Science",
-    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』, R and Python",
     "ebookLink":  "webBook Link (English)",
     "Menu": "เมนู",
     "Binomial Experiment": "การทดลองทวินาม",
@@ -13655,7 +13681,7 @@ $message.pl = {
     "MiddleStat": "Statystyka podstawy",
     "HighStat":   "Statystyka szkół wyższych",
     "UnivStat":   "Statystyka i nauka o danych",
-    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』, R and Python",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Menu",
     "Binomial Experiment": "Eksperyment dla rozkładu dwumianowego",
@@ -14556,7 +14582,7 @@ $message.az = {
     "MiddleStat": "Orta məktəb Statistikası",
     "HighStat":   "Yuxarı Sinif Statistikası",
     "UnivStat":   "Statistics and Data Science",
-    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』, R and Python",
     "ebookLink":  "webBook Link (English)",
     "Menu": "menyu",
     "Binomial Experiment": "Binomial Eksperiment",
@@ -15456,7 +15482,7 @@ $message.uz = {
     "MiddleStat": "O'rta maktab statistikasi",
     "HighStat":   "Oliy maktab statistikasi",
     "UnivStat":   "Statistics and Data Science",
-    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』, R and Python",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Menyu",
     "Binomial Experiment": "Binominal tajriba",
@@ -16358,7 +16384,7 @@ $message.ru = {
     "MiddleStat": "Статистика средней школы",
     "HighStat":   "Статистика средней школы",
     "UnivStat":   "Statistics and Data Science",
-    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』, R and Python",
     "ebookLink":  "webBook Link (English)",
     "Menu": "Меню",
     "Binomial Experiment": "Биномиальный эксперимент",
@@ -17256,7 +17282,7 @@ $message.tr = {
     "MiddleStat": "Orta okul istatistiği",
     "HighStat":   "Lise istatistiği",
     "UnivStat":   "Statistics and Data Science",
-    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』 and R",
+    "UnivStat2":  "Introduction to Data Science & Aritificial Intelligence using using 『eStat』, R and Python",
     "ebookLink":  "eKitab linki (İngilizce)",
     "Menu": "Menü",
     "Binomial Experiment": "Binom deneyi",
